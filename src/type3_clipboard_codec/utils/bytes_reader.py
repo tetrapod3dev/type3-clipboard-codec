@@ -1,6 +1,6 @@
 import struct
 from io import BytesIO
-from typing import Optional
+
 
 class BytesReader:
     """
@@ -57,3 +57,7 @@ class BytesReader:
     def read_f64_le(self) -> float:
         """64-bit 리틀 엔디안 부동소수점 숫자를 읽는다."""
         return struct.unpack("<d", self.read_bytes(8))[0]
+
+    def read_ascii(self, size: int) -> str:
+        """지정된 크기만큼 ASCII 문자열을 읽는다."""
+        return self.read_bytes(size).decode("ascii")

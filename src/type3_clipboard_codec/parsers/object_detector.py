@@ -1,7 +1,7 @@
-from typing import List, Optional
 from .base import BaseParser
 from .registry import ParserRegistry
 from .text_parser import TextParser
+from .type3_chain_parser import Type3ChainParser
 from .unknown_parser import UnknownParser
 from ..utils.bytes_reader import BytesReader
 
@@ -24,9 +24,10 @@ class ObjectDetector:
         for parser in ParserRegistry.get_all_parsers():
             if parser.can_parse(reader):
                 return parser
-        
+
         # 일치하는 파서가 없는 경우 UnknownParser 반환
         return UnknownParser()
 
 # 전역 레지스트리에 기본 파서 등록
+ParserRegistry.register(Type3ChainParser())
 ParserRegistry.register(TextParser())

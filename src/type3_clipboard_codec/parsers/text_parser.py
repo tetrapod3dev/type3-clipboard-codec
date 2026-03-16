@@ -36,11 +36,15 @@ class TextParser(BaseParser):
         # Heuristic: 가장 긴 ASCII 문자열을 텍스트 내용으로 추정
         all_strings = scan_ascii_strings(data)
         
-        # 마커를 제외한 문자열 중 가장 긴 것 선택
+    # 마커를 제외한 문자열 중 가장 긴 것 선택
         content_candidates = [s for _, s in all_strings if s not in self.TEXT_MARKERS]
         main_content = ""
         if content_candidates:
-            main_content = max(content_candidates, key=len)
+            # If multiple candidates have the same maximum length, pick the last one
+            # to avoid picking generic headers that might appear before the content.
+            max_len = max(len(s) for s in content_candidates)
+            best_candidates = [s for s in content_candidates if len(s) == max_len]
+            main_content = best_candidates[-1]
             
         return TextObject(
             object_type="text",

@@ -1,5 +1,7 @@
-from typing import List, Type
+from typing import List
+
 from .base import BaseParser
+
 
 class ParserRegistry:
     """

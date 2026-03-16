@@ -10,7 +10,7 @@ class InspectService:
         self._decoder = Decoder()
         self._renderer = PreviewRenderer()
 
-    def inspect(self, adapter: InputAdapter) -> str:
+    def inspect(self, adapter: InputAdapter, verbose: bool = False) -> str:
         """
         어댑터를 통해 데이터를 가져와 분석하고 미리보기 결과를 반환한다.
         """
@@ -21,4 +21,4 @@ class InspectService:
         parsed_obj = self._decoder.decode_bytes(data)
         
         # 3. 미리보기 결과 생성
-        return self._renderer.render(parsed_obj)
+        return self._renderer.render(parsed_obj, verbose=verbose)

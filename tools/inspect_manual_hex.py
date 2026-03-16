@@ -1,9 +1,4 @@
 import sys
-import os
-
-# 현재 스크립트 위치를 기준으로 src 디렉토리를 path에 추가
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-
 from type3_clipboard_codec.adapters.manual_hex_input import ManualHexInput
 from type3_clipboard_codec.services.inspect_service import InspectService
 from type3_clipboard_codec.exceptions import Type3CodecError
@@ -12,8 +7,13 @@ def main():
     """
     수동으로 입력된 Hex 텍스트를 분석하는 CLI 도구.
     """
+    # 간단한 verbose 모드 지원
+    verbose = "--verbose" in sys.argv or "-v" in sys.argv
+
     print("=" * 60)
     print("TYPE3 Clipboard Manual Hex Inspector")
+    if verbose:
+        print("Mode: Verbose")
     print("=" * 60)
     print("분석할 Hex 텍스트를 입력하세요 (0x 접두어 및 공백은 무시됨).")
     print("입력을 마치려면 빈 줄을 입력하십시오.")
@@ -39,15 +39,15 @@ def main():
         service = InspectService()
         adapter = ManualHexInput(full_hex)
         
-        result = service.inspect(adapter)
+        result = service.inspect(adapter, verbose=verbose)
         
         print("\n분석 결과:")
         print(result)
         
     except Type3CodecError as e:
-        print(f"\n[오류] 데이터 분석 중 오류가 발생했습니다: {e}", file=sys.stderr)
+        print(f"\n[오류] 데이터 분석 중 오류가 발생했습니다: {e}")
     except Exception as e:
-        print(f"\n[알 수 없는 오류] 예상치 못한 오류가 발생했습니다: {e}", file=sys.stderr)
+        print(f"\n[알 수 없는 오류] 예상치 못한 오류가 발생했습니다: {e}")
 
 if __name__ == "__main__":
     main()
