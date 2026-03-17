@@ -160,14 +160,32 @@ class Point:
 
 
 @dataclass
+class Type3ObjectChain:
+    """
+    하나의 독립적인 객체를 형성하는 Type3 노드 체인을 나타내는 모델.
+    CZone에서 시작하여 CPropertyExtend 등으로 끝나는 일련의 노드들을 묶는다.
+    """
+    nodes: List[Type3Node] = field(default_factory=list)
+    bbox: Optional[BBox3D] = None
+    contour_records: List[ContourPoint] = field(default_factory=list)
+    points: List[Point] = field(default_factory=list)
+    markers: List[str] = field(default_factory=list)
+    notes: List[str] = field(default_factory=list)
+
+
+@dataclass
 class GeometryObject(ParsedObject):
     """
     선, 곡선 등 기하학적 형상을 나타내는 모델의 기본 클래스.
+    멀티 객체를 지원하기 위해 object_chains 리스트를 포함한다.
     """
-    points: List[Point] = field(default_factory=list) # 정점 리스트
-    contour_records: List[ContourPoint] = field(default_factory=list) # 원시 컨투어 레코드 리스트
+    points: List[Point] = field(default_factory=list) # 정점 리스트 (단일 객체 호환용)
+    contour_records: List[ContourPoint] = field(default_factory=list) # 원시 컨투어 레코드 리스트 (단일 객체 호환용)
     is_closed: bool = False                           # 닫힌 도형 여부
-    bbox: Optional[BBox3D] = None                     # 경계 상자 정보
+    bbox: Optional[BBox3D] = None                     # 경계 상자 정보 (단일 객체 호환용)
+    
+    object_chains: List[Type3ObjectChain] = field(default_factory=list) # 멀티 객체 정보
+    declared_object_count: Optional[int] = None      # 헤더에서 선언된 객체 수
 
     @property
     def anchor_records(self) -> List[ContourPoint]:

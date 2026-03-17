@@ -104,6 +104,7 @@ The currently inferred point structure is:
 - `tag: uint32`
 
 Notes:
+
 - `w` appears to be `1.0` in this sample
 - `tag` is not yet semantically decoded and should be treated as raw/provisional
 
@@ -177,29 +178,18 @@ The circle is represented as an ordered sequence of **8 contour-related records*
 
 Stored order is critical for reverse engineering.
 
-## File: `default_circular_arc.txt`
+### Known object/class chain
 
-This file contains the hex dump of a 90-degree circular arc segment.
+This sample is known to contain the following object/class sequence:
 
-### Known source geometry
-
-This arc corresponds to the segment from the **bottom anchor (R8)** to the **left anchor (R2)** of the circle model described above.
-
-- **Start Anchor:** Corresponds to circle R8 (anchor)
-- **End Anchor:** Corresponds to circle R2 (anchor)
-- **Curvature:** Spans a 90-degree circular segment.
-
-### Reverse-engineering facts
-
-- The arc sample uses a similar record-based structure but for a partial segment.
-- Stored order and role classification (anchor vs. control) remain critical.
-- The sample appears to contain a count of 3 in some headers, but encodes 2 primary contour records for the segment.
-- Semantic tags (e.g., ending in `0x0C` for control, `0x0F/0x0D` for anchor) are observed.
+- `CZone`
+- `CCourbe`
+- `CContour`
+- `CPropertyExtend`
 
 ### Fixture usage guidance
 
-- Use `default_circle.txt` to validate full closed-loop alternating patterns.
-- Use `default_circular_arc.txt` to validate partial segment parsing and start/end anchor identification.
+Use `default_circle.txt` to validate full closed-loop alternating patterns.
 
 Tests based on this file should verify at least:
 
@@ -238,6 +228,11 @@ This file contains the hex dump of a copied circular-arc-like object from Type3.
 This sample corresponds to a **90-degree circular arc**.
 
 It is understood using the same circle model documented in `default_circle.txt`.
+
+- circle center: `(11.111, 22.222, 0)` mm
+- circle radius: `33.333` mm
+- arc start: `(11.111, -11.111, 0)` mm
+- arc end: `(-22.222, 22.222, 0)` mm
 
 Based on the currently known ordered circle contour records, this arc corresponds to the segment:
 
@@ -281,13 +276,19 @@ For `CZone`, `CCourbe`, and `CContour`, the class header is followed by six `dou
 
 Unlike the full circle sample, this fixture represents only a partial circular segment.
 
+The circular arc is represented by **3 contour records**:
+
+1. start anchor
+2. control vertex
+3. end anchor
+
 At the current reverse-engineering stage, the important facts are:
 
 - this is **not** a full circle
+- it consists of exactly 3 records (2 anchors + 1 control)
 - stored record order must be preserved
-- anchor/control role classification still matters
-- the sample should expose its start and end anchor interpretation
-- this fixture currently corresponds to the arc segment from `R8` to `R2` in the known circle model
+- anchor/control role classification is determined by tags (`0x0C = control`, `0x0F/0x0D = anchor`)
+- the arc segment from `R8` to `R2` in the full circle model corresponds to these 3 records
 
 The exact low-level mathematical semantics of each arc-related contour record should still be treated conservatively unless supported by additional evidence.
 
@@ -313,10 +314,11 @@ Use `default_circular_arc.txt` as the primary fixture for the first circular-arc
 Tests based on this file should verify at least:
 
 - recognition of `CZone`, `CCourbe`, `CContour`, `CPropertyExtend`
-- identification as a circular arc rather than a full circle
+- identification as a circular arc
+- extraction of exactly 3 contour records
+- recognition of 2 anchors and 1 control vertex
 - preservation of actual contour record order
-- exposure of anchor/control roles where possible
-- exposure of arc start/end interpretation
+- exposure of distinct arc start and end points
 - arc-oriented preview/summary output
 
 ### Reverse-engineering status
@@ -328,6 +330,156 @@ It should be treated as:
 - a confirmed reference for partial-circle object detection
 - a confirmed reference that stored order matters for arc interpretation
 - a provisional reference for exact arc contour mathematics
+- a provisional reference for deeper `tag` decoding and `CPropertyExtend` semantics
+
+Do not overgeneralize unsupported format rules from this file alone.
+Prefer conservative parsing and preserve unknown/raw bytes where possible.
+
+## File: `default_rounded_rectangle.txt`
+
+This file contains the hex dump of a copied rounded-rectangle-like object from Type3.
+
+### Known source geometry
+
+The copied object corresponds to a rounded rectangle with the following geometric properties:
+
+- bbox lower-left corner: `(11.111, 22.222, 0)` mm
+- width: `75.000` mm
+- height: `25.000` mm
+- corner radius: `2.000` mm
+
+From this, the expected outer bounding box is:
+
+- lower-left: `(11.111, 22.222, 0)` mm
+- lower-right: `(86.111, 22.222, 0)` mm
+- upper-right: `(86.111, 47.222, 0)` mm
+- upper-left: `(11.111, 47.222, 0)` mm
+
+### Expected bounding box
+
+Type3 clipboard coordinates are stored as little-endian `double` values in **meters**, not millimeters.
+
+Therefore, the expected bounding box values in the payload are:
+
+- `xmin = 0.011111`
+- `ymin = 0.022222`
+- `zmin = 0.0`
+- `xmax = 0.086111`
+- `ymax = 0.047222`
+- `zmax = 0.0`
+
+Derived values:
+
+- `width = 0.075000 m` = `75.000 mm`
+- `height = 0.025000 m` = `25.000 mm`
+
+### Expected contour characteristics
+
+This rounded rectangle is expected to be represented as a mixed contour consisting of:
+
+- straight segments
+- rounded corner arc segments
+
+At the current reverse-engineering stage, the working expectation for this sample is:
+
+- `contour_kind = 2`
+- `point_count = 12`
+- record stride = 36 bytes
+- records consist of 8 anchors and 4 controls
+- topology: 4 corners (arc: anchor-control-anchor) and 4 edges (line: anchor-anchor) shared between corners.
+
+This should be treated as a structurally important sample because it mixes line-like and arc-like contour behavior in a single object.
+Specifically, the 12 records represent a closed loop where arcs and lines alternate.
+Previous 8-record interpretations were incomplete due to misalignment.
+
+### Known object/class chain
+
+This sample is known to contain the following object/class sequence:
+
+- `CZone`
+- `CCourbe`
+- `CContour`
+- `CPropertyExtend`
+
+### Known reverse-engineered facts from this sample
+
+#### Common object header
+
+Each known block appears to begin with:
+
+- marker: `uint16 little-endian`, expected value `0xFFFF`
+- class_id: `uint16 little-endian`
+- name_len: `uint16 little-endian`
+- class_name: ASCII string of length `name_len`
+
+#### Repeated bbox block
+
+For `CZone`, `CCourbe`, and `CContour`, the class header is followed by six `double` values:
+
+- `xmin`
+- `ymin`
+- `zmin`
+- `xmax`
+- `ymax`
+- `zmax`
+
+#### Contour point record
+
+The currently inferred contour point structure remains:
+
+- `x: double`
+- `y: double`
+- `z: double`
+- `w: double`
+- `tag: uint32`
+
+However, the precise semantic interpretation of each of the 12 records in this rounded rectangle sample is not yet fully confirmed.
+
+In particular:
+
+- some records are expected to correspond to straight-segment anchors
+- some records are expected to correspond to arc-related anchors or controls
+- stored order is expected to matter
+
+#### Metadata
+
+This sample repeatedly includes metadata indicating:
+
+- key: `OBJECTINFOS_CLASSNAME`
+- value: `CObDao`
+
+This is known to exist, but the full metadata format is not yet fully specified.
+
+#### Property extension block
+
+A `CPropertyExtend` block is present after the contour block.
+
+As with the other samples, this may contain style-related data, but its full semantics are not yet confirmed.
+
+### Fixture usage guidance
+
+Use `default_rounded_rectangle.txt` as the primary fixture for the first mixed-geometry parsing milestone.
+
+Tests based on this file should verify at least:
+
+- recognition of `CZone`, `CCourbe`, `CContour`, `CPropertyExtend`
+- parsing of bbox values in meters
+- conversion from meters to millimeters
+- derived width = `75.000 mm`
+- derived height = `25.000 mm`
+- preservation of the rounded-rectangle contour record order
+- extraction of the expected contour header values
+- rounded-rectangle-oriented preview/summary output
+
+### Reverse-engineering status
+
+This fixture documents the first reliable rounded-rectangle-like sample.
+
+It should be treated as:
+
+- a confirmed reference for rounded-rectangle bbox parsing
+- a confirmed reference for mixed line/arc contour investigation
+- a provisional reference for exact 12-record contour semantics
 - a provisional reference for deeper `tag` decoding and `CPropertyExtend` semantics
 
 Do not overgeneralize unsupported format rules from this file alone.

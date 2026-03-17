@@ -18,17 +18,25 @@ def test_arc_parsing_and_preview():
     
     # Basic identification
     assert "객체 유형: circular_arc" in preview_output
-    assert "Contour records: 2" in preview_output
+    assert "Contour records: 3" in preview_output
     
     # Semantic roles
     assert "R1 / anchor" in preview_output
     assert "R2 / control" in preview_output
+    assert "R3 / anchor" in preview_output
     
     # Arc specific fields
     assert "Arc start =" in preview_output
     assert "Arc end =" in preview_output
-    assert "Anchor vertices: 1" in preview_output
+    assert "Anchor vertices: 2" in preview_output
     assert "Control vertices: 1" in preview_output
+    
+    # Check if start and end are distinct
+    import re
+    starts = re.findall(r"Arc start = \((.*?)\) mm", preview_output)
+    ends = re.findall(r"Arc end = \((.*?)\) mm", preview_output)
+    assert starts and ends
+    assert starts[0] != ends[0]
 
 def test_circle_roles_parsing_and_preview():
     # Load default_circle.txt

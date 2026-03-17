@@ -1,309 +1,471 @@
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Tuple
+import math
+import struct
+
 from .base import BaseParser
 from ..models.geometry import (
-    GeometryObject, ObjectHeader, BBox3D, Type3Node, ContourPoint, ContourPayload, Point
+    GeometryObject,
+    BBox3D,
+    Type3Node,
+    ContourPoint,
+    Point,
+    Type3ObjectChain,
 )
 from ..utils.bytes_reader import BytesReader
 from .common import read_object_header, read_bbox, read_contour_points
 
+
 class Type3ChainParser(BaseParser):
     """
-    Type3 객체 체인을 파싱하는 메인 파서.
-    CZone -> CCourbe -> CContour -> CPropertyExtend 등의 연결된 구조를 처리한다.
+    Type3 class chain parser rebuilt incrementally.
+
+    Current design goals:
+    1. Reliably extract class-chain nodes.
+    2. Reliably read repeated bbox blocks.
+    3. Conservatively locate the CContour point-count area.
+    4. Read contour records with the currently observed stride.
+    5. Validate minimally and preserve unknown semantics where needed.
+
+    Important:
+    - This parser is intentionally conservative.
+    - It should prefer "unknown / no contour parsed" over confidently wrong parsing.
+    - Do not overgeneralize one sample into a universal rule too early.
     """
 
+    DEFAULT_CONTOUR_RECORD_STRIDE = 36
+    MAX_REASONABLE_COORD_M = 100.0
+
     def can_parse(self, reader: BytesReader) -> bool:
-        """
-        데이터의 상위 512바이트 내에서 0xFFFF 마커로 시작하는 클래스 헤더를 찾는다.
-        """
         pos = reader.tell()
         try:
-            # 0xFFFF 마커를 찾기 위해 앞부분을 탐색
             data = reader.peek_bytes(min(512, reader.remaining()))
-            return b'\xff\xff' in data
+            return b"\xff\xff" in data
         except EOFError:
             return False
         finally:
             reader.seek(pos)
 
     def parse(self, reader: BytesReader, **kwargs) -> GeometryObject:
-        """
-        Type3 객체 체인을 파싱하여 GeometryObject로 변환한다.
-        """
-        # 0xFFFF 마커가 나올 때까지 건너뜀 (헤더 무시)
         full_data = reader.peek_bytes(reader.remaining())
         
-        nodes: List[Type3Node] = []
-        
-        # 0xFFFF 마커를 전역적으로 검색하여 노드들을 찾아냄
-        idx = 0
-        while idx < len(full_data) - 6:
-            if full_data[idx] == 0xFF and full_data[idx+1] == 0xFF:
-                # 클래스 헤더인지 검증 (Heuristic)
-                try:
-                    import struct
-                    name_len = struct.unpack("<H", full_data[idx+4:idx+6])[0]
-                    if 1 < name_len < 64 and idx + 6 + name_len <= len(full_data):
-                        name_bytes = full_data[idx+6:idx+6+name_len]
-                        if all(32 <= b <= 126 for b in name_bytes) and name_bytes.startswith(b'C'):
-                            # 헤더 발견!
-                            header_reader = BytesReader(full_data[idx:])
-                            node = self._parse_single_node_fixed(header_reader, full_data[idx:])
-                            nodes.append(node)
-                            # 다음 검색 위치로 이동 (헤더 크기 + 최소 페이로드)
-                            idx += 6 + name_len
-                            continue
-                except Exception:
-                    pass
-            idx += 1
-            
-        # 모델 구축
-        main_points: List[Point] = []
-        main_contour_records: List[ContourPoint] = []
-        main_bbox: Optional[BBox3D] = None
-        markers: List[str] = []
-        
-        for node in nodes:
-            if node.header.class_name not in markers:
-                markers.append(node.header.class_name)
-            
-            if node.header.class_name == "CContour" and node.payload:
-                # CContour 페이로드에서 포인트 추출
-                # [Reverse-engineering observation]
-                # Circle sample (default_circle.txt) contains 8 records.
-                # Pattern: [02 00 00 00] [08 00 00 00] indicates count=8.
-                # Rectangle sample (default_rectangle.txt) contains 4 records.
-                # Pattern: [02 00 00 00] [04 00 00 00] indicates count=4.
-                payload_data = node.payload
-                import struct
-                found = False
-                # Search for point count 8, 4, 2, or 3 (for arc sample) in payload
-                # Use absolute offset based on reverse engineering of circle/arc sample
-                for count_to_find in [8, 4, 2, 3]:
-                    # Search for [02 00 00 00] [count 00 00 00] pattern
-                    pattern = b'\x02\x00\x00\x00' + struct.pack("<I", count_to_find)
-                    offset = payload_data.find(pattern)
-                    if offset != -1:
-                        count_offset = offset + 4
-                        count = count_to_find
-                        
-                        # Special case for arc sample with count 3 where it might be (header + 2 records)
-                        # or just 3 records. In default_circular_arc.txt it's 3.
-                        if count == 3:
-                             # The points in arc sample seem to start after some extra data
-                             # Let's try offset + 4 (count) + 52 (bbox 48 + unknown 4)
-                             # Looking at hex: 03000000 C7C0012D5DC1863F CAC0012D5DC186BF 0000000000000000 000000000000F03F ...
-                             # That's 4 bytes count + 3*8 bytes (24) bbox? No, 6*8=48.
-                             # 03000000 (4) + 48 (bbox) + 4 (unknown) = 56 bytes offset
-                             # Let's try to find records by coordinate check instead of fixed offset
-                             for sub_offset in range(count_offset + 4, count_offset + 100):
-                                 if len(payload_data) >= sub_offset + 2 * 36:
-                                     try:
-                                         test_reader = BytesReader(payload_data[sub_offset:])
-                                         p1_x = test_reader.read_f64_le()
-                                         if abs(p1_x) <= 0.1: # Arc points are very small
-                                             payload_reader = BytesReader(payload_data)
-                                             payload_reader.seek(sub_offset)
-                                             # We treat it as 2 records for the arc sample
-                                             contour_points = read_contour_points(payload_reader, 2)
-                                             for i, p in enumerate(contour_points):
-                                                 if (p.tag & 0xFF) == 0x0C:
-                                                     p.role = "control"
-                                                 elif (p.tag & 0xFF) in [0x0F, 0x0D]:
-                                                     p.role = "anchor"
-                                                 else:
-                                                     p.role = "control" if i % 2 == 0 else "anchor"
-                                             main_points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in contour_points]
-                                             main_contour_records = contour_points
-                                             found = True
-                                             break
-                                     except Exception: continue
-                        else:
-                            if len(payload_data) >= count_offset + 4 + count * 36:
-                                payload_reader = BytesReader(payload_data)
-                                payload_reader.seek(count_offset + 4)
-                                contour_points = read_contour_points(payload_reader, count)
-                                
-                        # Assign roles based on alternating pattern for circles and arcs
-                                if count in [2, 8]:
-                                    # For arcs/circles, the role pattern is alternating
-                                    # [Reverse-engineering Observation]
-                                    # In the 8-record circle (default_circle.txt):
-                                    # R1 (control), R2 (anchor), R3 (control), R4 (anchor) ...
-                                    # Tags for control often end in 0x0C, anchors in 0x0F/0x0D.
-                                    for i, p in enumerate(contour_points):
-                                        # Circle R1 = (-15.713, -7.857, 0.000) mm, w=0.707, tag=0x4E45400C (control)
-                                        # Circle R8 = (11.111, -11.111, 0.000) mm, w=1.000, tag=0x4E45400F (anchor)
-                                        # Arc P1 = (11.111, -11.111) -> Circle R8 (anchor)
-                                        # Arc P2 = (-15.713, -7.857) -> Circle R1 (control)
-                                        # Wait, so for the arc sample, it's anchor then control?
-                                        # No, the user says R1=control, R2=anchor for circle.
-                                        # If arc is R8 to R2, maybe it has R8, R1, R2?
-                                        # But we only found 2 records.
-                                        # Let's keep it simple: if tag ends in 0x0C it's control, 0x0F it's anchor?
-                                        # Circle tags: 0x...0C, 0x...0F, 0x...0C, 0x...0F ...
-                                        # Arc tags: 0x4345500D, 0x3237300C
-                                        # 0x0C seems to be control. 0x0F/0x0D seems to be anchor?
-                                        # Let's use the tag heuristic if available.
-                                        if (p.tag & 0xFF) == 0x0C:
-                                            p.role = "control"
-                                        elif (p.tag & 0xFF) in [0x0F, 0x0D]:
-                                            p.role = "anchor"
-                                        else:
-                                            p.role = "control" if i % 2 == 0 else "anchor"
-                                elif count == 4:
-                                    for p in contour_points:
-                                        p.role = "anchor" # Rectangles are all anchors
-                                
-                                main_points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in contour_points]
-                                main_contour_records = contour_points
-                                found = True
-                    
-                    if found:
-                        break
-                    
-                    # Fallback for arc sample: Search for just the count '3' followed by valid coordinates
-                    if count_to_find == 3:
-                        pattern_arc = struct.pack("<I", 3)
-                        offset_arc = -1
-                        while True:
-                            offset_arc = payload_data.find(pattern_arc, offset_arc + 1)
-                            if offset_arc == -1: break
-                            # Search for records after the count
-                            for sub_offset in range(offset_arc + 4, offset_arc + 100):
-                                if len(payload_data) >= sub_offset + 2 * 36:
-                                    try:
-                                        test_reader = BytesReader(payload_data[sub_offset:])
-                                        p1_x = test_reader.read_f64_le()
-                                        if abs(p1_x) <= 0.1:
-                                            payload_reader = BytesReader(payload_data)
-                                            payload_reader.seek(sub_offset)
-                                            contour_points = read_contour_points(payload_reader, 2)
-                                            for i, p in enumerate(contour_points):
-                                                if (p.tag & 0xFF) == 0x0C:
-                                                    p.role = "control"
-                                                elif (p.tag & 0xFF) in [0x0F, 0x0D]:
-                                                    p.role = "anchor"
-                                                else:
-                                                    p.role = "control" if i % 2 == 0 else "anchor"
-                                            main_points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in contour_points]
-                                            main_contour_records = contour_points
-                                            found = True
-                                            break
-                                    except Exception: continue
-                            if found: break
-                        if found: break
+        header_prefix, declared_count, payload_offset = self._read_top_level_header(full_data)
+        payload_data = full_data[payload_offset:]
 
-                    # Fallback heuristic for rectangle (count 4)
-                    if count_to_find == 4:
-                        for fallback_offset in range(0, len(payload_data) - 4):
-                            count = struct.unpack("<I", payload_data[fallback_offset:fallback_offset+4])[0]
-                            if count == 4:
-                                if len(payload_data) >= fallback_offset + 4 + count * 36:
-                                     try:
-                                         test_reader = BytesReader(payload_data[fallback_offset+4:])
-                                         p1_x = test_reader.read_f64_le()
-                                         if abs(p1_x) <= 1.0:
-                                             payload_reader = BytesReader(payload_data)
-                                             payload_reader.seek(fallback_offset + 4)
-                                             contour_points = read_contour_points(payload_reader, count)
-                                             for p in contour_points: p.role = "anchor"
-                                             main_points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in contour_points]
-                                             main_contour_records = contour_points
-                                             found = True
-                                             break
-                                     except Exception: continue
-                    if found: break
-            
-            if node.bbox:
-                main_bbox = node.bbox
+        all_nodes = self._extract_nodes(payload_data)
+        initial_chains = self._group_nodes_into_chains(all_nodes)
+        
+        final_chains = []
+        for chain in initial_chains:
+            final_chains.extend(self._process_object_chain(chain))
 
-        return GeometryObject(
+        # Step E: Prepare final result
+        main_points = []
+        main_contour_records = []
+        main_bbox = None
+        main_markers = []
+        
+        if final_chains:
+            last_chain = final_chains[-1]
+            main_points = last_chain.points
+            main_contour_records = last_chain.contour_records
+            main_bbox = last_chain.bbox
+            
+            seen_markers = set()
+            for chain in final_chains:
+                seen_markers.update(chain.markers)
+            main_markers = sorted(list(seen_markers))
+
+        result = GeometryObject(
             object_type="geometry",
             raw_size=len(full_data),
             raw_data=full_data,
-            markers=markers,
+            markers=main_markers,
             points=main_points,
             contour_records=main_contour_records,
             bbox=main_bbox,
-            candidate_fields={"nodes": nodes},
-            notes=["Type3ChainParser를 통해 객체 체인을 분석하였습니다."]
+            object_chains=final_chains,
+            declared_object_count=declared_count,
+            notes=[
+                f"Type3ChainParser: Extracted {len(final_chains)} object chains.",
+            ],
         )
+        
+        if len(final_chains) > 1:
+            result.notes.append("Multiple objects detected. Use object_chains for details.")
+            
+        return result
 
-    def _parse_single_node_fixed(self, reader: BytesReader, full_data: bytes) -> Type3Node:
-        """단일 클래스 블록을 파싱하고 페이로드를 다음 마커 전까지 결정한다."""
+    def _read_top_level_header(self, data: bytes) -> Tuple[bytes, Optional[int], int]:
+        """
+        [Step A] Reads the provisional top-level header.
+        Expected format: [reserved: 4B] [object_count: u16_le]
+        """
+        if len(data) < 6:
+            return b"", None, 0
+        
+        try:
+            prefix = data[:4]
+            count = struct.unpack("<H", data[4:6])[0]
+            # Heuristic: if count is too high, it might not be a count.
+            # But in known samples it is 1 or 2.
+            if count > 1000:
+                return b"", None, 0
+            return prefix, count, 6
+        except Exception:
+            return b"", None, 0
+
+    def _group_nodes_into_chains(self, nodes: List[Type3Node]) -> List[Type3ObjectChain]:
+        """
+        [Step C] Groups flat nodes into object chains based on heuristic boundary rules.
+        """
+        chains: List[Type3ObjectChain] = []
+        current_chain: Optional[Type3ObjectChain] = None
+        
+        for node in nodes:
+            # Start new chain if we see CZone or the first node
+            if node.header.class_name == "CZone" or current_chain is None:
+                current_chain = Type3ObjectChain()
+                chains.append(current_chain)
+            
+            # Special case for samples where multiple objects are in one stream
+            # but separated by other markers. 
+            # In some samples, a second CCourbe or CContour without a preceding CZone
+            # might indicate a new object.
+            if node.header.class_name == "CContour" and any(n.header.class_name == "CContour" for n in current_chain.nodes):
+                 current_chain = Type3ObjectChain()
+                 chains.append(current_chain)
+
+            current_chain.nodes.append(node)
+            current_chain.markers.append(node.header.class_name)
+            
+        return chains
+
+    def _process_object_chain(self, chain: Type3ObjectChain) -> List[Type3ObjectChain]:
+        """
+        [Step F] Processes a single object chain to extract geometry independently.
+        Returns a list of object chains (splits the input chain if multiple contours found).
+        """
+        bbox_by_class: Dict[str, BBox3D] = {}
+        processed_chains = []
+        current_work_chain = chain
+
+        for node in chain.nodes:
+            if node.bbox:
+                if node.header.class_name not in bbox_by_class:
+                    bbox_by_class[node.header.class_name] = node.bbox
+            
+            if node.header.class_name != "CContour":
+                continue
+
+            headers = self._read_contour_header(node.payload)
+            if not headers:
+                continue
+
+            # Handle multiple contours in one CContour node (common in multi-object samples)
+            for i, (kind, count, offset) in enumerate(headers):
+                if i > 0:
+                    # Split into a new chain for subsequent contours
+                    new_chain = Type3ObjectChain(
+                        nodes=current_work_chain.nodes,
+                        markers=current_work_chain.markers,
+                    )
+                    processed_chains.append(new_chain)
+                    current_work_chain = new_chain
+                elif not processed_chains:
+                    processed_chains.append(current_work_chain)
+
+                records = self._read_contour_records(node.payload, offset, count)
+                if records and self._validate_records(records, node.bbox):
+                    self._assign_semantic_roles(records)
+                    current_work_chain.contour_records = records
+                    current_work_chain.points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in records]
+        
+        if not processed_chains:
+            processed_chains.append(chain)
+
+        for c in processed_chains:
+            c.bbox = (
+                bbox_by_class.get("CContour")
+                or bbox_by_class.get("CCourbe")
+                or bbox_by_class.get("CZone")
+            )
+        
+        return processed_chains
+
+    def _extract_nodes(self, data: bytes) -> List[Type3Node]:
+        """
+        Extracts chained Type3 class nodes by scanning for plausible 0xFFFF headers.
+        """
+        nodes: List[Type3Node] = []
+        idx = 0
+
+        while idx < len(data) - 6:
+            # We look for 0xFFFF anywhere, not just at current idx, 
+            # to handle potential padding or gaps.
+            idx = data.find(b"\xff\xff", idx)
+            if idx == -1 or idx > len(data) - 6:
+                break
+
+            try:
+                # Basic validation before calling _parse_single_node
+                # We need to be careful with multiple 0xFFFF. 
+                # read_object_header will take the first 0xFFFF it finds if we are aligned.
+                
+                # Check if it looks like a valid class name length
+                name_len = struct.unpack("<H", data[idx + 4 : idx + 6])[0]
+                if not (1 < name_len < 64) or idx + 6 + name_len > len(data):
+                    idx += 1
+                    continue
+                
+                name_bytes = data[idx + 6 : idx + 6 + name_len]
+                if not (all(32 <= b <= 126 for b in name_bytes) and name_bytes.startswith(b"C")):
+                    idx += 1
+                    continue
+
+                node_reader = BytesReader(data[idx:])
+                node = self._parse_single_node(node_reader, data[idx:])
+                nodes.append(node)
+
+                # Move idx to the end of this node's header + bbox + payload
+                header_size = 6 + name_len
+                bbox_size = 48 if node.bbox else 0
+                idx += header_size + bbox_size + len(node.payload)
+            except Exception:
+                idx += 1
+
+        return nodes
+
+    def _parse_single_node(self, reader: BytesReader, node_data: bytes) -> Type3Node:
+        """
+        Parses one class node and cuts its payload at the next plausible Type3 class header.
+        """
         header = read_object_header(reader)
         bbox: Optional[BBox3D] = None
-        
+
         if header.class_name in ["CZone", "CCourbe", "CContour"]:
             bbox = read_bbox(reader)
-            
+
         current_pos = reader.tell()
-        remaining_data = full_data[current_pos:]
+        remaining_data = node_data[current_pos:]
+
+        marker_pos = self._find_next_class_header_offset(remaining_data)
         
-        # 다음 클래스 헤더 찾기
-        marker_pos = -1
+        # Heuristic to avoid eating other class headers
+        if marker_pos != -1:
+            payload = remaining_data[:marker_pos]
+        else:
+            payload = remaining_data
+
+        return Type3Node(header=header, bbox=bbox, payload=payload)
+
+    def _find_next_class_header_offset(self, data: bytes) -> int:
+        """
+        Returns the offset of the next plausible class header within `data`,
+        or -1 if none is found.
+        """
+        # We start from 1 to avoid finding ourselves
         idx = 1
-        while idx < len(remaining_data) - 5:
-            if remaining_data[idx] == 0xFF and remaining_data[idx+1] == 0xFF:
-                import struct
+        while idx < len(data) - 5:
+            # Look for 0xFFFF
+            if data[idx : idx + 2] == b"\xff\xff":
                 try:
-                    name_len = struct.unpack("<H", remaining_data[idx+4:idx+6])[0]
-                    if 1 < name_len < 64 and idx + 6 + name_len <= len(remaining_data):
-                        name_bytes = remaining_data[idx+6:idx+6+name_len]
-                        if all(32 <= b <= 126 for b in name_bytes) and name_bytes.startswith(b'C'):
-                            marker_pos = idx
-                            break
+                    # Validate header after 0xFFFF
+                    name_len = struct.unpack("<H", data[idx + 4 : idx + 6])[0]
+                    if 1 < name_len < 64 and idx + 6 + name_len <= len(data):
+                        name_bytes = data[idx + 6 : idx + 6 + name_len]
+                        if all(32 <= b <= 126 for b in name_bytes) and name_bytes.startswith(b"C"):
+                            return idx
                 except Exception:
                     pass
             idx += 1
-            
-        if marker_pos == -1:
-            payload = remaining_data
-        else:
-            payload = remaining_data[:marker_pos]
-            
-        return Type3Node(header=header, bbox=bbox, payload=payload)
 
-    def _read_until_next_marker(self, reader: BytesReader) -> bytes:
+        return -1
+
+    def _read_contour_header(self, payload: bytes) -> Optional[List[Tuple[int, int, int]]]:
         """
-        다음 클래스 헤더(0xFFFF)가 나타나기 전까지의 데이터를 읽는다.
-        0xFFFF 마커 자체는 읽지 않는다.
+        Conservatively locates probable contour headers.
+        Returns a list of all plausible (kind, count, offset) tuples found.
         """
-        data = reader.peek_bytes(reader.remaining())
-        
-        marker_pos = -1
-        # 현재 위치(index 0) 이후부터 검색
-        idx = 1
-        while idx < len(data) - 5: # 최소 헤더 크기 [FF FF] [ID ID] [LEN LEN]
-            idx = data.find(b'\xff\xff', idx)
-            if idx == -1:
+        marker = b"CObDao"
+        idx = 0
+        found_headers = []
+        while True:
+            marker_pos = payload.find(marker, idx)
+            if marker_pos == -1:
                 break
+
+            base = marker_pos + len(marker)
+            # Candidate shifts: 8, 12, 14, 16, 20
+            # FIX: In two_circle.txt, the second circle has kind=2, count=8 at shift 14.
+            candidate_shifts = [8, 14, 12, 16, 20]
+
+            found_for_this_marker = False
+            for shift in candidate_shifts:
+                header_start = base + shift
+                if header_start + 8 > len(payload):
+                    continue
+
+                try:
+                    kind = struct.unpack("<I", payload[header_start : header_start + 4])[0]
+                    count = struct.unpack("<I", payload[header_start + 4 : header_start + 8])[0]
+                    
+                    if self._is_plausible_contour_count(count):
+                        offset = header_start + 8
+                        # Avoid duplicates
+                        if not any(h[2] == offset for h in found_headers):
+                            found_headers.append((kind, count, offset))
+                        
+                        idx = offset
+                        found_for_this_marker = True
+                        break
+                except Exception:
+                    continue
             
-            # 클래스 헤더인지 검증 (Heuristic)
-            try:
-                import struct
-                # Check for 0xFFFF
-                # ID가 0~30 사이인지 확인 (PropertyExtend는 0x05 등)
-                cls_id = struct.unpack("<H", data[idx+2:idx+4])[0]
-                name_len = struct.unpack("<H", data[idx+4:idx+6])[0]
-                
-                # Type3 클래스 이름 길이는 보통 작음
-                if 1 < name_len < 64 and idx + 6 + name_len <= len(data):
-                    name_bytes = data[idx+6:idx+6+name_len]
-                    # ASCII 가시 문자이면서 'C'로 시작하는지 확인
-                    if all(32 <= b <= 126 for b in name_bytes) and name_bytes.startswith(b'C'):
-                         # 추가 검증: 0x01-0x0F 사이의 ID이거나 CPropertyExtend 등의 이름 확인
-                         marker_pos = idx
-                         break
-            except Exception:
-                pass
-            
-            idx += 1 # Try next byte
+            if not found_for_this_marker:
+                idx = marker_pos + 1
         
-        if marker_pos == -1:
-            size = len(data)
-        else:
-            size = marker_pos
-            
-        return reader.read_bytes(size)
+        return found_headers if found_headers else None
+
+    def _is_plausible_contour_count(self, count: int) -> bool:
+        """
+        Current fixtures strongly suggest small contour counts such as:
+        - 3  : circular arc
+        - 4  : rectangle
+        - 8  : circle / rounded rectangle-like alternating record cases
+        - 12 : rounded rectangle sample in current fixture set
+        """
+        return count in {2, 3, 4, 8, 12}
+
+    def _read_contour_records(
+        self,
+        payload: bytes,
+        offset: int,
+        count: int,
+    ) -> List[ContourPoint]:
+        """
+        Reads exactly `count` contour records using the currently observed fixed stride.
+
+        This keeps the stride explicit and easy to change later.
+        """
+        stride = self.DEFAULT_CONTOUR_RECORD_STRIDE
+        total_size = count * stride
+
+        if offset < 0 or offset + total_size > len(payload):
+            return []
+
+        local_reader = BytesReader(payload[offset:])
+
+        try:
+            return read_contour_points(local_reader, count, stride=stride)
+        except Exception:
+            return []
+
+    def _validate_records(
+        self,
+        records: List[ContourPoint],
+        bbox: Optional[BBox3D],
+    ) -> bool:
+        """
+        Minimal conservative validation.
+
+        Validation policy:
+        - reject NaN / inf
+        - reject astronomical coordinates
+        - reject trivially all-zero sets
+        - if bbox exists, require the record cloud to remain related to the bbox
+          without assuming every point must be strictly inside it
+        """
+        if not records:
+            return False
+
+        for r in records:
+            if not (
+                math.isfinite(r.x_m)
+                and math.isfinite(r.y_m)
+                and math.isfinite(r.z_m)
+                and math.isfinite(r.w)
+            ):
+                return False
+
+            if abs(r.x_m) > self.MAX_REASONABLE_COORD_M:
+                return False
+            if abs(r.y_m) > self.MAX_REASONABLE_COORD_M:
+                return False
+            if abs(r.z_m) > self.MAX_REASONABLE_COORD_M:
+                return False
+
+        if all(
+            abs(r.x_m) < 1e-12 and abs(r.y_m) < 1e-12 and abs(r.z_m) < 1e-12
+            for r in records
+        ):
+            return False
+
+        if bbox is None:
+            return True
+
+        xs = [r.x_m for r in records]
+        ys = [r.y_m for r in records]
+
+        px_min = min(xs)
+        px_max = max(xs)
+        py_min = min(ys)
+        py_max = max(ys)
+
+        # Allow a modest margin because control points can sit outside the bbox.
+        margin = 0.05  # 50 mm
+
+        # Entire cloud must still be related to bbox, not astronomically detached.
+        if px_max < bbox.xmin_m - margin:
+            return False
+        if px_min > bbox.xmax_m + margin:
+            return False
+        if py_max < bbox.ymin_m - margin:
+            return False
+        if py_min > bbox.ymax_m + margin:
+            return False
+
+        return True
+
+    def _assign_semantic_roles(self, records: List[ContourPoint]) -> None:
+        """
+        Assigns conservative semantic roles from currently observed low-byte tag patterns.
+
+        Confirmed enough to use:
+        - 0x0C -> control
+
+        Observed enough to treat as anchors in current fixtures:
+        - 0x0D
+        - 0x0F
+
+        Everything else remains unknown for now.
+        """
+        for r in records:
+            low = r.tag & 0xFF
+            if low == 0x0C:
+                r.role = "control"
+            elif low in (0x0D, 0x0F):
+                r.role = "anchor"
+            else:
+                r.role = "unknown"
+
+    def _debug_dump_contour(self, node: Type3Node) -> None:
+        """
+        Optional debug helper. Safe to keep during reverse engineering.
+        """
+        payload = node.payload
+        print("\n--- DEBUG CContour Dump ---")
+        print(f"Payload Length: {len(payload)} bytes")
+
+        if payload:
+            print(f"First 128 bytes hex: {payload[:128].hex(' ')}")
+
+        markers = [b"OBJECTINFOS_CLASSNAME", b"CObDao"]
+        for marker in markers:
+            pos = payload.find(marker)
+            if pos != -1:
+                print(f"'{marker.decode()}' found at offset: {pos}")
+                if marker == b"CObDao":
+                    tail = payload[pos + len(marker) : pos + len(marker) + 32]
+                    print(f"Bytes after CObDao: {tail.hex(' ')}")
+
+        print("---------------------------\n")

@@ -32,23 +32,32 @@ def read_bbox(reader: BytesReader) -> BBox3D:
         zmax_m=reader.read_f64_le()
     )
 
-def read_contour_points(reader: BytesReader, count: int) -> List[ContourPoint]:
+def read_contour_points(reader: BytesReader, count: int, stride: int = 36) -> List[ContourPoint]:
     """
     CContour 내의 정점 리스트를 읽는다.
-    Format: [x: f64] [y: f64] [z: f64] [w: f64] [tag: u32]
     
     [Reverse-engineering Note]
-    Each contour record is exactly 36 bytes:
-    - x, y, z, w (8 bytes each, doubles) = 32 bytes
-    - tag (4 bytes, uint32) = 4 bytes
-    Total = 36 bytes.
+    - Default stride is 36 bytes (x, y, z, w: 8 bytes each, tag: 4 bytes).
+    - Rounded rectangle (default_rounded_rectangle.txt) uses a 44-byte stride.
+    - Stride can be passed to skip unknown trailing bytes in each record.
     """
     points = []
     for _ in range(count):
+        start_pos = reader.tell()
         x = reader.read_f64_le()
         y = reader.read_f64_le()
         z = reader.read_f64_le()
         w = reader.read_f64_le()
-        tag = reader.read_u32_le()
+        
+        # tag는 4바이트 uint32로 가정
+        if reader.remaining() >= 4:
+            tag = reader.read_u32_le()
+        else:
+            tag = 0
+            
         points.append(ContourPoint(x_m=x, y_m=y, z_m=z, w=w, tag=tag))
+        
+        # 다음 레코드로 이동 (stride 적용)
+        reader.seek(start_pos + stride)
+        
     return points

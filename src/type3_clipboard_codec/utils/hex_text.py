@@ -5,8 +5,14 @@ def normalize_hex_text(text: str) -> str:
     """
     사용자가 입력한 16진수 문자열에서 불필요한 공백, 줄바꿈, 구분자를 제거한다.
     """
-    # 0x 접두어 제거 및 공백/줄바꿈 제거
-    clean_text = re.sub(r'[\s,:\-\x00]', '', text.replace('0x', ''))
+    # 0x 접두어 제거
+    text = text.replace('0x', '')
+    # 0x00(널 문자)을 공백처럼 취급하여 제거하지 않고 유지하거나, 
+    # 혹은 널 문자 자체를 hex 데이터의 일부가 아닌 구분자로 보고 제거.
+    # 현재 regex는 \x00을 포함하여 제거하고 있는데, 
+    # 만약 파일이 hex 문자열 사이에 null bytes를 포함하고 있다면 
+    # (예: "46 46 00 30 31") 이들을 제거하는 것이 맞다.
+    clean_text = re.sub(r'[\s,:\-\x00]', '', text)
     return clean_text
 
 def hex_to_bytes(hex_text: str) -> bytes:
