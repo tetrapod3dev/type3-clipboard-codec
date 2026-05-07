@@ -141,6 +141,8 @@
 
 ## 3.6 Text
 
+세부 텍스트 객체 역공학 계획은 [`text_object_reverse_engineering.md`](text_object_reverse_engineering.md)에 별도로 정리한다.
+
 ### 관찰
 - 문자열 데이터와 위치/정렬/스타일 계열 정보가 함께 포함될 가능성이 높음
 - 다른 도형 객체보다 가변 길이 데이터가 포함될 가능성이 큼

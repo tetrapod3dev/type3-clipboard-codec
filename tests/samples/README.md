@@ -555,3 +555,143 @@ It should be treated as:
 
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
+
+## File: `default_text.txt`
+
+This file contains the hex dump of a copied text object from Type3.
+
+### Known source text
+
+The copied object corresponds to a text object with the following source content:
+
+- text: `abcdefg`
+
+### Known source setup
+
+The object was created with the text object's lower-left bbox origin aligned to:
+
+- bbox lower-left: `(0.000, 0.000, 0.000)` mm
+
+The observed font name near the beginning of the payload is:
+
+- `Arial`
+
+At the current stage, this fixture should be treated as the first baseline text-object sample.
+
+### Expected object characteristics
+
+Unlike pure geometric objects such as rectangles, circles, and arcs, this sample appears to contain both:
+
+- text-object data
+- generated contour/outline geometry
+- object metadata
+- style/property-extension data
+
+This means the parser must not treat text objects as simple strings only.
+
+The fixture is expected to include text-related object/class blocks, including:
+
+- `CZone`
+- `CParagraphe`
+- `CCourbe`
+- `CContour`
+- `CPropertyExtend`
+
+The presence of `CParagraphe` is especially important because it appears to distinguish text-like objects from ordinary curve-only geometry.
+
+### Known reverse-engineered facts from this sample
+
+#### Font marker
+
+The raw payload begins with a visible ASCII font name:
+
+- `Arial`
+
+This is currently a high-confidence text-object indicator.
+
+However, the full surrounding font-record structure is not yet decoded.
+
+#### Text content
+
+The intended text content is:
+
+- `abcdefg`
+
+The ASCII characters appear in the payload as character-related records.
+
+At the current stage, the parser should try to recover the visible text content conservatively.
+
+Important:
+
+- do not assume yet that all text is stored as a single contiguous string
+- do not assume yet that all characters use the same encoding
+- preserve raw character records where possible
+- future fixtures must validate Korean text, digits, spaces, multiline text, and special characters
+
+#### Text object bbox
+
+The source object was positioned so that the lower-left bbox origin is:
+
+- `(0.000, 0.000, 0.000)` mm
+
+The parsed bbox should be used as the authoritative geometry reference.
+
+As with other Type3 fixtures, coordinates are expected to be stored as little-endian `double` values in **meters**, not millimeters.
+
+#### Text outline geometry
+
+This sample may contain generated curve/contour data corresponding to text outlines or baseline-related geometry.
+
+The parser should not confuse text-outline `CCourbe` / `CContour` blocks with the primary text content itself.
+
+Text parsing should therefore support both:
+
+- high-level text object extraction
+- preservation of any nested or generated geometry blocks
+
+#### Metadata
+
+This sample repeatedly includes metadata indicating:
+
+- key: `OBJECTINFOS_CLASSNAME`
+- value: `CObDao`
+
+This is known to exist, but the full metadata format is not yet fully specified.
+
+#### Property extension block
+
+A `CPropertyExtend` block is present.
+
+As with geometric samples, this may contain style-related data such as line width, color, or other rendering parameters, but the full semantics are not yet confirmed.
+
+### Fixture usage guidance
+
+Use `default_text.txt` as the primary fixture for the first text-object parsing milestone.
+
+Tests based on this file should verify at least:
+
+- recognition of text-like object structure
+- detection of `CParagraphe`
+- detection of font name `Arial`
+- extraction of source text `abcdefg` if safely recoverable
+- parsing of bbox values in meters
+- conversion from meters to millimeters
+- preservation of raw text-related records
+- preservation of generated curve/contour geometry
+- text-oriented preview/summary output
+
+### Reverse-engineering status
+
+This fixture documents the first reliable text-object sample.
+
+It should be treated as:
+
+- a confirmed reference for baseline text-object detection
+- a confirmed reference that text objects contain more than simple geometry
+- a confirmed reference for the presence of `CParagraphe`
+- a provisional reference for font-record structure
+- a provisional reference for character-record structure
+- a provisional reference for text-outline geometry semantics
+
+Do not overgeneralize unsupported format rules from this file alone.
+Prefer conservative parsing and preserve unknown/raw bytes where possible.

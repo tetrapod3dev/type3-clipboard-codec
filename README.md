@@ -59,6 +59,7 @@ tools/
 
 docs/
 ├─ format_notes.md
+├─ text_object_reverse_engineering.md
 └─ reverse_engineering_log.md
 ````
 
@@ -84,6 +85,7 @@ python tools/inspect_manual_hex.py
 ## 문서
 
 * [`docs/format_notes.md`](docs/format_notes.md): 현재까지 정리된 포맷 구조, 필드 해석 가설, 객체별 메모
+* [`docs/text_object_reverse_engineering.md`](docs/text_object_reverse_engineering.md): 텍스트 객체 UI 용어, 샘플 설계, 파서 우선순위 계획
 * [`docs/reverse_engineering_log.md`](docs/reverse_engineering_log.md): 샘플 분석 과정, 확인된 내용, 미해결 이슈 기록
 
 ## 향후 계획
