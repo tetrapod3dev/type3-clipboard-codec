@@ -152,6 +152,77 @@ It should be treated as:
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
+## Files: `color_*_rectangle.txt`
+
+These files contain independent rectangle color fixtures. They intentionally use matching names so color tests do not need to infer or remember the color of `default_rectangle.txt`.
+
+Current color fixtures:
+
+- `color_black_rectangle.txt`
+- `color_blue_rectangle.txt`
+- `color_green_rectangle.txt`
+- `color_cyan_rectangle.txt`
+- `color_light_cyan_rectangle.txt`
+
+The full Type3 palette list is kept in `src/type3_clipboard_codec/models/colors.py`.
+These fixtures validate a small representative subset against real clipboard payloads.
+
+### Shared source geometry
+
+The source geometry is intentionally unchanged across all color fixtures:
+
+- lower-left corner: `(11.111, 22.222, 0)` mm
+- width: `33.333` mm
+- height: `44.444` mm
+- contour record count: `4`
+- known object/class chain: `CZone`, `CCourbe`, `CContour`, `CPropertyExtend`
+
+This makes the set useful for isolating style/color-related fields without changing bbox or contour geometry.
+
+### Observed byte differences
+
+All five color fixtures are currently `8192` bytes after hex normalization.
+
+Comparing the color fixtures shows several changed ranges:
+
+- Three earlier 16-byte-ish ranges near `CZone`, `CCourbe`, and `CContour` metadata differ between captures. These are currently treated as object/session identifier candidates, not color fields.
+- The stable color-related candidate differences are inside `CPropertyExtend`.
+
+The current color candidates are measured relative to the start of the `CPropertyExtend` payload:
+
+- payload offset `0x79`: primary line color candidate
+- payload offset `0x85`: secondary/mirrored line color candidate
+
+Observed values:
+
+| Sample | Color | HEX color (`RRGGBB`) | primary raw candidate | secondary raw candidate |
+| --- | --- | ---: | ---: | ---: |
+| `color_black_rectangle.txt` | Black | `000000` | `0x00000000` | `0x00000000` |
+| `color_blue_rectangle.txt` | Blue | `000080` | `0x00008000` | `0x00008000` |
+| `color_green_rectangle.txt` | Green | `008000` | `0x00000080` | `0x00000080` |
+| `color_cyan_rectangle.txt` | Cyan | `008080` | `0x00008080` | `0x00008080` |
+| `color_light_cyan_rectangle.txt` | Light Cyan | `00FFFF` | `0x0000FFFF` | `0x0000FFFF` |
+
+These values are represented in the raw byte stream as little-endian `u32` values:
+
+- Black: `00 00 00 00`
+- Blue: `00 80 00 00`
+- Green: `80 00 00 00`
+- Cyan: `80 80 00 00`
+- Light Cyan: `FF FF 00 00`
+
+Note that the raw candidate value is not always numerically identical to the display HEX color. For example, the blue fixture is `#000080`, while the observed raw little-endian `u32` candidate is `0x00008000`.
+
+### Reverse-engineering status
+
+These fixtures should be treated as:
+
+- a confirmed reference that changing rectangle color changes two `CPropertyExtend` color candidate fields
+- a provisional reference for the exact semantic names of the two fields
+- a provisional reference for the broader Type3 palette encoding
+
+Do not assume yet that all object types use the same offsets or that the two candidate values always represent separate stroke/fill colors. More color-only fixture pairs are needed.
+
 ## File: `default_circle.txt`
 
 This file contains the hex dump of a copied circle-like object from Type3.

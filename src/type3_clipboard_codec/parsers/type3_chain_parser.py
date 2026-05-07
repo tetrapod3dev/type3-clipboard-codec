@@ -9,8 +9,10 @@ from ..models.geometry import (
     Type3Node,
     ContourPoint,
     Point,
+    StyleProperties,
     Type3ObjectChain,
 )
+from ..models.colors import TYPE3_COLORS_BY_RAW
 from ..utils.bytes_reader import BytesReader
 from .common import read_object_header, read_bbox, read_contour_points
 
@@ -34,7 +36,8 @@ class Type3ChainParser(BaseParser):
 
     DEFAULT_CONTOUR_RECORD_STRIDE = 36
     MAX_REASONABLE_COORD_M = 100.0
-
+    PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET = 0x79
+    PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET = 0x85
     def can_parse(self, reader: BytesReader) -> bool:
         pos = reader.tell()
         try:
@@ -85,6 +88,20 @@ class Type3ChainParser(BaseParser):
             bbox=main_bbox,
             object_chains=final_chains,
             declared_object_count=declared_count,
+            candidate_fields={
+                "nodes": [node.header.class_name for node in all_nodes],
+                "style": [
+                    {
+                        "line_color_primary": chain.style.line_color_primary,
+                        "line_color_secondary": chain.style.line_color_secondary,
+                        "line_color_name": chain.style.line_color_name,
+                        "line_color_hex": chain.style.line_color_hex,
+                    }
+                    for chain in final_chains
+                    if chain.style.line_color_primary is not None
+                    or chain.style.line_color_secondary is not None
+                ],
+            },
             notes=[
                 f"Type3ChainParser: Extracted {len(final_chains)} object chains.",
             ],
@@ -153,6 +170,11 @@ class Type3ChainParser(BaseParser):
             if node.bbox:
                 if node.header.class_name not in bbox_by_class:
                     bbox_by_class[node.header.class_name] = node.bbox
+
+            if node.header.class_name == "CPropertyExtend":
+                current_work_chain.style = self._read_style_properties(node.payload)
+                embedded_chains = self._read_embedded_contour_chains(node, current_work_chain)
+                processed_chains.extend(embedded_chains)
             
             if node.header.class_name != "CContour":
                 continue
@@ -184,13 +206,91 @@ class Type3ChainParser(BaseParser):
             processed_chains.append(chain)
 
         for c in processed_chains:
-            c.bbox = (
-                bbox_by_class.get("CContour")
-                or bbox_by_class.get("CCourbe")
-                or bbox_by_class.get("CZone")
-            )
+            if c.bbox is None:
+                c.bbox = (
+                    bbox_by_class.get("CContour")
+                    or bbox_by_class.get("CCourbe")
+                    or bbox_by_class.get("CZone")
+                )
         
         return processed_chains
+
+    def _read_embedded_contour_chains(
+        self,
+        node: Type3Node,
+        template_chain: Type3ObjectChain,
+    ) -> List[Type3ObjectChain]:
+        """
+        Some multi-object samples carry an additional contour inside CPropertyExtend.
+        Treat these as extra object chains while preserving the surrounding markers.
+        """
+        headers = self._read_contour_header(node.payload)
+        if not headers:
+            return []
+
+        embedded_chains: List[Type3ObjectChain] = []
+        for _kind, count, offset in headers:
+            records = self._read_contour_records(node.payload, offset, count)
+            if not records or not self._validate_records(records, None):
+                continue
+
+            self._assign_semantic_roles(records)
+            embedded_chains.append(
+                Type3ObjectChain(
+                    nodes=template_chain.nodes,
+                    markers=template_chain.markers,
+                    contour_records=records,
+                    points=[Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in records],
+                    bbox=self._bbox_from_contour_records(records),
+                    style=template_chain.style,
+                )
+            )
+
+        return embedded_chains
+
+    def _bbox_from_contour_records(self, records: List[ContourPoint]) -> BBox3D:
+        xs = [r.x_m for r in records]
+        ys = [r.y_m for r in records]
+        zs = [r.z_m for r in records]
+        return BBox3D(
+            xmin_m=min(xs),
+            ymin_m=min(ys),
+            zmin_m=min(zs),
+            xmax_m=max(xs),
+            ymax_m=max(ys),
+            zmax_m=max(zs),
+        )
+
+    def _read_style_properties(self, payload: bytes) -> StyleProperties:
+        """
+        Reads currently observed CPropertyExtend style candidates.
+
+        In paired rectangle color samples, changing only the object color
+        changes two u32-le fields in this payload:
+        - offset 0x79: primary color candidate
+        - offset 0x85: secondary/mirrored color candidate
+        """
+        primary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET)
+        secondary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET)
+
+        color_name = None
+        color_hex = None
+        if primary == secondary and primary in TYPE3_COLORS_BY_RAW:
+            color = TYPE3_COLORS_BY_RAW[primary]
+            color_name = color.name
+            color_hex = color.hex_rgb
+
+        return StyleProperties(
+            line_color_primary=primary,
+            line_color_secondary=secondary,
+            line_color_name=color_name,
+            line_color_hex=color_hex,
+        )
+
+    def _read_optional_u32_le(self, data: bytes, offset: int) -> Optional[int]:
+        if offset < 0 or offset + 4 > len(data):
+            return None
+        return struct.unpack("<I", data[offset : offset + 4])[0]
 
     def _extract_nodes(self, data: bytes) -> List[Type3Node]:
         """

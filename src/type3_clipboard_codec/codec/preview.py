@@ -87,6 +87,13 @@ class PreviewRenderer:
                 lines.append(f"  - Radius = {bbox.radius_mm:.3f} mm")
                 lines.append(f"  - Diameter = {bbox.diameter_mm:.3f} mm")
 
+        if chain.style.line_color_primary is not None or chain.style.line_color_secondary is not None:
+            color_name = chain.style.line_color_name or "unknown"
+            color_hex = f"#{chain.style.line_color_hex}" if chain.style.line_color_hex else "#??????"
+            primary = self._format_optional_u32(chain.style.line_color_primary)
+            secondary = self._format_optional_u32(chain.style.line_color_secondary)
+            lines.append(f"  - Line color candidate: {color_name} ({color_hex}, primary_raw={primary}, secondary_raw={secondary})")
+
         if chain.contour_records:
             lines.append(f"  - Contour records: {count}")
             if count in [2, 3]:
@@ -114,6 +121,11 @@ class PreviewRenderer:
                 lines.append(f"    {i+1}. {label:<25} = {info}")
         elif chain.points:
             lines.append(f"  - 정점 수: {len(chain.points)}")
+
+    def _format_optional_u32(self, value: int | None) -> str:
+        if value is None:
+            return "n/a"
+        return f"0x{value:08X}"
 
     def _render_geometry(self, obj: GeometryObject, lines: list[str], display_type: str) -> None:
         """기하학적 형상 정보를 렌더링한다."""

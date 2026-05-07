@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 from .parsed_object import ParsedObject
@@ -160,6 +162,18 @@ class Point:
 
 
 @dataclass
+class StyleProperties:
+    """
+    CPropertyExtend에서 관찰된 스타일 후보 값.
+    의미가 완전히 확정되지 않은 값은 raw 값으로 보존한다.
+    """
+    line_color_primary: int | None = None
+    line_color_secondary: int | None = None
+    line_color_name: str | None = None
+    line_color_hex: str | None = None
+
+
+@dataclass
 class Type3ObjectChain:
     """
     하나의 독립적인 객체를 형성하는 Type3 노드 체인을 나타내는 모델.
@@ -171,6 +185,7 @@ class Type3ObjectChain:
     points: List[Point] = field(default_factory=list)
     markers: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
+    style: StyleProperties = field(default_factory=StyleProperties)
 
 
 @dataclass
