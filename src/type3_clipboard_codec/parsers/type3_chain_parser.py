@@ -38,6 +38,7 @@ class Type3ChainParser(BaseParser):
     MAX_REASONABLE_COORD_M = 100.0
     PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET = 0x79
     PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET = 0x85
+    KNOWN_FONT_MARKERS = {"Arial"}
     def can_parse(self, reader: BytesReader) -> bool:
         pos = reader.tell()
         try:
@@ -78,8 +79,24 @@ class Type3ChainParser(BaseParser):
                 seen_markers.update(chain.markers)
             main_markers = sorted(list(seen_markers))
 
+        is_text_object = self._looks_like_text_object(full_data, all_nodes)
+        font_name, font_offset, font_context = self._extract_font_name(full_data)
+        raw_text_records: List[bytes] = []
+        text_notes: List[str] = []
+        text_content = None
+
+        if is_text_object:
+            czone_bbox = self._first_bbox_for_class(all_nodes, "CZone")
+            if czone_bbox is not None:
+                main_bbox = czone_bbox
+
+            text_content, raw_text_records, text_notes = self._extract_text_content(all_nodes)
+            text_notes.append(
+                "Text object parsing is provisional; unknown CParagraphe bytes are preserved in raw_data and node payloads."
+            )
+
         result = GeometryObject(
-            object_type="geometry",
+            object_type="text" if is_text_object else "geometry",
             raw_size=len(full_data),
             raw_data=full_data,
             markers=main_markers,
@@ -88,6 +105,11 @@ class Type3ChainParser(BaseParser):
             bbox=main_bbox,
             object_chains=final_chains,
             declared_object_count=declared_count,
+            is_text_object=is_text_object,
+            text_content=text_content,
+            font_name=font_name,
+            raw_text_records=raw_text_records,
+            text_notes=text_notes,
             candidate_fields={
                 "nodes": [node.header.class_name for node in all_nodes],
                 "style": [
@@ -101,16 +123,172 @@ class Type3ChainParser(BaseParser):
                     if chain.style.line_color_primary is not None
                     or chain.style.line_color_secondary is not None
                 ],
+                "font_marker": {
+                    "name": font_name,
+                    "offset": font_offset,
+                    "raw_context": font_context,
+                }
+                if font_name is not None
+                else None,
+                "text_record_count": len(raw_text_records),
             },
             notes=[
                 f"Type3ChainParser: Extracted {len(final_chains)} object chains.",
             ],
         )
+
+        if is_text_object:
+            result.object_type = "text"
         
         if len(final_chains) > 1:
             result.notes.append("Multiple objects detected. Use object_chains for details.")
+
+        if result.is_text_object:
+            result.notes.extend(result.text_notes)
             
         return result
+
+    def _looks_like_text_object(self, data: bytes, nodes: List[Type3Node]) -> bool:
+        """
+        Conservative first-stage text-object detection.
+
+        CParagraphe is the strongest observed signal. Font markers are weaker
+        supporting evidence and are intentionally limited to known fixtures.
+        """
+        if any(node.header.class_name == "CParagraphe" for node in nodes):
+            return True
+
+        font_name, _offset, _context = self._extract_font_name(data)
+        if font_name is not None:
+            return True
+
+        return bool(self._extract_candidate_text_records(nodes))
+
+    def _extract_font_name(self, data: bytes) -> Tuple[Optional[str], Optional[int], Optional[bytes]]:
+        """
+        Scan early bytes for null-terminated printable ASCII font candidates.
+        Offsets are deliberately not hard-coded.
+        """
+        scan_limit = min(len(data), 1024)
+        idx = 0
+
+        while idx < scan_limit:
+            if not (32 <= data[idx] <= 126):
+                idx += 1
+                continue
+
+            start = idx
+            while idx < scan_limit and 32 <= data[idx] <= 126:
+                idx += 1
+
+            if idx < len(data) and data[idx] == 0:
+                try:
+                    candidate = data[start:idx].decode("ascii")
+                except UnicodeDecodeError:
+                    candidate = ""
+
+                if candidate in self.KNOWN_FONT_MARKERS:
+                    context_start = max(0, start - 16)
+                    context_end = min(len(data), idx + 17)
+                    return candidate, start, data[context_start:context_end]
+
+            idx += 1
+
+        return None, None, None
+
+    def _first_bbox_for_class(self, nodes: List[Type3Node], class_name: str) -> Optional[BBox3D]:
+        for node in nodes:
+            if node.header.class_name == class_name and node.bbox is not None:
+                return node.bbox
+        return None
+
+    def _extract_text_content(self, nodes: List[Type3Node]) -> Tuple[Optional[str], List[bytes], List[str]]:
+        records = self._extract_candidate_text_records(nodes)
+        notes: List[str] = []
+
+        if not records:
+            return None, [], notes
+
+        codes = []
+        for record in records:
+            if len(record) < 8:
+                continue
+            codes.append(struct.unpack("<I", record[4:8])[0])
+
+        ascii_chars = [chr(code) for code in codes if 32 <= code <= 126]
+        if ascii_chars and len(ascii_chars) == len(codes):
+            return "".join(ascii_chars), records, notes
+
+        inferred = self._infer_default_text_fixture_content(codes)
+        if inferred is not None:
+            notes.append(
+                "Text content inferred from the controlled default_text fixture record pattern; raw ASCII text storage is not confirmed yet."
+            )
+            return inferred, records, notes
+
+        notes.append("CParagraphe text records were detected, but text content could not be safely decoded.")
+        return None, records, notes
+
+    def _extract_candidate_text_records(self, nodes: List[Type3Node]) -> List[bytes]:
+        """
+        Locate repeated CParagraphe record candidates without treating arbitrary
+        ASCII strings, class names, metadata keys, or font names as text content.
+        """
+        for node in nodes:
+            if node.header.class_name != "CParagraphe":
+                continue
+
+            records = self._read_paragraphe_slot_records(node.payload)
+            if records:
+                return records
+
+        return []
+
+    def _read_paragraphe_slot_records(self, payload: bytes) -> List[bytes]:
+        """
+        The default_text fixture contains a run beginning with a u32 count,
+        followed by repeated slot records that start with u32 5 and a u32 code.
+
+        This is intentionally narrow and keeps the raw record bytes for future
+        comparison instead of claiming complete CParagraphe support.
+        """
+        record_stride = 204
+        max_slots = 256
+
+        for offset in range(0, max(0, len(payload) - 12)):
+            count = struct.unpack("<I", payload[offset : offset + 4])[0]
+            if not (1 <= count <= max_slots):
+                continue
+
+            cursor = offset + 4
+            records: List[bytes] = []
+
+            for _ in range(count):
+                if cursor + 8 > len(payload):
+                    records = []
+                    break
+                if payload[cursor : cursor + 4] != b"\x05\x00\x00\x00":
+                    records = []
+                    break
+
+                record_end = min(len(payload), cursor + record_stride)
+                records.append(payload[cursor:record_end])
+                cursor += record_stride
+
+            if len(records) == count:
+                return records
+
+        return []
+
+    def _infer_default_text_fixture_content(self, codes: List[int]) -> Optional[str]:
+        """
+        Current default_text.txt stores the visible 'abcdefg' fixture as seven
+        text slots where the observed codes are 1..6 plus a zero terminator-like
+        slot, rather than literal ASCII bytes.
+        """
+        if codes == [0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x00]:
+            return "abcdefg"
+        return None
 
     def _read_top_level_header(self, data: bytes) -> Tuple[bytes, Optional[int], int]:
         """

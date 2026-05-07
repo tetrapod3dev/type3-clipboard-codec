@@ -25,6 +25,15 @@ class PreviewRenderer:
             
         if isinstance(obj, TextObject):
             lines.append(f"- 텍스트 내용: {obj.text_content}")
+        elif isinstance(obj, GeometryObject) and obj.is_text_object:
+            lines.append("- 텍스트 객체: provisional")
+            if obj.font_name:
+                lines.append(f"- Font: {obj.font_name}")
+            if obj.text_content:
+                lines.append(f"- Text: {obj.text_content}")
+            if obj.bbox:
+                bbox = obj.bbox
+                lines.append(f"- BBox (mm): x({bbox.xmin_mm:.3f} ~ {bbox.xmax_mm:.3f}), y({bbox.ymin_mm:.3f} ~ {bbox.ymax_mm:.3f}), z({bbox.zmin_mm:.3f} ~ {bbox.zmax_mm:.3f})")
 
         if isinstance(obj, GeometryObject):
             if obj.object_chains:

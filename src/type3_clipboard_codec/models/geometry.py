@@ -201,6 +201,11 @@ class GeometryObject(ParsedObject):
     
     object_chains: List[Type3ObjectChain] = field(default_factory=list) # 멀티 객체 정보
     declared_object_count: Optional[int] = None      # 헤더에서 선언된 객체 수
+    is_text_object: bool = False                     # CParagraphe 등으로 판별한 텍스트 객체 여부
+    text_content: Optional[str] = None               # 추정된 텍스트 내용
+    font_name: Optional[str] = None                  # 추정된 글꼴 이름
+    raw_text_records: List[bytes] = field(default_factory=list) # 보수적으로 잘라낸 원시 텍스트 레코드 후보
+    text_notes: List[str] = field(default_factory=list)         # 텍스트 역공학 메모
 
     @property
     def anchor_records(self) -> List[ContourPoint]:
