@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import Any, List, Optional
 from .parsed_object import ParsedObject
 
 
@@ -172,8 +172,19 @@ class StyleProperties:
     """
     line_color_primary: int | None = None
     line_color_secondary: int | None = None
+    line_color_selected_raw: int | None = None
     line_color_name: str | None = None
     line_color_hex: str | None = None
+    line_color_confidence: str | None = None
+    line_color_source: str | None = None
+    color_candidates: List[dict[str, Any]] = field(default_factory=list)
+    fixed_primary_offset: int | None = None
+    fixed_secondary_offset: int | None = None
+    fixed_primary_raw: int | None = None
+    fixed_secondary_raw: int | None = None
+    property_extend_payload_length: int | None = None
+    property_extend_payload_offset: int | None = None
+    property_extend_stream_offset: int | None = None
 
 
 @dataclass

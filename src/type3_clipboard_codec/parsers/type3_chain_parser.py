@@ -1,4 +1,5 @@
-from typing import List, Optional, Dict, Tuple
+from collections import Counter
+from typing import Any, List, Optional, Dict, Tuple
 import math
 import struct
 
@@ -12,7 +13,7 @@ from ..models.geometry import (
     StyleProperties,
     Type3ObjectChain,
 )
-from ..models.colors import TYPE3_COLORS_BY_RAW
+from ..models.colors import TYPE3_COLORS_BY_RAW, TYPE3_COLORS_BY_RGB0_RAW
 from ..utils.bytes_reader import BytesReader
 from .common import read_object_header, read_bbox, read_contour_points
 
@@ -38,6 +39,8 @@ class Type3ChainParser(BaseParser):
     MAX_REASONABLE_COORD_M = 100.0
     PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET = 0x79
     PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET = 0x85
+    PROPERTY_EXTEND_GROUP_COLOR_PRIMARY_OFFSET = 0x20E
+    PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET = 0x21A
     KNOWN_FONT_MARKERS = {"Arial"}
     def can_parse(self, reader: BytesReader) -> bool:
         pos = reader.tell()
@@ -154,12 +157,17 @@ class Type3ChainParser(BaseParser):
                     {
                         "line_color_primary": chain.style.line_color_primary,
                         "line_color_secondary": chain.style.line_color_secondary,
+                        "line_color_selected_raw": chain.style.line_color_selected_raw,
                         "line_color_name": chain.style.line_color_name,
                         "line_color_hex": chain.style.line_color_hex,
+                        "line_color_confidence": chain.style.line_color_confidence,
+                        "line_color_source": chain.style.line_color_source,
+                        "color_candidates": chain.style.color_candidates,
                     }
                     for chain in final_chains
                     if chain.style.line_color_primary is not None
                     or chain.style.line_color_secondary is not None
+                    or chain.style.color_candidates
                 ],
                 "font_marker": {
                     "name": font_name,
@@ -397,8 +405,24 @@ class Type3ChainParser(BaseParser):
                     bbox_by_class[node.header.class_name] = node.bbox
 
             if node.header.class_name == "CPropertyExtend":
-                current_work_chain.style = self._read_style_properties(node.payload)
-                embedded_chains = self._read_embedded_contour_chains(node, current_work_chain)
+                base_style = self._read_style_properties_with_context(
+                    node.payload,
+                    payload_offset=node.payload_offset,
+                    stream_offset=node.start_offset,
+                )
+                if current_work_chain.source_payload_offset is not None:
+                    current_work_chain.style = self._style_for_reference_offset(
+                        base_style,
+                        current_work_chain.source_payload_offset,
+                    )
+                else:
+                    # Preserve full candidates when no contour reference exists yet.
+                    current_work_chain.style = base_style
+                embedded_chains = self._read_embedded_contour_chains(
+                    node,
+                    current_work_chain,
+                    base_style,
+                )
                 processed_chains.extend(embedded_chains)
             
             if node.header.class_name != "CContour":
@@ -450,6 +474,7 @@ class Type3ChainParser(BaseParser):
         self,
         node: Type3Node,
         template_chain: Type3ObjectChain,
+        base_style: StyleProperties,
     ) -> List[Type3ObjectChain]:
         """
         Some multi-object samples carry an additional contour inside CPropertyExtend.
@@ -473,7 +498,7 @@ class Type3ChainParser(BaseParser):
                     contour_records=records,
                     points=[Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in records],
                     bbox=self._bbox_from_contour_records(records),
-                    style=template_chain.style,
+                    style=self._style_for_reference_offset(base_style, offset),
                     source_node_class=node.header.class_name,
                     source_payload_offset=offset,
                     source_stream_offset=node.payload_offset + offset,
@@ -507,22 +532,333 @@ class Type3ChainParser(BaseParser):
         - offset 0x79: primary color candidate
         - offset 0x85: secondary/mirrored color candidate
         """
+        return self._read_style_properties_with_context(payload, payload_offset=None, stream_offset=None)
+
+    def _read_style_properties_with_context(
+        self,
+        payload: bytes,
+        payload_offset: Optional[int],
+        stream_offset: Optional[int],
+    ) -> StyleProperties:
         primary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET)
         secondary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET)
 
+        color_candidates = self._collect_palette_color_candidates(
+            payload=payload,
+            fixed_primary=primary,
+            fixed_secondary=secondary,
+        )
+        chosen = self._choose_color_candidate(
+            color_candidates=color_candidates,
+            fixed_primary=primary,
+            fixed_secondary=secondary,
+        )
+
         color_name = None
         color_hex = None
-        if primary == secondary and primary in TYPE3_COLORS_BY_RAW:
-            color = TYPE3_COLORS_BY_RAW[primary]
-            color_name = color.name
-            color_hex = color.hex_rgb
+        line_color_selected_raw = None
+        line_color_confidence = None
+        line_color_source = None
+        if chosen is not None:
+            color_name = chosen["name"]
+            color_hex = chosen["hex_rgb"]
+            line_color_selected_raw = chosen["raw"]
+            line_color_confidence = chosen["confidence"]
+            line_color_source = chosen["source"]
 
         return StyleProperties(
             line_color_primary=primary,
             line_color_secondary=secondary,
+            line_color_selected_raw=line_color_selected_raw,
             line_color_name=color_name,
             line_color_hex=color_hex,
+            line_color_confidence=line_color_confidence,
+            line_color_source=line_color_source,
+            color_candidates=color_candidates,
+            fixed_primary_offset=self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET,
+            fixed_secondary_offset=self.PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET,
+            fixed_primary_raw=primary,
+            fixed_secondary_raw=secondary,
+            property_extend_payload_length=len(payload),
+            property_extend_payload_offset=payload_offset,
+            property_extend_stream_offset=stream_offset,
         )
+
+    def _collect_palette_color_candidates(
+        self,
+        payload: bytes,
+        fixed_primary: Optional[int],
+        fixed_secondary: Optional[int],
+    ) -> List[dict[str, Any]]:
+        entries: List[dict[str, Any]] = []
+        occurrences: Dict[tuple[str, int], List[int]] = {}
+        max_scan_candidates_per_raw = 12
+        group_primary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_GROUP_COLOR_PRIMARY_OFFSET)
+        group_secondary = self._read_optional_u32_le(payload, self.PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET)
+        has_group_confirmed_nonzero = (
+            group_primary is not None
+            and group_primary == group_secondary
+            and group_primary != 0
+            and group_primary in TYPE3_COLORS_BY_RGB0_RAW
+        )
+
+        for offset in range(0, max(0, len(payload) - 3)):
+            raw = struct.unpack("<I", payload[offset : offset + 4])[0]
+            if raw in TYPE3_COLORS_BY_RAW:
+                occurrences.setdefault(("legacy", raw), []).append(offset)
+            if raw in TYPE3_COLORS_BY_RGB0_RAW:
+                occurrences.setdefault(("rgb0", raw), []).append(offset)
+
+        for (encoding, raw), offsets in occurrences.items():
+            if raw == 0 and encoding == "rgb0":
+                # Zero overlaps both encodings; keep one path to reduce duplicate noise.
+                continue
+            color = TYPE3_COLORS_BY_RAW[raw] if encoding == "legacy" else TYPE3_COLORS_BY_RGB0_RAW[raw]
+            scan_added = 0
+            sorted_offsets = sorted(offsets)
+            has_pair_12 = any((sorted_offsets[i + 1] - sorted_offsets[i]) == 12 for i in range(len(sorted_offsets) - 1))
+            max_fixed_offset_for_encoding = (
+                self.PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET
+                if encoding == "legacy"
+                else self.PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET
+            )
+            for idx, offset in enumerate(sorted_offsets):
+                # Neighbor signal only needs existence (>= 1), not exact count.
+                prev_close = idx > 0 and (offset - sorted_offsets[idx - 1]) <= 16
+                next_close = idx + 1 < len(sorted_offsets) and (sorted_offsets[idx + 1] - offset) <= 16
+                has_close_neighbor = prev_close or next_close
+                confidence = "strong" if has_close_neighbor else "weak"
+                source = "payload_scan"
+
+                is_legacy_fixed = (
+                    encoding == "legacy"
+                    and (
+                        offset == self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET
+                        or offset == self.PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET
+                    )
+                )
+                is_group_fixed = (
+                    encoding == "rgb0"
+                    and (
+                        offset == self.PROPERTY_EXTEND_GROUP_COLOR_PRIMARY_OFFSET
+                        or offset == self.PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET
+                    )
+                )
+                is_fixed = is_legacy_fixed or is_group_fixed
+                if is_fixed:
+                    source = "fixed_offset"
+
+                # If group-specific fixed offsets already provide a confirmed non-zero color,
+                # suppress legacy black noise candidates in this payload.
+                if has_group_confirmed_nonzero and raw == 0 and encoding == "legacy":
+                    continue
+
+                if not is_fixed:
+                    # Drop single-occurrence noise and cap the list per raw+encoding.
+                    if not has_close_neighbor and raw == 0:
+                        continue
+                    if scan_added >= max_scan_candidates_per_raw:
+                        # Legacy black candidates are extremely dense; once capped and
+                        # fixed offsets are already behind us, remaining tail adds no value.
+                        if encoding == "legacy" and raw == 0 and offset > (max_fixed_offset_for_encoding + 16):
+                            break
+                        continue
+                    scan_added += 1
+
+                if is_legacy_fixed:
+                    if fixed_primary == fixed_secondary == raw:
+                        confidence = "confirmed"
+                    elif fixed_primary == raw or fixed_secondary == raw:
+                        confidence = "strong"
+                    else:
+                        confidence = "weak"
+                elif is_group_fixed:
+                    if group_primary == group_secondary == raw:
+                        confidence = "confirmed"
+                    elif group_primary == raw or group_secondary == raw:
+                        confidence = "strong"
+                    else:
+                        confidence = "weak"
+                elif has_pair_12 and raw != 0:
+                    confidence = "strong"
+
+                entries.append(
+                    {
+                        "offset": offset,
+                        "raw": raw,
+                        "raw_hex": f"0x{raw:08X}",
+                        "name": color.name,
+                        "hex_rgb": color.hex_rgb,
+                        "confidence": confidence,
+                        "source": source,
+                        "encoding": encoding,
+                    }
+                )
+
+        entries.sort(
+            key=lambda item: (
+                self._confidence_rank(item["confidence"]),
+                0 if item["raw"] != 0 else 1,
+                0 if item["source"] == "fixed_offset" else 1,
+                abs(item["offset"] - self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET),
+            )
+        )
+        # When both encodings match the same raw at the same offset for scan-derived
+        # candidates, keep rgb0 and drop legacy to reduce ambiguous duplicates.
+        suppress_keys = {
+            (item["offset"], item["raw"])
+            for item in entries
+            if item.get("encoding") == "rgb0" and item.get("source") == "payload_scan"
+        }
+        filtered = [
+            item
+            for item in entries
+            if not (
+                item.get("encoding") == "legacy"
+                and item.get("source") == "payload_scan"
+                and (item["offset"], item["raw"]) in suppress_keys
+            )
+        ]
+        return filtered
+
+    def _choose_color_candidate(
+        self,
+        color_candidates: List[dict[str, Any]],
+        fixed_primary: Optional[int],
+        fixed_secondary: Optional[int],
+        reference_offset: Optional[int] = None,
+    ) -> Optional[dict[str, Any]]:
+        if not color_candidates:
+            return None
+
+        # Prefer fixed offsets when both fixed values match a known palette entry.
+        if fixed_primary is not None and fixed_primary == fixed_secondary and fixed_primary in TYPE3_COLORS_BY_RAW:
+            for candidate in color_candidates:
+                if (
+                    candidate["raw"] == fixed_primary
+                    and candidate["source"] == "fixed_offset"
+                ):
+                    return candidate
+
+        candidates = list(color_candidates)
+        if reference_offset is not None:
+            nonzero = [candidate for candidate in candidates if candidate["raw"] != 0]
+            if nonzero:
+                candidates = nonzero
+
+            candidates.sort(
+                key=lambda item: (
+                    self._confidence_rank(item["confidence"]),
+                    abs(item["offset"] - reference_offset),
+                    0 if item["source"] == "fixed_offset" else 1,
+                    0 if item.get("encoding") == "rgb0" else 1,
+                    0 if item["raw"] != 0 else 1,
+                )
+            )
+            return candidates[0]
+
+        by_raw = Counter(candidate["raw"] for candidate in color_candidates)
+        sorted_candidates = sorted(
+            color_candidates,
+            key=lambda item: (
+                self._confidence_rank(item["confidence"]),
+                0 if item["raw"] != 0 else 1,
+                0 if item["source"] == "fixed_offset" else 1,
+                0 if item.get("encoding") == "rgb0" else 1,
+                -by_raw[item["raw"]],
+                abs(item["offset"] - self.PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET),
+            ),
+        )
+        return sorted_candidates[0]
+
+    def _confidence_rank(self, confidence: str) -> int:
+        if confidence == "confirmed":
+            return 0
+        if confidence == "strong":
+            return 1
+        return 2
+
+    def _style_for_reference_offset(
+        self,
+        base_style: StyleProperties,
+        reference_offset: Optional[int],
+    ) -> StyleProperties:
+        chosen = self._choose_color_candidate(
+            color_candidates=base_style.color_candidates,
+            fixed_primary=base_style.line_color_primary,
+            fixed_secondary=base_style.line_color_secondary,
+            reference_offset=reference_offset,
+        )
+
+        selected_raw = None
+        selected_name = None
+        selected_hex = None
+        selected_confidence = None
+        selected_source = None
+        localized_candidates = list(base_style.color_candidates)
+        if chosen is not None:
+            selected_raw = chosen["raw"]
+            selected_name = chosen["name"]
+            selected_hex = chosen["hex_rgb"]
+            selected_confidence = chosen["confidence"]
+            selected_source = chosen["source"]
+            localized_candidates = self._localize_color_candidates(
+                color_candidates=base_style.color_candidates,
+                reference_offset=reference_offset,
+                selected_raw=selected_raw,
+            )
+
+        return StyleProperties(
+            line_color_primary=base_style.line_color_primary,
+            line_color_secondary=base_style.line_color_secondary,
+            line_color_selected_raw=selected_raw,
+            line_color_name=selected_name,
+            line_color_hex=selected_hex,
+            line_color_confidence=selected_confidence,
+            line_color_source=selected_source,
+            color_candidates=localized_candidates,
+            fixed_primary_offset=base_style.fixed_primary_offset,
+            fixed_secondary_offset=base_style.fixed_secondary_offset,
+            fixed_primary_raw=base_style.fixed_primary_raw,
+            fixed_secondary_raw=base_style.fixed_secondary_raw,
+            property_extend_payload_length=base_style.property_extend_payload_length,
+            property_extend_payload_offset=base_style.property_extend_payload_offset,
+            property_extend_stream_offset=base_style.property_extend_stream_offset,
+        )
+
+    def _localize_color_candidates(
+        self,
+        color_candidates: List[dict[str, Any]],
+        reference_offset: Optional[int],
+        selected_raw: Optional[int],
+    ) -> List[dict[str, Any]]:
+        if not color_candidates:
+            return []
+
+        # When a non-zero color is selected, keep same-raw candidates only.
+        if selected_raw is not None and selected_raw != 0:
+            same_raw = [c for c in color_candidates if c.get("raw") == selected_raw]
+            if same_raw:
+                return sorted(
+                    same_raw,
+                    key=lambda c: (
+                        0 if c.get("source") == "fixed_offset" else 1,
+                        abs((c.get("offset") or 0) - (reference_offset or 0)),
+                    ),
+                )[:8]
+
+        # Fallback: keep candidates nearest to the reference offset.
+        if reference_offset is not None:
+            nearby = sorted(
+                color_candidates,
+                key=lambda c: (
+                    abs((c.get("offset") or 0) - reference_offset),
+                    self._confidence_rank(c.get("confidence", "weak")),
+                ),
+            )
+            return nearby[:8]
+
+        return color_candidates[:8]
 
     def _read_optional_u32_le(self, data: bytes, offset: int) -> Optional[int]:
         if offset < 0 or offset + 4 > len(data):

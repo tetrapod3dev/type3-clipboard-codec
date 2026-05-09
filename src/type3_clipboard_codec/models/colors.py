@@ -19,6 +19,18 @@ class Type3Color:
         blue = int(hex_value[4:6], 16)
         return green | (blue << 8) | (red << 16)
 
+    @property
+    def raw_candidate_rgb0(self) -> int:
+        """
+        Alternate observed encoding candidate: bytes as R, G, B, 0x00
+        (little-endian u32 == 0x00BBGGRR).
+        """
+        hex_value = self.hex_rgb.upper()
+        red = int(hex_value[0:2], 16)
+        green = int(hex_value[2:4], 16)
+        blue = int(hex_value[4:6], 16)
+        return red | (green << 8) | (blue << 16)
+
 
 TYPE3_PALETTE: tuple[Type3Color, ...] = (
     Type3Color("Black", "000000"),
@@ -134,3 +146,7 @@ TYPE3_PALETTE: tuple[Type3Color, ...] = (
 TYPE3_COLORS_BY_RAW: dict[int, Type3Color] = {}
 for color in TYPE3_PALETTE:
     TYPE3_COLORS_BY_RAW.setdefault(color.raw_candidate, color)
+
+TYPE3_COLORS_BY_RGB0_RAW: dict[int, Type3Color] = {}
+for color in TYPE3_PALETTE:
+    TYPE3_COLORS_BY_RGB0_RAW.setdefault(color.raw_candidate_rgb0, color)
