@@ -22,6 +22,15 @@ class Decoder:
         # 2. 파싱 수행
         return parser.parse(reader)
 
+    def decode_bytes_with_parser(self, data: bytes) -> tuple[ParsedObject, str]:
+        """
+        바이트 데이터를 분석하고 사용된 파서 이름을 함께 반환한다.
+        """
+        reader = BytesReader(data)
+        parser = self._detector.detect_parser(reader)
+        parsed = parser.parse(reader)
+        return parsed, parser.__class__.__name__
+
     def decode_hex_text(self, hex_text: str) -> ParsedObject:
         """
         16진수 텍스트를 입력받아 분석을 수행한다.

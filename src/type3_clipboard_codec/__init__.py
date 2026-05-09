@@ -18,6 +18,14 @@ def decode_hex_text(hex_text: str) -> ParsedObject:
     """16진수 텍스트를 디코딩한다."""
     return Decoder().decode_hex_text(hex_text)
 
+def parse_type3_clipboard_bytes(data: bytes) -> ParsedObject:
+    """Type3 clipboard raw bytes를 파싱한다."""
+    return Decoder().decode_bytes(data)
+
+def parse_type3_clipboard_bytes_with_parser(data: bytes) -> tuple[ParsedObject, str]:
+    """Type3 clipboard raw bytes를 파싱하고 파서 이름을 함께 반환한다."""
+    return Decoder().decode_bytes_with_parser(data)
+
 def render_preview(obj: ParsedObject) -> str:
     """모델 객체의 미리보기를 렌더링한다."""
     return PreviewRenderer().render(obj)
@@ -31,5 +39,7 @@ __all__ = [
     "Point",
     "decode_bytes",
     "decode_hex_text",
+    "parse_type3_clipboard_bytes",
+    "parse_type3_clipboard_bytes_with_parser",
     "render_preview",
 ]
