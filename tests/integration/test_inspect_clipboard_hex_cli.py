@@ -49,7 +49,7 @@ def test_cli_file_mode_two_rectangle_group_includes_결합():
 
 
 def test_cli_file_mode_default_text_reports_text_info():
-    result = _run_cli([str(SAMPLES_DIR / "default_text.txt")])
+    result = _run_cli([str(SAMPLES_DIR / "text" / "default_text.txt")])
     assert result.returncode == 0, result.stderr
     assert "Text object info:" in result.stdout
     assert "font_name:" in result.stdout

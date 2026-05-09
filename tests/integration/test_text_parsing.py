@@ -1,13 +1,12 @@
-import os
-
 from type3_clipboard_codec.adapters.manual_hex_input import ManualHexInput
 from type3_clipboard_codec.codec.decoder import Decoder
 from type3_clipboard_codec.models.geometry import GeometryObject
 from type3_clipboard_codec.services.inspect_service import InspectService
+from tests.sample_utils import resolve_sample_path
 
 
 def get_sample_path(filename):
-    return os.path.join(os.path.dirname(__file__), "..", "samples", filename)
+    return str(resolve_sample_path(filename))
 
 
 def decode_sample(filename):
