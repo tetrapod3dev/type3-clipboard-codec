@@ -41,7 +41,7 @@ class Type3ChainParser(BaseParser):
     PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET = 0x85
     PROPERTY_EXTEND_GROUP_COLOR_PRIMARY_OFFSET = 0x20E
     PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET = 0x21A
-    KNOWN_FONT_MARKERS = {"Arial"}
+    KNOWN_FONT_MARKERS = {"Arial", "Arial Bold", "Arial-BoldMT"}
     def can_parse(self, reader: BytesReader) -> bool:
         pos = reader.tell()
         try:
@@ -83,7 +83,8 @@ class Type3ChainParser(BaseParser):
             main_markers = sorted(list(seen_markers))
 
         is_text_object = self._looks_like_text_object(full_data, all_nodes)
-        font_name, font_offset, font_context = self._extract_font_name(full_data)
+        font_candidates = self._extract_font_candidates(full_data)
+        font_name, font_offset, font_context = self._extract_font_name(full_data, font_candidates)
         raw_text_records: List[bytes] = []
         text_notes: List[str] = []
         text_content = None
@@ -96,6 +97,7 @@ class Type3ChainParser(BaseParser):
             text_runs, raw_text_records, text_notes = self._extract_text_runs(all_nodes)
             self._attach_text_runs_to_chains(final_chains, text_runs)
             self._attach_text_anchor_candidates(final_chains)
+            self._downgrade_unverified_text_color_selection(final_chains)
             if final_chains:
                 final_chains.sort(
                     key=lambda c: (
@@ -111,6 +113,8 @@ class Type3ChainParser(BaseParser):
                 text_notes.append(
                     "Per-object text-run ownership and per-object mixed-color ownership are still provisional for multi-text fixtures."
                 )
+            if font_name is None:
+                text_notes.append("Korean font name storage unresolved (font_name_candidate not decoded).")
 
         aggregate_bbox = self._aggregate_bbox_from_chains(final_chains)
         if len(final_chains) > 1 and aggregate_bbox is not None and not is_text_object:
@@ -192,6 +196,7 @@ class Type3ChainParser(BaseParser):
                 }
                 if font_name is not None
                 else None,
+                "font_candidates": font_candidates,
                 "text_record_count": len(raw_text_records),
                 "structure_kind": (
                     "group_candidate_결합"
@@ -235,35 +240,81 @@ class Type3ChainParser(BaseParser):
 
         return bool(self._extract_candidate_text_records(nodes))
 
-    def _extract_font_name(self, data: bytes) -> Tuple[Optional[str], Optional[int], Optional[bytes]]:
+    def _downgrade_unverified_text_color_selection(self, chains: List[Type3ObjectChain]) -> None:
         """
-        Scan early bytes for null-terminated printable ASCII font candidates.
-        Offsets are deliberately not hard-coded.
+        Text-object color storage offsets are not yet confirmed.
+        If a chain color selection came only from rectangle-era fixed offsets,
+        downgrade source/confidence and attach a provisional note.
         """
-        scan_limit = min(len(data), 1024)
+        for chain in chains:
+            style = chain.style
+            if style is None:
+                continue
+            if style.line_color_source == "fixed_offset":
+                style.line_color_source = "fixed_offset_text_unverified"
+            elif style.line_color_source in {"payload_scan", "fixed_offset_text_unverified"}:
+                style.line_color_source = "text_candidate_unverified"
+
+            # For text objects, color is currently evidence/candidate only.
+            # Do not expose rectangle-era confidence levels as parser truth.
+            style.line_color_confidence = "provisional" if style.line_color_name is not None else "unresolved"
+
+            # Downgrade candidate-level confidence/source for text object output.
+            downgraded_candidates: List[dict[str, Any]] = []
+            for candidate in style.color_candidates:
+                c = dict(candidate)
+                if c.get("source") in {"fixed_offset", "payload_scan"}:
+                    c["source"] = "text_candidate_unverified"
+                c["confidence"] = "provisional"
+                downgraded_candidates.append(c)
+            style.color_candidates = downgraded_candidates
+
+            chain.text_notes.append(
+                "Text color mapping is provisional for text objects; absolute/payload offsets are diagnostic evidence only."
+            )
+
+    def _extract_font_candidates(self, data: bytes) -> List[dict[str, Any]]:
+        scan_limit = min(len(data), 2048)
         idx = 0
+        out: List[dict[str, Any]] = []
+        seen: set[tuple[str, int]] = set()
 
         while idx < scan_limit:
             if not (32 <= data[idx] <= 126):
                 idx += 1
                 continue
-
             start = idx
             while idx < scan_limit and 32 <= data[idx] <= 126:
                 idx += 1
-
             if idx < len(data) and data[idx] == 0:
                 try:
                     candidate = data[start:idx].decode("ascii")
                 except UnicodeDecodeError:
                     candidate = ""
-
-                if candidate in self.KNOWN_FONT_MARKERS:
-                    context_start = max(0, start - 16)
-                    context_end = min(len(data), idx + 17)
-                    return candidate, start, data[context_start:context_end]
-
+                if len(candidate) >= 3:
+                    key = (candidate, start)
+                    if key not in seen:
+                        seen.add(key)
+                        out.append({"name": candidate, "offset": start})
             idx += 1
+        return out
+
+    def _extract_font_name(
+        self, data: bytes, font_candidates: Optional[List[dict[str, Any]]] = None
+    ) -> Tuple[Optional[str], Optional[int], Optional[bytes]]:
+        """
+        Scan early bytes for null-terminated printable ASCII font candidates.
+        Offsets are deliberately not hard-coded.
+        """
+        candidates = font_candidates if font_candidates is not None else self._extract_font_candidates(data)
+        for item in candidates:
+            candidate = item.get("name", "")
+            start = int(item.get("offset", 0))
+            if candidate in self.KNOWN_FONT_MARKERS:
+                end = start + len(candidate)
+                context_start = max(0, start - 16)
+                context_end = min(len(data), end + 17)
+                return candidate, start, data[context_start:context_end]
 
         return None, None, None
 

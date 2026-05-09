@@ -253,6 +253,26 @@ Current status:
 - mode: `text_small_caps_mode.txt`, `text_lowercase_mode.txt`, `text_uppercase_mode.txt`, `text_rtl_on.txt`, `text_subscript.txt`, `text_superscript.txt`, `text_baseline_above.txt`, `text_baseline_below.txt`, `text_underline_on_default.txt`
 - position/baseline anchor checks: `text_origin_0_0.txt`, `text_origin_offset.txt`, `text_offset_10_percent.txt`
 
+### Font fixtures (captured)
+
+- `text_font_arial.txt` (expected: `Arial`)
+- `text_font_arial_bold.txt` (expected: `Arial Bold`)
+- `text_font_hy_gyeongo_dik.txt` (expected: `HY견고딕`)
+- `text_font_hy_teuktae_gothic.txt` (expected: `HY특태고딕`)
+- `text_font_hy_tae_gothic.txt` (expected: `HY태고딕`)
+- `text_font_hy_se_gothic.txt` (expected: `HY세고딕`)
+
+Observed parser status (current):
+
+- `text_font_arial.txt`: parser font candidate `Arial`
+- `text_font_arial_bold.txt`: recapture mismatch resolved; now single-line text `abcdefg`, multiline evidence `abcd\nefgh` no longer observed
+- HY font fixtures: parser font candidate unresolved (`None`) in current conservative extraction
+
+Provisional:
+
+- exact Korean font-name binary encoding rules
+- stable binary offsets for font name storage across all font families
+
 ### Missing planned fixtures
 - previously planned names do not exist yet in current folder:
   - `text_color_blue.txt`, `text_color_green.txt`, `text_color_cyan.txt`, `text_color_light_cyan.txt`
@@ -270,6 +290,82 @@ Current status:
 - Korean visible text decoding is incomplete in current conservative extraction path.
 - multiline internal storage model (single paragraph-like record vs multiple text runs) is still provisional.
 - per-object text-run ownership in multi-object text fixtures remains provisional in heuristic mapping paths.
+- text color ownership for mixed two-object fixtures remains provisional.
+
+---
+
+## Text color fixtures and ownership
+
+Confirmed fixture intent:
+
+- `text_color_army_green.txt`: `Army Green`
+- `text_color_navy_blue.txt`: `Navy Blue`
+- `text_group_same_color_two_objects.txt`: object #1 `Army Green`, object #2 `Army Green`
+- `text_group_mixed_color_two_objects.txt`: object #1 `Army Green`, object #2 `Navy Blue`
+- `text_two_objects_mixed_color_not_grouped.txt`: object #1 `Army Green`, object #2 `Navy Blue`
+
+Observed parser output (current):
+
+- single text color fixtures (`text_color_army_green.txt`, `text_color_navy_blue.txt`) still often yield `Black` in selected color fields.
+- grouped same-color fixture yields `Army Green` candidates on both parsed chains.
+- mixed-color fixtures can yield one dominant candidate (`Navy Blue` or `Army Green`) across both chains depending on payload candidate selection.
+
+Provisional:
+
+- exact per-object mixed-color ownership mapping
+- stable text-specific `CPropertyExtend` offset rules equivalent to rectangle fixtures
+- whether candidate order in payload scan is semantic or volatile
+
+## Offset policy for text reverse engineering
+
+Confirmed:
+
+- Type3 text-object payload is dynamic by text length, font, line count, object count, and style options.
+- Therefore, absolute byte offsets (example: `offset=634`) are evidence locations from a specific fixture, not parser rules.
+
+Observed:
+
+- color diff tools can repeatedly show palette-like values at absolute offsets in specific fixtures.
+- those repeated offsets are useful diagnostics, but they shift when structure/length changes.
+
+Provisional:
+
+- parser rules should be built from class boundary / payload boundary / record boundary.
+- absolute offsets remain `diagnostic only` until class-relative or record-relative mapping is validated.
+
+## Target model: class-relative and record-relative parsing
+
+- primary target: `CParagraphe` internal record boundary detection
+- secondary target: style/run record candidate extraction
+- validation target: color/font/height/slant/spacing as record-relative fields
+- current color diff output is evidence, not confirmed parser mapping
+
+## CParagraphe structure investigation
+
+Current goal:
+
+- this phase is record-boundary discovery, not final value decoding.
+
+Policy:
+
+- absolute offset is diagnostic only.
+- prioritize `class_payload_relative_offset` and `record_relative_offset`.
+
+Observed:
+
+- color/font/height/slant/spacing signals appear as candidate evidence inside `CParagraphe` payload scans.
+- candidate offsets can move when text length/font/line count/object count changes.
+
+Provisional:
+
+- no confirmed field mapping for color/font/height/slant/spacing yet.
+- current candidates remain structural hypotheses until cross-fixture record-relative stability is shown.
+
+Next confirmation criteria:
+
+1. same record-relative offset repeats across multiple fixtures.
+2. single-option-change fixtures modify only the corresponding candidate field.
+3. record-relative position remains stable even when text length/font/line count/object count changes.
 
 ---
 

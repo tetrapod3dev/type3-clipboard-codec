@@ -80,6 +80,17 @@ def test_lowercase_mode_fixture_preserves_intentional_uppercase_source_evidence(
     assert chain.display_text_candidate is None
 
 
+def test_font_arial_bold_fixture_no_longer_reports_multiline_evidence():
+    parsed = decode_sample("text_font_arial_bold.txt")
+    assert isinstance(parsed, GeometryObject)
+    assert parsed.is_text_object is True
+    assert parsed.object_chains
+    chain = parsed.object_chains[0]
+    assert chain.source_text_candidate == "abcdefg"
+    assert chain.line_count == 1
+    assert "\n" not in (chain.source_text_candidate or "")
+
+
 def test_single_text_color_fixture_parses_color_independently():
     parsed = decode_sample("text_color_navy_blue.txt")
     assert isinstance(parsed, GeometryObject)
@@ -139,8 +150,8 @@ def test_two_text_objects_mixed_color_fixture_keeps_two_objects_and_text_order()
         second.style.line_color_name,
     }
     assert observed & {"Navy Blue", "Army Green"}
-    assert first.style.line_color_confidence in {"weak", "strong", "confirmed", None}
-    assert second.style.line_color_confidence in {"weak", "strong", "confirmed", None}
+    assert first.style.line_color_confidence in {"provisional", "unresolved", None}
+    assert second.style.line_color_confidence in {"provisional", "unresolved", None}
 
 
 def test_multiline_order_40_41_42_fixtures_have_multiline_evidence_and_preserve_object_order():

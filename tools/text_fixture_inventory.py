@@ -36,18 +36,24 @@ def _infer_fixture_intent(path: Path) -> dict:
         intent["fixture_intent_anchor"] = {"x": 111.111, "y": 222.222, "z": 0.0}
 
     if "group_same_color_two_objects" in name:
-        intent["fixture_intent_color"] = "Army Green"
+        intent["fixture_intent_color"] = ["Army Green", "Army Green"]
     elif "group_mixed_color_two_objects" in name:
-        intent["fixture_intent_color"] = "mixed(Army Green,Navy Blue)"
+        intent["fixture_intent_color"] = ["Army Green", "Navy Blue"]
+    elif "two_objects_mixed_color_not_grouped" in name:
+        intent["fixture_intent_color"] = ["Army Green", "Navy Blue"]
     elif "text_color_army_green" in name:
         intent["fixture_intent_color"] = "Army Green"
     elif "text_color_navy_blue" in name:
         intent["fixture_intent_color"] = "Navy Blue"
+    elif name == "default_text.txt":
+        intent["fixture_intent_color"] = "Black (observed baseline)"
     else:
         intent["fixture_intent_color"] = "Black"
 
     if "font_hy_gyeongo_dik" in name:
         intent["fixture_intent_font"] = "HY견고딕"
+    elif "font_arial_bold" in name:
+        intent["fixture_intent_font"] = "Arial Bold"
     elif "font_hy_se_gothic" in name:
         intent["fixture_intent_font"] = "HY세고딕"
     elif "font_hy_tae_gothic" in name:
@@ -191,6 +197,7 @@ def build_inventory_entry(path: Path) -> dict:
                 ),
                 "line_color_name": chain.style.line_color_name,
                 "line_color_confidence": chain.style.line_color_confidence,
+                "line_color_source": chain.style.line_color_source,
                 "anchor_expected_source": chain.text_anchor_expected_source,
                 "anchor_parse_method": chain.text_anchor_parse_method or chain.text_anchor_source,
                 "anchor_parse_confidence": chain.text_anchor_parse_confidence or chain.text_anchor_confidence,
@@ -200,7 +207,17 @@ def build_inventory_entry(path: Path) -> dict:
     parser_text_candidate = text_candidates[0] if text_candidates else None
     parser_font_candidate = getattr(parsed, "font_name", None)
     parser_anchor_candidate = chain_summaries[0]["text_anchor_mm"] if chain_summaries else None
-    parser_color_candidate = chain_summaries[0]["line_color_name"] if chain_summaries else None
+    parser_color_candidate = (
+        [c["line_color_name"] for c in chain_summaries]
+        if len(chain_summaries) > 1
+        else (chain_summaries[0]["line_color_name"] if chain_summaries else None)
+    )
+    color_candidate_source = (
+        [c["line_color_source"] for c in chain_summaries]
+        if len(chain_summaries) > 1
+        else (chain_summaries[0]["line_color_source"] if chain_summaries else None)
+    )
+    color_candidates_raw = _color_candidates(parsed)
 
     text_confidence = "candidate"
     if intent["fixture_intent_text"] and parser_text_candidate == intent["fixture_intent_text"]:
@@ -209,15 +226,41 @@ def build_inventory_entry(path: Path) -> dict:
         text_confidence = "unresolved"
 
     font_confidence = "candidate"
+    font_notes: list[str] = []
     if parser_font_candidate == intent["fixture_intent_font"]:
         font_confidence = "candidate_match"
     elif parser_font_candidate is None:
         font_confidence = "unresolved"
+        font_notes.append("font_name_candidate unresolved")
+    else:
+        font_notes.append(
+            f"expected={intent['fixture_intent_font']}, detected={parser_font_candidate}"
+        )
 
     anchor_confidence = chain_summaries[0]["anchor_parse_confidence"] if chain_summaries else "unresolved"
-    color_confidence = chain_summaries[0]["line_color_confidence"] if chain_summaries else "unresolved"
-    if intent["fixture_intent_color"] and parser_color_candidate and parser_color_candidate != intent["fixture_intent_color"]:
-        color_confidence = "unresolved"
+    color_notes: list[str] = []
+    if len(chain_summaries) > 1:
+        color_confidence = "mixed_object_ownership_unresolved"
+        color_notes.append("Per-object color ownership is provisional for multi-object text fixtures.")
+    else:
+        color_confidence = chain_summaries[0]["line_color_confidence"] if chain_summaries else "unresolved"
+    if intent["fixture_intent_color"] and parser_color_candidate:
+        if isinstance(intent["fixture_intent_color"], list):
+            if not isinstance(parser_color_candidate, list) or len(parser_color_candidate) != len(intent["fixture_intent_color"]):
+                color_confidence = "unresolved"
+            elif parser_color_candidate != intent["fixture_intent_color"]:
+                color_confidence = "mixed_object_ownership_unresolved"
+                color_notes.append(
+                    f"expected={intent['fixture_intent_color']}, detected={parser_color_candidate}"
+                )
+        else:
+            if isinstance(parser_color_candidate, list):
+                color_confidence = "mixed_object_ownership_unresolved"
+            elif parser_color_candidate != intent["fixture_intent_color"]:
+                color_confidence = "unresolved"
+                color_notes.append(
+                    f"expected={intent['fixture_intent_color']}, detected={parser_color_candidate}"
+                )
 
     notes: list[str] = []
     notes.extend(intent["intent_notes"])
@@ -238,8 +281,13 @@ def build_inventory_entry(path: Path) -> dict:
         notes.append("Parser limitation: Korean visible text candidate extraction unresolved.")
     if "text_color_" in path.name and parser_color_candidate != intent["fixture_intent_color"]:
         notes.append("Parser limitation: expected text color and detected color mismatch.")
+        color_notes.append("Single text object color candidate does not match fixture intent.")
     if "font_hy_" in path.name and parser_font_candidate != intent["fixture_intent_font"]:
         notes.append("Parser limitation: expected HY font and detected font mismatch.")
+        font_notes.append("Korean font name storage unresolved")
+    if "font_arial_bold" in path.name and parser_font_candidate != intent["fixture_intent_font"]:
+        notes.append("Parser limitation: expected Arial Bold and detected font mismatch.")
+        font_notes.append("Arial Bold storage mapping unresolved")
 
     return {
         "file": path.name,
@@ -262,6 +310,7 @@ def build_inventory_entry(path: Path) -> dict:
         "visible_text_candidates": text_candidates,
         "text_object_notes": list(getattr(parsed, "text_notes", []) or []),
         "color_candidates": _color_candidates(parsed),
+        "color_candidates_raw": color_candidates_raw,
         "chains": chain_summaries,
         "fixture_intent_text": intent["fixture_intent_text"],
         "parser_text_candidate": parser_text_candidate,
@@ -272,10 +321,13 @@ def build_inventory_entry(path: Path) -> dict:
         "anchor_parse_method": chain_summaries[0]["anchor_parse_method"] if chain_summaries else None,
         "fixture_intent_color": intent["fixture_intent_color"],
         "parser_color_candidate": parser_color_candidate,
+        "color_candidate_source": color_candidate_source,
         "text_confidence": text_confidence,
         "font_confidence": font_confidence,
+        "font_notes": font_notes,
         "anchor_confidence": anchor_confidence,
         "color_confidence": color_confidence,
+        "color_notes": color_notes,
         "recapture_required": recapture_required,
         "notes": notes,
     }
@@ -313,10 +365,14 @@ def render_text(entries: list[dict]) -> str:
         lines.append(f"  anchor_parse_method: {item['anchor_parse_method']}")
         lines.append(f"  fixture_intent_color: {item['fixture_intent_color']}")
         lines.append(f"  parser_color_candidate: {item['parser_color_candidate']}")
+        lines.append(f"  color_candidate_source: {item['color_candidate_source']}")
+        lines.append(f"  color_candidates_raw: {item['color_candidates_raw']}")
         lines.append(f"  text_confidence: {item['text_confidence']}")
         lines.append(f"  font_confidence: {item['font_confidence']}")
+        lines.append(f"  font_notes: {item['font_notes']}")
         lines.append(f"  anchor_confidence: {item['anchor_confidence']}")
         lines.append(f"  color_confidence: {item['color_confidence']}")
+        lines.append(f"  color_notes: {item['color_notes']}")
         lines.append(f"  color_candidates: {len(item['color_candidates'])}")
         if item.get("recapture_required"):
             lines.append("  recapture_required: True")
@@ -344,8 +400,8 @@ def render_text(entries: list[dict]) -> str:
 
 def render_markdown(entries: list[dict]) -> str:
     lines: list[str] = []
-    lines.append("| file | declared_object_count | parsed_chain_candidate_count | fixture_intent_text | parser_text_candidate | fixture_intent_font | parser_font_candidate | fixture_intent_anchor | parser_anchor_candidate | anchor_parse_method | fixture_intent_color | parser_color_candidate | text_confidence | font_confidence | anchor_confidence | color_confidence | notes |")
-    lines.append("|---|---:|---:|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    lines.append("| file | declared_object_count | parsed_chain_candidate_count | fixture_intent_text | parser_text_candidate | fixture_intent_font | parser_font_candidate | font_notes | fixture_intent_anchor | parser_anchor_candidate | anchor_parse_method | fixture_intent_color | parser_color_candidate | color_candidate_source | color_confidence | color_notes | text_confidence | font_confidence | anchor_confidence | notes |")
+    lines.append("|---|---:|---:|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for item in entries:
         intent_anchor = item.get("fixture_intent_anchor")
         parser_anchor = item.get("parser_anchor_candidate")
@@ -364,10 +420,14 @@ def render_markdown(entries: list[dict]) -> str:
             f"{str(item.get('fixture_intent_text') or '-').replace('|', '\\|').replace(chr(10), '<br>')} | "
             f"{str(item.get('parser_text_candidate') or '-').replace('|', '\\|').replace(chr(10), '<br>')} | "
             f"{item.get('fixture_intent_font') or '-'} | {item.get('parser_font_candidate') or '-'} | "
+            f"{('; '.join(item.get('font_notes') or ['-'])).replace('|', '\\|')} | "
             f"{intent_anchor_s} | {parser_anchor_s} | {item.get('anchor_parse_method') or '-'} | "
             f"{item.get('fixture_intent_color') or '-'} | {item.get('parser_color_candidate') or '-'} | "
+            f"{str(item.get('color_candidate_source') or '-').replace('|', '\\|')} | "
+            f"{item.get('color_confidence') or '-'} | "
+            f"{('; '.join(item.get('color_notes') or ['-'])).replace('|', '\\|')} | "
             f"{item.get('text_confidence') or '-'} | {item.get('font_confidence') or '-'} | "
-            f"{item.get('anchor_confidence') or '-'} | {item.get('color_confidence') or '-'} | "
+            f"{item.get('anchor_confidence') or '-'} | "
             f"{notes.replace('|', '\\|')} |"
         )
     return "\n".join(lines)

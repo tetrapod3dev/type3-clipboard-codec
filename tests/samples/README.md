@@ -770,6 +770,17 @@ For full fixture list, regenerate from CLI output:
 - `.\.venv\Scripts\python.exe tools\text_fixture_inventory.py --markdown`
 - `.\.venv\Scripts\python.exe tools\text_fixture_inventory.py --json`
 
+Font fixture status note:
+
+- `text_font_arial_bold.txt` recapture mismatch is resolved (single-line `abcdefg`).
+- `parser_font_candidate` for `Arial Bold` and HY font fixtures is still provisional/unresolved in current parser.
+
+Text color fixtures and ownership note:
+
+- single-object fixtures: `text_color_army_green.txt`, `text_color_navy_blue.txt`
+- two-object fixtures: `text_group_same_color_two_objects.txt`, `text_group_mixed_color_two_objects.txt`, `text_two_objects_mixed_color_not_grouped.txt`
+- parser color candidates are currently evidence-level; mixed-color per-object ownership is still provisional.
+
 ### Known source text
 
 The copied object corresponds to a text object with the following source content:

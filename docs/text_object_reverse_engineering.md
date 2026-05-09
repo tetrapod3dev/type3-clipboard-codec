@@ -288,6 +288,12 @@ Important:
 - The ASCII identifiers are filename/transliteration conveniences only.
 - Do not infer that Type3 stores the Korean visible name directly until bytes confirm it.
 
+Current status update (after `text_font_arial_bold.txt` recapture):
+
+- confirmed: `text_font_arial_bold.txt` no longer shows multiline `abcd\nefgh` evidence; current visible/source text candidate is `abcdefg`.
+- observed: parser still resolves `font_name` as unresolved for `text_font_arial_bold.txt` and HY fixtures in current conservative path.
+- provisional: exact binary mapping for `Arial Bold` and Korean font-name storage.
+
 Expected parser milestone value:
 
 - high priority for font extraction
@@ -308,6 +314,53 @@ Purpose:
 Preserve original Korean alignment terms:
 
 - `왼쪽`
+
+---
+
+## 8. Text color fixtures and ownership
+
+Target fixtures:
+
+- `text_color_army_green.txt`
+- `text_color_navy_blue.txt`
+- `text_group_same_color_two_objects.txt`
+- `text_group_mixed_color_two_objects.txt`
+- `text_two_objects_mixed_color_not_grouped.txt`
+- `default_text.txt`
+
+Confirmed:
+
+- fixture intent colors are controlled during capture.
+- anchor control remains `X 위치`, `Y 위치`, `Z 위치`; bbox is observed/derived.
+
+Observed:
+
+- single-object text color fixtures can still parse as `Black` in current conservative parser output.
+- same-color two-object fixture provides `Army Green` evidence on both chains.
+- mixed-color two-object fixtures do not yet provide stable per-object ownership decoding.
+
+Provisional:
+
+- per-object ownership mapping for mixed-color fixtures
+
+## Offset policy for text reverse engineering
+
+Confirmed:
+
+- absolute file offset is not a stable parser key for text objects.
+- class chain and payload structure are stable parsing anchors; style/color raw values at absolute offsets are fixture-level evidence only.
+
+Observed:
+
+- `text_color_army_green.txt` vs `text_color_navy_blue.txt` comparisons produce repeated palette-like candidates at several absolute offsets.
+- those offsets are useful for diagnostics and clustering, not for direct parser decoding rules.
+
+Provisional:
+
+- text color/font/style should be decoded from class-payload-relative or record-relative fields inside `CParagraphe`/related records.
+- direct binary field mapping for text color remains unresolved.
+- exact text-specific color field offsets in `CPropertyExtend`
+- distinction between semantic color bytes and volatile/session-local byte regions
 - `중앙`
 - `오른쪽`
 - `맞춤`

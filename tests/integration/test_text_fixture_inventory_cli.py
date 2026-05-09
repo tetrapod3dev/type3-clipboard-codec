@@ -47,8 +47,14 @@ def test_text_fixture_inventory_json_mode_is_valid_and_includes_text_candidates(
     assert default_entry["anchor_parse_method"] in {"baseline_midpoint", "bbox_center_fallback", "direct_field_candidate", "unknown"}
     assert "text_confidence" in default_entry
     assert "font_confidence" in default_entry
+    assert "font_notes" in default_entry
     assert "anchor_confidence" in default_entry
     assert "color_confidence" in default_entry
+    assert "fixture_intent_color" in default_entry
+    assert "parser_color_candidate" in default_entry
+    assert "color_notes" in default_entry
+    assert "color_candidates_raw" in default_entry
+    assert "color_candidate_source" in default_entry
 
 
 def test_text_fixture_inventory_markdown_mode_has_expected_vs_detected_columns():
@@ -58,6 +64,9 @@ def test_text_fixture_inventory_markdown_mode_has_expected_vs_detected_columns()
     assert "parser_text_candidate" in result.stdout
     assert "fixture_intent_color" in result.stdout
     assert "parser_color_candidate" in result.stdout
+    assert "font_notes" in result.stdout
+    assert "color_notes" in result.stdout
+    assert "color_candidate_source" in result.stdout
 
 
 def test_text_fixture_inventory_json_reports_bold_fixture_status():

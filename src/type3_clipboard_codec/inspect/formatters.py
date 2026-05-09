@@ -246,6 +246,11 @@ def to_inspection_dict(
             "source_text_candidate": obj.source_text_candidate,
             "display_text_candidate": obj.display_text_candidate,
             "font_name": obj.font_name,
+            "font_candidates": (
+                obj.candidate_fields.get("font_candidates")
+                if obj.candidate_fields
+                else None
+            ),
             "raw_text_record_count": len(obj.raw_text_records),
             "notes": list(obj.text_notes),
         }
@@ -395,6 +400,21 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
                 lines.append("  Text notes:")
                 for note in text_notes:
                     lines.append(f"    * {note}")
+            style_for_text = obj.get("style_candidates") or {}
+            if style_for_text:
+                lines.append(f"  Color candidate: {style_for_text.get('line_color_name')}")
+                lines.append(f"  Color confidence: {style_for_text.get('line_color_confidence')}")
+                lines.append(f"  Color source: {style_for_text.get('line_color_source')}")
+                raw_candidates = style_for_text.get("color_candidates") or []
+                if raw_candidates:
+                    lines.append("  Raw color candidates:")
+                    for candidate in raw_candidates[:8]:
+                        lines.append(
+                            "    "
+                            f"* offset={candidate.get('offset')} raw={candidate.get('raw_hex')} "
+                            f"name={candidate.get('name')} hex=#{candidate.get('hex_rgb')} "
+                            f"confidence={candidate.get('confidence')} source={candidate.get('source')}"
+                        )
         append_style_lines(obj.get("style_candidates"), "  ")
         source = obj.get("source")
         if source:
@@ -440,6 +460,7 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
         lines.append("Text object info:")
         lines.append(f"  is_text_object: {text.get('is_text_object')}")
         lines.append(f"  font_name: {text.get('font_name')}")
+        lines.append(f"  font_candidates: {text.get('font_candidates')}")
         lines.append(f"  text_content: {text.get('text_content')}")
         lines.append(f"  source_text_candidate: {text.get('source_text_candidate')}")
         lines.append(f"  display_text_candidate: {text.get('display_text_candidate')}")
