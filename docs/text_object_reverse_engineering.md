@@ -18,12 +18,12 @@ Rules:
 
 Examples:
 
-| Korean UI term | Provisional English | Status |
-| --- | --- | --- |
-| 자유 위치 | free position | unresolved layout/alignment behavior |
-| 인쇄 비례 | print proportional | provisional spacing mode label |
-| 기본선 위 | above baseline | inferred from UI wording |
-| 기본선 아래 | below baseline | inferred from UI wording |
+| Korean UI term | Provisional English | Status                               |
+|----------------|---------------------|--------------------------------------|
+| 자유 위치          | free position       | unresolved layout/alignment behavior |
+| 인쇄 비례          | print proportional  | provisional spacing mode label       |
+| 기본선 위          | above baseline      | inferred from UI wording             |
+| 기본선 아래         | below baseline      | inferred from UI wording             |
 
 ## Current Text-Object Assumption
 
@@ -32,7 +32,7 @@ Type3 text objects are expected to contain both:
 - high-level text information: visible text, font, layout, typography, style flags
 - generated geometry/outline information: `CCourbe`, `CContour`, contour records, property blocks
 
-Therefore text fixtures must support investigation of:
+Therefore, text fixtures must support investigation of:
 
 - text extraction
 - font extraction
@@ -48,7 +48,7 @@ The parser must not treat text objects as simple strings. Unknown byte regions m
 
 ## 1. Fixture Naming Convention
 
-Text fixture names use deterministic lowercase snake-case:
+Text fixture names use a deterministic lowercase snake-case:
 
 ```text
 text_<category>_<variant>.txt
@@ -66,22 +66,22 @@ Rules:
 
 Recommended category tokens:
 
-| Category | Meaning |
-| --- | --- |
-| `ascii` | ASCII text-content fixtures |
-| `korean` | Korean text-content fixtures |
-| `multiline` | newline/paragraph content fixtures |
-| `font` | font-family/font-style fixtures |
-| `origin` | object/bbox/anchor position fixtures |
-| `align` | alignment mode fixtures |
-| `height` | `높이` fixtures |
-| `width` | `폭` fixtures |
-| `spacing` | `간격` or paragraph spacing fixtures; metadata must disambiguate |
-| `rotation` | `회전` fixtures |
-| `mirror` | `미러` fixtures |
-| `slant` | `기울기` / `이탤릭` fixtures |
-| `baseline` | `기본선 위` / `기본선 아래` fixtures |
-| `rtl` | `오른쪽에서 왼쪽` fixtures |
+| Category    | Meaning                                                        |
+|-------------|----------------------------------------------------------------|
+| `ascii`     | ASCII text-content fixtures                                    |
+| `korean`    | Korean text-content fixtures                                   |
+| `multiline` | newline/paragraph content fixtures                             |
+| `font`      | font-family/font-style fixtures                                |
+| `origin`    | object/bbox/anchor position fixtures                           |
+| `align`     | alignment mode fixtures                                        |
+| `height`    | `높이` fixtures                                                  |
+| `width`     | `폭` fixtures                                                   |
+| `spacing`   | `간격` or paragraph spacing fixtures; metadata must disambiguate |
+| `rotation`  | `회전` fixtures                                                  |
+| `mirror`    | `미러` fixtures                                                  |
+| `slant`     | `기울기` / `이탤릭` fixtures                                         |
+| `baseline`  | `기본선 위` / `기본선 아래` fixtures                                    |
+| `rtl`       | `오른쪽에서 왼쪽` fixtures                                            |
 
 When two Korean UI controls could map to the same English word, the filename may stay practical but the metadata must preserve the exact Korean control. For example, `text_spacing_150_percent.txt` must say whether it changes `간격` or paragraph spacing mode/value.
 
@@ -111,7 +111,7 @@ Diff-friendly precautions:
 
 - use the same Type3 document/session setup for fixture groups when practical
 - capture fixtures in a controlled order
-- keep object creation workflow consistent
+- keep the object creation workflow consistent
 - avoid manual dragging unless testing free positioning
 - prefer numeric entry fields over mouse movement
 - avoid snapping changes unless the fixture targets position behavior
@@ -133,33 +133,33 @@ Every fixture must have metadata in this document or a future sidecar manifest b
 
 Required metadata:
 
-| Field | Required value |
-| --- | --- |
-| fixture filename | exact `tests/samples/*.txt` filename |
-| baseline delta | one sentence describing the single changed variable |
-| visible text | exact visible content, including newlines/spaces |
-| font Korean/original | exact Type3 font label when Korean or localized |
-| font provisional id | ASCII fixture identifier/transliteration |
-| bbox lower-left | expected position in mm |
-| anchor/reference position | `X 위치` / `Y 위치` if known |
-| text mode | single-line/multiline/paragraph |
-| alignment | exact Korean UI term: `왼쪽`, `중앙`, `오른쪽`, `맞춤`, `자유 위치` |
-| height | `높이` value and unit |
-| width scale | `폭` value and unit |
-| character spacing | `간격` value and unit |
-| max length | `최대 길이` value and unit |
-| slant/italic | `기울기` value and `이탤릭` state |
-| rotation | `회전` value |
-| mirror | `미러` state |
-| underline | `밑줄` state and value if visible |
-| offset | `옵셋` value |
-| baseline mode | `기본선 위` / `기본선 아래` / default |
-| paragraph spacing mode | `고정`, `비례`, `인쇄 비례`, or default |
-| directionality | `오른쪽에서 왼쪽` state |
-| case/script mode | `대문자`, `작은 대문자`, `소문자`, `윗 첨자`, `아래 첨자`, or default |
-| expected changed regions | conservative candidates only |
-| volatile regions | observed session/object ID candidates |
-| notes | capture caveats and unresolved observations |
+| Field                     | Required value                                         |
+|---------------------------|--------------------------------------------------------|
+| fixture filename          | exact `tests/samples/*.txt` filename                   |
+| baseline delta            | one sentence describing the single changed variable    |
+| visible text              | exact visible content, including newlines/spaces       |
+| font Korean/original      | exact Type3 font label when Korean or localized        |
+| font provisional id       | ASCII fixture identifier/transliteration               |
+| bbox lower-left           | expected position in mm                                |
+| anchor/reference position | `X 위치` / `Y 위치` if known                               |
+| text mode                 | single-line/multiline/paragraph                        |
+| alignment                 | exact Korean UI term: `왼쪽`, `중앙`, `오른쪽`, `맞춤`, `자유 위치` |
+| height                    | `높이` value and unit                                    |
+| width scale               | `폭` value and unit                                     |
+| character spacing         | `간격` value and unit                                    |
+| max length                | `최대 길이` value and unit                                 |
+| slant/italic              | `기울기` value and `이탤릭` state                            |
+| rotation                  | `회전` value                                             |
+| mirror                    | `미러` state                                             |
+| underline                 | `밑줄` state and value if visible                        |
+| offset                    | `옵셋` value                                             |
+| baseline mode             | `기본선 위` / `기본선 아래` / default                           |
+| paragraph spacing mode    | `고정`, `비례`, `인쇄 비례`, or default                        |
+| directionality            | `오른쪽에서 왼쪽` state                                       |
+| case/script mode          | `대문자`, `작은 대문자`, `소문자`, `윗 첨자`, `아래 첨자`, or default    |
+| expected changed regions  | conservative candidates only                           |
+| volatile regions          | observed session/object ID candidates                  |
+| notes                     | capture caveats and unresolved observations            |
 
 Metadata should describe expected binary regions using cautious language:
 
@@ -175,21 +175,21 @@ Do not mark a byte range as confirmed until it survives multiple fixture compari
 
 ## 4. Baseline Fixture Definition
 
-| Field | Value |
-| --- | --- |
-| fixture | `default_text.txt` |
-| role | baseline text object |
-| visible text | `abcdefg` |
-| font | `Arial` |
-| bbox lower-left | near `(0,0,0)` mm |
-| line mode | single-line |
-| rotation | none / `회전 = 0°` |
-| mirror | off / `미러` disabled |
-| underline | off / `밑줄` disabled |
-| spacing | default |
-| alignment | default Type3 alignment |
-| width/height | default captured values, to be recorded exactly |
-| slant/italic | default, expected `기울기 = 0°`, `이탤릭` disabled |
+| Field           | Value                                           |
+|-----------------|-------------------------------------------------|
+| fixture         | `default_text.txt`                              |
+| role            | baseline text object                            |
+| visible text    | `abcdefg`                                       |
+| font            | `Arial`                                         |
+| bbox lower-left | near `(0,0,0)` mm                               |
+| line mode       | single-line                                     |
+| rotation        | none / `회전 = 0°`                                |
+| mirror          | off / `미러` disabled                             |
+| underline       | off / `밑줄` disabled                             |
+| spacing         | default                                         |
+| alignment       | default Type3 alignment                         |
+| width/height    | default captured values, to be recorded exactly |
+| slant/italic    | default, expected `기울기 = 0°`, `이탤릭` disabled    |
 
 Expected reverse-engineering value:
 
@@ -227,23 +227,23 @@ Purpose:
 
 All text-content fixtures should keep font `Arial`, baseline position, baseline typography, no rotation, no mirror, and default style.
 
-| Fixture | Visible text | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_ascii_lowercase.txt` | `abcdefg` | explicit lowercase content fixture; may match baseline | confirms baseline repeatability and volatile regions | ideally only volatile/session regions if recaptured |
-| `text_ascii_uppercase.txt` | `ABCDEFG` | visible text only | distinguishes character values from same-length ASCII records; glyph geometry changes | character records, possible glyph IDs, generated outlines, bbox |
-| `text_digits.txt` | `1234567890` | visible text only; length changes | tests digit encoding and length/count fields | character records, length/count candidates, outlines, bbox |
-| `text_alphanumeric.txt` | `A1B2C3d4` | visible text only | tests mixed case/digit records and per-character ordering | character records, glyph IDs, outlines |
-| `text_spaces.txt` | `ab cd ef` | visible text only; includes spaces | identifies space storage, advance width, word separation | character records, spacing/advance records, outlines may omit space glyph |
-| `text_special_characters.txt` | `+-*/#@&()` | visible text only | tests punctuation encoding and glyph mapping | character records, glyph IDs, outlines, bbox |
-| `text_korean_basic.txt` | `가나다라마` | visible text only; Korean | tests Hangul encoding and non-ASCII font fallback behavior | encoding records, possible UTF-16/glyph indices, font fallback candidates, outlines |
-| `text_korean_mixed.txt` | `ABC가나다123` | visible text only; mixed scripts | tests script transitions and mixed encoding strategy | character records, run records, glyph IDs, outlines |
-| `text_multiline_basic.txt` | `abcd` + newline + `efgh` | content changes to two lines | identifies newline representation and paragraph/line record structure | character records, newline/line break marker, layout records, bbox, outlines |
+| Fixture                       | Visible text              | Delta from baseline                                    | Expected reverse-engineering value                                                    | Likely changed regions                                                              |
+|-------------------------------|---------------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `text_ascii_lowercase.txt`    | `abcdefg`                 | explicit lowercase content fixture; may match baseline | confirms baseline repeatability and volatile regions                                  | ideally only volatile/session regions if recaptured                                 |
+| `text_ascii_uppercase.txt`    | `ABCDEFG`                 | visible text only                                      | distinguishes character values from same-length ASCII records; glyph geometry changes | character records, possible glyph IDs, generated outlines, bbox                     |
+| `text_digits.txt`             | `1234567890`              | visible text only; length changes                      | tests digit encoding and length/count fields                                          | character records, length/count candidates, outlines, bbox                          |
+| `text_alphanumeric.txt`       | `A1B2C3d4`                | visible text only                                      | tests mixed case/digit records and per-character ordering                             | character records, glyph IDs, outlines                                              |
+| `text_spaces.txt`             | `ab cd ef`                | visible text only; includes spaces                     | identifies space storage, advance width, word separation                              | character records, spacing/advance records, outlines may omit space glyph           |
+| `text_special_characters.txt` | `+-*/#@&()`               | visible text only                                      | tests punctuation encoding and glyph mapping                                          | character records, glyph IDs, outlines, bbox                                        |
+| `text_korean_basic.txt`       | `가나다라마`                   | visible text only; Korean                              | tests Hangul encoding and non-ASCII font fallback behavior                            | encoding records, possible UTF-16/glyph indices, font fallback candidates, outlines |
+| `text_korean_mixed.txt`       | `ABC가나다123`               | visible text only; mixed scripts                       | tests script transitions and mixed encoding strategy                                  | character records, run records, glyph IDs, outlines                                 |
+| `text_multiline_basic.txt`    | `abcd` + newline + `efgh` | content changes to two lines                           | identifies newline representation and paragraph/line record structure                 | character records, newline/line break marker, layout records, bbox, outlines        |
 
 Rationale:
 
 - Same-length ASCII swaps (`abcdefg` -> `ABCDEFG`) help isolate per-character storage.
 - Length-changing ASCII fixtures expose count and offset fields.
-- Korean fixtures are required before choosing an internal parser text encoding model.
+- Korean fixtures are required before choosing an internal parser text-encoding model.
 - Multiline content is included here as a content fixture, while paragraph spacing modes are handled separately.
 
 Capture notes:
@@ -260,19 +260,19 @@ Purpose:
 
 - identify font family storage
 - distinguish font name strings from font IDs or style flags
-- observe whether generated outlines change when only font changes
+- observe whether generated outlines change when only the font changes
 - validate Korean font names used in real Type3 workflows
 
 All font fixtures must keep visible text `abcdefg` and all other settings baseline/default.
 
-| Fixture | Original font name | Provisional identifier | Delta from baseline | Expected reverse-engineering observations | Likely changed regions |
-| --- | --- | --- | --- | --- | --- |
-| `text_font_arial.txt` | `Arial` | `arial` | explicit Arial control fixture; may match baseline | validates recapture stability and font-record baseline | ideally only volatile/session regions if recaptured |
-| `text_font_arial_bold.txt` | `Arial Bold` or Type3's exact bold UI label | `arial_bold` | font/style only | separates family/style storage from generated bold outlines | font record, style/weight candidate, outlines, bbox |
-| `text_font_hy_gyeongo_dik.txt` | `HY견고딕` | `hy_gyeongo_dik` | font only | tests Korean font name storage and glyph outline generation | font record, possible localized name encoding, outlines, bbox |
-| `text_font_hy_teuktae_gothic.txt` | `HY특태고딕` | `hy_teuktae_gothic` | font only | tests wide/heavy Korean Gothic family storage | font record, localized name bytes, outlines, bbox |
-| `text_font_hy_tae_gothic.txt` | `HY태고딕` | `hy_tae_gothic` | font only | compares related HY Gothic family identifiers | font record, localized name bytes, outlines, bbox |
-| `text_font_hy_se_gothic.txt` | `HY세고딕` | `hy_se_gothic` | font only | compares related HY Gothic family identifiers | font record, localized name bytes, outlines, bbox |
+| Fixture                           | Original font name                          | Provisional identifier | Delta from baseline                                | Expected reverse-engineering observations                   | Likely changed regions                                        |
+|-----------------------------------|---------------------------------------------|------------------------|----------------------------------------------------|-------------------------------------------------------------|---------------------------------------------------------------|
+| `text_font_arial.txt`             | `Arial`                                     | `arial`                | explicit Arial control fixture; may match baseline | validates recapture stability and font-record baseline      | ideally only volatile/session regions if recaptured           |
+| `text_font_arial_bold.txt`        | `Arial Bold` or Type3's exact bold UI label | `arial_bold`           | font/style only                                    | separates family/style storage from generated bold outlines | font record, style/weight candidate, outlines, bbox           |
+| `text_font_hy_gyeongo_dik.txt`    | `HY견고딕`                                     | `hy_gyeongo_dik`       | font only                                          | tests Korean font name storage and glyph outline generation | font record, possible localized name encoding, outlines, bbox |
+| `text_font_hy_teuktae_gothic.txt` | `HY특태고딕`                                    | `hy_teuktae_gothic`    | font only                                          | tests wide/heavy Korean Gothic family storage               | font record, localized name bytes, outlines, bbox             |
+| `text_font_hy_tae_gothic.txt`     | `HY태고딕`                                     | `hy_tae_gothic`        | font only                                          | compares related HY Gothic family identifiers               | font record, localized name bytes, outlines, bbox             |
+| `text_font_hy_se_gothic.txt`      | `HY세고딕`                                     | `hy_se_gothic`         | font only                                          | compares related HY Gothic family identifiers               | font record, localized name bytes, outlines, bbox             |
 
 Important:
 
@@ -293,7 +293,7 @@ Expected parser milestone value:
 Purpose:
 
 - separate bbox, anchor/reference position, and alignment behavior
-- determine whether `X 위치` / `Y 위치` are persisted independently from bbox
+- determine whether `X 위치` / `Y 위치` are persisted independently of bbox
 - identify alignment flags/enums
 - detect derived geometry changes caused by layout
 
@@ -305,15 +305,15 @@ Preserve original Korean alignment terms:
 - `맞춤`
 - `자유 위치`
 
-| Fixture | Target control/value | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_origin_0_0.txt` | bbox lower-left near `(0,0,0)` mm | explicit origin control; may match baseline | validates coordinate repeatability and volatile regions | bbox/anchor candidates only if recapture differs |
-| `text_origin_offset.txt` | move object to a documented offset, e.g. `(11.111,22.222,0)` mm | position only | separates position fields from text/style records | bbox doubles, anchor `X 위치`/`Y 위치`, generated geometry coordinates |
-| `text_align_left.txt` | `왼쪽` | alignment only | identifies left alignment enum/flag | alignment candidate, possible anchor/bbox derived change |
-| `text_align_center.txt` | `중앙` | alignment only | identifies center alignment enum/flag | alignment candidate, possible anchor/bbox derived change |
-| `text_align_right.txt` | `오른쪽` | alignment only | identifies right alignment enum/flag | alignment candidate, possible anchor/bbox derived change |
-| `text_align_justify.txt` | `맞춤` | justify/alignment behavior only | tests whether `맞춤` is enum or independent flag | alignment/justify candidate, spacing/layout records, outlines |
-| `text_align_free_position.txt` | `자유 위치` | free-position mode only | tests whether free positioning is enum, flag, or anchor mode | alignment/free-position candidate, anchor records |
+| Fixture                        | Target control/value                                            | Delta from baseline                         | Expected reverse-engineering value                           | Likely changed regions                                             |
+|--------------------------------|-----------------------------------------------------------------|---------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------------------|
+| `text_origin_0_0.txt`          | bbox lower-left near `(0,0,0)` mm                               | explicit origin control; may match baseline | validates coordinate repeatability and volatile regions      | bbox/anchor candidates only if recapture differs                   |
+| `text_origin_offset.txt`       | move object to a documented offset, e.g. `(11.111,22.222,0)` mm | position only                               | separates position fields from text/style records            | bbox doubles, anchor `X 위치`/`Y 위치`, generated geometry coordinates |
+| `text_align_left.txt`          | `왼쪽`                                                            | alignment only                              | identifies left alignment enum/flag                          | alignment candidate, possible anchor/bbox derived change           |
+| `text_align_center.txt`        | `중앙`                                                            | alignment only                              | identifies center alignment enum/flag                        | alignment candidate, possible anchor/bbox derived change           |
+| `text_align_right.txt`         | `오른쪽`                                                           | alignment only                              | identifies right alignment enum/flag                         | alignment candidate, possible anchor/bbox derived change           |
+| `text_align_justify.txt`       | `맞춤`                                                            | justify/alignment behavior only             | tests whether `맞춤` is enum or independent flag               | alignment/justify candidate, spacing/layout records, outlines      |
+| `text_align_free_position.txt` | `자유 위치`                                                         | free-position mode only                     | tests whether free positioning is enum, flag, or anchor mode | alignment/free-position candidate, anchor records                  |
 
 Capture precautions:
 
@@ -340,17 +340,17 @@ Preserve original Korean typography terms:
 - `밑줄`
 - `옵셋`
 
-| Fixture | Target Korean control | Target value | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- | --- |
-| `text_height_10mm.txt` | `높이` | `10 mm` | height only | identifies text-height field and scale | height candidate, bbox, outlines |
-| `text_height_30mm.txt` | `높이` | `30 mm` | height only | validates numeric field and proportional outline scaling | height candidate, bbox, outlines |
-| `text_width_50_percent.txt` | `폭` | `50%` | width scale only | identifies horizontal scale field | width-scale candidate, bbox, outlines |
-| `text_width_150_percent.txt` | `폭` | `150%` | width scale only | validates percent scaling and bbox relationship | width-scale candidate, bbox, outlines |
-| `text_spacing_80_percent.txt` | `간격` | `80%` | character spacing only | identifies tracking/character spacing field | spacing candidate, advances, bbox, outlines |
-| `text_spacing_150_percent.txt` | `간격` | `150%` | character spacing only | validates tracking direction and percent encoding | spacing candidate, advances, bbox, outlines |
-| `text_max_length_50mm.txt` | `최대 길이` | `50 mm` | max length only | tests forced fit/stretch behavior | max-length candidate, layout records, possibly width/spacing derived values |
-| `text_underline_on_default.txt` | `밑줄` | enabled with default underline value | underline only | separates underline flag/value from outline geometry | underline flag/value, added underline geometry or style records |
-| `text_offset_10_percent.txt` | `옵셋` | `10%` | offset only | identifies baseline-relative offset field | offset candidate, bbox/anchor/layout records |
+| Fixture                         | Target Korean control | Target value                         | Delta from baseline    | Expected reverse-engineering value                       | Likely changed regions                                                      |
+|---------------------------------|-----------------------|--------------------------------------|------------------------|----------------------------------------------------------|-----------------------------------------------------------------------------|
+| `text_height_10mm.txt`          | `높이`                  | `10 mm`                              | height only            | identifies text-height field and scale                   | height candidate, bbox, outlines                                            |
+| `text_height_30mm.txt`          | `높이`                  | `30 mm`                              | height only            | validates numeric field and proportional outline scaling | height candidate, bbox, outlines                                            |
+| `text_width_50_percent.txt`     | `폭`                   | `50%`                                | width scale only       | identifies horizontal scale field                        | width-scale candidate, bbox, outlines                                       |
+| `text_width_150_percent.txt`    | `폭`                   | `150%`                               | width scale only       | validates percent scaling and bbox relationship          | width-scale candidate, bbox, outlines                                       |
+| `text_spacing_80_percent.txt`   | `간격`                  | `80%`                                | character spacing only | identifies tracking/character spacing field              | spacing candidate, advances, bbox, outlines                                 |
+| `text_spacing_150_percent.txt`  | `간격`                  | `150%`                               | character spacing only | validates tracking direction and percent encoding        | spacing candidate, advances, bbox, outlines                                 |
+| `text_max_length_50mm.txt`      | `최대 길이`               | `50 mm`                              | max length only        | tests forced fit/stretch behavior                        | max-length candidate, layout records, possibly width/spacing derived values |
+| `text_underline_on_default.txt` | `밑줄`                  | enabled with default underline value | underline only         | separates underline flag/value from outline geometry     | underline flag/value, added underline geometry or style records             |
+| `text_offset_10_percent.txt`    | `옵셋`                  | `10%`                                | offset only            | identifies baseline-relative offset field                | offset candidate, bbox/anchor/layout records                                |
 
 Notes:
 
@@ -377,13 +377,13 @@ Preserve original Korean terms:
 - `비례`
 - `인쇄 비례`
 
-| Fixture | Target Korean control/value | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_baseline_above.txt` | `기본선 위` | baseline mode only | identifies baseline mode enum/flag | baseline flag, anchor/layout records, bbox |
-| `text_baseline_below.txt` | `기본선 아래` | baseline mode only | validates alternate baseline mode | baseline flag, anchor/layout records, bbox |
-| `text_spacing_fixed.txt` | `고정` | paragraph spacing mode only | identifies fixed spacing enum and mm value field | spacing mode enum, spacing value/unit, layout records |
-| `text_spacing_proportional.txt` | `비례` | paragraph spacing mode only | identifies proportional spacing enum and percent value field | spacing mode enum, spacing value/unit, layout records |
-| `text_spacing_print_proportional.txt` | `인쇄 비례` | paragraph spacing mode only | identifies print-proportional spacing enum and percent value field | spacing mode enum, spacing value/unit, layout records |
+| Fixture                               | Target Korean control/value | Delta from baseline         | Expected reverse-engineering value                                 | Likely changed regions                                |
+|---------------------------------------|-----------------------------|-----------------------------|--------------------------------------------------------------------|-------------------------------------------------------|
+| `text_baseline_above.txt`             | `기본선 위`                     | baseline mode only          | identifies baseline mode enum/flag                                 | baseline flag, anchor/layout records, bbox            |
+| `text_baseline_below.txt`             | `기본선 아래`                    | baseline mode only          | validates alternate baseline mode                                  | baseline flag, anchor/layout records, bbox            |
+| `text_spacing_fixed.txt`              | `고정`                        | paragraph spacing mode only | identifies fixed spacing enum and mm value field                   | spacing mode enum, spacing value/unit, layout records |
+| `text_spacing_proportional.txt`       | `비례`                        | paragraph spacing mode only | identifies proportional spacing enum and percent value field       | spacing mode enum, spacing value/unit, layout records |
+| `text_spacing_print_proportional.txt` | `인쇄 비례`                     | paragraph spacing mode only | identifies print-proportional spacing enum and percent value field | spacing mode enum, spacing value/unit, layout records |
 
 Recommended capture setup:
 
@@ -419,14 +419,14 @@ Preserve original Korean terms:
 - `윗 첨자`
 - `아래 첨자`
 
-| Fixture | Target Korean control | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_rtl_on.txt` | `오른쪽에서 왼쪽` enabled | directionality only | identifies RTL flag and visual ordering behavior | direction flag, layout records, possible outline order |
-| `text_uppercase_mode.txt` | `대문자` | case mode only | tests whether original or transformed text is stored | case-mode flag, character records if transformed, outlines |
-| `text_small_caps_mode.txt` | `작은 대문자` | case mode only | tests small-caps behavior and glyph substitution | case-mode flag, glyph/style records, outlines |
-| `text_lowercase_mode.txt` | `소문자` | case mode only | tests lowercase transformation storage | case-mode flag, character records if transformed, outlines |
-| `text_superscript.txt` | `윗 첨자` | script mode only | identifies superscript enum/flag and baseline shift | script-mode flag, scale/offset/layout records, bbox |
-| `text_subscript.txt` | `아래 첨자` | script mode only | identifies subscript enum/flag and baseline shift | script-mode flag, scale/offset/layout records, bbox |
+| Fixture                    | Target Korean control | Delta from baseline | Expected reverse-engineering value                   | Likely changed regions                                     |
+|----------------------------|-----------------------|---------------------|------------------------------------------------------|------------------------------------------------------------|
+| `text_rtl_on.txt`          | `오른쪽에서 왼쪽` enabled    | directionality only | identifies RTL flag and visual ordering behavior     | direction flag, layout records, possible outline order     |
+| `text_uppercase_mode.txt`  | `대문자`                 | case mode only      | tests whether original or transformed text is stored | case-mode flag, character records if transformed, outlines |
+| `text_small_caps_mode.txt` | `작은 대문자`              | case mode only      | tests small-caps behavior and glyph substitution     | case-mode flag, glyph/style records, outlines              |
+| `text_lowercase_mode.txt`  | `소문자`                 | case mode only      | tests lowercase transformation storage               | case-mode flag, character records if transformed, outlines |
+| `text_superscript.txt`     | `윗 첨자`                | script mode only    | identifies superscript enum/flag and baseline shift  | script-mode flag, scale/offset/layout records, bbox        |
+| `text_subscript.txt`       | `아래 첨자`               | script mode only    | identifies subscript enum/flag and baseline shift    | script-mode flag, scale/offset/layout records, bbox        |
 
 Capture notes:
 
@@ -451,19 +451,19 @@ Preserve original Korean terms:
 - `기울기`
 - `이탤릭`
 
-| Fixture | Target Korean control/value | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_rotation_30deg.txt` | `회전 = 30°` | rotation only | identifies rotation numeric field and geometry side effects | rotation candidate, bbox, transformed outlines |
-| `text_rotation_90deg.txt` | `회전 = 90°` | rotation only | validates angle encoding and axis behavior | rotation candidate, bbox, transformed outlines |
-| `text_mirror_on.txt` | `미러` enabled | mirror only | identifies mirror flag or transform matrix behavior | mirror flag/matrix, layout direction, bbox/outlines |
-| `text_slant_15deg.txt` | `기울기 = 15°`, `이탤릭` expected enabled | slant only | validates default italic-button slant angle | slant numeric candidate, italic state indicator, outlines |
-| `text_slant_custom_30deg.txt` | `기울기 = 30°` | slant only | proves slant is numeric rather than boolean-only | slant numeric candidate, outlines, bbox |
+| Fixture                       | Target Korean control/value         | Delta from baseline | Expected reverse-engineering value                          | Likely changed regions                                    |
+|-------------------------------|-------------------------------------|---------------------|-------------------------------------------------------------|-----------------------------------------------------------|
+| `text_rotation_30deg.txt`     | `회전 = 30°`                          | rotation only       | identifies rotation numeric field and geometry side effects | rotation candidate, bbox, transformed outlines            |
+| `text_rotation_90deg.txt`     | `회전 = 90°`                          | rotation only       | validates angle encoding and axis behavior                  | rotation candidate, bbox, transformed outlines            |
+| `text_mirror_on.txt`          | `미러` enabled                        | mirror only         | identifies mirror flag or transform matrix behavior         | mirror flag/matrix, layout direction, bbox/outlines       |
+| `text_slant_15deg.txt`        | `기울기 = 15°`, `이탤릭` expected enabled | slant only          | validates default italic-button slant angle                 | slant numeric candidate, italic state indicator, outlines |
+| `text_slant_custom_30deg.txt` | `기울기 = 30°`                         | slant only          | proves slant is numeric rather than boolean-only            | slant numeric candidate, outlines, bbox                   |
 
 Important:
 
 - `이탤릭` should not be modeled as only a boolean until `기울기` fixtures prove the relationship.
 - Rotation may change bbox even if text content and font are stable. Treat bbox changes as derived transform evidence.
-- Mirror may alter cursor direction or visual alignment; capture `X 위치` / `Y 위치` and alignment state after enabling it.
+- Mirror may alter a cursor direction or visual alignment; capture `X 위치` / `Y 위치` and alignment state after enabling it.
 
 ---
 
@@ -473,18 +473,18 @@ First-stage style coverage is intentionally narrow because text style may overla
 
 Required first-stage style fixture:
 
-| Fixture | Target Korean control/value | Delta from baseline | Expected reverse-engineering value | Likely changed regions |
-| --- | --- | --- | --- | --- |
-| `text_underline_on_default.txt` | `밑줄` enabled with default underline value | underline only | identifies text-specific underline flag/value and whether underline is generated geometry | underline flag/value, possible extra contour/line geometry, `CPropertyExtend` |
+| Fixture                         | Target Korean control/value               | Delta from baseline | Expected reverse-engineering value                                                        | Likely changed regions                                                        |
+|---------------------------------|-------------------------------------------|---------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `text_underline_on_default.txt` | `밑줄` enabled with default underline value | underline only      | identifies text-specific underline flag/value and whether underline is generated geometry | underline flag/value, possible extra contour/line geometry, `CPropertyExtend` |
 
 Future style fixture candidates:
 
-| Candidate | Reason |
-| --- | --- |
-| text color variants | compare text `CPropertyExtend` color offsets against rectangle color fixtures |
-| fill/outline style variants | determine whether text outlines share curve property storage |
-| line width variants | test whether generated text geometry has stroke-like properties |
-| layer/material/toolpath variants | defer until base text extraction is stable |
+| Candidate                        | Reason                                                                        |
+|----------------------------------|-------------------------------------------------------------------------------|
+| text color variants              | compare text `CPropertyExtend` color offsets against rectangle color fixtures |
+| fill/outline style variants      | determine whether text outlines share curve property storage                  |
+| line width variants              | test whether generated text geometry has stroke-like properties               |
+| layer/material/toolpath variants | defer until base text extraction is stable                                    |
 
 Conservative guidance:
 
@@ -498,16 +498,16 @@ Conservative guidance:
 
 These are not required for the first capture batch, but filename space should remain compatible.
 
-| Fixture candidate | Target Korean term/control | Reason to defer |
-| --- | --- | --- |
-| `text_auto_spacing_state_1.txt` through `text_auto_spacing_state_5.txt` | `자동간격` | cyclic states are not yet semantically understood |
-| `text_line_compression.txt` | `선 압축` | observed behavior unresolved |
-| `text_paragraph_compression.txt` | `단락 압축` | observed behavior unresolved |
-| `text_unicode_symbols.txt` | symbol content | wait until basic encoding fixtures are understood |
-| `text_long_ascii.txt` | long content | wait until short length fields are located |
-| `text_empty_or_single_char.txt` | empty/single-character edge cases | useful after object boundary parsing is stable |
-| `text_font_missing_fallback.txt` | missing font fallback | environment-dependent |
-| `text_vertical_or_curve_text.txt` | advanced text path modes, if present | likely changes too many variables |
+| Fixture candidate                                                       | Target Korean term/control           | Reason to defer                                   |
+|-------------------------------------------------------------------------|--------------------------------------|---------------------------------------------------|
+| `text_auto_spacing_state_1.txt` through `text_auto_spacing_state_5.txt` | `자동간격`                               | cyclic states are not yet semantically understood |
+| `text_line_compression.txt`                                             | `선 압축`                               | observed behavior unresolved                      |
+| `text_paragraph_compression.txt`                                        | `단락 압축`                              | observed behavior unresolved                      |
+| `text_unicode_symbols.txt`                                              | symbol content                       | wait until basic encoding fixtures are understood |
+| `text_long_ascii.txt`                                                   | long content                         | wait until short length fields are located        |
+| `text_empty_or_single_char.txt`                                         | empty/single-character edge cases    | useful after object boundary parsing is stable    |
+| `text_font_missing_fallback.txt`                                        | missing font fallback                | environment-dependent                             |
+| `text_vertical_or_curve_text.txt`                                       | advanced text path modes, if present | likely changes too many variables                 |
 
 Experimental fixture rule:
 
@@ -567,90 +567,90 @@ Parser implementation rules:
 
 ## 15. Fixture Generation Order
 
-Recommended order is designed to maximize diff value while minimizing ambiguous side effects.
+The recommended order is designed to maximize diff value while minimizing ambiguous side effects.
 
 1. Baseline repeatability
 
-| Order | Fixture |
-| ---: | --- |
-| 1 | `default_text.txt` |
-| 2 | `text_ascii_lowercase.txt` |
-| 3 | `text_font_arial.txt` |
-| 4 | `text_origin_0_0.txt` |
+    | Order | Fixture                    |
+    |------:|----------------------------|
+    |     1 | `default_text.txt`         |
+    |     2 | `text_ascii_lowercase.txt` |
+    |     3 | `text_font_arial.txt`      |
+    |     4 | `text_origin_0_0.txt`      |
 
 2. Encoding fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 5 | `text_ascii_uppercase.txt` |
-| 6 | `text_digits.txt` |
-| 7 | `text_alphanumeric.txt` |
-| 8 | `text_spaces.txt` |
-| 9 | `text_special_characters.txt` |
-| 10 | `text_korean_basic.txt` |
-| 11 | `text_korean_mixed.txt` |
-| 12 | `text_multiline_basic.txt` |
+    | Order | Fixture                       |
+    |------:|-------------------------------|
+    |     5 | `text_ascii_uppercase.txt`    |
+    |     6 | `text_digits.txt`             |
+    |     7 | `text_alphanumeric.txt`       |
+    |     8 | `text_spaces.txt`             |
+    |     9 | `text_special_characters.txt` |
+    |    10 | `text_korean_basic.txt`       |
+    |    11 | `text_korean_mixed.txt`       |
+    |    12 | `text_multiline_basic.txt`    |
 
 3. Font fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 13 | `text_font_arial_bold.txt` |
-| 14 | `text_font_hy_gyeongo_dik.txt` |
-| 15 | `text_font_hy_teuktae_gothic.txt` |
-| 16 | `text_font_hy_tae_gothic.txt` |
-| 17 | `text_font_hy_se_gothic.txt` |
+    | Order | Fixture                           |
+    |------:|-----------------------------------|
+    |    13 | `text_font_arial_bold.txt`        |
+    |    14 | `text_font_hy_gyeongo_dik.txt`    |
+    |    15 | `text_font_hy_teuktae_gothic.txt` |
+    |    16 | `text_font_hy_tae_gothic.txt`     |
+    |    17 | `text_font_hy_se_gothic.txt`      |
 
 4. Geometry/layout fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 18 | `text_origin_offset.txt` |
-| 19 | `text_align_left.txt` |
-| 20 | `text_align_center.txt` |
-| 21 | `text_align_right.txt` |
-| 22 | `text_align_justify.txt` |
-| 23 | `text_align_free_position.txt` |
+    | Order | Fixture                        |
+    |------:|--------------------------------|
+    |    18 | `text_origin_offset.txt`       |
+    |    19 | `text_align_left.txt`          |
+    |    20 | `text_align_center.txt`        |
+    |    21 | `text_align_right.txt`         |
+    |    22 | `text_align_justify.txt`       |
+    |    23 | `text_align_free_position.txt` |
 
 5. Typography fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 24 | `text_height_10mm.txt` |
-| 25 | `text_height_30mm.txt` |
-| 26 | `text_width_50_percent.txt` |
-| 27 | `text_width_150_percent.txt` |
-| 28 | `text_spacing_80_percent.txt` |
-| 29 | `text_spacing_150_percent.txt` |
-| 30 | `text_max_length_50mm.txt` |
-| 31 | `text_underline_on_default.txt` |
-| 32 | `text_offset_10_percent.txt` |
+    | Order | Fixture                         |
+    |------:|---------------------------------|
+    |    24 | `text_height_10mm.txt`          |
+    |    25 | `text_height_30mm.txt`          |
+    |    26 | `text_width_50_percent.txt`     |
+    |    27 | `text_width_150_percent.txt`    |
+    |    28 | `text_spacing_80_percent.txt`   |
+    |    29 | `text_spacing_150_percent.txt`  |
+    |    30 | `text_max_length_50mm.txt`      |
+    |    31 | `text_underline_on_default.txt` |
+    |    32 | `text_offset_10_percent.txt`    |
 
 6. Transform fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 33 | `text_rotation_30deg.txt` |
-| 34 | `text_rotation_90deg.txt` |
-| 35 | `text_mirror_on.txt` |
-| 36 | `text_slant_15deg.txt` |
-| 37 | `text_slant_custom_30deg.txt` |
+    | Order | Fixture                       |
+    |------:|-------------------------------|
+    |    33 | `text_rotation_30deg.txt`     |
+    |    34 | `text_rotation_90deg.txt`     |
+    |    35 | `text_mirror_on.txt`          |
+    |    36 | `text_slant_15deg.txt`        |
+    |    37 | `text_slant_custom_30deg.txt` |
 
 7. Paragraph/directionality fixtures
 
-| Order | Fixture |
-| ---: | --- |
-| 38 | `text_baseline_above.txt` |
-| 39 | `text_baseline_below.txt` |
-| 40 | `text_spacing_fixed.txt` |
-| 41 | `text_spacing_proportional.txt` |
-| 42 | `text_spacing_print_proportional.txt` |
-| 43 | `text_rtl_on.txt` |
-| 44 | `text_uppercase_mode.txt` |
-| 45 | `text_small_caps_mode.txt` |
-| 46 | `text_lowercase_mode.txt` |
-| 47 | `text_superscript.txt` |
-| 48 | `text_subscript.txt` |
+    | Order | Fixture                               |
+    |------:|---------------------------------------|
+    |    38 | `text_baseline_above.txt`             |
+    |    39 | `text_baseline_below.txt`             |
+    |    40 | `text_spacing_fixed.txt`              |
+    |    41 | `text_spacing_proportional.txt`       |
+    |    42 | `text_spacing_print_proportional.txt` |
+    |    43 | `text_rtl_on.txt`                     |
+    |    44 | `text_uppercase_mode.txt`             |
+    |    45 | `text_small_caps_mode.txt`            |
+    |    46 | `text_lowercase_mode.txt`             |
+    |    47 | `text_superscript.txt`                |
+    |    48 | `text_subscript.txt`                  |
 
 Generation-order rationale:
 
@@ -680,7 +680,7 @@ Do not lose Korean terminology:
 
 Do not damage diff quality:
 
-- do not change font while testing text content
+- do not change the font while testing text content
 - do not move the object while testing typography
 - do not manually resize text while testing font
 - do not mix multiline, paragraph spacing, and alignment unless Type3 requires it
@@ -704,5 +704,5 @@ Do not implement parser contracts too early:
 
 - expose raw/candidate fields before stable semantic names
 - prefer `unknown_*`, `reserved_*`, or `candidate_*` names for weak evidence
-- require multiple fixture categories before promoting a candidate to confirmed
+- require multiple fixture categories before promoting a candidate to confirm
 - keep binary preservation and evidence traceability ahead of convenience APIs
