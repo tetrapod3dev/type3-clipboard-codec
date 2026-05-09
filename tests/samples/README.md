@@ -152,6 +152,124 @@ It should be treated as:
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
+## File: `two_rectangle.txt`
+
+This file contains the hex dump of two independent rectangle-like objects copied together from Type3.
+
+### Known source geometry
+
+The sample contains two rectangles.
+
+The first rectangle is the same geometry as `default_rectangle.txt`:
+
+- lower-left corner: `(11.111, 22.222, 0)` mm
+- width: `33.333` mm
+- height: `44.444` mm
+
+The second rectangle was created by copying the first rectangle and moving the copy `100.000 mm` to the right:
+
+- lower-left corner: `(111.111, 22.222, 0)` mm
+- width: `33.333` mm
+- height: `44.444` mm
+
+The two independent rectangles were selected at the same time and then copied to the clipboard.
+
+### Expected combined bounding box
+
+If Type3 stores or reports a combined selection/object bbox for this payload, the expected combined extents are:
+
+- lower-left: `(11.111, 22.222, 0)` mm
+- upper-right: `(144.444, 66.666, 0)` mm
+
+In meters:
+
+- `xmin = 0.011111`
+- `ymin = 0.022222`
+- `zmin = 0.0`
+- `xmax = 0.144444`
+- `ymax = 0.066666`
+- `zmax = 0.0`
+
+### Fixture usage guidance
+
+Use `two_rectangle.txt` to investigate how Type3 represents multiple selected independent objects in a single clipboard payload.
+
+Tests based on this file should eventually verify at least:
+
+- detection of two rectangle-like objects
+- preservation of each object's independent geometry
+- recognition that the second rectangle is translated by `100.000 mm` in X from the first rectangle
+- distinction between multi-object clipboard payloads and grouped/combined payloads
+- preservation of raw object ordering as stored in the clipboard payload
+
+### Reverse-engineering status
+
+This fixture should be treated as:
+
+- a confirmed source setup for two simultaneously copied independent rectangles
+- a provisional reference for multi-object payload boundaries and ordering
+- a provisional reference for any selection-level or aggregate bbox data
+
+Do not assume yet that the two objects are stored as a simple concatenation of two `default_rectangle.txt`-like payloads.
+Prefer conservative parsing and preserve unknown/raw bytes where possible.
+
+## File: `two_rectangle_group.txt`
+
+This file contains the hex dump of the same two rectangles from `two_rectangle.txt` after applying Type3's `결합` function and copying the result.
+
+The Type3 Korean UI term `결합` must be preserved exactly. In other graphics programs such as Illustrator or PowerPoint, the closest common English concept is often "group", but that translation is provisional for this project.
+
+### Known source geometry
+
+The grouped/combined sample starts from the same two rectangles:
+
+- rectangle 1 lower-left corner: `(11.111, 22.222, 0)` mm
+- rectangle 2 lower-left corner: `(111.111, 22.222, 0)` mm
+- each rectangle width: `33.333` mm
+- each rectangle height: `44.444` mm
+- rectangle 2 is translated `100.000 mm` to the right from rectangle 1
+
+After creating these two rectangles, both were combined using Type3's `결합` function and then copied to the clipboard.
+
+### Expected combined bounding box
+
+The expected overall geometric extents are the same as `two_rectangle.txt`:
+
+- lower-left: `(11.111, 22.222, 0)` mm
+- upper-right: `(144.444, 66.666, 0)` mm
+
+In meters:
+
+- `xmin = 0.011111`
+- `ymin = 0.022222`
+- `zmin = 0.0`
+- `xmax = 0.144444`
+- `ymax = 0.066666`
+- `zmax = 0.0`
+
+### Fixture usage guidance
+
+Use `two_rectangle_group.txt` to investigate how Type3's `결합` feature changes clipboard structure relative to two independent selected rectangles.
+
+Tests based on this file should eventually verify at least:
+
+- recognition of the same two rectangle geometries
+- detection of any additional container/group/combined-object structure introduced by `결합`
+- distinction between independent multi-object selection and `결합` output
+- preservation of nested object or contour ordering if the grouped payload introduces hierarchy
+- preservation of unknown group-related bytes until the `결합` structure is understood
+
+### Reverse-engineering status
+
+This fixture should be treated as:
+
+- a confirmed source setup for two rectangles combined with Type3 `결합`
+- a provisional reference for group-like or combined-object clipboard structure
+- a provisional comparison pair with `two_rectangle.txt`
+
+Do not collapse `결합` into an English-only "group" concept in parser or documentation names without keeping the Korean original term.
+Prefer conservative parsing and preserve unknown/raw bytes where possible.
+
 ## Files: `color_*_rectangle.txt`
 
 These files contain independent rectangle color fixtures. They intentionally use matching names so color tests do not need to infer or remember the color of `default_rectangle.txt`.
