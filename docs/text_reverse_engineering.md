@@ -367,6 +367,201 @@ Next confirmation criteria:
 2. single-option-change fixtures modify only the corresponding candidate field.
 3. record-relative position remains stable even when text length/font/line count/object count changes.
 
+## CParagraphe 204-byte record candidate
+
+Observed:
+
+- in many single-line fixtures, a repeated candidate appears as:
+  - `candidate_start_offset=47`
+  - `candidate_stride=204`
+  - `candidate_record_count=10`
+- in multiline fixture (`text_multiline_basic.txt`), alternate start candidates appear and require additional validation.
+
+Current objective:
+
+- build a provisional record-relative field map from `record_index` + `record_relative_offset`.
+- this phase is not final semantic decoding.
+
+Policy:
+
+- absolute offset is diagnostic only.
+- parser keeps text style/color/font as candidate-level evidence, not confirmed fields.
+
+Provisional verification criteria for future promotion:
+
+1. same option-change fixtures repeatedly change the same `record_relative_offset`.
+2. the same record-relative candidates remain stable when bbox/payload length/text length changes.
+3. multi-object and multiline cases are explainable with the same model.
+4. parser regression tests keep existing geometry/text extraction stable.
+
+## CParagraphe record-relative field candidate map
+
+Record model status:
+
+- baseline candidate remains `start_offset=47`, `stride=204`.
+- this is still an observed/provisional model, not confirmed decoding.
+
+Paired comparison strategy (summary-first analyzer output):
+
+- analyzer compares option pairs first, then ranks `record_relative_offset` candidates.
+- primary pair sets:
+  - height: `text_height_10mm` vs `text_height_30mm`
+  - width: `text_width_50_percent` vs `text_width_150_percent`
+  - slant: `text_slant_15deg` vs `text_slant_custom_30deg` + baseline comparisons
+  - spacing: `text_spacing_80_percent` vs `text_spacing_150_percent` + baseline comparisons
+  - rotation: `text_rotation_30deg` vs `text_rotation_90deg` + baseline comparisons
+  - color: `text_color_army_green` vs `text_color_navy_blue` + baseline comparisons
+  - font: Arial/HY comparison pairs
+  - text value: lowercase/uppercase/digits/alphanumeric pairs
+  - multiline: `default_text` vs `text_multiline_basic`
+
+Evidence labels:
+
+- `strong_candidate`: high signal in target tag with good stability in unrelated tags
+- `cross_fixture_candidate`: repeated but weaker or mixed signal
+- `weak_candidate`: observed but low confidence
+- `provisional`: early signal only, not ready for interpretation
+
+Strong-candidate policy:
+
+- repeated change in the same `record_relative_offset` for the same option tag
+- repeated across multiple records when applicable
+- stable in unrelated option tags
+- numeric/value pattern matches expected fixture direction
+
+Low-signal filter policy:
+
+- all-zero blocks
+- `0.0` / `1.0` doubles
+- repeated padding-like bytes
+- volatile identifier-like regions
+- metadata marker strings (`OBJETINFOS_CLASSNAME`, `CObDao`, class labels)
+
+Current candidate status:
+
+- strong/cross-fixture/provisional candidates are reported from analyzer output only.
+- parser fields are intentionally not promoted yet.
+
+Top-ranked offsets from the current analyzer run:
+
+| candidate_name | top record_relative_offset | evidence | notes |
+|---|---:|---|---|
+| candidate_text_height | `0x47` (71) | strong_candidate | numeric match `0.01` ↔ `0.03` observed in height pair |
+| candidate_width_percent | `0x55` (85) | cross_fixture_candidate | width-only pair sensitivity observed, stability still moderate |
+| candidate_slant_angle | `0x57` (87) | strong_candidate | numeric match `0.261799` / `0.523599` seen in slant comparisons |
+| candidate_spacing_percent | `0x7B` (123) | strong_candidate | numeric match `0.8` observed in spacing comparisons |
+| candidate_rotation_angle | `0x83` (131) | strong_candidate | numeric match `0.523599` / `1.570796` seen in rotation comparisons |
+| candidate_text_color | `0x8D` (141) | strong_candidate (analyzer-only) | palette-like behavior observed, parser mapping still provisional |
+| candidate_font_or_style_flag | `0x69` (105) | strong_candidate (analyzer-only) | font pairs show repeated changes, semantic meaning unresolved |
+| candidate_visible_character_or_run_code | `0x3F` (63) | strong_candidate | text-value pair sensitivity high |
+| candidate_linebreak_or_multiline_marker | `0x87` (135) | strong_candidate | multiline pair shows strong separation from single-line baseline |
+
+Multiline pre-record window (47~187):
+
+- observed as a provisional header-like window candidate in multiline fixture.
+- CR/LF and selector-like evidence are inspected, but no confirmed mapping yet.
+
+Parser non-application reason:
+
+- record-relative stability is not fully proven across multiline/object-count/font-length variability.
+- additional cross-fixture validation is required before safe parser promotion.
+
+## CParagraphe field offset validation
+
+Why ranked offset alone is insufficient:
+
+- ranked `record_relative_offset` can point inside a field payload, not guaranteed field start.
+- dynamic text payload layout (text/font/line/object changes) can shift local byte neighborhoods.
+- parser rules require repeatable field-start evidence, not only one ranked byte.
+
+Sliding-window validation strategy:
+
+- for each ranked candidate, scan `offset-16 .. offset+16`.
+- decode each offset as `u8/i8/u16/i16/u32/i32/float32/double64/ascii/utf16`.
+- for color candidates, also test palette candidates (`TYPE3_COLORS_BY_RAW`, `TYPE3_COLORS_BY_RGB0_RAW`).
+- score offsets by expected pair matches (height/width/slant/spacing/rotation/color/font).
+- keep all outputs as analyzer evidence (`strong_candidate`, `cross_fixture_candidate`, `weak_candidate`, `provisional`).
+
+Current best field-start candidates (analyzer evidence only):
+
+| candidate_name | ranked offset | best field-start candidate | status |
+|---|---:|---:|---|
+| candidate_text_height | `0x47` | analyzer-derived (window score max) | provisional/strong depending on pair score |
+| candidate_width_percent | `0x55` | analyzer-derived (window score max) | provisional/cross |
+| candidate_slant_angle | `0x57` | analyzer-derived (window score max) | provisional/strong |
+| candidate_spacing_percent | `0x7B` | analyzer-derived (window score max) | provisional/strong |
+| candidate_rotation_angle | `0x83` | analyzer-derived (window score max) | provisional/strong |
+| candidate_text_color | `0x8D` (`0x8B`,`0x8C` aux) | analyzer-derived (window score max) | provisional (ownership unresolved) |
+| candidate_font_or_style_flag | `0x69` (`0x23`,`0xA7` aux) | analyzer-derived (window score max) | provisional (Korean font decode unresolved) |
+
+Cross-record consistency observations:
+
+- candidate offset is applied across full 204-byte record arrays per pair.
+- analyzer reports changed/stable record counts per candidate.
+- this helps separate run-level repeated fields from header/selective fields.
+
+Parser non-application reason:
+
+- best-start candidates are still evidence-level; record semantics not confirmed.
+- mixed constraints (font/HY/multiline/color ownership) still unresolved.
+- parser promotion remains blocked until cross-fixture repeatability is stronger.
+
+Next confirmation conditions:
+
+1. same field-start candidate remains stable across independent fixture families.
+2. decoded type/value pattern stays consistent under payload-length/line-count changes.
+3. multiline pre-record window behavior is explained without contradictory offsets.
+
+Expected-value scoring update:
+
+- changed-only scoring is insufficient because many offsets change together in dynamic payloads.
+- validation now prioritizes expected-value match levels:
+  - `exact` (`<=1e-9`)
+  - `near` (`<=1e-6`)
+  - `loose` (`<=1e-3`)
+  - `changed_only`
+- best field-start selection priority: `exact > near > loose > changed_only`.
+
+Re-evaluated best field-start candidates (current analyzer evidence):
+
+| candidate | ranked offset | re-evaluated best offset | status |
+|---|---:|---:|---|
+| candidate_text_height | `0x47` | `0x47` | weak/cross evidence |
+| candidate_width_percent | `0x55` | `0x4F` | weak evidence |
+| candidate_slant_angle | `0x57` | `0x57` | weak/cross evidence |
+| candidate_spacing_percent | `0x7B` | `0x7B` | weak/cross evidence |
+| candidate_rotation_angle | `0x83` | `0x83` | weak/cross evidence |
+| candidate_text_color | `0x8D` | `0x8B` | cross/provisional evidence |
+| candidate_font_or_style_flag | `0x69` | `0x5E` | provisional/cross evidence |
+
+Dominant decode types (provisional):
+
+- geometry-like numeric candidates: `double64le` / `float32le` / `u32le`
+- color candidates: `u32le` + palette mapping variants (`00BBGGRR`, `00RRGGBB` family checks)
+- font/style candidates: mixed numeric flag-like values with partial ASCII/UTF-16 fragments
+
+Text color byte-order validation (single-object fixtures):
+
+- checked candidate offsets `0x8B`, `0x8C`, `0x8D` and nearby `±8`.
+- compared `text_color_army_green` vs `text_color_navy_blue`.
+- current best offset candidate is observed via exact palette-name separation at record-relative level.
+- mixed multi-object ownership is still unresolved and intentionally not promoted.
+
+Parser promotion remains blocked:
+
+- expected-value matches are still not uniformly strong across all records/fixture families.
+- font/HY decoding and multiline interactions remain unresolved.
+- parser update status remains `not_applied`.
+
+Final validation report layer:
+
+- a dedicated report step now validates field starts with:
+  - raw decode tables at selected best offsets
+  - neighbor offset competition tables (`best ±4`)
+  - field confidence (`high_candidate` / `medium_candidate` / `weak_candidate` / `unresolved`)
+  - parser candidate readiness (`ready_for_candidate_model` / `needs_more_validation` / `unresolved`)
+- this layer is still analyzer evidence and does not modify parser decode behavior.
+
 ---
 
 ## Fixture Issues (Current)
