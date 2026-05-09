@@ -270,6 +270,33 @@ This fixture should be treated as:
 Do not collapse `결합` into an English-only "group" concept in parser or documentation names without keeping the Korean original term.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
+## Comparison: `two_rectangle.txt` vs `two_rectangle_group.txt` (`결합`)
+
+Current reverse-engineering observations for this fixture pair:
+
+- Both payloads contain the same visible class marker chain:
+  - `CZone -> CCourbe -> CContour -> CPropertyExtend`
+- `two_rectangle.txt` declares object count `2`.
+- `two_rectangle_group.txt` declares object count `1`.
+- Both payloads still expose two rectangle-like contour candidates.
+- Contour ownership/bbox hierarchy differs between the two payloads:
+  - independent multi-object selection and `결합` do not look identical at the byte-structure level.
+
+Conservative interpretation status:
+
+- `two_rectangle.txt` should currently be interpreted as independent multi-object selection.
+- `two_rectangle_group.txt` should currently be interpreted as a provisional Type3 `결합` container/group/combined object candidate.
+- Treat "group" / "combined object" as provisional English helper terms only; keep `결합` explicitly in docs, parser notes, and tests.
+- Keep unknown group-related ranges as raw bytes until validated with additional fixtures.
+
+Fixture usage guidance for tests/tools:
+
+- Use geometry assertions (bbox, contour count, translation) for both files.
+- Also assert structural differences (declared count, hierarchy hints, or parser notes).
+- Do not flatten `결합` into a single contour-only object too early.
+- Do not assume every multi-object payload is `결합`, and do not assume every `결합` payload is flat multi-selection.
+- Use `tools/compare_group_samples.py` to print marker offsets, payload ranges, contour header candidates, and byte-difference ranges for this pair.
+
 ## Files: `color_*_rectangle.txt`
 
 These files contain independent rectangle color fixtures. They intentionally use matching names so color tests do not need to infer or remember the color of `default_rectangle.txt`.

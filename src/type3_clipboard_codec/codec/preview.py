@@ -19,9 +19,33 @@ class PreviewRenderer:
         
         if isinstance(obj, GeometryObject) and obj.declared_object_count is not None:
              lines.append(f"- 선언된 객체 수: {obj.declared_object_count}")
+        if isinstance(obj, GeometryObject):
+            lines.append(f"- 파싱된 child 객체 수: {len(obj.object_chains)}")
 
         if obj.markers:
             lines.append(f"- 발견된 마커: {', '.join(obj.markers)}")
+        if isinstance(obj, GeometryObject):
+            marker_chain = obj.candidate_fields.get("nodes") if obj.candidate_fields else None
+            if marker_chain:
+                lines.append(f"- Class marker chain: {' -> '.join(marker_chain)}")
+            if obj.aggregate_bbox:
+                ab = obj.aggregate_bbox
+                lines.append(
+                    f"- Aggregate BBox (mm): x({ab.xmin_mm:.3f} ~ {ab.xmax_mm:.3f}), y({ab.ymin_mm:.3f} ~ {ab.ymax_mm:.3f}), z({ab.zmin_mm:.3f} ~ {ab.zmax_mm:.3f})"
+                )
+            if obj.is_grouped:
+                lines.append("- 객체 구조: group / combined object (Type3 결합)")
+                if obj.group_term_ko:
+                    lines.append(f"- group_term_ko: {obj.group_term_ko}")
+                if obj.group_bbox:
+                    gb = obj.group_bbox
+                    lines.append(
+                        f"- Group BBox (mm): x({gb.xmin_mm:.3f} ~ {gb.xmax_mm:.3f}), y({gb.ymin_mm:.3f} ~ {gb.ymax_mm:.3f}), z({gb.zmin_mm:.3f} ~ {gb.zmax_mm:.3f})"
+                    )
+                lines.append(f"- Group child count: {len(obj.group_children)}")
+                lines.append(f"- Unknown group metadata bytes: {len(obj.raw_group_bytes)}")
+            elif len(obj.object_chains) > 1:
+                lines.append("- 객체 구조: independent multi-object selection")
             
         if isinstance(obj, TextObject):
             lines.append(f"- 텍스트 내용: {obj.text_content}")
@@ -84,6 +108,11 @@ class PreviewRenderer:
 
         lines.append(f"  - 객체 유형: {display_type}")
         lines.append(f"  - 마커: {', '.join(chain.markers)}")
+        if chain.source_node_class is not None:
+            lines.append(
+                f"  - Source: {chain.source_node_class} payload_offset={chain.source_payload_offset} stream_offset={chain.source_stream_offset}"
+            )
+            lines.append(f"  - Raw contour bytes: {len(chain.raw_contour_bytes)}")
 
         if chain.bbox:
             bbox = chain.bbox

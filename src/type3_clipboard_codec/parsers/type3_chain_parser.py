@@ -95,6 +95,21 @@ class Type3ChainParser(BaseParser):
                 "Text object parsing is provisional; unknown CParagraphe bytes are preserved in raw_data and node payloads."
             )
 
+        aggregate_bbox = self._aggregate_bbox_from_chains(final_chains)
+        if len(final_chains) > 1 and aggregate_bbox is not None and not is_text_object:
+            main_bbox = aggregate_bbox
+        is_group_candidate = (
+            not is_text_object
+            and declared_count == 1
+            and len(final_chains) > 1
+        )
+
+        raw_group_bytes = b""
+        if is_group_candidate:
+            raw_group_bytes = b"".join(
+                node.payload for node in all_nodes if node.header.class_name == "CPropertyExtend"
+            )
+
         result = GeometryObject(
             object_type="text" if is_text_object else "geometry",
             raw_size=len(full_data),
@@ -105,13 +120,36 @@ class Type3ChainParser(BaseParser):
             bbox=main_bbox,
             object_chains=final_chains,
             declared_object_count=declared_count,
+            aggregate_bbox=aggregate_bbox,
             is_text_object=is_text_object,
             text_content=text_content,
             font_name=font_name,
             raw_text_records=raw_text_records,
             text_notes=text_notes,
+            is_grouped=is_group_candidate,
+            group_term_ko="결합" if is_group_candidate else None,
+            group_children=list(final_chains) if is_group_candidate else [],
+            group_bbox=aggregate_bbox if is_group_candidate else None,
+            raw_group_bytes=raw_group_bytes,
+            group_notes=(
+                [
+                    "Type3 결합(group/combined object) candidate detected from declared_count=1 with multiple child contours.",
+                    "Unknown group-related bytes are preserved in raw_group_bytes until semantics are validated.",
+                ]
+                if is_group_candidate
+                else []
+            ),
             candidate_fields={
                 "nodes": [node.header.class_name for node in all_nodes],
+                "node_markers_with_offsets": [
+                    {
+                        "class_name": node.header.class_name,
+                        "start_offset": node.start_offset,
+                        "payload_offset": node.payload_offset,
+                        "end_offset": node.end_offset,
+                    }
+                    for node in all_nodes
+                ],
                 "style": [
                     {
                         "line_color_primary": chain.style.line_color_primary,
@@ -131,6 +169,11 @@ class Type3ChainParser(BaseParser):
                 if font_name is not None
                 else None,
                 "text_record_count": len(raw_text_records),
+                "structure_kind": (
+                    "group_candidate_결합"
+                    if is_group_candidate
+                    else ("independent_multi" if len(final_chains) > 1 else "single")
+                ),
             },
             notes=[
                 f"Type3ChainParser: Extracted {len(final_chains)} object chains.",
@@ -142,6 +185,10 @@ class Type3ChainParser(BaseParser):
         
         if len(final_chains) > 1:
             result.notes.append("Multiple objects detected. Use object_chains for details.")
+
+        if is_group_candidate:
+            result.object_type = "group"
+            result.notes.extend(result.group_notes)
 
         if result.is_text_object:
             result.notes.extend(result.text_notes)
@@ -379,6 +426,12 @@ class Type3ChainParser(BaseParser):
                     self._assign_semantic_roles(records)
                     current_work_chain.contour_records = records
                     current_work_chain.points = [Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in records]
+                    current_work_chain.source_node_class = node.header.class_name
+                    current_work_chain.source_payload_offset = offset
+                    current_work_chain.source_stream_offset = node.payload_offset + offset
+                    current_work_chain.raw_contour_bytes = node.payload[
+                        offset : offset + (count * self.DEFAULT_CONTOUR_RECORD_STRIDE)
+                    ]
         
         if not processed_chains:
             processed_chains.append(chain)
@@ -421,6 +474,12 @@ class Type3ChainParser(BaseParser):
                     points=[Point(x=p.x_mm, y=p.y_mm, z=p.z_mm) for p in records],
                     bbox=self._bbox_from_contour_records(records),
                     style=template_chain.style,
+                    source_node_class=node.header.class_name,
+                    source_payload_offset=offset,
+                    source_stream_offset=node.payload_offset + offset,
+                    raw_contour_bytes=node.payload[
+                        offset : offset + (count * self.DEFAULT_CONTOUR_RECORD_STRIDE)
+                    ],
                 )
             )
 
@@ -501,7 +560,7 @@ class Type3ChainParser(BaseParser):
                     continue
 
                 node_reader = BytesReader(data[idx:])
-                node = self._parse_single_node(node_reader, data[idx:])
+                node = self._parse_single_node(node_reader, data[idx:], node_start_offset=idx)
                 nodes.append(node)
 
                 # Move idx to the end of this node's header + bbox + payload
@@ -513,7 +572,12 @@ class Type3ChainParser(BaseParser):
 
         return nodes
 
-    def _parse_single_node(self, reader: BytesReader, node_data: bytes) -> Type3Node:
+    def _parse_single_node(
+        self,
+        reader: BytesReader,
+        node_data: bytes,
+        node_start_offset: int = 0,
+    ) -> Type3Node:
         """
         Parses one class node and cuts its payload at the next plausible Type3 class header.
         """
@@ -534,7 +598,30 @@ class Type3ChainParser(BaseParser):
         else:
             payload = remaining_data
 
-        return Type3Node(header=header, bbox=bbox, payload=payload)
+        payload_start = current_pos
+        payload_end = current_pos + len(payload)
+        return Type3Node(
+            header=header,
+            bbox=bbox,
+            payload=payload,
+            start_offset=node_start_offset,
+            payload_offset=node_start_offset + payload_start,
+            end_offset=node_start_offset + payload_end,
+        )
+
+    def _aggregate_bbox_from_chains(self, chains: List[Type3ObjectChain]) -> Optional[BBox3D]:
+        bboxes = [chain.bbox for chain in chains if chain.bbox is not None]
+        if not bboxes:
+            return None
+
+        return BBox3D(
+            xmin_m=min(b.xmin_m for b in bboxes),
+            ymin_m=min(b.ymin_m for b in bboxes),
+            zmin_m=min(b.zmin_m for b in bboxes),
+            xmax_m=max(b.xmax_m for b in bboxes),
+            ymax_m=max(b.ymax_m for b in bboxes),
+            zmax_m=max(b.zmax_m for b in bboxes),
+        )
 
     def _find_next_class_header_offset(self, data: bytes) -> int:
         """

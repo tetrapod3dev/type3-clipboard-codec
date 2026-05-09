@@ -142,6 +142,9 @@ class Type3Node:
     bbox: Optional[BBox3D] = None
     payload: bytes = b""
     children: List["Type3Node"] = field(default_factory=list)
+    start_offset: int = 0
+    payload_offset: int = 0
+    end_offset: int = 0
 
 
 @dataclass
@@ -186,6 +189,10 @@ class Type3ObjectChain:
     markers: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
     style: StyleProperties = field(default_factory=StyleProperties)
+    source_node_class: Optional[str] = None
+    source_payload_offset: Optional[int] = None
+    source_stream_offset: Optional[int] = None
+    raw_contour_bytes: bytes = b""
 
 
 @dataclass
@@ -201,11 +208,18 @@ class GeometryObject(ParsedObject):
     
     object_chains: List[Type3ObjectChain] = field(default_factory=list) # 멀티 객체 정보
     declared_object_count: Optional[int] = None      # 헤더에서 선언된 객체 수
+    aggregate_bbox: Optional[BBox3D] = None          # child bbox를 합친 전체 bbox
     is_text_object: bool = False                     # CParagraphe 등으로 판별한 텍스트 객체 여부
     text_content: Optional[str] = None               # 추정된 텍스트 내용
     font_name: Optional[str] = None                  # 추정된 글꼴 이름
     raw_text_records: List[bytes] = field(default_factory=list) # 보수적으로 잘라낸 원시 텍스트 레코드 후보
     text_notes: List[str] = field(default_factory=list)         # 텍스트 역공학 메모
+    is_grouped: bool = False                         # Type3 결합(group/combined object) 후보 여부
+    group_term_ko: Optional[str] = None              # Type3 Korean UI term, expected "결합"
+    group_children: List[Type3ObjectChain] = field(default_factory=list)
+    group_bbox: Optional[BBox3D] = None
+    raw_group_bytes: bytes = b""
+    group_notes: List[str] = field(default_factory=list)
 
     @property
     def anchor_records(self) -> List[ContourPoint]:
