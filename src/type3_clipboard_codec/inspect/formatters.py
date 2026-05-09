@@ -135,8 +135,9 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int, is_text_object: bool = F
                 if chain.text_anchor is not None
                 else None
             ),
-            "anchor_source": chain.text_anchor_source,
-            "anchor_confidence": chain.text_anchor_confidence,
+            "anchor_expected_source": chain.text_anchor_expected_source,
+            "anchor_parse_method": chain.text_anchor_parse_method or chain.text_anchor_source,
+            "anchor_parse_confidence": chain.text_anchor_parse_confidence or chain.text_anchor_confidence,
             "notes": list(chain.text_notes),
         },
         "unknown_sections": [
@@ -376,10 +377,19 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
                     "  Text anchor (UI X/Y/Z): "
                     f"X={anchor.get('x_mm'):.3f} mm, Y={anchor.get('y_mm'):.3f} mm, Z={anchor.get('z_mm'):.3f} mm"
                 )
-            if text_info.get("anchor_source"):
-                lines.append(f"  Anchor parse method: {text_info.get('anchor_source')}")
-            if text_info.get("anchor_confidence"):
-                lines.append(f"  Anchor confidence: {text_info.get('anchor_confidence')}")
+            if text_info.get("anchor_expected_source"):
+                lines.append(f"  Anchor expected source: {text_info.get('anchor_expected_source')}")
+            if text_info.get("anchor_parse_method"):
+                lines.append(f"  Anchor parse method: {text_info.get('anchor_parse_method')}")
+            if text_info.get("anchor_parse_confidence"):
+                lines.append(f"  Anchor parse confidence: {text_info.get('anchor_parse_confidence')}")
+            if (
+                text_info.get("anchor_expected_source") == "confirmed_from_fixture_setup"
+                and text_info.get("anchor_parse_confidence") != "direct_confirmed"
+            ):
+                lines.append(
+                    "  Note: UI anchor value is confirmed by fixture setup, but direct binary offset is not confirmed yet."
+                )
             text_notes = text_info.get("notes") or []
             if text_notes:
                 lines.append("  Text notes:")

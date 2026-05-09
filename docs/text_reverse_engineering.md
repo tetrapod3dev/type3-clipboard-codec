@@ -65,6 +65,12 @@ Current parser status:
 - anchor values are currently recovered via structural method (`baseline_midpoint`) in many fixtures.
 - this method is not the same claim as direct binary anchor-field decoding.
 
+Anchor metadata layering (for parser/model/inspector):
+
+- expected/source layer: `text_anchor_expected_source` (example: `confirmed_from_fixture_setup`)
+- parser-method layer: `text_anchor_parse_method` (examples: `baseline_midpoint`, `bbox_center_fallback`, `direct_field_candidate`, `unknown`)
+- parser-confidence layer: `text_anchor_parse_confidence` (examples: `provisional`, `candidate`, `fallback`, `direct_confirmed`)
+
 ---
 
 ## Newly Confirmed Multiline Behavior

@@ -733,6 +733,12 @@ Provisional:
 - exact binary offsets for anchor fields
 - parser method used to recover anchor from payload (`direct_field` vs structural recovery)
 
+Inspector/model layering for anchor fields:
+
+- `text_anchor_expected_source`: fixture-ground-truth source (example: `confirmed_from_fixture_setup`)
+- `text_anchor_parse_method`: parser path (example: `baseline_midpoint`, `bbox_center_fallback`)
+- `text_anchor_parse_confidence`: parser confidence for that method (example: `provisional`, `fallback`)
+
 ### Known source text
 
 The copied object corresponds to a text object with the following source content:

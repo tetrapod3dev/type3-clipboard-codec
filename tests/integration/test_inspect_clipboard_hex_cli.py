@@ -58,7 +58,8 @@ def test_cli_file_mode_default_text_reports_text_info():
     assert "Type: text" in result.stdout
     assert "Text anchor (UI X/Y/Z):" in result.stdout
     assert "Anchor parse method:" in result.stdout
-    assert "Anchor confidence:" in result.stdout
+    assert "Anchor expected source:" in result.stdout
+    assert "Anchor parse confidence:" in result.stdout
 
 
 def test_cli_json_mode_emits_valid_json():

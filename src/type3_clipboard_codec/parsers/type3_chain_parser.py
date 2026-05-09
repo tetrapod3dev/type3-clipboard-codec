@@ -464,16 +464,22 @@ class Type3ChainParser(BaseParser):
                     y=(min(ys) + max(ys)) / 2.0,
                     z=(min(zs) + max(zs)) / 2.0,
                 )
-                chain.text_anchor_source = "baseline_midpoint"
-                chain.text_anchor_confidence = "confirmed_from_fixture_setup"
+                chain.text_anchor_expected_source = "confirmed_from_fixture_setup"
+                chain.text_anchor_parse_method = "baseline_midpoint"
+                chain.text_anchor_parse_confidence = "provisional"
+                chain.text_anchor_source = chain.text_anchor_parse_method
+                chain.text_anchor_confidence = chain.text_anchor_parse_confidence
                 chain.text_notes.append(
-                    "Anchor value is a real Type3 UI field (X 위치/Y 위치/Z 위치); current binary mapping method is baseline-midpoint recovery (provisional)."
+                    "UI anchor value is confirmed by fixture setup, but direct binary offset is not confirmed yet."
                 )
             elif chain.bbox is not None:
                 c = chain.bbox.center_mm
                 chain.text_anchor = Point(x=c.x, y=c.y, z=c.z)
-                chain.text_anchor_source = "bbox_fallback"
-                chain.text_anchor_confidence = "fallback"
+                chain.text_anchor_expected_source = "confirmed_from_fixture_setup"
+                chain.text_anchor_parse_method = "bbox_center_fallback"
+                chain.text_anchor_parse_confidence = "fallback"
+                chain.text_anchor_source = chain.text_anchor_parse_method
+                chain.text_anchor_confidence = chain.text_anchor_parse_confidence
                 chain.text_notes.append(
                     "Anchor fallback from bbox center; direct binary anchor offset is not confirmed."
                 )

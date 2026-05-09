@@ -36,8 +36,9 @@ def test_default_text_object_first_stage_parsing():
     assert abs(chain.text_anchor.x - 111.111) < 0.5
     assert abs(chain.text_anchor.y - 222.222) < 0.5
     assert abs(chain.text_anchor.z - 0.0) < 0.1
-    assert chain.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
-    assert chain.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
+    assert chain.text_anchor_expected_source == "confirmed_from_fixture_setup"
+    assert chain.text_anchor_parse_method in {"baseline_midpoint", "bbox_center_fallback", "direct_field_candidate", "unknown"}
+    assert chain.text_anchor_parse_confidence in {"provisional", "candidate", "fallback", "direct_confirmed"}
     assert abs(parsed.bbox.zmin_mm) < 1e-9
 
     chain_markers = parsed.object_chains[0].markers
@@ -109,10 +110,12 @@ def test_two_text_objects_same_color_fixture_detects_two_objects_with_order_and_
     assert abs(second.text_anchor.y - 322.222) < 0.5
     assert first.source_text_candidate == "abcdefg"
     assert second.source_text_candidate == "1234567890"
-    assert first.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
-    assert second.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
-    assert first.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
-    assert second.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
+    assert first.text_anchor_expected_source == "confirmed_from_fixture_setup"
+    assert second.text_anchor_expected_source == "confirmed_from_fixture_setup"
+    assert first.text_anchor_parse_method in {"baseline_midpoint", "bbox_center_fallback", "direct_field_candidate", "unknown"}
+    assert second.text_anchor_parse_method in {"baseline_midpoint", "bbox_center_fallback", "direct_field_candidate", "unknown"}
+    assert first.text_anchor_parse_confidence in {"provisional", "candidate", "fallback", "direct_confirmed"}
+    assert second.text_anchor_parse_confidence in {"provisional", "candidate", "fallback", "direct_confirmed"}
     assert first.style.line_color_name == "Army Green"
     assert second.style.line_color_name == "Army Green"
 

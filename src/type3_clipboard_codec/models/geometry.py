@@ -209,6 +209,13 @@ class Type3ObjectChain:
     display_text_candidate: Optional[str] = None
     line_count: Optional[int] = None
     text_anchor: Optional[Point] = None
+    # Layer 1: expected/source provenance for anchor value (fixture setup truth).
+    text_anchor_expected_source: Optional[str] = None
+    # Layer 2: parser method used to recover/parse anchor from payload.
+    text_anchor_parse_method: Optional[str] = None
+    # Layer 3: parser confidence for the chosen parse method.
+    text_anchor_parse_confidence: Optional[str] = None
+    # Backward-compat aliases (deprecated, kept for existing callers/tests).
     text_anchor_source: Optional[str] = None
     text_anchor_confidence: Optional[str] = None
     text_notes: List[str] = field(default_factory=list)
