@@ -134,40 +134,40 @@ Every fixture must have metadata in this document or a future sidecar manifest b
 
 Required metadata:
 
-| Field                     | Required value                                         |
-|---------------------------|--------------------------------------------------------|
-| fixture filename          | exact `tests/samples/*.txt` filename                   |
-| baseline delta            | one sentence describing the single changed variable    |
-| visible text              | exact visible content, including newlines/spaces       |
-| font Korean/original      | exact Type3 font label when Korean or localized        |
-| font provisional id       | ASCII fixture identifier/transliteration               |
-| bbox lower-left           | expected position in mm                                |
-| anchor/reference position | `X 위치` / `Y 위치` if known                               |
-| text mode                 | single-line/multiline/paragraph                        |
-| alignment                 | exact Korean UI term: `왼쪽`, `중앙`, `오른쪽`, `맞춤`, `자유 위치` |
-| height                    | `높이` value and unit                                    |
-| width scale               | `폭` value and unit                                     |
-| character spacing         | `간격` value and unit                                    |
-| max length                | `최대 길이` value and unit                                 |
-| slant/italic              | `기울기` value and `이탤릭` state                            |
-| rotation                  | `회전` value                                             |
-| mirror                    | `미러` state                                             |
-| underline                 | `밑줄` state and value if visible                        |
-| offset                    | `옵셋` value                                             |
-| baseline mode             | `기본선 위` / `기본선 아래` / default                           |
-| paragraph spacing mode    | `고정`, `비례`, `인쇄 비례`, or default                        |
-| directionality            | `오른쪽에서 왼쪽` state                                       |
-| case/script mode          | `대문자`, `작은 대문자`, `소문자`, `윗 첨자`, `아래 첨자`, or default    |
-| is grouped                | boolean (`true` for `결합` or other grouped candidates)       |
-| group term (Korean)       | exact Type3 grouping label such as `결합`, if present         |
-| child object count        | number of child objects for grouped payloads                  |
-| per-child style summary   | per-child color/style selection and bbox summary              |
-| color candidates          | candidate list including offset, raw value, name, encoding    |
-| selected color confidence | selection confidence (`confirmed`/`strong`/`weak`)            |
-| selected color source     | selection source (`fixed_offset`/`payload_scan`)              |
-| expected changed regions  | conservative candidates only                           |
-| volatile regions          | observed session/object ID candidates                  |
-| notes                     | capture caveats and unresolved observations            |
+| Field                     | Required value                                             |
+|---------------------------|------------------------------------------------------------|
+| fixture filename          | exact `tests/samples/*.txt` filename                       |
+| baseline delta            | one sentence describing the single changed variable        |
+| visible text              | exact visible content, including newlines/spaces           |
+| font Korean/original      | exact Type3 font label when Korean or localized            |
+| font provisional id       | ASCII fixture identifier/transliteration                   |
+| bbox lower-left           | expected position in mm                                    |
+| anchor/reference position | `X 위치` / `Y 위치` if known                                   |
+| text mode                 | single-line/multiline/paragraph                            |
+| alignment                 | exact Korean UI term: `왼쪽`, `중앙`, `오른쪽`, `맞춤`, `자유 위치`     |
+| height                    | `높이` value and unit                                        |
+| width scale               | `폭` value and unit                                         |
+| character spacing         | `간격` value and unit                                        |
+| max length                | `최대 길이` value and unit                                     |
+| slant/italic              | `기울기` value and `이탤릭` state                                |
+| rotation                  | `회전` value                                                 |
+| mirror                    | `미러` state                                                 |
+| underline                 | `밑줄` state and value if visible                            |
+| offset                    | `옵셋` value                                                 |
+| baseline mode             | `기본선 위` / `기본선 아래` / default                               |
+| paragraph spacing mode    | `고정`, `비례`, `인쇄 비례`, or default                            |
+| directionality            | `오른쪽에서 왼쪽` state                                           |
+| case/script mode          | `대문자`, `작은 대문자`, `소문자`, `윗 첨자`, `아래 첨자`, or default        |
+| is grouped                | boolean (`true` for `결합` or other grouped candidates)      |
+| group term (Korean)       | exact Type3 grouping label such as `결합`, if present        |
+| child object count        | number of child objects for grouped payloads               |
+| per-child style summary   | per-child color/style selection and bbox summary           |
+| color candidates          | candidate list including offset, raw value, name, encoding |
+| selected color confidence | selection confidence (`confirmed`/`strong`/`weak`)         |
+| selected color source     | selection source (`fixed_offset`/`payload_scan`)           |
+| expected changed regions  | conservative candidates only                               |
+| volatile regions          | observed session/object ID candidates                      |
+| notes                     | capture caveats and unresolved observations                |
 
 Metadata should describe expected binary regions using cautious language:
 
@@ -256,7 +256,7 @@ Rationale:
 
 Capture notes:
 
-- Spaces must be ordinary spaces, not nonbreaking spaces.
+- Spaces must be ordinary spaces, not non-breaking spaces.
 - Newline must be produced by the normal Type3 text entry workflow.
 - For Korean text, record the active input method only if it affects Type3 behavior; the fixture metadata should still focus on visible text and Type3 UI settings.
 
@@ -477,37 +477,37 @@ Important:
 
 ## 12. Style Fixtures
 
-First-stage style coverage starts narrow, but now includes text color fixtures to align with current grouped/color analysis work.
+First-stage style coverage starts narrow but now includes text color fixtures to align with current grouped/color analysis work.
 
 Required first-stage style fixture:
 
-| Fixture                         | Target Korean control/value               | Delta from baseline | Expected reverse-engineering value                                                        | Likely changed regions                                                        |
-|---------------------------------|-------------------------------------------|---------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `text_underline_on_default.txt` | `밑줄` enabled with default underline value | underline only      | identifies text-specific underline flag/value and whether underline is generated geometry | underline flag/value, possible extra contour/line geometry, `CPropertyExtend` |
-| `text_color_navy_blue.txt`      | text color set to navy-blue sample value | text color only     | validates text color candidate extraction and confidence/source fields                    | text style/property block, candidate color offsets, possible generated style data |
-| `text_color_army_green.txt`     | text color set to army-green sample value | text color only     | validates non-default text color mapping and repeated fixed-offset candidates             | text style/property block, candidate color offsets                            |
+| Fixture                         | Target Korean control/value               | Delta from baseline | Expected reverse-engineering value                                                        | Likely changed regions                                                            |
+|---------------------------------|-------------------------------------------|---------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `text_underline_on_default.txt` | `밑줄` enabled with default underline value | underline only      | identifies text-specific underline flag/value and whether underline is generated geometry | underline flag/value, possible extra contour/line geometry, `CPropertyExtend`     |
+| `text_color_navy_blue.txt`      | text color set to navy-blue sample value  | text color only     | validates text color candidate extraction and confidence/source fields                    | text style/property block, candidate color offsets, possible generated style data |
+| `text_color_army_green.txt`     | text color set to army-green sample value | text color only     | validates non-default text color mapping and repeated fixed-offset candidates             | text style/property block, candidate color offsets                                |
 
 Group/color exception fixtures (multi-object payloads allowed):
 
-| Fixture                                        | Target Korean control/value            | Delta from baseline             | Expected reverse-engineering value                                               | Likely changed regions                                             |
-|------------------------------------------------|----------------------------------------|---------------------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| `text_group_same_color_two_objects.txt`        | `결합` + same text color               | group structure + color         | validates grouped payload detection plus shared child color attribution          | group wrapper records, child style/property blocks, marker order   |
-| `text_group_mixed_color_two_objects.txt`       | `결합` + child text colors differ      | group structure + per-child color | validates per-child color disambiguation in grouped payload                      | group wrapper records, child style/property blocks, candidate offsets |
-| `text_two_objects_mixed_color_not_grouped.txt` | non-grouped multi-select + mixed color | multi-object non-grouped + color | separates grouped-vs-independent color attribution behavior                      | per-object property blocks, object boundary markers                |
+| Fixture                                        | Target Korean control/value            | Delta from baseline               | Expected reverse-engineering value                                      | Likely changed regions                                                |
+|------------------------------------------------|----------------------------------------|-----------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `text_group_same_color_two_objects.txt`        | `결합` + same text color                 | group structure + color           | validates grouped payload detection plus shared child color attribution | group wrapper records, child style/property blocks, marker order      |
+| `text_group_mixed_color_two_objects.txt`       | `결합` + child text colors differ        | group structure + per-child color | validates per-child color disambiguation in grouped payload             | group wrapper records, child style/property blocks, candidate offsets |
+| `text_two_objects_mixed_color_not_grouped.txt` | non-grouped multi-select + mixed color | multi-object non-grouped + color  | separates grouped-vs-independent color attribution behavior             | per-object property blocks, object boundary markers                   |
 
 Future style fixture candidates:
 
-| Candidate                        | Reason                                                                        |
-|----------------------------------|-------------------------------------------------------------------------------|
-| additional text color variants   | broaden palette coverage after initial navy/green/group fixtures             |
-| fill/outline style variants      | determine whether text outlines share curve property storage                  |
-| line width variants              | test whether generated text geometry has stroke-like properties               |
-| layer/material/toolpath variants | defer until base text extraction is stable                                    |
+| Candidate                        | Reason                                                           |
+|----------------------------------|------------------------------------------------------------------|
+| additional text color variants   | broaden palette coverage after initial navy/green/group fixtures |
+| fill/outline style variants      | determine whether text outlines share curve property storage     |
+| line width variants              | test whether generated text geometry has stroke-like properties  |
+| layer/material/toolpath variants | defer until base text extraction is stable                       |
 
 Conservative guidance:
 
 - Do not assume rectangle color offsets apply to text objects.
-- Do not assume underline is stored as simple style only; it may generate extra geometry.
+- Do not assume underline is stored as a simple style only; it may generate extra geometry.
 - Keep text style parser fields raw until text-specific fixtures support them.
 
 ---
@@ -572,7 +572,7 @@ Milestone 6: advanced modes and style
 
 - extract `밑줄`, `옵셋`, baseline modes, directionality, case/script modes
 - extract text color candidates with `candidate_*` fields and explicit confidence/source
-- validate grouped-vs-non-grouped per-child color attribution behavior
+- validate grouped-vs.-non-grouped per-child color attribution behavior
 - leave unresolved modes as raw enums/flags
 
 Parser implementation rules:

@@ -7,6 +7,18 @@ from ..models.geometry import BBox3D, GeometryObject, Type3ObjectChain
 from ..models.parsed_object import ParsedObject
 
 
+def _json_safe(value: Any) -> Any:
+    if isinstance(value, bytes):
+        return value.hex()
+    if isinstance(value, dict):
+        return {k: _json_safe(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(v) for v in value]
+    if isinstance(value, tuple):
+        return [_json_safe(v) for v in value]
+    return value
+
+
 def _bbox_to_dict_mm(bbox: BBox3D | None) -> dict[str, float] | None:
     if bbox is None:
         return None
@@ -47,7 +59,7 @@ def _infer_chain_object_type(chain: Type3ObjectChain) -> str:
     return "geometry"
 
 
-def _chain_to_dict(chain: Type3ObjectChain, index: int) -> dict[str, Any]:
+def _chain_to_dict(chain: Type3ObjectChain, index: int, is_text_object: bool = False) -> dict[str, Any]:
     contour_preview = []
     for i, record in enumerate(chain.contour_records[:8]):
         contour_preview.append(
@@ -67,7 +79,7 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int) -> dict[str, Any]:
     selected_raw = chain.style.line_color_selected_raw
     return {
         "index": index,
-        "object_type": _infer_chain_object_type(chain),
+        "object_type": "text" if is_text_object else _infer_chain_object_type(chain),
         "markers": list(chain.markers),
         "bbox_mm": _bbox_to_dict_mm(chain.bbox),
         "contour_record_count": len(chain.contour_records),
@@ -109,6 +121,23 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int) -> dict[str, Any]:
                 f"0x{chain.style.fixed_secondary_raw:08X}" if chain.style.fixed_secondary_raw is not None else None
             ),
         },
+        "text": {
+            "text_candidate": chain.text_candidate,
+            "source_text_candidate": chain.source_text_candidate,
+            "display_text_candidate": chain.display_text_candidate,
+            "line_count": chain.line_count,
+            "anchor_mm": (
+                {
+                    "x_mm": chain.text_anchor.x,
+                    "y_mm": chain.text_anchor.y,
+                    "z_mm": chain.text_anchor.z,
+                }
+                if chain.text_anchor is not None
+                else None
+            ),
+            "anchor_source": chain.text_anchor_source,
+            "notes": list(chain.text_notes),
+        },
         "unknown_sections": [
             {
                 "name": "raw_contour_bytes",
@@ -121,7 +150,7 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int) -> dict[str, Any]:
 
 def _iter_geometry_objects(geom: GeometryObject) -> list[dict[str, Any]]:
     if geom.is_grouped:
-        child_dicts = [_chain_to_dict(chain, idx + 1) for idx, chain in enumerate(geom.group_children)]
+        child_dicts = [_chain_to_dict(chain, idx + 1, is_text_object=False) for idx, chain in enumerate(geom.group_children)]
         merged_candidates: list[dict[str, Any]] = []
         seen_candidate_keys: set[tuple[Any, ...]] = set()
         for child in child_dicts:
@@ -176,7 +205,7 @@ def _iter_geometry_objects(geom: GeometryObject) -> list[dict[str, Any]]:
         ]
 
     return [
-        _chain_to_dict(chain, idx + 1)
+        _chain_to_dict(chain, idx + 1, is_text_object=geom.is_text_object)
         for idx, chain in enumerate(geom.object_chains)
     ]
 
@@ -212,11 +241,13 @@ def to_inspection_dict(
         base["text"] = {
             "is_text_object": obj.is_text_object,
             "text_content": obj.text_content,
+            "source_text_candidate": obj.source_text_candidate,
+            "display_text_candidate": obj.display_text_candidate,
             "font_name": obj.font_name,
             "raw_text_record_count": len(obj.raw_text_records),
             "notes": list(obj.text_notes),
         }
-        base["candidate_fields"] = dict(obj.candidate_fields)
+        base["candidate_fields"] = _json_safe(dict(obj.candidate_fields))
         base["objects"] = _iter_geometry_objects(obj)
         if len(obj.raw_group_bytes) > 0:
             base["unknown_sections"].append(
@@ -322,6 +353,24 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
         if obj.get("contour_record_count") is not None:
             lines.append(f"  Contour records: {obj['contour_record_count']}")
             lines.append(f"  Anchor/Control: {obj['anchor_count']}/{obj['control_count']}")
+        text_info = obj.get("text") or {}
+        if text_info:
+            if text_info.get("text_candidate") is not None:
+                lines.append(f"  Text: {text_info.get('text_candidate')}")
+            if text_info.get("source_text_candidate") is not None:
+                lines.append(f"  Source text candidate: {text_info.get('source_text_candidate')}")
+            if text_info.get("display_text_candidate") is not None:
+                lines.append(f"  Display text candidate: {text_info.get('display_text_candidate')}")
+            if text_info.get("line_count") is not None:
+                lines.append(f"  Line count: {text_info.get('line_count')}")
+            anchor = text_info.get("anchor_mm")
+            if anchor is not None:
+                lines.append(
+                    "  Anchor: "
+                    f"X={anchor.get('x_mm'):.3f} mm, Y={anchor.get('y_mm'):.3f} mm, Z={anchor.get('z_mm'):.3f} mm"
+                )
+            if text_info.get("anchor_source"):
+                lines.append(f"  Anchor source: {text_info.get('anchor_source')}")
         append_style_lines(obj.get("style_candidates"), "  ")
         source = obj.get("source")
         if source:
@@ -368,6 +417,8 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
         lines.append(f"  is_text_object: {text.get('is_text_object')}")
         lines.append(f"  font_name: {text.get('font_name')}")
         lines.append(f"  text_content: {text.get('text_content')}")
+        lines.append(f"  source_text_candidate: {text.get('source_text_candidate')}")
+        lines.append(f"  display_text_candidate: {text.get('display_text_candidate')}")
         lines.append(f"  raw_text_record_count: {text.get('raw_text_record_count')}")
 
     warnings = payload.get("warnings") or []

@@ -204,6 +204,13 @@ class Type3ObjectChain:
     source_payload_offset: Optional[int] = None
     source_stream_offset: Optional[int] = None
     raw_contour_bytes: bytes = b""
+    text_candidate: Optional[str] = None
+    source_text_candidate: Optional[str] = None
+    display_text_candidate: Optional[str] = None
+    line_count: Optional[int] = None
+    text_anchor: Optional[Point] = None
+    text_anchor_source: Optional[str] = None
+    text_notes: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -222,6 +229,8 @@ class GeometryObject(ParsedObject):
     aggregate_bbox: Optional[BBox3D] = None          # child bbox를 합친 전체 bbox
     is_text_object: bool = False                     # CParagraphe 등으로 판별한 텍스트 객체 여부
     text_content: Optional[str] = None               # 추정된 텍스트 내용
+    source_text_candidate: Optional[str] = None      # 입력 텍스트 후보(의미 미확정)
+    display_text_candidate: Optional[str] = None     # 표시 텍스트 후보(의미 미확정)
     font_name: Optional[str] = None                  # 추정된 글꼴 이름
     raw_text_records: List[bytes] = field(default_factory=list) # 보수적으로 잘라낸 원시 텍스트 레코드 후보
     text_notes: List[str] = field(default_factory=list)         # 텍스트 역공학 메모

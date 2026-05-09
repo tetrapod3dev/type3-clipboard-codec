@@ -705,6 +705,24 @@ Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
 This file contains the hex dump of a copied text object from Type3.
 
+### Text fixture coordinate policy update (confirmed)
+
+For text fixtures, the controlled position is the text reference anchor, not the bbox lower-left corner.
+
+Controlled anchor for baseline text fixture:
+
+- `X 위치 = 111.111 mm`
+- `Y 위치 = 222.222 mm`
+- `Z 위치 = 0.000 mm`
+
+Important capture rule:
+
+- do not force bbox lower-left to `(0, 0, 0)` after changing text/style
+- keep the reference anchor controlled
+- treat bbox as observed/derived (it changes with text/font/size/spacing/glyph geometry)
+
+This distinction is especially important with default alignment `중앙`.
+
 ### Known source text
 
 The copied object corresponds to a text object with the following source content:
@@ -713,15 +731,88 @@ The copied object corresponds to a text object with the following source content
 
 ### Known source setup
 
-The object was created with the text object's lower-left bbox origin aligned to:
-
-- bbox lower-left: `(0.000, 0.000, 0.000)` mm
-
 The observed font name near the beginning of the payload is:
 
 - `Arial`
 
 At the current stage, this fixture should be treated as the first baseline text-object sample.
+
+### Case mode fixture notes
+
+#### `작은 대문자`
+
+Test input text:
+
+- `abcdefg`
+
+Observed behavior:
+
+- letters are displayed as uppercase-like forms
+- first `A` appears larger
+- subsequent letters appear smaller
+
+Conservative interpretation:
+
+- this is not equivalent to plain uppercase mode
+- semantics are treated as small-caps-like behavior until confirmed by additional fixtures
+
+#### `소문자`
+
+Fixture design:
+
+- source input text intentionally set to `ABCDEFG`
+- then `소문자` option enabled
+
+Purpose:
+
+- determine whether Type3 stores original source text, transformed display text, mode flags, or a combination
+- no single storage model is assumed yet
+
+### Two-text-object fixture policy
+
+Fixtures include a two-text-object setup for per-object extraction checks.
+
+Text object #1 baseline:
+
+- anchor: `(111.111, 222.222, 0.000)` mm
+- text: `abcdefg`
+- text height: `10 mm`
+- width scale (`폭`): `100%`
+- color: `Army Green`
+
+Text object #2 baseline:
+
+- anchor: `(211.111, 322.222, 0.000)` mm
+- text: `1234567890`
+- color by fixture:
+  - same-color: `Army Green`
+  - different-color: `Navy Blue`
+
+Fixture validation targets:
+
+- detect two independent text objects
+- preserve per-object order
+- extract per-object anchor/text/color candidates
+- avoid accidental merge into one object
+
+### Multi-line text fixture notes (order 40/41/42)
+
+Text content:
+
+- `abcd\nefgh`
+
+Observed Type3 behavior:
+
+- single-line text object: cannot apply `결합 해제`
+- multi-line text object: can apply `결합 해제`
+- after `결합 해제`, each line becomes an independent text object
+
+Usage:
+
+- investigate multiline encoding and line-break representation
+- compare grouped/multiline decomposition behavior (`결합`, `결합 해제`)
+- verify object ordering after decomposition
+- determine whether content is represented as one paragraph-like object or multiple internal text runs
 
 ### Expected object characteristics
 

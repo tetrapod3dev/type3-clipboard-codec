@@ -53,6 +53,8 @@ def test_cli_file_mode_default_text_reports_text_info():
     assert result.returncode == 0, result.stderr
     assert "Text object info:" in result.stdout
     assert "font_name:" in result.stdout
+    assert "Type: text" in result.stdout
+    assert "Anchor:" in result.stdout
 
 
 def test_cli_json_mode_emits_valid_json():
@@ -134,6 +136,17 @@ def test_cli_mixed_color_rectangles_show_both_colors():
     assert result.returncode == 0, result.stderr
     assert "Line color: Turquoise (#64FFCC)" in result.stdout
     assert "Line color: Army Green (#98CC98)" in result.stdout
+
+
+def test_cli_text_two_object_fixture_shows_two_text_objects_and_anchors():
+    result = _run_cli([str(SAMPLES_DIR / "text" / "text_group_same_color_two_objects.txt")])
+    assert result.returncode == 0, result.stderr
+    assert "Parsed objects: 2" in result.stdout
+    assert "Type: text" in result.stdout
+    assert "Anchor: X=111.111 mm, Y=222.222 mm, Z=0.000 mm" in result.stdout
+    assert "Anchor: X=211.111 mm, Y=322.222 mm, Z=0.000 mm" in result.stdout
+    assert "Text: abcdefg" in result.stdout
+    assert "Text: 1234567890" in result.stdout
 
 
 def test_cli_diff_mode_outputs_structural_comparison():

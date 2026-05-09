@@ -93,7 +93,17 @@ class Type3ChainParser(BaseParser):
             if czone_bbox is not None:
                 main_bbox = czone_bbox
 
-            text_content, raw_text_records, text_notes = self._extract_text_content(all_nodes)
+            text_runs, raw_text_records, text_notes = self._extract_text_runs(all_nodes)
+            self._attach_text_runs_to_chains(final_chains, text_runs)
+            self._attach_text_anchor_candidates(final_chains)
+            if final_chains:
+                final_chains.sort(
+                    key=lambda c: (
+                        c.text_anchor.x if c.text_anchor is not None else (c.bbox.center_mm.x if c.bbox else float("inf")),
+                        c.text_anchor.y if c.text_anchor is not None else (c.bbox.center_mm.y if c.bbox else float("inf")),
+                    )
+                )
+            text_content = text_runs[0]["text"] if text_runs else None
             text_notes.append(
                 "Text object parsing is provisional; unknown CParagraphe bytes are preserved in raw_data and node payloads."
             )
@@ -126,6 +136,8 @@ class Type3ChainParser(BaseParser):
             aggregate_bbox=aggregate_bbox,
             is_text_object=is_text_object,
             text_content=text_content,
+            source_text_candidate=text_content,
+            display_text_candidate=None,
             font_name=font_name,
             raw_text_records=raw_text_records,
             text_notes=text_notes,
@@ -257,32 +269,39 @@ class Type3ChainParser(BaseParser):
                 return node.bbox
         return None
 
-    def _extract_text_content(self, nodes: List[Type3Node]) -> Tuple[Optional[str], List[bytes], List[str]]:
-        records = self._extract_candidate_text_records(nodes)
+    def _extract_text_runs(self, nodes: List[Type3Node]) -> Tuple[List[dict[str, Any]], List[bytes], List[str]]:
         notes: List[str] = []
+        runs: List[dict[str, Any]] = []
+        primary_records: List[bytes] = []
 
-        if not records:
-            return None, [], notes
-
-        codes = []
-        for record in records:
-            if len(record) < 8:
+        for node in nodes:
+            if node.header.class_name != "CParagraphe":
                 continue
-            codes.append(struct.unpack("<I", record[4:8])[0])
+            for recs in self._read_paragraphe_slot_record_runs(node.payload):
+                run = self._records_to_text_run(recs)
+                if run is None:
+                    continue
+                if run["text"] in [r["text"] for r in runs]:
+                    continue
+                runs.append(run)
+                if not primary_records:
+                    primary_records = recs
 
-        ascii_chars = [chr(code) for code in codes if 32 <= code <= 126]
-        if ascii_chars and len(ascii_chars) == len(codes):
-            return "".join(ascii_chars), records, notes
+        if len(runs) < 2:
+            full_blob = b"".join(node.payload for node in nodes)
+            for recs in self._read_slot_record_runs_from_blob(full_blob):
+                run = self._records_to_text_run(recs)
+                if run is None:
+                    continue
+                if run["text"] in [r["text"] for r in runs]:
+                    continue
+                runs.append(run)
 
-        inferred = self._infer_default_text_fixture_content(codes)
-        if inferred is not None:
-            notes.append(
-                "Text content inferred from the controlled default_text fixture record pattern; raw ASCII text storage is not confirmed yet."
-            )
-            return inferred, records, notes
+        if runs:
+            return runs, primary_records, notes
 
         notes.append("CParagraphe text records were detected, but text content could not be safely decoded.")
-        return None, records, notes
+        return [], primary_records, notes
 
     def _extract_candidate_text_records(self, nodes: List[Type3Node]) -> List[bytes]:
         """
@@ -293,11 +312,161 @@ class Type3ChainParser(BaseParser):
             if node.header.class_name != "CParagraphe":
                 continue
 
-            records = self._read_paragraphe_slot_records(node.payload)
-            if records:
-                return records
+            runs = self._read_paragraphe_slot_record_runs(node.payload)
+            if not runs:
+                continue
+            # Use the longest decoded run as the primary candidate.
+            runs.sort(key=lambda rs: len(rs), reverse=True)
+            return runs[0]
 
         return []
+
+    def _read_paragraphe_slot_record_runs(self, payload: bytes) -> List[List[bytes]]:
+        """
+        Detect multiple text-record runs from CParagraphe payload.
+        Known fixtures can carry more than one run in a single payload.
+        """
+        return self._read_slot_record_runs_from_blob(payload)
+
+    def _read_slot_record_runs_from_blob(self, payload: bytes) -> List[List[bytes]]:
+        record_stride = 204
+        runs: List[tuple[int, List[bytes]]] = []
+        seen_starts: set[int] = set()
+
+        for offset in range(0, max(0, len(payload) - 8)):
+            if payload[offset : offset + 4] != b"\x05\x00\x00\x00":
+                continue
+            # Only treat maximal run starts. If previous stride also starts with slot marker,
+            # current offset is likely inside an existing run.
+            if offset - record_stride >= 0 and payload[offset - record_stride : offset - record_stride + 4] == b"\x05\x00\x00\x00":
+                continue
+            if offset in seen_starts:
+                continue
+            # Must look like a run (at least two slots)
+            if offset + record_stride + 4 > len(payload):
+                continue
+            if payload[offset + record_stride : offset + record_stride + 4] != b"\x05\x00\x00\x00":
+                continue
+
+            records: List[bytes] = []
+            cursor = offset
+            for _ in range(256):
+                if cursor + 8 > len(payload):
+                    break
+                if payload[cursor : cursor + 4] != b"\x05\x00\x00\x00":
+                    break
+                record_end = min(len(payload), cursor + record_stride)
+                records.append(payload[cursor:record_end])
+                code = struct.unpack("<I", payload[cursor + 4 : cursor + 8])[0]
+                cursor += record_stride
+                if code == 0:
+                    break
+
+            if len(records) < 2:
+                continue
+            run = self._records_to_text_run(records)
+            if run is None:
+                continue
+            runs.append((offset, records))
+            seen_starts.add(offset)
+
+        # Deduplicate heavily overlapping runs by preferring longer runs.
+        runs.sort(key=lambda item: len(item[1]), reverse=True)
+        filtered: List[tuple[int, List[bytes]]] = []
+        for start, recs in runs:
+            if any(abs(start - kept_start) < 150 for kept_start, _kept in filtered):
+                continue
+            filtered.append((start, recs))
+
+        filtered.sort(key=lambda item: item[0])
+        return [records for _start, records in filtered]
+
+    def _records_to_text_run(self, records: List[bytes]) -> Optional[dict[str, Any]]:
+        codes: List[int] = []
+        for record in records:
+            if len(record) < 8:
+                return None
+            codes.append(struct.unpack("<I", record[4:8])[0])
+
+        if not codes:
+            return None
+
+        decoded_chars: List[str] = []
+        for code in codes:
+            if code == 0:
+                continue
+            if code == 13:
+                decoded_chars.append("\n")
+                continue
+            if 32 <= code <= 126:
+                decoded_chars.append(chr(code))
+                continue
+            return None
+
+        text = "".join(decoded_chars)
+        if not text:
+            return None
+        line_count = text.count("\n") + 1
+        return {
+            "text": text,
+            "codes": codes,
+            "line_count": line_count,
+        }
+
+    def _attach_text_runs_to_chains(self, chains: List[Type3ObjectChain], runs: List[dict[str, Any]]) -> None:
+        if not chains or not runs:
+            return
+
+        # If there is one run, attach to the first chain only.
+        if len(runs) == 1 or len(chains) == 1:
+            chains[0].text_candidate = runs[0]["text"]
+            chains[0].source_text_candidate = runs[0]["text"]
+            chains[0].line_count = runs[0]["line_count"]
+            chains[0].text_notes.append("Text candidate extracted from CParagraphe slot records.")
+            if len(runs) > 1:
+                chains[0].text_notes.append("Multiple text runs detected; mapping to objects is provisional.")
+            return
+
+        # Heuristic mapping for multi-object text fixtures:
+        # match shorter text runs to narrower bboxes and longer runs to wider bboxes.
+        chain_indices = list(range(len(chains)))
+        chain_indices.sort(
+            key=lambda idx: (
+                chains[idx].bbox.width_mm if chains[idx].bbox is not None else float("inf"),
+                chains[idx].bbox.center_mm.x if chains[idx].bbox is not None else float("inf"),
+            )
+        )
+        run_indices = list(range(len(runs)))
+        run_indices.sort(key=lambda idx: len(runs[idx]["text"]))
+
+        for chain_idx, run_idx in zip(chain_indices, run_indices):
+            chain = chains[chain_idx]
+            run = runs[run_idx]
+            chain.text_candidate = run["text"]
+            chain.source_text_candidate = run["text"]
+            chain.line_count = run["line_count"]
+            chain.text_notes.append(
+                "Text candidate mapped from CParagraphe run by width/length heuristic (provisional for multi-object text)."
+            )
+
+    def _attach_text_anchor_candidates(self, chains: List[Type3ObjectChain]) -> None:
+        for chain in chains:
+            if len(chain.contour_records) >= 2:
+                xs = [p.x_mm for p in chain.contour_records]
+                ys = [p.y_mm for p in chain.contour_records]
+                zs = [p.z_mm for p in chain.contour_records]
+                chain.text_anchor = Point(
+                    x=(min(xs) + max(xs)) / 2.0,
+                    y=(min(ys) + max(ys)) / 2.0,
+                    z=(min(zs) + max(zs)) / 2.0,
+                )
+                chain.text_anchor_source = "derived_from_contour_baseline_midpoint"
+                chain.text_notes.append("Text anchor candidate derived from contour baseline midpoint.")
+            elif chain.bbox is not None:
+                c = chain.bbox.center_mm
+                chain.text_anchor = Point(x=c.x, y=c.y, z=c.z)
+                chain.text_anchor_source = "derived_from_bbox_center"
+                chain.text_notes.append("Text anchor candidate derived from bbox center.")
 
     def _read_paragraphe_slot_records(self, payload: bytes) -> List[bytes]:
         """

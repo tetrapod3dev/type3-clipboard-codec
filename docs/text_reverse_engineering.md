@@ -33,6 +33,18 @@ Notes:
 
 - Korean UI terms are primary. English aliases are helper labels only.
 - This fixture remains the baseline comparison anchor for text-object deltas.
+- baseline coordinate control uses text reference anchor, not bbox lower-left:
+  - `X 위치 (text reference anchor X) = 111.111 mm`
+  - `Y 위치 (text reference anchor Y) = 222.222 mm`
+  - `Z 위치 (text reference anchor Z) = 0.000 mm`
+
+Anchor vs bbox policy (confirmed capture policy):
+
+- do not expect bbox lower-left to remain fixed across text fixtures
+- do not normalize/move text objects merely to force bbox lower-left `(0, 0, 0)`
+- keep `X 위치` / `Y 위치` as the controlled coordinate
+- treat bbox as observed/derived geometry
+- this distinction is important with default `중앙 (center alignment)`
 
 ---
 
@@ -50,6 +62,85 @@ Notes:
 
 - The observed `결합 해제` behavior suggests multiline text may internally behave like grouped text entities.
 - This is a working architectural hypothesis, not yet a finalized internal schema claim.
+
+Order 40/41/42 fixture purpose:
+
+- these fixtures use `abcd\nefgh`
+- they are for multiline encoding, line-break representation, object order, and grouped/multiline decomposition checks
+- they should test whether `abcd\nefgh` is stored as one paragraph-like object or multiple internal text runs
+
+---
+
+## Case Mode Notes
+
+### `작은 대문자 (small caps mode)` - observed behavior
+
+Source input text used in fixture:
+
+- `abcdefg`
+
+Observed Type3 behavior:
+
+- letters are displayed as uppercase-like forms
+- first `A` appears visually larger
+- following letters appear smaller
+
+Conservative interpretation:
+
+- this is not equivalent to plain uppercase rendering
+- behavior is consistent with a small-caps-like mode, but internal storage semantics remain provisional
+
+### `소문자 (lowercase mode)` - fixture design note
+
+Source input text used in fixture:
+
+- `ABCDEFG`
+
+Then `소문자` option is enabled.
+
+This fixture is intentionally designed to test whether Type3 stores:
+
+- original typed text
+- transformed visible text
+- mode flag only
+- or a combination of these
+
+Current status:
+
+- unresolved; do not assume one model yet
+
+---
+
+## Two-Text-Object Fixture Policy
+
+Two-text-object fixtures are used to validate per-object extraction and ordering behavior.
+
+Text object #1 baseline:
+
+- reference anchor: `(111.111, 222.222, 0.000)` mm
+- visible/source text: `abcdefg`
+- default text settings:
+  - text height: `10 mm`
+  - width scale / `폭`: `100%`
+  - other settings default unless fixture name states otherwise
+- color: `Army Green`
+
+Text object #2 baseline:
+
+- reference anchor: `(211.111, 322.222, 0.000)` mm
+- visible/source text: `1234567890`
+- color by fixture:
+  - same-color fixture: `Army Green`
+  - different-color fixture: `Navy Blue`
+
+Validation goals:
+
+- multi-text-object detection
+- per-object anchor extraction
+- per-object visible/source text candidate extraction
+- per-object color extraction
+- object order preservation
+- no accidental merge of two text objects into one
 
 ---
 
