@@ -98,7 +98,7 @@ Capture rules:
 - start every fixture from the baseline text object when possible
 - keep visible text as `abcdefg` unless the fixture targets text content
 - keep font as `Arial` unless the fixture targets font behavior
-- keep bbox lower-left near `(0,0,0)` mm unless the fixture targets geometry/position behavior
+- keep text reference anchor `X 위치` / `Y 위치` near the baseline values unless the fixture targets geometry/position behavior
 - keep single-line content unless the fixture targets multiline or paragraph behavior
 - keep no rotation, no mirror, no underline, default spacing, and default alignment unless targeted
 - default to one text object per clipboard payload
@@ -141,7 +141,7 @@ Required metadata:
 | visible text              | exact visible content, including newlines/spaces           |
 | font Korean/original      | exact Type3 font label when Korean or localized            |
 | font provisional id       | ASCII fixture identifier/transliteration                   |
-| bbox lower-left           | expected position in mm                                    |
+| bbox lower-left           | observed/derived position in mm (not the primary text control baseline) |
 | anchor/reference position | `X 위치` / `Y 위치` if known                                   |
 | text mode                 | single-line/multiline/paragraph                            |
 | alignment                 | exact Korean UI term: `왼쪽`, `중앙`, `오른쪽`, `맞춤`, `자유 위치`     |
@@ -189,7 +189,7 @@ Do not mark a byte range as confirmed until it survives multiple fixture compari
 | role            | baseline text object                            |
 | visible text    | `abcdefg`                                       |
 | font            | `Arial`                                         |
-| bbox lower-left | near `(0,0,0)` mm                               |
+| anchor/reference position | `X 위치 = 111.111 mm`, `Y 위치 = 222.222 mm`, `Z 위치 = 0.000 mm` |
 | line mode       | single-line                                     |
 | rotation        | none / `회전 = 0°`                                |
 | mirror          | off / `미러` disabled                             |
@@ -315,7 +315,7 @@ Preserve original Korean alignment terms:
 
 | Fixture                        | Target control/value                                            | Delta from baseline                         | Expected reverse-engineering value                           | Likely changed regions                                             |
 |--------------------------------|-----------------------------------------------------------------|---------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------------------|
-| `text_origin_0_0.txt`          | bbox lower-left near `(0,0,0)` mm                               | explicit origin control; may match baseline | validates coordinate repeatability and volatile regions      | bbox/anchor candidates only if recapture differs                   |
+| `text_origin_0_0.txt`          | anchor `X 위치` / `Y 위치` near baseline values                 | explicit origin control; may match baseline | validates coordinate repeatability and volatile regions      | bbox/anchor candidates only if recapture differs                   |
 | `text_origin_offset.txt`       | move object to a documented offset, e.g. `(11.111,22.222,0)` mm | position only                               | separates position fields from text/style records            | bbox doubles, anchor `X 위치`/`Y 위치`, generated geometry coordinates |
 | `text_align_left.txt`          | `왼쪽`                                                            | alignment only                              | identifies left alignment enum/flag                          | alignment candidate, possible anchor/bbox derived change           |
 | `text_align_center.txt`        | `중앙`                                                            | alignment only                              | identifies center alignment enum/flag                        | alignment candidate, possible anchor/bbox derived change           |

@@ -107,6 +107,10 @@ class Type3ChainParser(BaseParser):
             text_notes.append(
                 "Text object parsing is provisional; unknown CParagraphe bytes are preserved in raw_data and node payloads."
             )
+            if len(final_chains) > 1:
+                text_notes.append(
+                    "Per-object text-run ownership and per-object mixed-color ownership are still provisional for multi-text fixtures."
+                )
 
         aggregate_bbox = self._aggregate_bbox_from_chains(final_chains)
         if len(final_chains) > 1 and aggregate_bbox is not None and not is_text_object:
@@ -460,13 +464,19 @@ class Type3ChainParser(BaseParser):
                     y=(min(ys) + max(ys)) / 2.0,
                     z=(min(zs) + max(zs)) / 2.0,
                 )
-                chain.text_anchor_source = "derived_from_contour_baseline_midpoint"
-                chain.text_notes.append("Text anchor candidate derived from contour baseline midpoint.")
+                chain.text_anchor_source = "baseline_midpoint"
+                chain.text_anchor_confidence = "confirmed_from_fixture_setup"
+                chain.text_notes.append(
+                    "Anchor value is a real Type3 UI field (X 위치/Y 위치/Z 위치); current binary mapping method is baseline-midpoint recovery (provisional)."
+                )
             elif chain.bbox is not None:
                 c = chain.bbox.center_mm
                 chain.text_anchor = Point(x=c.x, y=c.y, z=c.z)
-                chain.text_anchor_source = "derived_from_bbox_center"
-                chain.text_notes.append("Text anchor candidate derived from bbox center.")
+                chain.text_anchor_source = "bbox_fallback"
+                chain.text_anchor_confidence = "fallback"
+                chain.text_notes.append(
+                    "Anchor fallback from bbox center; direct binary anchor offset is not confirmed."
+                )
 
     def _read_paragraphe_slot_records(self, payload: bytes) -> List[bytes]:
         """

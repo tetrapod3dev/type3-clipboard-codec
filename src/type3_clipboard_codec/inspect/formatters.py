@@ -136,6 +136,7 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int, is_text_object: bool = F
                 else None
             ),
             "anchor_source": chain.text_anchor_source,
+            "anchor_confidence": chain.text_anchor_confidence,
             "notes": list(chain.text_notes),
         },
         "unknown_sections": [
@@ -348,6 +349,12 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
         if obj.get("child_count") is not None:
             lines.append(f"  Child count: {obj['child_count']}")
         lines.extend(_fmt_bbox_line("  BBox", obj.get("bbox_mm")))
+        bbox = obj.get("bbox_mm")
+        if bbox is not None:
+            lines.append(
+                "  BBox center (calculated): "
+                f"X={bbox['center_x_mm']:.3f} mm, Y={bbox['center_y_mm']:.3f} mm, Z={bbox['center_z_mm']:.3f} mm"
+            )
         if obj.get("markers"):
             lines.append(f"  Markers: {', '.join(obj['markers'])}")
         if obj.get("contour_record_count") is not None:
@@ -366,11 +373,18 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
             anchor = text_info.get("anchor_mm")
             if anchor is not None:
                 lines.append(
-                    "  Anchor: "
+                    "  Text anchor (UI X/Y/Z): "
                     f"X={anchor.get('x_mm'):.3f} mm, Y={anchor.get('y_mm'):.3f} mm, Z={anchor.get('z_mm'):.3f} mm"
                 )
             if text_info.get("anchor_source"):
-                lines.append(f"  Anchor source: {text_info.get('anchor_source')}")
+                lines.append(f"  Anchor parse method: {text_info.get('anchor_source')}")
+            if text_info.get("anchor_confidence"):
+                lines.append(f"  Anchor confidence: {text_info.get('anchor_confidence')}")
+            text_notes = text_info.get("notes") or []
+            if text_notes:
+                lines.append("  Text notes:")
+                for note in text_notes:
+                    lines.append(f"    * {note}")
         append_style_lines(obj.get("style_candidates"), "  ")
         source = obj.get("source")
         if source:

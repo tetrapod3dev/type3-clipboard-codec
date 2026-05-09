@@ -210,6 +210,7 @@ class Type3ObjectChain:
     line_count: Optional[int] = None
     text_anchor: Optional[Point] = None
     text_anchor_source: Optional[str] = None
+    text_anchor_confidence: Optional[str] = None
     text_notes: List[str] = field(default_factory=list)
 
 

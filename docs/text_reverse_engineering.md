@@ -46,6 +46,25 @@ Anchor vs bbox policy (confirmed capture policy):
 - treat bbox as observed/derived geometry
 - this distinction is important with default `중앙 (center alignment)`
 
+### Confirmed vs provisional (anchor)
+
+Confirmed:
+
+- Type3 Text mode has real UI fields: `X 위치`, `Y 위치`, `Z 위치`.
+- Fixtures were created by explicitly setting those anchor values (for example `(111.111, 222.222, 0.000)` mm).
+- Text fixture comparison baseline is anchor position, not bbox lower-left.
+
+Provisional:
+
+- exact binary payload offsets for the anchor fields
+- parser extraction path for anchor values (`direct_field` vs structural recovery)
+- binary-to-UI mapping confidence for each fixture family
+
+Current parser status:
+
+- anchor values are currently recovered via structural method (`baseline_midpoint`) in many fixtures.
+- this method is not the same claim as direct binary anchor-field decoding.
+
 ---
 
 ## Newly Confirmed Multiline Behavior
@@ -109,6 +128,11 @@ Current status:
 
 - unresolved; do not assume one model yet
 
+Parser TODO:
+
+- expose `source_text_candidate` vs `display_text_candidate` separately when both are detectable.
+- keep case-mode semantics provisional until binary mapping is verified across fixtures.
+
 ---
 
 ## Two-Text-Object Fixture Policy
@@ -141,6 +165,11 @@ Validation goals:
 - per-object color extraction
 - object order preservation
 - no accidental merge of two text objects into one
+
+Current color-ownership status:
+
+- same-color two-object fixtures are useful for sanity validation.
+- mixed-color per-object ownership remains provisional and should not be treated as fully confirmed.
 
 ---
 

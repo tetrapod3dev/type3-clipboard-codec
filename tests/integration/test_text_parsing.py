@@ -36,6 +36,8 @@ def test_default_text_object_first_stage_parsing():
     assert abs(chain.text_anchor.x - 111.111) < 0.5
     assert abs(chain.text_anchor.y - 222.222) < 0.5
     assert abs(chain.text_anchor.z - 0.0) < 0.1
+    assert chain.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
+    assert chain.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
     assert abs(parsed.bbox.zmin_mm) < 1e-9
 
     chain_markers = parsed.object_chains[0].markers
@@ -77,6 +79,20 @@ def test_lowercase_mode_fixture_preserves_intentional_uppercase_source_evidence(
     assert chain.display_text_candidate is None
 
 
+def test_single_text_color_fixture_parses_color_independently():
+    parsed = decode_sample("text_color_navy_blue.txt")
+    assert isinstance(parsed, GeometryObject)
+    assert parsed.is_text_object is True
+    assert parsed.object_chains
+    chain = parsed.object_chains[0]
+    # Current text color ownership/mapping is provisional.
+    # Validate that color parsing path produced inspectable evidence.
+    assert (
+        chain.style.line_color_name is not None
+        or len(chain.style.color_candidates) > 0
+    )
+
+
 def test_two_text_objects_same_color_fixture_detects_two_objects_with_order_and_candidates():
     parsed = decode_sample("text_group_same_color_two_objects.txt")
     assert isinstance(parsed, GeometryObject)
@@ -93,6 +109,10 @@ def test_two_text_objects_same_color_fixture_detects_two_objects_with_order_and_
     assert abs(second.text_anchor.y - 322.222) < 0.5
     assert first.source_text_candidate == "abcdefg"
     assert second.source_text_candidate == "1234567890"
+    assert first.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
+    assert second.text_anchor_source in {"baseline_midpoint", "type3_ui_field_candidate", "unknown"}
+    assert first.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
+    assert second.text_anchor_confidence in {"confirmed_from_fixture_setup", "candidate", "fallback"}
     assert first.style.line_color_name == "Army Green"
     assert second.style.line_color_name == "Army Green"
 
@@ -110,9 +130,14 @@ def test_two_text_objects_mixed_color_fixture_keeps_two_objects_and_text_order()
     assert abs(second.text_anchor.x - 211.111) < 0.5
     assert first.source_text_candidate == "abcdefg"
     assert second.source_text_candidate == "1234567890"
-    # Mixed-color text fixture currently resolves Navy Blue from payload scan candidates.
-    assert first.style.line_color_name == "Navy Blue"
-    assert second.style.line_color_name == "Navy Blue"
+    # Mixed-color per-object ownership is still provisional.
+    observed = {
+        first.style.line_color_name,
+        second.style.line_color_name,
+    }
+    assert observed & {"Navy Blue", "Army Green"}
+    assert first.style.line_color_confidence in {"weak", "strong", "confirmed", None}
+    assert second.style.line_color_confidence in {"weak", "strong", "confirmed", None}
 
 
 def test_multiline_order_40_41_42_fixtures_have_multiline_evidence_and_preserve_object_order():

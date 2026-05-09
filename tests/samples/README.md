@@ -723,6 +723,16 @@ Important capture rule:
 
 This distinction is especially important with default alignment `중앙`.
 
+Confirmed:
+
+- `X 위치`, `Y 위치`, `Z 위치` are real Type3 Text mode UI fields used during fixture setup.
+- fixture coordinate control is anchor-based; bbox is derived.
+
+Provisional:
+
+- exact binary offsets for anchor fields
+- parser method used to recover anchor from payload (`direct_field` vs structural recovery)
+
 ### Known source text
 
 The copied object corresponds to a text object with the following source content:
@@ -767,6 +777,11 @@ Purpose:
 
 - determine whether Type3 stores original source text, transformed display text, mode flags, or a combination
 - no single storage model is assumed yet
+
+Parser implementation note:
+
+- keep `source_text_candidate` and `display_text_candidate` conceptually distinct.
+- do not force display transformation in parser until mapping is confirmed.
 
 ### Two-text-object fixture policy
 

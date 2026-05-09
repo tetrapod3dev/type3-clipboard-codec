@@ -14,10 +14,12 @@ SAMPLES_DIR = REPO_ROOT / "tests" / "samples"
 def _run_cli(args: list[str], input_text: str | None = None) -> subprocess.CompletedProcess[str]:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(REPO_ROOT / "src")
+    env["PYTHONUTF8"] = "1"
     return subprocess.run(
         [sys.executable, str(CLI_PATH), *args],
         input=input_text,
         text=True,
+        encoding="utf-8",
         capture_output=True,
         cwd=str(REPO_ROOT),
         env=env,
@@ -54,7 +56,9 @@ def test_cli_file_mode_default_text_reports_text_info():
     assert "Text object info:" in result.stdout
     assert "font_name:" in result.stdout
     assert "Type: text" in result.stdout
-    assert "Anchor:" in result.stdout
+    assert "Text anchor (UI X/Y/Z):" in result.stdout
+    assert "Anchor parse method:" in result.stdout
+    assert "Anchor confidence:" in result.stdout
 
 
 def test_cli_json_mode_emits_valid_json():
@@ -143,8 +147,8 @@ def test_cli_text_two_object_fixture_shows_two_text_objects_and_anchors():
     assert result.returncode == 0, result.stderr
     assert "Parsed objects: 2" in result.stdout
     assert "Type: text" in result.stdout
-    assert "Anchor: X=111.111 mm, Y=222.222 mm, Z=0.000 mm" in result.stdout
-    assert "Anchor: X=211.111 mm, Y=322.222 mm, Z=0.000 mm" in result.stdout
+    assert "Text anchor (UI X/Y/Z): X=111.111 mm, Y=222.222 mm, Z=0.000 mm" in result.stdout
+    assert "Text anchor (UI X/Y/Z): X=211.111 mm, Y=322.222 mm, Z=0.000 mm" in result.stdout
     assert "Text: abcdefg" in result.stdout
     assert "Text: 1234567890" in result.stdout
 
