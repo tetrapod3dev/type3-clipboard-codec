@@ -739,6 +739,37 @@ Inspector/model layering for anchor fields:
 - `text_anchor_parse_method`: parser path (example: `baseline_midpoint`, `bbox_center_fallback`)
 - `text_anchor_parse_confidence`: parser confidence for that method (example: `provisional`, `fallback`)
 
+### Text fixture inventory summary (actual files)
+
+Inventory source:
+
+- `tools/text_fixture_inventory.py --markdown`
+- target directory: `tests/samples/text/*.txt`
+
+| file | declared_object_count | parsed_chain_candidate_count | fixture_intent_text | parser_text_candidate | fixture_intent_font | parser_font_candidate | fixture_intent_anchor | parser_anchor_candidate | anchor_parse_method | fixture_intent_color | parser_color_candidate | text_confidence | font_confidence | anchor_confidence | color_confidence | notes |
+|---|---:|---:|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| default_text.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | candidate_match | provisional | strong | - |
+| text_color_army_green.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Army Green | Black | candidate_match | candidate_match | provisional | unresolved | Parser limitation: expected text color and detected color mismatch. |
+| text_color_navy_blue.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Navy Blue | Black | candidate_match | candidate_match | provisional | unresolved | Parser limitation: expected text color and detected color mismatch. |
+| text_font_hy_gyeongo_dik.txt | None | 1 | abcdefg | abcdefg | HY견고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
+| text_font_hy_se_gothic.txt | None | 1 | abcdefg | abcdefg | HY세고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
+| text_font_hy_tae_gothic.txt | None | 1 | abcdefg | abcdefg | HY태고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
+| text_font_hy_teuktae_gothic.txt | None | 1 | abcdefg | abcdefg | HY특태고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
+| text_font_arial_bold.txt | None | 1 | abcdefg | abcdefg | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: bold font candidate extraction unresolved. |
+| text_group_same_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Army Green | Army Green | candidate_match | candidate_match | provisional | weak | - |
+| text_group_mixed_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | mixed(Army Green,Navy Blue) | Navy Blue | candidate_match | candidate_match | provisional | unresolved | - |
+| text_multiline_basic.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
+| text_spacing_fixed.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
+| text_spacing_proportional.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
+| text_spacing_print_proportional.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
+| text_korean_basic.txt | None | 1 | Korean text (fixture-defined) | - | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | unresolved | candidate_match | provisional | strong | Parser limitation: Korean visible text candidate extraction unresolved. |
+| text_korean_mixed.txt | None | 1 | Mixed Korean/ASCII (fixture-defined) | - | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | unresolved | candidate_match | provisional | strong | Parser limitation: Korean visible text candidate extraction unresolved. |
+
+For full fixture list, regenerate from CLI output:
+
+- `.\.venv\Scripts\python.exe tools\text_fixture_inventory.py --markdown`
+- `.\.venv\Scripts\python.exe tools\text_fixture_inventory.py --json`
+
 ### Known source text
 
 The copied object corresponds to a text object with the following source content:
@@ -949,6 +980,15 @@ It should be treated as:
 - a provisional reference for font-record structure
 - a provisional reference for character-record structure
 - a provisional reference for text-outline geometry semantics
+
+Known limitations from current inventory/parsing:
+
+- many text fixtures report `declared_object_count = None`
+- text anchor extraction is mostly structural (`baseline_midpoint`) and not direct binary-offset decode yet
+- single-text color parsing may still resolve to `Black` for non-black fixture intents
+- mixed-color two-object color ownership remains provisional
+- Korean visible text extraction is incomplete for `text_korean_basic.txt` / `text_korean_mixed.txt`
+- multiline internal representation and per-object run ownership remain provisional
 
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.

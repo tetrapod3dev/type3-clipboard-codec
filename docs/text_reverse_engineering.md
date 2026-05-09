@@ -196,60 +196,93 @@ Additional fixtures are now required because text analysis must separate multipl
 
 ---
 
-## Planned Fixture Definitions
+## Captured Fixture Inventory (Current)
 
-### Color fixtures
+Current inventory baseline:
 
-- `text_color_blue.txt`
-- `text_color_green.txt`
-- `text_color_cyan.txt`
-- `text_color_light_cyan.txt`
+- directory: `tests/samples/text/`
+- total fixtures: `53`
+- parser-detected chain count (`parsed_chain_candidate_count`):
+  - single-object text fixtures: majority
+  - chain-count=2 fixtures (parser candidate count only, not confirmed Type3 object count):  
+    `text_group_same_color_two_objects.txt`,  
+    `text_group_mixed_color_two_objects.txt`,  
+    `text_two_objects_mixed_color_not_grouped.txt`,  
+    `text_multiline_basic.txt`,  
+    `text_spacing_fixed.txt`,  
+    `text_spacing_proportional.txt`,  
+    `text_spacing_print_proportional.txt`
+- multiline evidence fixtures (`abcd\nefgh` candidate):  
+  `text_multiline_basic.txt`, `text_spacing_fixed.txt`, `text_spacing_proportional.txt`, `text_spacing_print_proportional.txt`
 
-Fixture intent:
+### Color fixtures (captured)
 
-- geometry unchanged
-- only color changes
-- intended for `CPropertyExtend` analysis
-- intended for comparison with rectangle color fixtures
+- `text_color_army_green.txt`
+- `text_color_navy_blue.txt`
+- two-object color fixtures:
+  - `text_group_same_color_two_objects.txt`
+  - `text_group_mixed_color_two_objects.txt`
+  - `text_two_objects_mixed_color_not_grouped.txt`
 
-### Visible text fixtures
+Current status:
 
-- `text_value_TEST.txt`
-- `text_value_1234567.txt`
-- `text_value_A1b2C3.txt`
+- single-object text color parser output still often resolves to `Black` even when fixture name indicates non-black.
+- mixed-color per-object ownership remains provisional.
 
-Fixture intent:
+### Visible text fixtures (captured)
 
-- only visible text changes
-- all geometry/style settings fixed
-- intended for locating stored string payloads and length fields
+- `text_alphanumeric.txt`
+- `text_digits.txt`
+- `text_ascii_lowercase.txt`
+- `text_ascii_uppercase.txt`
+- `text_spaces.txt`
+- `text_special_characters.txt`
+- `text_korean_basic.txt`
+- `text_korean_mixed.txt`
 
-### Multiline fixture
+Current status:
 
-- `text_multiline_2lines.txt`
+- ASCII candidates are extracted conservatively in many fixtures.
+- Korean text payload extraction is still unresolved in current parser output (`visible_text_candidates` may be empty).
 
-Content:
+### Case/style/layout fixtures (captured examples)
 
-- line1: `abc`
-- line2: `def`
+- alignment: `text_align_left.txt`, `text_align_center.txt`, `text_align_right.txt`, `text_align_justify.txt`, `text_align_free_position.txt`
+- transform: `text_rotation_30deg.txt`, `text_rotation_90deg.txt`, `text_slant_15deg.txt`, `text_slant_custom_30deg.txt`, `text_mirror_on.txt`
+- spacing/width/height: `text_spacing_80_percent.txt`, `text_spacing_150_percent.txt`, `text_width_50_percent.txt`, `text_width_150_percent.txt`, `text_height_10mm.txt`, `text_height_30mm.txt`
+- mode: `text_small_caps_mode.txt`, `text_lowercase_mode.txt`, `text_uppercase_mode.txt`, `text_rtl_on.txt`, `text_subscript.txt`, `text_superscript.txt`, `text_baseline_above.txt`, `text_baseline_below.txt`, `text_underline_on_default.txt`
+- position/baseline anchor checks: `text_origin_0_0.txt`, `text_origin_offset.txt`, `text_offset_10_percent.txt`
 
-Investigation targets:
+### Missing planned fixtures
+- previously planned names do not exist yet in current folder:
+  - `text_color_blue.txt`, `text_color_green.txt`, `text_color_cyan.txt`, `text_color_light_cyan.txt`
+  - `text_value_TEST.txt`, `text_value_1234567.txt`, `text_value_A1b2C3.txt`
+  - `text_multiline_2lines.txt`, `text_multiline_2lines_grouped.txt`, `text_multiline_2lines_ungrouped.txt`
 
-- line-separator encoding
-- bbox expansion behavior
-- line-spacing-related fields
-- internal record grouping hints
+---
 
-### Multiline ungroup fixtures
+## Parser Limitations (Current)
 
-- `text_multiline_2lines_grouped.txt`
-- `text_multiline_2lines_ungrouped.txt`
+- declared object count from text fixtures is often unavailable (`declared_object_count = None`).
+- text anchor is currently recovered by structural methods (mostly `baseline_midpoint`), not confirmed direct binary field decode.
+- single-text color ownership is provisional; non-black fixtures may still resolve to `Black` in selected fields.
+- mixed-color two-object ownership is provisional and should not be asserted as stable per-object mapping.
+- Korean visible text decoding is incomplete in current conservative extraction path.
+- multiline internal storage model (single paragraph-like record vs multiple text runs) is still provisional.
+- per-object text-run ownership in multi-object text fixtures remains provisional in heuristic mapping paths.
 
-Fixture intent:
+---
 
-- grouped version: original multiline text object
-- ungrouped version: state after `결합 해제`
-- intended for studying internal group/object decomposition behavior
+## Fixture Issues (Current)
+
+- color-only fixtures:
+  - `text_color_army_green.txt`, `text_color_navy_blue.txt` expected color vs detected color mismatch is currently treated as parser limitation, not fixture corruption.
+- font fixtures:
+  - `text_font_arial_bold.txt` recapture mismatch is resolved, but bold font candidate extraction is still unresolved in parser output.
+- HY font fixtures:
+  - expected HY font vs detected font mismatch is currently treated as parser limitation, not fixture corruption.
+
+---
 
 ---
 
@@ -282,15 +315,12 @@ Operational note:
 
 ---
 
-## Next Recommended Fixture Creation Order
+## Next Recommended Fixture Creation / Recapture Order
 
-1. `text_color_blue.txt`
-2. `text_color_green.txt`
-3. `text_color_cyan.txt`
-4. `text_color_light_cyan.txt`
-5. `text_value_TEST.txt`
-6. `text_value_1234567.txt`
-7. `text_value_A1b2C3.txt`
-8. `text_multiline_2lines.txt`
-9. `text_multiline_2lines_grouped.txt`
-10. `text_multiline_2lines_ungrouped.txt`
+1. Capture missing explicit color-isolation set:  
+   `text_color_blue.txt`, `text_color_green.txt`, `text_color_cyan.txt`, `text_color_light_cyan.txt`.
+2. Capture missing explicit visible-text isolation set:  
+   `text_value_TEST.txt`, `text_value_1234567.txt`, `text_value_A1b2C3.txt`.
+3. Capture explicit multiline grouped/ungrouped pair:  
+   `text_multiline_2lines_grouped.txt`, `text_multiline_2lines_ungrouped.txt`.
+4. Re-run inventory and update parser ownership expectations for mixed-color two-object fixtures.
