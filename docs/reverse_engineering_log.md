@@ -1,176 +1,131 @@
 # Reverse Engineering Log
 
-이 문서는 TYPE3 clipboard format 분석 과정에서 확인한 사항, 세운 가설, 미해결 이슈를 시간 순서 또는 주제 순서로 기록하는 로그입니다.
-
-## 목적
-
-- 어떤 샘플에서 어떤 사실을 확인했는지 추적
-- 가설의 근거를 남기기
-- 파서 구현 변경의 배경을 기록
-- 나중에 잘못된 해석을 되짚어 수정하기 쉽게 만들기
+이 문서는 TYPE3 clipboard format 역공학의 상태 로그다.  
+목표는 “현재 사실”과 “과거 가설”을 분리해서 유지하는 것이다.
 
 ---
 
-## 기록 규칙
+## Confirmed / Strongly Observed Facts (Current)
 
-각 항목은 가능하면 아래 형식을 따릅니다.
+### Geometry/Binary structure
+- class header scan은 marker/name_len/class_name 기반 구조 파싱을 사용한다.
+- bbox는 class-relative로 `6 * little-endian double` decode를 사용한다.
+- 좌표는 현재 fixture 범위에서 **little-endian double + meter 단위**로 일관 관찰된다.
+- contour record decode는 stride 36 기반 구조로 동작한다.
+- contour actual selection은 `refined_structural_ranking`이 active mode다.
 
-- 날짜
-- 분석 대상
-- 사용한 샘플 또는 입력 형태
-- 확인된 내용
-- 새로 생긴 가설
-- 미해결 이슈
-- 파서/모델에 반영한 사항
+### Shape/contour observations
+- rectangle/circle/circular_arc/rounded_rectangle fixture는 구조 파싱 회귀 없이 유지된다.
+- circular arc는 3-record 패턴(`anchor-control-anchor`)과 control `w≈0.707` 근거가 강하게 관찰된다.
+- tag low-byte stable observed mapping:
+  - `0x0C -> control`
+  - `0x0D`, `0x0F -> anchor`
 
----
+### Text baseline observations
+- text 계열에서 `CParagraphe` 중심 구조가 반복 관찰된다.
+- ASCII visible text/font 후보(예: `Arial`, `abcdefg`)는 일부 fixture에서 추출 가능하다.
+- text anchor 검증 기준은 bbox lower-left가 아니라 `X 위치/Y 위치/Z 위치`(fixture policy)다.
 
-## 2026-03-XX - 프로젝트 초기 구조 정리
-
-### 분석 대상
-- TYPE3 clipboard binary format 전반
-- 파서/코덱 구조 설계
-
-### 확인된 내용
-- 프로젝트를 일회성 분석 스크립트가 아니라 codec 중심 구조로 가져가는 방향을 확정
-- 입력 소스와 포맷 해석 로직을 분리하기 위해 adapter 패턴을 유지하기로 함
-- 역공학 단계에서는 미확정 필드를 raw 상태로 유지하는 것이 필요하다는 점을 재확인
-
-### 가설
-- 장기적으로 decode → modify → encode 흐름까지 확장 가능
-- 객체별 parser registry 구조가 유지보수에 유리
-
-### 미해결 이슈
-- 공통 레코드 헤더 구조의 구체화 필요
-- 객체 타입 식별자 체계 문서화 필요
-
-### 반영 사항
-- 프로젝트 목적과 설계 원칙을 README에 반영
+### Style observations
+- `CPropertyExtend` block 존재는 geometry/text 모두에서 반복 관찰된다.
+- geometry color는 payload-relative candidate evidence가 축적되어 있다.
+- text color ownership/semantic은 아직 provisional이다.
 
 ---
 
-## 2026-03-XX - 수동 Hex 검사 도구 기반 분석 흐름 정리
+## Provisional Interpretations (Current)
 
-### 분석 대상
-- `tools/inspect_manual_hex.py`
-- 수동 Hex 입력 기반 샘플 확인 절차
-
-### 확인된 내용
-- Hex를 직접 입력해 payload를 빠르게 확인하는 흐름이 초기 역공학 단계에서 유용함
-- 디버깅 시 parser 변경 전에 raw view를 먼저 보는 방식이 효과적임
-
-### 가설
-- 새로운 객체 타입 발견 시, 우선 수동 Hex 관찰 → 후보 필드 지정 → parser 반영 순서가 적절함
-
-### 미해결 이슈
-- 시각적으로 객체 경계를 더 잘 보여주는 preview 도구가 필요할 수 있음
-
-### 반영 사항
-- README의 사용법에 수동 Hex 검사 도구를 명시
+- `kind` 값의 semantic 의미
+- contour tag high-byte 의미
+- `polyline_candidate` / `polygon_candidate` semantic 승격
+- text exact encoding model(특히 Korean/multiline ownership)
+- text style field의 direct semantic mapping
 
 ---
 
-## 2026-03-XX - 도형 객체 우선 분석 범위 확정
+## 0x03 Family Investigation Closeout (2026-05-10)
 
-### 분석 대상
-- Rectangle
-- Line
-- Arc
-- Circle
-- Rounded Rectangle
-- Text
+### Timeline summary
+1. 초기엔 middle marker 가능성
+2. rotated_start 비교로 pure record-position 가설 약화
+3. reversed 비교로 traversal-direction 가설 약화
+4. open↔closed 비교로 topology-only 가설 약화
+5. polygon session2 비교로 coordinate-local 강가설 약화
+6. polyline session2 비교로 partial reproduction + full-tag volatility 확인
 
-### 확인된 내용
-- 위 객체들이 현재 parser 반영 우선순위로 적절함
-- 단순 도형과 텍스트를 먼저 안정화한 뒤 복합 객체나 contour류로 확장하는 편이 타당함
+### Current policy
+- `0x03` status: `volatile_unresolved_family`
+- `0x03 == anchor` 승격 금지
+- parser role assignment에서 `unknown` 유지
+- 신규 재현 근거 없이는 mapping 변경 금지
 
-### 가설
-- Rectangle / Line / Circle 계열을 먼저 안정화하면 공통 좌표 구조 해석에도 도움이 됨
-- Rounded Rectangle은 Rectangle 기반 확장 형태일 가능성이 높음
-
-### 미해결 이슈
-- Polyline / Contour와 같은 가변 길이 구조는 별도 전략이 필요할 수 있음
-
-### 반영 사항
-- README의 현재 중점 대상 섹션에 반영
+### Reopen criteria
+- 동일 geometry의 session-independent 반복 재현
+- shape family를 넘는 일관 분포
+- low-byte와 role 관계의 안정적 반복
+- parser behavior에 실질적 오류 유발 사례
 
 ---
 
-## 2026-03-XX - Arc 구조 관련 이슈
+## Resolved Questions (Moved From Old Open Questions)
 
-### 분석 대상
-- Circular arc 표현 추정
-- 복사된 arc 객체의 좌표/제어 정보 후보 필드
-
-### 관찰 내용
-- 일반적으로 circular arc는 시작점, 끝점, 제어점 또는 이에 준하는 추가 정보를 필요로 할 것으로 예상됨
-- 그러나 샘플 중 일부에서는 기대한 수의 점 정보가 직접적으로 드러나지 않음
-- 특히 “3개 점이 보여야 할 것 같은데 2개만 보이는” 상황이 관찰됨
-
-### 현재 가설
-1. 제어점이 별도 블록 또는 다른 표현 방식으로 저장될 수 있음
-2. 중심점 + 반지름 + 각도 형태로 저장되고 있을 수 있음
-3. 일부 필드는 공통 헤더/속성 블록에 포함될 수 있음
-4. arc 세부 종류에 따라 내부 표현이 달라질 수 있음
-
-### 미해결 이슈
-- arc의 실제 저장 표현 확정
-- parser에서 arc를 어떤 추상 모델로 받을지 결정 필요
-- 샘플 수를 늘려서 필드 변화를 비교해야 함
-
-### 권장 후속 작업
-- 동일 arc를 좌표만 바꿔 여러 샘플 확보
-- 시작점/끝점/곡률을 각각 따로 바꾼 샘플 비교
-- 원시 바이트 diff 기록 자동화 검토
+1. 좌표값 형식은 무엇인가?  
+   - resolved(현재 범위): little-endian double, meter 단위 관찰.
+2. Arc는 어떤 구조를 가지는가?  
+   - resolved(부분): 3-record arc pattern(2 anchor + 1 control)과 control `w≈0.707` evidence 확보.
+3. 스타일/지오메트리 블록이 완전히 무관한가?  
+   - resolved(부분): `CPropertyExtend` block 존재와 geometry color evidence는 확보됨.
 
 ---
 
-## 2026-03-XX - Text 구조 관련 메모
+## Active Open Questions (Updated)
 
-### 분석 대상
-- Text object clipboard payload
+### Geometry
+- 좌표 double/meter 규칙이 **모든 객체 family/필드**에서 동일하게 적용되는가?
+- `kind` semantic은 무엇인가?
+- tag high-byte는 어떤 상태(세션/객체/역할)를 반영하는가?
 
-### 확인된 내용
-- 문자열 자체 외에도 위치 및 스타일 관련 정보가 포함될 가능성이 높음
-- 다른 단순 도형보다 가변 길이 구조일 가능성이 높음
+### Text
+- Korean text 저장 표현과 exact encoding 규칙은 무엇인가?
+- multiline text에서 run ownership/object ownership 경계는 어떻게 구성되는가?
+- text color/style field의 class-relative/record-relative 안정 mapping은 어디인가?
 
-### 가설
-- 텍스트 본문과 스타일 정보 블록이 분리되어 있을 수 있음
-- 문자열 길이 필드 또는 종료 마커가 존재할 수 있음
-
-### 미해결 이슈
-- 인코딩 방식
-- 폰트/높이/정렬 필드 식별
-- multiline text 구조
-
-### 권장 후속 작업
-- 짧은 텍스트와 긴 텍스트 비교
-- 한글/영문/숫자 샘플 비교
-- 폰트 크기만 바꾼 샘플 비교
+### Cross-domain
+- geometry에서의 style candidate 규칙과 text style candidate 규칙 중 공유 가능한 최소 공통 계층은 어디까지인가?
 
 ---
 
-## 2026-03-XX - 역공학 프로젝트 운영 원칙 재정리
+## Geometry Parser Milestone Summary
 
-### 확인된 내용
-- 불확실한 필드는 섣불리 의미를 확정하지 않는 편이 전체 구조 안정성에 유리
-- parser 구현 속도보다 문서화와 샘플 축적이 중요함
-
-### 운영 원칙
-- Confirmed / Likely / Unknown 상태 구분 유지
-- raw bytes 보존
-- 추정 필드명 남용 금지
-- 샘플별 비교 근거 기록
-- 파서 수정 시 문서 동기화
+- 완료:
+  - refined structural contour selection actual 전환
+  - count-heavy shape misclassification 개선(pattern-based)
+  - geometry structure audit + diagnostics closeout
+- 경계:
+  - Confirmed: 구조 파싱 계층
+  - Provisional: semantic 계층(kind/tag high-byte/shape candidate meaning)
 
 ---
 
-## 다음 작업 후보
+## Historical Notes / Superseded Hypotheses
 
-- [ ] Rectangle 필드 확정도 높이기
-- [ ] Line 필드 매핑 검증
-- [ ] Arc 표현 방식 샘플 추가 확보
-- [ ] Circle / Rounded Rectangle 공통 구조 분리 검토
-- [ ] Text 문자열 및 스타일 블록 경계 식별
-- [ ] parser registry와 문서의 객체 타입 명칭 일치시키기
-```
+아래는 과거 기록이지만 현재는 대체되었거나 범위가 좁혀진 가설이다.
+
+- “좌표값은 정수/고정소수점/부동소수점 중 무엇인가”  
+  -> 현재는 little-endian double(meter)로 strongly observed.
+- “Arc는 어떤 수학적 표현으로 저장되는가”  
+  -> 구조 패턴(3-record)은 확보, exact mathematical semantics만 미확정.
+- “Text 인코딩은 무엇인가”  
+  -> ASCII 일부는 추출 가능, Korean/exact encoding은 active open.
+- “스타일 정보와 지오메트리 정보의 배치 순서”  
+  -> `CPropertyExtend` 존재와 일부 mapping evidence는 확보, text style semantics는 미확정.
+
+---
+
+## Next Focus (Operational)
+
+- `0x03` 트랙은 closeout 상태 유지(재오픈 조건 충족 전까지 동결)
+- 다음 우선순위는 text object 분석 심화:
+  - Korean/multiline ownership
+  - text style field mapping stability
+  - parser confidence layering 정교화

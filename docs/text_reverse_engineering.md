@@ -615,3 +615,70 @@ Operational note:
 3. Capture explicit multiline grouped/ungrouped pair:  
    `text_multiline_2lines_grouped.txt`, `text_multiline_2lines_ungrouped.txt`.
 4. Re-run inventory and update parser ownership expectations for mixed-color two-object fixtures.
+
+---
+
+## Text Anchor Direct Field Investigation (Current Stage)
+
+Scope of this stage:
+
+- focus only on direct payload-field candidates for text anchor (`X 위치`, `Y 위치`, `Z 위치`)
+- do not promote parser decode rules yet
+- keep absolute file offsets as diagnostic-only
+
+Current policy split:
+
+- confirmed concept: text anchor is a real UI-controlled concept (`X 위치`, `Y 위치`, `Z 위치`)
+- current parser extraction: mostly `baseline_midpoint` structural recovery
+- unresolved: direct binary field offsets/structure for anchor in `CParagraphe` payload
+
+Primary evidence fixtures used:
+
+- `default_text.txt`
+- `text_origin_0_0.txt`
+- `text_origin_offset.txt`
+- `text_group_same_color_two_objects.txt`
+- `text_group_mixed_color_two_objects.txt`
+
+Analyzer status:
+
+- `tools/analyze_text_anchor_field_candidates.py` provides:
+  - pairwise payload diffs (class-relative + record-relative)
+  - expected-value scoring for candidate `double64` and contiguous `x/y/z` triple windows
+  - multi-object separability checks
+  - side-by-side reporting with current parser `baseline_midpoint` output
+
+Interpretation status:
+
+- direct anchor field candidates are still `provisional`
+- baseline-midpoint recovery is still the active parser path
+- anchor must not be conflated with bbox center
+
+### Multi-object ownership recheck (updated)
+
+Earlier limitation:
+
+- prior manual checks inspected only the first `CParagraphe` payload in a fixture.
+- this was insufficient for chain-level ownership validation in multi-object fixtures.
+
+Current analyzer correction:
+
+- the analyzer now reports every parser chain and every available `CParagraphe` node together.
+- per chain, it reports:
+  - associated `CParagraphe` node index (if matchable)
+  - direct triple decode at payload-relative `158/166/174`
+  - baseline midpoint anchor
+  - expected fixture anchor
+  - direct-vs-baseline / direct-vs-expected match status
+
+Observed status for current multi-object fixtures:
+
+- `text_group_same_color_two_objects.txt`: parser chains=2, `CParagraphe` nodes=1
+- `text_group_mixed_color_two_objects.txt`: parser chains=2, `CParagraphe` nodes=1
+- `text_two_objects_mixed_color_not_grouped.txt`: parser chains=2, `CParagraphe` nodes=1
+
+Interpretation:
+
+- chain count and `CParagraphe` node count are not currently 1:1 in these fixtures.
+- direct triple evidence at `158/166/174` remains strong for single-object and for one chain in each multi-object fixture.
+- full per-chain direct ownership still remains provisional.

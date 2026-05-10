@@ -126,8 +126,9 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 UI/semantic 해석 주의:
 - `polyline_3_points`와 `default_circular_arc`는 모두 `count=3`이지만, arc는 `anchor/control=2/1`, polyline_3는 `2/0`(중간 포인트 `unknown`)으로 관찰된다.
 - 따라서 같은 count라도 semantic 확정은 아직 provisional로 유지한다.
-- `polyline_5_points` vs `polyline_5_points_reversed`, `polyline_5_points` vs `closed_from_polyline_5_points` 비교에서 `0x03` 좌표 집합이 보존되었다.
-- 따라서 `0x03`의 pure record-position 가설은 약화되고 coordinate-local 가능성은 상대적으로 강화되지만, 의미는 여전히 unresolved다.
+- `polyline_5_points` vs `polyline_5_points_reversed`, `polyline_5_points` vs `closed_from_polyline_5_points` 비교에서 `0x03` 좌표 집합 보존 사례가 관찰되었다.
+- 그러나 session-recapture 비교(`polygon_6_sides_session2`, `polyline_5_points_session2`)에서 `0x03` 재현성이 깨지는 사례가 확인되었다.
+- 현재 가장 안전한 해석은 `0x03`이 geometry/session/internal state 영향을 받는 unresolved volatile family 후보라는 점이며, 의미는 여전히 unresolved다.
 - `polygon_6_sides` vs `polygon_6_sides_session2` 비교는 session-effect 분리용이며, low-byte/좌표 보존과 full raw tag(high-byte 포함) 보존은 별도 evidence로 추적한다.
 - 최신 관찰에서는 `polygon_6_sides`의 `(55.555,99.999)` `0x...03`가 `polygon_6_sides_session2`에서 `0x...0D`로 관찰되어, `0x03` 좌표 보존은 확인되지 않았다.
 - 동일한 session-effect 검증을 open-path(`polyline_5_points` vs `polyline_5_points_session2`)에도 적용해 `0x03` 재현성과 full-tag 변동을 분리 추적한다.

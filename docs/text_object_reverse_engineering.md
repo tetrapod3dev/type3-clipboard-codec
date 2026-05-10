@@ -789,3 +789,38 @@ Do not implement parser contracts too early:
 - prefer `unknown_*`, `reserved_*`, or `candidate_*` names for weak evidence
 - require multiple fixture categories before promoting a candidate to confirm
 - keep binary preservation and evidence traceability ahead of convenience APIs
+
+---
+
+## Anchor Field Candidate Track (Provisional)
+
+Current separation:
+
+- confirmed: anchor concept in Type3 text UI (`X 위치`, `Y 위치`, `Z 위치`)
+- active parser behavior: structural anchor recovery (`baseline_midpoint`)
+- unresolved: direct payload field mapping for anchor values
+
+Analyzer for this track:
+
+- `tools/analyze_text_anchor_field_candidates.py`
+- output modes: text / `--json` / `--markdown`
+- evidence basis:
+  - class payload relative offsets
+  - record-relative offsets
+  - pairwise diffs for origin-shift fixture pairs
+  - multi-object anchor separability checks
+
+Required caution:
+
+- absolute offsets are diagnostic only
+- text-run ownership and anchor ownership must remain separated concerns
+- direct-field candidates remain provisional until cross-fixture repeatability is strong enough
+
+Ownership validation note (multi-object fixtures):
+
+- do not assume one `CParagraphe` node per parser chain.
+- in current two-object fixtures, parser emits two chains while only one `CParagraphe` node is observed.
+- chain-level direct-anchor validation must therefore:
+  - enumerate all `CParagraphe` nodes,
+  - enumerate all chains,
+  - report unmatched chains explicitly instead of inferring missing direct fields.

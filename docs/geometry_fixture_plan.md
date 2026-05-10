@@ -301,3 +301,25 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 4. `polyline_from_polygon_5_points.txt`
 5. `polygon_6_sides_session2.txt`
 6. 나머지 count 확장 fixture (`polyline_4`, `polyline_6`, `polyline_3_middle_changed`, `polygon_5_rotated`, `polygon_6_reversed`)
+
+## 9) `0x03` Family Investigation Closeout (Policy Freeze)
+
+현재 단계 결론:
+- `0x03`은 `volatile_unresolved_family`로 고정한다.
+- `0x03 == anchor` 승격 금지 유지.
+- role assignment/shape classifier에서 `0x03`은 `unknown` 유지.
+
+핵심 근거:
+- rotated/reversed/topology 비교로 단순 middle/position/topology/direction 가설은 약화됨.
+- session2 비교(`polygon_6`, `polyline_5`)에서 `0x03` 재현성이 깨짐.
+- full raw tag는 session-sensitive, low-byte는 상대적으로 유용하나 `0x03` 자체는 semantic 승격 근거 부족.
+
+재오픈 조건:
+1. 동일 geometry의 session-independent 반복 재현
+2. shape family를 넘는 안정 분포
+3. low-byte와 role 관계의 반복 검증
+4. parser 동작에 실질적 문제를 유발하는 재현 사례
+
+이번 closeout 범위:
+- 추가 session3 fixture 캡처는 진행하지 않는다.
+- parser role mapping 변경은 보류한다.

@@ -197,7 +197,7 @@ text 분기 필요 지점:
   - `polyline_5_points` vs `closed_from_polyline_5_points`: `0x03` 좌표 집합 보존
   - `polygon_6_sides` vs `polygon_6_sides_session2`: `0x03` 좌표 집합은 보존되지 않았고(base의 `0x...03`가 session2에서 `0x...0D`로 관찰), high-byte 변동은 크게 관찰됨
   - `polyline_5_points` vs `polyline_5_points_session2`: open-path 계열에서도 `0x03` 좌표 재현성/low-byte 재현성/full-tag 재현성을 분리 관찰
-  - 해석: `always middle`/pure record-position 가설 약화, coordinate-local 가능성 상대 강화
+  - 해석: `always middle`/pure record-position 가설 약화
   - 최신 해석: session 재캡처 증거로 strong coordinate-local 가설도 약화됨
   - 단, semantic 의미는 unresolved/provisional 유지 (`0x03==anchor` 승격 금지)
 - 주의:
@@ -206,6 +206,59 @@ text 분기 필요 지점:
   - shape classifier에서 `polyline_candidate/polygon_candidate`를 provisional로 유지하는 핵심 이유가 role/tag 미확정 상태다
   - 다음 단계 fixture 캡처 계획은 `docs/geometry_fixture_plan.md`의 `Tag/Role Evidence Expansion Plan`을 따른다.
   - polygon fixture의 numbered point order는 geometric description이며 payload 저장 순서 확정값이 아니다.
+
+## 0x03 Family Investigation Closeout
+
+### Investigation Timeline
+1. 초기 관찰: `0x03`가 middle 위치에만 보이는 사례가 많아 middle-marker 가설 형성
+2. `polygon_6_sides` vs `polygon_6_sides_rotated_start`: index 이동에도 동일 좌표 유지 관찰
+3. `polyline_5_points` vs `polyline_5_points_reversed`: reversed 후에도 기존 `0x03` 좌표 집합 유지
+4. `polyline_5_points` vs `closed_from_polyline_5_points`: open/closed 변경 후에도 기존 `0x03` 좌표 집합 유지
+5. `polygon_6_sides` vs `polygon_6_sides_session2`: base의 `0x03` 좌표가 session2에서 `0x0D`로 변경
+6. `polyline_5_points` vs `polyline_5_points_session2`: 기존 `0x03` 3개 유지 + 신규 `0x03` 1개 추가, full raw tag는 전 좌표 변경
+
+### Evidence Table (Summary)
+| 비교 | `0x03` 좌표 재현 | low-byte 안정성 | full-tag 안정성 | 결론 |
+|---|---|---|---|---|
+| `polygon_6` vs `rotated_start` | 부분 유지(동일 좌표 사례) | N/A | N/A | pure record-position 약화 |
+| `polyline_5` vs `reversed` | 유지 | 높음 | 높음 | traversal-direction 약화 |
+| `polyline_5` vs `closed_from_polyline_5` | 유지 | 높음 | 부분 변경 | topology-only 약화 |
+| `polygon_6` vs `session2` | 미재현 | 일부 유지 | 낮음 | coordinate-local 약화 + session 민감 |
+| `polyline_5` vs `session2` | 부분 재현 + 신규 추가 | 부분 유지 | 매우 낮음 | open-path에서도 session 민감 재현 |
+
+### Weakened Hypotheses
+- always middle marker
+- pure record-position marker
+- topology-only marker
+- traversal-direction marker
+- stable coordinate-local marker
+
+### Current Policy (Fixed)
+- `0x03` 상태: `volatile_unresolved_family`
+- role assignment: `unknown` 유지
+- `0x03 == anchor` 승격 금지
+- shape classifier/semantic layer에서 `0x03` 의미 확정 금지
+- 재현 가능한 신규 근거가 나오기 전 parser 정책 변경 금지
+
+### Reopen Criteria
+- 동일 geometry를 session-independent recapture해도 반복 재현
+- shape family(polyline/polygon/others)를 넘어 일관된 분포 확보
+- low-byte와 role 간의 일관 관계가 추가 fixture에서 안정적으로 검증
+- parser 동작/정확도에 실제 문제를 유발하는 사례가 재현
+
+## Geometry Parser Milestone Summary
+
+- 완료:
+  - actual contour selection을 `refined_structural_ranking`으로 전환
+  - legacy whitelist는 diagnostics 경로로 강등
+  - count-heavy 오분류(`polyline_2/3 -> arc`)를 pattern-based classifier로 개선
+- Confirmed vs Provisional 경계:
+  - Confirmed(운영): 구조 파싱 계층(class header/node scan/bbox/contour decode)
+  - Provisional(의미): `kind` semantic, tag high-byte 의미, `polyline_candidate/polygon_candidate` semantic
+- Remaining open issues:
+  - `kind` semantic 확정
+  - tag high-byte 의미
+  - text object parsing 심화(`CParagraphe`/text color ownership/anchor decode confidence)
 
 ### Type3 UI Observation (Observed/Provisional)
 
