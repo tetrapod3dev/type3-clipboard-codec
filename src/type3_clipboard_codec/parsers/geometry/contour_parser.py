@@ -5,13 +5,20 @@ from typing import List, Optional, Tuple
 from ...models.geometry import BBox3D, ContourPoint
 from ...utils.bytes_reader import BytesReader
 from ..common import read_contour_points
+from .contour_candidate_validator import validate_contour_header_candidate
 
 
 def is_plausible_contour_count(count: int) -> bool:
     return count in {2, 3, 4, 8, 12}
 
 
-def analyze_contour_header_candidates(payload: bytes) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict]]:
+def analyze_contour_header_candidates(
+    payload: bytes,
+    *,
+    bbox: Optional[BBox3D] = None,
+    stride: int = 36,
+    max_safe_contour_count: int = 4096,
+) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict]]:
     """
     Analyze contour-header candidates while preserving current selection behavior.
     Returns:
@@ -41,33 +48,55 @@ def analyze_contour_header_candidates(payload: bytes) -> Tuple[Optional[List[Tup
             "selected_payload_offset": None,
             "selected_raw_header_hex": None,
             "selection_reason": None,
+            "legacy_selected_candidate": None,
+            "structurally_valid_candidates": [],
+            "structural_recommended_candidate": None,
+            "selection_mode": "legacy_count_whitelist",
+            "structural_policy_status": "diagnostic_only",
             "confidence": "provisional",
         }
 
         found_for_this_marker = False
+        structural_candidate_rows: List[dict] = []
         for shift in candidate_shifts:
             header_start = base + shift
+            structural = validate_contour_header_candidate(
+                payload=payload,
+                header_offset=header_start,
+                stride=stride,
+                bbox=bbox,
+                max_safe_contour_count=max_safe_contour_count,
+            )
             candidate = {
                 "shift": shift,
                 "header_offset": header_start,
                 "kind": None,
                 "count": None,
                 "plausible": False,
+                "legacy_plausible": False,
                 "rejection_reason": None,
-                "raw_8b_hex": None,
+                "raw_8b_hex": structural.get("raw_8b_hex"),
+                "structural_valid": structural.get("structural_valid"),
+                "structural_score": structural.get("structural_score"),
+                "structural_failure_reasons": structural.get("structural_failure_reasons", []),
+                "record_region_end_offset": structural.get("record_region_end_offset"),
+                "record_decode_status": structural.get("record_decode_status"),
+                "record_decode_ok": structural.get("record_decode_ok"),
+                "bbox_consistency_status": structural.get("bbox_consistency_status"),
             }
+            structural_candidate_rows.append(candidate)
             if header_start + 8 > len(payload):
                 candidate["rejection_reason"] = "header_out_of_bounds"
                 marker_diag["candidates"].append(candidate)
                 continue
 
             try:
-                candidate["raw_8b_hex"] = payload[header_start : header_start + 8].hex()
                 kind = struct.unpack("<I", payload[header_start : header_start + 4])[0]
                 count = struct.unpack("<I", payload[header_start + 4 : header_start + 8])[0]
                 candidate["kind"] = kind
                 candidate["count"] = count
                 candidate["plausible"] = is_plausible_contour_count(count)
+                candidate["legacy_plausible"] = candidate["plausible"]
                 if not candidate["plausible"]:
                     candidate["rejection_reason"] = "count_not_plausible"
                     marker_diag["candidates"].append(candidate)
@@ -87,6 +116,14 @@ def analyze_contour_header_candidates(payload: bytes) -> Tuple[Optional[List[Tup
                 marker_diag["selected_count"] = count
                 marker_diag["selected_payload_offset"] = offset
                 marker_diag["selected_raw_header_hex"] = candidate["raw_8b_hex"]
+                marker_diag["legacy_selected_candidate"] = {
+                    "shift": shift,
+                    "header_offset": header_start,
+                    "kind": kind,
+                    "count": count,
+                    "payload_offset": offset,
+                    "raw_8b_hex": candidate["raw_8b_hex"],
+                }
                 marker_diag["selection_reason"] = "first_plausible_shift_with_unique_offset"
                 marker_diag["candidates"].append(candidate)
                 idx = offset
@@ -100,6 +137,32 @@ def analyze_contour_header_candidates(payload: bytes) -> Tuple[Optional[List[Tup
         if not found_for_this_marker:
             marker_diag["selection_reason"] = "no_plausible_candidate"
             idx = marker_pos + 1
+
+        marker_diag["structurally_valid_candidates"] = [
+            {
+                "shift": c["shift"],
+                "header_offset": c["header_offset"],
+                "kind": c.get("kind"),
+                "count": c.get("count"),
+                "raw_8b_hex": c.get("raw_8b_hex"),
+                "structural_score": c.get("structural_score"),
+                "record_region_end_offset": c.get("record_region_end_offset"),
+                "bbox_consistency_status": c.get("bbox_consistency_status"),
+            }
+            for c in structural_candidate_rows
+            if c.get("structural_valid")
+        ]
+        if marker_diag["structurally_valid_candidates"]:
+            shift_order = {value: idx for idx, value in enumerate(candidate_shifts)}
+            sorted_valid = sorted(
+                marker_diag["structurally_valid_candidates"],
+                key=lambda item: (
+                    -(item.get("structural_score") or -1),
+                    shift_order.get(item.get("shift"), 9999),
+                    item.get("header_offset") if item.get("header_offset") is not None else 10**9,
+                ),
+            )
+            marker_diag["structural_recommended_candidate"] = sorted_valid[0]
 
         diagnostics.append(marker_diag)
 

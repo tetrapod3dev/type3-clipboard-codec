@@ -97,6 +97,7 @@ text 분기 필요 지점:
   - `confidence="provisional"`
 - parser는 이 진단을 `candidate_fields.contour_header_diagnostics` 및 chain-level diagnostics로 노출한다.
 - 기본 inspector 가독성 보호를 위해 일반 출력은 늘리지 않고, diagnostics는 필요 시에만 확인한다.
+- 현재 구현 상태(Phase 1): legacy selection 유지 + structural recommendation 진단 병행(`selection_mode=legacy_count_whitelist`, `structural_policy_status=diagnostic_only`)
 
 ### Current Inventory Observation (Geometry Fixtures)
 

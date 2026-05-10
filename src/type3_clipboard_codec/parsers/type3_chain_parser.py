@@ -67,6 +67,7 @@ class Type3ChainParser(BaseParser):
     """
 
     DEFAULT_CONTOUR_RECORD_STRIDE = 36
+    MAX_SAFE_CONTOUR_COUNT = 4096
     MAX_REASONABLE_COORD_M = 100.0
     PROPERTY_EXTEND_COLOR_PRIMARY_OFFSET = 0x79
     PROPERTY_EXTEND_COLOR_SECONDARY_OFFSET = 0x85
@@ -407,7 +408,7 @@ class Type3ChainParser(BaseParser):
             if node.header.class_name != "CContour":
                 continue
 
-            headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload)
+            headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload, node.bbox)
             if header_diagnostics:
                 current_work_chain.contour_header_diagnostics.extend(header_diagnostics)
             if not headers:
@@ -454,7 +455,7 @@ class Type3ChainParser(BaseParser):
         Some multi-object samples carry an additional contour inside CPropertyExtend.
         Treat these as extra object chains while preserving the surrounding markers.
         """
-        headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload)
+        headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload, node.bbox)
         if header_diagnostics:
             template_chain.contour_header_diagnostics.extend(header_diagnostics)
         if not headers:
@@ -555,9 +556,14 @@ class Type3ChainParser(BaseParser):
         return read_contour_header(payload)
 
     def _analyze_contour_header_candidates(
-        self, payload: bytes
+        self, payload: bytes, bbox: Optional[BBox3D] = None
     ) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict[str, Any]]]:
-        return analyze_contour_header_candidates(payload)
+        return analyze_contour_header_candidates(
+            payload,
+            bbox=bbox,
+            stride=self.DEFAULT_CONTOUR_RECORD_STRIDE,
+            max_safe_contour_count=self.MAX_SAFE_CONTOUR_COUNT,
+        )
 
     def _is_plausible_contour_count(self, count: int) -> bool:
         return is_plausible_contour_count(count)

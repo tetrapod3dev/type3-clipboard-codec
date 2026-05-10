@@ -1,6 +1,6 @@
 # Contour Candidate Selection RFC
 
-상태: Draft  
+상태: Draft (Phase 1 diagnostics implemented; parser selection unchanged)  
 범위: 설계 문서 (parser 코드 변경 없음)
 
 ## 1) 현재 로직 요약
@@ -57,10 +57,10 @@ selection reason:
 2. `kind`, `count`를 u32 LE로 decode 가능
 3. `count > 0`
 4. safety upper bound 이내 (`count <= MAX_SAFE_CONTOUR_COUNT`, 예: 4096)
-5. `count * stride`가 payload 범위를 넘지 않음
+5. `record_start_offset + count * stride <= payload_length`
 6. record decode가 예외 없이 수행됨
 7. 좌표 finite
-8. (선택) bbox와 완전 모순되지 않음
+8. bbox consistency는 초기 단계에서 soft signal로 기록 (hard reject 아님)
 
 주의:
 - upper bound는 malformed/DoS 방지용 safety limit
@@ -69,12 +69,13 @@ selection reason:
 ### tie-break 제안
 동일 marker에서 복수 candidate가 structural-valid일 때:
 
-1. `shift` 우선순위는 기존 순서 유지(호환성)
+1. structural-valid 후보만 필터
 2. structural score 높은 후보 우선
+3. 동점이면 legacy shift priority 우선
+4. 그래도 동점이면 가장 작은 `header_offset` 우선
    - finite pass
-   - bbox consistency pass
+   - bbox consistency soft signal
    - decode completeness
-3. 동점이면 가장 작은 `header_offset` 우선
 
 ## 4) 계층 분리 설계
 
@@ -116,6 +117,12 @@ selection reason:
 5. 새 fixture들을 evidence/snapshot 테스트에 포함
 6. shape classifier 개선은 다음 단계로 분리
 
+### 구현 상태 (현재)
+- 완료: structural validation helper 도입 및 diagnostics 필드 추가
+- 완료: legacy selected vs structural recommended 동시 노출
+- 유지: 실제 parser selection은 legacy count whitelist 모드 그대로
+- 유지: structural 결과는 `diagnostic_only` 정책
+
 ## 6) 테스트 전략 (향후)
 
 필수:
@@ -148,10 +155,18 @@ selection reason:
 - count gate는 `known incomplete whitelist`
 - shape semantic은 provisional 유지 필요
 
+outside-gate raw evidence (diagnostic):
+
+| fixture | kind | count | raw_8b_hex | legacy result |
+|---|---:|---:|---|---|
+| `polyline_5_points.txt` | 0 | 5 | `0000000005000000` | `no_plausible_candidate` |
+| `polygon_5_sides.txt` | 2 | 5 | `0200000005000000` | `no_plausible_candidate` |
+| `polygon_6_sides.txt` | 2 | 6 | `0200000006000000` | `no_plausible_candidate` |
+
 ## 9) 오픈 질문
 
 1. `kind` 값의 안정적 의미(특히 0 vs 2)는 무엇인가?
-2. open/closed 판정에 first==last 외 어떤 신호를 추가할 것인가?
+2. open/closed 판정에서 `first==last`를 충분조건 후보로만 쓸지, 추가 신호(tag/segment topology)를 어떻게 결합할지?
 3. bbox consistency 실패를 hard reject로 둘지 soft signal로 둘지?
 4. malformed payload에서 어디까지 복구 시도하고 어디서 fail-fast 할지?
 5. multi-object/group payload에서 marker 간 후보 충돌을 어떻게 정규화할지?
