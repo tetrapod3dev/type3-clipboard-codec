@@ -37,6 +37,10 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 | `polyline_5_points.txt` | 열린 폴리선 | open | 5 | x(11.111~88.888), y(11.111~44.444) |
 | `polygon_5_sides.txt` | 닫힌 5각형 | closed | 5 | x(33.333~77.777), y(44.444~88.888) |
 | `polygon_6_sides.txt` | 닫힌 6각형 | closed | 6 | x(33.333~77.777), y(44.444~99.999) |
+| `polyline_5_points_reversed.txt` | 열린 폴리선(역방향 순회) | open | 5 | x(11.111~88.888), y(11.111~44.444) |
+| `closed_from_polyline_5_points.txt` | 닫힌 경로(polyline 기반) | closed | 5 | x(11.111~88.888), y(11.111~44.444) |
+| `polygon_6_sides_session2.txt` | 닫힌 6각형(session recapture) | closed | 6 | x(33.333~77.777), y(44.444~99.999) |
+| `polyline_5_points_session2.txt` | 열린 5점 폴리선(session recapture) | open | 5 | x(11.111~88.888), y(11.111~44.444) |
 | `rectangle_small.txt` | 사각형(소형 스케일) | closed | 4 | x(11.111~11.44433), y(22.222~22.66644) |
 | `rectangle_large.txt` | 사각형(대형 스케일) | closed | 4 | x(11.111~33344.111), y(22.222~44466.222) |
 | `rectangle_negative_offset.txt` | 사각형(음수 오프셋) | closed | 4 | x(-88.888~-55.555), y(-77.777~-33.333) |
@@ -75,6 +79,30 @@ They are used as reference fixtures for parsing, testing, and documenting curren
   - user-described order: `1 -> 2 -> 3 -> 4 -> 5`
   - actual stored contour record order is unresolved.
 
+- `polyline_5_points_reversed.txt`
+  - base fixture: `polyline_5_points.txt`
+  - changed variable: input order reversed only
+  - intended order: `(88.888,44.444) -> (88.888,22.222) -> (55.555,33.333) -> (33.333,11.111) -> (11.111,22.222)`
+  - actual stored contour record order is unresolved.
+
+- `closed_from_polyline_5_points.txt`
+  - base fixture: `polyline_5_points.txt`
+  - changed variable: open contour -> closed contour only
+  - intended geometry: same 5 points, then closes from point 5 back to point 1
+  - actual stored contour record order is unresolved.
+
+- `polygon_6_sides_session2.txt`
+  - base fixture: `polygon_6_sides.txt`
+  - changed variable: capture session only
+  - UI-confirmed start point intent and user-described geometric order are same as `polygon_6_sides.txt`
+  - actual stored contour record order is unresolved.
+
+- `polyline_5_points_session2.txt`
+  - base fixture: `polyline_5_points.txt`
+  - changed variable: capture session only
+  - same intended open 5-point polyline geometry as base fixture
+  - actual stored contour record order is unresolved.
+
 ### Current parser observation snapshot (provisional)
 
 `tools/report_contour_header_candidates.py` 및 `tools/inspect_clipboard_hex.py` 기준:
@@ -85,6 +113,9 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 - `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - `polygon_6_sides_rotated_start`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - `polyline_from_polygon_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
+- `polyline_5_points_reversed`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
+- `closed_from_polyline_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
+- `polygon_6_sides_session2`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - rectangle 변형(`small/large/negative/large_positive/recap_session2`): 모두 selected `shift=8`, `kind=2`, `count=4`
 
 추가 관찰:
@@ -95,6 +126,11 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 UI/semantic 해석 주의:
 - `polyline_3_points`와 `default_circular_arc`는 모두 `count=3`이지만, arc는 `anchor/control=2/1`, polyline_3는 `2/0`(중간 포인트 `unknown`)으로 관찰된다.
 - 따라서 같은 count라도 semantic 확정은 아직 provisional로 유지한다.
+- `polyline_5_points` vs `polyline_5_points_reversed`, `polyline_5_points` vs `closed_from_polyline_5_points` 비교에서 `0x03` 좌표 집합이 보존되었다.
+- 따라서 `0x03`의 pure record-position 가설은 약화되고 coordinate-local 가능성은 상대적으로 강화되지만, 의미는 여전히 unresolved다.
+- `polygon_6_sides` vs `polygon_6_sides_session2` 비교는 session-effect 분리용이며, low-byte/좌표 보존과 full raw tag(high-byte 포함) 보존은 별도 evidence로 추적한다.
+- 최신 관찰에서는 `polygon_6_sides`의 `(55.555,99.999)` `0x...03`가 `polygon_6_sides_session2`에서 `0x...0D`로 관찰되어, `0x03` 좌표 보존은 확인되지 않았다.
+- 동일한 session-effect 검증을 open-path(`polyline_5_points` vs `polyline_5_points_session2`)에도 적용해 `0x03` 재현성과 full-tag 변동을 분리 추적한다.
 
 ## File: `default_rectangle.txt`
 

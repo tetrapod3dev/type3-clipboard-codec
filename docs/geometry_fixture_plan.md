@@ -42,6 +42,10 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 - `rectangle_recap_session2.txt`
 - `polygon_6_sides_rotated_start.txt`
 - `polyline_from_polygon_5_points.txt`
+- `polyline_5_points_reversed.txt`
+- `closed_from_polyline_5_points.txt`
+- `polygon_6_sides_session2.txt`
+- `polyline_5_points_session2.txt`
 
 추가 권장(미캡처):
 - `polyline_7_points.txt` (gate 밖 count)
@@ -95,6 +99,40 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
   5. `(55.555, 99.999)`
 - actual stored contour record order is unresolved.
 
+#### `polyline_5_points_reversed.txt`
+- changed from: `polyline_5_points.txt`
+- changed variable: input order reversed only
+- intended geometry: same 5 points, reversed traversal description
+- actual stored contour record order is unresolved.
+- hypothesis tested: `0x03` family가 좌표를 따르는지, 순번/방향을 따르는지 분리.
+
+#### `closed_from_polyline_5_points.txt`
+- changed from: `polyline_5_points.txt`
+- changed variable: open contour -> closed contour only
+- intended geometry: same 5 points + 마지막에서 시작점으로 닫힘
+- actual stored contour record order is unresolved.
+- hypothesis tested: 같은 좌표/순서에서 topology(open/closed)만 바뀔 때 `0x03` family 변화 여부.
+
+#### `polygon_6_sides_session2.txt`
+- changed from: `polygon_6_sides.txt`
+- changed variable: capture session only
+- intended geometry: `polygon_6_sides.txt`와 동일한 6개 점/동일 start point intent
+- actual stored contour record order is unresolved.
+- hypothesis tested: session 변경 시 `0x03` low-byte 안정성 vs full raw tag(high-byte 포함) 안정성 분리.
+
+#### `polyline_5_points_session2.txt`
+- changed from: `polyline_5_points.txt`
+- changed variable: capture session only
+- intended geometry: `polyline_5_points.txt`와 동일한 열린 5점 폴리선
+- user-described point order:
+  1. `(11.111, 22.222)`
+  2. `(33.333, 11.111)`
+  3. `(55.555, 33.333)`
+  4. `(88.888, 22.222)`
+  5. `(88.888, 44.444)`
+- actual stored contour record order is unresolved.
+- hypothesis tested: open-path 계열에서 session recapture 시 `0x03` 재현성과 high-byte 변동 분리.
+
 ## 3) Fixture-by-Fixture Validation Table (Ground Truth Intent)
 
 | filename | Type3 UI source term | source geometry | expected contour behavior | expected count | validation purpose | why it matters |
@@ -126,11 +164,26 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 - `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - `polygon_6_sides_rotated_start`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - `polyline_from_polygon_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
+- `polyline_5_points_reversed`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
+- `closed_from_polyline_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
 - rectangle scale/offset 변형(`small/large/negative/large_positive/recap_session2`)은 모두 selected `shift=8`, `count=4`
 - `polyline_2_points`/`polyline_3_points`는 현재 `polyline_candidate`
 - `polygon_5_sides`/`polygon_6_sides`는 현재 `polygon_candidate`
 - `polygon_6_sides_rotated_start`는 현재 `polygon_candidate`
 - `polyline_from_polygon_5_points`는 현재 parser 출력상 `polygon_candidate`이며 open/closed 의존성은 추가 evidence 수집 대상
+- `polyline_5_points` vs `polyline_5_points_reversed`: `0x03` 좌표 집합이 동일하게 유지됨 (record index는 변동)
+- `polyline_5_points` vs `closed_from_polyline_5_points`: `0x03` 좌표 집합이 유지됨
+- `polygon_6_sides` vs `polygon_6_sides_session2`: `0x03` 좌표가 유지되며 low-byte 안정성은 높게 관찰됨(세부 full-tag/high-byte 변화는 evidence로 추적)
+  - 최신 관찰: base의 `(55.555,99.999)` `0x...03`가 session2에서는 `0x...0D`로 관찰되어 `0x03` 좌표 보존은 확인되지 않음
+  - 다만 동일 좌표군 전반에서 high-byte는 변동이 크고 low-byte 패턴(`0x0D` 계열)은 상대적으로 반복되어, low-byte와 full-tag를 분리 추적해야 함
+- 따라서 `0x03`에 대해:
+  - `always middle` 가설은 약화
+  - pure record-position 가설은 약화
+  - open-only/closed-only 가설도 약화
+  - session recapture에서 `0x03` coordinate 재현 실패 사례가 관찰되어 strong coordinate-local 가설도 약화
+  - 현재 safest interpretation: `0x03`은 geometry/session/internal-state가 섞인 unresolved volatile family 후보
+  - full raw tag는 session-sensitive 경향, low-byte는 상대적으로 더 안정적일 수 있으나 `0x03` 자체 승격 근거는 부족
+  - semantic meaning은 여전히 unresolved (승격 금지)
 
 ## 5) Fixture 제작 지침 (Type3 작업자용)
 

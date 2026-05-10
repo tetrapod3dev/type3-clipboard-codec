@@ -166,6 +166,20 @@ text 분기 필요 지점:
   - polygon 판정은 현재 `kind` 확정 의미에 의존하지 않고 role/control/open-closed 패턴을 우선 사용
   - role/tag 의미 확정 전까지 `polygon_candidate` confidence는 provisional 유지가 타당
 
+### Updated Interpretation of `0x03` Family
+
+- weakened hypotheses:
+  - always-middle marker
+  - pure record-position marker
+  - purely open/closed-topology-dependent marker
+- session-recapture evidence also weakens strong coordinate-local interpretation:
+  - `polygon_6_sides`의 `(55.555, 99.999)`는 `0x48454C03`
+  - `polygon_6_sides_session2`의 동일 좌표는 `0x56454C0D`
+- current safest interpretation:
+  - `0x03`은 geometry/session/internal-state가 섞인 unresolved volatile family 후보
+  - full raw tag는 session-sensitive
+  - low byte는 full tag보다 상대적으로 안정적일 수 있으나 `0x03` 자체는 semantic role로 승격할 재현성이 아직 부족
+
 ## Contour Tag/Role Evidence Status
 
 - 현재 confirmed role mapping 범위(관찰 기반, 보수 적용):
@@ -176,6 +190,16 @@ text 분기 필요 지점:
   - 예: `polygon_6_sides`의 `0x48454C03`는 현재 `unknown`
   - 예: `polygon_6_sides_rotated_start`에서도 `0x...03`가 관찰됨 (start-point 변경 후 비교용)
   - 예: `polyline_from_polygon_5_points`에서도 `0x...03`가 관찰됨 (closed->open topology 비교용)
+  - 예: `polyline_5_points_reversed`에서도 `0x...03`가 동일 좌표 집합에 유지됨 (reversal 비교용)
+  - 예: `closed_from_polyline_5_points`에서도 `0x...03`가 유지됨 (open->closed 비교용)
+- pairwise evidence update (`tools/analyze_contour_tag_role_evidence.py`):
+  - `polyline_5_points` vs `polyline_5_points_reversed`: `0x03` 좌표 집합 보존, index만 이동
+  - `polyline_5_points` vs `closed_from_polyline_5_points`: `0x03` 좌표 집합 보존
+  - `polygon_6_sides` vs `polygon_6_sides_session2`: `0x03` 좌표 집합은 보존되지 않았고(base의 `0x...03`가 session2에서 `0x...0D`로 관찰), high-byte 변동은 크게 관찰됨
+  - `polyline_5_points` vs `polyline_5_points_session2`: open-path 계열에서도 `0x03` 좌표 재현성/low-byte 재현성/full-tag 재현성을 분리 관찰
+  - 해석: `always middle`/pure record-position 가설 약화, coordinate-local 가능성 상대 강화
+  - 최신 해석: session 재캡처 증거로 strong coordinate-local 가설도 약화됨
+  - 단, semantic 의미는 unresolved/provisional 유지 (`0x03==anchor` 승격 금지)
 - 주의:
   - `...03`를 anchor로 확정 승격할 근거는 아직 부족
   - tag 의미와 shape semantic을 직접 동일시하지 않는다
