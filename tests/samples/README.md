@@ -5,6 +5,64 @@ This directory contains reverse-engineering sample fixtures for the `type3_clipb
 These files are raw hex dumps of clipboard payloads copied from the Type3 program.
 They are used as reference fixtures for parsing, testing, and documenting currently known binary structures.
 
+## Future Geometry Fixture Plan
+
+다음 geometry 구조 검증용 fixture 확장 계획은 아래 문서를 따른다.
+
+- `docs/geometry_fixture_plan.md`
+
+핵심 목적:
+- contour count 다양성 확보
+- `selected_shift=8` 관찰의 세션/좌표 조건 재현성 검증
+- 현재 `strong observed candidate / provisional` 상태를 유지한 채 근거 확대
+
+## Newly Captured Geometry Fixtures (Evidence Update)
+
+아래 fixture는 `tests/samples/`에 실제 추가된 단일 객체 캡처다.
+이번 섹션은 **ground truth intent**와 **current parser observation**을 분리해 기록한다.
+
+해석 정책:
+- fixture 파일명(`polyline`, `polygon`, `rectangle`)은 사람이 이해하기 위한 intent label이다.
+- draw tool 이름과 내부 object/class semantic을 동일시하지 않는다.
+- 현재 확실한 UI 관찰 용어는 status bar의 `곡선 객체`다(Observed).
+- absolute offset은 계속 diagnostic only다.
+
+### Ground truth intent (geometry)
+
+| fixture | intent | open/closed | vertices (intent) | bbox (mm, intent) |
+|---|---|---|---:|---|
+| `polyline_2_points.txt` | 열린 폴리선 | open | 2 | x(11.111~88.888), y(22.222~22.222) |
+| `polyline_3_points.txt` | 열린 폴리선 | open | 3 | x(11.111~88.888), y(22.222~44.444) |
+| `polyline_5_points.txt` | 열린 폴리선 | open | 5 | x(11.111~88.888), y(11.111~44.444) |
+| `polygon_5_sides.txt` | 닫힌 5각형 | closed | 5 | x(33.333~77.777), y(44.444~88.888) |
+| `polygon_6_sides.txt` | 닫힌 6각형 | closed | 6 | x(33.333~77.777), y(44.444~99.999) |
+| `rectangle_small.txt` | 사각형(소형 스케일) | closed | 4 | x(11.111~11.44433), y(22.222~22.66644) |
+| `rectangle_large.txt` | 사각형(대형 스케일) | closed | 4 | x(11.111~33344.111), y(22.222~44466.222) |
+| `rectangle_negative_offset.txt` | 사각형(음수 오프셋) | closed | 4 | x(-88.888~-55.555), y(-77.777~-33.333) |
+| `rectangle_large_positive_offset.txt` | 사각형(대형 양수 오프셋) | closed | 4 | x(11111~11144.333), y(22222~22266.444) |
+| `rectangle_recap_session2.txt` | `default_rectangle` 재캡처 | closed | 4 | `default_rectangle`와 동일 intent |
+
+참고:
+- scale 관련 fixture는 UI 스케일 문구보다 최종 측정 geometry 값을 우선한다.
+
+### Current parser observation snapshot (provisional)
+
+`tools/report_contour_header_candidates.py` 및 `tools/inspect_clipboard_hex.py` 기준:
+- `polyline_2_points`: selected `(shift=8, kind=0, count=2, raw=0000000002000000)`, contour records=2
+- `polyline_3_points`: selected `(shift=8, kind=0, count=3, raw=0000000003000000)`, contour records=3
+- `polyline_5_points`: raw 후보 `count=5` 관찰, 현재 gate로 미선택, contour records=0
+- `polygon_5_sides`: raw 후보 `count=5` 관찰, 현재 gate로 미선택, contour records=0
+- `polygon_6_sides`: raw 후보 `count=6` 관찰, 현재 gate로 미선택, contour records=0
+- rectangle 변형(`small/large/negative/large_positive/recap_session2`): 모두 selected `shift=8`, `kind=2`, `count=4`
+
+추가 관찰:
+- 현재 plausible count gate `{2,3,4,8,12}`는 `count=5/6` 샘플을 선택하지 못하므로 incomplete whitelist 상태다.
+- `polyline_2_points`, `polyline_3_points`는 현재 classifier에서 `arc`로 표시되어 count-heavy heuristic 오분류 evidence가 존재한다.
+
+UI/semantic 해석 주의:
+- `polyline_3_points`와 `default_circular_arc`는 모두 `count=3`이지만, arc는 `anchor/control=2/1`, polyline_3는 `2/0`(중간 포인트 `unknown`)으로 관찰된다.
+- 따라서 같은 count라도 semantic 확정은 아직 provisional로 유지한다.
+
 ## File: `default_rectangle.txt`
 
 This file contains the hex dump of a copied rectangle-like object from Type3.
@@ -746,24 +804,19 @@ Inventory source:
 - `tools/text_fixture_inventory.py --markdown`
 - target directory: `tests/samples/text/*.txt`
 
-| file | declared_object_count | parsed_chain_candidate_count | fixture_intent_text | parser_text_candidate | fixture_intent_font | parser_font_candidate | fixture_intent_anchor | parser_anchor_candidate | anchor_parse_method | fixture_intent_color | parser_color_candidate | text_confidence | font_confidence | anchor_confidence | color_confidence | notes |
-|---|---:|---:|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| default_text.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | candidate_match | provisional | strong | - |
-| text_color_army_green.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Army Green | Black | candidate_match | candidate_match | provisional | unresolved | Parser limitation: expected text color and detected color mismatch. |
-| text_color_navy_blue.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Navy Blue | Black | candidate_match | candidate_match | provisional | unresolved | Parser limitation: expected text color and detected color mismatch. |
-| text_font_hy_gyeongo_dik.txt | None | 1 | abcdefg | abcdefg | HY견고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
-| text_font_hy_se_gothic.txt | None | 1 | abcdefg | abcdefg | HY세고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
-| text_font_hy_tae_gothic.txt | None | 1 | abcdefg | abcdefg | HY태고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
-| text_font_hy_teuktae_gothic.txt | None | 1 | abcdefg | abcdefg | HY특태고딕 | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: expected HY font and detected font mismatch. |
-| text_font_arial_bold.txt | None | 1 | abcdefg | abcdefg | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate_match | unresolved | provisional | strong | Parser limitation: bold font candidate extraction unresolved. |
-| text_group_same_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Army Green | Army Green | candidate_match | candidate_match | provisional | weak | - |
-| text_group_mixed_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | mixed(Army Green,Navy Blue) | Navy Blue | candidate_match | candidate_match | provisional | unresolved | - |
-| text_multiline_basic.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
-| text_spacing_fixed.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
-| text_spacing_proportional.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
-| text_spacing_print_proportional.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | candidate | candidate_match | provisional | strong | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
-| text_korean_basic.txt | None | 1 | Korean text (fixture-defined) | - | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | unresolved | candidate_match | provisional | strong | Parser limitation: Korean visible text candidate extraction unresolved. |
-| text_korean_mixed.txt | None | 1 | Mixed Korean/ASCII (fixture-defined) | - | Arial | Arial | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | unresolved | candidate_match | provisional | strong | Parser limitation: Korean visible text candidate extraction unresolved. |
+아래 표는 `tools/text_fixture_inventory.py --markdown`의 최신 출력에서
+정책/회귀에 중요한 행만 발췌한 것이다.
+
+| file | declared_object_count | parsed_chain_candidate_count | fixture_intent_text | parser_text_candidate | fixture_intent_font | parser_font_candidate | font_notes | fixture_intent_anchor | parser_anchor_candidate | anchor_parse_method | fixture_intent_color | parser_color_candidate | color_candidate_source | color_confidence | color_notes | text_confidence | font_confidence | anchor_confidence | notes |
+|---|---:|---:|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| default_text.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black (observed baseline) | Black | fixed_offset_text_unverified | unresolved | expected=Black (observed baseline), detected=Black | candidate_match | candidate_match | provisional | - |
+| text_font_arial_bold.txt | None | 1 | abcdefg | abcdefg | Arial Bold | Arial Bold | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | fixed_offset_text_unverified | provisional | - | candidate_match | candidate_match | provisional | - |
+| text_color_army_green.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Army Green | Black | fixed_offset_text_unverified | unresolved | expected=Army Green, detected=Black; Single text object color candidate does not match fixture intent. | candidate_match | candidate_match | provisional | Parser limitation: expected text color and detected color mismatch. |
+| text_color_navy_blue.txt | None | 1 | abcdefg | abcdefg | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Navy Blue | Black | fixed_offset_text_unverified | unresolved | expected=Navy Blue, detected=Black; Single text object color candidate does not match fixture intent. | candidate_match | candidate_match | provisional | Parser limitation: expected text color and detected color mismatch. |
+| text_group_same_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | ['Army Green', 'Army Green'] | ['Army Green', 'Army Green'] | ['text_candidate_unverified', 'text_candidate_unverified'] | mixed_object_ownership_unresolved | Per-object color ownership is provisional for multi-object text fixtures. | candidate_match | candidate_match | provisional | - |
+| text_group_mixed_color_two_objects.txt | None | 2 | abcdefg | abcdefg | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | ['Army Green', 'Navy Blue'] | ['Navy Blue', 'Navy Blue'] | ['text_candidate_unverified', 'text_candidate_unverified'] | mixed_object_ownership_unresolved | Per-object color ownership is provisional for multi-object text fixtures.; expected=['Army Green', 'Navy Blue'], detected=['Navy Blue', 'Navy Blue'] | candidate_match | candidate_match | provisional | - |
+| text_korean_basic.txt | None | 1 | Korean text (fixture-defined) | - | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | Black | fixed_offset_text_unverified | provisional | - | unresolved | candidate_match | provisional | Parser limitation: Korean visible text candidate extraction unresolved. |
+| text_multiline_basic.txt | None | 2 | abcd\nefgh | abcd<br>efgh | Arial | Arial | - | (111.111,222.222,0.000) | (111.111,222.222,0.000) | baseline_midpoint | Black | ['Black', 'Black'] | ['fixed_offset_text_unverified', 'fixed_offset_text_unverified'] | mixed_object_ownership_unresolved | Per-object color ownership is provisional for multi-object text fixtures. | candidate | candidate_match | provisional | Multiline fixture: parsed_chain_candidate_count is parser chain count, not confirmed Type3 object count. |
 
 For full fixture list, regenerate from CLI output:
 
@@ -929,13 +982,12 @@ Important:
 
 #### Text object bbox
 
-The source object was positioned so that the lower-left bbox origin is:
+텍스트 fixture에서 통제하는 기준값은 bbox lower-left가 아니라 text reference anchor다.
 
-- `(0.000, 0.000, 0.000)` mm
+- controlled anchor: `X 위치`, `Y 위치`, `Z 위치`
+- bbox는 glyph/정렬/폭/기울임/회전 등에 따라 달라지는 observed/derived geometry다.
 
-The parsed bbox should be used as the authoritative geometry reference.
-
-As with other Type3 fixtures, coordinates are expected to be stored as little-endian `double` values in **meters**, not millimeters.
+따라서 text fixture 검증 시 우선 기준은 anchor 일치성이고, bbox는 부가 관찰값으로 취급한다.
 
 #### Text outline geometry
 

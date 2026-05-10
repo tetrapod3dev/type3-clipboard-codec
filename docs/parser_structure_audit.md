@@ -1,5 +1,8 @@
 # Parser Structure Audit (Type3ChainParser 중심)
 
+## 관련 문서
+- Geometry 구조 감사(최신): `docs/geometry_parser_structure_audit.md`
+
 ## 1) 현재 문제 요약
 - `src/type3_clipboard_codec/parsers/type3_chain_parser.py`는 현재 약 1256 lines로, 파싱/분류/후보 추출/신뢰도/진단 메모 구성까지 한 파일에 혼재되어 있다.
 - CParagraphe field offset 분석 도구(`validate_*`, `report_*`) 간 결과 흔들림은 텍스트 역공학 난이도뿐 아니라, parser와 analyzer의 책임 경계가 느슨한 구조에서도 발생할 수 있다.

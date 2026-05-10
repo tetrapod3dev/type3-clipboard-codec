@@ -11,47 +11,108 @@ def is_plausible_contour_count(count: int) -> bool:
     return count in {2, 3, 4, 8, 12}
 
 
-def read_contour_header(payload: bytes) -> Optional[List[Tuple[int, int, int]]]:
+def analyze_contour_header_candidates(payload: bytes) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict]]:
     """
-    Conservatively locates probable contour headers.
-    Returns a list of all plausible (kind, count, offset) tuples found.
+    Analyze contour-header candidates while preserving current selection behavior.
+    Returns:
+    - selected headers: list[(kind, count, offset)] or None
+    - diagnostics: marker-by-marker candidate/selection traces
     """
     marker = b"CObDao"
     idx = 0
-    found_headers = []
+    found_headers: List[Tuple[int, int, int]] = []
+    diagnostics: List[dict] = []
+    candidate_shifts = [8, 14, 12, 16, 20]
+
     while True:
         marker_pos = payload.find(marker, idx)
         if marker_pos == -1:
             break
 
         base = marker_pos + len(marker)
-        candidate_shifts = [8, 14, 12, 16, 20]
+        marker_diag = {
+            "marker_offset": marker_pos,
+            "candidate_shifts": list(candidate_shifts),
+            "candidates": [],
+            "selected_shift": None,
+            "selected_header_offset": None,
+            "selected_kind": None,
+            "selected_count": None,
+            "selected_payload_offset": None,
+            "selected_raw_header_hex": None,
+            "selection_reason": None,
+            "confidence": "provisional",
+        }
 
         found_for_this_marker = False
         for shift in candidate_shifts:
             header_start = base + shift
+            candidate = {
+                "shift": shift,
+                "header_offset": header_start,
+                "kind": None,
+                "count": None,
+                "plausible": False,
+                "rejection_reason": None,
+                "raw_8b_hex": None,
+            }
             if header_start + 8 > len(payload):
+                candidate["rejection_reason"] = "header_out_of_bounds"
+                marker_diag["candidates"].append(candidate)
                 continue
 
             try:
+                candidate["raw_8b_hex"] = payload[header_start : header_start + 8].hex()
                 kind = struct.unpack("<I", payload[header_start : header_start + 4])[0]
                 count = struct.unpack("<I", payload[header_start + 4 : header_start + 8])[0]
+                candidate["kind"] = kind
+                candidate["count"] = count
+                candidate["plausible"] = is_plausible_contour_count(count)
+                if not candidate["plausible"]:
+                    candidate["rejection_reason"] = "count_not_plausible"
+                    marker_diag["candidates"].append(candidate)
+                    continue
 
-                if is_plausible_contour_count(count):
-                    offset = header_start + 8
-                    if not any(h[2] == offset for h in found_headers):
-                        found_headers.append((kind, count, offset))
+                offset = header_start + 8
+                candidate["selected_payload_offset"] = offset
+                if any(h[2] == offset for h in found_headers):
+                    candidate["rejection_reason"] = "duplicate_selected_offset"
+                    marker_diag["candidates"].append(candidate)
+                    continue
 
-                    idx = offset
-                    found_for_this_marker = True
-                    break
+                found_headers.append((kind, count, offset))
+                marker_diag["selected_shift"] = shift
+                marker_diag["selected_header_offset"] = header_start
+                marker_diag["selected_kind"] = kind
+                marker_diag["selected_count"] = count
+                marker_diag["selected_payload_offset"] = offset
+                marker_diag["selected_raw_header_hex"] = candidate["raw_8b_hex"]
+                marker_diag["selection_reason"] = "first_plausible_shift_with_unique_offset"
+                marker_diag["candidates"].append(candidate)
+                idx = offset
+                found_for_this_marker = True
+                break
             except Exception:
+                candidate["rejection_reason"] = "unpack_error"
+                marker_diag["candidates"].append(candidate)
                 continue
 
         if not found_for_this_marker:
+            marker_diag["selection_reason"] = "no_plausible_candidate"
             idx = marker_pos + 1
 
-    return found_headers if found_headers else None
+        diagnostics.append(marker_diag)
+
+    return (found_headers if found_headers else None), diagnostics
+
+
+def read_contour_header(payload: bytes) -> Optional[List[Tuple[int, int, int]]]:
+    """
+    Conservatively locates probable contour headers.
+    Returns a list of all plausible (kind, count, offset) tuples found.
+    """
+    found_headers, _diagnostics = analyze_contour_header_candidates(payload)
+    return found_headers
 
 
 def read_contour_records(

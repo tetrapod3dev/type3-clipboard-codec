@@ -14,6 +14,7 @@ from ..models.geometry import (
 from ..utils.bytes_reader import BytesReader
 from .binary.node_scanner import extract_nodes
 from .geometry.contour_parser import (
+    analyze_contour_header_candidates,
     assign_semantic_roles,
     is_plausible_contour_count,
     read_contour_header,
@@ -34,6 +35,18 @@ from .style.property_extend_parser import (
     read_style_properties_with_context,
     style_for_reference_offset,
 )
+from .text.cparagraphe_parser import (
+    attach_text_anchor_candidates,
+    attach_text_runs_to_chains,
+    extract_candidate_text_records,
+    extract_font_candidates,
+    extract_font_name,
+    extract_text_runs,
+    read_paragraphe_slot_record_runs,
+    read_slot_record_runs_from_blob,
+    records_to_text_run,
+)
+from .text.text_pipeline import run_text_pipeline
 
 
 class Type3ChainParser(BaseParser):
@@ -101,38 +114,22 @@ class Type3ChainParser(BaseParser):
             main_markers = sorted(list(seen_markers))
 
         is_text_object = self._looks_like_text_object(full_data, all_nodes)
-        font_candidates = self._extract_font_candidates(full_data)
-        font_name, font_offset, font_context = self._extract_font_name(full_data, font_candidates)
-        raw_text_records: List[bytes] = []
-        text_notes: List[str] = []
-        text_content = None
-
-        if is_text_object:
-            czone_bbox = self._first_bbox_for_class(all_nodes, "CZone")
-            if czone_bbox is not None:
-                main_bbox = czone_bbox
-
-            text_runs, raw_text_records, text_notes = self._extract_text_runs(all_nodes)
-            self._attach_text_runs_to_chains(final_chains, text_runs)
-            self._attach_text_anchor_candidates(final_chains)
-            self._downgrade_unverified_text_color_selection(final_chains)
-            if final_chains:
-                final_chains.sort(
-                    key=lambda c: (
-                        c.text_anchor.x if c.text_anchor is not None else (c.bbox.center_mm.x if c.bbox else float("inf")),
-                        c.text_anchor.y if c.text_anchor is not None else (c.bbox.center_mm.y if c.bbox else float("inf")),
-                    )
-                )
-            text_content = text_runs[0]["text"] if text_runs else None
-            text_notes.append(
-                "Text object parsing is provisional; unknown CParagraphe bytes are preserved in raw_data and node payloads."
-            )
-            if len(final_chains) > 1:
-                text_notes.append(
-                    "Per-object text-run ownership and per-object mixed-color ownership are still provisional for multi-text fixtures."
-                )
-            if font_name is None:
-                text_notes.append("Korean font name storage unresolved (font_name_candidate not decoded).")
+        text_pipeline = run_text_pipeline(
+            full_data=full_data,
+            all_nodes=all_nodes,
+            chains=final_chains,
+            is_text_object=is_text_object,
+            known_font_markers=self.KNOWN_FONT_MARKERS,
+        )
+        font_candidates = text_pipeline.font_candidates
+        font_name = text_pipeline.font_name
+        font_offset = text_pipeline.font_offset
+        font_context = text_pipeline.font_context
+        raw_text_records = text_pipeline.raw_text_records
+        text_notes = text_pipeline.text_notes
+        text_content = text_pipeline.text_content
+        if text_pipeline.czone_bbox is not None:
+            main_bbox = text_pipeline.czone_bbox
 
         aggregate_bbox = self._aggregate_bbox_from_chains(final_chains)
         if len(final_chains) > 1 and aggregate_bbox is not None and not is_text_object:
@@ -216,6 +213,16 @@ class Type3ChainParser(BaseParser):
                 else None,
                 "font_candidates": font_candidates,
                 "text_record_count": len(raw_text_records),
+                "contour_header_diagnostics": [
+                    {
+                        "chain_index": idx,
+                        "source_stream_offset": chain.source_stream_offset,
+                        "source_payload_offset": chain.source_payload_offset,
+                        "diagnostics": chain.contour_header_diagnostics,
+                    }
+                    for idx, chain in enumerate(final_chains)
+                    if chain.contour_header_diagnostics
+                ],
                 "structure_kind": (
                     "group_candidate_결합"
                     if is_group_candidate
@@ -262,49 +269,12 @@ class Type3ChainParser(BaseParser):
         downgrade_unverified_text_color_selection(chains)
 
     def _extract_font_candidates(self, data: bytes) -> List[dict[str, Any]]:
-        scan_limit = min(len(data), 2048)
-        idx = 0
-        out: List[dict[str, Any]] = []
-        seen: set[tuple[str, int]] = set()
-
-        while idx < scan_limit:
-            if not (32 <= data[idx] <= 126):
-                idx += 1
-                continue
-            start = idx
-            while idx < scan_limit and 32 <= data[idx] <= 126:
-                idx += 1
-            if idx < len(data) and data[idx] == 0:
-                try:
-                    candidate = data[start:idx].decode("ascii")
-                except UnicodeDecodeError:
-                    candidate = ""
-                if len(candidate) >= 3:
-                    key = (candidate, start)
-                    if key not in seen:
-                        seen.add(key)
-                        out.append({"name": candidate, "offset": start})
-            idx += 1
-        return out
+        return extract_font_candidates(data)
 
     def _extract_font_name(
         self, data: bytes, font_candidates: Optional[List[dict[str, Any]]] = None
     ) -> Tuple[Optional[str], Optional[int], Optional[bytes]]:
-        """
-        Scan early bytes for null-terminated printable ASCII font candidates.
-        Offsets are deliberately not hard-coded.
-        """
-        candidates = font_candidates if font_candidates is not None else self._extract_font_candidates(data)
-        for item in candidates:
-            candidate = item.get("name", "")
-            start = int(item.get("offset", 0))
-            if candidate in self.KNOWN_FONT_MARKERS:
-                end = start + len(candidate)
-                context_start = max(0, start - 16)
-                context_end = min(len(data), end + 17)
-                return candidate, start, data[context_start:context_end]
-
-        return None, None, None
+        return extract_font_name(data, self.KNOWN_FONT_MARKERS, font_candidates)
 
     def _first_bbox_for_class(self, nodes: List[Type3Node], class_name: str) -> Optional[BBox3D]:
         for node in nodes:
@@ -313,215 +283,25 @@ class Type3ChainParser(BaseParser):
         return None
 
     def _extract_text_runs(self, nodes: List[Type3Node]) -> Tuple[List[dict[str, Any]], List[bytes], List[str]]:
-        notes: List[str] = []
-        runs: List[dict[str, Any]] = []
-        primary_records: List[bytes] = []
-
-        for node in nodes:
-            if node.header.class_name != "CParagraphe":
-                continue
-            for recs in self._read_paragraphe_slot_record_runs(node.payload):
-                run = self._records_to_text_run(recs)
-                if run is None:
-                    continue
-                if run["text"] in [r["text"] for r in runs]:
-                    continue
-                runs.append(run)
-                if not primary_records:
-                    primary_records = recs
-
-        if len(runs) < 2:
-            full_blob = b"".join(node.payload for node in nodes)
-            for recs in self._read_slot_record_runs_from_blob(full_blob):
-                run = self._records_to_text_run(recs)
-                if run is None:
-                    continue
-                if run["text"] in [r["text"] for r in runs]:
-                    continue
-                runs.append(run)
-
-        if runs:
-            return runs, primary_records, notes
-
-        notes.append("CParagraphe text records were detected, but text content could not be safely decoded.")
-        return [], primary_records, notes
+        return extract_text_runs(nodes)
 
     def _extract_candidate_text_records(self, nodes: List[Type3Node]) -> List[bytes]:
-        """
-        Locate repeated CParagraphe record candidates without treating arbitrary
-        ASCII strings, class names, metadata keys, or font names as text content.
-        """
-        for node in nodes:
-            if node.header.class_name != "CParagraphe":
-                continue
-
-            runs = self._read_paragraphe_slot_record_runs(node.payload)
-            if not runs:
-                continue
-            # Use the longest decoded run as the primary candidate.
-            runs.sort(key=lambda rs: len(rs), reverse=True)
-            return runs[0]
-
-        return []
+        return extract_candidate_text_records(nodes)
 
     def _read_paragraphe_slot_record_runs(self, payload: bytes) -> List[List[bytes]]:
-        """
-        Detect multiple text-record runs from CParagraphe payload.
-        Known fixtures can carry more than one run in a single payload.
-        """
-        return self._read_slot_record_runs_from_blob(payload)
+        return read_paragraphe_slot_record_runs(payload)
 
     def _read_slot_record_runs_from_blob(self, payload: bytes) -> List[List[bytes]]:
-        record_stride = 204
-        runs: List[tuple[int, List[bytes]]] = []
-        seen_starts: set[int] = set()
-
-        for offset in range(0, max(0, len(payload) - 8)):
-            if payload[offset : offset + 4] != b"\x05\x00\x00\x00":
-                continue
-            # Only treat maximal run starts. If previous stride also starts with slot marker,
-            # current offset is likely inside an existing run.
-            if offset - record_stride >= 0 and payload[offset - record_stride : offset - record_stride + 4] == b"\x05\x00\x00\x00":
-                continue
-            if offset in seen_starts:
-                continue
-            # Must look like a run (at least two slots)
-            if offset + record_stride + 4 > len(payload):
-                continue
-            if payload[offset + record_stride : offset + record_stride + 4] != b"\x05\x00\x00\x00":
-                continue
-
-            records: List[bytes] = []
-            cursor = offset
-            for _ in range(256):
-                if cursor + 8 > len(payload):
-                    break
-                if payload[cursor : cursor + 4] != b"\x05\x00\x00\x00":
-                    break
-                record_end = min(len(payload), cursor + record_stride)
-                records.append(payload[cursor:record_end])
-                code = struct.unpack("<I", payload[cursor + 4 : cursor + 8])[0]
-                cursor += record_stride
-                if code == 0:
-                    break
-
-            if len(records) < 2:
-                continue
-            run = self._records_to_text_run(records)
-            if run is None:
-                continue
-            runs.append((offset, records))
-            seen_starts.add(offset)
-
-        # Deduplicate heavily overlapping runs by preferring longer runs.
-        runs.sort(key=lambda item: len(item[1]), reverse=True)
-        filtered: List[tuple[int, List[bytes]]] = []
-        for start, recs in runs:
-            if any(abs(start - kept_start) < 150 for kept_start, _kept in filtered):
-                continue
-            filtered.append((start, recs))
-
-        filtered.sort(key=lambda item: item[0])
-        return [records for _start, records in filtered]
+        return read_slot_record_runs_from_blob(payload)
 
     def _records_to_text_run(self, records: List[bytes]) -> Optional[dict[str, Any]]:
-        codes: List[int] = []
-        for record in records:
-            if len(record) < 8:
-                return None
-            codes.append(struct.unpack("<I", record[4:8])[0])
-
-        if not codes:
-            return None
-
-        decoded_chars: List[str] = []
-        for code in codes:
-            if code == 0:
-                continue
-            if code == 13:
-                decoded_chars.append("\n")
-                continue
-            if 32 <= code <= 126:
-                decoded_chars.append(chr(code))
-                continue
-            return None
-
-        text = "".join(decoded_chars)
-        if not text:
-            return None
-        line_count = text.count("\n") + 1
-        return {
-            "text": text,
-            "codes": codes,
-            "line_count": line_count,
-        }
+        return records_to_text_run(records)
 
     def _attach_text_runs_to_chains(self, chains: List[Type3ObjectChain], runs: List[dict[str, Any]]) -> None:
-        if not chains or not runs:
-            return
-
-        # If there is one run, attach to the first chain only.
-        if len(runs) == 1 or len(chains) == 1:
-            chains[0].text_candidate = runs[0]["text"]
-            chains[0].source_text_candidate = runs[0]["text"]
-            chains[0].line_count = runs[0]["line_count"]
-            chains[0].text_notes.append("Text candidate extracted from CParagraphe slot records.")
-            if len(runs) > 1:
-                chains[0].text_notes.append("Multiple text runs detected; mapping to objects is provisional.")
-            return
-
-        # Heuristic mapping for multi-object text fixtures:
-        # match shorter text runs to narrower bboxes and longer runs to wider bboxes.
-        chain_indices = list(range(len(chains)))
-        chain_indices.sort(
-            key=lambda idx: (
-                chains[idx].bbox.width_mm if chains[idx].bbox is not None else float("inf"),
-                chains[idx].bbox.center_mm.x if chains[idx].bbox is not None else float("inf"),
-            )
-        )
-        run_indices = list(range(len(runs)))
-        run_indices.sort(key=lambda idx: len(runs[idx]["text"]))
-
-        for chain_idx, run_idx in zip(chain_indices, run_indices):
-            chain = chains[chain_idx]
-            run = runs[run_idx]
-            chain.text_candidate = run["text"]
-            chain.source_text_candidate = run["text"]
-            chain.line_count = run["line_count"]
-            chain.text_notes.append(
-                "Text candidate mapped from CParagraphe run by width/length heuristic (provisional for multi-object text)."
-            )
+        attach_text_runs_to_chains(chains, runs)
 
     def _attach_text_anchor_candidates(self, chains: List[Type3ObjectChain]) -> None:
-        for chain in chains:
-            if len(chain.contour_records) >= 2:
-                xs = [p.x_mm for p in chain.contour_records]
-                ys = [p.y_mm for p in chain.contour_records]
-                zs = [p.z_mm for p in chain.contour_records]
-                chain.text_anchor = Point(
-                    x=(min(xs) + max(xs)) / 2.0,
-                    y=(min(ys) + max(ys)) / 2.0,
-                    z=(min(zs) + max(zs)) / 2.0,
-                )
-                chain.text_anchor_expected_source = "confirmed_from_fixture_setup"
-                chain.text_anchor_parse_method = "baseline_midpoint"
-                chain.text_anchor_parse_confidence = "provisional"
-                chain.text_anchor_source = chain.text_anchor_parse_method
-                chain.text_anchor_confidence = chain.text_anchor_parse_confidence
-                chain.text_notes.append(
-                    "UI anchor value is confirmed by fixture setup, but direct binary offset is not confirmed yet."
-                )
-            elif chain.bbox is not None:
-                c = chain.bbox.center_mm
-                chain.text_anchor = Point(x=c.x, y=c.y, z=c.z)
-                chain.text_anchor_expected_source = "confirmed_from_fixture_setup"
-                chain.text_anchor_parse_method = "bbox_center_fallback"
-                chain.text_anchor_parse_confidence = "fallback"
-                chain.text_anchor_source = chain.text_anchor_parse_method
-                chain.text_anchor_confidence = chain.text_anchor_parse_confidence
-                chain.text_notes.append(
-                    "Anchor fallback from bbox center; direct binary anchor offset is not confirmed."
-                )
+        attach_text_anchor_candidates(chains)
 
     def _read_paragraphe_slot_records(self, payload: bytes) -> List[bytes]:
         """
@@ -627,7 +407,9 @@ class Type3ChainParser(BaseParser):
             if node.header.class_name != "CContour":
                 continue
 
-            headers = self._read_contour_header(node.payload)
+            headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload)
+            if header_diagnostics:
+                current_work_chain.contour_header_diagnostics.extend(header_diagnostics)
             if not headers:
                 continue
 
@@ -672,7 +454,9 @@ class Type3ChainParser(BaseParser):
         Some multi-object samples carry an additional contour inside CPropertyExtend.
         Treat these as extra object chains while preserving the surrounding markers.
         """
-        headers = self._read_contour_header(node.payload)
+        headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload)
+        if header_diagnostics:
+            template_chain.contour_header_diagnostics.extend(header_diagnostics)
         if not headers:
             return []
 
@@ -769,6 +553,11 @@ class Type3ChainParser(BaseParser):
 
     def _read_contour_header(self, payload: bytes) -> Optional[List[Tuple[int, int, int]]]:
         return read_contour_header(payload)
+
+    def _analyze_contour_header_candidates(
+        self, payload: bytes
+    ) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict[str, Any]]]:
+        return analyze_contour_header_candidates(payload)
 
     def _is_plausible_contour_count(self, count: int) -> bool:
         return is_plausible_contour_count(count)
