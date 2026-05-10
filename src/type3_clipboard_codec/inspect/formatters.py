@@ -39,6 +39,8 @@ def _bbox_to_dict_mm(bbox: BBox3D | None) -> dict[str, float] | None:
 
 
 def _infer_chain_object_type(chain: Type3ObjectChain) -> str:
+    if chain.shape_type:
+        return chain.shape_type
     count = len(chain.contour_records)
     anchors = len([r for r in chain.contour_records if r.role == "anchor"])
     controls = len([r for r in chain.contour_records if r.role == "control"])
@@ -85,6 +87,17 @@ def _chain_to_dict(chain: Type3ObjectChain, index: int, is_text_object: bool = F
         "contour_record_count": len(chain.contour_records),
         "anchor_count": len([r for r in chain.contour_records if r.role == "anchor"]),
         "control_count": len([r for r in chain.contour_records if r.role == "control"]),
+        "shape_classification_reason": chain.shape_classification_reason,
+        "shape_classification_confidence": chain.shape_classification_confidence,
+        "role_pattern": list(chain.role_pattern),
+        "anchor_record_count": chain.anchor_record_count,
+        "control_record_count": chain.control_record_count,
+        "unknown_record_count": chain.unknown_record_count,
+        "arc_like_control_evidence": chain.arc_like_control_evidence,
+        "closed_like_evidence": chain.closed_like_evidence,
+        "closed_like_evidence_sources": list(chain.closed_like_evidence_sources),
+        "first_equals_last": chain.first_equals_last,
+        "role_pattern_closed_like": chain.role_pattern_closed_like,
         "contour_preview": contour_preview,
         "source": {
             "node_class": chain.source_node_class,

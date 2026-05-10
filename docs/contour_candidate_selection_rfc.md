@@ -1,7 +1,7 @@
 # Contour Candidate Selection RFC
 
-상태: Draft (Phase 1 diagnostics implemented; parser selection unchanged)  
-범위: 설계 문서 (parser 코드 변경 없음)
+상태: Draft (actual selection switched to refined structural ranking; legacy path retained for diagnostics)  
+범위: contour candidate selection 설계 및 단계별 구현 상태 기록
 
 ## 1) 현재 로직 요약
 
@@ -120,10 +120,15 @@ selection reason:
 ### 구현 상태 (현재)
 - 완료: structural validation helper 도입 및 diagnostics 필드 추가
 - 완료: legacy selected vs structural recommended 동시 노출
-- 유지: 실제 parser selection은 legacy count whitelist 모드 그대로
+- 완료: 실제 parser selection을 refined structural ranking winner로 전환
 - 유지: structural 결과는 `diagnostic_only` 정책
 - 관찰: expected mismatch(`polyline_5`, `polygon_5`, `polygon_6`) 외에 multi-object fixture에서 `kind=3,count=1` structural-valid 보조 후보가 추가 관찰됨 (`unresolved auxiliary candidate`)
 - 완료(Shadow): refined ranking score를 diagnostics에 추가하고 `legacy/structural/refined`를 병렬 노출 (`recommendation_mode=shadow_run_only`)
+- 완료(Shadow Gate): fixture inventory 전역 `legacy vs refined` diff 리포트 추가 (`tools/report_contour_selection_shadow_diff.py`)
+  - fixture-level mismatch와 marker-level auxiliary 관찰을 분리해 보고
+  - low-margin(`score_margin <= 3`, provisional threshold) fixture를 별도 경계 목록으로 유지
+  - actual parser selection 전환 전 CI gate 근거로 사용
+- 완료: actual selection 전환 후에도 legacy/actual/refined 비교를 diagnostics와 shadow diff 리포트에서 유지
 
 ### refined ranking score components (shadow-run)
 - `base_structural_score`
@@ -163,6 +168,18 @@ selection reason:
 - `polyline/polygon` confirmed type 승격
 - `kind=0==open`, `kind=2==closed` 단정
 
+## 10) 활성 모드 요약
+
+- active selection mode: `refined_structural_ranking`
+- legacy whitelist `{2,3,4,8,12}`: historical/diagnostic 경로로 유지 (`legacy_selected_candidate`)
+- diagnostics 핵심 필드:
+  - `legacy_selected_candidate`
+  - `structural_recommended_candidate`
+  - `refined_recommended_candidate`
+  - `actual_selected_candidate`
+  - `legacy_vs_actual_summary`
+- shape classifier는 이번 전환과 분리되어 기존 동작 유지
+
 ## 8) 현재 evidence 요약
 
 - `selected_shift=8`은 성공 케이스에서 강하게 반복 (`strong observed candidate`)
@@ -186,3 +203,5 @@ outside-gate raw evidence (diagnostic):
 4. malformed payload에서 어디까지 복구 시도하고 어디서 fail-fast 할지?
 5. multi-object/group payload에서 marker 간 후보 충돌을 어떻게 정규화할지?
 6. `kind=3,count=1` 보조 후보를 하드 배제 없이 낮은 우선순위로 내리는 구조적 신호는 무엇인지?
+7. shadow diff 리포트에서 `unexpected refined difference`가 0이 아닐 때 전환을 보류할 기준을 어디까지 자동화할지?
+8. low-margin fixture가 발견될 때 score component 재조정 vs fixture 보강의 우선순위를 어떻게 둘지?

@@ -98,6 +98,7 @@ text 분기 필요 지점:
 - parser는 이 진단을 `candidate_fields.contour_header_diagnostics` 및 chain-level diagnostics로 노출한다.
 - 기본 inspector 가독성 보호를 위해 일반 출력은 늘리지 않고, diagnostics는 필요 시에만 확인한다.
 - 현재 구현 상태(Phase 1): legacy selection 유지 + structural recommendation 진단 병행(`selection_mode=legacy_count_whitelist`, `structural_policy_status=diagnostic_only`)
+- 현재 구현 상태(Phase 2): actual selection은 `refined_structural_ranking` 활성화, legacy/structural/refined 비교는 diagnostics로 병행 유지(`structural_policy_status=diagnostic_only`).
 
 ### Current Inventory Observation (Geometry Fixtures)
 
@@ -115,7 +116,10 @@ text 분기 필요 지점:
   - `polygon_5_sides`: raw `count=5` (`0200000005000000`)
   - `polygon_6_sides`: raw `count=6` (`0200000006000000`)
   - 현재 gate `{2,3,4,8,12}` 때문에 `selection_reason=no_plausible_candidate`로 유지됨.
-- 따라서 count gate는 현재 `known incomplete whitelist` 상태로 관리한다.
+- 따라서 count gate는 현재 `known incomplete whitelist`이며, actual selection의 universal rule이 아니라 legacy diagnostics reference로 관리한다.
+- shadow diff gate(`tools/report_contour_selection_shadow_diff.py`)로 fixture 전역 `legacy vs refined` 차이를 정량 추적한다.
+  - `fixture-level winner mismatch`와 `marker-level auxiliary observation`을 분리
+  - `low-margin(score_margin <= 3)`은 provisional 경계 신호로 별도 보고
 
 ### Shape Evidence Delta (New Fixtures)
 
@@ -126,6 +130,56 @@ text 분기 필요 지점:
 - 위 차이는 `kind`와 record/tag 패턴이 shape semantic 힌트일 수 있음을 시사하지만, 현재 단계에서는 provisional evidence로 유지한다.
 - 추가 관찰: 일부 multi-object fixture(`two_rectangle`, `two_circle`, `turquoise_rectangle_and_army_green_rectangle`)의 별도 marker에서 `kind=3,count=1` 후보가 structural-valid로 관찰된다. 현재는 unresolved auxiliary candidate로 분류하고 selection 전환 전 추가 점검이 필요하다.
 - 교훈: `structural_valid`와 `selected contour candidate로 적합`은 별개다. 현재는 refined weighted ranking을 shadow-run으로 병행 기록하고 parser selection은 유지한다.
+
+## Shape Classifier Audit (Updated)
+
+### 이전 count-heavy 분기(문제점)
+
+| 분류 | 이전 조건(요약) | 리스크 |
+|---|---|---|
+| rectangle | `count==4` | 낮음 |
+| circle | `count==8` + square-like bbox | 낮음 |
+| rounded_rectangle | `count==8`(anchor/control=4/4) 또는 `count==12` | 중간 |
+| circular_arc | `count==3` 또는 `count==2` | 높음 (`polyline_2/3` 오분류) |
+
+### 현재 pattern-based 분기(적용됨)
+
+- `circular_arc`: anchor/control 구조 + control 존재 + `w≈0.707` arc-like evidence + distinct start/end
+- `polyline_candidate`: control 없음 + open-like evidence + arc-like control pattern 부재
+- `polygon_candidate`: control 없음 + closed-like evidence (first/last 또는 role-pattern 기반 폐곡선 후보)
+- `rectangle/circle/rounded_rectangle`: 기존 회귀 유지
+
+상태:
+- `polyline_2_points`, `polyline_3_points`, `polyline_5_points` → `polyline_candidate`
+- `polygon_5_sides`, `polygon_6_sides` → `polygon_candidate`
+- `default_circular_arc`는 `circular_arc` 유지
+- `polyline_candidate`/`polygon_candidate`는 **provisional semantic**으로 유지 (confirmed 승격 아님)
+
+### Polygon Candidate Audit Note
+
+- `polygon_6_sides` 관찰:
+  - `record_count=6`, `anchor_record_count=5`, `control_record_count=0`, `unknown_record_count=1`
+  - 즉, 1개 레코드의 tag가 현재 role mapping에서 `unknown`으로 남아 anchor 집계가 5로 계산됨
+- `closed_like_evidence=True` 근거:
+  - `first_equals_last`가 아니라
+  - `role_pattern_closed_like`(control 없음, anchor/unknown 중심, count>=5) 신호
+- 결론:
+  - polygon 판정은 현재 `kind` 확정 의미에 의존하지 않고 role/control/open-closed 패턴을 우선 사용
+  - role/tag 의미 확정 전까지 `polygon_candidate` confidence는 provisional 유지가 타당
+
+## Contour Tag/Role Evidence Status
+
+- 현재 confirmed role mapping 범위(관찰 기반, 보수 적용):
+  - low-byte `0x0C` -> `control`
+  - low-byte `0x0D`, `0x0F` -> `anchor`
+- unknown tag family:
+  - low-byte `0x03` 계열이 polyline/polygon fixture에서 반복 관찰됨
+  - 예: `polygon_6_sides`의 `0x48454C03`는 현재 `unknown`
+- 주의:
+  - `...03`를 anchor로 확정 승격할 근거는 아직 부족
+  - tag 의미와 shape semantic을 직접 동일시하지 않는다
+  - shape classifier에서 `polyline_candidate/polygon_candidate`를 provisional로 유지하는 핵심 이유가 role/tag 미확정 상태다
+  - 다음 단계 fixture 캡처 계획은 `docs/geometry_fixture_plan.md`의 `Tag/Role Evidence Expansion Plan`을 따른다.
 
 ### Type3 UI Observation (Observed/Provisional)
 
@@ -153,7 +207,9 @@ text 분기 필요 지점:
 | P1 | gate 밖 count 샘플에 대한 evidence-only 축적 (`5/6` 포함) | heuristic 확정/확장 판단용 데이터셋 강화 |
 | P1 | `tools/compare_contour_shape_evidence.py` 기반 count 동형/이형 비교 리포트 누적 | semantic 변경 전 evidence 축적 |
 | P1 | `kind=3,count=1` 보조 후보 competition 분석 (`analyze_contour_candidate_competition.py`) | structural-valid false-positive 분리 신호 정의 |
+| P1 | shadow diff CI gate 유지 (`report_contour_selection_shadow_diff.py`) | actual selection 전환 전 unexpected diff/low-margin 조기 감지 |
 | P1 | polyline vs arc (`count=3`) tag/role 패턴 비교 리포트 | 동형 count의 semantic 혼동 리스크 분리 |
+| P1 | `0x03` family 분리용 fixture 캡처 (rotated start / reversed / topology toggle / session2) | role mapping 승격 전 구조 신호 분리 |
 | P2 | `_BBOX_CLASS_NAMES` 규칙 검증 테스트 추가(새 fixture 생길 때) | bbox decode 안정성 유지 |
 | P2 | group candidate를 evidence model로 분리(confirmed 승격 금지) | 의미 해석과 구조 파싱 경계 강화 |
 

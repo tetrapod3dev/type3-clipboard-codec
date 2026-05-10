@@ -43,7 +43,7 @@ def test_legacy_and_structural_match_on_default_geometry_fixtures(sample_name: s
     assert legacy["shift"] == structural["shift"]
     assert legacy["kind"] == structural["kind"]
     assert legacy["count"] == structural["count"]
-    assert diag.get("selection_mode") == "legacy_count_whitelist"
+    assert diag.get("selection_mode") == "refined_structural_ranking"
     assert diag.get("structural_policy_status") == "diagnostic_only"
 
 

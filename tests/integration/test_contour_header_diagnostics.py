@@ -54,6 +54,10 @@ def test_contour_header_diagnostics_are_payload_relative_not_absolute_rule() -> 
     diag = chain.contour_header_diagnostics[0]
     assert diag["selected_header_offset"] >= 0
     assert diag["selected_payload_offset"] >= diag["selected_header_offset"]
-    assert diag["selection_reason"] in {"first_plausible_shift_with_unique_offset", "no_plausible_candidate"}
+    assert diag["selection_reason"] in {
+        "refined_structural_ranking_winner",
+        "refined_winner_duplicate_selected_offset",
+        "no_structural_recommended_candidate",
+    }
     assert all(c["header_offset"] >= 0 for c in diag["candidates"])
     assert all(c["shift"] in diag["candidate_shifts"] for c in diag["candidates"])

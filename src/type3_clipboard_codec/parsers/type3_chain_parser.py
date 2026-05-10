@@ -21,7 +21,11 @@ from .geometry.contour_parser import (
     read_contour_records,
     validate_records,
 )
-from .geometry.shape_classifier import bbox_from_contour_records, classify_shape_type
+from .geometry.shape_classifier import (
+    bbox_from_contour_records,
+    classify_shape_type,
+    classify_shape_with_evidence,
+)
 from .geometry.chain_builder import (
     apply_contour_to_chain,
     build_embedded_contour_chain,
@@ -223,6 +227,30 @@ class Type3ChainParser(BaseParser):
                     }
                     for idx, chain in enumerate(final_chains)
                     if chain.contour_header_diagnostics
+                ],
+                "shape_classification": [
+                    {
+                        "chain_index": idx,
+                        "shape_type": chain.shape_type,
+                        "shape_classification_reason": chain.shape_classification_reason,
+                        "shape_classification_confidence": chain.shape_classification_confidence,
+                        "role_pattern": chain.role_pattern,
+                        "control_record_count": chain.control_record_count,
+                        "anchor_record_count": chain.anchor_record_count,
+                        "unknown_record_count": chain.unknown_record_count,
+                        "arc_like_control_evidence": chain.arc_like_control_evidence,
+                        "closed_like_evidence": chain.closed_like_evidence,
+                        "closed_like_evidence_sources": chain.closed_like_evidence_sources,
+                        "first_equals_last": chain.first_equals_last,
+                        "role_pattern_closed_like": chain.role_pattern_closed_like,
+                        "unknown_tag_values": chain.unknown_tag_values,
+                        "unknown_tag_count_by_value": chain.unknown_tag_count_by_value,
+                        "tag_family_summary": chain.tag_family_summary,
+                        "role_assignment_confidence": chain.role_assignment_confidence,
+                        "role_assignment_notes": chain.role_assignment_notes,
+                    }
+                    for idx, chain in enumerate(final_chains)
+                    if chain.contour_records
                 ],
                 "structure_kind": (
                     "group_candidate_결합"
@@ -427,7 +455,28 @@ class Type3ChainParser(BaseParser):
                 records = self._read_contour_records(node.payload, offset, count)
                 if records and self._validate_records(records, node.bbox):
                     self._assign_semantic_roles(records)
-                    _ = self._classify_shape_type(records, node.bbox, current_work_chain.markers)
+                    shape_info = self._classify_shape_with_evidence(records, node.bbox, current_work_chain.markers)
+                    current_work_chain.shape_type = shape_info["shape_type"]
+                    current_work_chain.shape_classification_reason = shape_info["reason"]
+                    current_work_chain.shape_classification_confidence = shape_info["confidence"]
+                    current_work_chain.role_pattern = list(shape_info["role_pattern"])
+                    current_work_chain.anchor_record_count = int(shape_info["anchor_record_count"])
+                    current_work_chain.control_record_count = int(shape_info["control_record_count"])
+                    current_work_chain.unknown_record_count = int(shape_info["unknown_record_count"])
+                    current_work_chain.arc_like_control_evidence = bool(shape_info["arc_like_control_evidence"])
+                    current_work_chain.closed_like_evidence = bool(shape_info["closed_like_evidence"])
+                    current_work_chain.closed_like_evidence_sources = list(shape_info["closed_like_evidence_sources"])
+                    current_work_chain.first_equals_last = bool(shape_info["first_equals_last"])
+                    current_work_chain.role_pattern_closed_like = bool(shape_info["role_pattern_closed_like"])
+                    tag_role_summary = self._summarize_tag_role_evidence(records)
+                    current_work_chain.unknown_tag_values = tag_role_summary["unknown_tag_values"]
+                    current_work_chain.unknown_tag_count_by_value = tag_role_summary["unknown_tag_count_by_value"]
+                    current_work_chain.tag_family_summary = tag_role_summary["tag_family_summary"]
+                    current_work_chain.role_assignment_confidence = "provisional"
+                    current_work_chain.role_assignment_notes = [
+                        "Role mapping is currently based on observed low-byte tags (0x0C/0x0D/0x0F).",
+                        "Unknown tags (including ...03 family) remain unresolved evidence and are not auto-promoted.",
+                    ]
                     apply_contour_to_chain(
                         chain=current_work_chain,
                         records=records,
@@ -472,7 +521,7 @@ class Type3ChainParser(BaseParser):
                 continue
 
             self._assign_semantic_roles(records)
-            _ = self._classify_shape_type(records, template_chain.bbox, template_chain.markers)
+            shape_info = self._classify_shape_with_evidence(records, template_chain.bbox, template_chain.markers)
             embedded_chains.append(
                 build_embedded_contour_chain(
                     template_chain=template_chain,
@@ -487,6 +536,27 @@ class Type3ChainParser(BaseParser):
                     ],
                 )
             )
+            embedded_chains[-1].shape_type = shape_info["shape_type"]
+            embedded_chains[-1].shape_classification_reason = shape_info["reason"]
+            embedded_chains[-1].shape_classification_confidence = shape_info["confidence"]
+            embedded_chains[-1].role_pattern = list(shape_info["role_pattern"])
+            embedded_chains[-1].anchor_record_count = int(shape_info["anchor_record_count"])
+            embedded_chains[-1].control_record_count = int(shape_info["control_record_count"])
+            embedded_chains[-1].unknown_record_count = int(shape_info["unknown_record_count"])
+            embedded_chains[-1].arc_like_control_evidence = bool(shape_info["arc_like_control_evidence"])
+            embedded_chains[-1].closed_like_evidence = bool(shape_info["closed_like_evidence"])
+            embedded_chains[-1].closed_like_evidence_sources = list(shape_info["closed_like_evidence_sources"])
+            embedded_chains[-1].first_equals_last = bool(shape_info["first_equals_last"])
+            embedded_chains[-1].role_pattern_closed_like = bool(shape_info["role_pattern_closed_like"])
+            tag_role_summary = self._summarize_tag_role_evidence(records)
+            embedded_chains[-1].unknown_tag_values = tag_role_summary["unknown_tag_values"]
+            embedded_chains[-1].unknown_tag_count_by_value = tag_role_summary["unknown_tag_count_by_value"]
+            embedded_chains[-1].tag_family_summary = tag_role_summary["tag_family_summary"]
+            embedded_chains[-1].role_assignment_confidence = "provisional"
+            embedded_chains[-1].role_assignment_notes = [
+                "Role mapping is currently based on observed low-byte tags (0x0C/0x0D/0x0F).",
+                "Unknown tags (including ...03 family) remain unresolved evidence and are not auto-promoted.",
+            ]
 
         return embedded_chains
 
@@ -500,6 +570,14 @@ class Type3ChainParser(BaseParser):
         markers: Optional[List[str]] = None,
     ) -> str:
         return classify_shape_type(records, bbox, markers)
+
+    def _classify_shape_with_evidence(
+        self,
+        records: List[ContourPoint],
+        bbox: Optional[BBox3D],
+        markers: Optional[List[str]] = None,
+    ) -> dict[str, Any]:
+        return classify_shape_with_evidence(records, bbox, markers)
 
     def _read_style_properties(self, payload: bytes) -> StyleProperties:
         """
@@ -590,6 +668,24 @@ class Type3ChainParser(BaseParser):
 
     def _assign_semantic_roles(self, records: List[ContourPoint]) -> None:
         assign_semantic_roles(records)
+
+    def _summarize_tag_role_evidence(self, records: List[ContourPoint]) -> dict[str, Any]:
+        unknown_counts: Dict[str, int] = {}
+        family_counts: Dict[str, Dict[str, int]] = {}
+        for r in records:
+            tag_hex = f"0x{r.tag:08X}"
+            family = f"0x{(r.tag & 0xFF):02X}"
+            if r.role == "unknown":
+                unknown_counts[tag_hex] = unknown_counts.get(tag_hex, 0) + 1
+            if family not in family_counts:
+                family_counts[family] = {"anchor": 0, "control": 0, "unknown": 0, "count": 0}
+            family_counts[family]["count"] += 1
+            family_counts[family][r.role if r.role in {"anchor", "control", "unknown"} else "unknown"] += 1
+        return {
+            "unknown_tag_values": sorted(unknown_counts.keys()),
+            "unknown_tag_count_by_value": dict(sorted(unknown_counts.items(), key=lambda item: item[0])),
+            "tag_family_summary": dict(sorted(family_counts.items(), key=lambda item: item[0])),
+        }
 
     def _debug_dump_contour(self, node: Type3Node) -> None:
         """

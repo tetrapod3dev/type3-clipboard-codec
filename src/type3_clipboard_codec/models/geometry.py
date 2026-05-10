@@ -220,6 +220,23 @@ class Type3ObjectChain:
     text_anchor_confidence: Optional[str] = None
     text_notes: List[str] = field(default_factory=list)
     contour_header_diagnostics: List[dict[str, Any]] = field(default_factory=list)
+    shape_type: Optional[str] = None
+    shape_classification_reason: Optional[str] = None
+    shape_classification_confidence: Optional[str] = None
+    role_pattern: List[str] = field(default_factory=list)
+    anchor_record_count: int = 0
+    control_record_count: int = 0
+    unknown_record_count: int = 0
+    arc_like_control_evidence: bool = False
+    closed_like_evidence: bool = False
+    closed_like_evidence_sources: List[str] = field(default_factory=list)
+    first_equals_last: bool = False
+    role_pattern_closed_like: bool = False
+    unknown_tag_values: List[str] = field(default_factory=list)
+    unknown_tag_count_by_value: dict[str, int] = field(default_factory=dict)
+    tag_family_summary: dict[str, Any] = field(default_factory=dict)
+    role_assignment_confidence: str = "provisional"
+    role_assignment_notes: List[str] = field(default_factory=list)
 
 
 @dataclass

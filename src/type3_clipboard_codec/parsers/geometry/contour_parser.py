@@ -33,6 +33,7 @@ def analyze_contour_header_candidates(
     marker = b"CObDao"
     idx = 0
     found_headers: List[Tuple[int, int, int]] = []
+    selected_offsets: set[int] = set()
     diagnostics: List[dict] = []
     candidate_shifts = [8, 14, 12, 16, 20]
 
@@ -57,10 +58,12 @@ def analyze_contour_header_candidates(
             "structurally_valid_candidates": [],
             "structural_recommended_candidate": None,
             "refined_recommended_candidate": None,
-            "selection_mode": "legacy_count_whitelist",
+            "actual_selected_candidate": None,
+            "selection_mode": "refined_structural_ranking",
             "structural_policy_status": "diagnostic_only",
             "recommendation_mode": "shadow_run_only",
             "confidence": "provisional",
+            "legacy_vs_actual_summary": {},
         }
 
         found_for_this_marker = False
@@ -125,18 +128,11 @@ def analyze_contour_header_candidates(
 
                 offset = header_start + 8
                 candidate["selected_payload_offset"] = offset
-                if any(h[2] == offset for h in found_headers):
+                if offset in selected_offsets:
                     candidate["rejection_reason"] = "duplicate_selected_offset"
                     marker_diag["candidates"].append(candidate)
                     continue
 
-                found_headers.append((kind, count, offset))
-                marker_diag["selected_shift"] = shift
-                marker_diag["selected_header_offset"] = header_start
-                marker_diag["selected_kind"] = kind
-                marker_diag["selected_count"] = count
-                marker_diag["selected_payload_offset"] = offset
-                marker_diag["selected_raw_header_hex"] = candidate["raw_8b_hex"]
                 marker_diag["legacy_selected_candidate"] = {
                     "shift": shift,
                     "header_offset": header_start,
@@ -145,9 +141,7 @@ def analyze_contour_header_candidates(
                     "payload_offset": offset,
                     "raw_8b_hex": candidate["raw_8b_hex"],
                 }
-                marker_diag["selection_reason"] = "first_plausible_shift_with_unique_offset"
                 marker_diag["candidates"].append(candidate)
-                idx = offset
                 found_for_this_marker = True
                 break
             except Exception:
@@ -210,6 +204,41 @@ def analyze_contour_header_candidates(
             else None
         )
         marker_diag["refined_recommended_candidate"] = marker_diag["structural_recommended_candidate"]
+        marker_diag["selection_reason"] = "no_structural_recommended_candidate"
+
+        actual_selected = marker_diag["refined_recommended_candidate"]
+        if actual_selected is not None:
+            actual_offset = int(actual_selected.get("header_offset") or 0) + 8
+            if actual_offset not in selected_offsets:
+                selected_offsets.add(actual_offset)
+                found_headers.append(
+                    (
+                        int(actual_selected.get("kind") or 0),
+                        int(actual_selected.get("count") or 0),
+                        actual_offset,
+                    )
+                )
+                marker_diag["actual_selected_candidate"] = {
+                    "shift": actual_selected.get("shift"),
+                    "header_offset": actual_selected.get("header_offset"),
+                    "kind": actual_selected.get("kind"),
+                    "count": actual_selected.get("count"),
+                    "payload_offset": actual_offset,
+                    "node_class_name": actual_selected.get("node_class_name"),
+                    "raw_8b_hex": actual_selected.get("raw_8b_hex"),
+                    "refined_score": actual_selected.get("refined_score"),
+                }
+                marker_diag["selected_shift"] = actual_selected.get("shift")
+                marker_diag["selected_header_offset"] = actual_selected.get("header_offset")
+                marker_diag["selected_kind"] = actual_selected.get("kind")
+                marker_diag["selected_count"] = actual_selected.get("count")
+                marker_diag["selected_payload_offset"] = actual_offset
+                marker_diag["selected_raw_header_hex"] = actual_selected.get("raw_8b_hex")
+                marker_diag["selection_reason"] = "refined_structural_ranking_winner"
+                idx = actual_offset
+                found_for_this_marker = True
+            else:
+                marker_diag["selection_reason"] = "refined_winner_duplicate_selected_offset"
 
         for c in structural_candidate_rows:
             c["refined_rank"] = c.get("refined_rank")
@@ -218,13 +247,26 @@ def analyze_contour_header_candidates(
             )
 
         marker_diag["legacy_vs_structural_vs_refined_summary"] = {
-            "legacy_selected_shift": marker_diag["selected_shift"],
+            "legacy_selected_shift": (
+                marker_diag["legacy_selected_candidate"]["shift"]
+                if marker_diag["legacy_selected_candidate"] is not None
+                else None
+            ),
             "structural_recommended_shift": (
                 marker_diag["structural_recommended_candidate"]["shift"]
                 if marker_diag["structural_recommended_candidate"] is not None
                 else None
             ),
             "refined_shadow_mode": True,
+        }
+        marker_diag["legacy_vs_actual_summary"] = {
+            "legacy_selected_shift": (
+                marker_diag["legacy_selected_candidate"]["shift"]
+                if marker_diag["legacy_selected_candidate"] is not None
+                else None
+            ),
+            "actual_selected_shift": marker_diag["selected_shift"],
+            "selection_mode": marker_diag["selection_mode"],
         }
 
         diagnostics.append(marker_diag)

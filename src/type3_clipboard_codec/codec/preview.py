@@ -87,26 +87,17 @@ class PreviewRenderer:
     def _render_chain(self, chain: "Type3ObjectChain", lines: list[str]) -> None:
         """단일 객체 체인 정보를 렌더링한다."""
         # 객체 유형 추정
-        display_type = "geometry"
+        display_type = chain.shape_type or "geometry"
         count = len(chain.contour_records)
         anchors = len([r for r in chain.contour_records if r.role == "anchor"])
         controls = len([r for r in chain.contour_records if r.role == "control"])
 
-        if count == 4:
-            display_type = "rectangle"
-        elif count == 8:
-            if chain.bbox and abs(chain.bbox.width_m - chain.bbox.height_m) < 0.001:
-                display_type = "circle"
-            elif anchors == 4 and controls == 4:
-                display_type = "rounded_rectangle"
-        elif count == 12:
-            display_type = "rounded_rectangle"
-        elif count == 3:
-            display_type = "circular_arc"
-        elif count == 2:
-            display_type = "circular_arc (incomplete)"
-
         lines.append(f"  - 객체 유형: {display_type}")
+        if chain.shape_classification_reason:
+            lines.append(
+                f"  - Shape classification: {chain.shape_classification_reason} "
+                f"(confidence={chain.shape_classification_confidence})"
+            )
         lines.append(f"  - 마커: {', '.join(chain.markers)}")
         if chain.source_node_class is not None:
             lines.append(
@@ -119,7 +110,7 @@ class PreviewRenderer:
             lines.append(f"  - BBox (mm): x({bbox.xmin_mm:.3f} ~ {bbox.xmax_mm:.3f}), y({bbox.ymin_mm:.3f} ~ {bbox.ymax_mm:.3f}), z({bbox.zmin_mm:.3f} ~ {bbox.zmax_mm:.3f})")
             lines.append(f"  - 크기: W {bbox.width_mm:.3f} mm, H {bbox.height_mm:.3f} mm, D {bbox.depth_mm:.3f} mm")
             
-            if display_type in ["circle", "circular_arc", "circular_arc (incomplete)"]:
+            if display_type in ["circle", "circular_arc"]:
                 c = bbox.center_mm
                 lines.append(f"  - Center = ({c.x:.3f}, {c.y:.3f}, {c.z:.3f}) mm")
                 lines.append(f"  - Radius = {bbox.radius_mm:.3f} mm")
@@ -134,7 +125,7 @@ class PreviewRenderer:
 
         if chain.contour_records:
             lines.append(f"  - Contour records: {count}")
-            if count in [2, 3]:
+            if display_type == "circular_arc":
                 # Arc specific
                 arc_anchors = [r for r in chain.contour_records if r.role == "anchor"]
                 if len(arc_anchors) >= 1:
@@ -144,7 +135,7 @@ class PreviewRenderer:
                     end = arc_anchors[-1]
                     lines.append(f"  - Arc end = ({end.x_mm:.3f}, {end.y_mm:.3f}, {end.z_mm:.3f}) mm")
 
-            if count in [2, 3] or display_type == "rounded_rectangle":
+            if display_type in {"circular_arc", "rounded_rectangle"}:
                  lines.append(f"  - Anchor vertices: {anchors}")
                  lines.append(f"  - Control vertices: {controls}")
 
