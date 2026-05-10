@@ -15,6 +15,7 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 - contour count 다양성 확보
 - `selected_shift=8` 관찰의 세션/좌표 조건 재현성 검증
 - 현재 `strong observed candidate / provisional` 상태를 유지한 채 근거 확대
+- contour tag/role (`0x03` family) 분리 검증용 rotated/reversed/topology-toggle fixture 확보
 
 ## Newly Captured Geometry Fixtures (Evidence Update)
 

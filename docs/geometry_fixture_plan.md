@@ -132,3 +132,47 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 우선순위 기준:
 - parser 승격 리스크를 가장 빨리 줄이는 샘플부터
 - 제작 난이도 대비 정보량이 높은 샘플부터
+
+## 8) Tag/Role Evidence Expansion Plan (`0x03` Family)
+
+목적:
+- role mapping을 확정 변경하지 않고, `0x03` family가 어떤 구조 조건과 함께 나타나는지 분리 관찰
+- fixture intent와 internal semantic 동일시 금지
+- 한 fixture당 한 변수만 변경
+
+### 검증 가설
+1. `0x03`은 단순 middle-position marker인가?
+2. open contour에서만 나타나는가?
+3. closed contour에서도 특정 조건에서 나타나는가?
+4. vertex count 증가와 연관되는가?
+5. 좌표값 자체보다 record 순번/연결 순서에 연동되는가?
+6. 시작점/종점/순서 변경에 반응하는가?
+
+### Proposed Capture Matrix
+
+| filename | source geometry intent | reused base fixture | changed variable | fixed variables | hypothesis tested | why it matters | expected observation |
+|---|---|---|---|---|---|---|---|
+| `polyline_4_points.txt` | open polyline | `polyline_3_points` | vertex count +1 | style, scale, capture flow | count 증가 시 `0x03` 분포 변화 | count 효과 분리 | unknown/provisional |
+| `polyline_6_points.txt` | open polyline | `polyline_5_points` | vertex count +1 | style, scale, ordering 규칙 | count 6에서 middle tag 반복성 | high-count open 경향 확인 | unknown/provisional |
+| `polygon_5_sides_rotated_start.txt` | closed polygon | `polygon_5_sides` | start vertex rotation | 좌표 집합, edge 연결, style | tag가 좌표 vs 순번 중 무엇을 따르는지 | 순서 민감도 분리 | unknown/provisional |
+| `polygon_6_sides_rotated_start.txt` | closed polygon | `polygon_6_sides` | start vertex rotation | 좌표 집합, edge 연결, style | `0x48454C03`류가 index 이동하는지 | `polygon_6` unknown 원인 분리 | unknown/provisional |
+| `polyline_from_polygon_5_points.txt` | open path from polygon coords | `polygon_5_sides` | closed→open topology | 좌표 집합, vertex order | open/closed 영향 분리 | topology 신호 검증 | unknown/provisional |
+| `closed_from_polyline_5_points.txt` | closed path from polyline coords | `polyline_5_points` | open→closed topology | 좌표 집합, vertex order | same coords에서 closure 영향 | topology 독립성 확인 | unknown/provisional |
+| `polyline_5_points_reversed.txt` | open polyline reversed | `polyline_5_points` | record order reverse | 좌표 집합, style | `0x03`가 middle-relative인지 | 순번 기반 여부 확인 | unknown/provisional |
+| `polygon_6_sides_reversed.txt` | closed polygon reversed | `polygon_6_sides` | record order reverse | 좌표 집합, style | `0x03` tag 위치 반전 여부 | 방향성 영향 확인 | unknown/provisional |
+| `polyline_3_points_middle_changed.txt` | open polyline | `polyline_3_points` | middle vertex coordinate | endpoints, style | 좌표 변화에 따른 tag 변동 | position vs coordinate 분리 | unknown/provisional |
+| `polygon_6_sides_session2.txt` | closed polygon recapture | `polygon_6_sides` | capture session | geometry, style | session 독립 재현성 | 우연/세션 artifact 배제 | unknown/provisional |
+
+### Capture Guidance
+- 가능한 한 기존 좌표 재사용 (`11.111/22.222/33.333` 계열).
+- start rotation/reverse는 geometry set 유지, record order만 변경.
+- `polyline_from_polygon_*` / `closed_from_polyline_*`는 좌표 집합 고정 + topology만 변경.
+- 결과 해석은 `confirmed` 금지, `observed/provisional`만 사용.
+
+### Priority (Tag/Role Track)
+1. `polygon_6_sides_rotated_start.txt`
+2. `polyline_5_points_reversed.txt`
+3. `closed_from_polyline_5_points.txt`
+4. `polyline_from_polygon_5_points.txt`
+5. `polygon_6_sides_session2.txt`
+6. 나머지 count 확장 fixture (`polyline_4`, `polyline_6`, `polyline_3_middle_changed`, `polygon_5_rotated`, `polygon_6_reversed`)
