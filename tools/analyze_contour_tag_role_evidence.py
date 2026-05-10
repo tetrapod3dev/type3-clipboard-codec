@@ -24,6 +24,8 @@ FOCUS_FIXTURES = [
     "polyline_5_points.txt",
     "polygon_5_sides.txt",
     "polygon_6_sides.txt",
+    "polygon_6_sides_rotated_start.txt",
+    "polyline_from_polygon_5_points.txt",
 ]
 
 

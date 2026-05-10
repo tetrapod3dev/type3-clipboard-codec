@@ -30,8 +30,11 @@ def test_polygon_candidate_evidence_cli_text_contains_required_sections() -> Non
     assert "Polygon Candidate Evidence Analysis" in result.stdout
     assert "[polygon_5_sides.txt]" in result.stdout
     assert "[polygon_6_sides.txt]" in result.stdout
+    assert "[polygon_6_sides_rotated_start.txt]" in result.stdout
+    assert "[polyline_from_polygon_5_points.txt]" in result.stdout
     assert "record_table:" in result.stdout
     assert "closure_detail:" in result.stdout
+    assert "Comparison: polygon_6_sides vs polygon_6_sides_rotated_start" in result.stdout
 
 
 def test_polygon_candidate_evidence_cli_json_includes_unknown_and_closed_sources() -> None:
@@ -47,4 +50,5 @@ def test_polygon_candidate_evidence_cli_json_includes_unknown_and_closed_sources
     assert len(p6["record_table"]) == 6
     assert any(row["assigned_role"] == "unknown" for row in p6["record_table"])
     assert "kind_observed" in p6["closure_evidence_detail"]
-
+    assert "comparisons" in payload
+    assert payload["comparisons"]["polygon_6_vs_rotated_start"]["base_unknown_03_point"] is not None

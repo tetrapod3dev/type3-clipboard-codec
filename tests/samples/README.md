@@ -45,6 +45,35 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 
 참고:
 - scale 관련 fixture는 UI 스케일 문구보다 최종 측정 geometry 값을 우선한다.
+- polygon/polyline의 numbered point order는 geometric description이며 payload 저장 순서 확정값이 아니다.
+- UI에서 확정 가능한 것은 start point이고, 이후 stored order는 unresolved다.
+
+### Polygon ground-truth correction (recaptured fixtures)
+
+`polygon_5_sides.txt` / `polygon_6_sides.txt`는 초기 추정 좌표 설명을 재검증해 최신 recapture 기준으로 정정했다.
+
+- `polygon_6_sides.txt`
+  - UI-confirmed start point: `(77.777, 66.666)` mm
+  - user-described geometric point order:
+    1) `(77.777, 66.666)` 2) `(66.666, 44.444)` 3) `(33.333, 55.555)` 4) `(33.333, 88.888)` 5) `(55.555, 99.999)` 6) `(66.666, 88.888)`
+  - actual stored contour record order is unresolved.
+
+- `polygon_5_sides.txt`
+  - UI-confirmed start point: `(77.777, 66.666)` mm
+  - user-described geometric point order:
+    1) `(77.777, 66.666)` 2) `(66.666, 44.444)` 3) `(33.333, 55.555)` 4) `(33.333, 88.888)` 5) `(55.555, 99.999)`
+  - actual stored contour record order is unresolved.
+
+- `polygon_6_sides_rotated_start.txt`
+  - same hexagon geometry intent as `polygon_6_sides.txt`, start point rotated
+  - UI-confirmed rotated start point: `(33.333, 88.888)` mm
+  - user-described geometric traversal description: `4 -> 5 -> 6 -> 1 -> 2 -> 3`
+  - actual stored contour record order is unresolved.
+
+- `polyline_from_polygon_5_points.txt`
+  - same 5-point coordinate set as `polygon_5_sides.txt`, with `5->1` link removed (closed->open intent)
+  - user-described order: `1 -> 2 -> 3 -> 4 -> 5`
+  - actual stored contour record order is unresolved.
 
 ### Current parser observation snapshot (provisional)
 
@@ -54,11 +83,14 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 - `polyline_5_points`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
 - `polygon_5_sides`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
 - `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
+- `polygon_6_sides_rotated_start`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
+- `polyline_from_polygon_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
 - rectangle 변형(`small/large/negative/large_positive/recap_session2`): 모두 selected `shift=8`, `kind=2`, `count=4`
 
 추가 관찰:
 - actual selection은 `refined_structural_ranking`이고, legacy whitelist `{2,3,4,8,12}`는 diagnostics path로 유지된다.
 - `polyline_2_points`, `polyline_3_points`는 현재 `polyline_candidate`, `polygon_5/6`는 `polygon_candidate`로 분류된다.
+- `polygon_6_sides_rotated_start`는 `polygon_candidate`, `polyline_from_polygon_5_points`는 현재 parser 출력상 `polygon_candidate`다.
 
 UI/semantic 해석 주의:
 - `polyline_3_points`와 `default_circular_arc`는 모두 `count=3`이지만, arc는 `anchor/control=2/1`, polyline_3는 `2/0`(중간 포인트 `unknown`)으로 관찰된다.

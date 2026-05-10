@@ -174,11 +174,14 @@ text 분기 필요 지점:
 - unknown tag family:
   - low-byte `0x03` 계열이 polyline/polygon fixture에서 반복 관찰됨
   - 예: `polygon_6_sides`의 `0x48454C03`는 현재 `unknown`
+  - 예: `polygon_6_sides_rotated_start`에서도 `0x...03`가 관찰됨 (start-point 변경 후 비교용)
+  - 예: `polyline_from_polygon_5_points`에서도 `0x...03`가 관찰됨 (closed->open topology 비교용)
 - 주의:
   - `...03`를 anchor로 확정 승격할 근거는 아직 부족
   - tag 의미와 shape semantic을 직접 동일시하지 않는다
   - shape classifier에서 `polyline_candidate/polygon_candidate`를 provisional로 유지하는 핵심 이유가 role/tag 미확정 상태다
   - 다음 단계 fixture 캡처 계획은 `docs/geometry_fixture_plan.md`의 `Tag/Role Evidence Expansion Plan`을 따른다.
+  - polygon fixture의 numbered point order는 geometric description이며 payload 저장 순서 확정값이 아니다.
 
 ### Type3 UI Observation (Observed/Provisional)
 

@@ -40,10 +40,60 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 - `rectangle_negative_offset.txt`
 - `rectangle_large_positive_offset.txt`
 - `rectangle_recap_session2.txt`
+- `polygon_6_sides_rotated_start.txt`
+- `polyline_from_polygon_5_points.txt`
 
 추가 권장(미캡처):
 - `polyline_7_points.txt` (gate 밖 count)
 - `polygon_8_sides.txt` (circle/rounded와 count 충돌 여부 확인)
+
+### Ground Truth Correction Note (UI Recheck + Recapture)
+
+- 과거 문서의 polygon 좌표 설명 중 일부는 초기 추정치였고, 현재 fixture는 재캡처된 최신 기준으로 정정한다.
+- 아래 polygon 점 번호는 **geometric traversal description**이며 payload 저장 순서 확정값이 아니다.
+- 문서 표기 원칙:
+  - `UI-confirmed start point`
+  - `user-described geometric point order`
+  - `actual stored contour record order is unresolved`
+
+#### `polygon_6_sides.txt` (recaptured current fixture)
+- UI-confirmed start point: `(77.777, 66.666)` mm
+- user-described geometric point order:
+  1. `(77.777, 66.666)`
+  2. `(66.666, 44.444)`
+  3. `(33.333, 55.555)`
+  4. `(33.333, 88.888)`
+  5. `(55.555, 99.999)`
+  6. `(66.666, 88.888)`
+- actual stored contour record order is unresolved.
+
+#### `polygon_5_sides.txt` (recaptured current fixture)
+- UI-confirmed start point: `(77.777, 66.666)` mm
+- user-described geometric point order:
+  1. `(77.777, 66.666)`
+  2. `(66.666, 44.444)`
+  3. `(33.333, 55.555)`
+  4. `(33.333, 88.888)`
+  5. `(55.555, 99.999)`
+- actual stored contour record order is unresolved.
+
+#### `polygon_6_sides_rotated_start.txt`
+- changed from: `polygon_6_sides.txt`
+- changed variable: start point only
+- UI-confirmed rotated start point: `(33.333, 88.888)` mm
+- user-described geometric traversal (description): `4 -> 5 -> 6 -> 1 -> 2 -> 3`
+- actual stored contour record order is unresolved.
+
+#### `polyline_from_polygon_5_points.txt`
+- changed from: `polygon_5_sides.txt`
+- changed variable: closed contour -> open contour (`5 -> 1` 연결 제거)
+- user-described point order:
+  1. `(77.777, 66.666)`
+  2. `(66.666, 44.444)`
+  3. `(33.333, 55.555)`
+  4. `(33.333, 88.888)`
+  5. `(55.555, 99.999)`
+- actual stored contour record order is unresolved.
 
 ## 3) Fixture-by-Fixture Validation Table (Ground Truth Intent)
 
@@ -64,6 +114,7 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 - fixture filename(`polyline`, `polygon`, `rectangle`)은 **fixture intent label**이다.
 - 현재 확실한 UI 용어 관찰은 status bar의 `곡선 객체`이며, draw tool 이름과 내부 class semantic을 동일시하지 않는다.
 - `expected count`는 ground truth intent/관찰값 분리로 기록하며, parser confirmed 승격으로 해석하지 않는다.
+- the numbered order in polygon/polyline descriptions is a geometric description, not a confirmed payload order.
 
 ## 4) Current Parser Observation Snapshot (Diagnostics)
 
@@ -73,9 +124,13 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 - `polyline_5_points`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
 - `polygon_5_sides`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
 - `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
+- `polygon_6_sides_rotated_start`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
+- `polyline_from_polygon_5_points`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
 - rectangle scale/offset 변형(`small/large/negative/large_positive/recap_session2`)은 모두 selected `shift=8`, `count=4`
 - `polyline_2_points`/`polyline_3_points`는 현재 `polyline_candidate`
 - `polygon_5_sides`/`polygon_6_sides`는 현재 `polygon_candidate`
+- `polygon_6_sides_rotated_start`는 현재 `polygon_candidate`
+- `polyline_from_polygon_5_points`는 현재 parser 출력상 `polygon_candidate`이며 open/closed 의존성은 추가 evidence 수집 대상
 
 ## 5) Fixture 제작 지침 (Type3 작업자용)
 

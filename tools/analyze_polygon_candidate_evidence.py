@@ -15,12 +15,16 @@ SAMPLES_ROOT = REPO_ROOT / "tests" / "samples"
 TARGETS = [
     "polygon_5_sides.txt",
     "polygon_6_sides.txt",
+    "polygon_6_sides_rotated_start.txt",
+    "polyline_from_polygon_5_points.txt",
     "default_rectangle.txt",
     "polyline_5_points.txt",
 ]
 INTENDED_LABEL = {
     "polygon_5_sides.txt": "polygon_5_sides (fixture intent)",
     "polygon_6_sides.txt": "polygon_6_sides (fixture intent)",
+    "polygon_6_sides_rotated_start.txt": "polygon_6_sides_rotated_start (fixture intent)",
+    "polyline_from_polygon_5_points.txt": "polyline_from_polygon_5_points (fixture intent)",
     "default_rectangle.txt": "rectangle (fixture intent)",
     "polyline_5_points.txt": "polyline_5_points (fixture intent)",
 }
@@ -115,9 +119,49 @@ def _fixture_report(name: str) -> dict[str, Any]:
 
 def _build() -> dict[str, Any]:
     fixtures = [_fixture_report(name) for name in TARGETS]
+    by_name = {f["fixture"]: f for f in fixtures}
+
+    def _find_03_point(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+        for row in rows:
+            if row["raw_tag"].endswith("03"):
+                return row
+        return None
+
+    comp_a_left = by_name["polygon_6_sides.txt"]
+    comp_a_right = by_name["polygon_6_sides_rotated_start.txt"]
+    left_03 = _find_03_point(comp_a_left["record_table"])
+    right_03 = _find_03_point(comp_a_right["record_table"])
+
+    comp_b_left = by_name["polygon_5_sides.txt"]
+    comp_b_right = by_name["polyline_from_polygon_5_points.txt"]
+
     return {
         "policy": "evidence-first audit; polygon_candidate remains provisional",
         "fixtures": fixtures,
+        "comparisons": {
+            "polygon_6_vs_rotated_start": {
+                "base_fixture": "polygon_6_sides.txt",
+                "rotated_fixture": "polygon_6_sides_rotated_start.txt",
+                "base_unknown_03_point": left_03,
+                "rotated_unknown_03_point": right_03,
+                "observation": (
+                    "0x03 occurrence remains present; coordinate/record-position dependency is observed-only and unresolved."
+                ),
+                "confidence": "provisional",
+            },
+            "polygon5_vs_polyline_from_polygon5": {
+                "closed_fixture": "polygon_5_sides.txt",
+                "open_fixture": "polyline_from_polygon_5_points.txt",
+                "closed_unknown_03_count": comp_b_left["unknown_record_count"],
+                "open_unknown_03_count": comp_b_right["unknown_record_count"],
+                "closed_shape_type": comp_b_left["shape_type"],
+                "open_shape_type": comp_b_right["shape_type"],
+                "observation": (
+                    "0x03 remains present in both fixtures with current parser output; closed/open dependency is unresolved."
+                ),
+                "confidence": "provisional",
+            },
+        },
     }
 
 
@@ -152,6 +196,19 @@ def _print_text(report: dict[str, Any]) -> None:
                 f"tag={row['raw_tag']} role={row['assigned_role']} "
                 f"eq_first={row['equals_first_point']} eq_prev={row['equals_previous_point']} note={row['note']}"
             )
+    print("\n[Comparison: polygon_6_sides vs polygon_6_sides_rotated_start]")
+    c1 = report["comparisons"]["polygon_6_vs_rotated_start"]
+    print(f"base_03={c1['base_unknown_03_point']}")
+    print(f"rotated_03={c1['rotated_unknown_03_point']}")
+    print(f"observation={c1['observation']} confidence={c1['confidence']}")
+    print("\n[Comparison: polygon_5_sides vs polyline_from_polygon_5_points]")
+    c2 = report["comparisons"]["polygon5_vs_polyline_from_polygon5"]
+    print(
+        f"closed_unknown_03_count={c2['closed_unknown_03_count']} "
+        f"open_unknown_03_count={c2['open_unknown_03_count']} "
+        f"closed_shape={c2['closed_shape_type']} open_shape={c2['open_shape_type']}"
+    )
+    print(f"observation={c2['observation']} confidence={c2['confidence']}")
 
 
 def main() -> int:
