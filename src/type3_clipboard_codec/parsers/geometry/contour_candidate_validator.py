@@ -31,6 +31,10 @@ def validate_contour_header_candidate(
         "structural_valid": False,
         "structural_failure_reasons": [],
         "structural_score": 0,
+        "decoded_record_count": 0,
+        "near_zero_extent": None,
+        "candidate_bbox_extent_mm": None,
+        "role_richness_score": 0,
         "kind": None,
         "count": None,
         "raw_8b_hex": None,
@@ -81,6 +85,7 @@ def validate_contour_header_candidate(
         records = read_contour_points(local_reader, int(result["count"]), stride=stride)
         result["record_decode_ok"] = True
         result["record_decode_status"] = "ok"
+        result["decoded_record_count"] = len(records)
     except Exception:
         result["record_decode_status"] = "decode_failed"
         result["structural_failure_reasons"].append("record_decode_failed")
@@ -114,6 +119,18 @@ def validate_contour_header_candidate(
                 or min(ys) > bbox.ymax_m + margin
             )
             result["bbox_consistency_status"] = "consistent" if overlaps else "mismatch_soft"
+
+    if records:
+        xs = [r.x_m for r in records]
+        ys = [r.y_m for r in records]
+        width_mm = (max(xs) - min(xs)) * 1000.0
+        height_mm = (max(ys) - min(ys)) * 1000.0
+        result["candidate_bbox_extent_mm"] = {"width": round(width_mm, 6), "height": round(height_mm, 6)}
+        result["near_zero_extent"] = width_mm < 1e-3 or height_mm < 1e-3
+        low_tags = {int(r.tag) & 0xFF for r in records}
+        known_role_bytes = len([t for t in low_tags if t in {0x0C, 0x0D, 0x0F}])
+        # Lightweight structural richness signal (not semantic classification).
+        result["role_richness_score"] = 1 if known_role_bytes >= 1 else 0
 
     result["structural_valid"] = (
         result["header_offset_in_bounds"]

@@ -5,6 +5,10 @@ from typing import List, Optional, Tuple
 from ...models.geometry import BBox3D, ContourPoint
 from ...utils.bytes_reader import BytesReader
 from ..common import read_contour_points
+from .contour_candidate_ranker import (
+    choose_refined_recommended_candidate,
+    rank_contour_header_candidate,
+)
 from .contour_candidate_validator import validate_contour_header_candidate
 
 
@@ -16,6 +20,7 @@ def analyze_contour_header_candidates(
     payload: bytes,
     *,
     bbox: Optional[BBox3D] = None,
+    node_class_name: Optional[str] = None,
     stride: int = 36,
     max_safe_contour_count: int = 4096,
 ) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict]]:
@@ -51,8 +56,10 @@ def analyze_contour_header_candidates(
             "legacy_selected_candidate": None,
             "structurally_valid_candidates": [],
             "structural_recommended_candidate": None,
+            "refined_recommended_candidate": None,
             "selection_mode": "legacy_count_whitelist",
             "structural_policy_status": "diagnostic_only",
+            "recommendation_mode": "shadow_run_only",
             "confidence": "provisional",
         }
 
@@ -82,7 +89,21 @@ def analyze_contour_header_candidates(
                 "record_region_end_offset": structural.get("record_region_end_offset"),
                 "record_decode_status": structural.get("record_decode_status"),
                 "record_decode_ok": structural.get("record_decode_ok"),
+                "decoded_record_count": structural.get("decoded_record_count"),
+                "near_zero_extent": structural.get("near_zero_extent"),
+                "candidate_bbox_extent_mm": structural.get("candidate_bbox_extent_mm"),
+                "role_richness_score": structural.get("role_richness_score"),
                 "bbox_consistency_status": structural.get("bbox_consistency_status"),
+                "node_context_score": 0,
+                "base_structural_score": 0,
+                "record_richness_score": 0,
+                "degeneracy_penalty": 0,
+                "bbox_relation_score": 0,
+                "competition_score": 0,
+                "refined_score": None,
+                "refined_rank": None,
+                "refined_recommendation_reason": "not_scored",
+                "node_class_name": node_class_name,
             }
             structural_candidate_rows.append(candidate)
             if header_start + 8 > len(payload):
@@ -138,31 +159,73 @@ def analyze_contour_header_candidates(
             marker_diag["selection_reason"] = "no_plausible_candidate"
             idx = marker_pos + 1
 
+        structural_valid_scored: list[dict] = []
+        for c in structural_candidate_rows:
+            if not c.get("structural_valid"):
+                continue
+            score = rank_contour_header_candidate(candidate=c, node_class_name=node_class_name)
+            c["base_structural_score"] = score["base_structural_score"]
+            c["node_context_score"] = score["node_context_score"]
+            c["record_richness_score"] = score["record_richness_score"]
+            c["degeneracy_penalty"] = score["degeneracy_penalty"]
+            c["bbox_relation_score"] = score["bbox_relation_score"]
+            c["competition_score"] = score["competition_score"]
+            c["refined_score"] = score["final_refined_score"]
+            c["final_refined_score"] = score["final_refined_score"]
+            structural_valid_scored.append(c)
+
+        recommended = choose_refined_recommended_candidate(
+            scored_candidates=structural_valid_scored,
+            legacy_shift_priority=candidate_shifts,
+        )
         marker_diag["structurally_valid_candidates"] = [
             {
                 "shift": c["shift"],
                 "header_offset": c["header_offset"],
                 "kind": c.get("kind"),
                 "count": c.get("count"),
+                "node_class_name": c.get("node_class_name"),
                 "raw_8b_hex": c.get("raw_8b_hex"),
                 "structural_score": c.get("structural_score"),
                 "record_region_end_offset": c.get("record_region_end_offset"),
                 "bbox_consistency_status": c.get("bbox_consistency_status"),
+                "refined_score": c.get("final_refined_score"),
+                "refined_rank": c.get("refined_rank"),
             }
-            for c in structural_candidate_rows
-            if c.get("structural_valid")
+            for c in structural_valid_scored
         ]
-        if marker_diag["structurally_valid_candidates"]:
-            shift_order = {value: idx for idx, value in enumerate(candidate_shifts)}
-            sorted_valid = sorted(
-                marker_diag["structurally_valid_candidates"],
-                key=lambda item: (
-                    -(item.get("structural_score") or -1),
-                    shift_order.get(item.get("shift"), 9999),
-                    item.get("header_offset") if item.get("header_offset") is not None else 10**9,
-                ),
+        marker_diag["structural_recommended_candidate"] = (
+            {
+                "shift": recommended.get("shift"),
+                "header_offset": recommended.get("header_offset"),
+                "kind": recommended.get("kind"),
+                "count": recommended.get("count"),
+                "node_class_name": recommended.get("node_class_name"),
+                "raw_8b_hex": recommended.get("raw_8b_hex"),
+                "structural_score": recommended.get("structural_score"),
+                "refined_score": recommended.get("final_refined_score"),
+                "refined_rank": recommended.get("refined_rank"),
+            }
+            if recommended is not None
+            else None
+        )
+        marker_diag["refined_recommended_candidate"] = marker_diag["structural_recommended_candidate"]
+
+        for c in structural_candidate_rows:
+            c["refined_rank"] = c.get("refined_rank")
+            c["refined_recommendation_reason"] = (
+                "shadow_winner" if recommended is not None and c is recommended else "shadow_non_winner"
             )
-            marker_diag["structural_recommended_candidate"] = sorted_valid[0]
+
+        marker_diag["legacy_vs_structural_vs_refined_summary"] = {
+            "legacy_selected_shift": marker_diag["selected_shift"],
+            "structural_recommended_shift": (
+                marker_diag["structural_recommended_candidate"]["shift"]
+                if marker_diag["structural_recommended_candidate"] is not None
+                else None
+            ),
+            "refined_shadow_mode": True,
+        }
 
         diagnostics.append(marker_diag)
 

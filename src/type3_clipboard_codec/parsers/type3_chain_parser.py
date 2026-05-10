@@ -408,7 +408,9 @@ class Type3ChainParser(BaseParser):
             if node.header.class_name != "CContour":
                 continue
 
-            headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload, node.bbox)
+            headers, header_diagnostics = self._analyze_contour_header_candidates(
+                node.payload, node.bbox, node.header.class_name
+            )
             if header_diagnostics:
                 current_work_chain.contour_header_diagnostics.extend(header_diagnostics)
             if not headers:
@@ -455,7 +457,9 @@ class Type3ChainParser(BaseParser):
         Some multi-object samples carry an additional contour inside CPropertyExtend.
         Treat these as extra object chains while preserving the surrounding markers.
         """
-        headers, header_diagnostics = self._analyze_contour_header_candidates(node.payload, node.bbox)
+        headers, header_diagnostics = self._analyze_contour_header_candidates(
+            node.payload, node.bbox, node.header.class_name
+        )
         if header_diagnostics:
             template_chain.contour_header_diagnostics.extend(header_diagnostics)
         if not headers:
@@ -556,11 +560,12 @@ class Type3ChainParser(BaseParser):
         return read_contour_header(payload)
 
     def _analyze_contour_header_candidates(
-        self, payload: bytes, bbox: Optional[BBox3D] = None
+        self, payload: bytes, bbox: Optional[BBox3D] = None, node_class_name: Optional[str] = None
     ) -> Tuple[Optional[List[Tuple[int, int, int]]], List[dict[str, Any]]]:
         return analyze_contour_header_candidates(
             payload,
             bbox=bbox,
+            node_class_name=node_class_name,
             stride=self.DEFAULT_CONTOUR_RECORD_STRIDE,
             max_safe_contour_count=self.MAX_SAFE_CONTOUR_COUNT,
         )

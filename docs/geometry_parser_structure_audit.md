@@ -124,6 +124,8 @@ text 분기 필요 지점:
 - `default_circular_arc`도 `count=3`이지만 `anchor/control=2/1`, polyline_3는 `2/0`(중간 role unknown)로 패턴 차이가 관찰됨
 - `polyline_5_points`는 raw `kind=0,count=5`, `polygon_5/6`는 raw `kind=2,count=5/6`이 관찰됨
 - 위 차이는 `kind`와 record/tag 패턴이 shape semantic 힌트일 수 있음을 시사하지만, 현재 단계에서는 provisional evidence로 유지한다.
+- 추가 관찰: 일부 multi-object fixture(`two_rectangle`, `two_circle`, `turquoise_rectangle_and_army_green_rectangle`)의 별도 marker에서 `kind=3,count=1` 후보가 structural-valid로 관찰된다. 현재는 unresolved auxiliary candidate로 분류하고 selection 전환 전 추가 점검이 필요하다.
+- 교훈: `structural_valid`와 `selected contour candidate로 적합`은 별개다. 현재는 refined weighted ranking을 shadow-run으로 병행 기록하고 parser selection은 유지한다.
 
 ### Type3 UI Observation (Observed/Provisional)
 
@@ -150,6 +152,7 @@ text 분기 필요 지점:
 | Done | 1차 신규 geometry fixture 확보 (`polyline/polygon/rectangle scale+offset`) | count/좌표 조건 관찰 근거 확보 |
 | P1 | gate 밖 count 샘플에 대한 evidence-only 축적 (`5/6` 포함) | heuristic 확정/확장 판단용 데이터셋 강화 |
 | P1 | `tools/compare_contour_shape_evidence.py` 기반 count 동형/이형 비교 리포트 누적 | semantic 변경 전 evidence 축적 |
+| P1 | `kind=3,count=1` 보조 후보 competition 분석 (`analyze_contour_candidate_competition.py`) | structural-valid false-positive 분리 신호 정의 |
 | P1 | polyline vs arc (`count=3`) tag/role 패턴 비교 리포트 | 동형 count의 semantic 혼동 리스크 분리 |
 | P2 | `_BBOX_CLASS_NAMES` 규칙 검증 테스트 추가(새 fixture 생길 때) | bbox decode 안정성 유지 |
 | P2 | group candidate를 evidence model로 분리(confirmed 승격 금지) | 의미 해석과 구조 파싱 경계 강화 |

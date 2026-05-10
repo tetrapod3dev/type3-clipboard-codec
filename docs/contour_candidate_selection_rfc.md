@@ -122,6 +122,21 @@ selection reason:
 - 완료: legacy selected vs structural recommended 동시 노출
 - 유지: 실제 parser selection은 legacy count whitelist 모드 그대로
 - 유지: structural 결과는 `diagnostic_only` 정책
+- 관찰: expected mismatch(`polyline_5`, `polygon_5`, `polygon_6`) 외에 multi-object fixture에서 `kind=3,count=1` structural-valid 보조 후보가 추가 관찰됨 (`unresolved auxiliary candidate`)
+- 완료(Shadow): refined ranking score를 diagnostics에 추가하고 `legacy/structural/refined`를 병렬 노출 (`recommendation_mode=shadow_run_only`)
+
+### refined ranking score components (shadow-run)
+- `base_structural_score`
+- `node_context_score`
+- `record_richness_score`
+- `degeneracy_penalty`
+- `bbox_relation_score`
+- `competition_score`
+- `final_refined_score`
+
+원칙:
+- hard reject 대신 weighted ranking
+- parser selection 전환 전까지 diagnostics/evidence 용도로만 사용
 
 ## 6) 테스트 전략 (향후)
 
@@ -170,3 +185,4 @@ outside-gate raw evidence (diagnostic):
 3. bbox consistency 실패를 hard reject로 둘지 soft signal로 둘지?
 4. malformed payload에서 어디까지 복구 시도하고 어디서 fail-fast 할지?
 5. multi-object/group payload에서 marker 간 후보 충돌을 어떻게 정규화할지?
+6. `kind=3,count=1` 보조 후보를 하드 배제 없이 낮은 우선순위로 내리는 구조적 신호는 무엇인지?

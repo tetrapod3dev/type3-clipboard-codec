@@ -70,6 +70,8 @@ def _collect_rows(include_text: bool) -> list[dict[str, Any]]:
                         "legacy_selected_candidate": diag.get("legacy_selected_candidate"),
                         "structurally_valid_candidates": diag.get("structurally_valid_candidates") or [],
                         "structural_recommended_candidate": diag.get("structural_recommended_candidate"),
+                        "refined_recommended_candidate": diag.get("refined_recommended_candidate"),
+                        "legacy_vs_structural_vs_refined_summary": diag.get("legacy_vs_structural_vs_refined_summary"),
                         "selection_mode": diag.get("selection_mode"),
                         "structural_policy_status": diag.get("structural_policy_status"),
                         "confidence": diag.get("confidence"),
@@ -87,6 +89,7 @@ def _summaries(rows: list[dict[str, Any]]) -> dict[str, Any]:
     structural_valid_count_dist = Counter()
     by_fixture: dict[str, list[dict[str, Any]]] = {}
     mismatch_fixtures: set[str] = set()
+    structural_refined_mismatch_fixtures: set[str] = set()
     outside_gate_but_structural_valid: list[dict[str, Any]] = []
 
     for row in rows:
@@ -106,6 +109,7 @@ def _summaries(rows: list[dict[str, Any]]) -> dict[str, Any]:
                             "count": candidate.get("count"),
                             "raw_8b_hex": candidate.get("raw_8b_hex"),
                             "structural_score": candidate.get("structural_score"),
+                            "refined_score": candidate.get("refined_score"),
                         }
                     )
             reason = candidate.get("rejection_reason")
@@ -114,6 +118,7 @@ def _summaries(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
         legacy = row.get("legacy_selected_candidate")
         structural = row.get("structural_recommended_candidate")
+        refined = row.get("refined_recommended_candidate")
         if (legacy is None) != (structural is None):
             mismatch_fixtures.add(row["fixture"])
         elif legacy and structural:
@@ -123,11 +128,21 @@ def _summaries(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 or legacy.get("count") != structural.get("count")
             ):
                 mismatch_fixtures.add(row["fixture"])
+        if (structural is None) != (refined is None):
+            structural_refined_mismatch_fixtures.add(row["fixture"])
+        elif structural and refined:
+            if (
+                structural.get("shift") != refined.get("shift")
+                or structural.get("kind") != refined.get("kind")
+                or structural.get("count") != refined.get("count")
+            ):
+                structural_refined_mismatch_fixtures.add(row["fixture"])
 
     fixture_selected = []
     for fixture, entries in sorted(by_fixture.items(), key=lambda item: item[0]):
         selected_entry = next((e for e in entries if e.get("selected_shift") is not None), None)
         structural_entry = next((e for e in entries if e.get("structural_recommended_candidate") is not None), None)
+        refined_entry = next((e for e in entries if e.get("refined_recommended_candidate") is not None), None)
         representative = selected_entry or structural_entry
         fixture_selected.append(
             {
@@ -138,12 +153,14 @@ def _summaries(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "selected_raw_header_hex": selected_entry.get("selected_raw_header_hex") if selected_entry else None,
                 "legacy_selected_candidate": selected_entry.get("legacy_selected_candidate") if selected_entry else None,
                 "structural_recommended_candidate": representative.get("structural_recommended_candidate") if representative else None,
+                "refined_recommended_candidate": refined_entry.get("refined_recommended_candidate") if refined_entry else None,
             }
         )
 
     return {
         "fixture_selected": fixture_selected,
         "legacy_vs_structural_mismatch_fixtures": sorted(mismatch_fixtures),
+        "structural_vs_refined_mismatch_fixtures": sorted(structural_refined_mismatch_fixtures),
         "outside_gate_but_structural_valid_candidates": outside_gate_but_structural_valid,
         "selected_shift_distribution": dict(sorted(selected_shift_dist.items(), key=lambda item: item[0])),
         "rejection_reason_distribution": dict(rejection_reason_dist),
@@ -161,13 +178,12 @@ def _print_text(summary: dict[str, Any]) -> None:
     for row in summary["fixture_selected"]:
         legacy = row.get("legacy_selected_candidate")
         structural = row.get("structural_recommended_candidate")
+        refined = row.get("refined_recommended_candidate")
         print(
             f"{row['fixture']}: shift={row['selected_shift']}, kind={row['selected_kind']}, "
             f"count={row['selected_count']}, raw_8b={row['selected_raw_header_hex']}"
         )
-        print(
-            f"  legacy_selected={legacy} structural_recommended={structural}"
-        )
+        print(f"  legacy_selected={legacy} structural_recommended={structural} refined_recommended={refined}")
     print()
     print("[Legacy vs Structural Mismatch Fixtures]")
     for fixture in summary["legacy_vs_structural_mismatch_fixtures"]:
@@ -177,8 +193,12 @@ def _print_text(summary: dict[str, Any]) -> None:
     for row in summary["outside_gate_but_structural_valid_candidates"]:
         print(
             f"{row['fixture']}: shift={row['shift']} kind={row['kind']} count={row['count']} "
-            f"raw_8b={row['raw_8b_hex']} structural_score={row['structural_score']}"
+            f"raw_8b={row['raw_8b_hex']} structural_score={row['structural_score']} refined_score={row.get('refined_score')}"
         )
+    print()
+    print("[Structural vs Refined Mismatch Fixtures]")
+    for fixture in summary["structural_vs_refined_mismatch_fixtures"]:
+        print(fixture)
     print()
     print("[Selected Shift Distribution]")
     for shift, count in summary["selected_shift_distribution"].items():
