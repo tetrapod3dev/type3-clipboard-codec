@@ -51,14 +51,14 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 `tools/report_contour_header_candidates.py` 및 `tools/inspect_clipboard_hex.py` 기준:
 - `polyline_2_points`: selected `(shift=8, kind=0, count=2, raw=0000000002000000)`, contour records=2
 - `polyline_3_points`: selected `(shift=8, kind=0, count=3, raw=0000000003000000)`, contour records=3
-- `polyline_5_points`: raw 후보 `count=5` 관찰, 현재 gate로 미선택, contour records=0
-- `polygon_5_sides`: raw 후보 `count=5` 관찰, 현재 gate로 미선택, contour records=0
-- `polygon_6_sides`: raw 후보 `count=6` 관찰, 현재 gate로 미선택, contour records=0
+- `polyline_5_points`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
+- `polygon_5_sides`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
+- `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - rectangle 변형(`small/large/negative/large_positive/recap_session2`): 모두 selected `shift=8`, `kind=2`, `count=4`
 
 추가 관찰:
-- 현재 plausible count gate `{2,3,4,8,12}`는 `count=5/6` 샘플을 선택하지 못하므로 incomplete whitelist 상태다.
-- `polyline_2_points`, `polyline_3_points`는 현재 classifier에서 `arc`로 표시되어 count-heavy heuristic 오분류 evidence가 존재한다.
+- actual selection은 `refined_structural_ranking`이고, legacy whitelist `{2,3,4,8,12}`는 diagnostics path로 유지된다.
+- `polyline_2_points`, `polyline_3_points`는 현재 `polyline_candidate`, `polygon_5/6`는 `polygon_candidate`로 분류된다.
 
 UI/semantic 해석 주의:
 - `polyline_3_points`와 `default_circular_arc`는 모두 `count=3`이지만, arc는 `anchor/control=2/1`, polyline_3는 `2/0`(중간 포인트 `unknown`)으로 관찰된다.

@@ -111,22 +111,21 @@ text 분기 필요 지점:
   - `polyline_2_points.txt`: `0000000002000000` (kind=0, count=2)
   - `polyline_3_points.txt`: `0000000003000000` (kind=0, count=3)
 - 해석 상태는 `strong observed candidate`이며, **confirmed 승격 아님**. confidence는 계속 `provisional`.
-- gate 밖 count raw 관찰:
-  - `polyline_5_points`: raw `count=5` (`0000000005000000`)
-  - `polygon_5_sides`: raw `count=5` (`0200000005000000`)
-  - `polygon_6_sides`: raw `count=6` (`0200000006000000`)
-  - 현재 gate `{2,3,4,8,12}` 때문에 `selection_reason=no_plausible_candidate`로 유지됨.
-- 따라서 count gate는 현재 `known incomplete whitelist`이며, actual selection의 universal rule이 아니라 legacy diagnostics reference로 관리한다.
+- gate 밖 count였던 사례의 현재 상태:
+  - `polyline_5_points`: actual selected `count=5` (`0000000005000000`)
+  - `polygon_5_sides`: actual selected `count=5` (`0200000005000000`)
+  - `polygon_6_sides`: actual selected `count=6` (`0200000006000000`)
+- count gate `{2,3,4,8,12}`는 historical incomplete whitelist로 남아 있으며, actual selection의 universal rule이 아니라 legacy diagnostics reference로만 관리한다.
 - shadow diff gate(`tools/report_contour_selection_shadow_diff.py`)로 fixture 전역 `legacy vs refined` 차이를 정량 추적한다.
   - `fixture-level winner mismatch`와 `marker-level auxiliary observation`을 분리
   - `low-margin(score_margin <= 3)`은 provisional 경계 신호로 별도 보고
 
 ### Shape Evidence Delta (New Fixtures)
 
-- `polyline_2_points`: selected `kind=0, count=2`, classifier는 count 기반으로 `arc` 분류
-- `polyline_3_points`: selected `kind=0, count=3`, classifier는 count 기반으로 `arc` 분류
+- `polyline_2_points`: selected `kind=0, count=2`, classifier는 `polyline_candidate`
+- `polyline_3_points`: selected `kind=0, count=3`, classifier는 `polyline_candidate`
 - `default_circular_arc`도 `count=3`이지만 `anchor/control=2/1`, polyline_3는 `2/0`(중간 role unknown)로 패턴 차이가 관찰됨
-- `polyline_5_points`는 raw `kind=0,count=5`, `polygon_5/6`는 raw `kind=2,count=5/6`이 관찰됨
+- `polyline_5_points`는 actual `kind=0,count=5`, `polygon_5/6`는 actual `kind=2,count=5/6`으로 decode/selection됨
 - 위 차이는 `kind`와 record/tag 패턴이 shape semantic 힌트일 수 있음을 시사하지만, 현재 단계에서는 provisional evidence로 유지한다.
 - 추가 관찰: 일부 multi-object fixture(`two_rectangle`, `two_circle`, `turquoise_rectangle_and_army_green_rectangle`)의 별도 marker에서 `kind=3,count=1` 후보가 structural-valid로 관찰된다. 현재는 unresolved auxiliary candidate로 분류하고 selection 전환 전 추가 점검이 필요하다.
 - 교훈: `structural_valid`와 `selected contour candidate로 적합`은 별개다. 현재는 refined weighted ranking을 shadow-run으로 병행 기록하고 parser selection은 유지한다.

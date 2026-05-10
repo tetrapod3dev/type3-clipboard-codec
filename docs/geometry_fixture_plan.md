@@ -15,11 +15,10 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 ### 현재 contour header 관찰
 - selected shift 분포: 선택 성공 케이스는 `shift=8`만 관찰됨 (geometry inventory 기준)
 - selected raw header는 `u32 kind + u32 count` 형태로 자연스럽게 해석됨
-- 단, count candidate 선택은 아직 `{2,3,4,8,12}` whitelist에 의해 제한됨 (known incomplete)
+- actual selection mode는 `refined_structural_ranking`이며, legacy whitelist `{2,3,4,8,12}`는 diagnostics 경로로만 유지된다.
 
 ### 현재 관찰된 count
-- selected count로 관찰됨: `2`, `3`, `4`, `8`, `12`
-- raw header count로 관찰되나 현재 gate에서 미선택: `5`, `6`
+- selected count로 관찰됨: `2`, `3`, `4`, `5`, `6`, `8`, `12`
 - 미관찰: `7`, `9`, `10`, `11`, `13+`
 
 ### 아직 검증하지 못한 영역
@@ -52,9 +51,9 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 |---|---|---|---|---|---|---|
 | `polyline_2_points.txt` | status bar: `곡선 객체`; draw tool: not recorded | 열린 2점 폴리선 | open polyline, 최소 구성 | 2 (observed) | `count=2` 실관측 확보 | gate 하한값 실측 확보 |
 | `polyline_3_points.txt` | status bar: `곡선 객체`; draw tool: not recorded | 열린 3점 폴리선 | open polyline, 3점 | 3 (observed) | arc와 같은 count의 비교군 | 동일 count의 shape-의존 해석 리스크 점검 |
-| `polyline_5_points.txt` | status bar: `곡선 객체`; draw tool: not recorded | 열린 5점 폴리선 | open polyline, 5점 | 5 (raw observed, unselected) | gate 밖 count 유입 시험 | `count_not_plausible` 패턴 직접 확인 |
-| `polygon_5_sides.txt` | status bar: `곡선 객체`; draw tool: not recorded | 닫힌 5각형 | closed polygon | 5 (raw observed, unselected) | 다각형 count 매핑 확인 | rectangle/rounded 편향 완화 |
-| `polygon_6_sides.txt` | status bar: `곡선 객체`; draw tool: not recorded | 닫힌 6각형 | closed polygon | 6 (raw observed, unselected) | count 6 구조 확인 | gate 확장의 핵심 후보 |
+| `polyline_5_points.txt` | status bar: `곡선 객체`; draw tool: not recorded | 열린 5점 폴리선 | open polyline, 5점 | 5 (actual selected/decoded) | gate 밖 count actual decode 검증 | refined selection 전환 효과 검증 |
+| `polygon_5_sides.txt` | status bar: `곡선 객체`; draw tool: not recorded | 닫힌 5각형 | closed polygon | 5 (actual selected/decoded) | 다각형 count 매핑 확인 | rectangle/rounded 편향 완화 |
+| `polygon_6_sides.txt` | status bar: `곡선 객체`; draw tool: not recorded | 닫힌 6각형 | closed polygon | 6 (actual selected/decoded) | count 6 구조 확인 | tag/role unresolved 분리 검증 핵심 |
 | `rectangle_large.txt` | TBD | 큰 사각형 | rectangle-like 4 records | likely 4 | bbox 스케일 변화 검증 | 좌표 범위/precision 영향 점검 |
 | `rectangle_small.txt` | TBD | 매우 작은 사각형 | rectangle-like 4 records | likely 4 | 작은 값 안정성 검증 | epsilon/정밀도 경계 점검 |
 | `rectangle_negative_offset.txt` | TBD | 음수 좌표로 이동 | rectangle-like 4 records | likely 4 | 음수 bbox/contour 안정성 | sign 변화에서 header/record 일관성 확인 |
@@ -68,14 +67,15 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 
 ## 4) Current Parser Observation Snapshot (Diagnostics)
 
-`tools/report_contour_header_candidates.py` 기준 핵심 관찰:
+`tools/report_contour_header_candidates.py` / `tools/report_contour_selection_shadow_diff.py` 기준 핵심 관찰:
 - `polyline_2_points`: selected `(shift=8, kind=0, count=2, raw=0000000002000000)`
 - `polyline_3_points`: selected `(shift=8, kind=0, count=3, raw=0000000003000000)`
-- `polyline_5_points`: raw candidate `count=5` 관찰, 현재 gate로 미선택
-- `polygon_5_sides`: raw candidate `count=5` 관찰, 현재 gate로 미선택
-- `polygon_6_sides`: raw candidate `count=6` 관찰, 현재 gate로 미선택
+- `polyline_5_points`: actual selected `(shift=8, kind=0, count=5)`, contour records=5
+- `polygon_5_sides`: actual selected `(shift=8, kind=2, count=5)`, contour records=5
+- `polygon_6_sides`: actual selected `(shift=8, kind=2, count=6)`, contour records=6
 - rectangle scale/offset 변형(`small/large/negative/large_positive/recap_session2`)은 모두 selected `shift=8`, `count=4`
-- `polyline_2_points`/`polyline_3_points`는 현재 shape classifier에서 `arc`로 분류됨(현재 분류기가 count-heavy heuristic임을 시사)
+- `polyline_2_points`/`polyline_3_points`는 현재 `polyline_candidate`
+- `polygon_5_sides`/`polygon_6_sides`는 현재 `polygon_candidate`
 
 ## 5) Fixture 제작 지침 (Type3 작업자용)
 
@@ -101,7 +101,18 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
   - 대체안 2: anchor 편집으로 점 수를 목표값에 맞춰 수동 조정
 - count가 의도와 다르면 fixture명을 `*_observed_<count>.txt`로 임시 저장 후 재명명
 
-## 6) Parser Promotion Gates (Updated)
+## 6) Parser Status And Promotion Gates (Updated)
+
+### Completed (Historical)
+- actual contour candidate selection 전환 완료: `refined_structural_ranking`
+- legacy whitelist `{2,3,4,8,12}`는 diagnostics path로 강등
+- outside-gate count(`5`,`6`) actual decode 성공(`polyline_5`, `polygon_5`, `polygon_6`)
+
+### Active Provisional Gates
+- `shift=8`의 포맷 의미 confirmed 승격 여부
+- `kind` 값 semantic 의미
+- contour tag/role semantic (`...03` family 포함)
+- `polyline_candidate`/`polygon_candidate` semantic confidence 승격 여부
 
 ### shift=8 승격 조건 (아직 미충족)
 1. 서로 독립적인 신규 fixture에서 반복 재현
@@ -109,25 +120,31 @@ candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rf
 3. 다른 세션/좌표 조건에서 동일 선택 패턴 유지
 4. raw header 8B(kind/count) 반복성 확인
 
-### count gate 확정/확장 조건
-1. 기존 gate `{2,3,4,8,12}`의 실 fixture 보강 (`2` 포함)
-2. gate 밖 count(`5`, `6`, `7` 등)에서 구조적 타당성 검증
-3. shape family별 count 분포 확보(polyline/polygon/rounded)
-4. rejection reason 패턴이 구조적으로 설명 가능한지 확인
-5. whitelist 의존보다 structural validation 기반 후보 선택이 타당한지 비교 리포트 확보
+### role/tag 확정 조건 (현재 활성)
+1. `0x03` family의 topology/order/session 민감도 분리
+2. 동일 좌표 open↔closed 전환 fixture에서 role 변화 확인
+3. rotated/reversed fixture에서 tag가 좌표 기반인지 순번 기반인지 확인
+4. arc/circle/rounded 대비 `0x03`의 역할 분포 안정성 확보
 
-### 어떤 fixture가 어떤 gate를 채우는가
+### 어떤 fixture가 어떤 gate를 채우는가 (현재)
 - shift 재현성: `rectangle_recap_session2`, `rectangle_negative_offset`, `rectangle_large_positive_offset`
-- count 확장성: `polyline_5_points`, `polygon_5_sides`, `polygon_6_sides`
-- gate 보강(기존값): `polyline_2_points`, `polyline_3_points`
+- role/tag 분리: `polygon_6_sides_rotated_start`, `polyline_5_points_reversed`, `closed_from_polyline_5_points`, `polyline_from_polygon_5_points`
 
 ## 7) Execution Priority
 
+### Historical (Completed)
 1. `rectangle_recap_session2.txt`  
 2. `polyline_2_points.txt`, `polyline_3_points.txt`  
 3. `polyline_5_points.txt`, `polygon_5_sides.txt`, `polygon_6_sides.txt`  
 4. `rectangle_small.txt`, `rectangle_large.txt`  
 5. `rectangle_negative_offset.txt`, `rectangle_large_positive_offset.txt`
+
+### Active (Tag/Role Track)
+1. `polygon_6_sides_rotated_start.txt`
+2. `polyline_5_points_reversed.txt`
+3. `closed_from_polyline_5_points.txt`
+4. `polyline_from_polygon_5_points.txt`
+5. `polygon_6_sides_session2.txt`
 
 우선순위 기준:
 - parser 승격 리스크를 가장 빨리 줄이는 샘플부터
