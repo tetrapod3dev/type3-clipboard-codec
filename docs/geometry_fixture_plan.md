@@ -2,6 +2,7 @@
 
 본 문서는 geometry parser 구조 검증 강화를 위한 **신규 fixture 확보 계획**이다.  
 주의: 현재 상태 표현은 `strong observed candidate / provisional heuristic`를 유지한다.
+candidate selection 로직 전환 설계는 `docs/contour_candidate_selection_rfc.md`에 정리한다.
 
 ## 1) Current Coverage Summary
 

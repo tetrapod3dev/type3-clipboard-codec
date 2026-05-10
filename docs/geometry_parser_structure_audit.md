@@ -2,6 +2,7 @@
 
 본 문서는 `Type3ChainParser`의 geometry parsing 경로가 구조 기반인지 점검한 감사 결과다.  
 신규 fixture 확보 계획은 `docs/geometry_fixture_plan.md`를 참고한다.
+contour candidate 선택 로직 전환 설계는 `docs/contour_candidate_selection_rfc.md`를 참고한다.
 
 범위:
 - `src/type3_clipboard_codec/parsers/type3_chain_parser.py`
