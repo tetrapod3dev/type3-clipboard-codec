@@ -16,7 +16,9 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Topic :: Scientific/Engineering",
 ]
-dependencies = []
+dependencies = [
+    "pywin32>=306; platform_system == 'Windows'",
+]
 
 [project.optional-dependencies]
 dev = [

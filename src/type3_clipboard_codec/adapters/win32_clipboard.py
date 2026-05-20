@@ -1,12 +1,112 @@
+from __future__ import annotations
+
 from .input_base import InputAdapter
 
+TYPE_EDIT_ZONE_FORMAT_NAME = "TypeEditZone"
+OBSERVED_TYPE_EDIT_ZONE_FORMAT_ID = 50107
+
+
+class Win32ClipboardError(RuntimeError):
+    """Raised when Win32 clipboard access fails."""
+
+
 class Win32ClipboardAdapter(InputAdapter):
-    """
-    Windows Win32 API를 사용하여 클립보드 데이터를 직접 가져오는 어댑터 (향후 구현).
-    """
+    """Windows TypeEditZone clipboard raw bytes adapter."""
+
+    def __init__(self) -> None:
+        self._win32clipboard = self._load_win32clipboard_module()
+
+    def _load_win32clipboard_module(self):
+        try:
+            import win32clipboard  # type: ignore[import-not-found]
+        except ImportError as exc:
+            raise Win32ClipboardError(
+                "pywin32 is required for Windows clipboard access. "
+                "Install it first (for example: pip install pywin32)."
+            ) from exc
+        return win32clipboard
+
+    def get_typeeditzone_format_id(self) -> int:
+        return int(self._win32clipboard.RegisterClipboardFormat(TYPE_EDIT_ZONE_FORMAT_NAME))
+
+    def has_typeeditzone(self) -> bool:
+        format_id = self.get_typeeditzone_format_id()
+        opened = False
+        try:
+            self._win32clipboard.OpenClipboard()
+            opened = True
+            return bool(self._win32clipboard.IsClipboardFormatAvailable(format_id))
+        except Exception as exc:
+            raise Win32ClipboardError(f"Failed to query TypeEditZone clipboard format: {exc}") from exc
+        finally:
+            if opened:
+                self._safe_close_clipboard()
+
+    def list_formats(self) -> list[int]:
+        opened = False
+        formats: list[int] = []
+        try:
+            self._win32clipboard.OpenClipboard()
+            opened = True
+            current = 0
+            while True:
+                current = int(self._win32clipboard.EnumClipboardFormats(current))
+                if current == 0:
+                    break
+                formats.append(current)
+            return formats
+        except Exception as exc:
+            raise Win32ClipboardError(f"Failed to enumerate clipboard formats: {exc}") from exc
+        finally:
+            if opened:
+                self._safe_close_clipboard()
+
+    def read_typeeditzone_bytes(self) -> bytes:
+        format_id = self.get_typeeditzone_format_id()
+        opened = False
+        try:
+            self._win32clipboard.OpenClipboard()
+            opened = True
+            if not self._win32clipboard.IsClipboardFormatAvailable(format_id):
+                raise Win32ClipboardError(
+                    f"TypeEditZone format is not available in clipboard. format_id={format_id}"
+                )
+            data = self._win32clipboard.GetClipboardData(format_id)
+            if not isinstance(data, (bytes, bytearray, memoryview)):
+                raise Win32ClipboardError(
+                    f"Unexpected clipboard payload type: {type(data).__name__}. Expected raw bytes."
+                )
+            return bytes(data)
+        except Win32ClipboardError:
+            raise
+        except Exception as exc:
+            raise Win32ClipboardError(f"Failed to read TypeEditZone bytes from clipboard: {exc}") from exc
+        finally:
+            if opened:
+                self._safe_close_clipboard()
+
+    def write_typeeditzone_bytes(self, data: bytes) -> None:
+        if not isinstance(data, bytes):
+            raise TypeError("data must be bytes")
+        format_id = self.get_typeeditzone_format_id()
+        opened = False
+        try:
+            self._win32clipboard.OpenClipboard()
+            opened = True
+            self._win32clipboard.EmptyClipboard()
+            self._win32clipboard.SetClipboardData(format_id, data)
+        except Exception as exc:
+            raise Win32ClipboardError(f"Failed to write TypeEditZone bytes to clipboard: {exc}") from exc
+        finally:
+            if opened:
+                self._safe_close_clipboard()
+
     def fetch_data(self) -> bytes:
-        """
-        Windows 클립보드에서 특정 포맷의 데이터를 가져온다.
-        현재는 구현되지 않았으며, 추후 확장을 위한 스텁(Stub)이다.
-        """
-        raise NotImplementedError("Windows 클립보드 연동은 향후 지원될 예정입니다.")
+        return self.read_typeeditzone_bytes()
+
+    def _safe_close_clipboard(self) -> None:
+        try:
+            self._win32clipboard.CloseClipboard()
+        except Exception:
+            # Keep close best-effort in finally blocks to avoid masking the original failure.
+            return
