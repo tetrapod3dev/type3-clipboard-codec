@@ -65,6 +65,18 @@ cmd /c fc /b typeeditzone.bin typeeditzone_redump.bin
 cmd /c fc /b typeeditzone_version.bin typeeditzone_version_redump.bin
 ```
 
+parser 개발/테스트 루프에서는 동일한 검증을 bundle 단위로 수행할 수 있다.
+
+```powershell
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py dump-bundle --dir clipboard_bundle
+
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py load-bundle --dir clipboard_bundle
+
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py verify-bundle --dir clipboard_bundle
+
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py inspect-clipboard
+```
+
 ## 6. 성공 기준
 
 수동 검증 성공 기준은 다음과 같다.

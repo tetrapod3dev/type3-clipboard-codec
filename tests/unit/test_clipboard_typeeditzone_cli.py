@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 
@@ -46,6 +47,9 @@ class _FakeClipboardAdapter:
 
     def read_typeeditzone_version_bytes(self) -> bytes:
         return self.version_payload
+
+    def fetch_data(self) -> bytes:
+        return self.read_typeeditzone_bytes()
 
     def write_typeeditzone_bytes(self, data: bytes) -> None:
         type(self).written = data
@@ -119,6 +123,108 @@ def test_load_with_version_in_passes_zone_and_version_bytes(monkeypatch, tmp_pat
     assert _FakeClipboardAdapter.written_bundle == (zone_payload, version_payload)
 
 
+def test_dump_bundle_writes_files_and_manifest(monkeypatch, tmp_path: Path) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.payload = b"\x00\x11\x22\x00\xff\x00"
+    _FakeClipboardAdapter.version_payload = b"\x01\x00\x00\x00\x51\x02\x00\x00\x00\x00\x00\x00"
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    bundle_dir = tmp_path / "bundle"
+    rc = module.main(["dump-bundle", "--dir", str(bundle_dir)])
+
+    assert rc == 0
+    assert (bundle_dir / "typeeditzone.bin").read_bytes() == _FakeClipboardAdapter.payload
+    assert (bundle_dir / "typeeditzone_version.bin").read_bytes() == _FakeClipboardAdapter.version_payload
+    manifest = json.loads((bundle_dir / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest == {
+        "formats": [
+            {
+                "byte_length": len(_FakeClipboardAdapter.payload),
+                "file_name": "typeeditzone.bin",
+                "format_name": "TypeEditZone",
+                "observed_id": 50107,
+                "registered_id": 50107,
+            },
+            {
+                "byte_length": len(_FakeClipboardAdapter.version_payload),
+                "file_name": "typeeditzone_version.bin",
+                "format_name": "TypeEditZoneVersion",
+                "observed_id": 50108,
+                "registered_id": 50108,
+            },
+        ]
+    }
+
+
+def test_load_bundle_passes_zone_and_version_bytes(monkeypatch, tmp_path: Path) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.written_bundle = None
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    bundle_dir = tmp_path / "bundle"
+    bundle_dir.mkdir()
+    zone_payload = b"\x00\x11\x22\x00\xff\x00"
+    version_payload = b"\x01\x00\x00\x00\x51\x02\x00\x00\x00\x00\x00\x00"
+    (bundle_dir / "typeeditzone.bin").write_bytes(zone_payload)
+    (bundle_dir / "typeeditzone_version.bin").write_bytes(version_payload)
+    (bundle_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "formats": [
+                    {"format_name": "TypeEditZone", "file_name": "typeeditzone.bin"},
+                    {"format_name": "TypeEditZoneVersion", "file_name": "typeeditzone_version.bin"},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    rc = module.main(["load-bundle", "--dir", str(bundle_dir)])
+
+    assert rc == 0
+    assert _FakeClipboardAdapter.written_bundle == (zone_payload, version_payload)
+
+
+def test_verify_bundle_returns_zero_when_both_payloads_match(monkeypatch, tmp_path: Path, capsys) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.payload = b"\x00\x11\x22\x00\xff\x00"
+    _FakeClipboardAdapter.version_payload = b"\x01\x00\x00\x00\x51\x02\x00\x00\x00\x00\x00\x00"
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    bundle_dir = tmp_path / "bundle"
+    bundle_dir.mkdir()
+    (bundle_dir / "typeeditzone.bin").write_bytes(_FakeClipboardAdapter.payload)
+    (bundle_dir / "typeeditzone_version.bin").write_bytes(_FakeClipboardAdapter.version_payload)
+
+    rc = module.main(["verify-bundle", "--dir", str(bundle_dir)])
+
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "typeeditzone_match=true" in out
+    assert "typeeditzone_version_match=true" in out
+
+
+def test_verify_bundle_returns_one_when_any_payload_mismatches(monkeypatch, tmp_path: Path, capsys) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.payload = b"\x00\x11\x22"
+    _FakeClipboardAdapter.version_payload = b"\x01\x00\x00\x00"
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    bundle_dir = tmp_path / "bundle"
+    bundle_dir.mkdir()
+    (bundle_dir / "typeeditzone.bin").write_bytes(b"\x00\x11\x22")
+    (bundle_dir / "typeeditzone_version.bin").write_bytes(b"\x01\x00\x00\x01")
+
+    rc = module.main(["verify-bundle", "--dir", str(bundle_dir)])
+
+    out = capsys.readouterr().out
+    assert rc == 1
+    assert "typeeditzone_match=true" in out
+    assert "typeeditzone_version_match=false" in out
+    assert "typeeditzone_version_expected_length=4" in out
+    assert "typeeditzone_version_actual_length=4" in out
+
+
 def test_dump_hex_writes_expected_hex_text(monkeypatch, tmp_path: Path) -> None:
     module = _load_cli_module()
     _FakeClipboardAdapter.payload = b"\x00\xab\xcd\xef"
@@ -150,3 +256,22 @@ def test_inspect_reads_file_and_prints_preview(monkeypatch, tmp_path: Path, caps
     out = capsys.readouterr().out
     assert rc == 0
     assert "len=4 verbose=True" in out
+
+
+def test_inspect_clipboard_uses_adapter_fetch_data(monkeypatch, capsys) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.payload = b"\x00\x01\x02\x03\x04"
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    class _FakeInspectService:
+        def inspect(self, adapter, verbose: bool = False) -> str:
+            data = adapter.fetch_data()
+            return f"clipboard_len={len(data)} verbose={verbose}"
+
+    monkeypatch.setattr(module, "InspectService", _FakeInspectService)
+
+    rc = module.main(["inspect-clipboard"])
+
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "clipboard_len=5 verbose=True" in out
