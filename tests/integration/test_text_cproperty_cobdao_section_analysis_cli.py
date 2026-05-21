@@ -30,8 +30,11 @@ def test_cobdao_section_scan_text_output() -> None:
     out = result.stdout
 
     assert "[CObDao section scan]" in out
-    assert "cobdao_offset=438 known_anchor=true hit_relative_to_cobdao=34 matched_chains=[1]" in out
-    assert "cobdao_offset=586 known_anchor=true hit_relative_to_cobdao=34 matched_chains=[0]" in out
+    assert "cobdao_offset=438" in out
+    assert "known_anchor=true role=anchor_bearing_candidate hit_relative_to_cobdao=34" in out
+    assert "matched_chains=[1]" in out
+    assert "cobdao_offset=586" in out
+    assert "matched_chains=[0]" in out
     assert "cproperty_offset=472" in out
     assert "cproperty_offset=620" in out
 

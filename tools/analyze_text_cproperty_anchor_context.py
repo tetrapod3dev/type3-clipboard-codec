@@ -310,12 +310,73 @@ def _decode_triple_at(payload: bytes, offset: int) -> dict[str, Any] | None:
         return None
     return {
         "offset": offset,
+        "raw_hex": payload[offset : offset + 24].hex(" "),
         "decoded_anchor_mm": {
             "x": round(x * 1000.0, 6),
             "y": round(y * 1000.0, 6),
             "z": round(z * 1000.0, 6),
         },
+        "is_finite": True,
     }
+
+
+def _triple_analysis(triple: dict[str, Any] | None, chains: list[dict[str, Any]]) -> dict[str, Any]:
+    if triple is None:
+        return {
+            "raw_hex": None,
+            "decoded_double_triple_mm": None,
+            "is_finite": False,
+            "is_coordinate_like": False,
+            "z_approx_zero": False,
+            "matches_any_chain_baseline_anchor": False,
+            "matches_known_expected_anchor": False,
+            "bbox_like_or_unrelated": "unreadable",
+        }
+    point = triple["decoded_anchor_mm"]
+    is_coordinate_like = (
+        abs(float(point["x"])) <= 10000.0
+        and abs(float(point["y"])) <= 10000.0
+        and abs(float(point["z"])) <= 10000.0
+    )
+    z_approx_zero = abs(float(point["z"])) <= 1e-6
+    matches_chain = any(_distance_2d(point, chain["baseline_anchor_mm"]) == 0.0 for chain in chains)
+    matches_expected = any(_distance_2d(point, _target_point(anchor)) == 0.0 for anchor in TARGET_ANCHORS_MM)
+    bbox_like = any(_distance_2d(point, {"x": chain["bbox"]["center_x"], "y": chain["bbox"]["center_y"], "z": chain["bbox"]["center_z"]}) == 0.0 for chain in chains if chain["bbox"] is not None)
+    return {
+        "raw_hex": triple["raw_hex"],
+        "decoded_double_triple_mm": point,
+        "is_finite": bool(triple["is_finite"]),
+        "is_coordinate_like": is_coordinate_like,
+        "z_approx_zero": z_approx_zero,
+        "matches_any_chain_baseline_anchor": matches_chain,
+        "matches_known_expected_anchor": matches_expected,
+        "bbox_like_or_unrelated": "bbox_center_like" if bbox_like else "unrelated_or_not_bbox_center",
+    }
+
+
+def _window_bytes(window: dict[str, Any]) -> bytes:
+    return bytes.fromhex(window["hex"])
+
+
+def _similarity(left: bytes, right: bytes) -> float:
+    if not left or not right:
+        return 0.0
+    size = min(len(left), len(right))
+    equal = sum(1 for i in range(size) if left[i] == right[i])
+    return round(equal / size, 6)
+
+
+def _similarity_excluding_local_anchor(left_window: dict[str, Any], right_window: dict[str, Any]) -> float:
+    left = bytearray(_window_bytes(left_window))
+    right = bytearray(_window_bytes(right_window))
+    left_anchor = int(left_window["relative_marker_start"]) + COBDAO_ANCHOR_LOCAL_OFFSET
+    right_anchor = int(right_window["relative_marker_start"]) + COBDAO_ANCHOR_LOCAL_OFFSET
+    for idx in range(24):
+        if 0 <= left_anchor + idx < len(left):
+            left[left_anchor + idx] = 0xAA
+        if 0 <= right_anchor + idx < len(right):
+            right[right_anchor + idx] = 0xAA
+    return _similarity(bytes(left), bytes(right))
 
 
 def _chain_rows(parsed: GeometryObject) -> list[dict[str, Any]]:
@@ -407,7 +468,9 @@ def _color_candidates(node: Type3Node) -> list[dict[str, Any]]:
 
 def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains: list[dict[str, Any]]) -> list[dict[str, Any]]:
     sections = []
-    for marker_offset in _marker_positions(node.payload, COBDAO_MARKER):
+    marker_offsets = _marker_positions(node.payload, COBDAO_MARKER)
+    for section_index, marker_offset in enumerate(marker_offsets):
+        next_cobdao_offset = marker_offsets[section_index + 1] if section_index + 1 < len(marker_offsets) else None
         triple = _decode_triple_at(node.payload, marker_offset + COBDAO_ANCHOR_LOCAL_OFFSET)
         matching_hits = [
             hit
@@ -421,7 +484,12 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
             matched_chains = _chain_matches_for_point(triple["decoded_anchor_mm"], chains)
         sections.append(
             {
+                "section_index": section_index,
                 "cobdao_marker_offset": marker_offset,
+                "next_cobdao_offset": next_cobdao_offset,
+                "section_length_candidate": (
+                    next_cobdao_offset - marker_offset if next_cobdao_offset is not None else len(node.payload) - marker_offset
+                ),
                 "marker_text": COBDAO_MARKER.decode("ascii"),
                 "marker_context_hex": _hex_window_around_marker(node.payload, marker_offset),
                 "local_section_start_candidate": (
@@ -433,6 +501,7 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
                     "u32_i32_candidates": _nearby_ints(node.payload, marker_offset, radius=48),
                 },
                 "local_triple_at_cobdao_plus_34": triple,
+                "cobdao_plus_34_triple_analysis": _triple_analysis(triple, chains),
                 "known_anchor_triple_hit": bool(matching_hits),
                 "anchor_hits": matching_hits,
                 "hit_relative_to_cobdao": (
@@ -444,8 +513,28 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
                     row["chain_index"] for row in matched_chains if row["matched_chain_baseline_anchor"]
                 ],
                 "chain_match_candidates": matched_chains,
+                "section_role_candidate": (
+                    "anchor_bearing_candidate"
+                    if matching_hits
+                    else ("non_anchor_candidate" if triple is not None else "unknown")
+                ),
             }
         )
+    anchor_sections = [section for section in sections if section["known_anchor_triple_hit"]]
+    if anchor_sections:
+        anchor_window = anchor_sections[0]["marker_context_hex"]
+        for section in sections:
+            section["local_bytes_similarity_to_anchor_bearing_section"] = _similarity(
+                _window_bytes(section["marker_context_hex"]),
+                _window_bytes(anchor_window),
+            )
+            section["local_bytes_similarity_to_anchor_bearing_excluding_24_anchor_bytes"] = (
+                _similarity_excluding_local_anchor(section["marker_context_hex"], anchor_window)
+            )
+    else:
+        for section in sections:
+            section["local_bytes_similarity_to_anchor_bearing_section"] = None
+            section["local_bytes_similarity_to_anchor_bearing_excluding_24_anchor_bytes"] = None
     return sections
 
 
@@ -629,6 +718,91 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
     }
 
 
+def _all_cobdao_sections(fixtures: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = []
+    for fx in fixtures:
+        for node in fx["cproperty_nodes"]:
+            for section in node["cobdao_sections"]:
+                rows.append(
+                    {
+                        "fixture": fx["fixture"],
+                        "cproperty_node_index": node["cproperty_node_index"],
+                        **section,
+                    }
+                )
+    return rows
+
+
+def _feature_counts(sections: list[dict[str, Any]], feature: str) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for section in sections:
+        value = section["cobdao_plus_34_triple_analysis"].get(feature)
+        key = str(value)
+        counts[key] = counts.get(key, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def _anchor_bearing_aggregate(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    sections = _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+    anchor = [section for section in sections if section["known_anchor_triple_hit"]]
+    non_anchor = [section for section in sections if not section["known_anchor_triple_hit"]]
+    anchor_indexes = sorted({section["section_index"] for section in anchor})
+    non_anchor_indexes = sorted({section["section_index"] for section in non_anchor})
+    coordinate_like_non_anchor = [
+        {
+            "fixture": section["fixture"],
+            "section_index": section["section_index"],
+            "cobdao_marker_offset": section["cobdao_marker_offset"],
+            "decoded": section["cobdao_plus_34_triple_analysis"]["decoded_double_triple_mm"],
+        }
+        for section in non_anchor
+        if section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"]
+    ]
+    ambiguous = [
+        section
+        for section in non_anchor
+        if section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"]
+        and section["cobdao_plus_34_triple_analysis"]["z_approx_zero"]
+    ]
+    return {
+        "section_count": len(sections),
+        "anchor_bearing_count": len(anchor),
+        "non_anchor_count": len(non_anchor),
+        "anchor_bearing_section_indexes": anchor_indexes,
+        "non_anchor_section_indexes": non_anchor_indexes,
+        "anchor_bearing_coordinate_like_counts": _feature_counts(anchor, "is_coordinate_like"),
+        "non_anchor_coordinate_like_counts": _feature_counts(non_anchor, "is_coordinate_like"),
+        "anchor_bearing_z_approx_zero_counts": _feature_counts(anchor, "z_approx_zero"),
+        "non_anchor_z_approx_zero_counts": _feature_counts(non_anchor, "z_approx_zero"),
+        "anchor_bearing_matches_chain_counts": _feature_counts(anchor, "matches_any_chain_baseline_anchor"),
+        "non_anchor_matches_chain_counts": _feature_counts(non_anchor, "matches_any_chain_baseline_anchor"),
+        "coordinate_like_non_anchor_sections": coordinate_like_non_anchor,
+        "ambiguous_non_anchor_sections": [
+            {
+                "fixture": section["fixture"],
+                "section_index": section["section_index"],
+                "cobdao_marker_offset": section["cobdao_marker_offset"],
+                "decoded": section["cobdao_plus_34_triple_analysis"]["decoded_double_triple_mm"],
+            }
+            for section in ambiguous
+        ],
+        "features_that_distinguish_anchor_bearing_sections": [
+            "matches known expected anchor and parsed chain baseline anchor in current analyzer evidence",
+            "z_approx_zero is true for current anchor-bearing sections",
+        ],
+        "features_that_do_not_distinguish_anchor_bearing_sections": [
+            "CObDao + 34 can be decoded as finite double triple in all current CObDao sections",
+            "coordinate-like values also appear in some non-anchor sections",
+            "OBJETINFOS_CLASSNAME -> CObDao distance is repeated and not unique to anchor-bearing sections",
+            "section index is not stable across grouped and non-grouped fixtures",
+        ],
+        "false_positive_risk": (
+            "High if selecting by coordinate-like triple alone; non-anchor sections can decode to coordinate-like "
+            "finite triples. Baseline-anchor equality is analyzer evidence only and must not become parser selection."
+        ),
+    }
+
+
 def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any]) -> dict[str, Any]:
     return {
         "anchor_triple_at_cobdao_plus_34_for_target_fixtures": comparison[
@@ -651,6 +825,7 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any]) -> dict
             "class-relative section boundary for CPropertyExtend anchor records",
             "chain ownership rule connecting CPropertyExtend local record to parser chain without filename assumptions",
             "grouped/non-grouped shift explanation that is stable across more fixtures",
+            "anchor-bearing CObDao section selection rule that does not depend on parser baseline_midpoint",
         ],
         "parser_readiness": "not_ready_analyzer_only",
     }
@@ -659,6 +834,7 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any]) -> dict
 def build_report() -> dict[str, Any]:
     fixture_reports = [_fixture_report(name) for name in FIXTURES]
     comparison = _compare_grouped_non_grouped(fixture_reports)
+    aggregate = _anchor_bearing_aggregate(fixture_reports)
     return {
         "policy": {
             "scope": "CPropertyExtend anchor context structure/evidence audit only",
@@ -669,6 +845,7 @@ def build_report() -> dict[str, Any]:
         },
         "fixtures": fixture_reports,
         "grouped_vs_non_grouped_comparison": comparison,
+        "anchor_bearing_vs_non_anchor_aggregate": aggregate,
         "answers": _answers(fixture_reports, comparison),
     }
 
@@ -689,11 +866,17 @@ def _print_text(report: dict[str, Any]) -> None:
             )
             print("  [CObDao section scan]")
             for section in node["cobdao_sections"]:
+                triple = section["cobdao_plus_34_triple_analysis"]
                 print(
-                    f"    cobdao_offset={section['cobdao_marker_offset']} "
+                    f"    section={section['section_index']} cobdao_offset={section['cobdao_marker_offset']} "
+                    f"next_cobdao={section['next_cobdao_offset']} len_candidate={section['section_length_candidate']} "
                     f"known_anchor={str(section['known_anchor_triple_hit']).lower()} "
+                    f"role={section['section_role_candidate']} "
                     f"hit_relative_to_cobdao={section['hit_relative_to_cobdao']} "
-                    f"matched_chains={section['matched_chains']}"
+                    f"coordinate_like={str(triple['is_coordinate_like']).lower()} "
+                    f"z_approx_zero={str(triple['z_approx_zero']).lower()} "
+                    f"matches_chain={str(triple['matches_any_chain_baseline_anchor']).lower()} "
+                    f"matched_chains={section['matched_chains']} decoded={triple['decoded_double_triple_mm']}"
                 )
             for hit in node["anchor_triple_hits_inside_node"]:
                 print(
@@ -705,6 +888,8 @@ def _print_text(report: dict[str, Any]) -> None:
         print()
     print("[Grouped vs Non-grouped]")
     print(json.dumps(report["grouped_vs_non_grouped_comparison"], ensure_ascii=False, indent=2))
+    print("[Anchor-bearing vs Non-anchor Aggregate]")
+    print(json.dumps(report["anchor_bearing_vs_non_anchor_aggregate"], ensure_ascii=False, indent=2))
     print("[Answers]")
     print(json.dumps(report["answers"], ensure_ascii=False, indent=2))
 
@@ -735,6 +920,13 @@ def _print_markdown(report: dict[str, Any]) -> None:
     print(f"- non-grouped offsets: `{comp['non_grouped_cproperty_anchor_offsets']}`")
     print(f"- delta: `{comp['offset_delta_non_grouped_minus_grouped']}`")
     print(f"- status: `{comp['parser_promotion_status']}`")
+    print()
+    print("## Anchor-bearing vs Non-anchor Aggregate")
+    print()
+    agg = report["anchor_bearing_vs_non_anchor_aggregate"]
+    print(f"- anchor-bearing sections: `{agg['anchor_bearing_count']}`")
+    print(f"- non-anchor sections: `{agg['non_anchor_count']}`")
+    print(f"- false positive risk: {agg['false_positive_risk']}")
 
 
 def main() -> int:

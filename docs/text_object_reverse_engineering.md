@@ -865,3 +865,13 @@ CPropertyExtend anchor context audit:
 - the non-grouped anchor-bearing `CObDao` offset is `148` bytes after the grouped anchor-bearing `CObDao` offset.
 - observed local marker spelling is `OBJETINFOS_CLASSNAME`; it appears 24 bytes before `CObDao` in the current anchor-bearing sections.
 - `CObDao + 34` is therefore a strong local pattern candidate, not a confirmed parser rule.
+
+Anchor-bearing section selection audit:
+
+- current multi-object target fixtures contain 16 total `CObDao` sections in `CPropertyExtend`.
+- 3 are known anchor-bearing by analyzer evidence; 13 are non-anchor sections.
+- all known anchor-bearing sections have coordinate-like `CObDao + 34` triples with `z≈0`.
+- non-anchor sections can also have coordinate-like `CObDao + 34` triples, including `(0.0, 0.0, 0.0)`.
+- grouped fixtures use section index `1`; the non-grouped fixture uses section index `2`.
+- section index/order, coordinate-like decode, and `OBJETINFOS_CLASSNAME -> CObDao` distance do not independently select the anchor-bearing section.
+- selection by parsed baseline anchor equality remains analyzer-only and is not a parser rule.

@@ -762,3 +762,28 @@ Current parser decision:
 - do not add a parser rule for `CObDao + 34` yet.
 - do not promote `CPropertyExtend` anchor decode to confirmed.
 - keep `baseline_midpoint` as the active fallback.
+
+### CObDao section role audit
+
+Current section counts in target multi-object fixtures:
+
+| fixture | `CObDao` sections in `CPropertyExtend` | anchor-bearing section index | anchor-bearing `CObDao` offset |
+|---|---:|---:|---:|
+| `text_group_same_color_two_objects.txt` | 5 | 1 | 438 |
+| `text_group_mixed_color_two_objects.txt` | 5 | 1 | 438 |
+| `text_two_objects_mixed_color_not_grouped.txt` | 6 | 2 | 586 |
+
+Section role observations:
+
+- `CObDao + 34` can be read as a finite double triple in all current `CObDao` sections.
+- anchor-bearing sections decode to the expected non-zero text anchor and match the corresponding parsed chain baseline anchor in analyzer evidence.
+- some non-anchor sections also decode to coordinate-like triples, commonly `(0.0, 0.0, 0.0)`.
+- therefore coordinate-like decode alone is not a safe anchor-bearing section selector.
+- section index is also not stable: grouped anchor-bearing section index is `1`, non-grouped is `2`.
+- current distinguishing evidence still depends on expected anchor / parsed baseline equality, which is analyzer-only and must not become parser selection logic.
+
+Current role conclusion:
+
+- `CObDao + 34` is a strong observed local pattern candidate.
+- anchor-bearing `CObDao` section selection remains unresolved.
+- false-positive risk is high if selecting by coordinate-like triple alone.

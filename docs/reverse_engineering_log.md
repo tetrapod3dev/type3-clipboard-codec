@@ -185,3 +185,12 @@ Status:
 - grouped CPropertyExtend samples currently expose 5 `CObDao` sections; the non-grouped sample exposes 6.
 - observed local class marker spelling is `OBJETINFOS_CLASSNAME`, 24 bytes before `CObDao`.
 - this remains analyzer-only evidence; no parser rule has been added.
+
+Section role follow-up:
+
+- current target multi-object fixtures contain 16 total `CObDao` sections inside `CPropertyExtend`.
+- known anchor-bearing sections: 3.
+- non-anchor sections: 13.
+- non-anchor sections can also decode coordinate-like triples at `CObDao + 34`, including zero triples.
+- grouped anchor-bearing section index is `1`; non-grouped anchor-bearing section index is `2`.
+- no baseline-independent section selection rule is available yet.
