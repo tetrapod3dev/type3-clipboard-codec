@@ -156,3 +156,22 @@ Parser decision:
 - no parser active-anchor change.
 - no direct anchor confirmed promotion.
 - keep `baseline_midpoint` as active fallback until chain/node ownership is structurally resolved.
+
+### CPropertyExtend anchor context follow-up
+
+Tool:
+
+- `tools/analyze_text_cproperty_anchor_context.py`
+
+Observed:
+
+- grouped multi-object fixtures store the unmatched chain anchor in `CPropertyExtend` at payload-relative offset `472`.
+- non-grouped multi-object fixture stores the unmatched chain anchor in `CPropertyExtend` at payload-relative offset `620`.
+- grouped and non-grouped contexts share a local marker signature around the hit (`CObDao` at hit-34).
+- the non-grouped hit is shifted by `148` bytes from the grouped hit.
+
+Status:
+
+- `148` is an offset delta candidate, not a confirmed record size.
+- local record/section boundaries remain unresolved.
+- parser anchor behavior remains unchanged.

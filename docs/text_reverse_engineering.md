@@ -721,3 +721,33 @@ Parser promotion remains blocked until:
 1. chain ownership can be derived without fixture filename assumptions.
 2. the relationship between `CParagraphe` and `CPropertyExtend` anchor triples is explained structurally.
 3. text-run ownership and anchor ownership are separated for grouped and non-grouped multi-object payloads.
+
+### CPropertyExtend anchor context audit
+
+Tool:
+
+- `tools/analyze_text_cproperty_anchor_context.py`
+- output modes: text / `--json` / `--markdown`
+
+Current CPropertyExtend observations:
+
+| fixture | anchor found in `CPropertyExtend` | `CPropertyExtend` payload-relative offset | matched parser chain |
+|---|---|---:|---:|
+| `text_group_same_color_two_objects.txt` | `(211.111, 322.222, 0.0)` | `472` | chain1 |
+| `text_group_mixed_color_two_objects.txt` | `(211.111, 322.222, 0.0)` | `472` | chain1 |
+| `text_two_objects_mixed_color_not_grouped.txt` | `(111.111, 222.222, 0.0)` | `620` | chain0 |
+
+Local context status:
+
+- grouped fixtures share the same `CPropertyExtend` anchor payload offset `472`.
+- grouped fixtures are not byte-identical around the full local window because volatile/context bytes differ.
+- grouped fixtures do share the same local marker signature around the hit; `CObDao` appears at `hit - 34`.
+- non-grouped `620` has the same marker signature pattern but is shifted by `148` bytes relative to grouped `472`.
+- this `148` byte delta is an offset-shift candidate only; no stable section/record boundary rule is confirmed yet.
+
+Current parser decision:
+
+- `CPropertyExtend` anchor location is observed, but structural rules remain unresolved.
+- do not add a fixed offset parser rule for `472` or `620`.
+- do not promote `CPropertyExtend` anchor decode to confirmed.
+- keep `baseline_midpoint` as the active fallback.
