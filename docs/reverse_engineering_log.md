@@ -129,3 +129,30 @@
   - Korean/multiline ownership
   - text style field mapping stability
   - parser confidence layering 정교화
+
+---
+
+## Text Multi-object Ownership Audit
+
+Current tool:
+
+- `tools/analyze_text_multi_object_ownership.py`
+
+Observed across current multi-object text fixtures:
+
+- `text_group_same_color_two_objects.txt`: parser chains=2, `CParagraphe` nodes=1
+- `text_group_mixed_color_two_objects.txt`: parser chains=2, `CParagraphe` nodes=1
+- `text_two_objects_mixed_color_not_grouped.txt`: parser chains=2, `CParagraphe` nodes=1
+
+Evidence update:
+
+- single-object `CParagraphe` direct anchor triple at payload-relative `158/166/174` remains a strong observed candidate.
+- in grouped two-object fixtures, that `CParagraphe` triple matches chain0; chain1 anchor appears in `CPropertyExtend`.
+- in the non-grouped two-object fixture, that `CParagraphe` triple matches chain1; chain0 anchor appears in `CPropertyExtend`.
+- chain count and `CParagraphe` count are not equivalent.
+
+Parser decision:
+
+- no parser active-anchor change.
+- no direct anchor confirmed promotion.
+- keep `baseline_midpoint` as active fallback until chain/node ownership is structurally resolved.

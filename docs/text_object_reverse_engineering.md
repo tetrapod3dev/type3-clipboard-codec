@@ -824,3 +824,24 @@ Ownership validation note (multi-object fixtures):
   - enumerate all `CParagraphe` nodes,
   - enumerate all chains,
   - report unmatched chains explicitly instead of inferring missing direct fields.
+
+Current ownership audit update:
+
+- `tools/analyze_text_multi_object_ownership.py` is the current structure/evidence audit tool.
+- current multi-object samples all have `parser chains=2` and `CParagraphe nodes=1`.
+- grouped samples:
+  - `CParagraphe` direct triple at payload-relative `158/166/174` matches chain0.
+  - chain1 anchor triple is found in `CPropertyExtend`, not in a second `CParagraphe`.
+- non-grouped sample:
+  - `CParagraphe` direct triple at payload-relative `158/166/174` matches chain1.
+  - chain0 anchor triple is found in `CPropertyExtend`.
+- direct anchor decode is not ready for parser promotion as a per-chain field.
+- active parser behavior remains structural `baseline_midpoint` recovery.
+- text-run ownership and anchor ownership must remain separate concerns.
+
+Future fixtures can be collected with the verified 2-format clipboard bundle workflow:
+
+```powershell
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py dump-bundle --dir .\dumps\parser_case01
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py verify-bundle --dir .\dumps\parser_case01
+```

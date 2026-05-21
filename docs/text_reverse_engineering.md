@@ -682,3 +682,42 @@ Interpretation:
 - chain count and `CParagraphe` node count are not currently 1:1 in these fixtures.
 - direct triple evidence at `158/166/174` remains strong for single-object and for one chain in each multi-object fixture.
 - full per-chain direct ownership still remains provisional.
+
+### Multi-object chain/node ownership audit
+
+Tool:
+
+- `tools/analyze_text_multi_object_ownership.py`
+- output modes: text / `--json` / `--markdown`
+
+Current audit result:
+
+| fixture | parser chains | `CParagraphe` nodes | `CParagraphe` direct triple match | other expected anchor triple |
+|---|---:|---:|---|---|
+| `text_group_same_color_two_objects.txt` | 2 | 1 | chain0 `(111.111, 222.222, 0.0)` | chain1 anchor found in `CPropertyExtend` at class-payload offset `472` |
+| `text_group_mixed_color_two_objects.txt` | 2 | 1 | chain0 `(111.111, 222.222, 0.0)` | chain1 anchor found in `CPropertyExtend` at class-payload offset `472` |
+| `text_two_objects_mixed_color_not_grouped.txt` | 2 | 1 | chain1 `(211.111, 322.222, 0.0)` | chain0 anchor found in `CPropertyExtend` at class-payload offset `620` |
+
+Updated interpretation:
+
+- single-object direct anchor candidate at `CParagraphe` payload-relative offsets `158/166/174` is a strong observed candidate.
+- multi-object fixtures prove that `chain count == CParagraphe count` is false for current samples.
+- `CParagraphe` direct triple currently links to one parser chain by exact anchor equality and bbox/anchor proximity.
+- the unmatched chain's expected anchor is still present as a contiguous `double64le` triple, but it appears outside `CParagraphe` in `CPropertyExtend`.
+- therefore the direct triple must not be generalized as a per-text-chain `CParagraphe` field yet.
+- `baseline_midpoint` remains the active parser fallback until chain ownership is structurally resolved.
+
+Clipboard fixture collection note:
+
+```powershell
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py dump-bundle --dir .\dumps\parser_case01
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py inspect --in .\dumps\parser_case01\typeeditzone.bin
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py load-bundle --dir .\dumps\parser_case01
+.\.venv\Scripts\python.exe tools\clipboard_typeeditzone.py verify-bundle --dir .\dumps\parser_case01
+```
+
+Parser promotion remains blocked until:
+
+1. chain ownership can be derived without fixture filename assumptions.
+2. the relationship between `CParagraphe` and `CPropertyExtend` anchor triples is explained structurally.
+3. text-run ownership and anchor ownership are separated for grouped and non-grouped multi-object payloads.
