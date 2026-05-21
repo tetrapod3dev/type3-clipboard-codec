@@ -17,16 +17,26 @@ def _load_cli_module():
 
 class _FakeClipboardAdapter:
     payload = b""
+    version_payload = b""
     written = b""
+    written_bundle: tuple[bytes, bytes] | None = None
     has_value = True
+    has_version_value = True
     formats = [13, 50107]
     format_id = 50107
+    version_format_id = 50108
 
     def get_typeeditzone_format_id(self) -> int:
         return self.format_id
 
+    def get_typeeditzone_version_format_id(self) -> int:
+        return self.version_format_id
+
     def has_typeeditzone(self) -> bool:
         return self.has_value
+
+    def has_typeeditzone_version(self) -> bool:
+        return self.has_version_value
 
     def list_formats(self) -> list[int]:
         return list(self.formats)
@@ -34,8 +44,14 @@ class _FakeClipboardAdapter:
     def read_typeeditzone_bytes(self) -> bytes:
         return self.payload
 
+    def read_typeeditzone_version_bytes(self) -> bytes:
+        return self.version_payload
+
     def write_typeeditzone_bytes(self, data: bytes) -> None:
         type(self).written = data
+
+    def write_typeeditzone_bundle(self, zone_bytes: bytes, version_bytes: bytes) -> None:
+        type(self).written_bundle = (zone_bytes, version_bytes)
 
 
 def test_probe_runs_with_mock_adapter(monkeypatch, capsys) -> None:
@@ -48,6 +64,10 @@ def test_probe_runs_with_mock_adapter(monkeypatch, capsys) -> None:
     assert rc == 0
     assert "format_name=TypeEditZone" in out
     assert "registered_format_id=50107" in out
+    assert "version_format_name=TypeEditZoneVersion" in out
+    assert "version_registered_format_id=50108" in out
+    assert "version_observed_format_id=50108" in out
+    assert "has_typeeditzone_version=true" in out
 
 
 def test_dump_and_load_keep_bytes_equal(monkeypatch, tmp_path: Path) -> None:
@@ -65,6 +85,38 @@ def test_dump_and_load_keep_bytes_equal(monkeypatch, tmp_path: Path) -> None:
     load_rc = module.main(["load", "--in", str(dump_path)])
     assert load_rc == 0
     assert _FakeClipboardAdapter.written == dumped
+
+
+def test_dump_version_keeps_bytes_equal(monkeypatch, tmp_path: Path) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.version_payload = b"\x01\x00\x00\x00\x51\x02\x00\x00\x00\x00\x00\x00"
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    dump_path = tmp_path / "typeeditzone_version.bin"
+    dump_rc = module.main(["dump-version", "--out", str(dump_path)])
+
+    assert dump_rc == 0
+    assert dump_path.read_bytes() == _FakeClipboardAdapter.version_payload
+
+
+def test_load_with_version_in_passes_zone_and_version_bytes(monkeypatch, tmp_path: Path) -> None:
+    module = _load_cli_module()
+    _FakeClipboardAdapter.written = b""
+    _FakeClipboardAdapter.written_bundle = None
+    monkeypatch.setattr(module, "Win32ClipboardAdapter", _FakeClipboardAdapter)
+
+    zone_path = tmp_path / "typeeditzone.bin"
+    version_path = tmp_path / "typeeditzone_version.bin"
+    zone_payload = b"\x00\x11\x22\x00\xff\x00"
+    version_payload = b"\x01\x00\x00\x00\x51\x02\x00\x00\x00\x00\x00\x00"
+    zone_path.write_bytes(zone_payload)
+    version_path.write_bytes(version_payload)
+
+    load_rc = module.main(["load", "--in", str(zone_path), "--version-in", str(version_path)])
+
+    assert load_rc == 0
+    assert _FakeClipboardAdapter.written == b""
+    assert _FakeClipboardAdapter.written_bundle == (zone_payload, version_payload)
 
 
 def test_dump_hex_writes_expected_hex_text(monkeypatch, tmp_path: Path) -> None:

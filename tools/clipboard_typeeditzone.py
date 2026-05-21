@@ -12,7 +12,9 @@ if str(SRC_DIR) not in sys.path:
 from type3_clipboard_codec.adapters.input_base import InputAdapter
 from type3_clipboard_codec.adapters.win32_clipboard import (
     OBSERVED_TYPE_EDIT_ZONE_FORMAT_ID,
+    OBSERVED_TYPE_EDIT_ZONE_VERSION_FORMAT_ID,
     TYPE_EDIT_ZONE_FORMAT_NAME,
+    TYPE_EDIT_ZONE_VERSION_FORMAT_NAME,
     Win32ClipboardAdapter,
     Win32ClipboardError,
 )
@@ -36,11 +38,17 @@ def _build_parser() -> argparse.ArgumentParser:
     dump_parser = subparsers.add_parser("dump", help="dump TypeEditZone clipboard bytes to binary file")
     dump_parser.add_argument("--out", required=True, help="output binary path")
 
+    dump_version_parser = subparsers.add_parser(
+        "dump-version", help="dump TypeEditZoneVersion clipboard bytes to binary file"
+    )
+    dump_version_parser.add_argument("--out", required=True, help="output binary path")
+
     dump_hex_parser = subparsers.add_parser("dump-hex", help="dump TypeEditZone clipboard bytes as hex text")
     dump_hex_parser.add_argument("--out", required=True, help="output text path")
 
     load_parser = subparsers.add_parser("load", help="load binary file bytes into TypeEditZone clipboard format")
     load_parser.add_argument("--in", dest="in_path", required=True, help="input binary path")
+    load_parser.add_argument("--version-in", dest="version_in_path", help="TypeEditZoneVersion input binary path")
 
     inspect_parser = subparsers.add_parser("inspect", help="inspect a binary file via existing decoder flow")
     inspect_parser.add_argument("--in", dest="in_path", required=True, help="input binary path")
@@ -57,12 +65,18 @@ def main(argv: list[str] | None = None) -> int:
 
         if args.command == "probe":
             format_id = adapter.get_typeeditzone_format_id()
+            version_format_id = adapter.get_typeeditzone_version_format_id()
             has_format = adapter.has_typeeditzone()
+            has_version_format = adapter.has_typeeditzone_version()
             formats = adapter.list_formats()
             print(f"format_name={TYPE_EDIT_ZONE_FORMAT_NAME}")
             print(f"registered_format_id={format_id}")
             print(f"observed_format_id={OBSERVED_TYPE_EDIT_ZONE_FORMAT_ID}")
             print(f"has_typeeditzone={str(has_format).lower()}")
+            print(f"version_format_name={TYPE_EDIT_ZONE_VERSION_FORMAT_NAME}")
+            print(f"version_registered_format_id={version_format_id}")
+            print(f"version_observed_format_id={OBSERVED_TYPE_EDIT_ZONE_VERSION_FORMAT_ID}")
+            print(f"has_typeeditzone_version={str(has_version_format).lower()}")
             print(f"clipboard_formats={formats}")
             return 0
 
@@ -71,6 +85,14 @@ def main(argv: list[str] | None = None) -> int:
             out_path = Path(args.out)
             out_path.write_bytes(payload)
             print(f"dumped_bytes={len(payload)}")
+            print(f"out={out_path}")
+            return 0
+
+        if args.command == "dump-version":
+            payload = adapter.read_typeeditzone_version_bytes()
+            out_path = Path(args.out)
+            out_path.write_bytes(payload)
+            print(f"dumped_version_bytes={len(payload)}")
             print(f"out={out_path}")
             return 0
 
@@ -85,9 +107,19 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "load":
             in_path = Path(args.in_path)
             payload = in_path.read_bytes()
-            adapter.write_typeeditzone_bytes(payload)
+            version_payload = None
+            version_in_path = None
+            if args.version_in_path is not None:
+                version_in_path = Path(args.version_in_path)
+                version_payload = version_in_path.read_bytes()
+                adapter.write_typeeditzone_bundle(payload, version_payload)
+            else:
+                adapter.write_typeeditzone_bytes(payload)
             print(f"loaded_bytes={len(payload)}")
             print(f"in={in_path}")
+            if version_payload is not None and version_in_path is not None:
+                print(f"loaded_version_bytes={len(version_payload)}")
+                print(f"version_in={version_in_path}")
             return 0
 
         if args.command == "inspect":
