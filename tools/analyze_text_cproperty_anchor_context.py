@@ -39,6 +39,7 @@ TOP_LEVEL_HEADER_LEN = 6
 LOCAL_WINDOW_RADIUS = 64
 KNOWN_MARKERS = [
     b"OBJECTINFOS_CLASSNAME",
+    b"OBJETINFOS_CLASSNAME",
     b"CPropertyExtend",
     b"CParagraphe",
     b"CContour",
@@ -46,6 +47,10 @@ KNOWN_MARKERS = [
     b"CZone",
     b"CObDao",
 ]
+COBDAO_MARKER = b"CObDao"
+OBJECTINFOS_MARKER = b"OBJECTINFOS_CLASSNAME"
+OBJETINFOS_MARKER = b"OBJETINFOS_CLASSNAME"
+COBDAO_ANCHOR_LOCAL_OFFSET = 34
 
 
 def _read_fixture(name: str) -> bytes:
@@ -153,6 +158,17 @@ def _hex_window(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) 
     }
 
 
+def _hex_window_around_marker(payload: bytes, marker_offset: int) -> dict[str, Any]:
+    start = max(0, marker_offset - 64)
+    end = min(len(payload), marker_offset + 128)
+    return {
+        "start": start,
+        "end": end,
+        "relative_marker_start": marker_offset - start,
+        "hex": payload[start:end].hex(" "),
+    }
+
+
 def _nearby_doubles(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, Any]]:
     start = max(0, center - radius)
     end = min(len(payload) - 8, center + 24 + radius)
@@ -214,6 +230,33 @@ def _nearest_marker(payload: bytes, center: int) -> dict[str, Any] | None:
     return best
 
 
+def _marker_positions(payload: bytes, marker: bytes) -> list[int]:
+    positions = []
+    start = 0
+    while True:
+        pos = payload.find(marker, start)
+        if pos < 0:
+            return positions
+        positions.append(pos)
+        start = pos + 1
+
+
+def _nearest_objectinfos_before(payload: bytes, marker_offset: int) -> dict[str, Any] | None:
+    marker_positions = []
+    for marker in (OBJECTINFOS_MARKER, OBJETINFOS_MARKER):
+        marker_positions.extend((marker, pos) for pos in _marker_positions(payload, marker) if pos <= marker_offset)
+    marker_positions.sort(key=lambda item: item[1])
+    positions = marker_positions
+    if not positions:
+        return None
+    marker, pos = positions[-1]
+    return {
+        "marker": marker.decode("ascii"),
+        "offset": pos,
+        "distance_before_cobdao": marker_offset - pos,
+    }
+
+
 def _marker_signature(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, Any]]:
     rows = []
     start_limit = max(0, center - radius)
@@ -257,6 +300,22 @@ def _local_record_start_candidates(payload: bytes, center: int) -> list[dict[str
             }
         )
     return rows
+
+
+def _decode_triple_at(payload: bytes, offset: int) -> dict[str, Any] | None:
+    if offset < 0 or offset + 24 > len(payload):
+        return None
+    x, y, z = struct.unpack("<ddd", payload[offset : offset + 24])
+    if not all(math.isfinite(v) for v in (x, y, z)):
+        return None
+    return {
+        "offset": offset,
+        "decoded_anchor_mm": {
+            "x": round(x * 1000.0, 6),
+            "y": round(y * 1000.0, 6),
+            "z": round(z * 1000.0, 6),
+        },
+    }
 
 
 def _chain_rows(parsed: GeometryObject) -> list[dict[str, Any]]:
@@ -309,12 +368,85 @@ def _chain_context(hit_rel: int, node: Type3Node, target: dict[str, float], chai
     return rows
 
 
+def _chain_matches_for_point(point: dict[str, float] | None, chains: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if point is None:
+        return []
+    rows = []
+    for chain in chains:
+        rows.append(
+            {
+                "chain_index": chain["chain_index"],
+                "matched_chain_baseline_anchor": _distance_2d(point, chain["baseline_anchor_mm"]) == 0.0,
+                "anchor_distance_mm": _distance_2d(point, chain["baseline_anchor_mm"]),
+                "bbox_center_distance_mm": _distance_2d(
+                    point,
+                    {
+                        "x": chain["bbox"]["center_x"],
+                        "y": chain["bbox"]["center_y"],
+                        "z": chain["bbox"]["center_z"],
+                    }
+                    if chain["bbox"] is not None
+                    else None,
+                ),
+                "source_payload_offset": chain["source_payload_offset"],
+                "source_stream_offset": chain["source_stream_offset"],
+                "text_candidate": chain["text_candidate"],
+            }
+        )
+    rows.sort(key=lambda row: (float("inf") if row["anchor_distance_mm"] is None else row["anchor_distance_mm"]))
+    return rows
+
+
 def _color_candidates(node: Type3Node) -> list[dict[str, Any]]:
     rows = []
     for off in (0x79, 0x85, 0x20E, 0x21A):
         if off + 4 <= len(node.payload):
             rows.append({"payload_offset": off, "u32le": struct.unpack("<I", node.payload[off : off + 4])[0]})
     return rows
+
+
+def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    sections = []
+    for marker_offset in _marker_positions(node.payload, COBDAO_MARKER):
+        triple = _decode_triple_at(node.payload, marker_offset + COBDAO_ANCHOR_LOCAL_OFFSET)
+        matching_hits = [
+            hit
+            for hit in anchor_hits
+            if hit["node_class"] == "CPropertyExtend"
+            and hit["cproperty_payload_relative_offset"] is not None
+            and int(hit["cproperty_payload_relative_offset"]) - marker_offset == COBDAO_ANCHOR_LOCAL_OFFSET
+        ]
+        matched_chains = []
+        if triple is not None:
+            matched_chains = _chain_matches_for_point(triple["decoded_anchor_mm"], chains)
+        sections.append(
+            {
+                "cobdao_marker_offset": marker_offset,
+                "marker_text": COBDAO_MARKER.decode("ascii"),
+                "marker_context_hex": _hex_window_around_marker(node.payload, marker_offset),
+                "local_section_start_candidate": (
+                    _nearest_objectinfos_before(node.payload, marker_offset) or {"offset": marker_offset}
+                ),
+                "nearby_objectinfos_marker": _nearest_objectinfos_before(node.payload, marker_offset),
+                "decoded_values_from_cobdao": {
+                    "double64_candidates": _nearby_doubles(node.payload, marker_offset, radius=48),
+                    "u32_i32_candidates": _nearby_ints(node.payload, marker_offset, radius=48),
+                },
+                "local_triple_at_cobdao_plus_34": triple,
+                "known_anchor_triple_hit": bool(matching_hits),
+                "anchor_hits": matching_hits,
+                "hit_relative_to_cobdao": (
+                    int(matching_hits[0]["cproperty_payload_relative_offset"]) - marker_offset
+                    if matching_hits
+                    else None
+                ),
+                "matched_chains": [
+                    row["chain_index"] for row in matched_chains if row["matched_chain_baseline_anchor"]
+                ],
+                "chain_match_candidates": matched_chains,
+            }
+        )
+    return sections
 
 
 def _anchor_hit_context(
@@ -376,6 +508,7 @@ def _fixture_report(name: str) -> dict[str, Any]:
                 "payload_relative_offset": node.payload_offset,
                 "known_color_candidates": _color_candidates(node),
                 "anchor_triple_hits_inside_node": hits,
+                "cobdao_sections": _cobdao_sections(node, hits, chains),
             }
         )
     return {
@@ -417,6 +550,26 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
 
     grouped_offsets = [hit["cproperty_payload_relative_offset"] for hit in grouped_hits]
     nongrouped_offsets = [hit["cproperty_payload_relative_offset"] for hit in nongrouped_hits]
+    grouped_cobdao_offsets = []
+    nongrouped_cobdao_offsets = []
+    grouped_hit_relative_to_cobdao = []
+    nongrouped_hit_relative_to_cobdao = []
+    grouped_section_counts = []
+    nongrouped_section_counts = []
+    for fx in grouped:
+        for node in fx["cproperty_nodes"]:
+            grouped_section_counts.append(len(node["cobdao_sections"]))
+            for section in node["cobdao_sections"]:
+                if section["known_anchor_triple_hit"]:
+                    grouped_cobdao_offsets.append(section["cobdao_marker_offset"])
+                    grouped_hit_relative_to_cobdao.append(section["hit_relative_to_cobdao"])
+    if nongrouped is not None:
+        for node in nongrouped["cproperty_nodes"]:
+            nongrouped_section_counts.append(len(node["cobdao_sections"]))
+            for section in node["cobdao_sections"]:
+                if section["known_anchor_triple_hit"]:
+                    nongrouped_cobdao_offsets.append(section["cobdao_marker_offset"])
+                    nongrouped_hit_relative_to_cobdao.append(section["hit_relative_to_cobdao"])
     same_grouped_local_structure = False
     if len(grouped_hits) >= 2:
         same_grouped_local_structure = (
@@ -432,10 +585,30 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
     return {
         "grouped_cproperty_anchor_offsets": grouped_offsets,
         "non_grouped_cproperty_anchor_offsets": nongrouped_offsets,
+        "grouped_cobdao_anchor_section_offsets": grouped_cobdao_offsets,
+        "non_grouped_cobdao_anchor_section_offsets": nongrouped_cobdao_offsets,
+        "grouped_hit_relative_to_cobdao": grouped_hit_relative_to_cobdao,
+        "non_grouped_hit_relative_to_cobdao": nongrouped_hit_relative_to_cobdao,
+        "all_anchor_hits_relative_to_cobdao_are_34": all(
+            rel == COBDAO_ANCHOR_LOCAL_OFFSET
+            for rel in [*grouped_hit_relative_to_cobdao, *nongrouped_hit_relative_to_cobdao]
+        ),
+        "grouped_cobdao_section_counts": grouped_section_counts,
+        "non_grouped_cobdao_section_counts": nongrouped_section_counts,
+        "cobdao_section_counts_identical": (
+            len(set([*grouped_section_counts, *nongrouped_section_counts])) == 1
+            if [*grouped_section_counts, *nongrouped_section_counts]
+            else False
+        ),
         "grouped_offsets_identical": len(set(grouped_offsets)) == 1 if grouped_offsets else False,
         "grouped_local_structure_identical_excluding_anchor_bytes": same_grouped_local_structure,
         "grouped_marker_signature_identical": same_grouped_marker_signature,
         "offset_delta_non_grouped_minus_grouped": grouped_to_nongrouped_delta,
+        "cobdao_offset_delta_non_grouped_minus_grouped": (
+            nongrouped_cobdao_offsets[0] - grouped_cobdao_offsets[0]
+            if grouped_cobdao_offsets and nongrouped_cobdao_offsets
+            else None
+        ),
         "delta_explanation_candidate": (
             "non-grouped CPropertyExtend anchor context is shifted by 148 bytes from grouped fixtures"
             if grouped_to_nongrouped_delta == 148
@@ -458,9 +631,20 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
 
 def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any]) -> dict[str, Any]:
     return {
+        "anchor_triple_at_cobdao_plus_34_for_target_fixtures": comparison[
+            "all_anchor_hits_relative_to_cobdao_are_34"
+        ],
+        "cobdao_sections_multiple": not comparison["cobdao_section_counts_identical"]
+        or (comparison["grouped_cobdao_section_counts"][:1] != [1]),
         "same_local_structure_for_grouped_472": comparison["grouped_local_structure_identical_excluding_anchor_bytes"],
         "same_marker_signature_for_grouped_472": comparison["grouped_marker_signature_identical"],
         "non_grouped_620_shift_candidate": comparison["delta_explanation_candidate"],
+        "cobdao_section_shift_candidate": (
+            "anchor-bearing CObDao section is shifted by 148 bytes in non-grouped fixture"
+            if comparison["cobdao_offset_delta_non_grouped_minus_grouped"] == 148
+            else "unresolved"
+        ),
+        "objectinfos_cobdao_relationship": "Observed OBJETINFOS_CLASSNAME appears immediately before the CObDao marker in the local section; CObDao is 24 bytes after OBJETINFOS_CLASSNAME in current target sections",
         "record_boundary_status": "candidate_only",
         "chain_connection_basis": "anchor equality and bbox proximity identify the matching chain; hit/source stream deltas are diagnostics only",
         "minimum_parser_rule_needed": [
@@ -503,6 +687,14 @@ def _print_text(report: dict[str, Any]) -> None:
                 f"  CPropertyExtend node={node['cproperty_node_index']} "
                 f"payload_len={node['payload_length']} payload_rel={node['payload_relative_offset']}"
             )
+            print("  [CObDao section scan]")
+            for section in node["cobdao_sections"]:
+                print(
+                    f"    cobdao_offset={section['cobdao_marker_offset']} "
+                    f"known_anchor={str(section['known_anchor_triple_hit']).lower()} "
+                    f"hit_relative_to_cobdao={section['hit_relative_to_cobdao']} "
+                    f"matched_chains={section['matched_chains']}"
+                )
             for hit in node["anchor_triple_hits_inside_node"]:
                 print(
                     f"    anchor={hit['target_anchor_mm']} cproperty_offset={hit['cproperty_payload_relative_offset']} "
@@ -520,17 +712,20 @@ def _print_text(report: dict[str, Any]) -> None:
 def _print_markdown(report: dict[str, Any]) -> None:
     print("# Text CPropertyExtend Anchor Context Analysis")
     print()
-    print("| fixture | CPropertyExtend node | target anchor mm | payload offset | matched chains |")
-    print("|---|---:|---|---:|---|")
+    print("| fixture | CPropertyExtend node | CObDao offset | target anchor mm | payload offset | hit rel to CObDao | matched chains |")
+    print("|---|---:|---:|---|---:|---:|---|")
     for fx in report["fixtures"]:
         if fx["fixture"] not in MULTI_OBJECT_FIXTURES:
             continue
         for node in fx["cproperty_nodes"]:
-            for hit in node["anchor_triple_hits_inside_node"]:
-                matched = [c["chain_index"] for c in hit["chain_match_candidates"] if c["matched_chain_baseline_anchor"]]
+            for section in node["cobdao_sections"]:
+                if not section["known_anchor_triple_hit"]:
+                    continue
+                hit = section["anchor_hits"][0]
                 print(
-                    f"| {fx['fixture']} | {node['cproperty_node_index']} | {hit['target_anchor_mm']} | "
-                    f"{hit['cproperty_payload_relative_offset']} | {matched} |"
+                    f"| {fx['fixture']} | {node['cproperty_node_index']} | {section['cobdao_marker_offset']} | "
+                    f"{hit['target_anchor_mm']} | {hit['cproperty_payload_relative_offset']} | "
+                    f"{section['hit_relative_to_cobdao']} | {section['matched_chains']} |"
                 )
     print()
     print("## Grouped vs Non-grouped")

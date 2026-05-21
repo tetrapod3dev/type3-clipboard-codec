@@ -84,5 +84,8 @@ def test_text_cproperty_anchor_context_cli_markdown_mode() -> None:
     out = result.stdout
 
     assert "# Text CPropertyExtend Anchor Context Analysis" in out
-    assert "| fixture | CPropertyExtend node | target anchor mm | payload offset | matched chains |" in out
+    assert (
+        "| fixture | CPropertyExtend node | CObDao offset | target anchor mm | payload offset | "
+        "hit rel to CObDao | matched chains |"
+    ) in out
     assert "## Grouped vs Non-grouped" in out

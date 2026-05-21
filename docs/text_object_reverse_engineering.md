@@ -855,3 +855,13 @@ CPropertyExtend anchor context audit:
 - local marker evidence is similar: `CObDao` appears at `hit - 34` around the `CPropertyExtend` anchor hit.
 - full local windows are not byte-identical, so this remains structure/evidence audit only.
 - parser must not use a fixed `CPropertyExtend` offset rule until the local record/section boundary and chain ownership rule are known.
+
+`CObDao` section normalization:
+
+- anchor-bearing sections normalize to `CObDao + 34` in all current target multi-object fixtures.
+- grouped fixtures have the anchor-bearing `CObDao` at payload-relative offset `438`.
+- the non-grouped fixture has the anchor-bearing `CObDao` at payload-relative offset `586`.
+- grouped `CPropertyExtend` nodes currently contain 5 `CObDao` sections; the non-grouped sample contains 6.
+- the non-grouped anchor-bearing `CObDao` offset is `148` bytes after the grouped anchor-bearing `CObDao` offset.
+- observed local marker spelling is `OBJETINFOS_CLASSNAME`; it appears 24 bytes before `CObDao` in the current anchor-bearing sections.
+- `CObDao + 34` is therefore a strong local pattern candidate, not a confirmed parser rule.

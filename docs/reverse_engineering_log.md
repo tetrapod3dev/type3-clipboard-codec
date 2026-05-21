@@ -175,3 +175,13 @@ Status:
 - `148` is an offset delta candidate, not a confirmed record size.
 - local record/section boundaries remain unresolved.
 - parser anchor behavior remains unchanged.
+
+`CObDao`-normalized follow-up:
+
+- all current target CPropertyExtend anchor hits normalize to `CObDao + 34`.
+- grouped anchor-bearing `CObDao` offset: `438`.
+- non-grouped anchor-bearing `CObDao` offset: `586`.
+- non-grouped shift from grouped: `148` bytes.
+- grouped CPropertyExtend samples currently expose 5 `CObDao` sections; the non-grouped sample exposes 6.
+- observed local class marker spelling is `OBJETINFOS_CLASSNAME`, 24 bytes before `CObDao`.
+- this remains analyzer-only evidence; no parser rule has been added.

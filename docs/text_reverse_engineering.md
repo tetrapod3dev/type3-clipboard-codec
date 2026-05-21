@@ -745,9 +745,20 @@ Local context status:
 - non-grouped `620` has the same marker signature pattern but is shifted by `148` bytes relative to grouped `472`.
 - this `148` byte delta is an offset-shift candidate only; no stable section/record boundary rule is confirmed yet.
 
+`CObDao`-normalized update:
+
+- target anchor triples in the current multi-object fixtures are all at `CObDao + 34` within the anchor-bearing `CPropertyExtend` local section.
+- grouped fixtures: anchor-bearing `CObDao` offset `438`, anchor hit offset `472`, `hit_relative_to_cobdao=34`.
+- non-grouped fixture: anchor-bearing `CObDao` offset `586`, anchor hit offset `620`, `hit_relative_to_cobdao=34`.
+- grouped fixtures currently have 5 `CObDao` sections in `CPropertyExtend`; the non-grouped fixture has 6.
+- the non-grouped anchor-bearing `CObDao` section is shifted by `148` bytes relative to the grouped anchor-bearing section.
+- observed local class marker spelling is `OBJETINFOS_CLASSNAME`, followed by `CObDao` after 24 bytes in the current target sections.
+- this strengthens the local-section hypothesis, but still does not define a complete chain ownership or record boundary rule.
+
 Current parser decision:
 
 - `CPropertyExtend` anchor location is observed, but structural rules remain unresolved.
 - do not add a fixed offset parser rule for `472` or `620`.
+- do not add a parser rule for `CObDao + 34` yet.
 - do not promote `CPropertyExtend` anchor decode to confirmed.
 - keep `baseline_midpoint` as the active fallback.
