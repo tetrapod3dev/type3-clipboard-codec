@@ -194,3 +194,13 @@ Section role follow-up:
 - non-anchor sections can also decode coordinate-like triples at `CObDao + 34`, including zero triples.
 - grouped anchor-bearing section index is `1`; non-grouped anchor-bearing section index is `2`.
 - no baseline-independent section selection rule is available yet.
+
+Section insertion follow-up:
+
+- grouped same-color vs grouped mixed-color: 5 `CObDao` sections each, section-by-section aligned, anchor-bearing index `1`.
+- non-grouped: 6 `CObDao` sections.
+- non-grouped section index `1` is a 148-byte inserted-section candidate before the anchor-bearing section.
+- grouped anchor section index `1` aligns with non-grouped anchor section index `2` after the insertion.
+- anchor-bearing `CObDao` offset shift: `438 -> 586`.
+- anchor hit offset shift: `472 -> 620`.
+- selector candidates remain parser-unsafe without a baseline-independent inserted-section/anchor-section rule.

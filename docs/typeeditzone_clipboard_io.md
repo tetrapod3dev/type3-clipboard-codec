@@ -108,3 +108,47 @@ parser 개발/테스트 루프에서는 동일한 검증을 bundle 단위로 수
 - clipboard I/O는 2-format bundle을 기본 경로로 사용한다.
 - `TypeEditZoneVersion` bytes는 해석하지 말고 그대로 보존한다.
 - `TypeEditZone` raw bytes는 strip/decode/normalize/trailing zero 제거 없이 보존한다.
+
+## 10. Sample Capture Workflow
+
+parser 개발용 sample fixture는 수동 hex 복사/붙여넣기 대신 capture CLI로 생성한다.
+
+권장 흐름:
+
+```powershell
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_two_objects_same_color_not_grouped `
+  --category text `
+  --description "Two independent text objects, same color, not grouped" `
+  --object-count 2 `
+  --grouping not_grouped `
+  --text "abcdefg|1234567890" `
+  --anchors "111.111,222.222,0;211.111,322.222,0" `
+  --color "Army Green" `
+  --print-readme-snippet
+```
+
+CLI는 clipboard에서 `TypeEditZone`과 `TypeEditZoneVersion`을 모두 확인한 뒤 다음 산출물을 함께 남긴다.
+
+- 기존 parser fixture와 호환되는 hex `.txt`
+- raw bundle: `typeeditzone.bin`, `typeeditzone_version.bin`, `manifest.json`
+- intent markdown template
+- inspect text/json report
+- README에 붙일 markdown snippet 출력
+
+기본 저장 위치:
+
+- geometry fixture: `tests/samples/<name>.txt`
+- text fixture: `tests/samples/text/<name>.txt`
+- geometry bundle: `tests/samples/bundles/geometry/<name>/`
+- text bundle: `tests/samples/bundles/text/<name>/`
+- intent: `tests/samples/intents/<category>/<name>.md`
+- reports: `tests/samples/reports/<category>/<name>.inspect.*`
+
+capture 직후 내부 검증을 수행한다.
+
+- `typeeditzone.bin`이 clipboard dump와 byte-for-byte 동일해야 한다.
+- `.txt` fixture를 hex decode한 bytes가 원본 `TypeEditZone` bytes와 동일해야 한다.
+- `typeeditzone_version.bin`이 clipboard dump와 byte-for-byte 동일해야 한다.
+
+기존 수동 workflow 중 hex 값을 별도 프로그램에서 복사해 fixture 파일에 붙여넣는 방식은 deprecated다. 새 fixture는 `.txt`와 raw bundle을 함께 남겨야 하며, README 자동 수정은 기본 동작이 아니라 `--print-readme-snippet` 출력물을 검토해 수동 반영하는 방식을 우선한다.

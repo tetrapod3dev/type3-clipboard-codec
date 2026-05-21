@@ -875,3 +875,17 @@ Anchor-bearing section selection audit:
 - grouped fixtures use section index `1`; the non-grouped fixture uses section index `2`.
 - section index/order, coordinate-like decode, and `OBJETINFOS_CLASSNAME -> CObDao` distance do not independently select the anchor-bearing section.
 - selection by parsed baseline anchor equality remains analyzer-only and is not a parser rule.
+
+Section insertion audit:
+
+- grouped same-color and grouped mixed-color fixtures align with 5 `CObDao` sections each.
+- non-grouped mixed-color fixture has 6 `CObDao` sections.
+- non-grouped section index `1` is a 148-byte inserted-section candidate:
+  - `CObDao` offset `438`
+  - section length candidate `148`
+  - non-anchor role
+  - no matched chain in analyzer evidence
+  - `CObDao + 34` triple is not coordinate-like
+- after this inserted section, grouped section `1` corresponds to non-grouped section `2`; both are anchor-bearing candidates.
+- anchor-bearing `CObDao` offset and anchor hit offset both shift by `148` bytes.
+- this supports an insertion/shift hypothesis, but the inserted section's semantic meaning remains unresolved.

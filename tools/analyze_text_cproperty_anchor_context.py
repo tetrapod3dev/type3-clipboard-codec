@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import struct
@@ -379,6 +380,28 @@ def _similarity_excluding_local_anchor(left_window: dict[str, Any], right_window
     return _similarity(bytes(left), bytes(right))
 
 
+def _short_hash(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()[:16]
+
+
+def _u32_signature(section: dict[str, Any]) -> list[int]:
+    values = section["decoded_values_from_cobdao"]["u32_i32_candidates"]
+    return [int(row["u32le"]) for row in values[:16]]
+
+
+def _double_signature(section: dict[str, Any]) -> list[Any]:
+    values = section["decoded_values_from_cobdao"]["double64_candidates"]
+    return [row["double_mm"] for row in values[:12]]
+
+
+def _zero_signature(section: dict[str, Any]) -> list[tuple[int, int]]:
+    marker_offset = int(section["marker_context_hex"]["relative_marker_start"])
+    return [
+        (int(row["start"]) - marker_offset, int(row["length"]))
+        for row in _zero_padding_runs(_window_bytes(section["marker_context_hex"]), section["marker_context_hex"]["relative_marker_start"])
+    ]
+
+
 def _chain_rows(parsed: GeometryObject) -> list[dict[str, Any]]:
     rows = []
     for idx, chain in enumerate(parsed.object_chains):
@@ -520,6 +543,27 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
                 ),
             }
         )
+    for section in sections:
+        window_bytes = _window_bytes(section["marker_context_hex"])
+        section["local_signature"] = {
+            "marker_signature": [
+                {"marker": marker.decode("ascii", errors="replace"), "relative_to_cobdao": 0}
+                for marker in [COBDAO_MARKER]
+            ],
+            "u32_signature": _u32_signature(section),
+            "double_signature": _double_signature(section),
+            "zero_padding_signature": _zero_signature(section),
+            "local_bytes_hash": _short_hash(window_bytes),
+            "local_bytes_excluding_cobdao_plus_34_hash": _short_hash(
+                window_bytes[: int(section["marker_context_hex"]["relative_marker_start"]) + COBDAO_ANCHOR_LOCAL_OFFSET]
+                + b"<ANCHOR>"
+                + window_bytes[
+                    int(section["marker_context_hex"]["relative_marker_start"])
+                    + COBDAO_ANCHOR_LOCAL_OFFSET
+                    + 24 :
+                ]
+            ),
+        }
     anchor_sections = [section for section in sections if section["known_anchor_triple_hit"]]
     if anchor_sections:
         anchor_window = anchor_sections[0]["marker_context_hex"]
@@ -803,6 +847,176 @@ def _anchor_bearing_aggregate(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _first_cproperty_sections(fixture: dict[str, Any]) -> list[dict[str, Any]]:
+    return fixture["cproperty_nodes"][0]["cobdao_sections"] if fixture["cproperty_nodes"] else []
+
+
+def _section_similarity_row(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "left_section_index": left["section_index"],
+        "right_section_index": right["section_index"],
+        "left_cobdao_offset": left["cobdao_marker_offset"],
+        "right_cobdao_offset": right["cobdao_marker_offset"],
+        "left_role": left["section_role_candidate"],
+        "right_role": right["section_role_candidate"],
+        "same_role": left["section_role_candidate"] == right["section_role_candidate"],
+        "same_length_candidate": left["section_length_candidate"] == right["section_length_candidate"],
+        "same_u32_signature": left["local_signature"]["u32_signature"] == right["local_signature"]["u32_signature"],
+        "same_zero_padding_signature": left["local_signature"]["zero_padding_signature"]
+        == right["local_signature"]["zero_padding_signature"],
+        "local_bytes_similarity": _similarity(
+            _window_bytes(left["marker_context_hex"]),
+            _window_bytes(right["marker_context_hex"]),
+        ),
+        "local_bytes_similarity_excluding_24_anchor_bytes": _similarity_excluding_local_anchor(
+            left["marker_context_hex"],
+            right["marker_context_hex"],
+        ),
+    }
+
+
+def _section_alignment_analysis(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    by_name = {fixture["fixture"]: fixture for fixture in fixtures}
+    same = by_name["text_group_same_color_two_objects.txt"]
+    mixed = by_name["text_group_mixed_color_two_objects.txt"]
+    nongrouped = by_name["text_two_objects_mixed_color_not_grouped.txt"]
+    same_sections = _first_cproperty_sections(same)
+    mixed_sections = _first_cproperty_sections(mixed)
+    nongrouped_sections = _first_cproperty_sections(nongrouped)
+
+    grouped_pairs = [
+        _section_similarity_row(left, right)
+        for left, right in zip(same_sections, mixed_sections)
+    ]
+    grouped_to_nongrouped_direct = [
+        _section_similarity_row(left, right)
+        for left, right in zip(same_sections, nongrouped_sections)
+    ]
+    shifted_pairs = []
+    for grouped_idx, nongrouped_idx in ((0, 0), (1, 2), (2, 3), (3, 4), (4, 5)):
+        if grouped_idx < len(same_sections) and nongrouped_idx < len(nongrouped_sections):
+            shifted_pairs.append(_section_similarity_row(same_sections[grouped_idx], nongrouped_sections[nongrouped_idx]))
+
+    extra = nongrouped_sections[1] if len(nongrouped_sections) > 1 else None
+    grouped_anchor = next((section for section in same_sections if section["known_anchor_triple_hit"]), None)
+    nongrouped_anchor = next((section for section in nongrouped_sections if section["known_anchor_triple_hit"]), None)
+    return {
+        "grouped_same_vs_grouped_mixed": {
+            "left_fixture": same["fixture"],
+            "right_fixture": mixed["fixture"],
+            "left_section_count": len(same_sections),
+            "right_section_count": len(mixed_sections),
+            "section_count_equal": len(same_sections) == len(mixed_sections),
+            "index_alignment": grouped_pairs,
+            "anchor_bearing_section_index_equal": (
+                [section["section_index"] for section in same_sections if section["known_anchor_triple_hit"]]
+                == [section["section_index"] for section in mixed_sections if section["known_anchor_triple_hit"]]
+            ),
+        },
+        "grouped_vs_non_grouped": {
+            "grouped_fixture": same["fixture"],
+            "non_grouped_fixture": nongrouped["fixture"],
+            "grouped_section_count": len(same_sections),
+            "non_grouped_section_count": len(nongrouped_sections),
+            "section_count_delta": len(nongrouped_sections) - len(same_sections),
+            "direct_index_alignment": grouped_to_nongrouped_direct,
+            "shifted_alignment_candidate": shifted_pairs,
+            "inserted_section_candidate": (
+                {
+                    "section_index": extra["section_index"],
+                    "cobdao_marker_offset": extra["cobdao_marker_offset"],
+                    "section_length_candidate": extra["section_length_candidate"],
+                    "cobdao_plus_34_triple_analysis": extra["cobdao_plus_34_triple_analysis"],
+                    "section_role_candidate": extra["section_role_candidate"],
+                    "matched_chains": extra["matched_chains"],
+                    "local_signature": extra["local_signature"],
+                }
+                if extra is not None
+                else None
+            ),
+            "anchor_bearing_shift": (
+                {
+                    "grouped_anchor_cobdao_offset": grouped_anchor["cobdao_marker_offset"],
+                    "non_grouped_anchor_cobdao_offset": nongrouped_anchor["cobdao_marker_offset"],
+                    "cobdao_offset_delta": nongrouped_anchor["cobdao_marker_offset"] - grouped_anchor["cobdao_marker_offset"],
+                    "grouped_anchor_hit_offset": grouped_anchor["anchor_hits"][0]["cproperty_payload_relative_offset"],
+                    "non_grouped_anchor_hit_offset": nongrouped_anchor["anchor_hits"][0]["cproperty_payload_relative_offset"],
+                    "anchor_hit_offset_delta": nongrouped_anchor["anchor_hits"][0]["cproperty_payload_relative_offset"]
+                    - grouped_anchor["anchor_hits"][0]["cproperty_payload_relative_offset"],
+                }
+                if grouped_anchor is not None and nongrouped_anchor is not None
+                else None
+            ),
+            "insertion_explanation_candidate": (
+                "non-grouped section index 1 is a 148-byte inserted section candidate before the anchor-bearing section"
+                if extra is not None and extra["section_length_candidate"] == 148
+                else "unresolved"
+            ),
+        },
+    }
+
+
+def _selector_candidate_evaluation() -> list[dict[str, Any]]:
+    return [
+        {
+            "selector_candidate": "section_index",
+            "works_for_grouped": True,
+            "works_for_non_grouped": False,
+            "false_positive_risk": "high",
+            "parser_safe": False,
+            "reason": "grouped anchor-bearing section index is 1, non-grouped is 2",
+        },
+        {
+            "selector_candidate": "section_order_after_inserted_section_correction",
+            "works_for_grouped": True,
+            "works_for_non_grouped": "provisional",
+            "false_positive_risk": "medium",
+            "parser_safe": False,
+            "reason": "requires detecting inserted section semantics, which is not established",
+        },
+        {
+            "selector_candidate": "CObDao_plus_34_coordinate_like",
+            "works_for_grouped": True,
+            "works_for_non_grouped": True,
+            "false_positive_risk": "high",
+            "parser_safe": False,
+            "reason": "non-anchor sections can decode coordinate-like triples, especially zero triples",
+        },
+        {
+            "selector_candidate": "chain_source_offset_proximity",
+            "works_for_grouped": "unclear",
+            "works_for_non_grouped": "unclear",
+            "false_positive_risk": "unknown",
+            "parser_safe": False,
+            "reason": "current source offsets are parser diagnostics and do not define a stable local section rule",
+        },
+        {
+            "selector_candidate": "local_u32_i32_signature",
+            "works_for_grouped": "provisional",
+            "works_for_non_grouped": "provisional",
+            "false_positive_risk": "unknown",
+            "parser_safe": False,
+            "reason": "signatures are reported but not yet reduced to a stable semantic discriminator",
+        },
+        {
+            "selector_candidate": "OBJETINFOS_CObDao_marker_signature",
+            "works_for_grouped": True,
+            "works_for_non_grouped": True,
+            "false_positive_risk": "high",
+            "parser_safe": False,
+            "reason": "marker signature appears in non-anchor sections too",
+        },
+        {
+            "selector_candidate": "section_alignment",
+            "works_for_grouped": True,
+            "works_for_non_grouped": "provisional",
+            "false_positive_risk": "medium",
+            "parser_safe": False,
+            "reason": "alignment supports inserted-section hypothesis but not a baseline-independent selector",
+        },
+    ]
+
+
 def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any]) -> dict[str, Any]:
     return {
         "anchor_triple_at_cobdao_plus_34_for_target_fixtures": comparison[
@@ -835,6 +1049,7 @@ def build_report() -> dict[str, Any]:
     fixture_reports = [_fixture_report(name) for name in FIXTURES]
     comparison = _compare_grouped_non_grouped(fixture_reports)
     aggregate = _anchor_bearing_aggregate(fixture_reports)
+    alignment = _section_alignment_analysis(fixture_reports)
     return {
         "policy": {
             "scope": "CPropertyExtend anchor context structure/evidence audit only",
@@ -846,6 +1061,8 @@ def build_report() -> dict[str, Any]:
         "fixtures": fixture_reports,
         "grouped_vs_non_grouped_comparison": comparison,
         "anchor_bearing_vs_non_anchor_aggregate": aggregate,
+        "section_alignment_analysis": alignment,
+        "selector_candidate_evaluation": _selector_candidate_evaluation(),
         "answers": _answers(fixture_reports, comparison),
     }
 
@@ -890,6 +1107,10 @@ def _print_text(report: dict[str, Any]) -> None:
     print(json.dumps(report["grouped_vs_non_grouped_comparison"], ensure_ascii=False, indent=2))
     print("[Anchor-bearing vs Non-anchor Aggregate]")
     print(json.dumps(report["anchor_bearing_vs_non_anchor_aggregate"], ensure_ascii=False, indent=2))
+    print("[Section Alignment Analysis]")
+    print(json.dumps(report["section_alignment_analysis"], ensure_ascii=False, indent=2))
+    print("[Selector Candidate Evaluation]")
+    print(json.dumps(report["selector_candidate_evaluation"], ensure_ascii=False, indent=2))
     print("[Answers]")
     print(json.dumps(report["answers"], ensure_ascii=False, indent=2))
 
@@ -927,6 +1148,22 @@ def _print_markdown(report: dict[str, Any]) -> None:
     print(f"- anchor-bearing sections: `{agg['anchor_bearing_count']}`")
     print(f"- non-anchor sections: `{agg['non_anchor_count']}`")
     print(f"- false positive risk: {agg['false_positive_risk']}")
+    print()
+    print("## Section Alignment")
+    print()
+    alignment = report["section_alignment_analysis"]["grouped_vs_non_grouped"]
+    print(f"- section count delta: `{alignment['section_count_delta']}`")
+    print(f"- inserted section candidate: `{alignment['inserted_section_candidate']}`")
+    print()
+    print("## Selector Candidates")
+    print()
+    print("| selector | grouped | non-grouped | parser-safe | reason |")
+    print("|---|---|---|---|---|")
+    for row in report["selector_candidate_evaluation"]:
+        print(
+            f"| {row['selector_candidate']} | {row['works_for_grouped']} | {row['works_for_non_grouped']} | "
+            f"{row['parser_safe']} | {row['reason']} |"
+        )
 
 
 def main() -> int:

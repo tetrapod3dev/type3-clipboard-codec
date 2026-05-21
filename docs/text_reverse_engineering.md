@@ -787,3 +787,39 @@ Current role conclusion:
 - `CObDao + 34` is a strong observed local pattern candidate.
 - anchor-bearing `CObDao` section selection remains unresolved.
 - false-positive risk is high if selecting by coordinate-like triple alone.
+
+### CObDao section insertion audit
+
+Current alignment observations:
+
+- grouped same-color and grouped mixed-color fixtures both have 5 `CObDao` sections.
+- grouped fixtures align section-by-section; anchor-bearing section index is `1` in both.
+- non-grouped fixture has 6 `CObDao` sections.
+- non-grouped section index `1` is a 148-byte inserted-section candidate before the anchor-bearing section.
+- grouped section `1` anchor-bearing candidate aligns best with non-grouped section `2` anchor-bearing candidate after accounting for the inserted section.
+- anchor-bearing `CObDao` offset shifts `438 -> 586`.
+- anchor hit offset shifts `472 -> 620`.
+- both shifts are `148` bytes.
+
+Inserted section candidate:
+
+- fixture: `text_two_objects_mixed_color_not_grouped.txt`
+- section index: `1`
+- `CObDao` offset: `438`
+- section length candidate: `148`
+- role: `non_anchor_candidate`
+- `CObDao + 34` triple is finite but not coordinate-like.
+- no matched chain in analyzer evidence.
+
+Selector candidate status:
+
+- section index: rejected; grouped uses `1`, non-grouped uses `2`.
+- `CObDao + 34` coordinate-like: rejected as unsafe; non-anchor sections can decode coordinate-like triples.
+- `OBJETINFOS/CObDao` marker signature: rejected as unsafe; marker signature is not unique to anchor-bearing sections.
+- section alignment: useful analyzer evidence, but not parser-safe until inserted-section semantics are known.
+- chain/source offset proximity: diagnostic only.
+
+Parser readiness:
+
+- no baseline-independent anchor-bearing section selector is available yet.
+- parser promotion remains blocked.

@@ -5,6 +5,36 @@ This directory contains reverse-engineering sample fixtures for the `type3_clipb
 These files are raw hex dumps of clipboard payloads copied from the Type3 program.
 They are used as reference fixtures for parsing, testing, and documenting currently known binary structures.
 
+## Recommended Capture Workflow
+
+New Type3 clipboard samples should be captured with the project CLI instead of manual hex copy/paste.
+After copying the object in Type3, run:
+
+```powershell
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_two_objects_same_color_not_grouped `
+  --category text `
+  --description "Two independent text objects, same color, not grouped" `
+  --print-readme-snippet
+```
+
+The CLI preserves both verified Type3 clipboard formats:
+
+- `TypeEditZone` observed id `50107`
+- `TypeEditZoneVersion` observed id `50108`
+
+Generated outputs are:
+
+- `.txt` fixture compatible with existing `hex_text_to_bytes` readers
+- raw bundle under `tests/samples/bundles/<category>/<name>/`
+- `manifest.json` with format ids, sizes, file names, and capture metadata
+- intent markdown under `tests/samples/intents/<category>/<name>.md`
+- inspect reports under `tests/samples/reports/<category>/`
+
+The `.txt` fixture and raw bundle should be committed together. `TypeEditZone` bytes must not be stripped, decoded, normalized, or trimmed, and `TypeEditZoneVersion` bytes must be preserved without interpretation.
+
+README updates should normally be made by reviewing the `--print-readme-snippet` output. Automatic README modification is intentionally not part of the default capture path.
+
 ## Future Geometry Fixture Plan
 
 다음 geometry 구조 검증용 fixture 확장 계획은 아래 문서를 따른다.
