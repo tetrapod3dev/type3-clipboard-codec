@@ -869,3 +869,155 @@ Parser status:
 - anchor-bearing section selection is still analyzer-only.
 - do not add a parser rule based on section index, absolute offset, or parsed baseline equality.
 - keep `baseline_midpoint` as the active parser fallback.
+
+### Order-aware multi-object fixture policy
+
+New user observation:
+
+- Type3/CAM appears to preserve object order even after grouping.
+- CAM generation also appeared to preserve the order in which objects were selected.
+
+Implication:
+
+- `grouped` vs `not_grouped` is not enough as the only controlled variable.
+- future text multi-object fixtures must record attempted selection order separately from payload stored order.
+- parser chain order, `CParagraphe` direct anchor ownership, and `CPropertyExtend` anchor ownership must be documented together.
+
+Required metadata for text multi-object fixtures:
+
+- attempted selection order
+- grouping state
+- actual stored order: `unresolved` unless explicitly verified
+- observed parser chain order
+- observed `CParagraphe` direct anchor owner
+- observed `CPropertyExtend` anchor owner(s)
+- order control status: `controlled`, `attempted`, or `unknown`
+
+Current order-aware fixture inventory:
+
+| fixture | grouping | attempted selection order | order status | parser chain order | `CParagraphe` direct owner | `CPropertyExtend` anchor owners |
+|---|---|---|---|---|---|---|
+| `text_group_same_color_two_objects.txt` | grouped | unknown | unknown | chain0=`abcdefg`, chain1=`1234567890` | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)` |
+| `text_group_mixed_color_two_objects.txt` | grouped | unknown | unknown | chain0=`abcdefg`, chain1=`1234567890` | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)` |
+| `text_two_objects_mixed_color_not_grouped.txt` | not_grouped | unknown | unknown | chain0=`abcdefg`, chain1=`1234567890` | chain1 `(211.111,322.222,0)` | chain0 `(111.111,222.222,0)` |
+| `text_two_objects_same_color_not_grouped.txt` | not_grouped | unknown | unknown | chain0=`abcdefg`, chain1=`1234567890` | chain1 `(211.111,322.222,0)` | chain0 `(111.111,222.222,0)` |
+| `text_two_objects_not_grouped_selection_reversed.txt` | not_grouped | B -> A attempted | attempted | chain0=`abcdefg`, chain1=`1234567890` | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)` |
+| `text_three_objects_not_grouped.txt` | not_grouped | A -> B -> C attempted | attempted | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
+
+All rows above keep actual stored order unresolved. Parser chain order is analyzer output, not a confirmed Type3 payload storage order.
+
+### Planned grouped three-object order fixtures
+
+These fixtures are intended to isolate grouped selection-order effects.
+
+#### `text_three_objects_grouped_order_abc`
+
+Purpose:
+
+- observe ownership/order for three grouped text objects with attempted selection order A -> B -> C.
+
+Objects:
+
+- A: `abcdefg`, anchor `(111.111, 222.222, 0.0)`, color `Army Green`
+- B: `1234567890`, anchor `(211.111, 322.222, 0.0)`, color `Army Green`
+- C: `XYZ`, anchor `(311.111, 422.222, 0.0)`, color `Army Green`
+
+Capture command:
+
+```powershell
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_three_objects_grouped_order_abc `
+  --category text `
+  --description "Three text objects, same color, grouped, attempted selection order A-B-C" `
+  --object-count 3 `
+  --grouping grouped `
+  --text "abcdefg|1234567890|XYZ" `
+  --anchors "111.111,222.222,0;211.111,322.222,0;311.111,422.222,0" `
+  --color "Army Green" `
+  --print-readme-snippet
+```
+
+#### `text_three_objects_grouped_order_cba`
+
+Purpose:
+
+- observe ownership/order for three grouped text objects with attempted selection order C -> B -> A.
+
+Objects:
+
+- C: `XYZ`, anchor `(311.111, 422.222, 0.0)`, color `Army Green`
+- B: `1234567890`, anchor `(211.111, 322.222, 0.0)`, color `Army Green`
+- A: `abcdefg`, anchor `(111.111, 222.222, 0.0)`, color `Army Green`
+
+Capture command:
+
+```powershell
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_three_objects_grouped_order_cba `
+  --category text `
+  --description "Three text objects, same color, grouped, attempted selection order C-B-A" `
+  --object-count 3 `
+  --grouping grouped `
+  --text "XYZ|1234567890|abcdefg" `
+  --anchors "311.111,422.222,0;211.111,322.222,0;111.111,222.222,0" `
+  --color "Army Green" `
+  --print-readme-snippet
+```
+
+Analyzer preparation note:
+
+- after capture, add both fixtures to `tools/analyze_text_cproperty_anchor_context.py`.
+- also add both to `tools/analyze_text_multi_object_ownership.py`.
+- compare them against `text_three_objects_not_grouped.txt` and existing two-object grouped/not-grouped fixtures.
+
+Captured analyzer update:
+
+| fixture | attempted order | parser chain order | `CObDao` sections | `CParagraphe` owner | `CPropertyExtend` owners |
+|---|---|---|---:|---|---|
+| `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
+| `text_three_objects_grouped_order_cba.txt` | C -> B -> A | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
+| `text_three_objects_not_grouped.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 11 | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
+
+Current grouped-order interpretation:
+
+- grouped 3-object fixtures currently have 9 `CObDao` sections, compared with 11 in the 3-object not-grouped fixture.
+- parser chain order did not change between grouped order A-B-C and grouped order C-B-A in current analyzer output.
+- `CParagraphe` ownership did change with attempted grouped order: A-B-C maps to chain0, C-B-A maps to chain2.
+- `CPropertyExtend` ownership changed accordingly for the remaining two anchors.
+- grouped fixtures still fit the one `CParagraphe` direct anchor plus `N-1` `CPropertyExtend` anchors pattern.
+- actual stored order remains unresolved; this is analyzer evidence only.
+
+### Multi-object anchor storage model
+
+Current status terms:
+
+- confirmed: parser behavior remains unchanged and uses `baseline_midpoint` as the active anchor fallback.
+- observed: direct anchor storage patterns repeatedly appear in current fixtures.
+- provisional: ownership/order/section-selection models are not parser rules.
+
+Anchor storage scaling summary:
+
+| fixture class | parsed chains | `CParagraphe` anchors | `CPropertyExtend` anchor hits | observed model |
+|---|---:|---:|---:|---|
+| 2-object grouped | 2 | 1 | 1 | `1 + (N-1)` holds |
+| 2-object not-grouped | 2 | 1 | 1 | `1 + (N-1)` holds |
+| 3-object grouped | 3 | 1 | 2 | `1 + (N-1)` holds |
+| 3-object not-grouped | 3 | 1 | 2 | `1 + (N-1)` holds |
+
+Grouped vs not-grouped section scaling:
+
+| object count | grouped `CObDao` sections | not-grouped `CObDao` sections | delta | candidate |
+|---:|---:|---:|---:|---|
+| 2 | 5 | 6 | 1 | `object_count - 1` |
+| 3 | 9 | 11 | 2 | `object_count - 1` |
+
+Selection-order / primary-owner evidence:
+
+- grouped A-B-C: parser chain order is A, B, C; `CParagraphe` owner is A.
+- grouped C-B-A: parser chain order is still A, B, C; `CParagraphe` owner is C.
+- not-grouped A-B-C: parser chain order is A, B, C; `CParagraphe` owner is C.
+- attempted selection order appears to influence the primary `CParagraphe` owner.
+- parser chain order and `CParagraphe` owner can move independently in current evidence.
+- actual stored order is unresolved and must not be treated as equal to attempted UI selection order.
+
+Parser promotion remains blocked by one core unresolved selector: there is no baseline-independent rule that identifies the anchor-bearing `CObDao` sections and maps them to text chains without relying on parser `baseline_midpoint` equality. Until that selector exists, `CParagraphe` direct anchor and `CPropertyExtend` anchor decoding remain analyzer-only.

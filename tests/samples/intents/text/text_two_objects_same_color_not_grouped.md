@@ -23,6 +23,21 @@
 - changed variable:
 - fixed variables:
 
+## Order / ownership metadata
+
+- attempted selection order: unknown
+- order control status: unknown
+- actual stored order: unresolved
+- observed parser chain order:
+  - chain0: `abcdefg`, anchor `(111.111, 222.222, 0.0)`
+  - chain1: `1234567890`, anchor `(211.111, 322.222, 0.0)`
+- observed CParagraphe direct anchor owner: chain1, anchor `(211.111, 322.222, 0.0)`
+- observed CPropertyExtend anchor owners:
+  - chain0, anchor `(111.111, 222.222, 0.0)`
+- notes:
+  - selection order was not explicitly recorded at capture time
+  - do not equate parser chain order with Type3 stored order
+
 ## Notes
 
 - actual stored order unresolved unless explicitly verified

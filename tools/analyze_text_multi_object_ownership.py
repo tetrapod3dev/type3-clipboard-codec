@@ -27,11 +27,55 @@ TEXT_DIR = REPO_ROOT / "tests" / "samples" / "text"
 FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
+    "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_cba.txt",
     "text_two_objects_mixed_color_not_grouped.txt",
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
     "text_three_objects_not_grouped.txt",
 ]
+ORDER_METADATA = {
+    "text_group_same_color_two_objects.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": None,
+        "order_control_status": "unknown",
+    },
+    "text_group_mixed_color_two_objects.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": None,
+        "order_control_status": "unknown",
+    },
+    "text_three_objects_grouped_order_abc.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_cba.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["XYZ", "1234567890", "abcdefg"],
+        "order_control_status": "attempted",
+    },
+    "text_two_objects_mixed_color_not_grouped.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": None,
+        "order_control_status": "unknown",
+    },
+    "text_two_objects_same_color_not_grouped.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": None,
+        "order_control_status": "unknown",
+    },
+    "text_two_objects_not_grouped_selection_reversed.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": ["1234567890", "abcdefg"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_not_grouped.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+}
 COMPARISON_FIXTURES = ["default_text.txt", *FIXTURES]
 EXPECTED_ANCHORS_MM = [
     (111.111, 222.222, 0.0),
@@ -369,6 +413,110 @@ def _fixture_summary(name: str, cpar_count: int, chain_rows: list[dict[str, Any]
     }
 
 
+def _chain_order_labels(fixture: dict[str, Any]) -> list[str | None]:
+    return [chain["text_candidate"] for chain in fixture["chain_inventory"]]
+
+
+def _chain_indexes_to_labels(fixture: dict[str, Any], indexes: list[int]) -> list[str | None]:
+    by_index = {chain["chain_index"]: chain["text_candidate"] for chain in fixture["chain_inventory"]}
+    return [by_index.get(index) for index in indexes]
+
+
+def _cparagraphe_owner_indexes(fixture: dict[str, Any]) -> list[int]:
+    owners: list[int] = []
+    for row in fixture["cparagraphe_ownership_analysis"]:
+        for chain_index in row["exact_anchor_match_chains"]:
+            if chain_index not in owners:
+                owners.append(chain_index)
+    return owners
+
+
+def _cproperty_owner_indexes(fixture: dict[str, Any]) -> list[int]:
+    owners: list[int] = []
+    for scan in fixture["whole_payload_anchor_scan"]:
+        for hit in scan["hits"]:
+            if hit["node_class"] != "CPropertyExtend":
+                continue
+            for context in hit["chain_relative_context"]:
+                if context["anchor_distance_mm"] == 0.0 and context["chain_index"] not in owners:
+                    owners.append(context["chain_index"])
+    return owners
+
+
+def _anchor_storage_scaling_summary(multi: list[dict[str, Any]]) -> dict[str, Any]:
+    rows = []
+    for fixture in multi:
+        chain_count = fixture["parser_chain_count"]
+        cparagraphe_owners = _cparagraphe_owner_indexes(fixture)
+        cproperty_owners = _cproperty_owner_indexes(fixture)
+        pattern_holds = (
+            fixture["cparagraphe_count"] == 1
+            and len(cparagraphe_owners) == 1
+            and len(cproperty_owners) == max(0, chain_count - 1)
+        )
+        rows.append(
+            {
+                "fixture": fixture["fixture"],
+                "parsed_chain_count": chain_count,
+                "cparagraphe_count": fixture["cparagraphe_count"],
+                "cparagraphe_anchor_owner_count": len(cparagraphe_owners),
+                "cpropertyextend_anchor_hit_count": len(cproperty_owners),
+                "pattern_1_plus_n_minus_1_holds": pattern_holds,
+                "cparagraphe_owner_chain_indexes": cparagraphe_owners,
+                "cparagraphe_owner_texts": _chain_indexes_to_labels(fixture, cparagraphe_owners),
+                "cpropertyextend_owner_chain_indexes": cproperty_owners,
+                "cpropertyextend_owner_texts": _chain_indexes_to_labels(fixture, cproperty_owners),
+            }
+        )
+    return {
+        "status": "observed",
+        "model": "For N parsed text chains, one anchor is stored in CParagraphe and N-1 anchors are stored in CPropertyExtend.",
+        "rows": rows,
+        "all_current_multi_object_fixtures_hold": all(row["pattern_1_plus_n_minus_1_holds"] for row in rows),
+        "parser_promotion_status": "analyzer_only",
+    }
+
+
+def _selection_order_primary_owner_summary(multi: list[dict[str, Any]]) -> dict[str, Any]:
+    rows = []
+    for fixture in multi:
+        metadata = ORDER_METADATA.get(fixture["fixture"], {})
+        attempted_order = metadata.get("attempted_selection_order")
+        cparagraphe_owners = _cparagraphe_owner_indexes(fixture)
+        cproperty_owners = _cproperty_owner_indexes(fixture)
+        owner_texts = _chain_indexes_to_labels(fixture, cparagraphe_owners)
+        maps_to_first = None
+        maps_to_last = None
+        if attempted_order and owner_texts:
+            maps_to_first = owner_texts[0] == attempted_order[0]
+            maps_to_last = owner_texts[0] == attempted_order[-1]
+        rows.append(
+            {
+                "fixture": fixture["fixture"],
+                "grouping_state": metadata.get("grouping_state", "unknown"),
+                "attempted_selection_order": attempted_order,
+                "order_control_status": metadata.get("order_control_status", "unknown"),
+                "parser_chain_order": _chain_order_labels(fixture),
+                "cparagraphe_owner_chain_indexes": cparagraphe_owners,
+                "cparagraphe_owner_texts": owner_texts,
+                "cpropertyextend_owner_chain_indexes": cproperty_owners,
+                "cpropertyextend_owner_texts": _chain_indexes_to_labels(fixture, cproperty_owners),
+                "attempted_order_first_maps_to_cparagraphe_owner": maps_to_first,
+                "attempted_order_last_maps_to_cparagraphe_owner": maps_to_last,
+                "actual_stored_order": "unresolved",
+                "primary_object_hypothesis_status": "provisional",
+            }
+        )
+    return {
+        "status": "observed_provisional",
+        "rows": rows,
+        "parser_chain_order_can_remain_stable_while_cparagraphe_owner_changes": True,
+        "grouped_order_effect_observed": True,
+        "actual_stored_order_status": "unresolved",
+        "primary_object_hypothesis_status": "provisional",
+    }
+
+
 def build_report() -> dict[str, Any]:
     reports = [_fixture_report(name) for name in COMPARISON_FIXTURES]
     multi = [row for row in reports if row["fixture"] in FIXTURES]
@@ -382,6 +530,8 @@ def build_report() -> dict[str, Any]:
         },
         "fixtures": reports,
         "multi_object_fixtures": multi,
+        "anchor_storage_scaling_summary": _anchor_storage_scaling_summary(multi),
+        "selection_order_primary_owner_summary": _selection_order_primary_owner_summary(multi),
         "answers": _answers(multi),
     }
 
@@ -445,6 +595,10 @@ def _print_text(report: dict[str, Any]) -> None:
         print()
     print("[Answers]")
     print(json.dumps(report["answers"], ensure_ascii=False, indent=2))
+    print("[Anchor Storage Scaling Summary]")
+    print(json.dumps(report["anchor_storage_scaling_summary"], ensure_ascii=False, indent=2))
+    print("[Selection Order / Primary Owner Summary]")
+    print(json.dumps(report["selection_order_primary_owner_summary"], ensure_ascii=False, indent=2))
 
 
 def _print_markdown(report: dict[str, Any]) -> None:
@@ -465,6 +619,27 @@ def _print_markdown(report: dict[str, Any]) -> None:
     for fx in report["multi_object_fixtures"]:
         for scan in fx["whole_payload_anchor_scan"]:
             print(f"| {fx['fixture']} | {scan['target_anchor_mm']} | {scan['hit_count']} | {scan['status']} |")
+    print()
+    print("## Anchor Storage Scaling Summary")
+    print()
+    print("| fixture | chains | CParagraphe owners | CPropertyExtend owners | pattern holds |")
+    print("|---|---:|---|---|---|")
+    for row in report["anchor_storage_scaling_summary"]["rows"]:
+        print(
+            f"| {row['fixture']} | {row['parsed_chain_count']} | {row['cparagraphe_owner_chain_indexes']} | "
+            f"{row['cpropertyextend_owner_chain_indexes']} | {row['pattern_1_plus_n_minus_1_holds']} |"
+        )
+    print()
+    print("## Selection Order / Primary Owner Summary")
+    print()
+    print("| fixture | attempted order | chain order | CParagraphe owner | first maps | last maps |")
+    print("|---|---|---|---|---|---|")
+    for row in report["selection_order_primary_owner_summary"]["rows"]:
+        print(
+            f"| {row['fixture']} | {row['attempted_selection_order']} | {row['parser_chain_order']} | "
+            f"{row['cparagraphe_owner_texts']} | {row['attempted_order_first_maps_to_cparagraphe_owner']} | "
+            f"{row['attempted_order_last_maps_to_cparagraphe_owner']} |"
+        )
 
 
 def main() -> int:

@@ -1025,6 +1025,83 @@ Three-object not-grouped scaling fixture:
 - current anchor storage observation: one `CParagraphe` direct anchor plus two `CPropertyExtend` anchor hits.
 - parser behavior remains `baseline_midpoint`; direct/CProperty anchor decoding is not promoted.
 
+Order-aware capture policy:
+
+- record attempted selection order for every multi-object text fixture.
+- record grouping state separately from selection order.
+- keep actual stored order as `unresolved` unless explicitly verified.
+- record observed parser chain order after capture.
+- record observed `CParagraphe` direct anchor owner and `CPropertyExtend` anchor owners from analyzer output.
+- do not treat Type3 UI selection order, CAM output order, parser chain order, and payload stored order as the same thing.
+
+Current multi-object order metadata:
+
+| fixture | grouping | attempted selection order | order status | observed parser chain order | observed anchor owners |
+|---|---|---|---|---|---|
+| `text_group_same_color_two_objects.txt` | grouped | unknown | unknown | chain0 `abcdefg`, chain1 `1234567890` | CParagraphe chain0; CPropertyExtend chain1 |
+| `text_group_mixed_color_two_objects.txt` | grouped | unknown | unknown | chain0 `abcdefg`, chain1 `1234567890` | CParagraphe chain0; CPropertyExtend chain1 |
+| `text_two_objects_mixed_color_not_grouped.txt` | not_grouped | unknown | unknown | chain0 `abcdefg`, chain1 `1234567890` | CParagraphe chain1; CPropertyExtend chain0 |
+| `text_two_objects_same_color_not_grouped.txt` | not_grouped | unknown | unknown | chain0 `abcdefg`, chain1 `1234567890` | CParagraphe chain1; CPropertyExtend chain0 |
+| `text_two_objects_not_grouped_selection_reversed.txt` | not_grouped | B -> A attempted | attempted | chain0 `abcdefg`, chain1 `1234567890` | CParagraphe chain0; CPropertyExtend chain1 |
+| `text_three_objects_not_grouped.txt` | not_grouped | A -> B -> C attempted | attempted | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | CParagraphe chain2; CPropertyExtend chain1, chain0 |
+
+Planned grouped-order fixtures:
+
+```powershell
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_three_objects_grouped_order_abc `
+  --category text `
+  --description "Three text objects, same color, grouped, attempted selection order A-B-C" `
+  --object-count 3 `
+  --grouping grouped `
+  --text "abcdefg|1234567890|XYZ" `
+  --anchors "111.111,222.222,0;211.111,322.222,0;311.111,422.222,0" `
+  --color "Army Green" `
+  --print-readme-snippet
+
+.\.venv\Scripts\python.exe tools\capture_type3_sample.py `
+  --name text_three_objects_grouped_order_cba `
+  --category text `
+  --description "Three text objects, same color, grouped, attempted selection order C-B-A" `
+  --object-count 3 `
+  --grouping grouped `
+  --text "XYZ|1234567890|abcdefg" `
+  --anchors "311.111,422.222,0;211.111,322.222,0;111.111,222.222,0" `
+  --color "Army Green" `
+  --print-readme-snippet
+```
+
+Grouped-order capture status:
+
+| fixture | attempted order | parser chain order | CObDao sections | CParagraphe owner | CPropertyExtend owners |
+|---|---|---|---:|---|---|
+| `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_cba.txt` | C -> B -> A | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain2 | chain1, chain0 |
+
+Current note:
+
+- grouped selection order appears to affect anchor ownership in analyzer output.
+- parser chain order did not change in these two grouped fixtures.
+- actual stored order remains unresolved.
+- analyzer evidence is not a parser rule.
+
+Anchor storage / order evidence summary:
+
+| fixture family | chains | CParagraphe anchors | CPropertyExtend anchors | CObDao sections |
+|---|---:|---:|---:|---|
+| 2-object grouped | 2 | 1 | 1 | 5 |
+| 2-object not-grouped | 2 | 1 | 1 | 6 |
+| 3-object grouped | 3 | 1 | 2 | 9 |
+| 3-object not-grouped | 3 | 1 | 2 | 11 |
+
+Current model:
+
+- anchor storage follows `1 CParagraphe + (N-1) CPropertyExtend` for the current multi-object text fixtures.
+- not-grouped section delta currently matches `object_count - 1`, but this is provisional.
+- attempted selection order and actual stored order must be recorded separately.
+- parser chain order is an observed parser output, not proof of Type3 internal stored order.
+- direct/CPropertyExtend anchor decode remains analyzer-only until a baseline-independent section selector exists.
+
 ### Multi-line text fixture notes (order 40/41/42)
 
 Text content:

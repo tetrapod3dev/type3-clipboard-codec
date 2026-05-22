@@ -23,6 +23,21 @@
 - changed variable:
 - fixed variables:
 
+## Order / ownership metadata
+
+- attempted selection order: reversed two-object selection, interpreted as B -> A
+- order control status: attempted
+- actual stored order: unresolved
+- observed parser chain order:
+  - chain0: `abcdefg`, anchor `(111.111, 222.222, 0.0)`
+  - chain1: `1234567890`, anchor `(211.111, 322.222, 0.0)`
+- observed CParagraphe direct anchor owner: chain0, anchor `(111.111, 222.222, 0.0)`
+- observed CPropertyExtend anchor owners:
+  - chain1, anchor `(211.111, 322.222, 0.0)`
+- notes:
+  - attempted selection order is user intent, not confirmed payload stored order
+  - parser chain order remained chain0=`abcdefg`, chain1=`1234567890` in current analyzer output
+
 ## Notes
 
 - actual stored order unresolved unless explicitly verified

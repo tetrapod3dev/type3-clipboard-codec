@@ -44,13 +44,13 @@ def test_cobdao_section_role_analysis_json_output() -> None:
     payload = json.loads(result.stdout)
 
     aggregate = payload["anchor_bearing_vs_non_anchor_aggregate"]
-    assert aggregate["section_count"] == 39
-    assert aggregate["anchor_bearing_count"] == 7
-    assert aggregate["non_anchor_count"] == 32
-    assert aggregate["anchor_bearing_section_indexes"] == [1, 2, 7]
-    assert aggregate["anchor_bearing_coordinate_like_counts"] == {"True": 7}
-    assert aggregate["anchor_bearing_matches_chain_counts"] == {"True": 7}
-    assert aggregate["non_anchor_matches_chain_counts"] == {"False": 32}
+    assert aggregate["section_count"] == 57
+    assert aggregate["anchor_bearing_count"] == 11
+    assert aggregate["non_anchor_count"] == 46
+    assert aggregate["anchor_bearing_section_indexes"] == [1, 2, 5, 7]
+    assert aggregate["anchor_bearing_coordinate_like_counts"] == {"True": 11}
+    assert aggregate["anchor_bearing_matches_chain_counts"] == {"True": 11}
+    assert aggregate["non_anchor_matches_chain_counts"] == {"False": 46}
     assert aggregate["coordinate_like_non_anchor_sections"]
     assert aggregate["ambiguous_non_anchor_sections"]
     assert "coordinate-like values also appear in some non-anchor sections" in aggregate[
@@ -68,6 +68,8 @@ def test_cobdao_section_role_analysis_json_output() -> None:
         "cobdao_sections"
     ]
     three_nongrouped_sections = by_name["text_three_objects_not_grouped.txt"]["cproperty_nodes"][0]["cobdao_sections"]
+    grouped_abc_sections = by_name["text_three_objects_grouped_order_abc.txt"]["cproperty_nodes"][0]["cobdao_sections"]
+    grouped_cba_sections = by_name["text_three_objects_grouped_order_cba.txt"]["cproperty_nodes"][0]["cobdao_sections"]
 
     assert same_sections[1]["section_role_candidate"] == "anchor_bearing_candidate"
     assert same_sections[1]["cobdao_plus_34_triple_analysis"]["matches_any_chain_baseline_anchor"] is True
@@ -84,6 +86,14 @@ def test_cobdao_section_role_analysis_json_output() -> None:
     assert three_nongrouped_sections[2]["hit_relative_to_cobdao"] == 34
     assert three_nongrouped_sections[7]["section_role_candidate"] == "anchor_bearing_candidate"
     assert three_nongrouped_sections[7]["hit_relative_to_cobdao"] == 34
+    assert grouped_abc_sections[1]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_abc_sections[1]["hit_relative_to_cobdao"] == 34
+    assert grouped_abc_sections[5]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_abc_sections[5]["hit_relative_to_cobdao"] == 34
+    assert grouped_cba_sections[1]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_cba_sections[1]["hit_relative_to_cobdao"] == 34
+    assert grouped_cba_sections[5]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_cba_sections[5]["hit_relative_to_cobdao"] == 34
 
 
 def test_cobdao_section_role_analysis_markdown_output() -> None:

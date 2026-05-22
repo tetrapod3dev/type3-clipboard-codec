@@ -908,3 +908,86 @@ Current scaling interpretation:
 - therefore `section_count = 4 + object_count` is not a valid general rule.
 - 148-byte non-anchor `CObDao` section candidates appear multiple times in the three-object fixture, so the earlier single-inserted-section model is incomplete.
 - anchor-bearing section selection remains unresolved; parser promotion is still blocked.
+
+Order-aware fixture design update:
+
+- new Type3/CAM observation suggests grouped objects may preserve object order.
+- selection order / creation order / internal order may affect:
+  - parser chain order
+  - `CParagraphe` direct anchor ownership
+  - `CPropertyExtend` anchor ownership
+  - anchor-bearing `CObDao` section order
+- therefore future multi-object text fixtures must record order metadata explicitly.
+
+Current order metadata summary:
+
+| fixture | grouping | attempted selection order | actual stored order | parser chain order | `CParagraphe` owner | `CPropertyExtend` owners |
+|---|---|---|---|---|---|---|
+| `text_group_same_color_two_objects.txt` | grouped | unknown | unresolved | chain0 `abcdefg`, chain1 `1234567890` | chain0 | chain1 |
+| `text_group_mixed_color_two_objects.txt` | grouped | unknown | unresolved | chain0 `abcdefg`, chain1 `1234567890` | chain0 | chain1 |
+| `text_two_objects_mixed_color_not_grouped.txt` | not_grouped | unknown | unresolved | chain0 `abcdefg`, chain1 `1234567890` | chain1 | chain0 |
+| `text_two_objects_same_color_not_grouped.txt` | not_grouped | unknown | unresolved | chain0 `abcdefg`, chain1 `1234567890` | chain1 | chain0 |
+| `text_two_objects_not_grouped_selection_reversed.txt` | not_grouped | B -> A attempted | unresolved | chain0 `abcdefg`, chain1 `1234567890` | chain0 | chain1 |
+| `text_three_objects_not_grouped.txt` | not_grouped | A -> B -> C attempted | unresolved | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | chain2 | chain1, chain0 |
+
+Planned grouped order fixtures:
+
+- `text_three_objects_grouped_order_abc`
+  - object count: 3
+  - grouping: grouped
+  - attempted selection order: A -> B -> C
+  - A: `abcdefg`, `(111.111, 222.222, 0.0)`, Army Green
+  - B: `1234567890`, `(211.111, 322.222, 0.0)`, Army Green
+  - C: `XYZ`, `(311.111, 422.222, 0.0)`, Army Green
+- `text_three_objects_grouped_order_cba`
+  - object count: 3
+  - grouping: grouped
+  - attempted selection order: C -> B -> A
+  - C: `XYZ`, `(311.111, 422.222, 0.0)`, Army Green
+  - B: `1234567890`, `(211.111, 322.222, 0.0)`, Army Green
+  - A: `abcdefg`, `(111.111, 222.222, 0.0)`, Army Green
+
+Policy:
+
+- selection order and actual stored order must remain separate fields.
+- grouped order observations must not be promoted to parser behavior until analyzer evidence exists.
+- no fixed offset, filename, or baseline-match parser rule should be added from these planned fixtures alone.
+
+Grouped order fixture analyzer results:
+
+| fixture | attempted order | parser chain order | `CObDao` section count | `CParagraphe` owner | `CPropertyExtend` owners |
+|---|---|---|---:|---|---|
+| `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_cba.txt` | C -> B -> A | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain2 | chain1, chain0 |
+| `text_three_objects_not_grouped.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 11 | chain2 | chain1, chain0 |
+
+Updated interpretation:
+
+- grouped 3-object samples show fewer `CObDao` sections than the 3-object not-grouped sample (`9` vs `11`).
+- parser chain order currently remains stable across grouped A-B-C and grouped C-B-A attempts.
+- `CParagraphe` and `CPropertyExtend` anchor ownership do vary with attempted grouped order.
+- the `N chains -> 1 CParagraphe anchor + N-1 CPropertyExtend anchors` pattern still holds for current grouped 3-object samples.
+- this improves order-effect evidence but does not yet provide a baseline-independent anchor-bearing section selector.
+
+Current text anchor storage model:
+
+- confirmed parser behavior: active text anchor remains the parser-derived `baseline_midpoint` fallback.
+- strong observed candidate: single-object `CParagraphe` direct triple at offsets 158/166/174.
+- observed multi-object model: for `N` parsed text chains, one anchor is in `CParagraphe` and `N-1` anchors are in `CPropertyExtend` `CObDao + 34` sections.
+- provisional selection model: attempted selection/group creation order appears to influence which chain is the `CParagraphe` owner, but actual stored order is unresolved.
+
+Section scaling model:
+
+| object count | grouped sections | not-grouped sections | observed delta |
+|---:|---:|---:|---:|
+| 2 | 5 | 6 | 1 |
+| 3 | 9 | 11 | 2 |
+
+The current candidate is `not_grouped_delta = object_count - 1`. This is only provisional; it describes the current fixture set but is not a parser rule.
+
+Parser promotion blocker:
+
+- `CObDao + 34` is a strong local position candidate for CPropertyExtend anchors.
+- coordinate-like values also occur in non-anchor sections.
+- section index/order alone is insufficient across grouped/not-grouped and selection-order variants.
+- parser promotion needs a stable anchor-bearing section selector and a chain ownership rule that does not use baseline equality as the selector.
