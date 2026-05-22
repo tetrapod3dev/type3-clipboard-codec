@@ -229,6 +229,47 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
         assert by_feature[feature]["false_negative_count"] == 0
         assert by_feature[feature]["candidate_usefulness"] == "strong_current_fixture_separator"
 
+    signature = payload["local_record_signature_summary"]
+    assert signature["signature_name"] == "CPropertyExtend_CObDao_anchor_record_candidate_v1"
+    assert signature["matched_section_count"] == 21
+    assert signature["anchor_bearing_matched_count"] == 21
+    assert signature["non_anchor_matched_count"] == 0
+    assert signature["false_positive_count"] == 0
+    assert signature["false_negative_count"] == 0
+    assert signature["coverage"]["anchor_bearing_coverage_ratio"] == 1.0
+    assert signature["failed_fixtures"] == []
+    assert signature["parser_safe_candidate"] == "provisional_false"
+
+    components = {row["component"]: row for row in payload["signature_components"]}
+    for component in (
+        "u32le_CObDao_plus_12",
+        "u32le_CObDao_plus_56",
+        "u32le_CObDao_plus_108",
+        "u32le_CObDao_plus_112",
+    ):
+        assert components[component]["anchor_bearing_pass_count"] == 21
+        assert components[component]["non_anchor_pass_count"] == 0
+        assert components[component]["usefulness"] == "strong_separator"
+    assert components["coordinate_like_at_CObDao_plus_34"]["non_anchor_pass_count"] > 0
+    assert components["coordinate_like_at_CObDao_plus_34"]["usefulness"] == "supporting_context"
+
+    draft = payload["candidate_parser_rule_draft"]
+    assert draft["status"] == "draft_do_not_implement_yet"
+    assert any("u32(section, +12) != 131072" in line for line in draft["pseudocode"])
+
+    rejected_single = {row["selector"]: row for row in payload["rejected_single_field_rules"]}
+    for selector in (
+        "only coordinate_like_at_CObDao+34",
+        "only u32le@CObDao+12",
+        "only u32le@CObDao+56",
+        "only u32le@CObDao+108",
+        "only u32le@CObDao+112",
+        "section index",
+        "payload offset",
+        "baseline equality",
+    ):
+        assert rejected_single[selector]["rejected_for_parser"] is True
+
     candidates = payload["stable_anchor_bearing_signature_candidates"]
     assert candidates
     assert any(candidate["candidate"] == "u32le@CObDao+12" for candidate in candidates)

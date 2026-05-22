@@ -1069,6 +1069,48 @@ Current useful field candidates:
 - grouped A-B-C content variation (`HELLO`, `9876543210`, `Type3`): 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
 - visible content/glyph variation did not change the current local selector lead values.
 
+Local record signature candidate:
+
+`CPropertyExtend_CObDao_anchor_record_candidate_v1` combines the current field leads with local record context:
+
+- node class is `CPropertyExtend`
+- `OBJETINFOS_CLASSNAME` appears at `CObDao - 24`
+- `CObDao` marker exists
+- `u32le@CObDao+12 == 131072`
+- `u32le@CObDao+56 == 262144`
+- `u32le@CObDao+108 == 65536`
+- `u32le@CObDao+112 == 262144`
+- `CObDao+34` decodes as a finite coordinate-like `double64le` triple with z near 0
+
+Current signature evaluation:
+
+- matched sections: 21
+- anchor-bearing matched sections: 21
+- non-anchor matched sections: 0
+- false positives: 0
+- false negatives: 0
+- failed fixtures: none
+- parser-safe status: `provisional_false`
+
+Component interpretation:
+
+- strongest separating components: the four u32 fields at `+12`, `+56`, `+108`, and `+112`
+- supporting context: `CPropertyExtend`, `OBJETINFOS_CLASSNAME -> CObDao`, finite/coordinate-like `CObDao+34`
+- coordinate-like `CObDao+34` alone remains insufficient because non-anchor sections also pass it.
+
+Draft parser rule, not implemented:
+
+```text
+for each CPropertyExtend CObDao local section:
+    require OBJETINFOS_CLASSNAME at CObDao - 24
+    require u32(+12)=131072, u32(+56)=262144, u32(+108)=65536, u32(+112)=262144
+    decode double3 at CObDao + 34
+    require finite, coordinate-like, z near 0
+    yield analyzer-only CPropertyExtend anchor candidate
+```
+
+This remains blocked from parser promotion because local field semantics are still unknown, the signature was discovered with analyzer labels, and chain ownership mapping still needs a parser-safe rule.
+
 Important rejection:
 
 - `coordinate-like at CObDao + 34` remains rejected as a selector because non-anchor sections still produce coordinate-like false positives.

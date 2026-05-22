@@ -1628,6 +1628,252 @@ def _rejected_selector_candidates(field_summary: dict[str, Any]) -> list[dict[st
     ]
 
 
+SIGNATURE_COMPONENTS = [
+    {
+        "component": "node_class_CPropertyExtend",
+        "condition": "node class == CPropertyExtend",
+        "kind": "section_field",
+    },
+    {
+        "component": "OBJETINFOS_at_CObDao_minus_24",
+        "condition": "nearby OBJETINFOS_CLASSNAME distance_before_cobdao == 24",
+        "kind": "section_field",
+    },
+    {
+        "component": "CObDao_marker",
+        "condition": "CObDao marker exists",
+        "kind": "section_field",
+    },
+    {
+        "component": "u32le_CObDao_plus_12",
+        "condition": "u32le@CObDao+12 == 131072",
+        "kind": "u32le",
+        "offset": 12,
+        "expected": 131072,
+    },
+    {
+        "component": "u32le_CObDao_plus_56",
+        "condition": "u32le@CObDao+56 == 262144",
+        "kind": "u32le",
+        "offset": 56,
+        "expected": 262144,
+    },
+    {
+        "component": "u32le_CObDao_plus_108",
+        "condition": "u32le@CObDao+108 == 65536",
+        "kind": "u32le",
+        "offset": 108,
+        "expected": 65536,
+    },
+    {
+        "component": "u32le_CObDao_plus_112",
+        "condition": "u32le@CObDao+112 == 262144",
+        "kind": "u32le",
+        "offset": 112,
+        "expected": 262144,
+    },
+    {
+        "component": "finite_double_triple_at_CObDao_plus_34",
+        "condition": "CObDao+34 decodes as finite double64 triple",
+        "kind": "triple_finite",
+    },
+    {
+        "component": "z_near_zero_at_CObDao_plus_34",
+        "condition": "decoded CObDao+34 triple z is near 0",
+        "kind": "triple_z_near_zero",
+    },
+    {
+        "component": "coordinate_like_at_CObDao_plus_34",
+        "condition": "decoded CObDao+34 triple is coordinate-like",
+        "kind": "triple_coordinate_like",
+    },
+]
+
+
+def _signature_component_passes(section: dict[str, Any], component: dict[str, Any]) -> bool:
+    kind = component["kind"]
+    if kind == "section_field":
+        if component["component"] == "node_class_CPropertyExtend":
+            return True
+        if component["component"] == "OBJETINFOS_at_CObDao_minus_24":
+            marker = section["nearby_objectinfos_marker"]
+            return bool(marker and marker["distance_before_cobdao"] == 24)
+        if component["component"] == "CObDao_marker":
+            return section["marker_text"] == "CObDao"
+    if kind == "u32le":
+        value = _section_feature_value(
+            section,
+            {"name": component["component"], "kind": "u32le", "offset": component["offset"]},
+        )
+        return value == component["expected"]
+    if kind == "triple_finite":
+        triple = section["local_triple_at_cobdao_plus_34"]
+        return bool(triple and triple["is_finite"])
+    if kind == "triple_z_near_zero":
+        return section["cobdao_plus_34_triple_analysis"]["z_approx_zero"] is True
+    if kind == "triple_coordinate_like":
+        return section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"] is True
+    return False
+
+
+def _section_matches_local_record_signature(section: dict[str, Any]) -> bool:
+    return all(_signature_component_passes(section, component) for component in SIGNATURE_COMPONENTS)
+
+
+def _local_record_signature_summary(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    sections = _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+    anchor = [section for section in sections if section["known_anchor_triple_hit"]]
+    non_anchor = [section for section in sections if not section["known_anchor_triple_hit"]]
+    matched = [section for section in sections if _section_matches_local_record_signature(section)]
+    matched_anchor = [section for section in matched if section["known_anchor_triple_hit"]]
+    matched_non_anchor = [section for section in matched if not section["known_anchor_triple_hit"]]
+    false_negative = [section for section in anchor if not _section_matches_local_record_signature(section)]
+    fixtures_covered = sorted({section["fixture"] for section in matched_anchor})
+    expected_anchor_fixtures = sorted({section["fixture"] for section in anchor})
+    return {
+        "signature_name": "CPropertyExtend_CObDao_anchor_record_candidate_v1",
+        "status": "strong_observed_signature_candidate",
+        "definition": [component["condition"] for component in SIGNATURE_COMPONENTS],
+        "matched_section_count": len(matched),
+        "anchor_bearing_matched_count": len(matched_anchor),
+        "non_anchor_matched_count": len(matched_non_anchor),
+        "false_positive_count": len(matched_non_anchor),
+        "false_negative_count": len(false_negative),
+        "coverage": {
+            "anchor_bearing_total": len(anchor),
+            "non_anchor_total": len(non_anchor),
+            "anchor_bearing_coverage_ratio": round(len(matched_anchor) / len(anchor), 6) if anchor else None,
+        },
+        "fixtures_covered": fixtures_covered,
+        "failed_fixtures": sorted(set(expected_anchor_fixtures) - set(fixtures_covered)),
+        "parser_safe_candidate": "provisional_false",
+        "reason": (
+            "FP/FN are zero in the current labeled fixture set, but components were discovered with analyzer labels "
+            "and the local record field semantics are not confirmed."
+        ),
+    }
+
+
+def _signature_components_summary(fixtures: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    sections = _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+    anchor = [section for section in sections if section["known_anchor_triple_hit"]]
+    non_anchor = [section for section in sections if not section["known_anchor_triple_hit"]]
+    rows = []
+    for component in SIGNATURE_COMPONENTS:
+        anchor_pass = [section for section in anchor if _signature_component_passes(section, component)]
+        non_anchor_pass = [section for section in non_anchor if _signature_component_passes(section, component)]
+        false_negative_count = len(anchor) - len(anchor_pass)
+        false_positive_count = len(non_anchor_pass)
+        usefulness = (
+            "strong_separator"
+            if false_positive_count == 0 and false_negative_count == 0
+            else "supporting_context"
+            if false_negative_count == 0
+            else "not_stable"
+        )
+        rows.append(
+            {
+                "component": component["component"],
+                "condition": component["condition"],
+                "anchor_bearing_pass_count": len(anchor_pass),
+                "non_anchor_pass_count": len(non_anchor_pass),
+                "false_positive_count": false_positive_count,
+                "false_negative_count": false_negative_count,
+                "usefulness": usefulness,
+            }
+        )
+    return rows
+
+
+def _candidate_parser_rule_draft() -> dict[str, Any]:
+    return {
+        "status": "draft_do_not_implement_yet",
+        "prose": (
+            "Within CPropertyExtend, scan CObDao local sections. A provisional anchor-record candidate is a CObDao "
+            "section with OBJETINFOS_CLASSNAME 24 bytes before CObDao, u32 fields 2/4/1/4 at local offsets "
+            "+12/+56/+108/+112, and a finite coordinate-like double triple at CObDao+34 with z near zero. "
+            "If validated, that triple would be decoded as a CPropertyExtend text anchor candidate."
+        ),
+        "pseudocode": [
+            "for section in CPropertyExtend.CObDao_sections:",
+            "    if objectinfos_distance(section) != 24: continue",
+            "    if u32(section, +12) != 131072: continue",
+            "    if u32(section, +56) != 262144: continue",
+            "    if u32(section, +108) != 65536: continue",
+            "    if u32(section, +112) != 262144: continue",
+            "    triple = double3(section, +34)",
+            "    if not finite(triple) or not coordinate_like(triple) or not z_near_zero(triple): continue",
+            "    yield analyzer-only CPropertyExtend anchor candidate",
+        ],
+        "would_decode": "CPropertyExtend CObDao-local anchor record candidates matching the full local signature",
+        "would_not_decode": [
+            "CParagraphe direct anchors",
+            "non-anchor CObDao sections",
+            "coordinate-like CObDao+34 triples without the full record signature",
+            "sections selected by absolute payload offsets, fixture names, or baseline equality",
+        ],
+        "why_provisional": [
+            "local field semantics at +12/+56/+108/+112 are still unknown",
+            "signature was discovered using baseline-derived analyzer labels",
+            "chain ownership mapping still needs a parser-safe rule",
+            "more independent fixtures should validate the record signature before implementation",
+        ],
+        "additional_validation_needed": [
+            "more fonts and non-Arial font families",
+            "multi-line and separated text-run cases",
+            "larger object counts",
+            "negative/zero/non-grid anchors if Type3 allows them",
+            "fixtures that vary grouping/order without relying on current baseline ownership",
+        ],
+    }
+
+
+def _rejected_single_field_rules(field_summary: dict[str, Any]) -> list[dict[str, Any]]:
+    by_feature = {row["feature"]: row for row in field_summary["rows"]}
+    rows = []
+    for feature in (
+        "coordinate_like_at_CObDao+34",
+        "u32le@CObDao+12",
+        "u32le@CObDao+56",
+        "u32le@CObDao+108",
+        "u32le@CObDao+112",
+    ):
+        row = by_feature[feature]
+        rows.append(
+            {
+                "selector": f"only {feature}",
+                "rejected_for_parser": True,
+                "false_positive_count": row["false_positive_count"],
+                "false_negative_count": row["false_negative_count"],
+                "reason": (
+                    "single field lacks confirmed record semantics; use only as part of a composite signature candidate"
+                    if feature != "coordinate_like_at_CObDao+34"
+                    else "coordinate-like CObDao+34 has non-anchor false positives"
+                ),
+            }
+        )
+    rows.extend(
+        [
+            {
+                "selector": "section index",
+                "rejected_for_parser": True,
+                "reason": "anchor-bearing indexes vary across grouped/not-grouped and object-count variants",
+            },
+            {
+                "selector": "payload offset",
+                "rejected_for_parser": True,
+                "reason": "payload offsets shift across grouping/object-count variants and are diagnostic only",
+            },
+            {
+                "selector": "baseline equality",
+                "rejected_for_parser": True,
+                "reason": "baseline equality is allowed for analyzer evaluation only and would be circular as parser selection",
+            },
+        ]
+    )
+    return rows
+
+
 def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignment: dict[str, Any]) -> dict[str, Any]:
     by_name = {fixture["fixture"]: fixture for fixture in fixtures}
     grouped_counts = [
@@ -1809,6 +2055,7 @@ def build_report() -> dict[str, Any]:
     section_scaling_summary = _grouped_not_grouped_section_scaling_summary(fixture_reports)
     selection_order_summary = _selection_order_primary_owner_summary(fixture_reports)
     field_difference_summary = _anchor_vs_non_anchor_field_difference_summary(fixture_reports)
+    local_record_signature_summary = _local_record_signature_summary(fixture_reports)
     return {
         "policy": {
             "scope": "CPropertyExtend anchor context structure/evidence audit only",
@@ -1826,6 +2073,10 @@ def build_report() -> dict[str, Any]:
         "grouped_not_grouped_section_scaling_summary": section_scaling_summary,
         "selection_order_primary_owner_summary": selection_order_summary,
         "anchor_vs_non_anchor_field_difference_summary": field_difference_summary,
+        "local_record_signature_summary": local_record_signature_summary,
+        "signature_components": _signature_components_summary(fixture_reports),
+        "candidate_parser_rule_draft": _candidate_parser_rule_draft(),
+        "rejected_single_field_rules": _rejected_single_field_rules(field_difference_summary),
         "stable_anchor_bearing_signature_candidates": _stable_anchor_bearing_signature_candidates(
             field_difference_summary
         ),
@@ -1895,6 +2146,14 @@ def _print_text(report: dict[str, Any]) -> None:
     print(json.dumps(report["selection_order_primary_owner_summary"], ensure_ascii=False, indent=2))
     print("[Anchor vs Non-anchor Field Difference Summary]")
     print(json.dumps(report["anchor_vs_non_anchor_field_difference_summary"], ensure_ascii=False, indent=2))
+    print("[Local Record Signature Summary]")
+    print(json.dumps(report["local_record_signature_summary"], ensure_ascii=False, indent=2))
+    print("[Signature Components]")
+    print(json.dumps(report["signature_components"], ensure_ascii=False, indent=2))
+    print("[Candidate Parser Rule Draft]")
+    print(json.dumps(report["candidate_parser_rule_draft"], ensure_ascii=False, indent=2))
+    print("[Rejected Single-field Rules]")
+    print(json.dumps(report["rejected_single_field_rules"], ensure_ascii=False, indent=2))
     print("[Stable Anchor-bearing Signature Candidates]")
     print(json.dumps(report["stable_anchor_bearing_signature_candidates"], ensure_ascii=False, indent=2))
     print("[Rejected Selector Candidates]")
@@ -1996,6 +2255,37 @@ def _print_markdown(report: dict[str, Any]) -> None:
             f"| {row['feature']} | {row['decoded_type']} | {row['separation_score']} | "
             f"{row['false_positive_count']} | {row['candidate_usefulness']} |"
         )
+    print()
+    print("## Local Record Signature Summary")
+    print()
+    sig = report["local_record_signature_summary"]
+    print(f"- signature: `{sig['signature_name']}`")
+    print(f"- matched sections: `{sig['matched_section_count']}`")
+    print(f"- false positives: `{sig['false_positive_count']}`")
+    print(f"- false negatives: `{sig['false_negative_count']}`")
+    print(f"- parser safe: `{sig['parser_safe_candidate']}`")
+    print()
+    print("## Signature Components")
+    print()
+    print("| component | anchor pass | non-anchor pass | FP | FN | usefulness |")
+    print("|---|---:|---:|---:|---:|---|")
+    for row in report["signature_components"]:
+        print(
+            f"| {row['component']} | {row['anchor_bearing_pass_count']} | {row['non_anchor_pass_count']} | "
+            f"{row['false_positive_count']} | {row['false_negative_count']} | {row['usefulness']} |"
+        )
+    print()
+    print("## Candidate Parser Rule Draft")
+    print()
+    print(f"- status: `{report['candidate_parser_rule_draft']['status']}`")
+    print(f"- would decode: {report['candidate_parser_rule_draft']['would_decode']}")
+    print()
+    print("## Rejected Single-field Rules")
+    print()
+    print("| selector | rejected | reason |")
+    print("|---|---|---|")
+    for row in report["rejected_single_field_rules"]:
+        print(f"| {row['selector']} | {row['rejected_for_parser']} | {row['reason']} |")
     print()
     print("## Stable Anchor-bearing Signature Candidates")
     print()

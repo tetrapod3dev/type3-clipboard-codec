@@ -1134,6 +1134,15 @@ Content/glyph validation:
 - parser chain text order is observed as `Type3`, `9876543210`, `HELLO`; actual stored order remains unresolved.
 - the selector leads above still have zero current false positives/false negatives after including this fixture.
 
+Local record signature candidate:
+
+- `CPropertyExtend_CObDao_anchor_record_candidate_v1`
+- requires `OBJETINFOS_CLASSNAME` at `CObDao - 24`
+- requires u32 fields `+12=131072`, `+56=262144`, `+108=65536`, `+112=262144`
+- requires finite coordinate-like triple at `CObDao+34` with z near 0
+- current evaluation: 21 anchor-bearing matches, 0 non-anchor matches
+- parser-safe status: provisional false; do not promote without more validation and a chain ownership rule
+
 ### Multi-line text fixture notes (order 40/41/42)
 
 Text content:

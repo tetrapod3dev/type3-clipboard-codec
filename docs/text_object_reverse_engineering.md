@@ -1012,3 +1012,18 @@ CObDao local field selector audit:
 - 3-object mixed-color validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.
 - 3-object height 30mm and Arial Bold validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.
 - 3-object content variation did not change section counts, ownership pattern, or selector lead values; parser chain text order changed, so stored order remains unresolved.
+
+Local record signature candidate:
+
+- candidate name: `CPropertyExtend_CObDao_anchor_record_candidate_v1`
+- required context: `CPropertyExtend`, `OBJETINFOS_CLASSNAME` at `CObDao - 24`, and a `CObDao` marker
+- required fields: `u32(+12)=131072`, `u32(+56)=262144`, `u32(+108)=65536`, `u32(+112)=262144`
+- required coordinate candidate: finite coordinate-like `double64le` triple at `CObDao+34`, z near 0
+- current evaluation: 21/21 anchor-bearing sections matched, 0/83 non-anchor sections matched
+- parser-safe status: provisional false
+
+Rejected single-field rules:
+
+- coordinate-like `CObDao+34` alone has non-anchor false positives.
+- each individual u32 field is only a lead and lacks confirmed record semantics.
+- section index, payload offset, and baseline equality remain invalid parser selectors.
