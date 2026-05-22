@@ -28,11 +28,15 @@ FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_abc_height_30mm.txt",
+    "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+    "text_three_objects_grouped_order_abc_mixed_color.txt",
     "text_three_objects_grouped_order_cba.txt",
     "text_two_objects_mixed_color_not_grouped.txt",
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
     "text_three_objects_not_grouped.txt",
+    "text_three_objects_not_grouped_mixed_color.txt",
 ]
 ORDER_METADATA = {
     "text_group_same_color_two_objects.txt": {
@@ -46,6 +50,21 @@ ORDER_METADATA = {
         "order_control_status": "unknown",
     },
     "text_three_objects_grouped_order_abc.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_height_30mm.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_font_arial_bold.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_mixed_color.txt": {
         "grouping_state": "grouped",
         "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
         "order_control_status": "attempted",
@@ -71,6 +90,11 @@ ORDER_METADATA = {
         "order_control_status": "attempted",
     },
     "text_three_objects_not_grouped.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_not_grouped_mixed_color.txt": {
         "grouping_state": "not_grouped",
         "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
         "order_control_status": "attempted",

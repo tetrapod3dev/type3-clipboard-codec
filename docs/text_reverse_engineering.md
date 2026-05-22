@@ -975,8 +975,12 @@ Captured analyzer update:
 | fixture | attempted order | parser chain order | `CObDao` sections | `CParagraphe` owner | `CPropertyExtend` owners |
 |---|---|---|---:|---|---|
 | `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
+| `text_three_objects_grouped_order_abc_height_30mm.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
+| `text_three_objects_grouped_order_abc_font_arial_bold.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
+| `text_three_objects_grouped_order_abc_mixed_color.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
 | `text_three_objects_grouped_order_cba.txt` | C -> B -> A | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
 | `text_three_objects_not_grouped.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 11 | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
+| `text_three_objects_not_grouped_mixed_color.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 11 | chain2 `(311.111,422.222,0)` | chain1 `(211.111,322.222,0)`, chain0 `(111.111,222.222,0)` |
 
 Current grouped-order interpretation:
 
@@ -985,6 +989,8 @@ Current grouped-order interpretation:
 - `CParagraphe` ownership did change with attempted grouped order: A-B-C maps to chain0, C-B-A maps to chain2.
 - `CPropertyExtend` ownership changed accordingly for the remaining two anchors.
 - grouped fixtures still fit the one `CParagraphe` direct anchor plus `N-1` `CPropertyExtend` anchors pattern.
+- mixed-color 3-object fixtures match the same section counts and ownership pattern as the corresponding same-color fixtures.
+- height 30mm and Arial Bold grouped 3-object fixtures also match the same 9-section ownership pattern.
 - actual stored order remains unresolved; this is analyzer evidence only.
 
 ### Multi-object anchor storage model
@@ -1021,3 +1027,48 @@ Selection-order / primary-owner evidence:
 - actual stored order is unresolved and must not be treated as equal to attempted UI selection order.
 
 Parser promotion remains blocked by one core unresolved selector: there is no baseline-independent rule that identifies the anchor-bearing `CObDao` sections and maps them to text chains without relying on parser `baseline_midpoint` equality. Until that selector exists, `CParagraphe` direct anchor and `CPropertyExtend` anchor decoding remain analyzer-only.
+
+### CObDao local field selector audit
+
+The field comparison analyzer now compares every current multi-object `CObDao` section with an evidence-only label:
+
+- `anchor_bearing_candidate`: `CObDao + 34` matches a known chain baseline anchor in analyzer evidence.
+- `non_anchor_candidate`: all other `CObDao` sections.
+
+Current section counts after 3-object mixed-color and style/font validation:
+
+- anchor-bearing sections: 19
+- non-anchor sections: 76
+- total multi-object `CObDao` sections: 95
+
+Current useful field candidates:
+
+| local field | anchor-bearing value | current false positives | status |
+|---|---|---:|---|
+| `u32le@CObDao+12` | `131072` (`00 00 02 00`) | 0 | observed separator, not parser-safe |
+| `u32le@CObDao+56` | `262144` (`00 00 04 00`) | 0 | observed separator, not parser-safe |
+| `u32le@CObDao+108` | `65536` (`00 00 01 00`) | 0 | observed separator, not parser-safe |
+| `u32le@CObDao+112` | `262144` (`00 00 04 00`) | 0 | observed separator, not parser-safe |
+
+3-object mixed-color validation:
+
+- grouped A-B-C mixed color: 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
+- not-grouped mixed color: 11 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
+- color variation did not change the current local selector lead values.
+
+3-object style/font validation:
+
+- grouped A-B-C height 30mm: 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
+- grouped A-B-C Arial Bold: 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
+- height/font variation did not change the current local selector lead values.
+
+Important rejection:
+
+- `coordinate-like at CObDao + 34` remains rejected as a selector because non-anchor sections still produce coordinate-like false positives.
+- section index, absolute/payload offset, fixture filename, baseline equality, and attempted selection order alone remain rejected selectors.
+
+Interpretation:
+
+- The local fields around `CObDao + 12`, `+56`, `+108`, and `+112` are the strongest current selector leads.
+- They are not yet parser-safe because their semantic role is unknown and they were found using analyzer labels derived from current fixtures.
+- The next useful work is to design fixtures that vary object count/grouping/order while keeping these fields under observation, or to reverse the local record format around these offsets.

@@ -1,0 +1,102 @@
+{
+  "bbox": {
+    "xmax_mm": 324.5693901773533,
+    "xmin_mm": 85.02641609822646,
+    "ymax_mm": 432.222,
+    "ymin_mm": 219.2820272851296,
+    "zmax_mm": 0.0,
+    "zmin_mm": 0.0
+  },
+  "chains": [
+    {
+      "bbox": {
+        "xmax_mm": 137.19558390177352,
+        "xmin_mm": 85.02641609822646,
+        "ymax_mm": 222.22200000000004,
+        "ymin_mm": 222.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 0,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 111.11099999999999,
+        "y": 222.222,
+        "z": 0.0
+      },
+      "text_candidate": "abcdefg"
+    },
+    {
+      "bbox": {
+        "xmax_mm": 249.06120463847202,
+        "xmin_mm": 173.16079536152796,
+        "ymax_mm": 322.222,
+        "ymin_mm": 322.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 1,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 211.111,
+        "y": 322.222,
+        "z": 0.0
+      },
+      "text_candidate": "1234567890"
+    },
+    {
+      "bbox": {
+        "xmax_mm": 324.5659795361528,
+        "xmin_mm": 297.65602046384714,
+        "ymax_mm": 422.222,
+        "ymin_mm": 422.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 2,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 311.111,
+        "y": 422.222,
+        "z": 0.0
+      },
+      "text_candidate": "XYZ"
+    }
+  ],
+  "class_markers": [
+    "CContour",
+    "CCourbe",
+    "CParagraphe",
+    "CPropertyExtend",
+    "CZone"
+  ],
+  "font_name": "Arial Bold",
+  "is_text_object": true,
+  "object_count": 3,
+  "object_type": "text",
+  "parser_name": "Type3ChainParser",
+  "raw_size": 16384,
+  "status": "ok",
+  "text_candidate": "abcdefg"
+}

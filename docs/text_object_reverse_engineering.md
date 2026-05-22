@@ -958,8 +958,12 @@ Grouped order fixture analyzer results:
 | fixture | attempted order | parser chain order | `CObDao` section count | `CParagraphe` owner | `CPropertyExtend` owners |
 |---|---|---|---:|---|---|
 | `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_abc_height_30mm.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_abc_font_arial_bold.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_abc_mixed_color.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
 | `text_three_objects_grouped_order_cba.txt` | C -> B -> A | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain2 | chain1, chain0 |
 | `text_three_objects_not_grouped.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 11 | chain2 | chain1, chain0 |
+| `text_three_objects_not_grouped_mixed_color.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 11 | chain2 | chain1, chain0 |
 
 Updated interpretation:
 
@@ -991,3 +995,18 @@ Parser promotion blocker:
 - coordinate-like values also occur in non-anchor sections.
 - section index/order alone is insufficient across grouped/not-grouped and selection-order variants.
 - parser promotion needs a stable anchor-bearing section selector and a chain ownership rule that does not use baseline equality as the selector.
+
+CObDao local field selector audit:
+
+- analyzer labels remain evidence-only and are derived from current known anchor matches.
+- current multi-object set contains 11 anchor-bearing and 46 non-anchor `CObDao` sections.
+- after adding 3-object mixed-color and style/font fixtures, the set contains 19 anchor-bearing and 76 non-anchor `CObDao` sections.
+- current strongest field leads are:
+  - `u32le@CObDao+12 == 131072`
+  - `u32le@CObDao+56 == 262144`
+  - `u32le@CObDao+108 == 65536`
+  - `u32le@CObDao+112 == 262144`
+- each separates the current labeled set with zero false positives, but none is parser-safe yet because the semantic meaning of those local fields is unresolved.
+- coordinate-like `CObDao + 34` remains rejected as a selector due to non-anchor false positives.
+- 3-object mixed-color validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.
+- 3-object height 30mm and Arial Bold validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.

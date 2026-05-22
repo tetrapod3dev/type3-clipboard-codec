@@ -1093,6 +1093,10 @@ Anchor storage / order evidence summary:
 | 2-object not-grouped | 2 | 1 | 1 | 6 |
 | 3-object grouped | 3 | 1 | 2 | 9 |
 | 3-object not-grouped | 3 | 1 | 2 | 11 |
+| 3-object grouped mixed-color | 3 | 1 | 2 | 9 |
+| 3-object not-grouped mixed-color | 3 | 1 | 2 | 11 |
+| 3-object grouped height 30mm | 3 | 1 | 2 | 9 |
+| 3-object grouped Arial Bold | 3 | 1 | 2 | 9 |
 
 Current model:
 
@@ -1101,6 +1105,27 @@ Current model:
 - attempted selection order and actual stored order must be recorded separately.
 - parser chain order is an observed parser output, not proof of Type3 internal stored order.
 - direct/CPropertyExtend anchor decode remains analyzer-only until a baseline-independent section selector exists.
+
+Current CObDao section selector leads:
+
+- `u32le@CObDao+12 == 131072`
+- `u32le@CObDao+56 == 262144`
+- `u32le@CObDao+108 == 65536`
+- `u32le@CObDao+112 == 262144`
+
+These fields separate the current analyzer-labeled anchor-bearing sections from non-anchor sections, but they are not confirmed parser rules. Keep future fixture intent files detailed enough to compare object count, grouping, attempted selection order, parser chain order, and anchor ownership against these local fields.
+
+Mixed-color validation:
+
+- `text_three_objects_grouped_order_abc_mixed_color.txt` preserves the 9-section grouped pattern.
+- `text_three_objects_not_grouped_mixed_color.txt` preserves the 11-section not-grouped pattern.
+- the selector leads above still have zero current false positives/false negatives after including these fixtures.
+
+Style/font validation:
+
+- `text_three_objects_grouped_order_abc_height_30mm.txt` preserves the 9-section grouped pattern.
+- `text_three_objects_grouped_order_abc_font_arial_bold.txt` preserves the 9-section grouped pattern.
+- the selector leads above still have zero current false positives/false negatives after including these fixtures.
 
 ### Multi-line text fixture notes (order 40/41/42)
 

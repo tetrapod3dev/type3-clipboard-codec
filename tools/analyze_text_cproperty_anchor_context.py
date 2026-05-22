@@ -26,16 +26,23 @@ FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_abc_height_30mm.txt",
+    "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+    "text_three_objects_grouped_order_abc_mixed_color.txt",
     "text_three_objects_grouped_order_cba.txt",
     "text_two_objects_mixed_color_not_grouped.txt",
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
     "text_three_objects_not_grouped.txt",
+    "text_three_objects_not_grouped_mixed_color.txt",
 ]
 GROUPED_MULTI_OBJECT_FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_abc_height_30mm.txt",
+    "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+    "text_three_objects_grouped_order_abc_mixed_color.txt",
     "text_three_objects_grouped_order_cba.txt",
 ]
 NON_GROUPED_MULTI_OBJECT_FIXTURES = [
@@ -43,6 +50,7 @@ NON_GROUPED_MULTI_OBJECT_FIXTURES = [
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
     "text_three_objects_not_grouped.txt",
+    "text_three_objects_not_grouped_mixed_color.txt",
 ]
 MULTI_OBJECT_FIXTURES = [
     *GROUPED_MULTI_OBJECT_FIXTURES,
@@ -60,6 +68,21 @@ ORDER_METADATA = {
         "order_control_status": "unknown",
     },
     "text_three_objects_grouped_order_abc.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_height_30mm.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_font_arial_bold.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_mixed_color.txt": {
         "grouping_state": "grouped",
         "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
         "order_control_status": "attempted",
@@ -85,6 +108,11 @@ ORDER_METADATA = {
         "order_control_status": "attempted",
     },
     "text_three_objects_not_grouped.txt": {
+        "grouping_state": "not_grouped",
+        "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_not_grouped_mixed_color.txt": {
         "grouping_state": "not_grouped",
         "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
         "order_control_status": "attempted",
@@ -658,6 +686,23 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
         for section in sections:
             section["local_bytes_similarity_to_anchor_bearing_section"] = None
             section["local_bytes_similarity_to_anchor_bearing_excluding_24_anchor_bytes"] = None
+    for index, section in enumerate(sections):
+        previous_section = sections[index - 1] if index > 0 else None
+        next_section = sections[index + 1] if index + 1 < len(sections) else None
+        section["neighbor_relation"] = {
+            "previous_section_index": previous_section["section_index"] if previous_section else None,
+            "previous_section_role_candidate": previous_section["section_role_candidate"] if previous_section else None,
+            "previous_section_length_candidate": previous_section["section_length_candidate"] if previous_section else None,
+            "distance_from_previous_cobdao": (
+                section["cobdao_marker_offset"] - previous_section["cobdao_marker_offset"] if previous_section else None
+            ),
+            "next_section_index": next_section["section_index"] if next_section else None,
+            "next_section_role_candidate": next_section["section_role_candidate"] if next_section else None,
+            "next_section_length_candidate": next_section["section_length_candidate"] if next_section else None,
+            "distance_to_next_cobdao": (
+                next_section["cobdao_marker_offset"] - section["cobdao_marker_offset"] if next_section else None
+            ),
+        }
     return sections
 
 
@@ -1354,6 +1399,228 @@ def _selection_order_primary_owner_summary(fixtures: list[dict[str, Any]]) -> di
     }
 
 
+def _section_feature_value(section: dict[str, Any], feature: dict[str, Any]) -> Any:
+    kind = feature["kind"]
+    offset = feature.get("offset")
+    marker_offset = int(section["marker_context_hex"]["relative_marker_start"])
+    data = _window_bytes(section["marker_context_hex"])
+    if kind == "u32le":
+        start = marker_offset + int(offset)
+        if start < 0 or start + 4 > len(data):
+            return None
+        return struct.unpack("<I", data[start : start + 4])[0]
+    if kind == "i32le":
+        start = marker_offset + int(offset)
+        if start < 0 or start + 4 > len(data):
+            return None
+        return struct.unpack("<i", data[start : start + 4])[0]
+    if kind == "double64le":
+        start = marker_offset + int(offset)
+        if start < 0 or start + 8 > len(data):
+            return None
+        value = struct.unpack("<d", data[start : start + 8])[0]
+        if not math.isfinite(value):
+            return "non_finite"
+        return round(value * 1000.0, 6)
+    if kind == "bytes4":
+        start = marker_offset + int(offset)
+        if start < 0 or start + 4 > len(data):
+            return None
+        return data[start : start + 4].hex(" ")
+    if kind == "section_length_candidate":
+        return section["section_length_candidate"]
+    if kind == "objectinfos_distance":
+        marker = section["nearby_objectinfos_marker"]
+        return marker["distance_before_cobdao"] if marker else None
+    if kind == "previous_section_role":
+        return section["neighbor_relation"]["previous_section_role_candidate"]
+    if kind == "next_section_role":
+        return section["neighbor_relation"]["next_section_role_candidate"]
+    if kind == "previous_section_length":
+        return section["neighbor_relation"]["previous_section_length_candidate"]
+    if kind == "next_section_length":
+        return section["neighbor_relation"]["next_section_length_candidate"]
+    if kind == "distance_from_previous_cobdao":
+        return section["neighbor_relation"]["distance_from_previous_cobdao"]
+    if kind == "distance_to_next_cobdao":
+        return section["neighbor_relation"]["distance_to_next_cobdao"]
+    if kind == "coordinate_like_at_plus_34":
+        return section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"]
+    if kind == "z_approx_zero_at_plus_34":
+        return section["cobdao_plus_34_triple_analysis"]["z_approx_zero"]
+    return None
+
+
+def _value_counts(values: list[Any]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for value in values:
+        key = str(value)
+        counts[key] = counts.get(key, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def _field_difference_row(feature: dict[str, Any], anchor: list[dict[str, Any]], non_anchor: list[dict[str, Any]]) -> dict[str, Any]:
+    anchor_values = [_section_feature_value(section, feature) for section in anchor]
+    non_anchor_values = [_section_feature_value(section, feature) for section in non_anchor]
+    anchor_set = set(anchor_values)
+    non_anchor_set = set(non_anchor_values)
+    false_positive_count = sum(1 for value in non_anchor_values if value in anchor_set)
+    false_negative_count = 0
+    if len(anchor_set) == 1:
+        anchor_value = next(iter(anchor_set))
+        false_negative_count = sum(1 for value in anchor_values if value != anchor_value)
+    disjoint = anchor_set.isdisjoint(non_anchor_set)
+    stable_anchor = len(anchor_set) == 1
+    if stable_anchor and disjoint:
+        usefulness = "strong_current_fixture_separator"
+    elif disjoint:
+        usefulness = "separates_current_fixture_sets_but_anchor_values_vary"
+    elif false_positive_count < len(non_anchor_values):
+        usefulness = "partial_separator"
+    else:
+        usefulness = "not_useful"
+    return {
+        "feature": feature["name"],
+        "local_offset_relative_to_cobdao": feature.get("offset"),
+        "decoded_type": feature["kind"],
+        "anchor_bearing_value_distribution": _value_counts(anchor_values),
+        "non_anchor_value_distribution": _value_counts(non_anchor_values),
+        "anchor_unique_value_count": len(anchor_set),
+        "non_anchor_unique_value_count": len(non_anchor_set),
+        "separation_score": round(1.0 - (false_positive_count / len(non_anchor_values) if non_anchor_values else 0.0), 6),
+        "false_positive_count": false_positive_count,
+        "false_negative_count": false_negative_count,
+        "candidate_usefulness": usefulness,
+        "notes": "analyzer label uses known anchor/baseline evidence; this row is not a parser rule",
+    }
+
+
+def _field_features() -> list[dict[str, Any]]:
+    features: list[dict[str, Any]] = []
+    for offset in range(0, 129, 4):
+        features.append({"name": f"u32le@CObDao+{offset}", "kind": "u32le", "offset": offset})
+        features.append({"name": f"i32le@CObDao+{offset}", "kind": "i32le", "offset": offset})
+        features.append({"name": f"bytes4@CObDao+{offset}", "kind": "bytes4", "offset": offset})
+    for offset in range(0, 129, 8):
+        features.append({"name": f"double64le_mm@CObDao+{offset}", "kind": "double64le", "offset": offset})
+    features.extend(
+        [
+            {"name": "section_length_candidate", "kind": "section_length_candidate"},
+            {"name": "OBJETINFOS_to_CObDao_distance", "kind": "objectinfos_distance"},
+            {"name": "previous_section_role_candidate", "kind": "previous_section_role"},
+            {"name": "next_section_role_candidate", "kind": "next_section_role"},
+            {"name": "previous_section_length_candidate", "kind": "previous_section_length"},
+            {"name": "next_section_length_candidate", "kind": "next_section_length"},
+            {"name": "distance_from_previous_cobdao", "kind": "distance_from_previous_cobdao"},
+            {"name": "distance_to_next_cobdao", "kind": "distance_to_next_cobdao"},
+            {"name": "coordinate_like_at_CObDao+34", "kind": "coordinate_like_at_plus_34"},
+            {"name": "z_approx_zero_at_CObDao+34", "kind": "z_approx_zero_at_plus_34"},
+        ]
+    )
+    return features
+
+
+def _anchor_vs_non_anchor_field_difference_summary(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    sections = _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+    anchor = [section for section in sections if section["known_anchor_triple_hit"]]
+    non_anchor = [section for section in sections if not section["known_anchor_triple_hit"]]
+    rows = [_field_difference_row(feature, anchor, non_anchor) for feature in _field_features()]
+    rows.sort(
+        key=lambda row: (
+            -float(row["separation_score"]),
+            row["false_positive_count"],
+            row["anchor_unique_value_count"],
+            row["feature"],
+        )
+    )
+    return {
+        "status": "evidence_only",
+        "label_definition": "anchor_bearing_candidate means CObDao+34 matches a known chain baseline anchor in analyzer evidence",
+        "section_counts": {
+            "anchor_bearing": len(anchor),
+            "non_anchor": len(non_anchor),
+            "total": len(sections),
+        },
+        "rows": rows,
+        "top_current_separators": [
+            row
+            for row in rows
+            if row["candidate_usefulness"] in {"strong_current_fixture_separator", "separates_current_fixture_sets_but_anchor_values_vary"}
+        ][:20],
+    }
+
+
+def _stable_anchor_bearing_signature_candidates(field_summary: dict[str, Any]) -> list[dict[str, Any]]:
+    candidates = []
+    for row in field_summary["top_current_separators"][:12]:
+        candidates.append(
+            {
+                "candidate": row["feature"],
+                "works_on_anchor_bearing_sections": field_summary["section_counts"]["anchor_bearing"] - row["false_negative_count"],
+                "anchor_bearing_section_count": field_summary["section_counts"]["anchor_bearing"],
+                "false_positives": row["false_positive_count"],
+                "false_negatives": row["false_negative_count"],
+                "parser_safe_candidate": False,
+                "reason": (
+                    "separates the current labeled fixture set, but the field has no confirmed semantic meaning yet"
+                    if row["false_positive_count"] == 0
+                    else "partial current separator only"
+                ),
+            }
+        )
+    if not candidates:
+        candidates.append(
+            {
+                "candidate": "none",
+                "works_on_anchor_bearing_sections": 0,
+                "anchor_bearing_section_count": field_summary["section_counts"]["anchor_bearing"],
+                "false_positives": None,
+                "false_negatives": None,
+                "parser_safe_candidate": False,
+                "reason": "no local field currently separates anchor-bearing from non-anchor sections without analyzer labels",
+            }
+        )
+    return candidates
+
+
+def _rejected_selector_candidates(field_summary: dict[str, Any]) -> list[dict[str, Any]]:
+    coordinate_row = next(
+        row for row in field_summary["rows"] if row["feature"] == "coordinate_like_at_CObDao+34"
+    )
+    return [
+        {
+            "selector": "coordinate-like at CObDao + 34",
+            "rejected_for_parser": True,
+            "reason": f"false positives in non-anchor sections: {coordinate_row['false_positive_count']}",
+        },
+        {
+            "selector": "section index",
+            "rejected_for_parser": True,
+            "reason": "anchor-bearing indexes vary across grouped/not-grouped and 2-object/3-object fixtures",
+        },
+        {
+            "selector": "CPropertyExtend absolute/payload offset",
+            "rejected_for_parser": True,
+            "reason": "payload offsets shift by grouping/object-count structure and are diagnostic only",
+        },
+        {
+            "selector": "baseline equality",
+            "rejected_for_parser": True,
+            "reason": "baseline equality is the analyzer label/evidence source and would be circular as a parser selector",
+        },
+        {
+            "selector": "fixture filename",
+            "rejected_for_parser": True,
+            "reason": "fixture names are test metadata and cannot define parser behavior",
+        },
+        {
+            "selector": "attempted selection order alone",
+            "rejected_for_parser": True,
+            "reason": "attempted UI order is not encoded as a confirmed payload field and actual stored order remains unresolved",
+        },
+    ]
+
+
 def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignment: dict[str, Any]) -> dict[str, Any]:
     by_name = {fixture["fixture"]: fixture for fixture in fixtures}
     grouped_counts = [
@@ -1534,6 +1801,7 @@ def build_report() -> dict[str, Any]:
     anchor_storage_summary = _anchor_storage_scaling_summary(fixture_reports)
     section_scaling_summary = _grouped_not_grouped_section_scaling_summary(fixture_reports)
     selection_order_summary = _selection_order_primary_owner_summary(fixture_reports)
+    field_difference_summary = _anchor_vs_non_anchor_field_difference_summary(fixture_reports)
     return {
         "policy": {
             "scope": "CPropertyExtend anchor context structure/evidence audit only",
@@ -1550,6 +1818,11 @@ def build_report() -> dict[str, Any]:
         "anchor_storage_scaling_summary": anchor_storage_summary,
         "grouped_not_grouped_section_scaling_summary": section_scaling_summary,
         "selection_order_primary_owner_summary": selection_order_summary,
+        "anchor_vs_non_anchor_field_difference_summary": field_difference_summary,
+        "stable_anchor_bearing_signature_candidates": _stable_anchor_bearing_signature_candidates(
+            field_difference_summary
+        ),
+        "rejected_selector_candidates": _rejected_selector_candidates(field_difference_summary),
         "answers": _answers(fixture_reports, comparison, alignment),
     }
 
@@ -1613,6 +1886,12 @@ def _print_text(report: dict[str, Any]) -> None:
     print(json.dumps(report["grouped_not_grouped_section_scaling_summary"], ensure_ascii=False, indent=2))
     print("[Selection Order / Primary Owner Summary]")
     print(json.dumps(report["selection_order_primary_owner_summary"], ensure_ascii=False, indent=2))
+    print("[Anchor vs Non-anchor Field Difference Summary]")
+    print(json.dumps(report["anchor_vs_non_anchor_field_difference_summary"], ensure_ascii=False, indent=2))
+    print("[Stable Anchor-bearing Signature Candidates]")
+    print(json.dumps(report["stable_anchor_bearing_signature_candidates"], ensure_ascii=False, indent=2))
+    print("[Rejected Selector Candidates]")
+    print(json.dumps(report["rejected_selector_candidates"], ensure_ascii=False, indent=2))
     print("[Answers]")
     print(json.dumps(report["answers"], ensure_ascii=False, indent=2))
 
@@ -1700,6 +1979,33 @@ def _print_markdown(report: dict[str, Any]) -> None:
             f"{row['cparagraphe_owner_texts']} | {row['attempted_order_first_maps_to_cparagraphe_owner']} | "
             f"{row['attempted_order_last_maps_to_cparagraphe_owner']} |"
         )
+    print()
+    print("## Anchor vs Non-anchor Field Difference Summary")
+    print()
+    print("| feature | type | separation | false positives | usefulness |")
+    print("|---|---|---:|---:|---|")
+    for row in report["anchor_vs_non_anchor_field_difference_summary"]["top_current_separators"][:12]:
+        print(
+            f"| {row['feature']} | {row['decoded_type']} | {row['separation_score']} | "
+            f"{row['false_positive_count']} | {row['candidate_usefulness']} |"
+        )
+    print()
+    print("## Stable Anchor-bearing Signature Candidates")
+    print()
+    print("| candidate | false positives | false negatives | parser safe | reason |")
+    print("|---|---:|---:|---|---|")
+    for row in report["stable_anchor_bearing_signature_candidates"]:
+        print(
+            f"| {row['candidate']} | {row['false_positives']} | {row['false_negatives']} | "
+            f"{row['parser_safe_candidate']} | {row['reason']} |"
+        )
+    print()
+    print("## Rejected Selector Candidates")
+    print()
+    print("| selector | rejected | reason |")
+    print("|---|---|---|")
+    for row in report["rejected_selector_candidates"]:
+        print(f"| {row['selector']} | {row['rejected_for_parser']} | {row['reason']} |")
 
 
 def main() -> int:

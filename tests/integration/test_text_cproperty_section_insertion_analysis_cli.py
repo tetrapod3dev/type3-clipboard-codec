@@ -84,10 +84,11 @@ def test_section_insertion_analysis_json_output() -> None:
         "text_two_objects_same_color_not_grouped.txt",
         "text_two_objects_not_grouped_selection_reversed.txt",
         "text_three_objects_not_grouped.txt",
+        "text_three_objects_not_grouped_mixed_color.txt",
     }
     for name, row in non_grouped_all.items():
         assert row["grouped_section_count"] == 5
-        if name == "text_three_objects_not_grouped.txt":
+        if name in {"text_three_objects_not_grouped.txt", "text_three_objects_not_grouped_mixed_color.txt"}:
             assert row["non_grouped_section_count"] == 11
             assert row["section_count_delta"] == 6
             assert row["inserted_148_section_count"] == 4
@@ -148,5 +149,6 @@ def test_section_insertion_analysis_markdown_output() -> None:
     assert "text_two_objects_same_color_not_grouped.txt" in out
     assert "text_two_objects_not_grouped_selection_reversed.txt" in out
     assert "text_three_objects_not_grouped.txt" in out
+    assert "text_three_objects_not_grouped_mixed_color.txt" in out
     assert "## Selector Candidates" in out
     assert "section_alignment" in out

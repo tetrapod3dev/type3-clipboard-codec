@@ -60,7 +60,11 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     selection_reversed = by_name["text_two_objects_not_grouped_selection_reversed.txt"]
     three_nongrouped = by_name["text_three_objects_not_grouped.txt"]
     grouped_abc = by_name["text_three_objects_grouped_order_abc.txt"]
+    grouped_abc_height = by_name["text_three_objects_grouped_order_abc_height_30mm.txt"]
+    grouped_abc_bold = by_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"]
+    grouped_abc_mixed = by_name["text_three_objects_grouped_order_abc_mixed_color.txt"]
     grouped_cba = by_name["text_three_objects_grouped_order_cba.txt"]
+    three_nongrouped_mixed = by_name["text_three_objects_not_grouped_mixed_color.txt"]
 
     same_hit = same["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
     mixed_hit = mixed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
@@ -74,13 +78,21 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     selection_reversed_hit = selection_reversed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
     three_hits = three_nongrouped["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_abc_hits = grouped_abc["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
+    grouped_abc_height_hits = grouped_abc_height["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
+    grouped_abc_bold_hits = grouped_abc_bold["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
+    grouped_abc_mixed_hits = grouped_abc_mixed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_cba_hits = grouped_cba["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
+    three_nongrouped_mixed_hits = three_nongrouped_mixed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
 
     assert same_color_nongrouped_hit["cproperty_payload_relative_offset"] == 620
     assert selection_reversed_hit["cproperty_payload_relative_offset"] == 620
     assert [hit["cproperty_payload_relative_offset"] for hit in three_hits] == [4462, 620]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_hits] == [472, 4166]
+    assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_height_hits] == [472, 4166]
+    assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_bold_hits] == [472, 4166]
+    assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_mixed_hits] == [472, 4166]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_cba_hits] == [4166, 472]
+    assert [hit["cproperty_payload_relative_offset"] for hit in three_nongrouped_mixed_hits] == [4462, 620]
 
     for hit in (
         same_hit,
@@ -90,7 +102,11 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
         selection_reversed_hit,
         *three_hits,
         *grouped_abc_hits,
+        *grouped_abc_height_hits,
+        *grouped_abc_bold_hits,
+        *grouped_abc_mixed_hits,
         *grouped_cba_hits,
+        *three_nongrouped_mixed_hits,
     ):
         assert hit["node_class"] == "CPropertyExtend"
         assert hit["local_context_hex"]["hex"]
@@ -100,17 +116,34 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
         assert any(candidate["matched_chain_baseline_anchor"] for candidate in hit["chain_match_candidates"])
 
     comp = payload["grouped_vs_non_grouped_comparison"]
-    assert comp["grouped_cproperty_anchor_offsets"] == [472, 472, 472, 4166, 4166, 472]
-    assert comp["non_grouped_cproperty_anchor_offsets"] == [620, 620, 620, 4462, 620]
+    assert comp["grouped_cproperty_anchor_offsets"] == [
+        472,
+        472,
+        472,
+        4166,
+        472,
+        4166,
+        472,
+        4166,
+        472,
+        4166,
+        4166,
+        472,
+    ]
+    assert comp["non_grouped_cproperty_anchor_offsets"] == [620, 620, 620, 4462, 620, 4462, 620]
     assert comp["offset_delta_non_grouped_minus_grouped"] == 148
-    assert [row["cobdao_section_count"] for row in comp["non_grouped_by_fixture"]] == [6, 6, 6, 11]
+    assert [row["cobdao_section_count"] for row in comp["non_grouped_by_fixture"]] == [6, 6, 6, 11, 11]
     assert comp["grouped_marker_signature_identical"] is True
     assert comp["parser_promotion_status"] == "analyzer_only"
     assert same_color_nongrouped["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [1]
     assert selection_reversed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert three_nongrouped["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [2]
     assert grouped_abc["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
+    assert grouped_abc_height["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
+    assert grouped_abc_bold["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
+    assert grouped_abc_mixed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert grouped_cba["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [2]
+    assert three_nongrouped_mixed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [2]
     assert payload["answers"]["text_three_objects_not_grouped_summary"]["cproperty_anchor_hit_count"] == 2
     assert payload["answers"]["parser_readiness"] == "not_ready_analyzer_only"
 
@@ -120,10 +153,32 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     by_summary_name = {row["fixture"]: row for row in anchor_summary["rows"]}
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cparagraphe_owner_chain_indexes"] == [0]
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cpropertyextend_owner_chain_indexes"] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_mixed_color.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_mixed_color.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
     assert by_summary_name["text_three_objects_grouped_order_cba.txt"]["cparagraphe_owner_chain_indexes"] == [2]
     assert by_summary_name["text_three_objects_grouped_order_cba.txt"]["cpropertyextend_owner_chain_indexes"] == [1, 0]
     assert by_summary_name["text_three_objects_not_grouped.txt"]["cparagraphe_owner_chain_indexes"] == [2]
     assert by_summary_name["text_three_objects_not_grouped.txt"]["cpropertyextend_owner_chain_indexes"] == [1, 0]
+    assert by_summary_name["text_three_objects_not_grouped_mixed_color.txt"]["cparagraphe_owner_chain_indexes"] == [2]
+    assert by_summary_name["text_three_objects_not_grouped_mixed_color.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 0]
 
     section_summary = payload["grouped_not_grouped_section_scaling_summary"]
     assert section_summary["candidate_formula"] == "not_grouped_delta = object_count - 1"
@@ -148,6 +203,34 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     assert by_selection_name["text_three_objects_not_grouped.txt"][
         "attempted_order_last_maps_to_cparagraphe_owner"
     ] is True
+
+    field_summary = payload["anchor_vs_non_anchor_field_difference_summary"]
+    assert field_summary["status"] == "evidence_only"
+    assert field_summary["section_counts"] == {"anchor_bearing": 19, "non_anchor": 76, "total": 95}
+    assert field_summary["rows"]
+    assert field_summary["top_current_separators"]
+    by_feature = {row["feature"]: row for row in field_summary["rows"]}
+    assert by_feature["coordinate_like_at_CObDao+34"]["false_positive_count"] > 0
+    for feature in ("u32le@CObDao+12", "u32le@CObDao+56", "u32le@CObDao+108", "u32le@CObDao+112"):
+        assert by_feature[feature]["false_positive_count"] == 0
+        assert by_feature[feature]["false_negative_count"] == 0
+        assert by_feature[feature]["candidate_usefulness"] == "strong_current_fixture_separator"
+
+    candidates = payload["stable_anchor_bearing_signature_candidates"]
+    assert candidates
+    assert any(candidate["candidate"] == "u32le@CObDao+12" for candidate in candidates)
+    assert all(candidate["parser_safe_candidate"] is False for candidate in candidates)
+
+    rejected = {row["selector"]: row for row in payload["rejected_selector_candidates"]}
+    for selector in (
+        "coordinate-like at CObDao + 34",
+        "section index",
+        "CPropertyExtend absolute/payload offset",
+        "baseline equality",
+        "fixture filename",
+        "attempted selection order alone",
+    ):
+        assert rejected[selector]["rejected_for_parser"] is True
 
 
 def test_text_cproperty_anchor_context_cli_markdown_mode() -> None:

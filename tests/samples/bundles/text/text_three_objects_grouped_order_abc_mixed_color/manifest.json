@@ -1,0 +1,26 @@
+{
+  "category": "text",
+  "created_at": "2026-05-22T09:39:28.120794+00:00",
+  "description": "Three text objects, grouped, attempted selection order A-B-C, mixed color",
+  "files": {
+    "fixture": "tests\\samples\\text\\text_three_objects_grouped_order_abc_mixed_color.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "sample_name": "text_three_objects_grouped_order_abc_mixed_color",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 16384,
+  "typeeditzone_version_size": 32
+}

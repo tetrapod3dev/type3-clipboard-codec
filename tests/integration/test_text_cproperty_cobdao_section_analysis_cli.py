@@ -55,7 +55,11 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     selection_reversed = by_name["text_two_objects_not_grouped_selection_reversed.txt"]["cproperty_nodes"][0]
     three_nongrouped = by_name["text_three_objects_not_grouped.txt"]["cproperty_nodes"][0]
     grouped_abc = by_name["text_three_objects_grouped_order_abc.txt"]["cproperty_nodes"][0]
+    grouped_abc_height = by_name["text_three_objects_grouped_order_abc_height_30mm.txt"]["cproperty_nodes"][0]
+    grouped_abc_bold = by_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"]["cproperty_nodes"][0]
+    grouped_abc_mixed = by_name["text_three_objects_grouped_order_abc_mixed_color.txt"]["cproperty_nodes"][0]
     grouped_cba = by_name["text_three_objects_grouped_order_cba.txt"]["cproperty_nodes"][0]
+    three_nongrouped_mixed = by_name["text_three_objects_not_grouped_mixed_color.txt"]["cproperty_nodes"][0]
 
     same_anchor_sections = [section for section in same["cobdao_sections"] if section["known_anchor_triple_hit"]]
     mixed_anchor_sections = [section for section in mixed["cobdao_sections"] if section["known_anchor_triple_hit"]]
@@ -72,8 +76,20 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     grouped_abc_anchor_sections = [
         section for section in grouped_abc["cobdao_sections"] if section["known_anchor_triple_hit"]
     ]
+    grouped_abc_height_anchor_sections = [
+        section for section in grouped_abc_height["cobdao_sections"] if section["known_anchor_triple_hit"]
+    ]
+    grouped_abc_bold_anchor_sections = [
+        section for section in grouped_abc_bold["cobdao_sections"] if section["known_anchor_triple_hit"]
+    ]
+    grouped_abc_mixed_anchor_sections = [
+        section for section in grouped_abc_mixed["cobdao_sections"] if section["known_anchor_triple_hit"]
+    ]
     grouped_cba_anchor_sections = [
         section for section in grouped_cba["cobdao_sections"] if section["known_anchor_triple_hit"]
+    ]
+    three_nongrouped_mixed_anchor_sections = [
+        section for section in three_nongrouped_mixed["cobdao_sections"] if section["known_anchor_triple_hit"]
     ]
 
     assert len(same["cobdao_sections"]) == 5
@@ -83,7 +99,11 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert len(selection_reversed["cobdao_sections"]) == 6
     assert len(three_nongrouped["cobdao_sections"]) == 11
     assert len(grouped_abc["cobdao_sections"]) == 9
+    assert len(grouped_abc_height["cobdao_sections"]) == 9
+    assert len(grouped_abc_bold["cobdao_sections"]) == 9
+    assert len(grouped_abc_mixed["cobdao_sections"]) == 9
     assert len(grouped_cba["cobdao_sections"]) == 9
+    assert len(three_nongrouped_mixed["cobdao_sections"]) == 11
     assert same_anchor_sections[0]["cobdao_marker_offset"] == 438
     assert mixed_anchor_sections[0]["cobdao_marker_offset"] == 438
     assert nongrouped_anchor_sections[0]["cobdao_marker_offset"] == 586
@@ -91,7 +111,11 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert selection_reversed_anchor_sections[0]["cobdao_marker_offset"] == 586
     assert [section["cobdao_marker_offset"] for section in three_nongrouped_anchor_sections] == [586, 4428]
     assert [section["cobdao_marker_offset"] for section in grouped_abc_anchor_sections] == [438, 4132]
+    assert [section["cobdao_marker_offset"] for section in grouped_abc_height_anchor_sections] == [438, 4132]
+    assert [section["cobdao_marker_offset"] for section in grouped_abc_bold_anchor_sections] == [438, 4132]
+    assert [section["cobdao_marker_offset"] for section in grouped_abc_mixed_anchor_sections] == [438, 4132]
     assert [section["cobdao_marker_offset"] for section in grouped_cba_anchor_sections] == [438, 4132]
+    assert [section["cobdao_marker_offset"] for section in three_nongrouped_mixed_anchor_sections] == [586, 4428]
     assert same_anchor_sections[0]["hit_relative_to_cobdao"] == 34
     assert mixed_anchor_sections[0]["hit_relative_to_cobdao"] == 34
     assert nongrouped_anchor_sections[0]["hit_relative_to_cobdao"] == 34
@@ -99,7 +123,11 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert selection_reversed_anchor_sections[0]["hit_relative_to_cobdao"] == 34
     assert [section["hit_relative_to_cobdao"] for section in three_nongrouped_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_abc_anchor_sections] == [34, 34]
+    assert [section["hit_relative_to_cobdao"] for section in grouped_abc_height_anchor_sections] == [34, 34]
+    assert [section["hit_relative_to_cobdao"] for section in grouped_abc_bold_anchor_sections] == [34, 34]
+    assert [section["hit_relative_to_cobdao"] for section in grouped_abc_mixed_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_cba_anchor_sections] == [34, 34]
+    assert [section["hit_relative_to_cobdao"] for section in three_nongrouped_mixed_anchor_sections] == [34, 34]
 
     for section in (
         *same_anchor_sections,
@@ -109,7 +137,11 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
             *selection_reversed_anchor_sections,
             *three_nongrouped_anchor_sections,
             *grouped_abc_anchor_sections,
+            *grouped_abc_height_anchor_sections,
+            *grouped_abc_bold_anchor_sections,
+            *grouped_abc_mixed_anchor_sections,
             *grouped_cba_anchor_sections,
+            *three_nongrouped_mixed_anchor_sections,
         ):
         assert section["local_triple_at_cobdao_plus_34"] is not None
         assert section["nearby_objectinfos_marker"]["marker"] == "OBJETINFOS_CLASSNAME"
@@ -119,8 +151,21 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
 
     comp = payload["grouped_vs_non_grouped_comparison"]
     assert comp["all_anchor_hits_relative_to_cobdao_are_34"] is True
-    assert comp["grouped_cobdao_anchor_section_offsets"] == [438, 438, 438, 4132, 438, 4132]
-    assert comp["non_grouped_cobdao_anchor_section_offsets"] == [586, 586, 586, 586, 4428]
+    assert comp["grouped_cobdao_anchor_section_offsets"] == [
+        438,
+        438,
+        438,
+        4132,
+        438,
+        4132,
+        438,
+        4132,
+        438,
+        4132,
+        438,
+        4132,
+    ]
+    assert comp["non_grouped_cobdao_anchor_section_offsets"] == [586, 586, 586, 586, 4428, 586, 4428]
     assert comp["cobdao_offset_delta_non_grouped_minus_grouped"] == 148
     assert comp["cobdao_section_counts_identical"] is False
     assert payload["answers"]["parser_readiness"] == "not_ready_analyzer_only"

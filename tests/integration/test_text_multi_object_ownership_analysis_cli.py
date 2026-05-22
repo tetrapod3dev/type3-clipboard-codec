@@ -39,7 +39,11 @@ def test_text_multi_object_ownership_analysis_cli_text_mode() -> None:
     assert "text_two_objects_mixed_color_not_grouped.txt" in out
     assert "text_three_objects_not_grouped.txt" in out
     assert "text_three_objects_grouped_order_abc.txt" in out
+    assert "text_three_objects_grouped_order_abc_height_30mm.txt" in out
+    assert "text_three_objects_grouped_order_abc_font_arial_bold.txt" in out
+    assert "text_three_objects_grouped_order_abc_mixed_color.txt" in out
     assert "text_three_objects_grouped_order_cba.txt" in out
+    assert "text_three_objects_not_grouped_mixed_color.txt" in out
     assert "parser_chains=2 cparagraphe_count=1" in out
     assert "parser_chains=3 cparagraphe_count=1" in out
 
@@ -64,7 +68,11 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
         "text_two_objects_not_grouped_selection_reversed.txt",
         "text_three_objects_not_grouped.txt",
         "text_three_objects_grouped_order_abc.txt",
+        "text_three_objects_grouped_order_abc_height_30mm.txt",
+        "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+        "text_three_objects_grouped_order_abc_mixed_color.txt",
         "text_three_objects_grouped_order_cba.txt",
+        "text_three_objects_not_grouped_mixed_color.txt",
     }
 
     for name, fixture in by_name.items():
@@ -108,6 +116,30 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
         "CPropertyExtend",
     ]
 
+    grouped_abc_mixed = by_name["text_three_objects_grouped_order_abc_mixed_color.txt"]
+    assert grouped_abc_mixed["parser_chain_count"] == 3
+    assert grouped_abc_mixed["cparagraphe_ownership_analysis"][0]["exact_anchor_match_chains"] == [0]
+    assert [scan["hit_count"] for scan in grouped_abc_mixed["whole_payload_anchor_scan"]] == [1, 1, 1]
+    assert [scan["hits"][0]["node_class"] for scan in grouped_abc_mixed["whole_payload_anchor_scan"]] == [
+        "CParagraphe",
+        "CPropertyExtend",
+        "CPropertyExtend",
+    ]
+
+    for name in (
+        "text_three_objects_grouped_order_abc_height_30mm.txt",
+        "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+    ):
+        fixture = by_name[name]
+        assert fixture["parser_chain_count"] == 3
+        assert fixture["cparagraphe_ownership_analysis"][0]["exact_anchor_match_chains"] == [0]
+        assert [scan["hit_count"] for scan in fixture["whole_payload_anchor_scan"]] == [1, 1, 1]
+        assert [scan["hits"][0]["node_class"] for scan in fixture["whole_payload_anchor_scan"]] == [
+            "CParagraphe",
+            "CPropertyExtend",
+            "CPropertyExtend",
+        ]
+
     grouped_cba = by_name["text_three_objects_grouped_order_cba.txt"]
     assert grouped_cba["parser_chain_count"] == 3
     assert grouped_cba["cparagraphe_ownership_analysis"][0]["exact_anchor_match_chains"] == [2]
@@ -124,10 +156,32 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
     by_summary_name = {row["fixture"]: row for row in anchor_summary["rows"]}
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cparagraphe_owner_chain_indexes"] == [0]
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cpropertyextend_owner_chain_indexes"] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_mixed_color.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_mixed_color.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
     assert by_summary_name["text_three_objects_grouped_order_cba.txt"]["cparagraphe_owner_chain_indexes"] == [2]
     assert by_summary_name["text_three_objects_grouped_order_cba.txt"]["cpropertyextend_owner_chain_indexes"] == [0, 1]
     assert by_summary_name["text_three_objects_not_grouped.txt"]["cparagraphe_owner_chain_indexes"] == [2]
     assert by_summary_name["text_three_objects_not_grouped.txt"]["cpropertyextend_owner_chain_indexes"] == [0, 1]
+    assert by_summary_name["text_three_objects_not_grouped_mixed_color.txt"]["cparagraphe_owner_chain_indexes"] == [2]
+    assert by_summary_name["text_three_objects_not_grouped_mixed_color.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [0, 1]
 
     selection_summary = payload["selection_order_primary_owner_summary"]
     assert selection_summary["grouped_order_effect_observed"] is True
