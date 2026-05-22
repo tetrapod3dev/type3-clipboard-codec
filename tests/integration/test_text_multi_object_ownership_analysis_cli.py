@@ -39,6 +39,7 @@ def test_text_multi_object_ownership_analysis_cli_text_mode() -> None:
     assert "text_two_objects_mixed_color_not_grouped.txt" in out
     assert "text_three_objects_not_grouped.txt" in out
     assert "text_three_objects_grouped_order_abc.txt" in out
+    assert "text_three_objects_grouped_order_abc_content_variation.txt" in out
     assert "text_three_objects_grouped_order_abc_height_30mm.txt" in out
     assert "text_three_objects_grouped_order_abc_font_arial_bold.txt" in out
     assert "text_three_objects_grouped_order_abc_mixed_color.txt" in out
@@ -68,6 +69,7 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
         "text_two_objects_not_grouped_selection_reversed.txt",
         "text_three_objects_not_grouped.txt",
         "text_three_objects_grouped_order_abc.txt",
+        "text_three_objects_grouped_order_abc_content_variation.txt",
         "text_three_objects_grouped_order_abc_height_30mm.txt",
         "text_three_objects_grouped_order_abc_font_arial_bold.txt",
         "text_three_objects_grouped_order_abc_mixed_color.txt",
@@ -127,6 +129,7 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
     ]
 
     for name in (
+        "text_three_objects_grouped_order_abc_content_variation.txt",
         "text_three_objects_grouped_order_abc_height_30mm.txt",
         "text_three_objects_grouped_order_abc_font_arial_bold.txt",
     ):
@@ -160,6 +163,12 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
         "cparagraphe_owner_chain_indexes"
     ] == [0]
     assert by_summary_name["text_three_objects_grouped_order_abc_mixed_color.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_content_variation.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_content_variation.txt"][
         "cpropertyextend_owner_chain_indexes"
     ] == [1, 2]
     assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][

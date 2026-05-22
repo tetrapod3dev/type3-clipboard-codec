@@ -55,6 +55,7 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     selection_reversed = by_name["text_two_objects_not_grouped_selection_reversed.txt"]["cproperty_nodes"][0]
     three_nongrouped = by_name["text_three_objects_not_grouped.txt"]["cproperty_nodes"][0]
     grouped_abc = by_name["text_three_objects_grouped_order_abc.txt"]["cproperty_nodes"][0]
+    grouped_abc_content = by_name["text_three_objects_grouped_order_abc_content_variation.txt"]["cproperty_nodes"][0]
     grouped_abc_height = by_name["text_three_objects_grouped_order_abc_height_30mm.txt"]["cproperty_nodes"][0]
     grouped_abc_bold = by_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"]["cproperty_nodes"][0]
     grouped_abc_mixed = by_name["text_three_objects_grouped_order_abc_mixed_color.txt"]["cproperty_nodes"][0]
@@ -75,6 +76,9 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     ]
     grouped_abc_anchor_sections = [
         section for section in grouped_abc["cobdao_sections"] if section["known_anchor_triple_hit"]
+    ]
+    grouped_abc_content_anchor_sections = [
+        section for section in grouped_abc_content["cobdao_sections"] if section["known_anchor_triple_hit"]
     ]
     grouped_abc_height_anchor_sections = [
         section for section in grouped_abc_height["cobdao_sections"] if section["known_anchor_triple_hit"]
@@ -99,6 +103,7 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert len(selection_reversed["cobdao_sections"]) == 6
     assert len(three_nongrouped["cobdao_sections"]) == 11
     assert len(grouped_abc["cobdao_sections"]) == 9
+    assert len(grouped_abc_content["cobdao_sections"]) == 9
     assert len(grouped_abc_height["cobdao_sections"]) == 9
     assert len(grouped_abc_bold["cobdao_sections"]) == 9
     assert len(grouped_abc_mixed["cobdao_sections"]) == 9
@@ -111,6 +116,7 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert selection_reversed_anchor_sections[0]["cobdao_marker_offset"] == 586
     assert [section["cobdao_marker_offset"] for section in three_nongrouped_anchor_sections] == [586, 4428]
     assert [section["cobdao_marker_offset"] for section in grouped_abc_anchor_sections] == [438, 4132]
+    assert [section["cobdao_marker_offset"] for section in grouped_abc_content_anchor_sections] == [438, 4132]
     assert [section["cobdao_marker_offset"] for section in grouped_abc_height_anchor_sections] == [438, 4132]
     assert [section["cobdao_marker_offset"] for section in grouped_abc_bold_anchor_sections] == [438, 4132]
     assert [section["cobdao_marker_offset"] for section in grouped_abc_mixed_anchor_sections] == [438, 4132]
@@ -123,6 +129,7 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert selection_reversed_anchor_sections[0]["hit_relative_to_cobdao"] == 34
     assert [section["hit_relative_to_cobdao"] for section in three_nongrouped_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_abc_anchor_sections] == [34, 34]
+    assert [section["hit_relative_to_cobdao"] for section in grouped_abc_content_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_abc_height_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_abc_bold_anchor_sections] == [34, 34]
     assert [section["hit_relative_to_cobdao"] for section in grouped_abc_mixed_anchor_sections] == [34, 34]
@@ -137,6 +144,7 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
             *selection_reversed_anchor_sections,
             *three_nongrouped_anchor_sections,
             *grouped_abc_anchor_sections,
+            *grouped_abc_content_anchor_sections,
             *grouped_abc_height_anchor_sections,
             *grouped_abc_bold_anchor_sections,
             *grouped_abc_mixed_anchor_sections,
@@ -154,6 +162,8 @@ def test_cobdao_section_scan_json_normalizes_anchor_hits() -> None:
     assert comp["grouped_cobdao_anchor_section_offsets"] == [
         438,
         438,
+        438,
+        4132,
         438,
         4132,
         438,

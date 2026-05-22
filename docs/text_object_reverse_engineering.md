@@ -958,6 +958,7 @@ Grouped order fixture analyzer results:
 | fixture | attempted order | parser chain order | `CObDao` section count | `CParagraphe` owner | `CPropertyExtend` owners |
 |---|---|---|---:|---|---|
 | `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
+| `text_three_objects_grouped_order_abc_content_variation.txt` | A -> B -> C | chain0 `Type3`, chain1 `9876543210`, chain2 `HELLO` | 9 | chain0 | chain1, chain2 |
 | `text_three_objects_grouped_order_abc_height_30mm.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
 | `text_three_objects_grouped_order_abc_font_arial_bold.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
 | `text_three_objects_grouped_order_abc_mixed_color.txt` | A -> B -> C | chain0 `abcdefg`, chain1 `1234567890`, chain2 `XYZ` | 9 | chain0 | chain1, chain2 |
@@ -1000,7 +1001,7 @@ CObDao local field selector audit:
 
 - analyzer labels remain evidence-only and are derived from current known anchor matches.
 - current multi-object set contains 11 anchor-bearing and 46 non-anchor `CObDao` sections.
-- after adding 3-object mixed-color and style/font fixtures, the set contains 19 anchor-bearing and 76 non-anchor `CObDao` sections.
+- after adding 3-object mixed-color, style/font, and content fixtures, the set contains 21 anchor-bearing and 83 non-anchor `CObDao` sections.
 - current strongest field leads are:
   - `u32le@CObDao+12 == 131072`
   - `u32le@CObDao+56 == 262144`
@@ -1010,3 +1011,4 @@ CObDao local field selector audit:
 - coordinate-like `CObDao + 34` remains rejected as a selector due to non-anchor false positives.
 - 3-object mixed-color validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.
 - 3-object height 30mm and Arial Bold validation did not change section counts, ownership pattern, or selector lead values relative to same-color fixtures.
+- 3-object content variation did not change section counts, ownership pattern, or selector lead values; parser chain text order changed, so stored order remains unresolved.

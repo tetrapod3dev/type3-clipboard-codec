@@ -60,6 +60,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     selection_reversed = by_name["text_two_objects_not_grouped_selection_reversed.txt"]
     three_nongrouped = by_name["text_three_objects_not_grouped.txt"]
     grouped_abc = by_name["text_three_objects_grouped_order_abc.txt"]
+    grouped_abc_content = by_name["text_three_objects_grouped_order_abc_content_variation.txt"]
     grouped_abc_height = by_name["text_three_objects_grouped_order_abc_height_30mm.txt"]
     grouped_abc_bold = by_name["text_three_objects_grouped_order_abc_font_arial_bold.txt"]
     grouped_abc_mixed = by_name["text_three_objects_grouped_order_abc_mixed_color.txt"]
@@ -78,6 +79,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     selection_reversed_hit = selection_reversed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
     three_hits = three_nongrouped["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_abc_hits = grouped_abc["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
+    grouped_abc_content_hits = grouped_abc_content["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_abc_height_hits = grouped_abc_height["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_abc_bold_hits = grouped_abc_bold["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
     grouped_abc_mixed_hits = grouped_abc_mixed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
@@ -88,6 +90,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     assert selection_reversed_hit["cproperty_payload_relative_offset"] == 620
     assert [hit["cproperty_payload_relative_offset"] for hit in three_hits] == [4462, 620]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_hits] == [472, 4166]
+    assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_content_hits] == [472, 4166]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_height_hits] == [472, 4166]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_bold_hits] == [472, 4166]
     assert [hit["cproperty_payload_relative_offset"] for hit in grouped_abc_mixed_hits] == [472, 4166]
@@ -102,6 +105,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
         selection_reversed_hit,
         *three_hits,
         *grouped_abc_hits,
+        *grouped_abc_content_hits,
         *grouped_abc_height_hits,
         *grouped_abc_bold_hits,
         *grouped_abc_mixed_hits,
@@ -127,6 +131,8 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
         4166,
         472,
         4166,
+        472,
+        4166,
         4166,
         472,
     ]
@@ -139,6 +145,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     assert selection_reversed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert three_nongrouped["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [2]
     assert grouped_abc["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
+    assert grouped_abc_content["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert grouped_abc_height["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert grouped_abc_bold["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
     assert grouped_abc_mixed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
@@ -153,6 +160,12 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     by_summary_name = {row["fixture"]: row for row in anchor_summary["rows"]}
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cparagraphe_owner_chain_indexes"] == [0]
     assert by_summary_name["text_three_objects_grouped_order_abc.txt"]["cpropertyextend_owner_chain_indexes"] == [1, 2]
+    assert by_summary_name["text_three_objects_grouped_order_abc_content_variation.txt"][
+        "cparagraphe_owner_chain_indexes"
+    ] == [0]
+    assert by_summary_name["text_three_objects_grouped_order_abc_content_variation.txt"][
+        "cpropertyextend_owner_chain_indexes"
+    ] == [1, 2]
     assert by_summary_name["text_three_objects_grouped_order_abc_height_30mm.txt"][
         "cparagraphe_owner_chain_indexes"
     ] == [0]
@@ -206,7 +219,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
 
     field_summary = payload["anchor_vs_non_anchor_field_difference_summary"]
     assert field_summary["status"] == "evidence_only"
-    assert field_summary["section_counts"] == {"anchor_bearing": 19, "non_anchor": 76, "total": 95}
+    assert field_summary["section_counts"] == {"anchor_bearing": 21, "non_anchor": 83, "total": 104}
     assert field_summary["rows"]
     assert field_summary["top_current_separators"]
     by_feature = {row["feature"]: row for row in field_summary["rows"]}

@@ -975,6 +975,7 @@ Captured analyzer update:
 | fixture | attempted order | parser chain order | `CObDao` sections | `CParagraphe` owner | `CPropertyExtend` owners |
 |---|---|---|---:|---|---|
 | `text_three_objects_grouped_order_abc.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
+| `text_three_objects_grouped_order_abc_content_variation.txt` | A -> B -> C | chain0=`Type3`, chain1=`9876543210`, chain2=`HELLO` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
 | `text_three_objects_grouped_order_abc_height_30mm.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
 | `text_three_objects_grouped_order_abc_font_arial_bold.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
 | `text_three_objects_grouped_order_abc_mixed_color.txt` | A -> B -> C | chain0=`abcdefg`, chain1=`1234567890`, chain2=`XYZ` | 9 | chain0 `(111.111,222.222,0)` | chain1 `(211.111,322.222,0)`, chain2 `(311.111,422.222,0)` |
@@ -991,6 +992,7 @@ Current grouped-order interpretation:
 - grouped fixtures still fit the one `CParagraphe` direct anchor plus `N-1` `CPropertyExtend` anchors pattern.
 - mixed-color 3-object fixtures match the same section counts and ownership pattern as the corresponding same-color fixtures.
 - height 30mm and Arial Bold grouped 3-object fixtures also match the same 9-section ownership pattern.
+- content variation also matches the same 9-section ownership pattern, while parser chain text order changes to `Type3`, `9876543210`, `HELLO`.
 - actual stored order remains unresolved; this is analyzer evidence only.
 
 ### Multi-object anchor storage model
@@ -1035,11 +1037,11 @@ The field comparison analyzer now compares every current multi-object `CObDao` s
 - `anchor_bearing_candidate`: `CObDao + 34` matches a known chain baseline anchor in analyzer evidence.
 - `non_anchor_candidate`: all other `CObDao` sections.
 
-Current section counts after 3-object mixed-color and style/font validation:
+Current section counts after 3-object mixed-color, style/font, and content validation:
 
-- anchor-bearing sections: 19
-- non-anchor sections: 76
-- total multi-object `CObDao` sections: 95
+- anchor-bearing sections: 21
+- non-anchor sections: 83
+- total multi-object `CObDao` sections: 104
 
 Current useful field candidates:
 
@@ -1061,6 +1063,11 @@ Current useful field candidates:
 - grouped A-B-C height 30mm: 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
 - grouped A-B-C Arial Bold: 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
 - height/font variation did not change the current local selector lead values.
+
+3-object content/glyph validation:
+
+- grouped A-B-C content variation (`HELLO`, `9876543210`, `Type3`): 9 `CObDao` sections, 2 CPropertyExtend anchor hits, selector leads unchanged.
+- visible content/glyph variation did not change the current local selector lead values.
 
 Important rejection:
 

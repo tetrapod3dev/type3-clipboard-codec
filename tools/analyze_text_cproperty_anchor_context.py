@@ -26,6 +26,7 @@ FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_abc_content_variation.txt",
     "text_three_objects_grouped_order_abc_height_30mm.txt",
     "text_three_objects_grouped_order_abc_font_arial_bold.txt",
     "text_three_objects_grouped_order_abc_mixed_color.txt",
@@ -40,6 +41,7 @@ GROUPED_MULTI_OBJECT_FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_three_objects_grouped_order_abc.txt",
+    "text_three_objects_grouped_order_abc_content_variation.txt",
     "text_three_objects_grouped_order_abc_height_30mm.txt",
     "text_three_objects_grouped_order_abc_font_arial_bold.txt",
     "text_three_objects_grouped_order_abc_mixed_color.txt",
@@ -70,6 +72,11 @@ ORDER_METADATA = {
     "text_three_objects_grouped_order_abc.txt": {
         "grouping_state": "grouped",
         "attempted_selection_order": ["abcdefg", "1234567890", "XYZ"],
+        "order_control_status": "attempted",
+    },
+    "text_three_objects_grouped_order_abc_content_variation.txt": {
+        "grouping_state": "grouped",
+        "attempted_selection_order": ["HELLO", "9876543210", "Type3"],
         "order_control_status": "attempted",
     },
     "text_three_objects_grouped_order_abc_height_30mm.txt": {

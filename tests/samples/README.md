@@ -1097,6 +1097,7 @@ Anchor storage / order evidence summary:
 | 3-object not-grouped mixed-color | 3 | 1 | 2 | 11 |
 | 3-object grouped height 30mm | 3 | 1 | 2 | 9 |
 | 3-object grouped Arial Bold | 3 | 1 | 2 | 9 |
+| 3-object grouped content variation | 3 | 1 | 2 | 9 |
 
 Current model:
 
@@ -1126,6 +1127,12 @@ Style/font validation:
 - `text_three_objects_grouped_order_abc_height_30mm.txt` preserves the 9-section grouped pattern.
 - `text_three_objects_grouped_order_abc_font_arial_bold.txt` preserves the 9-section grouped pattern.
 - the selector leads above still have zero current false positives/false negatives after including these fixtures.
+
+Content/glyph validation:
+
+- `text_three_objects_grouped_order_abc_content_variation.txt` preserves the 9-section grouped pattern.
+- parser chain text order is observed as `Type3`, `9876543210`, `HELLO`; actual stored order remains unresolved.
+- the selector leads above still have zero current false positives/false negatives after including this fixture.
 
 ### Multi-line text fixture notes (order 40/41/42)
 

@@ -44,13 +44,13 @@ def test_cobdao_section_role_analysis_json_output() -> None:
     payload = json.loads(result.stdout)
 
     aggregate = payload["anchor_bearing_vs_non_anchor_aggregate"]
-    assert aggregate["section_count"] == 95
-    assert aggregate["anchor_bearing_count"] == 19
-    assert aggregate["non_anchor_count"] == 76
+    assert aggregate["section_count"] == 104
+    assert aggregate["anchor_bearing_count"] == 21
+    assert aggregate["non_anchor_count"] == 83
     assert aggregate["anchor_bearing_section_indexes"] == [1, 2, 5, 7]
-    assert aggregate["anchor_bearing_coordinate_like_counts"] == {"True": 19}
-    assert aggregate["anchor_bearing_matches_chain_counts"] == {"True": 19}
-    assert aggregate["non_anchor_matches_chain_counts"] == {"False": 76}
+    assert aggregate["anchor_bearing_coordinate_like_counts"] == {"True": 21}
+    assert aggregate["anchor_bearing_matches_chain_counts"] == {"True": 21}
+    assert aggregate["non_anchor_matches_chain_counts"] == {"False": 83}
     assert aggregate["coordinate_like_non_anchor_sections"]
     assert aggregate["ambiguous_non_anchor_sections"]
     assert "coordinate-like values also appear in some non-anchor sections" in aggregate[
@@ -68,6 +68,9 @@ def test_cobdao_section_role_analysis_json_output() -> None:
         "cobdao_sections"
     ]
     three_nongrouped_sections = by_name["text_three_objects_not_grouped.txt"]["cproperty_nodes"][0]["cobdao_sections"]
+    grouped_abc_content_sections = by_name["text_three_objects_grouped_order_abc_content_variation.txt"][
+        "cproperty_nodes"
+    ][0]["cobdao_sections"]
     grouped_abc_height_sections = by_name["text_three_objects_grouped_order_abc_height_30mm.txt"]["cproperty_nodes"][0][
         "cobdao_sections"
     ]
@@ -102,6 +105,10 @@ def test_cobdao_section_role_analysis_json_output() -> None:
     assert grouped_abc_sections[1]["hit_relative_to_cobdao"] == 34
     assert grouped_abc_sections[5]["section_role_candidate"] == "anchor_bearing_candidate"
     assert grouped_abc_sections[5]["hit_relative_to_cobdao"] == 34
+    assert grouped_abc_content_sections[1]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_abc_content_sections[1]["hit_relative_to_cobdao"] == 34
+    assert grouped_abc_content_sections[5]["section_role_candidate"] == "anchor_bearing_candidate"
+    assert grouped_abc_content_sections[5]["hit_relative_to_cobdao"] == 34
     assert grouped_abc_height_sections[1]["section_role_candidate"] == "anchor_bearing_candidate"
     assert grouped_abc_height_sections[1]["hit_relative_to_cobdao"] == 34
     assert grouped_abc_height_sections[5]["section_role_candidate"] == "anchor_bearing_candidate"
