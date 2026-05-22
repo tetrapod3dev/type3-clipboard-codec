@@ -35,6 +35,7 @@ def test_text_cproperty_anchor_context_cli_text_mode() -> None:
     assert "text_two_objects_mixed_color_not_grouped.txt" in out
     assert "text_two_objects_same_color_not_grouped.txt" in out
     assert "text_two_objects_not_grouped_selection_reversed.txt" in out
+    assert "text_three_objects_not_grouped.txt" in out
     assert "CParagraphe node=" in out
     assert "cproperty_offset=472" in out
     assert "cproperty_offset=620" in out
@@ -57,6 +58,7 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     nongrouped = by_name["text_two_objects_mixed_color_not_grouped.txt"]
     same_color_nongrouped = by_name["text_two_objects_same_color_not_grouped.txt"]
     selection_reversed = by_name["text_two_objects_not_grouped_selection_reversed.txt"]
+    three_nongrouped = by_name["text_three_objects_not_grouped.txt"]
 
     same_hit = same["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
     mixed_hit = mixed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
@@ -68,11 +70,13 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
 
     same_color_nongrouped_hit = same_color_nongrouped["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
     selection_reversed_hit = selection_reversed["cproperty_nodes"][0]["anchor_triple_hits_inside_node"][0]
+    three_hits = three_nongrouped["cproperty_nodes"][0]["anchor_triple_hits_inside_node"]
 
     assert same_color_nongrouped_hit["cproperty_payload_relative_offset"] == 620
     assert selection_reversed_hit["cproperty_payload_relative_offset"] == 620
+    assert [hit["cproperty_payload_relative_offset"] for hit in three_hits] == [4462, 620]
 
-    for hit in (same_hit, mixed_hit, nongrouped_hit, same_color_nongrouped_hit, selection_reversed_hit):
+    for hit in (same_hit, mixed_hit, nongrouped_hit, same_color_nongrouped_hit, selection_reversed_hit, *three_hits):
         assert hit["node_class"] == "CPropertyExtend"
         assert hit["local_context_hex"]["hex"]
         assert hit["nearby_decoded_doubles"]
@@ -82,13 +86,15 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
 
     comp = payload["grouped_vs_non_grouped_comparison"]
     assert comp["grouped_cproperty_anchor_offsets"] == [472, 472]
-    assert comp["non_grouped_cproperty_anchor_offsets"] == [620, 620, 620]
+    assert comp["non_grouped_cproperty_anchor_offsets"] == [620, 620, 620, 4462, 620]
     assert comp["offset_delta_non_grouped_minus_grouped"] == 148
-    assert [row["cobdao_section_count"] for row in comp["non_grouped_by_fixture"]] == [6, 6, 6]
+    assert [row["cobdao_section_count"] for row in comp["non_grouped_by_fixture"]] == [6, 6, 6, 11]
     assert comp["grouped_marker_signature_identical"] is True
     assert comp["parser_promotion_status"] == "analyzer_only"
     assert same_color_nongrouped["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [1]
     assert selection_reversed["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [0]
+    assert three_nongrouped["cparagraphe_direct_anchor_ownership"][0]["direct_anchor"]["matched_chains"] == [2]
+    assert payload["answers"]["text_three_objects_not_grouped_summary"]["cproperty_anchor_hit_count"] == 2
     assert payload["answers"]["parser_readiness"] == "not_ready_analyzer_only"
 
 

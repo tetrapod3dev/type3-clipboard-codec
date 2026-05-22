@@ -1011,6 +1011,20 @@ Fixture validation targets:
 - extract per-object anchor/text/color candidates
 - avoid accidental merge into one object
 
+Three-object not-grouped scaling fixture:
+
+- fixture: `text_three_objects_not_grouped.txt`
+- setup: three independent text objects, same Army Green color, not grouped
+- intended texts and anchors:
+  - `abcdefg` at `(111.111, 222.222, 0.000)` mm
+  - `1234567890` at `(211.111, 322.222, 0.000)` mm
+  - `XYZ` at `(311.111, 422.222, 0.000)` mm
+- attempted selection order: `abcdefg`, `1234567890`, `XYZ`
+- actual stored order remains unresolved.
+- current analyzer observation: parser chains `3`, `CParagraphe` count `1`, `CPropertyExtend` `CObDao` sections `11`.
+- current anchor storage observation: one `CParagraphe` direct anchor plus two `CPropertyExtend` anchor hits.
+- parser behavior remains `baseline_midpoint`; direct/CProperty anchor decoding is not promoted.
+
 ### Multi-line text fixture notes (order 40/41/42)
 
 Text content:

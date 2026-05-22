@@ -28,11 +28,15 @@ FIXTURES = [
     "text_group_same_color_two_objects.txt",
     "text_group_mixed_color_two_objects.txt",
     "text_two_objects_mixed_color_not_grouped.txt",
+    "text_two_objects_same_color_not_grouped.txt",
+    "text_two_objects_not_grouped_selection_reversed.txt",
+    "text_three_objects_not_grouped.txt",
 ]
 COMPARISON_FIXTURES = ["default_text.txt", *FIXTURES]
 EXPECTED_ANCHORS_MM = [
     (111.111, 222.222, 0.0),
     (211.111, 322.222, 0.0),
+    (311.111, 422.222, 0.0),
 ]
 DIRECT_ANCHOR_OFFSETS = (158, 166, 174)
 TOP_LEVEL_HEADER_LEN = 6

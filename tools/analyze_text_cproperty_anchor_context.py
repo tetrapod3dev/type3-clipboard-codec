@@ -28,6 +28,7 @@ FIXTURES = [
     "text_two_objects_mixed_color_not_grouped.txt",
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
+    "text_three_objects_not_grouped.txt",
 ]
 GROUPED_MULTI_OBJECT_FIXTURES = [
     "text_group_same_color_two_objects.txt",
@@ -37,6 +38,7 @@ NON_GROUPED_MULTI_OBJECT_FIXTURES = [
     "text_two_objects_mixed_color_not_grouped.txt",
     "text_two_objects_same_color_not_grouped.txt",
     "text_two_objects_not_grouped_selection_reversed.txt",
+    "text_three_objects_not_grouped.txt",
 ]
 MULTI_OBJECT_FIXTURES = [
     *GROUPED_MULTI_OBJECT_FIXTURES,
@@ -45,6 +47,7 @@ MULTI_OBJECT_FIXTURES = [
 TARGET_ANCHORS_MM = [
     (111.111, 222.222, 0.0),
     (211.111, 322.222, 0.0),
+    (311.111, 422.222, 0.0),
 ]
 TOP_LEVEL_HEADER_LEN = 6
 LOCAL_WINDOW_RADIUS = 64
@@ -720,6 +723,17 @@ def _anchor_sections(fixture: dict[str, Any]) -> list[dict[str, Any]]:
     return sections
 
 
+def _compact_section(section: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "section_index": section["section_index"],
+        "cobdao_marker_offset": section["cobdao_marker_offset"],
+        "section_length_candidate": section["section_length_candidate"],
+        "section_role_candidate": section["section_role_candidate"],
+        "decoded": section["cobdao_plus_34_triple_analysis"]["decoded_double_triple_mm"],
+        "coordinate_like": section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"],
+    }
+
+
 def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
     grouped = [fx for fx in fixtures if fx["fixture"] in GROUPED_MULTI_OBJECT_FIXTURES]
     nongrouped_fixtures = [fx for fx in fixtures if fx["fixture"] in NON_GROUPED_MULTI_OBJECT_FIXTURES]
@@ -767,27 +781,28 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
     for fx in nongrouped_fixtures:
         sections = _first_cproperty_sections(fx)
         anchor_sections = [section for section in sections if section["known_anchor_triple_hit"]]
-        inserted = sections[1] if len(sections) > 1 and len(sections) == 6 else None
+        inserted_sections = [
+            section
+            for section in sections
+            if not section["known_anchor_triple_hit"] and section["section_length_candidate"] == 148
+        ]
+        inserted = inserted_sections[0] if inserted_sections else None
         fixture_hits = _fixture_hits(fx)
         anchor = anchor_sections[0] if anchor_sections else None
-        hit = fixture_hits[0] if fixture_hits else None
+        hit = anchor["anchor_hits"][0] if anchor is not None and anchor["anchor_hits"] else None
         non_grouped_by_fixture.append(
             {
                 "fixture": fx["fixture"],
+                "parser_chain_count": len(fx["chain_inventory"]),
                 "cobdao_section_count": len(sections),
                 "anchor_bearing_section_indexes": [section["section_index"] for section in anchor_sections],
                 "anchor_bearing_cobdao_offsets": [section["cobdao_marker_offset"] for section in anchor_sections],
                 "anchor_hit_offsets": [row["cproperty_payload_relative_offset"] for row in fixture_hits],
                 "hit_relative_to_cobdao": [section["hit_relative_to_cobdao"] for section in anchor_sections],
+                "inserted_148_section_count": len(inserted_sections),
+                "inserted_148_section_candidates": [_compact_section(section) for section in inserted_sections],
                 "inserted_section_candidate": (
-                    {
-                        "section_index": inserted["section_index"],
-                        "cobdao_marker_offset": inserted["cobdao_marker_offset"],
-                        "section_length_candidate": inserted["section_length_candidate"],
-                        "section_role_candidate": inserted["section_role_candidate"],
-                        "decoded": inserted["cobdao_plus_34_triple_analysis"]["decoded_double_triple_mm"],
-                        "coordinate_like": inserted["cobdao_plus_34_triple_analysis"]["is_coordinate_like"],
-                    }
+                    _compact_section(inserted)
                     if inserted is not None
                     else None
                 ),
@@ -834,10 +849,18 @@ def _compare_grouped_non_grouped(fixtures: list[dict[str, Any]]) -> dict[str, An
         "offset_delta_non_grouped_minus_grouped": grouped_to_nongrouped_delta,
         "cobdao_offset_delta_non_grouped_minus_grouped": nongrouped_cobdao_delta,
         "delta_explanation_candidate": (
-            "non-grouped CPropertyExtend anchor contexts are shifted by 148 bytes from grouped fixtures"
+            "two-object non-grouped CPropertyExtend anchor contexts are shifted by 148 bytes from grouped fixtures; three-object scaling adds more CObDao sections and more CPropertyExtend anchor hits"
             if non_grouped_by_fixture
-            and all(row["offset_delta_from_grouped"] == 148 for row in non_grouped_by_fixture)
-            and all(row["cobdao_section_count"] == 6 for row in non_grouped_by_fixture)
+            and all(
+                row["offset_delta_from_grouped"] == 148
+                for row in non_grouped_by_fixture
+                if row["parser_chain_count"] == 2
+            )
+            and all(
+                row["cobdao_section_count"] == 6
+                for row in non_grouped_by_fixture
+                if row["parser_chain_count"] == 2
+            )
             else "unresolved"
         ),
         "same_local_structure_grouped_vs_non_grouped_excluding_anchor_bytes": (
@@ -993,7 +1016,12 @@ def _section_alignment_analysis(fixtures: list[dict[str, Any]]) -> dict[str, Any
             if grouped_idx < len(same_sections) and nongrouped_idx < len(nongrouped_sections):
                 shifted_pairs.append(_section_similarity_row(same_sections[grouped_idx], nongrouped_sections[nongrouped_idx]))
 
-        extra = nongrouped_sections[1] if len(nongrouped_sections) > 1 else None
+        inserted_sections = [
+            section
+            for section in nongrouped_sections
+            if not section["known_anchor_triple_hit"] and section["section_length_candidate"] == 148
+        ]
+        extra = inserted_sections[0] if inserted_sections else None
         nongrouped_anchor = next((section for section in nongrouped_sections if section["known_anchor_triple_hit"]), None)
         non_grouped_alignments.append(
             {
@@ -1017,6 +1045,8 @@ def _section_alignment_analysis(fixtures: list[dict[str, Any]]) -> dict[str, Any
                     if extra is not None
                     else None
                 ),
+                "inserted_148_section_count": len(inserted_sections),
+                "inserted_148_section_candidates": [_compact_section(section) for section in inserted_sections],
                 "anchor_bearing_shift": (
                     {
                         "grouped_anchor_cobdao_offset": grouped_anchor["cobdao_marker_offset"],
@@ -1146,13 +1176,76 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignme
         for name in MULTI_OBJECT_FIXTURES
         if name in by_name
     }
-    all_non_grouped_shifted = all(
+    two_object_non_grouped_shifted = all(
         row["section_count_delta"] == 1
         and row["inserted_section_candidate"] is not None
         and row["inserted_section_candidate"]["section_length_candidate"] == 148
         and row["anchor_bearing_shift"] is not None
         and row["anchor_bearing_shift"]["cobdao_offset_delta"] == 148
         for row in alignment["grouped_vs_non_grouped_all"]
+        if row["non_grouped_section_count"] == 6
+    )
+    scaling_rows = []
+    for name in MULTI_OBJECT_FIXTURES:
+        if name not in by_name:
+            continue
+        fx = by_name[name]
+        sections = _first_cproperty_sections(fx)
+        anchor_sections = _anchor_sections(fx)
+        inserted_sections = [
+            section
+            for section in sections
+            if not section["known_anchor_triple_hit"] and section["section_length_candidate"] == 148
+        ]
+        scaling_rows.append(
+            {
+                "fixture": name,
+                "parser_chain_count": len(fx["chain_inventory"]),
+                "cparagraphe_count": len(fx["cparagraphe_direct_anchor_ownership"]),
+                "cobdao_section_count": len(sections),
+                "inserted_148_section_count": len(inserted_sections),
+                "cproperty_anchor_hit_count": len(anchor_sections),
+                "section_count_equals_4_plus_object_count": len(sections) == 4 + len(fx["chain_inventory"]),
+                "anchor_storage_matches_one_cparagraphe_plus_n_minus_1_cproperty": (
+                    len(fx["cparagraphe_direct_anchor_ownership"]) == 1
+                    and len(anchor_sections) == max(0, len(fx["chain_inventory"]) - 1)
+                ),
+            }
+        )
+    three = by_name.get("text_three_objects_not_grouped.txt")
+    three_sections = _first_cproperty_sections(three) if three is not None else []
+    three_anchor_sections = _anchor_sections(three) if three is not None else []
+    three_inserted = [
+        section
+        for section in three_sections
+        if not section["known_anchor_triple_hit"] and section["section_length_candidate"] == 148
+    ]
+    all_anchor_storage_matches = all(
+        row["anchor_storage_matches_one_cparagraphe_plus_n_minus_1_cproperty"]
+        for row in scaling_rows
+    )
+    section_count_four_plus_n_rows = [
+        row for row in scaling_rows if row["section_count_equals_4_plus_object_count"]
+    ]
+    two_object_non_grouped_counts = [
+        len(_first_cproperty_sections(by_name[name]))
+        for name in NON_GROUPED_MULTI_OBJECT_FIXTURES
+        if name in by_name and len(by_name[name]["chain_inventory"]) == 2
+    ]
+    two_object_grouped_counts = [
+        len(_first_cproperty_sections(by_name[name]))
+        for name in GROUPED_MULTI_OBJECT_FIXTURES
+        if name in by_name and len(by_name[name]["chain_inventory"]) == 2
+    ]
+    not_grouped_structure_conclusion = (
+        "Observed in all 2-object not-grouped fixtures and the 3-object not-grouped fixture; "
+        "current evidence points to not-grouped/multi-independent-object structure rather than mixed color. "
+        "The 3-object fixture does not follow simple section_count = 4 + object_count scaling."
+        if two_object_non_grouped_shifted
+        and set(two_object_non_grouped_counts) == {6}
+        and set(two_object_grouped_counts) == {5}
+        and three is not None
+        else "unresolved"
     )
     return {
         "anchor_triple_at_cobdao_plus_34_for_target_fixtures": comparison[
@@ -1176,12 +1269,7 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignme
             if "text_two_objects_same_color_not_grouped.txt" in by_name
             else None
         ),
-        "inserted_section_cause_current_conclusion": (
-            "Observed in mixed-color not-grouped, same-color not-grouped, and selection-reversed not-grouped fixtures; "
-            "currently points to not-grouped structure rather than mixed color."
-            if all_non_grouped_shifted and set(nongrouped_counts) == {6} and set(grouped_counts) == {5}
-            else "unresolved"
-        ),
+        "inserted_section_cause_current_conclusion": not_grouped_structure_conclusion,
         "selection_reversed_section_position_same": (
             len(_first_cproperty_sections(by_name["text_two_objects_not_grouped_selection_reversed.txt"])) == 6
             and bool(_anchor_sections(by_name["text_two_objects_not_grouped_selection_reversed.txt"]))
@@ -1194,6 +1282,31 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignme
         "selection_order_ownership_effect": (
             "Attempted reversed selection fixture keeps 6 CObDao sections and inserted section index 1, but "
             "CParagraphe/CPropertyExtend anchor ownership swaps back to grouped-like chain pairing; stored order remains unresolved."
+        ),
+        "object_count_scaling": scaling_rows,
+        "section_count_scaling_conclusion": (
+            "section_count = 4 + object_count fits the current 2-object fixtures but fails for text_three_objects_not_grouped; "
+            f"3-object not-grouped has {len(three_sections) if three is not None else None} CObDao sections."
+            if three is not None and len(section_count_four_plus_n_rows) != len(scaling_rows)
+            else "unresolved"
+        ),
+        "anchor_storage_scaling_conclusion": (
+            "Current fixtures support one CParagraphe direct anchor plus N-1 CPropertyExtend anchor hits for N parsed text chains."
+            if all_anchor_storage_matches
+            else "unresolved"
+        ),
+        "text_three_objects_not_grouped_summary": (
+            {
+                "parser_chain_count": len(three["chain_inventory"]),
+                "cparagraphe_count": len(three["cparagraphe_direct_anchor_ownership"]),
+                "cobdao_section_count": len(three_sections),
+                "inserted_148_section_count": len(three_inserted),
+                "cproperty_anchor_hit_count": len(three_anchor_sections),
+                "cparagraphe_direct_anchor_ownership": cparagraphe_ownership.get("text_three_objects_not_grouped.txt"),
+                "cproperty_anchor_ownership": cproperty_ownership.get("text_three_objects_not_grouped.txt"),
+            }
+            if three is not None
+            else None
         ),
         "minimum_parser_rule_needed": [
             "class-relative section boundary for CPropertyExtend anchor records",

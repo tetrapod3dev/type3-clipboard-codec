@@ -1,0 +1,102 @@
+{
+  "bbox": {
+    "xmax_mm": 324.49435607094136,
+    "xmin_mm": 297.73105457025923,
+    "ymax_mm": 432.222,
+    "ymin_mm": 422.222,
+    "zmax_mm": 0.0,
+    "zmin_mm": 0.0
+  },
+  "chains": [
+    {
+      "bbox": {
+        "xmax_mm": 135.24810777626195,
+        "xmin_mm": 86.97389222373806,
+        "ymax_mm": 222.222,
+        "ymin_mm": 222.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 0,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 111.111,
+        "y": 222.222,
+        "z": 0.0
+      },
+      "text_candidate": "abcdefg"
+    },
+    {
+      "bbox": {
+        "xmax_mm": 248.86338744884037,
+        "xmin_mm": 173.3586125511596,
+        "ymax_mm": 322.222,
+        "ymin_mm": 322.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 1,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 211.111,
+        "y": 322.222,
+        "z": 0.0
+      },
+      "text_candidate": "1234567890"
+    },
+    {
+      "bbox": {
+        "xmax_mm": 324.4909454297408,
+        "xmin_mm": 297.73105457025923,
+        "ymax_mm": 422.222,
+        "ymin_mm": 422.222,
+        "zmax_mm": 0.0,
+        "zmin_mm": 0.0
+      },
+      "chain_index": 2,
+      "markers": [
+        "CZone",
+        "CParagraphe",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend"
+      ],
+      "shape_type": "polyline_candidate",
+      "text_anchor": {
+        "x": 311.111,
+        "y": 422.222,
+        "z": 0.0
+      },
+      "text_candidate": "XYZ"
+    }
+  ],
+  "class_markers": [
+    "CContour",
+    "CCourbe",
+    "CParagraphe",
+    "CPropertyExtend",
+    "CZone"
+  ],
+  "font_name": "Arial",
+  "is_text_object": true,
+  "object_count": 3,
+  "object_type": "text",
+  "parser_name": "Type3ChainParser",
+  "raw_size": 16384,
+  "status": "ok",
+  "text_candidate": "XYZ"
+}

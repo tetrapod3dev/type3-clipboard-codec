@@ -823,3 +823,49 @@ Parser readiness:
 
 - no baseline-independent anchor-bearing section selector is available yet.
 - parser promotion remains blocked.
+
+### Three-object not-grouped scaling audit
+
+New fixture:
+
+- `text_three_objects_not_grouped.txt`
+- intent: three independent text objects, same Army Green color, not grouped
+- attempted selection order: `abcdefg`, `1234567890`, `XYZ`
+- intended anchors:
+  - `(111.111, 222.222, 0.0)`
+  - `(211.111, 322.222, 0.0)`
+  - `(311.111, 422.222, 0.0)`
+
+Analyzer:
+
+- `tools/analyze_text_cproperty_anchor_context.py`
+
+Observed parser/analyzer result:
+
+| fixture | parser chains | `CParagraphe` count | `CPropertyExtend` `CObDao` sections | `CPropertyExtend` anchor hits |
+|---|---:|---:|---:|---:|
+| `text_group_same_color_two_objects.txt` | 2 | 1 | 5 | 1 |
+| `text_two_objects_same_color_not_grouped.txt` | 2 | 1 | 6 | 1 |
+| `text_two_objects_not_grouped_selection_reversed.txt` | 2 | 1 | 6 | 1 |
+| `text_three_objects_not_grouped.txt` | 3 | 1 | 11 | 2 |
+
+`text_three_objects_not_grouped.txt` ownership observations:
+
+- `CParagraphe` direct anchor at payload-relative `158/166/174` decodes to `(311.111, 422.222, 0.0)` and matches chain2.
+- `CPropertyExtend` anchor hit at `CObDao + 34` in section index `2` decodes to `(211.111, 322.222, 0.0)` and matches chain1.
+- `CPropertyExtend` anchor hit at `CObDao + 34` in section index `7` decodes to `(111.111, 222.222, 0.0)` and matches chain0.
+- all CProperty anchor hits still normalize to `CObDao + 34`.
+
+Scaling interpretation:
+
+- The current fixtures support one `CParagraphe` direct anchor plus `N-1` `CPropertyExtend` anchor hits for `N` parsed text chains.
+- The simple section count rule `section_count = 4 + object_count` fits the current two-object not-grouped fixtures (`6 = 4 + 2`) but fails for the three-object not-grouped fixture (`11 != 4 + 3`).
+- Several non-anchor 148-byte `CObDao` sections are observed in the three-object not-grouped fixture, so “a single inserted section” is no longer sufficient as the whole scaling model.
+- This strengthens the evidence that the extra sections are related to independent not-grouped multi-object structure, not mixed color, but the section selector remains unresolved.
+
+Parser status:
+
+- `CObDao + 34` remains a strong observed local anchor candidate.
+- anchor-bearing section selection is still analyzer-only.
+- do not add a parser rule based on section index, absolute offset, or parsed baseline equality.
+- keep `baseline_midpoint` as the active parser fallback.

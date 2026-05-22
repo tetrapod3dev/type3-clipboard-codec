@@ -37,7 +37,9 @@ def test_text_multi_object_ownership_analysis_cli_text_mode() -> None:
     assert "text_group_same_color_two_objects.txt" in out
     assert "text_group_mixed_color_two_objects.txt" in out
     assert "text_two_objects_mixed_color_not_grouped.txt" in out
+    assert "text_three_objects_not_grouped.txt" in out
     assert "parser_chains=2 cparagraphe_count=1" in out
+    assert "parser_chains=3 cparagraphe_count=1" in out
 
 
 def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
@@ -56,10 +58,14 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
         "text_group_same_color_two_objects.txt",
         "text_group_mixed_color_two_objects.txt",
         "text_two_objects_mixed_color_not_grouped.txt",
+        "text_two_objects_same_color_not_grouped.txt",
+        "text_two_objects_not_grouped_selection_reversed.txt",
+        "text_three_objects_not_grouped.txt",
     }
 
-    for fixture in by_name.values():
-        assert fixture["parser_chain_count"] == 2
+    for name, fixture in by_name.items():
+        expected_chains = 3 if name == "text_three_objects_not_grouped.txt" else 2
+        assert fixture["parser_chain_count"] == expected_chains
         assert fixture["cparagraphe_count"] == 1
         assert fixture["node_inventory"]
         assert fixture["chain_inventory"]
@@ -77,6 +83,16 @@ def test_text_multi_object_ownership_analysis_cli_json_mode() -> None:
     first_anchor = non_grouped["whole_payload_anchor_scan"][0]
     assert first_anchor["hit_count"] == 1
     assert first_anchor["hits"][0]["node_class"] == "CPropertyExtend"
+
+    three = by_name["text_three_objects_not_grouped.txt"]
+    assert three["parser_chain_count"] == 3
+    assert three["cparagraphe_ownership_analysis"][0]["exact_anchor_match_chains"] == [2]
+    assert [scan["hit_count"] for scan in three["whole_payload_anchor_scan"]] == [1, 1, 1]
+    assert [scan["hits"][0]["node_class"] for scan in three["whole_payload_anchor_scan"]] == [
+        "CPropertyExtend",
+        "CPropertyExtend",
+        "CParagraphe",
+    ]
 
 
 def test_text_multi_object_ownership_analysis_cli_markdown_mode() -> None:

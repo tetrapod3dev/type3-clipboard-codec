@@ -889,3 +889,22 @@ Section insertion audit:
 - after this inserted section, grouped section `1` corresponds to non-grouped section `2`; both are anchor-bearing candidates.
 - anchor-bearing `CObDao` offset and anchor hit offset both shift by `148` bytes.
 - this supports an insertion/shift hypothesis, but the inserted section's semantic meaning remains unresolved.
+
+Three-object not-grouped scaling update:
+
+- `text_three_objects_not_grouped.txt` adds a same-color, three-independent-text-object not-grouped fixture.
+- parser chain count: `3`
+- `CParagraphe` count: `1`
+- `CPropertyExtend` `CObDao` section count: `11`
+- `CPropertyExtend` anchor hit count: `2`
+- `CParagraphe` direct anchor matches chain2 `(311.111, 422.222, 0.0)`.
+- `CPropertyExtend` anchor-bearing section index `2` matches chain1 `(211.111, 322.222, 0.0)`.
+- `CPropertyExtend` anchor-bearing section index `7` matches chain0 `(111.111, 222.222, 0.0)`.
+
+Current scaling interpretation:
+
+- current evidence supports one `CParagraphe` direct anchor plus `N-1` `CPropertyExtend` anchor hits for `N` parsed text chains.
+- two-object not-grouped fixtures have 6 `CObDao` sections, but the three-object not-grouped fixture has 11 sections.
+- therefore `section_count = 4 + object_count` is not a valid general rule.
+- 148-byte non-anchor `CObDao` section candidates appear multiple times in the three-object fixture, so the earlier single-inserted-section model is incomplete.
+- anchor-bearing section selection remains unresolved; parser promotion is still blocked.
