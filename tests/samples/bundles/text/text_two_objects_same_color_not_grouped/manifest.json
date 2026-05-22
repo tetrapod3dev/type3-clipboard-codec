@@ -1,0 +1,26 @@
+{
+  "category": "text",
+  "created_at": "2026-05-22T06:19:28.015323+00:00",
+  "description": "Two independent text objects, same color, not grouped",
+  "files": {
+    "fixture": "tests\\samples\\text\\text_two_objects_same_color_not_grouped.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "sample_name": "text_two_objects_same_color_not_grouped",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 12288,
+  "typeeditzone_version_size": 32
+}

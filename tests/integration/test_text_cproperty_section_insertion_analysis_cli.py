@@ -31,6 +31,8 @@ def test_section_insertion_analysis_text_output() -> None:
 
     assert "[Section Alignment Analysis]" in out
     assert "[Selector Candidate Evaluation]" in out
+    assert "text_two_objects_same_color_not_grouped.txt" in out
+    assert "text_two_objects_not_grouped_selection_reversed.txt" in out
     assert "non-grouped section index 1 is a 148-byte inserted section candidate" in out
     assert "parser_readiness" in out
     assert "not_ready_analyzer_only" in out
@@ -44,6 +46,10 @@ def test_section_insertion_analysis_json_output() -> None:
     alignment = payload["section_alignment_analysis"]
     grouped = alignment["grouped_same_vs_grouped_mixed"]
     non_grouped = alignment["grouped_vs_non_grouped"]
+    non_grouped_all = {
+        row["non_grouped_fixture"]: row
+        for row in alignment["grouped_vs_non_grouped_all"]
+    }
 
     assert grouped["section_count_equal"] is True
     assert grouped["left_section_count"] == 5
@@ -72,6 +78,20 @@ def test_section_insertion_analysis_json_output() -> None:
     assert shift["anchor_hit_offset_delta"] == 148
     assert non_grouped["insertion_explanation_candidate"].startswith("non-grouped section index 1")
 
+    assert set(non_grouped_all) == {
+        "text_two_objects_mixed_color_not_grouped.txt",
+        "text_two_objects_same_color_not_grouped.txt",
+        "text_two_objects_not_grouped_selection_reversed.txt",
+    }
+    for row in non_grouped_all.values():
+        assert row["grouped_section_count"] == 5
+        assert row["non_grouped_section_count"] == 6
+        assert row["section_count_delta"] == 1
+        assert row["inserted_section_candidate"]["section_index"] == 1
+        assert row["inserted_section_candidate"]["section_length_candidate"] == 148
+        assert row["anchor_bearing_shift"]["cobdao_offset_delta"] == 148
+        assert row["anchor_bearing_shift"]["anchor_hit_offset_delta"] == 148
+
     shifted = non_grouped["shifted_alignment_candidate"]
     assert shifted[1]["left_section_index"] == 1
     assert shifted[1]["right_section_index"] == 2
@@ -83,6 +103,21 @@ def test_section_insertion_analysis_json_output() -> None:
     assert selectors["CObDao_plus_34_coordinate_like"]["false_positive_risk"] == "high"
     assert selectors["section_alignment"]["parser_safe"] is False
     assert payload["answers"]["parser_readiness"] == "not_ready_analyzer_only"
+    assert payload["answers"]["same_color_not_grouped_cobdao_section_count_is_6"] is True
+    assert "not-grouped structure" in payload["answers"]["inserted_section_cause_current_conclusion"]
+    assert payload["answers"]["selection_reversed_section_position_same"] is True
+    assert payload["answers"]["cparagraphe_direct_anchor_ownership_by_fixture"][
+        "text_two_objects_same_color_not_grouped.txt"
+    ] == [1]
+    assert payload["answers"]["cproperty_anchor_ownership_by_fixture"][
+        "text_two_objects_same_color_not_grouped.txt"
+    ] == [[0]]
+    assert payload["answers"]["cparagraphe_direct_anchor_ownership_by_fixture"][
+        "text_two_objects_not_grouped_selection_reversed.txt"
+    ] == [0]
+    assert payload["answers"]["cproperty_anchor_ownership_by_fixture"][
+        "text_two_objects_not_grouped_selection_reversed.txt"
+    ] == [[1]]
 
 
 def test_section_insertion_analysis_markdown_output() -> None:
@@ -92,5 +127,7 @@ def test_section_insertion_analysis_markdown_output() -> None:
 
     assert "## Section Alignment" in out
     assert "section count delta" in out
+    assert "text_two_objects_same_color_not_grouped.txt" in out
+    assert "text_two_objects_not_grouped_selection_reversed.txt" in out
     assert "## Selector Candidates" in out
     assert "section_alignment" in out
