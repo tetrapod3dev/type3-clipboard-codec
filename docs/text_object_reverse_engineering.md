@@ -1041,3 +1041,10 @@ Rejected single-field rules:
 ```powershell
 .\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json --deep --max-sections 20 --max-output-rows 50 > out.json
 ```
+
+Small dedicated semantics analyzer:
+
+- `tools/analyze_text_cproperty_anchor_record_semantics.py`
+- purpose: limited local semantics observation for `CPropertyExtend_CObDao_anchor_record_candidate_v1`
+- default behavior is bounded and small-output; heavy pairwise/near-miss dumps are intentionally excluded.
+- interpretation remains provisional and analyzer-only.

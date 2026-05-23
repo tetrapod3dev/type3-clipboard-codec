@@ -1130,6 +1130,17 @@ Recommended deep command:
 .\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json --deep --max-sections 20 --max-output-rows 50 > out.json
 ```
 
+### Small dedicated analyzer for record semantics
+
+- record-semantics probing for `CPropertyExtend_CObDao_anchor_record_candidate_v1` is now separated into:
+  - `tools/analyze_text_cproperty_anchor_record_semantics.py`
+- this tool is intentionally small:
+  - default fixtures: `text_three_objects_grouped_order_abc.txt`, `text_three_objects_grouped_order_abc_content_variation.txt`
+  - capped anchor-bearing sections
+  - capped local hex window bytes
+  - compact JSON/text outputs
+- semantics status remains provisional (`not_ready_analyzer_only`).
+
 Important rejection:
 
 - `coordinate-like at CObDao + 34` remains rejected as a selector because non-anchor sections still produce coordinate-like false positives.
