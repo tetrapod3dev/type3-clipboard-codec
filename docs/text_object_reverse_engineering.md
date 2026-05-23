@@ -849,12 +849,16 @@ Future fixtures can be collected with the verified 2-format clipboard bundle wor
 CPropertyExtend anchor context audit:
 
 - `tools/analyze_text_cproperty_anchor_context.py` inspects whole-payload anchor hits and focuses on `CPropertyExtend` local context.
+- The analyzer has safety guards for runtime, marker scanning, CObDao section count, comparison count, decoded local
+  values, and output rows. JSON output carries `limits`, `warnings`, and `truncated`; a truncated result is partial
+  evidence only and does not change parser behavior.
 - grouped two-object fixtures place the unmatched chain anchor at `CPropertyExtend` payload-relative offset `472`.
 - the non-grouped two-object fixture places the unmatched chain anchor at `CPropertyExtend` payload-relative offset `620`.
 - `620 - 472 = 148`, currently treated as a shift candidate, not a decoded section length.
 - local marker evidence is similar: `CObDao` appears at `hit - 34` around the `CPropertyExtend` anchor hit.
 - full local windows are not byte-identical, so this remains structure/evidence audit only.
 - parser must not use a fixed `CPropertyExtend` offset rule until the local record/section boundary and chain ownership rule are known.
+- Heavy record semantics comparisons must remain bounded and analyzer-only.
 
 `CObDao` section normalization:
 

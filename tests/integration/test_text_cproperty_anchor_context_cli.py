@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import sys
+import importlib.util
 from pathlib import Path
 
 
@@ -30,6 +31,8 @@ def test_text_cproperty_anchor_context_cli_text_mode() -> None:
     out = result.stdout
 
     assert "Text CPropertyExtend Anchor Context Analysis" in out
+    assert "[Limits]" in out
+    assert "[Warnings]" in out
     assert "text_group_same_color_two_objects.txt" in out
     assert "text_group_mixed_color_two_objects.txt" in out
     assert "text_two_objects_mixed_color_not_grouped.txt" in out
@@ -48,6 +51,10 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     assert result.returncode == 0, result.stderr
     payload = json.loads(result.stdout)
 
+    assert "limits" in payload
+    assert "truncated" in payload
+    assert "warnings" in payload
+    assert payload["truncated"] is False
     assert payload["policy"]["scope"] == "CPropertyExtend anchor context structure/evidence audit only"
     assert payload["policy"]["parser_behavior"] == "not_modified"
     assert payload["policy"]["cproperty_anchor_promotion"] == "not_applied"
@@ -240,6 +247,40 @@ def test_text_cproperty_anchor_context_cli_json_mode() -> None:
     assert signature["failed_fixtures"] == []
     assert signature["parser_safe_candidate"] == "provisional_false"
 
+    layout = payload["anchor_record_layout_candidate"]
+    assert layout["status"] == "observed_provisional"
+    assert layout["anchor_bearing_section_count"] == 21
+    assert layout["non_anchor_section_count"] == 83
+    layout_by_offset = {row["local_offset_from_cobdao"]: row for row in layout["layout_rows"]}
+    assert layout_by_offset[12]["candidate_role"] == "record_type_or_subtype"
+    assert layout_by_offset[34]["candidate_role"] == "anchor_x/y/z_payload"
+    assert layout_by_offset[56]["candidate_role"] == "unknown_flag"
+    assert "Overlaps" in layout_by_offset[56]["interpretation_note"]
+    assert layout["sample_anchor_local_record_windows"]
+    assert layout["sample_anchor_local_record_windows"][0]["grouped_chunks"]
+    assert layout["sample_anchor_local_record_windows"][0]["aligned_u32_i32_fields"]
+    assert layout["sample_anchor_local_record_windows"][0]["aligned_double_fields"]
+
+    near_miss = payload["partial_match_near_miss_analysis"]
+    assert near_miss["status"] == "observed_provisional"
+    assert near_miss["non_anchor_section_count"] == 83
+    assert "one_field_away_non_anchor_count" in near_miss
+    assert near_miss["nearest_non_anchor_sections"]
+    assert near_miss["coordinate_like_non_anchor_partial_count"] > 0
+
+    neighbor = payload["neighbor_relation_analysis"]
+    assert neighbor["status"] == "observed_provisional"
+    assert neighbor["anchor_bearing_section_count"] == 21
+    assert neighbor["rows"]
+    assert neighbor["anchor_section_index_distribution_by_grouping"]
+
+    semantic = payload["semantic_hypothesis"]
+    assert semantic["status"] == "provisional"
+    assert semantic["parser_readiness"] == "not_ready_analyzer_only"
+    field_hypotheses = {row["field"]: row for row in semantic["field_hypotheses"]}
+    for field in ("u32le@CObDao+12", "u32le@CObDao+56", "u32le@CObDao+108", "u32le@CObDao+112"):
+        assert field_hypotheses[field]["confidence"] in {"weak", "provisional"}
+
     components = {row["component"]: row for row in payload["signature_components"]}
     for component in (
         "u32le_CObDao_plus_12",
@@ -293,8 +334,40 @@ def test_text_cproperty_anchor_context_cli_markdown_mode() -> None:
     out = result.stdout
 
     assert "# Text CPropertyExtend Anchor Context Analysis" in out
+    assert "## Limits" in out
+    assert "## Warnings" in out
     assert (
         "| fixture | CPropertyExtend node | CObDao offset | target anchor mm | payload offset | "
         "hit rel to CObDao | matched chains |"
     ) in out
     assert "## Grouped vs Non-grouped" in out
+
+
+def test_text_cproperty_anchor_context_cli_forced_low_section_limit_truncates_json() -> None:
+    result = _run(["--json", "--max-sections", "1"])
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+
+    assert "limits" in payload
+    assert "truncated" in payload
+    assert "warnings" in payload
+    assert payload["truncated"] is True
+    assert any("section limit" in warning for warning in payload["warnings"])
+
+
+def test_marker_scan_helper_truncates_by_iteration_limit() -> None:
+    spec = importlib.util.spec_from_file_location("anchor_context_analyzer", CLI_PATH)
+    assert spec is not None
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    sys.modules["anchor_context_analyzer"] = module
+    spec.loader.exec_module(module)
+
+    module._ACTIVE_CONTEXT = module.AnalysisContext(
+        limits=module.AnalysisLimits(max_marker_scan_iterations=2)
+    )
+    positions = module._marker_positions(b"aaaa", b"a")
+
+    assert positions == [0, 1]
+    assert module._ACTIVE_CONTEXT.truncated is True
+    assert any("marker scan truncated" in warning for warning in module._ACTIVE_CONTEXT.warnings)

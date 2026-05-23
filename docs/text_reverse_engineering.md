@@ -727,6 +727,9 @@ Parser promotion remains blocked until:
 Tool:
 
 - `tools/analyze_text_cproperty_anchor_context.py`
+- Safety note: this analyzer is bounded. JSON output includes top-level `limits`, `warnings`, and `truncated`
+  fields. If a runtime, section, comparison, marker-scan, decode, or output-row limit is reached, the result is
+  partial and parser behavior is still unaffected.
 - output modes: text / `--json` / `--markdown`
 
 Current CPropertyExtend observations:
@@ -761,6 +764,8 @@ Current parser decision:
 - do not add a fixed offset parser rule for `472` or `620`.
 - do not add a parser rule for `CObDao + 34` yet.
 - do not promote `CPropertyExtend` anchor decode to confirmed.
+- keep any heavy record-semantics or near-miss analysis behind explicit bounded limits; partial analyzer output is
+  acceptable when limits are reached.
 - keep `baseline_midpoint` as the active fallback.
 
 ### CObDao section role audit

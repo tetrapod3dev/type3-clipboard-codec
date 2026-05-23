@@ -6,6 +6,8 @@ import json
 import math
 import struct
 import sys
+import time
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -132,6 +134,18 @@ TARGET_ANCHORS_MM = [
 ]
 TOP_LEVEL_HEADER_LEN = 6
 LOCAL_WINDOW_RADIUS = 64
+MAX_FIXTURES = 100
+MAX_CPROPERTY_NODES_PER_FIXTURE = 20
+MAX_COBDAO_SECTIONS_PER_NODE = 200
+MAX_TOTAL_COBDAO_SECTIONS = 5000
+MAX_SECTION_COMPARISONS = 50000
+MAX_NEAR_MISS_ROWS = 200
+MAX_SIGNATURE_ROWS = 200
+MAX_FIELD_DIFF_ROWS = 500
+MAX_LOCAL_HEX_BYTES = 128
+MAX_DECODED_VALUES_PER_SECTION = 128
+MAX_MARKER_SCAN_ITERATIONS = 10000
+MAX_RUNTIME_SECONDS = 30
 KNOWN_MARKERS = [
     b"OBJECTINFOS_CLASSNAME",
     b"OBJETINFOS_CLASSNAME",
@@ -147,6 +161,96 @@ OBJECTINFOS_MARKER = b"OBJECTINFOS_CLASSNAME"
 OBJETINFOS_MARKER = b"OBJETINFOS_CLASSNAME"
 COBDAO_ANCHOR_LOCAL_OFFSET = 34
 CPARAGRAPHE_ANCHOR_OFFSETS = (158, 166, 174)
+
+
+@dataclass
+class AnalysisLimits:
+    max_fixtures: int = MAX_FIXTURES
+    max_cproperty_nodes_per_fixture: int = MAX_CPROPERTY_NODES_PER_FIXTURE
+    max_cobdao_sections_per_node: int = MAX_COBDAO_SECTIONS_PER_NODE
+    max_total_cobdao_sections: int = MAX_TOTAL_COBDAO_SECTIONS
+    max_section_comparisons: int = MAX_SECTION_COMPARISONS
+    max_near_miss_rows: int = MAX_NEAR_MISS_ROWS
+    max_signature_rows: int = MAX_SIGNATURE_ROWS
+    max_field_diff_rows: int = MAX_FIELD_DIFF_ROWS
+    max_local_hex_bytes: int = MAX_LOCAL_HEX_BYTES
+    max_decoded_values_per_section: int = MAX_DECODED_VALUES_PER_SECTION
+    max_marker_scan_iterations: int = MAX_MARKER_SCAN_ITERATIONS
+    max_runtime_seconds: int = MAX_RUNTIME_SECONDS
+    max_output_rows: int = MAX_FIELD_DIFF_ROWS
+
+    def as_dict(self) -> dict[str, int]:
+        return {
+            "max_runtime_seconds": self.max_runtime_seconds,
+            "max_fixtures": self.max_fixtures,
+            "max_cproperty_nodes_per_fixture": self.max_cproperty_nodes_per_fixture,
+            "max_cobdao_sections_per_node": self.max_cobdao_sections_per_node,
+            "max_total_cobdao_sections": self.max_total_cobdao_sections,
+            "max_section_comparisons": self.max_section_comparisons,
+            "max_near_miss_rows": self.max_near_miss_rows,
+            "max_signature_rows": self.max_signature_rows,
+            "max_field_diff_rows": self.max_field_diff_rows,
+            "max_local_hex_bytes": self.max_local_hex_bytes,
+            "max_decoded_values_per_section": self.max_decoded_values_per_section,
+            "max_marker_scan_iterations": self.max_marker_scan_iterations,
+            "max_output_rows": self.max_output_rows,
+        }
+
+
+@dataclass
+class AnalysisContext:
+    limits: AnalysisLimits = field(default_factory=AnalysisLimits)
+    start_time: float = field(default_factory=time.monotonic)
+    warnings: list[str] = field(default_factory=list)
+    truncated: bool = False
+    total_cobdao_sections: int = 0
+    section_comparisons: int = 0
+
+    @property
+    def deadline(self) -> float:
+        return self.start_time + self.limits.max_runtime_seconds
+
+    def warn(self, message: str) -> None:
+        if message not in self.warnings:
+            self.warnings.append(message)
+
+    def truncate(self, message: str) -> None:
+        self.truncated = True
+        self.warn(message)
+
+    def check_deadline(self, stage: str) -> bool:
+        if time.monotonic() > self.deadline:
+            self.truncate(f"runtime limit reached at {stage}")
+            return False
+        return True
+
+    def consume_cobdao_section(self, stage: str) -> bool:
+        if self.total_cobdao_sections >= self.limits.max_total_cobdao_sections:
+            self.truncate(
+                f"total CObDao section limit reached at {stage}: {self.limits.max_total_cobdao_sections}"
+            )
+            return False
+        self.total_cobdao_sections += 1
+        return True
+
+    def consume_comparison(self, stage: str, count: int = 1) -> bool:
+        if self.section_comparisons + count > self.limits.max_section_comparisons:
+            self.truncate(
+                f"section comparison truncated at {self.limits.max_section_comparisons} comparisons during {stage}"
+            )
+            return False
+        self.section_comparisons += count
+        return True
+
+
+_ACTIVE_CONTEXT: AnalysisContext | None = None
+
+
+def _context() -> AnalysisContext:
+    global _ACTIVE_CONTEXT
+    if _ACTIVE_CONTEXT is None:
+        _ACTIVE_CONTEXT = AnalysisContext()
+    return _ACTIVE_CONTEXT
 
 
 def _read_fixture(name: str) -> bytes:
@@ -244,8 +348,13 @@ def _classify_hit(hit_abs: int, nodes: list[Type3Node]) -> dict[str, Any]:
 
 
 def _hex_window(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> dict[str, Any]:
+    ctx = _context()
+    if center < 0 or center > len(payload):
+        ctx.truncate(f"local hex window skipped for invalid center offset {center}")
+        center = max(0, min(center, len(payload)))
+    radius = min(radius, max(0, (ctx.limits.max_local_hex_bytes - 24) // 2))
     start = max(0, center - radius)
-    end = min(len(payload), center + 24 + radius)
+    end = min(len(payload), start + ctx.limits.max_local_hex_bytes, center + 24 + radius)
     return {
         "start": start,
         "end": end,
@@ -256,7 +365,7 @@ def _hex_window(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) 
 
 def _hex_window_around_marker(payload: bytes, marker_offset: int) -> dict[str, Any]:
     start = max(0, marker_offset - 64)
-    end = min(len(payload), marker_offset + 128)
+    end = min(len(payload), marker_offset + 160)
     return {
         "start": start,
         "end": end,
@@ -266,10 +375,17 @@ def _hex_window_around_marker(payload: bytes, marker_offset: int) -> dict[str, A
 
 
 def _nearby_doubles(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, Any]]:
+    ctx = _context()
+    if center < 0 or center > len(payload):
+        ctx.truncate(f"double decode skipped for invalid center offset {center}")
+        return []
     start = max(0, center - radius)
     end = min(len(payload) - 8, center + 24 + radius)
     rows = []
     for off in range(start, end + 1):
+        if len(rows) >= ctx.limits.max_decoded_values_per_section:
+            ctx.truncate(f"double decode truncated at {ctx.limits.max_decoded_values_per_section} rows")
+            break
         value = struct.unpack("<d", payload[off : off + 8])[0]
         if not math.isfinite(value):
             continue
@@ -278,14 +394,21 @@ def _nearby_doubles(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADI
             continue
         if abs(value_mm) < 1e-9 or 0.001 <= abs(value_mm) <= 10000:
             rows.append({"offset": off, "double_m": value, "double_mm": round(value_mm, 6)})
-    return rows[:80]
+    return rows[: min(80, ctx.limits.max_decoded_values_per_section)]
 
 
 def _nearby_ints(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, Any]]:
+    ctx = _context()
+    if center < 0 or center > len(payload):
+        ctx.truncate(f"integer decode skipped for invalid center offset {center}")
+        return []
     start = max(0, center - radius)
     end = min(len(payload) - 4, center + 24 + radius)
     rows = []
     for off in range(start, end + 1, 4):
+        if len(rows) >= ctx.limits.max_decoded_values_per_section:
+            ctx.truncate(f"integer decode truncated at {ctx.limits.max_decoded_values_per_section} rows")
+            break
         raw = payload[off : off + 4]
         u32 = struct.unpack("<I", raw)[0]
         i32 = struct.unpack("<i", raw)[0]
@@ -294,6 +417,10 @@ def _nearby_ints(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS)
 
 
 def _zero_padding_runs(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, int]]:
+    ctx = _context()
+    if center < 0 or center > len(payload):
+        ctx.truncate(f"zero padding scan skipped for invalid center offset {center}")
+        return []
     start = max(0, center - radius)
     end = min(len(payload), center + 24 + radius)
     rows = []
@@ -311,30 +438,56 @@ def _zero_padding_runs(payload: bytes, center: int, radius: int = LOCAL_WINDOW_R
 
 
 def _nearest_marker(payload: bytes, center: int) -> dict[str, Any] | None:
+    ctx = _context()
     best = None
     for marker in KNOWN_MARKERS:
         start = 0
+        visited: set[int] = set()
+        iterations = 0
         while True:
+            if iterations >= ctx.limits.max_marker_scan_iterations:
+                ctx.truncate(f"marker scan truncated by iteration limit in nearest_marker for {marker!r}")
+                break
+            if not ctx.check_deadline("nearest_marker"):
+                break
             pos = payload.find(marker, start)
             if pos < 0:
                 break
+            if pos in visited:
+                ctx.truncate(f"marker scan repeated offset {pos} in nearest_marker; breaking")
+                break
+            visited.add(pos)
             dist = abs(center - pos)
             candidate = {"marker": marker.decode("ascii", errors="replace"), "offset": pos, "distance": dist}
             if best is None or candidate["distance"] < best["distance"]:
                 best = candidate
             start = pos + 1
+            iterations += 1
     return best
 
 
 def _marker_positions(payload: bytes, marker: bytes) -> list[int]:
+    ctx = _context()
     positions = []
     start = 0
+    visited: set[int] = set()
+    iterations = 0
     while True:
+        if iterations >= ctx.limits.max_marker_scan_iterations:
+            ctx.truncate(f"marker scan truncated by iteration limit for {marker!r}")
+            return positions
+        if not ctx.check_deadline("marker_positions"):
+            return positions
         pos = payload.find(marker, start)
         if pos < 0:
             return positions
+        if pos in visited:
+            ctx.truncate(f"marker scan repeated offset {pos} for {marker!r}; breaking")
+            return positions
+        visited.add(pos)
         positions.append(pos)
         start = pos + 1
+        iterations += 1
 
 
 def _nearest_objectinfos_before(payload: bytes, marker_offset: int) -> dict[str, Any] | None:
@@ -354,15 +507,27 @@ def _nearest_objectinfos_before(payload: bytes, marker_offset: int) -> dict[str,
 
 
 def _marker_signature(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RADIUS) -> list[dict[str, Any]]:
+    ctx = _context()
     rows = []
     start_limit = max(0, center - radius)
     end_limit = min(len(payload), center + 24 + radius)
     for marker in KNOWN_MARKERS:
         start = start_limit
+        visited: set[int] = set()
+        iterations = 0
         while True:
+            if iterations >= ctx.limits.max_marker_scan_iterations:
+                ctx.truncate(f"marker signature scan truncated by iteration limit for {marker!r}")
+                break
+            if not ctx.check_deadline("marker_signature"):
+                break
             pos = payload.find(marker, start, end_limit)
             if pos < 0:
                 break
+            if pos in visited:
+                ctx.truncate(f"marker signature repeated offset {pos}; breaking")
+                break
+            visited.add(pos)
             rows.append(
                 {
                     "marker": marker.decode("ascii", errors="replace"),
@@ -371,7 +536,11 @@ def _marker_signature(payload: bytes, center: int, radius: int = LOCAL_WINDOW_RA
                 }
             )
             start = pos + 1
+            iterations += 1
     rows.sort(key=lambda row: (row["relative_to_hit"], row["marker"]))
+    if len(rows) > ctx.limits.max_signature_rows:
+        ctx.truncate(f"marker signature rows truncated at {ctx.limits.max_signature_rows}")
+        return rows[: ctx.limits.max_signature_rows]
     return rows
 
 
@@ -604,9 +773,19 @@ def _color_candidates(node: Type3Node) -> list[dict[str, Any]]:
 
 
 def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    ctx = _context()
     sections = []
     marker_offsets = _marker_positions(node.payload, COBDAO_MARKER)
     for section_index, marker_offset in enumerate(marker_offsets):
+        if section_index >= ctx.limits.max_cobdao_sections_per_node:
+            ctx.truncate(
+                f"CObDao section scan truncated at {ctx.limits.max_cobdao_sections_per_node} sections for one node"
+            )
+            break
+        if not ctx.consume_cobdao_section("cobdao_sections"):
+            break
+        if not ctx.check_deadline("cobdao_sections"):
+            break
         next_cobdao_offset = marker_offsets[section_index + 1] if section_index + 1 < len(marker_offsets) else None
         triple = _decode_triple_at(node.payload, marker_offset + COBDAO_ANCHOR_LOCAL_OFFSET)
         matching_hits = [
@@ -658,6 +837,8 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
             }
         )
     for section in sections:
+        if not ctx.check_deadline("cobdao_section_signatures"):
+            break
         window_bytes = _window_bytes(section["marker_context_hex"])
         section["local_signature"] = {
             "marker_signature": [
@@ -682,6 +863,8 @@ def _cobdao_sections(node: Type3Node, anchor_hits: list[dict[str, Any]], chains:
     if anchor_sections:
         anchor_window = anchor_sections[0]["marker_context_hex"]
         for section in sections:
+            if not ctx.consume_comparison("local_bytes_similarity"):
+                break
             section["local_bytes_similarity_to_anchor_bearing_section"] = _similarity(
                 _window_bytes(section["marker_context_hex"]),
                 _window_bytes(anchor_window),
@@ -747,6 +930,18 @@ def _anchor_hit_context(
 
 
 def _fixture_report(name: str) -> dict[str, Any]:
+    ctx = _context()
+    if not ctx.check_deadline(f"fixture {name}"):
+        return {
+            "fixture": name,
+            "parser_name": None,
+            "raw_size": None,
+            "chain_inventory": [],
+            "cparagraphe_direct_anchor_ownership": [],
+            "cproperty_nodes": [],
+            "all_anchor_hits": [],
+            "truncated": True,
+        }
     blob = _read_fixture(name)
     parsed, parser_name = parse_type3_clipboard_bytes_with_parser(blob)
     if not isinstance(parsed, GeometryObject):
@@ -757,12 +952,21 @@ def _fixture_report(name: str) -> dict[str, Any]:
     cprop_nodes = [(idx, node) for idx, node in enumerate(nodes) if node.header.class_name == "CPropertyExtend"]
     all_hit_contexts = []
     for target in TARGET_ANCHORS_MM:
+        if not ctx.check_deadline(f"scan_exact_triples {name}"):
+            break
         for hit in _scan_exact_triples(blob, target):
             all_hit_contexts.append(
                 _anchor_hit_context(fixture=name, target_anchor=target, hit=hit, nodes=nodes, chains=chains)
             )
     cprop_summaries = []
-    for idx, node in cprop_nodes:
+    for cprop_count, (idx, node) in enumerate(cprop_nodes):
+        if cprop_count >= ctx.limits.max_cproperty_nodes_per_fixture:
+            ctx.truncate(
+                f"CPropertyExtend node scan truncated at {ctx.limits.max_cproperty_nodes_per_fixture} nodes for {name}"
+            )
+            break
+        if not ctx.check_deadline(f"cproperty nodes {name}"):
+            break
         hits = [hit for hit in all_hit_contexts if hit["node_index"] == idx and hit["node_class"] == "CPropertyExtend"]
         cprop_summaries.append(
             {
@@ -1066,6 +1270,14 @@ def _first_cproperty_sections(fixture: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _section_similarity_row(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
+    if not _context().consume_comparison("section_similarity"):
+        return {
+            "left_section_index": left["section_index"],
+            "right_section_index": right["section_index"],
+            "left_cobdao_offset": left["cobdao_marker_offset"],
+            "right_cobdao_offset": right["cobdao_marker_offset"],
+            "truncated": True,
+        }
     return {
         "left_section_index": left["section_index"],
         "right_section_index": right["section_index"],
@@ -1785,6 +1997,521 @@ def _signature_components_summary(fixtures: list[dict[str, Any]]) -> list[dict[s
     return rows
 
 
+LOCAL_RECORD_LAYOUT_FIELDS = [
+    {
+        "local_offset": -24,
+        "byte_range": "CObDao-24..CObDao-5",
+        "decoded_type": "ascii",
+        "candidate_role": "section_header_field",
+        "note": "OBJETINFOS_CLASSNAME marker immediately precedes current CObDao local sections.",
+    },
+    {
+        "local_offset": 0,
+        "byte_range": "CObDao+0..CObDao+5",
+        "decoded_type": "ascii",
+        "candidate_role": "section_header_field",
+        "note": "CObDao marker.",
+    },
+    {
+        "local_offset": 12,
+        "byte_range": "CObDao+12..CObDao+15",
+        "decoded_type": "u32le",
+        "candidate_role": "record_type_or_subtype",
+        "note": "Stable current separator; semantic meaning unknown.",
+    },
+    {
+        "local_offset": 16,
+        "byte_range": "CObDao+16..CObDao+29",
+        "decoded_type": "bytes14",
+        "candidate_role": "padding_or_reserved",
+        "note": "Observed stable zero-filled gap before the anchor payload in current anchor-bearing sections.",
+    },
+    {
+        "local_offset": 30,
+        "byte_range": "CObDao+30..CObDao+33",
+        "decoded_type": "bytes4",
+        "candidate_role": "neighboring_metadata",
+        "note": "Varies with observed color/style context; not part of the anchor coordinate triple.",
+    },
+    {
+        "local_offset": 34,
+        "byte_range": "CObDao+34..CObDao+57",
+        "decoded_type": "double64le[3]",
+        "candidate_role": "anchor_x/y/z_payload",
+        "note": "Contiguous finite coordinate-like triple in anchor-bearing sections.",
+    },
+    {
+        "local_offset": 58,
+        "byte_range": "CObDao+58..CObDao+107",
+        "decoded_type": "bytes50",
+        "candidate_role": "neighboring_metadata",
+        "note": "Mostly stable trailing local bytes after the anchor payload; internal field boundaries remain unknown.",
+    },
+    {
+        "local_offset": 56,
+        "byte_range": "CObDao+56..CObDao+59",
+        "decoded_type": "u32le",
+        "candidate_role": "unknown_flag",
+        "note": "Overlaps the last two bytes of the z double at +50..+57; may not be an independent field.",
+    },
+    {
+        "local_offset": 108,
+        "byte_range": "CObDao+108..CObDao+111",
+        "decoded_type": "u32le",
+        "candidate_role": "unknown_flag",
+        "note": "Stable current separator after the anchor payload region.",
+    },
+    {
+        "local_offset": 112,
+        "byte_range": "CObDao+112..CObDao+115",
+        "decoded_type": "u32le",
+        "candidate_role": "unknown_flag",
+        "note": "Stable current separator after the anchor payload region.",
+    },
+]
+
+
+def _section_raw_bytes(section: dict[str, Any], local_offset: int, size: int) -> bytes | None:
+    marker_offset = int(section["marker_context_hex"]["relative_marker_start"])
+    data = _window_bytes(section["marker_context_hex"])
+    start = marker_offset + local_offset
+    if start < 0 or start + size > len(data):
+        return None
+    return data[start : start + size]
+
+
+def _decode_layout_value(section: dict[str, Any], field: dict[str, Any]) -> Any:
+    offset = int(field["local_offset"])
+    decoded_type = field["decoded_type"]
+    if decoded_type == "ascii":
+        size = 20 if offset == -24 else 6
+        raw = _section_raw_bytes(section, offset, size)
+        return None if raw is None else raw.decode("ascii", errors="replace")
+    if decoded_type == "u32le":
+        return _section_feature_value(section, {"kind": "u32le", "offset": offset})
+    if decoded_type == "double64le[3]":
+        triple = section["local_triple_at_cobdao_plus_34"]
+        return None if triple is None else triple["decoded_anchor_mm"]
+    if decoded_type.startswith("bytes"):
+        size = int(decoded_type.removeprefix("bytes"))
+        raw = _section_raw_bytes(section, offset, size)
+        return None if raw is None else raw.hex(" ")
+    return None
+
+
+def _summarize_stability(values: list[Any]) -> str:
+    if not values:
+        return "unknown"
+    if len({json.dumps(value, sort_keys=True) for value in values}) == 1:
+        return "stable"
+    return "variable"
+
+
+def _local_record_chunks(section: dict[str, Any], start_offset: int = -24, end_offset: int = 129) -> list[dict[str, Any]]:
+    chunks = []
+    marker_offset = int(section["marker_context_hex"]["relative_marker_start"])
+    data = _window_bytes(section["marker_context_hex"])
+    for local_start in range(start_offset, end_offset, 16):
+        local_end = min(local_start + 16, end_offset)
+        start = marker_offset + local_start
+        end = marker_offset + local_end
+        if start < 0 or end > len(data):
+            continue
+        chunks.append(
+            {
+                "local_range": f"{local_start:+d}..{local_end - 1:+d}",
+                "hex": data[start:end].hex(" "),
+            }
+        )
+    return chunks
+
+
+def _aligned_local_u32_i32_fields(section: dict[str, Any], start_offset: int = -24, end_offset: int = 128) -> list[dict[str, Any]]:
+    rows = []
+    for local_offset in range(start_offset, end_offset + 1, 4):
+        raw = _section_raw_bytes(section, local_offset, 4)
+        if raw is None:
+            continue
+        rows.append(
+            {
+                "local_offset_from_cobdao": local_offset,
+                "u32le": struct.unpack("<I", raw)[0],
+                "i32le": struct.unpack("<i", raw)[0],
+                "hex": raw.hex(" "),
+            }
+        )
+    return rows
+
+
+def _aligned_local_double_fields(section: dict[str, Any], start_offset: int = -24, end_offset: int = 128) -> list[dict[str, Any]]:
+    rows = []
+    for local_offset in range(start_offset, end_offset + 1, 8):
+        raw = _section_raw_bytes(section, local_offset, 8)
+        if raw is None:
+            continue
+        value = struct.unpack("<d", raw)[0]
+        if not math.isfinite(value):
+            decoded: float | str = "non_finite"
+        else:
+            decoded = round(value * 1000.0, 6)
+        rows.append(
+            {
+                "local_offset_from_cobdao": local_offset,
+                "double_mm": decoded,
+                "hex": raw.hex(" "),
+            }
+        )
+    return rows
+
+
+def _range_dict(start: int, end: int) -> dict[str, Any]:
+    return {
+        "local_range": f"{start:+d}..{end:+d}",
+        "start_offset_from_cobdao": start,
+        "end_offset_from_cobdao": end,
+        "length": end - start + 1,
+    }
+
+
+def _byte_stability_ranges(sections: list[dict[str, Any]], start_offset: int, end_offset: int) -> dict[str, Any]:
+    stable_offsets = []
+    variable_offsets = []
+    missing_offsets = []
+    for local_offset in range(start_offset, end_offset + 1):
+        values = [_section_raw_bytes(section, local_offset, 1) for section in sections]
+        if any(value is None for value in values):
+            missing_offsets.append(local_offset)
+        elif len(set(values)) == 1:
+            stable_offsets.append(local_offset)
+        else:
+            variable_offsets.append(local_offset)
+
+    def collapse(offsets: list[int]) -> list[dict[str, Any]]:
+        if not offsets:
+            return []
+        ranges = []
+        range_start = offsets[0]
+        previous = offsets[0]
+        for offset in offsets[1:]:
+            if offset == previous + 1:
+                previous = offset
+                continue
+            ranges.append(_range_dict(range_start, previous))
+            range_start = previous = offset
+        ranges.append(_range_dict(range_start, previous))
+        return ranges
+
+    return {
+        "window": f"CObDao{start_offset:+d}..CObDao{end_offset:+d}",
+        "stable_byte_count": len(stable_offsets),
+        "variable_byte_count": len(variable_offsets),
+        "missing_byte_count": len(missing_offsets),
+        "stable_byte_ranges": collapse(stable_offsets),
+        "variable_byte_ranges": collapse(variable_offsets),
+        "missing_byte_ranges": collapse(missing_offsets),
+    }
+
+
+def _compact_neighbor_section(section: dict[str, Any] | None) -> dict[str, Any] | None:
+    if section is None:
+        return None
+    return {
+        "section_index": section["section_index"],
+        "cobdao_marker_offset": section["cobdao_marker_offset"],
+        "section_length_candidate": section["section_length_candidate"],
+        "section_role_candidate": section["section_role_candidate"],
+        "signature_matched": _section_matches_local_record_signature(section),
+        "coordinate_like_at_CObDao_plus_34": section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"],
+        "strong_separator_fields_matched": sorted(
+            {
+                "u32le_CObDao_plus_12",
+                "u32le_CObDao_plus_56",
+                "u32le_CObDao_plus_108",
+                "u32le_CObDao_plus_112",
+            }.intersection(_signature_match_detail(section)["matched_components"])
+        ),
+    }
+
+
+def _previous_next_sections(section: dict[str, Any], sections: list[dict[str, Any]]) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:
+    index = int(section["section_index"])
+    previous_section = sections[index - 1] if index > 0 else None
+    next_section = sections[index + 1] if index + 1 < len(sections) else None
+    return previous_section, next_section
+
+
+def _grouped_not_grouped_local_record_comparison(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    by_name = {fixture["fixture"]: fixture for fixture in fixtures}
+    grouped = by_name.get("text_group_same_color_two_objects.txt")
+    not_grouped = by_name.get("text_two_objects_same_color_not_grouped.txt")
+    if grouped is None or not_grouped is None:
+        return {"status": "unavailable"}
+    grouped_sections = _first_cproperty_sections(grouped)
+    not_grouped_sections = _first_cproperty_sections(not_grouped)
+    same_index_pairs = []
+    for index in range(min(len(grouped_sections), len(not_grouped_sections))):
+        same_index_pairs.append(_section_similarity_row(grouped_sections[index], not_grouped_sections[index]))
+    grouped_anchor = next((section for section in grouped_sections if section["known_anchor_triple_hit"]), None)
+    not_grouped_anchor = next((section for section in not_grouped_sections if section["known_anchor_triple_hit"]), None)
+    return {
+        "status": "observed_provisional",
+        "grouped_fixture": grouped["fixture"],
+        "not_grouped_fixture": not_grouped["fixture"],
+        "same_section_index_pairs": same_index_pairs,
+        "anchor_to_anchor_shifted_pair": (
+            _section_similarity_row(grouped_anchor, not_grouped_anchor)
+            if grouped_anchor is not None and not_grouped_anchor is not None
+            else None
+        ),
+        "interpretation": (
+            "The anchor-bearing local record remains similar when compared anchor-to-anchor after the not-grouped "
+            "inserted-section shift; same-index comparison is weaker because section indexes move."
+        ),
+    }
+
+
+def _anchor_record_layout_candidate(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    sections = _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+    anchor = [section for section in sections if section["known_anchor_triple_hit"]]
+    non_anchor = [section for section in sections if not section["known_anchor_triple_hit"]]
+    sections_by_fixture = {
+        fixture["fixture"]: _first_cproperty_sections(fixture)
+        for fixture in fixtures
+        if fixture["fixture"] in MULTI_OBJECT_FIXTURES
+    }
+    rows = []
+    for field in LOCAL_RECORD_LAYOUT_FIELDS:
+        anchor_values = [_decode_layout_value(section, field) for section in anchor]
+        non_anchor_values = [_decode_layout_value(section, field) for section in non_anchor]
+        rows.append(
+            {
+                "local_offset_from_cobdao": field["local_offset"],
+                "byte_range": field["byte_range"],
+                "decoded_type": field["decoded_type"],
+                "decoded_value_in_anchor_bearing_sections": _value_counts(anchor_values),
+                "stability_across_anchor_bearing_sections": _summarize_stability(anchor_values),
+                "value_distribution_in_non_anchor_sections": _value_counts(non_anchor_values),
+                "candidate_role": field["candidate_role"],
+                "interpretation_note": field["note"],
+            }
+        )
+    return {
+        "status": "observed_provisional",
+        "window_definition": "CObDao-24 through CObDao+128; wider CObDao-64 through CObDao+128 retained in section marker_context_hex.",
+        "anchor_bearing_section_count": len(anchor),
+        "non_anchor_section_count": len(non_anchor),
+        "layout_rows": rows,
+        "sample_anchor_local_record_windows": [
+            {
+                "fixture": section["fixture"],
+                "section_index": section["section_index"],
+                "cobdao_marker_offset": section["cobdao_marker_offset"],
+                "matched_chains": section["matched_chains"],
+                "grouped_chunks": _local_record_chunks(section),
+                "wide_context_chunks": _local_record_chunks(section, start_offset=-64, end_offset=160),
+                "aligned_u32_i32_fields": _aligned_local_u32_i32_fields(section),
+                "aligned_double_fields": _aligned_local_double_fields(section),
+                "previous_cobdao_section": _compact_neighbor_section(
+                    _previous_next_sections(section, sections_by_fixture[section["fixture"]])[0]
+                ),
+                "next_cobdao_section": _compact_neighbor_section(
+                    _previous_next_sections(section, sections_by_fixture[section["fixture"]])[1]
+                ),
+            }
+            for section in anchor[:5]
+        ],
+        "anchor_byte_stability": _byte_stability_ranges(anchor, -24, 128),
+        "grouped_not_grouped_local_record_comparison": _grouped_not_grouped_local_record_comparison(fixtures),
+        "stable_byte_claim": "The listed marker/u32 fields are stable in current anchor-bearing sections; bytes containing anchor x/y values vary by object.",
+        "variable_byte_claim": "The contiguous double3 at +34 varies with the stored anchor; z is currently near zero in all anchor-bearing sections.",
+        "record_boundary_evidence": {
+            "status": "candidate_only",
+            "objectinfos_to_cobdao_distance": 24,
+            "next_cobdao_distance_distribution_for_anchor_bearing": _value_counts(
+                [section["neighbor_relation"]["distance_to_next_cobdao"] for section in anchor]
+            ),
+            "section_length_candidate_distribution_for_anchor_bearing": _value_counts(
+                [section["section_length_candidate"] for section in anchor]
+            ),
+            "interpretation": (
+                "OBJETINFOS_CLASSNAME at -24 is a stable local preamble, but next-CObDao distances vary with the "
+                "surrounding CPropertyExtend layout; the true binary record start/length is not confirmed."
+            ),
+        },
+    }
+
+
+def _signature_match_detail(section: dict[str, Any]) -> dict[str, Any]:
+    matched = []
+    failed = []
+    for component in SIGNATURE_COMPONENTS:
+        name = component["component"]
+        if _signature_component_passes(section, component):
+            matched.append(name)
+        else:
+            failed.append(name)
+    return {"matched_components": matched, "failed_components": failed}
+
+
+def _partial_match_near_miss_analysis(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    sections = [
+        section
+        for section in _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+        if not section["known_anchor_triple_hit"]
+    ]
+    near_misses = []
+    for section in sections:
+        detail = _signature_match_detail(section)
+        strong_components = {
+            "u32le_CObDao_plus_12",
+            "u32le_CObDao_plus_56",
+            "u32le_CObDao_plus_108",
+            "u32le_CObDao_plus_112",
+        }
+        strong_matched = sorted(strong_components.intersection(detail["matched_components"]))
+        near_misses.append(
+            {
+                "fixture": section["fixture"],
+                "section_index": section["section_index"],
+                "cobdao_marker_offset": section["cobdao_marker_offset"],
+                "section_length_candidate": section["section_length_candidate"],
+                "matched_components": detail["matched_components"],
+                "failed_components": detail["failed_components"],
+                "strong_separator_fields_matched": strong_matched,
+                "coordinate_like_at_CObDao_plus_34": section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"],
+                "decoded_CObDao_plus_34_mm": section["cobdao_plus_34_triple_analysis"]["decoded_double_triple_mm"],
+                "rejection_reason": (
+                    "passes coordinate-like payload check but fails one or more strong u32 separator fields"
+                    if section["cobdao_plus_34_triple_analysis"]["is_coordinate_like"]
+                    else "fails coordinate-like payload check and one or more signature fields"
+                ),
+            }
+        )
+    near_misses.sort(key=lambda row: (-len(row["matched_components"]), row["fixture"], row["section_index"]))
+    one_field_failures = [row for row in near_misses if len(row["failed_components"]) == 1]
+    coordinate_like = [row for row in near_misses if row["coordinate_like_at_CObDao_plus_34"]]
+    return {
+        "status": "observed_provisional",
+        "non_anchor_section_count": len(sections),
+        "one_field_away_non_anchor_count": len(one_field_failures),
+        "coordinate_like_non_anchor_partial_count": len(coordinate_like),
+        "nearest_non_anchor_sections": near_misses[:20],
+        "one_field_away_non_anchor_sections": one_field_failures[:20],
+        "hierarchy_suggestion": (
+            "Current non-anchor near misses show coordinate-like +34 is supporting context only; "
+            "the full local record signature is more selective than the payload triple alone."
+        ),
+    }
+
+
+def _neighbor_relation_analysis(fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    anchor = [
+        section
+        for section in _all_cobdao_sections([fx for fx in fixtures if fx["fixture"] in MULTI_OBJECT_FIXTURES])
+        if section["known_anchor_triple_hit"]
+    ]
+    rows = []
+    previous_roles = []
+    next_roles = []
+    previous_lengths = []
+    next_lengths = []
+    by_grouping: dict[str, dict[str, int]] = {}
+    for section in anchor:
+        metadata = ORDER_METADATA.get(section["fixture"], {})
+        grouping = str(metadata.get("grouping_state", "unknown"))
+        previous_role = section["neighbor_relation"]["previous_section_role_candidate"]
+        next_role = section["neighbor_relation"]["next_section_role_candidate"]
+        previous_roles.append(previous_role)
+        next_roles.append(next_role)
+        previous_lengths.append(section["neighbor_relation"]["previous_section_length_candidate"])
+        next_lengths.append(section["neighbor_relation"]["next_section_length_candidate"])
+        by_grouping.setdefault(grouping, {}).setdefault(str(section["section_index"]), 0)
+        by_grouping[grouping][str(section["section_index"])] += 1
+        rows.append(
+            {
+                "fixture": section["fixture"],
+                "grouping_state": grouping,
+                "section_index": section["section_index"],
+                "cobdao_marker_offset": section["cobdao_marker_offset"],
+                "previous_section_type_signature": {
+                    "role": previous_role,
+                    "length_candidate": section["neighbor_relation"]["previous_section_length_candidate"],
+                    "distance_from_previous_cobdao": section["neighbor_relation"]["distance_from_previous_cobdao"],
+                },
+                "next_section_type_signature": {
+                    "role": next_role,
+                    "length_candidate": section["neighbor_relation"]["next_section_length_candidate"],
+                    "distance_to_next_cobdao": section["neighbor_relation"]["distance_to_next_cobdao"],
+                },
+                "matched_chains": section["matched_chains"],
+            }
+        )
+    return {
+        "status": "observed_provisional",
+        "anchor_bearing_section_count": len(anchor),
+        "previous_role_distribution": _value_counts(previous_roles),
+        "next_role_distribution": _value_counts(next_roles),
+        "previous_length_distribution": _value_counts(previous_lengths),
+        "next_length_distribution": _value_counts(next_lengths),
+        "anchor_section_index_distribution_by_grouping": by_grouping,
+        "rows": rows,
+        "interpretation": (
+            "Neighbor context shows repeated local placement patterns, but previous/next non-anchor records are not yet semantically identified. "
+            "Grouping changes section indexes and inserted 148-byte section counts, so neighbor context helps alignment but is not a standalone selector."
+        ),
+    }
+
+
+def _semantic_hypothesis() -> dict[str, Any]:
+    return {
+        "status": "provisional",
+        "signature_kind_assessment": {
+            "current_judgment": "record_type_more_likely_than_unrelated_field_combination",
+            "confidence": "weak",
+            "evidence_supporting": [
+                "The marker pair, fixed u32 fields, and anchor payload repeat across all current anchor-bearing sections.",
+                "The same composite signature has 0 current non-anchor matches.",
+            ],
+            "evidence_against_or_limits": [
+                "The signature was discovered using analyzer labels.",
+                "The semantics of the stable u32 values are unknown.",
+                "u32@+56 overlaps the +34 double3 payload and may partly reflect z=0 rather than an independent field.",
+            ],
+        },
+        "field_hypotheses": [
+            {
+                "field": "u32le@CObDao+12",
+                "possible_meaning": "record_type_or_subtype",
+                "evidence_supporting": "Stable value 131072 in all current anchor-bearing sections and absent from non-anchor sections.",
+                "evidence_against": "No independent format documentation or controlled fixture varies this field.",
+                "confidence": "provisional",
+            },
+            {
+                "field": "u32le@CObDao+56",
+                "possible_meaning": "unknown_flag_or_overlap_artifact",
+                "evidence_supporting": "Stable current separator value 262144.",
+                "evidence_against": "The u32 read begins inside the z double at +50..+57, so it is not safely aligned as an independent local field.",
+                "confidence": "weak",
+            },
+            {
+                "field": "u32le@CObDao+108",
+                "possible_meaning": "record_subtype_or_trailing_metadata",
+                "evidence_supporting": "Stable value 65536 in all current anchor-bearing sections and absent from non-anchor sections.",
+                "evidence_against": "No known ownership/order relation has been mapped to this field.",
+                "confidence": "provisional",
+            },
+            {
+                "field": "u32le@CObDao+112",
+                "possible_meaning": "record_subtype_or_trailing_metadata",
+                "evidence_supporting": "Stable value 262144 in all current anchor-bearing sections and absent from non-anchor sections.",
+                "evidence_against": "Adjacent to +108, but record boundary and trailing structure are still unknown.",
+                "confidence": "provisional",
+            },
+        ],
+        "parser_readiness": "not_ready_analyzer_only",
+    }
+
+
 def _candidate_parser_rule_draft() -> dict[str, Any]:
     return {
         "status": "draft_do_not_implement_yet",
@@ -2046,17 +2773,65 @@ def _answers(fixtures: list[dict[str, Any]], comparison: dict[str, Any], alignme
     }
 
 
-def build_report() -> dict[str, Any]:
-    fixture_reports = [_fixture_report(name) for name in FIXTURES]
+def _limits_payload() -> dict[str, Any]:
+    ctx = _context()
+    return {
+        "limits": ctx.limits.as_dict(),
+        "truncated": ctx.truncated,
+        "warnings": ctx.warnings,
+    }
+
+
+def _partial_report(fixture_reports: list[dict[str, Any]]) -> dict[str, Any]:
+    return {
+        **_limits_payload(),
+        "policy": {
+            "scope": "CPropertyExtend anchor context structure/evidence audit only",
+            "parser_behavior": "not_modified",
+            "cproperty_anchor_promotion": "not_applied",
+            "absolute_offsets": "diagnostic_only",
+            "active_anchor_fallback": "baseline_midpoint remains active",
+        },
+        "fixtures": fixture_reports,
+        "status": "partial",
+        "answers": {"parser_readiness": "not_ready_analyzer_only"},
+    }
+
+
+def build_report(limits: AnalysisLimits | None = None) -> dict[str, Any]:
+    global _ACTIVE_CONTEXT
+    _ACTIVE_CONTEXT = AnalysisContext(limits=limits or AnalysisLimits())
+    ctx = _context()
+    fixture_reports = []
+    for fixture_index, name in enumerate(FIXTURES):
+        if fixture_index >= ctx.limits.max_fixtures:
+            ctx.truncate(f"fixture scan truncated at {ctx.limits.max_fixtures} fixtures")
+            break
+        if not ctx.check_deadline("fixture scan"):
+            break
+        fixture_reports.append(_fixture_report(name))
+        if ctx.truncated and ctx.total_cobdao_sections >= ctx.limits.max_total_cobdao_sections:
+            break
+    if ctx.truncated:
+        return _partial_report(fixture_reports)
     comparison = _compare_grouped_non_grouped(fixture_reports)
+    if not ctx.check_deadline("grouped_non_grouped_comparison"):
+        return _partial_report(fixture_reports)
     aggregate = _anchor_bearing_aggregate(fixture_reports)
     alignment = _section_alignment_analysis(fixture_reports)
     anchor_storage_summary = _anchor_storage_scaling_summary(fixture_reports)
     section_scaling_summary = _grouped_not_grouped_section_scaling_summary(fixture_reports)
     selection_order_summary = _selection_order_primary_owner_summary(fixture_reports)
     field_difference_summary = _anchor_vs_non_anchor_field_difference_summary(fixture_reports)
+    if ctx.truncated or not ctx.check_deadline("field_difference_summary"):
+        return _partial_report(fixture_reports)
     local_record_signature_summary = _local_record_signature_summary(fixture_reports)
+    anchor_record_layout = _anchor_record_layout_candidate(fixture_reports)
+    partial_match_near_miss = _partial_match_near_miss_analysis(fixture_reports)
+    neighbor_relation = _neighbor_relation_analysis(fixture_reports)
+    semantic_hypothesis = _semantic_hypothesis()
     return {
+        **_limits_payload(),
         "policy": {
             "scope": "CPropertyExtend anchor context structure/evidence audit only",
             "parser_behavior": "not_modified",
@@ -2074,6 +2849,10 @@ def build_report() -> dict[str, Any]:
         "selection_order_primary_owner_summary": selection_order_summary,
         "anchor_vs_non_anchor_field_difference_summary": field_difference_summary,
         "local_record_signature_summary": local_record_signature_summary,
+        "anchor_record_layout_candidate": anchor_record_layout,
+        "partial_match_near_miss_analysis": partial_match_near_miss,
+        "neighbor_relation_analysis": neighbor_relation,
+        "semantic_hypothesis": semantic_hypothesis,
         "signature_components": _signature_components_summary(fixture_reports),
         "candidate_parser_rule_draft": _candidate_parser_rule_draft(),
         "rejected_single_field_rules": _rejected_single_field_rules(field_difference_summary),
@@ -2083,12 +2862,23 @@ def build_report() -> dict[str, Any]:
         "rejected_selector_candidates": _rejected_selector_candidates(field_difference_summary),
         "answers": _answers(fixture_reports, comparison, alignment),
     }
+    report.update(_limits_payload())
+    return report
 
 
 def _print_text(report: dict[str, Any]) -> None:
     print("Text CPropertyExtend Anchor Context Analysis")
     print(f"policy.scope: {report['policy']['scope']}")
     print(f"policy.parser_behavior: {report['policy']['parser_behavior']}")
+    print(f"truncated: {str(report.get('truncated', False)).lower()}")
+    print("[Limits]")
+    print(json.dumps(report.get("limits", {}), ensure_ascii=False, indent=2))
+    print("[Warnings]")
+    if report.get("warnings"):
+        for warning in report["warnings"]:
+            print(f"- {warning}")
+    else:
+        print("- none")
     print()
     for fx in report["fixtures"]:
         if fx["fixture"] not in MULTI_OBJECT_FIXTURES:
@@ -2131,6 +2921,9 @@ def _print_text(report: dict[str, Any]) -> None:
                 print(f"    local_context_hex={hit['local_context_hex']['hex']}")
         print()
     print("[Grouped vs Non-grouped]")
+    if report.get("status") == "partial":
+        print(json.dumps({"status": "partial", "warnings": report.get("warnings", [])}, ensure_ascii=False, indent=2))
+        return
     print(json.dumps(report["grouped_vs_non_grouped_comparison"], ensure_ascii=False, indent=2))
     print("[Anchor-bearing vs Non-anchor Aggregate]")
     print(json.dumps(report["anchor_bearing_vs_non_anchor_aggregate"], ensure_ascii=False, indent=2))
@@ -2148,6 +2941,14 @@ def _print_text(report: dict[str, Any]) -> None:
     print(json.dumps(report["anchor_vs_non_anchor_field_difference_summary"], ensure_ascii=False, indent=2))
     print("[Local Record Signature Summary]")
     print(json.dumps(report["local_record_signature_summary"], ensure_ascii=False, indent=2))
+    print("[Anchor Record Layout Candidate]")
+    print(json.dumps(report["anchor_record_layout_candidate"], ensure_ascii=False, indent=2))
+    print("[Partial Match / Near Miss Analysis]")
+    print(json.dumps(report["partial_match_near_miss_analysis"], ensure_ascii=False, indent=2))
+    print("[Neighbor Relation Analysis]")
+    print(json.dumps(report["neighbor_relation_analysis"], ensure_ascii=False, indent=2))
+    print("[Semantic Hypothesis]")
+    print(json.dumps(report["semantic_hypothesis"], ensure_ascii=False, indent=2))
     print("[Signature Components]")
     print(json.dumps(report["signature_components"], ensure_ascii=False, indent=2))
     print("[Candidate Parser Rule Draft]")
@@ -2165,6 +2966,24 @@ def _print_text(report: dict[str, Any]) -> None:
 def _print_markdown(report: dict[str, Any]) -> None:
     print("# Text CPropertyExtend Anchor Context Analysis")
     print()
+    print("## Limits")
+    print()
+    print(f"- truncated: `{report.get('truncated', False)}`")
+    print(f"- limits: `{report.get('limits', {})}`")
+    print()
+    print("## Warnings")
+    print()
+    if report.get("warnings"):
+        for warning in report["warnings"]:
+            print(f"- {warning}")
+    else:
+        print("- none")
+    print()
+    if report.get("status") == "partial":
+        print("## Partial Result")
+        print()
+        print("- analysis stopped before full comparison summaries completed")
+        return
     print("| fixture | CPropertyExtend node | CObDao offset | target anchor mm | payload offset | hit rel to CObDao | matched chains |")
     print("|---|---:|---:|---|---:|---:|---|")
     for fx in report["fixtures"]:
@@ -2265,6 +3084,34 @@ def _print_markdown(report: dict[str, Any]) -> None:
     print(f"- false negatives: `{sig['false_negative_count']}`")
     print(f"- parser safe: `{sig['parser_safe_candidate']}`")
     print()
+    print("## Anchor Record Layout Candidate")
+    print()
+    print("| offset | byte range | anchor stability | candidate role | note |")
+    print("|---:|---|---|---|---|")
+    for row in report["anchor_record_layout_candidate"]["layout_rows"]:
+        print(
+            f"| {row['local_offset_from_cobdao']} | {row['byte_range']} | "
+            f"{row['stability_across_anchor_bearing_sections']} | {row['candidate_role']} | "
+            f"{row['interpretation_note']} |"
+        )
+    print()
+    print("## Partial Match / Near Miss Analysis")
+    print()
+    near = report["partial_match_near_miss_analysis"]
+    print(f"- one-field-away non-anchor sections: `{near['one_field_away_non_anchor_count']}`")
+    print(f"- coordinate-like non-anchor partial sections: `{near['coordinate_like_non_anchor_partial_count']}`")
+    print()
+    print("## Neighbor Relation Analysis")
+    print()
+    neighbors = report["neighbor_relation_analysis"]
+    print(f"- previous roles: `{neighbors['previous_role_distribution']}`")
+    print(f"- next roles: `{neighbors['next_role_distribution']}`")
+    print()
+    print("## Semantic Hypothesis")
+    print()
+    print(f"- parser readiness: `{report['semantic_hypothesis']['parser_readiness']}`")
+    print(f"- signature kind: `{report['semantic_hypothesis']['signature_kind_assessment']['current_judgment']}`")
+    print()
     print("## Signature Components")
     print()
     print("| component | anchor pass | non-anchor pass | FP | FN | usefulness |")
@@ -2309,9 +3156,27 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Audit CPropertyExtend anchor triple local context.")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--markdown", action="store_true")
+    parser.add_argument("--max-runtime-seconds", type=int, default=MAX_RUNTIME_SECONDS)
+    parser.add_argument("--max-sections", type=int, default=MAX_TOTAL_COBDAO_SECTIONS)
+    parser.add_argument("--max-comparisons", type=int, default=MAX_SECTION_COMPARISONS)
+    parser.add_argument("--max-output-rows", type=int, default=MAX_FIELD_DIFF_ROWS)
+    parser.add_argument("--debug-limits", action="store_true")
+    parser.add_argument("--deep", action="store_true")
     args = parser.parse_args()
 
-    report = build_report()
+    scale = 4 if args.deep else 1
+    limits = AnalysisLimits(
+        max_total_cobdao_sections=args.max_sections * scale,
+        max_section_comparisons=args.max_comparisons * scale,
+        max_runtime_seconds=args.max_runtime_seconds * scale,
+        max_near_miss_rows=min(MAX_NEAR_MISS_ROWS * scale, args.max_output_rows * scale),
+        max_signature_rows=min(MAX_SIGNATURE_ROWS * scale, args.max_output_rows * scale),
+        max_field_diff_rows=args.max_output_rows * scale,
+        max_output_rows=args.max_output_rows * scale,
+    )
+    report = build_report(limits)
+    if args.debug_limits:
+        report.setdefault("warnings", []).append(f"debug limits active: {report['limits']}")
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     elif args.markdown:
