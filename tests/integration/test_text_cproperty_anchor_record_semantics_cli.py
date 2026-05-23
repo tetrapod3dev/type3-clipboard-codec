@@ -51,6 +51,8 @@ def test_anchor_record_semantics_json_mode_is_small_and_valid() -> None:
         "warnings",
         "fixtures",
         "signature_v1_summary",
+        "signature_layout_stability_summary",
+        "fixture_group_results",
         "record_layout_candidate",
         "semantic_hypothesis",
         "answers",
@@ -63,6 +65,40 @@ def test_anchor_record_semantics_json_mode_is_small_and_valid() -> None:
     for fixture in payload["fixtures"]:
         for row in fixture["anchor_record_sections"]:
             assert _hex_byte_len(row["local_context_hex"]) <= max_bytes
+
+
+def test_anchor_record_semantics_group_a_json_is_small_and_has_stability_summary() -> None:
+    result = _run(
+        [
+            "--json",
+            "--group-name",
+            "group_a_style_content_variation",
+            "--fixture",
+            "text_three_objects_grouped_order_abc.txt",
+            "--fixture",
+            "text_three_objects_grouped_order_abc_height_30mm.txt",
+            "--fixture",
+            "text_three_objects_grouped_order_abc_font_arial_bold.txt",
+            "--fixture",
+            "text_three_objects_grouped_order_abc_content_variation.txt",
+            "--max-fixtures",
+            "4",
+            "--max-anchor-sections",
+            "8",
+        ]
+    )
+    assert result.returncode == 0, result.stderr
+    assert len(result.stdout) < 100_000
+    payload = json.loads(result.stdout)
+    summary = payload["signature_layout_stability_summary"]
+    assert summary["group_name"] == "group_a_style_content_variation"
+    assert summary["offsets_checked"] == ["+12", "+34", "+56", "+108", "+112"]
+    assert payload["answers"]["parser_behavior"] == "not_modified"
+    assert payload["fixture_group_results"]
+    assert payload["fixture_group_results"][0]["output_size_chars"] > 0
+    # Stable offsets may include all target offsets, or the report must explicitly mark variability.
+    has_all = all(offset in summary["stable_offsets"] for offset in ("+12", "+34", "+56", "+108", "+112"))
+    assert has_all or summary["variable_offsets"]
 
 
 def test_anchor_record_semantics_fixture_and_limit_options() -> None:

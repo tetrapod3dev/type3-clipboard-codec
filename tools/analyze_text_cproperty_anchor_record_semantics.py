@@ -216,12 +216,22 @@ def build_report(fixtures: list[str], limits: Limits) -> dict[str, Any]:
             {"offset": "+112", "role_candidate": "record_subtype_or_trailing", "current_value_distribution": _counts(all_sections, "u32le@+112")},
         ]
     }
+    stability = _signature_layout_stability_summary(all_sections, group_name=None, fixture_count=len(reports))
+    group_result = {
+        "group_name": None,
+        "fixtures_analyzed": [fx["fixture"] for fx in reports],
+        "output_size_chars": 0,
+        "layout_stable": len(stability["variable_offsets"]) == 0,
+        "warnings": ctx.warnings,
+    }
     return {
         "mode": "small_anchor_record_semantics",
         "limits": limits.as_dict(),
         "warnings": ctx.warnings,
         "fixtures": reports,
         "signature_v1_summary": summary,
+        "signature_layout_stability_summary": stability,
+        "fixture_group_results": [group_result],
         "record_layout_candidate": layout,
         "semantic_hypothesis": {
             "status": "provisional",
@@ -244,12 +254,75 @@ def _counts(sections: list[dict[str, Any]], key: str) -> dict[str, int]:
     return out
 
 
+def _signature_layout_stability_summary(
+    sections: list[dict[str, Any]], *, group_name: str | None, fixture_count: int
+) -> dict[str, Any]:
+    offsets = ["+12", "+34", "+56", "+108", "+112"]
+    d12 = _counts(sections, "u32le@+12")
+    d56 = _counts(sections, "u32le@+56")
+    d108 = _counts(sections, "u32le@+108")
+    d112 = _counts(sections, "u32le@+112")
+    coord_like_true = 0
+    z_near_zero_true = 0
+    z_values: dict[str, int] = {}
+    for section in sections:
+        triple = section["fields"]["double3_mm@+34"]
+        if triple is not None:
+            coord_like_true += 1
+            if abs(float(triple["z"])) <= 1e-6:
+                z_near_zero_true += 1
+            key = str(triple["z"])
+            z_values[key] = z_values.get(key, 0) + 1
+    stable_offsets: list[str] = []
+    variable_offsets: list[str] = []
+    for key, dist in (("+12", d12), ("+56", d56), ("+108", d108), ("+112", d112)):
+        if len(dist) == 1:
+            stable_offsets.append(key)
+        else:
+            variable_offsets.append(key)
+    if sections and coord_like_true == len(sections) and z_near_zero_true == len(sections):
+        stable_offsets.append("+34")
+    else:
+        variable_offsets.append("+34")
+    layout_stable = len(variable_offsets) == 0
+    return {
+        "fixture_count": fixture_count,
+        "anchor_section_count": len(sections),
+        "offsets_checked": offsets,
+        "stable_offsets": stable_offsets,
+        "variable_offsets": variable_offsets,
+        "per_offset_value_distribution": {
+            "+12": d12,
+            "+34": {
+                "coordinate_like_true_count": coord_like_true,
+                "z_near_zero_true_count": z_near_zero_true,
+                "z_value_distribution": z_values,
+            },
+            "+56": d56,
+            "+108": d108,
+            "+112": d112,
+        },
+        "group_name": group_name,
+        "conclusion": (
+            "layout_stable_for_checked_offsets_in_current_group"
+            if layout_stable
+            else "layout_has_variable_offsets_in_current_group"
+        ),
+        "confidence": "provisional",
+    }
+
+
 def _print_text(report: dict[str, Any]) -> None:
     print("Text CPropertyExtend Anchor Record Semantics (Small Analyzer)")
     print(f"mode: {report['mode']}")
     print(f"parser_behavior: {report['answers']['parser_behavior']}")
     print(f"signature: {report['signature_v1_summary']['signature_name']}")
     print(f"matched_anchor_sections: {report['signature_v1_summary']['matched_anchor_section_count']}")
+    stability = report["signature_layout_stability_summary"]
+    print(
+        f"layout_stable: {str(len(stability['variable_offsets']) == 0).lower()} "
+        f"stable_offsets={stability['stable_offsets']} variable_offsets={stability['variable_offsets']}"
+    )
     print("[Fixtures]")
     print("fixture | cproperty_nodes | matched_anchor_sections")
     for row in report["fixtures"]:
@@ -264,6 +337,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Small analyzer for CPropertyExtend CObDao anchor-record semantics.")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--fixture", action="append", dest="fixtures")
+    parser.add_argument("--group-name")
     parser.add_argument("--max-fixtures", type=int, default=2)
     parser.add_argument("--max-anchor-sections", type=int, default=4)
     parser.add_argument("--max-local-hex-bytes", type=int, default=64)
@@ -276,8 +350,15 @@ def main() -> int:
         max_local_hex_bytes=max(16, args.max_local_hex_bytes),
     )
     report = build_report(fixtures, limits)
+    if args.group_name:
+        report["signature_layout_stability_summary"]["group_name"] = args.group_name
+        report["fixture_group_results"][0]["group_name"] = args.group_name
+
     if args.json:
-        print(json.dumps(report, ensure_ascii=False, separators=(",", ":")))
+        json_text = json.dumps(report, ensure_ascii=False, separators=(",", ":"))
+        report["fixture_group_results"][0]["output_size_chars"] = len(json_text)
+        json_text = json.dumps(report, ensure_ascii=False, separators=(",", ":"))
+        print(json_text)
     else:
         _print_text(report)
     return 0
