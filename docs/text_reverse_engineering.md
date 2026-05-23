@@ -1141,6 +1141,18 @@ Recommended deep command:
   - compact JSON/text outputs
 - semantics status remains provisional (`not_ready_analyzer_only`).
 
+### CPropertyExtend anchor decode RFC
+
+RFC:
+
+- `docs/text_cproperty_anchor_decode_rfc.md`
+
+Summary:
+
+- signature v1 layout is stable across current Group A/B/C controlled fixtures.
+- parser behavior is unchanged (`not_modified`).
+- RFC scope is decode-candidate discussion only; ownership assignment and active anchor replacement are out of scope.
+
 Important rejection:
 
 - `coordinate-like at CObDao + 34` remains rejected as a selector because non-anchor sections still produce coordinate-like false positives.

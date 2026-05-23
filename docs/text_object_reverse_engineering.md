@@ -1048,3 +1048,13 @@ Small dedicated semantics analyzer:
 - purpose: limited local semantics observation for `CPropertyExtend_CObDao_anchor_record_candidate_v1`
 - default behavior is bounded and small-output; heavy pairwise/near-miss dumps are intentionally excluded.
 - interpretation remains provisional and analyzer-only.
+
+CPropertyExtend direct-anchor decode RFC:
+
+- `docs/text_cproperty_anchor_decode_rfc.md`
+
+Current note:
+
+- signature v1 checked offsets are stable in current controlled fixture groups.
+- this does not change parser readiness; status remains `not_ready_analyzer_only`.
+- decode and ownership are explicitly separated; implementation is deferred.
