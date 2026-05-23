@@ -1031,3 +1031,13 @@ Rejected single-field rules:
 - coordinate-like `CObDao+34` alone has non-anchor false positives.
 - each individual u32 field is only a lead and lacks confirmed record semantics.
 - section index, payload offset, and baseline equality remain invalid parser selectors.
+
+## Anchor-context analyzer runtime policy
+
+- default (`tools/analyze_text_cproperty_anchor_context.py`, `--json`, `--markdown`) is safe summary mode.
+- deep local/record semantics output is available only with `--deep`.
+- for IDE stability (PyCharm console), deep output should be redirected to a file instead of direct console streaming.
+
+```powershell
+.\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json --deep --max-sections 20 --max-output-rows 50 > out.json
+```

@@ -310,6 +310,21 @@ It should be treated as:
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
+## Safe execution note for anchor-context analyzer
+
+`tools/analyze_text_cproperty_anchor_context.py` now defaults to safe lightweight summary output to protect IDE consoles from oversized output.
+
+- default commands:
+  - `.\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py`
+  - `.\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json`
+- deep analysis is opt-in only:
+  - `--deep`
+- for deep mode, use redirected output:
+
+```powershell
+.\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json --deep --max-sections 20 --max-output-rows 50 > out.json
+```
+
 ## File: `two_rectangle.txt`
 
 This file contains the hex dump of two independent rectangle-like objects copied together from Type3.

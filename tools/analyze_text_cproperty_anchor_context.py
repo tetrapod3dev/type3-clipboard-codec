@@ -146,6 +146,9 @@ MAX_LOCAL_HEX_BYTES = 128
 MAX_DECODED_VALUES_PER_SECTION = 128
 MAX_MARKER_SCAN_ITERATIONS = 10000
 MAX_RUNTIME_SECONDS = 30
+DEFAULT_SAFE_MAX_FIXTURES = 3
+DEFAULT_SAFE_MAX_RUNTIME_SECONDS = 8
+DEFAULT_SAFE_MAX_OUTPUT_ROWS = 40
 KNOWN_MARKERS = [
     b"OBJECTINFOS_CLASSNAME",
     b"OBJETINFOS_CLASSNAME",
@@ -2798,10 +2801,67 @@ def _partial_report(fixture_reports: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def build_report(limits: AnalysisLimits | None = None) -> dict[str, Any]:
+def _build_lightweight_summary_report() -> dict[str, Any]:
+    ctx = _context()
+    fixture_rows: list[dict[str, Any]] = []
+    for fixture_index, name in enumerate(FIXTURES):
+        if fixture_index >= ctx.limits.max_fixtures:
+            ctx.warn(f"fixture scan capped at {ctx.limits.max_fixtures} fixtures in safe summary mode")
+            break
+        if not ctx.check_deadline("lightweight fixture scan"):
+            break
+        blob: bytes | None = None
+        try:
+            blob = _read_fixture(name)
+            nodes = _read_nodes(blob)
+            cproperty_count = sum(1 for node in nodes if node.header.class_name == "CPropertyExtend")
+            cparagraphe_count = sum(1 for node in nodes if node.header.class_name == "CParagraphe")
+            fixture_rows.append(
+                {
+                    "fixture": name,
+                    "bytes": len(blob),
+                    "node_count": len(nodes),
+                    "cproperty_node_count": cproperty_count,
+                    "cparagraphe_node_count": cparagraphe_count,
+                }
+            )
+        except Exception as exc:  # noqa: BLE001
+            ctx.warn(f"{name}: lightweight parse failed ({type(exc).__name__})")
+            fixture_rows.append(
+                {
+                    "fixture": name,
+                    "bytes": len(blob) if blob is not None else None,
+                    "node_count": None,
+                    "cproperty_node_count": None,
+                    "cparagraphe_node_count": None,
+                }
+            )
+
+    return {
+        **_limits_payload(),
+        "mode": "safe_summary",
+        "policy": {
+            "scope": "safe lightweight summary only",
+            "parser_behavior": "not_modified",
+            "heavy_analysis": "disabled_by_default",
+            "deep_option_required": True,
+            "cproperty_anchor_promotion": "not_applied",
+        },
+        "fixtures": fixture_rows[: ctx.limits.max_output_rows],
+        "summary": {
+            "fixture_rows": min(len(fixture_rows), ctx.limits.max_output_rows),
+            "heavy_sections_included": False,
+        },
+        "answers": {"parser_readiness": "safe_summary_only"},
+    }
+
+
+def build_report(limits: AnalysisLimits | None = None, *, deep: bool = False) -> dict[str, Any]:
     global _ACTIVE_CONTEXT
     _ACTIVE_CONTEXT = AnalysisContext(limits=limits or AnalysisLimits())
     ctx = _context()
+    if not deep:
+        return _build_lightweight_summary_report()
     fixture_reports = []
     for fixture_index, name in enumerate(FIXTURES):
         if fixture_index >= ctx.limits.max_fixtures:
@@ -2880,6 +2940,16 @@ def _print_text(report: dict[str, Any]) -> None:
     else:
         print("- none")
     print()
+    if report.get("mode") == "safe_summary":
+        print(f"heavy_sections_included: {str(report.get('summary', {}).get('heavy_sections_included', False)).lower()}")
+        print("[Safe Summary Fixtures]")
+        for fx in report.get("fixtures", [])[: report.get("limits", {}).get("max_output_rows", 0)]:
+            print(
+                f"- {fx['fixture']}: bytes={fx['bytes']} node_count={fx['node_count']} "
+                f"cproperty_node_count={fx['cproperty_node_count']} cparagraphe_node_count={fx['cparagraphe_node_count']}"
+            )
+        return
+
     for fx in report["fixtures"]:
         if fx["fixture"] not in MULTI_OBJECT_FIXTURES:
             continue
@@ -2979,6 +3049,18 @@ def _print_markdown(report: dict[str, Any]) -> None:
     else:
         print("- none")
     print()
+    if report.get("mode") == "safe_summary":
+        print("## Safe Summary Fixtures")
+        print()
+        print("| fixture | bytes | node_count | cproperty_node_count | cparagraphe_node_count |")
+        print("|---|---:|---:|---:|---:|")
+        for row in report.get("fixtures", [])[: report.get("limits", {}).get("max_output_rows", 0)]:
+            print(
+                f"| {row['fixture']} | {row['bytes']} | {row['node_count']} | "
+                f"{row['cproperty_node_count']} | {row['cparagraphe_node_count']} |"
+            )
+        return
+
     if report.get("status") == "partial":
         print("## Partial Result")
         print()
@@ -3164,17 +3246,34 @@ def main() -> int:
     parser.add_argument("--deep", action="store_true")
     args = parser.parse_args()
 
-    scale = 4 if args.deep else 1
-    limits = AnalysisLimits(
-        max_total_cobdao_sections=args.max_sections * scale,
-        max_section_comparisons=args.max_comparisons * scale,
-        max_runtime_seconds=args.max_runtime_seconds * scale,
-        max_near_miss_rows=min(MAX_NEAR_MISS_ROWS * scale, args.max_output_rows * scale),
-        max_signature_rows=min(MAX_SIGNATURE_ROWS * scale, args.max_output_rows * scale),
-        max_field_diff_rows=args.max_output_rows * scale,
-        max_output_rows=args.max_output_rows * scale,
-    )
-    report = build_report(limits)
+    if args.deep:
+        limits = AnalysisLimits(
+            max_fixtures=min(12, MAX_FIXTURES),
+            max_total_cobdao_sections=args.max_sections * 4,
+            max_section_comparisons=args.max_comparisons * 4,
+            max_runtime_seconds=args.max_runtime_seconds * 4,
+            max_near_miss_rows=min(MAX_NEAR_MISS_ROWS * 4, args.max_output_rows * 4),
+            max_signature_rows=min(MAX_SIGNATURE_ROWS * 4, args.max_output_rows * 4),
+            max_field_diff_rows=args.max_output_rows * 4,
+            max_output_rows=args.max_output_rows * 4,
+            max_local_hex_bytes=min(64, MAX_LOCAL_HEX_BYTES),
+            max_decoded_values_per_section=min(16, args.max_output_rows),
+        )
+    else:
+        limits = AnalysisLimits(
+            max_fixtures=min(DEFAULT_SAFE_MAX_FIXTURES, MAX_FIXTURES),
+            max_runtime_seconds=min(DEFAULT_SAFE_MAX_RUNTIME_SECONDS, args.max_runtime_seconds),
+            max_total_cobdao_sections=min(64, args.max_sections),
+            max_section_comparisons=min(256, args.max_comparisons),
+            max_near_miss_rows=min(DEFAULT_SAFE_MAX_OUTPUT_ROWS, args.max_output_rows),
+            max_signature_rows=min(DEFAULT_SAFE_MAX_OUTPUT_ROWS, args.max_output_rows),
+            max_field_diff_rows=min(DEFAULT_SAFE_MAX_OUTPUT_ROWS, args.max_output_rows),
+            max_output_rows=min(DEFAULT_SAFE_MAX_OUTPUT_ROWS, args.max_output_rows),
+            max_local_hex_bytes=min(64, MAX_LOCAL_HEX_BYTES),
+            max_decoded_values_per_section=min(16, MAX_DECODED_VALUES_PER_SECTION),
+            max_marker_scan_iterations=min(200, MAX_MARKER_SCAN_ITERATIONS),
+        )
+    report = build_report(limits, deep=args.deep)
     if args.debug_limits:
         report.setdefault("warnings", []).append(f"debug limits active: {report['limits']}")
     if args.json:

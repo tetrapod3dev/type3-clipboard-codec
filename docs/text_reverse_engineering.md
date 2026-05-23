@@ -1116,6 +1116,20 @@ for each CPropertyExtend CObDao local section:
 
 This remains blocked from parser promotion because local field semantics are still unknown, the signature was discovered with analyzer labels, and chain ownership mapping still needs a parser-safe rule.
 
+### Analyzer safe mode policy (2026-05-23)
+
+- `tools/analyze_text_cproperty_anchor_context.py` default execution is now **safe lightweight summary only**.
+- Heavy/deep record analysis is disabled by default and runs only with `--deep`.
+- PyCharm/IDE console protection rule:
+  - do not run deep mode with unbounded console output.
+  - prefer redirected output for deep mode.
+
+Recommended deep command:
+
+```powershell
+.\.venv\Scripts\python.exe tools\analyze_text_cproperty_anchor_context.py --json --deep --max-sections 20 --max-output-rows 50 > out.json
+```
+
 Important rejection:
 
 - `coordinate-like at CObDao + 34` remains rejected as a selector because non-anchor sections still produce coordinate-like false positives.
