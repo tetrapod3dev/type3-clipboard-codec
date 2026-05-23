@@ -1131,6 +1131,16 @@ Current CObDao section selector leads:
 
 These fields separate the current analyzer-labeled anchor-bearing sections from non-anchor sections, but they are not confirmed parser rules. Keep future fixture intent files detailed enough to compare object count, grouping, attempted selection order, parser chain order, and anchor ownership against these local fields.
 
+Phase 1 candidate-only parser output (RFC-aligned):
+
+- parser now exposes `candidate_fields["cproperty_anchor_candidates"]` for signature v1 matches.
+- candidate entries are provisional evidence only:
+  - `source=CPropertyExtend_CObDao_signature_v1`
+  - `confidence=provisional`
+  - `ownership=unresolved`
+  - `matched_chain=None`
+- active text anchor behavior is unchanged (existing baseline midpoint fallback remains active).
+
 Mixed-color validation:
 
 - `text_three_objects_grouped_order_abc_mixed_color.txt` preserves the 9-section grouped pattern.

@@ -1152,6 +1152,8 @@ Summary:
 - signature v1 layout is stable across current Group A/B/C controlled fixtures.
 - parser behavior is unchanged (`not_modified`).
 - RFC scope is decode-candidate discussion only; ownership assignment and active anchor replacement are out of scope.
+- Phase 1 candidate-only parser output is now available in `candidate_fields["cproperty_anchor_candidates"]`.
+- active text anchor remains the existing path (`baseline_midpoint` fallback retained).
 
 Important rejection:
 

@@ -1058,3 +1058,5 @@ Current note:
 - signature v1 checked offsets are stable in current controlled fixture groups.
 - this does not change parser readiness; status remains `not_ready_analyzer_only`.
 - decode and ownership are explicitly separated; implementation is deferred.
+- Phase 1 is now implemented as candidate-only output (`candidate_fields["cproperty_anchor_candidates"]`).
+- ownership remains `unresolved`, confidence remains `provisional`, and active anchor behavior is unchanged.

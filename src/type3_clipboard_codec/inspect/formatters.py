@@ -478,6 +478,17 @@ def render_inspection_text(payload: dict[str, Any]) -> str:
         lines.append(f"  source_text_candidate: {text.get('source_text_candidate')}")
         lines.append(f"  display_text_candidate: {text.get('display_text_candidate')}")
         lines.append(f"  raw_text_record_count: {text.get('raw_text_record_count')}")
+    cproperty_candidates = (payload.get("candidate_fields") or {}).get("cproperty_anchor_candidates") or []
+    if cproperty_candidates:
+        lines.append("")
+        lines.append("CPropertyExtend anchor candidates:")
+        for candidate in cproperty_candidates[:16]:
+            lines.append(
+                "  "
+                f"- X={candidate.get('x_mm')}, Y={candidate.get('y_mm')}, Z={candidate.get('z_mm')} "
+                f"source={candidate.get('source')} confidence={candidate.get('confidence')} "
+                f"ownership={candidate.get('ownership')}"
+            )
 
     warnings = payload.get("warnings") or []
     if warnings:

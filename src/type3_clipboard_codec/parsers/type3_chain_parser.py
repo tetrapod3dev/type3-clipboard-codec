@@ -1,5 +1,6 @@
 from typing import Any, List, Optional, Dict, Tuple
 import struct
+import math
 
 from .base import BaseParser
 from ..models.geometry import (
@@ -78,6 +79,8 @@ class Type3ChainParser(BaseParser):
     PROPERTY_EXTEND_GROUP_COLOR_PRIMARY_OFFSET = 0x20E
     PROPERTY_EXTEND_GROUP_COLOR_SECONDARY_OFFSET = 0x21A
     KNOWN_FONT_MARKERS = {"Arial", "Arial Bold", "Arial-BoldMT"}
+    COBDAO_MARKER = b"CObDao"
+    OBJECTINFOS_MARKERS = (b"OBJECTINFOS_CLASSNAME", b"OBJETINFOS_CLASSNAME")
     def can_parse(self, reader: BytesReader) -> bool:
         pos = reader.tell()
         try:
@@ -257,6 +260,7 @@ class Type3ChainParser(BaseParser):
                     if is_group_candidate
                     else ("independent_multi" if len(final_chains) > 1 else "single")
                 ),
+                "cproperty_anchor_candidates": self._extract_cproperty_anchor_candidates(all_nodes),
             },
             notes=[
                 f"Type3ChainParser: Extracted {len(final_chains)} object chains.",
@@ -275,8 +279,97 @@ class Type3ChainParser(BaseParser):
 
         if result.is_text_object:
             result.notes.extend(result.text_notes)
+            if result.candidate_fields.get("cproperty_anchor_candidates"):
+                result.notes.append(
+                    "CPropertyExtend anchor candidates were added as provisional evidence only; "
+                    "active text anchor remains unchanged and ownership is unresolved."
+                )
             
         return result
+
+    def _extract_cproperty_anchor_candidates(self, nodes: List[Type3Node]) -> List[dict[str, Any]]:
+        candidates: List[dict[str, Any]] = []
+        for node in nodes:
+            if node.header.class_name != "CPropertyExtend":
+                continue
+            payload = node.payload
+            start = 0
+            while True:
+                cobdao_offset = payload.find(self.COBDAO_MARKER, start)
+                if cobdao_offset < 0:
+                    break
+                start = cobdao_offset + 1
+                matched, signature_fields = self._match_cproperty_anchor_signature_v1(payload, cobdao_offset)
+                if not matched:
+                    continue
+                triple = self._decode_double3_mm(payload, cobdao_offset + 34)
+                if triple is None:
+                    continue
+                candidates.append(
+                    {
+                        "x_mm": triple[0],
+                        "y_mm": triple[1],
+                        "z_mm": triple[2],
+                        "source": "CPropertyExtend_CObDao_signature_v1",
+                        "confidence": "provisional",
+                        "ownership": "unresolved",
+                        "matched_chain": None,
+                        "node_class": "CPropertyExtend",
+                        "cobdao_relative_offset": cobdao_offset,
+                        "anchor_relative_to_cobdao": 34,
+                        "signature": signature_fields,
+                    }
+                )
+        return candidates
+
+    def _match_cproperty_anchor_signature_v1(self, payload: bytes, cobdao_offset: int) -> Tuple[bool, dict[str, int]]:
+        signature_fields = {
+            "u32le_cobdao_plus_12": self._read_u32(payload, cobdao_offset + 12),
+            "u32le_cobdao_plus_56": self._read_u32(payload, cobdao_offset + 56),
+            "u32le_cobdao_plus_108": self._read_u32(payload, cobdao_offset + 108),
+            "u32le_cobdao_plus_112": self._read_u32(payload, cobdao_offset + 112),
+        }
+        if not self._has_objectinfos_at_cobdao_minus_24(payload, cobdao_offset):
+            return False, signature_fields
+        if signature_fields["u32le_cobdao_plus_12"] != 131072:
+            return False, signature_fields
+        if signature_fields["u32le_cobdao_plus_56"] != 262144:
+            return False, signature_fields
+        if signature_fields["u32le_cobdao_plus_108"] != 65536:
+            return False, signature_fields
+        if signature_fields["u32le_cobdao_plus_112"] != 262144:
+            return False, signature_fields
+        triple = self._decode_double3_mm(payload, cobdao_offset + 34)
+        if triple is None:
+            return False, signature_fields
+        if abs(triple[2]) > 1e-6:
+            return False, signature_fields
+        if abs(triple[0]) > 1_000_000 or abs(triple[1]) > 1_000_000:
+            return False, signature_fields
+        return True, signature_fields
+
+    def _has_objectinfos_at_cobdao_minus_24(self, payload: bytes, cobdao_offset: int) -> bool:
+        marker_offset = cobdao_offset - 24
+        if marker_offset < 0:
+            return False
+        for marker in self.OBJECTINFOS_MARKERS:
+            end = marker_offset + len(marker)
+            if end <= len(payload) and payload[marker_offset:end] == marker:
+                return True
+        return False
+
+    def _decode_double3_mm(self, payload: bytes, offset: int) -> Optional[Tuple[float, float, float]]:
+        if offset < 0 or offset + 24 > len(payload):
+            return None
+        x_m, y_m, z_m = struct.unpack("<ddd", payload[offset : offset + 24])
+        if not all(math.isfinite(v) for v in (x_m, y_m, z_m)):
+            return None
+        return (round(x_m * 1000.0, 6), round(y_m * 1000.0, 6), round(z_m * 1000.0, 6))
+
+    def _read_u32(self, payload: bytes, offset: int) -> int:
+        if offset < 0 or offset + 4 > len(payload):
+            return -1
+        return struct.unpack("<I", payload[offset : offset + 4])[0]
 
     def _looks_like_text_object(self, data: bytes, nodes: List[Type3Node]) -> bool:
         """

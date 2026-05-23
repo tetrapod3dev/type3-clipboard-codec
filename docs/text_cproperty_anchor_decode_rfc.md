@@ -1,8 +1,14 @@
 # CPropertyExtend Direct Anchor Provisional Decode RFC
 
-Status: Draft (provisional)  
+Status: Draft (provisional, Phase 1 candidate-only implemented)  
 Date: 2026-05-24  
 Scope: Text parser design discussion only (no implementation in this RFC)
+
+Phase 1 implementation note (2026-05-24):
+
+- Candidate-only extraction was added to parser output via `candidate_fields["cproperty_anchor_candidates"]`.
+- Active `text_anchor` behavior is unchanged.
+- Ownership assignment remains unresolved and not implemented.
 
 ## 1. Problem Statement
 
@@ -78,6 +84,12 @@ Possible future parser behavior:
 - detect signature v1
 - decode anchor triple at `CObDao+34`
 - expose candidate evidence only
+
+Current implementation status:
+
+- implemented as candidate-only output in parser `candidate_fields`
+- no active anchor replacement
+- no chain ownership assignment
 
 Candidate output shape (example names):
 
