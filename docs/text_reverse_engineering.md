@@ -1165,3 +1165,23 @@ Interpretation:
 - The local fields around `CObDao + 12`, `+56`, `+108`, and `+112` are the strongest current selector leads.
 - They are not yet parser-safe because their semantic role is unknown and they were found using analyzer labels derived from current fixtures.
 - The next useful work is to design fixtures that vary object count/grouping/order while keeping these fields under observation, or to reverse the local record format around these offsets.
+
+### Visible text ownership analysis (Phase 1.5, analyzer-only)
+
+- New analyzer: `tools/analyze_text_visible_ownership.py`
+- Scope: visible text ownership analysis only (no parser behavior change)
+- Policy:
+  - parser behavior: `not_modified`
+  - CPropertyExtend anchor ownership: `not_assigned`
+  - active anchor behavior: `unchanged`
+- Output modes:
+  - text summary
+  - `--json` compact
+  - `--markdown` summary table
+- Key distinction now tracked explicitly:
+  - attempted selection order (intent metadata)
+  - parser chain text order (observed parser output)
+- Current status:
+  - visible text ownership is observed/provisional
+  - CPropertyExtend anchor ownership remains unresolved
+  - parser readiness remains analyzer-only for ownership decisions

@@ -310,6 +310,33 @@ It should be treated as:
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
 
+## Visible ownership analyzer (multi-object text)
+
+Analyzer:
+
+- `tools/analyze_text_visible_ownership.py`
+
+Scope/policy:
+
+- visible text ownership analysis only
+- parser behavior not modified
+- CPropertyExtend anchor ownership not assigned
+- active anchor behavior unchanged
+
+What it compares per fixture:
+
+- attempted selection order (intent metadata when available)
+- parser chain text order
+- parser chain anchor order
+- CParagraphe direct anchor owner evidence (if observed)
+- CPropertyExtend anchor candidate count
+
+Status guidance:
+
+- visible text ownership: observed/provisional
+- CPropertyExtend anchor ownership: unresolved
+- parser readiness for ownership assignment: analyzer-only
+
 ## Safe execution note for anchor-context analyzer
 
 `tools/analyze_text_cproperty_anchor_context.py` now defaults to safe lightweight summary output to protect IDE consoles from oversized output.

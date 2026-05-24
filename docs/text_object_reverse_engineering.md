@@ -1060,3 +1060,20 @@ Current note:
 - decode and ownership are explicitly separated; implementation is deferred.
 - Phase 1 is now implemented as candidate-only output (`candidate_fields["cproperty_anchor_candidates"]`).
 - ownership remains `unresolved`, confidence remains `provisional`, and active anchor behavior is unchanged.
+
+## Visible text ownership analysis status
+
+- This stage adds analyzer-only visibility for multi-object text ownership:
+  - parser chain order
+  - chain text candidate vs chain anchor candidate
+  - attempted selection order vs parser chain order
+  - grouped/not-grouped variation impact
+- Tool: `tools/analyze_text_visible_ownership.py`
+- Output contracts:
+  - text summary
+  - compact JSON
+  - markdown summary tables
+- Interpretation policy:
+  - text candidate ownership can be observed per chain
+  - anchor ownership remains unresolved for CPropertyExtend candidates
+  - do not treat analyzer observations as parser-confirmed ownership rules yet
