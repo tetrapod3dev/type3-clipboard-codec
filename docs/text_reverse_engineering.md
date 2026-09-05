@@ -1168,9 +1168,15 @@ Interpretation:
 
 ### Visible text ownership analysis (Phase 1.5, analyzer-only)
 
-Next design stage: [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md).
+Phase 2A: [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md).
 It separates text identity, CParagraphe direct-anchor, and CPropertyExtend candidate
-ownership and proposes analyzer-only Phase 2A shadow mapping; no ownership implementation.
+ownership. `tools/analyze_text_anchor_shadow_mapping.py` now implements analyzer-only
+shadow mapping: structural hypotheses are frozen before intent/oracle comparison;
+`--no-oracle` produces identical structural results. B is blocked, D unresolved,
+and E finds no typed link across all 13 fixtures. Conditional ascending pairing
+has 10 agreements and 3 contradictions, separate from 13 abstentions per strategy.
+Parser output and active anchors are unchanged, every strategy remains
+`parser_safe=false`, and Phase 2 parser ownership is still not authorized.
 
 - New analyzer: `tools/analyze_text_visible_ownership.py`
 - Scope: visible text ownership analysis only (no parser behavior change)

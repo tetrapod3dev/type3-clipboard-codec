@@ -1399,3 +1399,17 @@ Current inventory: all 13 current visible-ownership fixtures have schema v1 inte
 metadata (9 attempted, 4 unknown), with no missing intent files and 0
 controlled-observed orders. Unknown means explicitly not recorded, not inferred;
 actual payload stored order remains unresolved for all fixtures.
+
+## Phase 2A anchor shadow mapping
+
+`python tools/analyze_text_anchor_shadow_mapping.py --json` analyzes all 13 current
+visible-ownership fixtures with bounded B/D/E structural hypotheses and a separate
+diagnostic anchor-equality oracle. `--no-oracle` skips intent loading and disables
+equality without changing structural hypotheses; unknown order is never inferred.
+Parser output and active anchors are unchanged, `matched_chain` remains `None`,
+and all strategies report `parser_safe=false`. B is blocked in 13 fixtures, D
+unresolved in 13, and E reports no link in 13. Applicable conditional pairings
+agree in 10 and contradict in 3; all unconditional comparisons abstain.
+No parser ownership implementation is authorized. See the
+[ownership RFC](../../docs/text_anchor_ownership_mapping_rfc.md) for provenance,
+oracle isolation, bounds, and the remaining structural linkage questions.

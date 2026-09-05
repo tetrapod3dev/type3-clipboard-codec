@@ -2,7 +2,7 @@
 
 Status: Draft; Phase 2 ownership implementation is not ready.
 Date: 2026-09-06
-Scope: Documentation only. Phase 2A below is a proposed analyzer experiment, not implemented here.
+Scope: Phase 2A analyzer-only shadow experiment implemented; no parser ownership assignment.
 
 Related: [candidate decode RFC](text_cproperty_anchor_decode_rfc.md),
 [text reverse engineering](text_reverse_engineering.md),
@@ -165,10 +165,10 @@ automatically parser-safe. It needs independent validation and review before any
 parser promotion. Both the CParagraphe-owner dependency and CPropertyExtend mapping
 must meet these requirements end to end.
 
-## 6. Proposed Phase 2A
+## 6. Phase 2A Design and Implementation
 
-Do not assign ownership. Propose an analyzer-only shadow mapping experiment with
-two isolated stages:
+The analyzer implements shadow mapping without assigning ownership, with two
+isolated stages:
 
 1. Compute structural hypotheses from immutable parser/payload evidence. Inputs
    exclude filenames, intent, expected coordinates, and oracle owner indices.
@@ -184,7 +184,8 @@ only after structural results exist. Unknown attempted-order fixtures still run
 all payload-only strategies; missing oracle information yields `unavailable`,
 never an inferred attempted order or a successful match.
 
-Illustrative report shape (not a result for an existing fixture):
+Original illustrative report shape (not an actual fixture result; the implemented
+tool separates fixture-level `structural_hypotheses` and `oracle_results`):
 
 ```json
 {
@@ -214,9 +215,92 @@ Illustrative report shape (not a result for an existing fixture):
 
 These are separate analyzer records, not additions to or mutations of parser
 candidates. `possible_chain_indices` is a hypothesis set, not an assignment.
-Include candidate node/section provenance in the real proposal output; do not
+Include candidate node/section provenance in the output; do not
 represent absent strategy evidence as an empty, successfully matched chain set.
 Keep `parser_safe: false` throughout Phase 2A, even when an oracle agrees.
+
+### Implemented experiment
+
+Run `python tools/analyze_text_anchor_shadow_mapping.py` for a small text report,
+add `--json` for compact JSON, or use `--json --no-oracle` to skip intent loading
+and disable anchor equality. The tool reuses the 13-fixture inventory and small
+metadata reader from the visible ownership analyzer; heavy analyzers are unchanged.
+
+`structural_phase(parsed, nodes)` accepts no fixture name, intent, or oracle.
+The caller serializes the complete hypotheses to canonical JSON before loading
+intent or constructing oracles. Comparison receives this frozen string and works
+on a private deserialized copy. Final structural output is reconstructed from the
+same frozen string; oracle agreement never updates a structural status.
+
+Candidate provenance includes zero-based candidate, CPropertyExtend-node,
+CObDao-section, and signature-match ordinals, a payload-relative CObDao offset,
+anchor-relative offset 34, candidate coordinates, and signature words at
+`+12/+56/+108/+112`. Node ordinal counts CPropertyExtend nodes only; section and
+signature-match ordinals reset for each node. Candidates are reconciled against
+parser extraction order. Absolute file offsets are not emitted. Chain provenance
+reports source node class and source payload-relative offset only.
+
+B enumerates at most one conditional ascending pairing per possible CParagraphe
+owner, in candidate emission order. Its status stays `blocked` with reason
+`no_structural_cparagraphe_owner`. D independently uses node/section/match traversal
+order and reports the same conditional remaining-chain hypothesis as `unresolved`.
+Neither chooses an owner, and candidate-count mismatch suppresses pairing rather
+than forcing an assignment. Candidate coordinate values never sort the records.
+
+E probes u32 words at CObDao-relative `+8..+124` with stride 4, excluding anchor
+bytes and signature-word spans. It compares only small positive integers (1..N)
+against four words in each chain source's 16-byte preamble. Those words are untyped:
+neither constants nor integer coincidences establish identifier semantics. The
+current 13 fixtures yield no such shared-index evidence and `no_link_found`.
+This limited probe does not rule out other alignments, larger identifiers,
+adjacency encodings, or links outside the window. No whole-payload pairwise search
+or hex dump is performed.
+
+The equality oracle compares candidate/direct coordinates with current active
+parser anchors at per-axis tolerance `1e-6` mm. Its source explicitly says
+`current_parser_active_anchor_equality_diagnostic_only`; it is a consistency
+oracle, not independent expected-UI or text-identity truth. The tool does not
+manufacture fixture expected coordinates or use intent anchors for mapping.
+Unavailable or non-unique oracle matches remain unavailable/ambiguous. Intent
+reports grouping, attempted order, and order status only after Phase A.
+
+### Current results and comparison accounting
+
+| Strategy | Evaluated fixtures | Structural status | Unconditional comparison | Applicable conditional agreement / contradiction |
+|---|---:|---|---|---|
+| B: chain_order_pairing | 13 | blocked: 13 | abstention: 13 | 10 / 3 |
+| D: payload_order | 13 | unresolved: 13 | abstention: 13 | 10 / 3 |
+| E: structural_linkage | 13 | no_link_found: 13 | abstention: 13 | 0 / 0 (no hypotheses) |
+
+All other structural status counts and unconditional `oracle_agreement`,
+`oracle_contradiction`, `oracle_unavailable`, and `oracle_ambiguous` counts are zero.
+All 21 candidate equality oracles and 13 CParagraphe equality oracles are unique.
+This does not turn abstentions into successful mappings. Summary counting units
+are fixtures per strategy, candidates for candidate oracles, and fixtures for
+direct-anchor oracles. Every conditional branch is compared and retained; the
+`conditional_applicable_*` counters describe only branches whose CParagraphe
+condition agrees with that separate diagnostic oracle. They are not parser results.
+
+The three conditional contradictions, for both B and D, are grouped CBA,
+not-grouped ABC, and not-grouped ABC mixed-color fixtures. With oracle-observed
+CParagraphe chain2, ascending remaining-chain pairing predicts `[0,1]`, whereas
+candidate traversal matches `[1,0]`. The other ten agree conditionally, including
+the content-variation fixture; that agreement concerns anchor coordinates only
+and does not resolve its visible-text identity disagreement.
+
+Default limits are eight chain references/conditional owners, sixteen reported
+candidates, 256 scanned sections per fixture, four local evidence rows, and 128
+characters per reported text. Exceeding bounds suppresses complete mapping claims
+and emits `truncated=true` with a warning; full evidence remains in parser output
+and fixtures. There is no factorial enumeration. Optional evidence is shed if the
+bounded report exceeds the JSON budget; a further fallback retains summary and
+provenance counts with explicit warnings. Current output needs no truncation.
+
+Integration checks cover all 13 fixtures, byte-identical serialized structural
+hypotheses with oracles enabled/disabled, missing intent, changed active anchors,
+Phase A-before-oracle call order, and full parser result equality before/after
+analysis. `parser_safe` remains false everywhere; Phase 2 parser ownership is
+still not authorized.
 
 ## 7. Phase 2A Success Criteria
 
@@ -238,7 +322,7 @@ Before considering parser ownership implementation, require at least:
 Completing the current matrix is necessary, not sufficient for promotion. Broader
 N, duplicate/coincident cases, cross-session captures, and alternate signatures
 remain evidence gaps. Planning those checks does not authorize new fixtures in
-this documentation stage. A separate review must establish a generic structural
+this analyzer stage. A separate review must establish a generic structural
 rule and its failure behavior before parser work begins.
 
 ## 8. Non-Goals
@@ -248,14 +332,14 @@ rule and its failure behavior before parser work begins.
 - No promotion of signature v1 to confirmed.
 - No color/font/style decoding or changes to text identity extraction.
 - No inference of actual stored order or intent YAML use inside the parser.
-- No parser/decoder/model edits, analyzer mapping implementation, or new fixtures
-  in this RFC change.
+- No parser/decoder/model edits, production ownership implementation, or new fixtures
+  in this analyzer stage.
 
-## 9. Recommended Next Analyzer
+## 9. Implemented Small Analyzer
 
-Propose `tools/analyze_text_anchor_shadow_mapping.py` as a new small tool rather
-than expanding existing heavy section-audit tools. It does not exist as part of
-this RFC implementation. Its purpose is to compare mapping strategies while
+[`tools/analyze_text_anchor_shadow_mapping.py`](../tools/analyze_text_anchor_shadow_mapping.py)
+is a separate small tool; existing heavy section-audit tools are unchanged.
+Its purpose is to compare mapping strategies while
 leaving parser candidates, ownership, and active anchors unchanged.
 
 Default to all 13 fixtures, a short per-fixture/strategy summary, and compact
@@ -288,7 +372,7 @@ from the report. Missing inputs and unavailable oracles should be explicit warni
 | CParagraphe ownership | Unresolved/provisional; analyzer matches only |
 | CPropertyExtend ownership | Unresolved; `matched_chain = None` |
 | Active ownership implementation | Not ready |
-| Analyzer-only shadow mapping | Ready for a separately authorized Phase 2A experiment |
+| Analyzer-only shadow mapping | Phase 2A implemented; blocked/unresolved hypotheses and diagnostic comparisons reported |
 
 This RFC does not authorize parser promotion. Active anchors and the
 `baseline_midpoint` fallback remain unchanged.

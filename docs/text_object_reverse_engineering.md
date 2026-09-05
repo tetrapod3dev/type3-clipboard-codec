@@ -1065,7 +1065,13 @@ Current note:
 
 See the [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md)
 for separate ownership layers, candidate strategy comparisons, and parser-safe
-requirements. Phase 2A is a proposed analyzer-only experiment, not parser ownership assignment.
+requirements. Phase 2A is implemented in `tools/analyze_text_anchor_shadow_mapping.py`
+as shadow mapping only. Structural B/D/E hypotheses are frozen before isolated
+oracles run; `--no-oracle` skips intent and preserves the hypotheses. All 13 fixtures
+remain analyzable, including four unknown-order fixtures. B is blocked, D unresolved,
+and E finds no typed linkage; conditional pairing contradicts three fixtures.
+Parser output, `matched_chain=None`, and active anchors are unchanged;
+`parser_safe=false` remains mandatory and Phase 2 parser ownership is not authorized.
 
 - This stage adds analyzer-only visibility for multi-object text ownership:
   - parser chain order
