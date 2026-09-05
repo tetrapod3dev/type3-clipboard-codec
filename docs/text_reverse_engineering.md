@@ -2,6 +2,16 @@
 
 This document records the current text-object reverse-engineering status and revises fixture planning based on newly confirmed behavior.
 
+Independent format audit: the [MFC CArchive compatibility investigation](typeeditzone_mfc_archive_investigation.md)
+finds 35 exact runtime-class-like descriptors across three text and five geometry
+fixtures, with five stable per-class schemas. The global assessment is
+`mfc_runtimeclass_framing_supported_but_writeobject_unclear`: old-class references,
+PID progression, and archive contexts remain unverified. Scanner boundaries match
+descriptor starts, not proven object boundaries. Parser refactor remains
+`not_ready`; the anchor ownership closeout below is unchanged. Color candidate
+investigation may proceed unchanged, with a framing RFC required before any
+archive-based redesign or ownership rule.
+
 Current track status: Phase 2A anchor ownership investigation complete; Phase 2
 parser ownership implementation deferred / not ready pending independent evidence.
 Ownership is not solved. The next investigation track is color ownership.

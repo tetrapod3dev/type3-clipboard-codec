@@ -2,6 +2,16 @@
 
 This document defines the complete first-stage fixture plan for reverse-engineering Type3 clipboard text objects.
 
+Independent format audit: see the [MFC CArchive compatibility investigation](typeeditzone_mfc_archive_investigation.md).
+The observed FFFF/schema/WORD-length/ASCII-name pattern matches 35 descriptors
+across text and geometry; the five descriptor classes have stable schema
+candidates. CObDao's 48 ASCII occurrences do not match this layout. Current
+scanner starts correspond to descriptor starts, without proving object blocks.
+The assessment is `mfc_runtimeclass_framing_supported_but_writeobject_unclear`;
+PID/reference/context interpretation and parser refactor remain unready. This
+changes no anchor closeout conclusions or fixture plan. Color candidate work may
+continue under existing restrictions; archive-based changes need a framing RFC.
+
 Current track status: Phase 2A anchor ownership investigation complete; Phase 2
 parser ownership implementation deferred / not ready pending independent evidence.
 Ownership is not solved. Color ownership is the next investigation track.
