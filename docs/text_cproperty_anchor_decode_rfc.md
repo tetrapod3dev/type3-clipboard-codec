@@ -101,6 +101,12 @@ Candidate output shape (example names):
 
 ### Phase 2 (ownership assignment, later)
 
+The [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md)
+defines the separate ownership layers and proposed Phase 2A shadow experiment.
+Equality/proximity and fixture selection metadata below are analyzer evidence only;
+they cannot select parser owners. A structural CParagraphe owner and independent
+CPropertyExtend chain linkage remain unresolved prerequisites.
+
 Not implemented in this RFC.
 Requires independent chain mapping rule.
 

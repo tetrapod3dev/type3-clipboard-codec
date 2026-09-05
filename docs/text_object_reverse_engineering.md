@@ -1063,6 +1063,10 @@ Current note:
 
 ## Visible text ownership analysis status
 
+See the [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md)
+for separate ownership layers, candidate strategy comparisons, and parser-safe
+requirements. Phase 2A is a proposed analyzer-only experiment, not parser ownership assignment.
+
 - This stage adds analyzer-only visibility for multi-object text ownership:
   - parser chain order
   - chain text candidate vs chain anchor candidate

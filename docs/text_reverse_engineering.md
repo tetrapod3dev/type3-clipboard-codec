@@ -1168,6 +1168,10 @@ Interpretation:
 
 ### Visible text ownership analysis (Phase 1.5, analyzer-only)
 
+Next design stage: [Text Anchor Ownership Mapping RFC](text_anchor_ownership_mapping_rfc.md).
+It separates text identity, CParagraphe direct-anchor, and CPropertyExtend candidate
+ownership and proposes analyzer-only Phase 2A shadow mapping; no ownership implementation.
+
 - New analyzer: `tools/analyze_text_visible_ownership.py`
 - Scope: visible text ownership analysis only (no parser behavior change)
 - Policy:
