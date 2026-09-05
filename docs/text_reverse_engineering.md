@@ -1272,3 +1272,26 @@ Current inventory: all 13 current visible-ownership fixtures have schema v1 inte
 metadata (9 attempted, 4 unknown), with no missing intent files and 0
 controlled-observed orders. Unknown means explicitly not recorded, not inferred;
 actual payload stored order remains unresolved for all fixtures.
+
+### Source-chain linkage follow-up (2026-09-06)
+
+`tools/analyze_text_cparagraphe_source_linkage.py` audits all 13 fixtures without
+changing parser behavior or assigning ownership. The next producing CContour
+correlation survives raw construction order (13/0/0); it is always raw chain 0.
+The 34 raw chains map to final indices with 10 index changes across five fixtures.
+Later chains originate in CPropertyExtend, sharing the paragraph's parser node
+group through template inheritance. CCourbe is contextual, not the source.
+
+Plausible class headers delimit scanner nodes. CZone/repeated-CContour grouping
+is a parser heuristic, not a decoded object-block delimiter. The common group
+contains multiple producing sources and cannot uniquely link the paragraph.
+H1/H3/H4 each have 13 support, 0 conflict, 0 abstention; H2/H5 each abstain on all
+13. These are diagnostic comparisons, not semantic proof. Adjacency-only remains
+a valid explanation, with no current discriminating counterexample.
+
+The analyzer freezes all structural results before loading oracle or intent;
+`--no-oracle` and removed intent preserve structure. Source selection is independent
+of final coordinate sorting. Conclusion: `raw_source_chain_relationship_supported`,
+no independent linkage found, all hypotheses `parser_safe=false`. The exact
+construction, boundary limitations and all cross-fixture mappings are documented
+in [the ownership RFC](text_anchor_ownership_mapping_rfc.md#cparagraphe-source-linkage-audit-2026-09-06).

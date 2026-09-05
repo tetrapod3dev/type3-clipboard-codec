@@ -1164,3 +1164,27 @@ Current inventory: all 13 current visible-ownership fixtures have schema v1 inte
 metadata (9 attempted, 4 unknown), with no missing intent files and 0
 controlled-observed orders. Unknown means explicitly not recorded, not inferred;
 actual payload stored order remains unresolved for all fixtures.
+
+### CParagraphe source provenance versus object ownership (2026-09-06)
+
+The separate `analyze_text_cparagraphe_source_linkage.py` analyzer confirms the
+13/13 next-producing-CContour diagnostic correlation before sorting. CContour
+produces raw chain 0; CPropertyExtend produces the remaining embedded chains.
+The CParagraphe / CCourbe / CContour sequence repeats in all fixtures, but CCourbe
+has no independently decoded reference linking the paragraph to that source.
+
+Scanner boundaries are plausible class headers, not verified object containment.
+All produced chains share the paragraph parser group; inherited node membership
+is a construction artifact and does not distinguish ownership. No independent
+object boundary/link was found. Coordinate sorting changes 10 of 34 indices;
+source hypotheses survive reordered final chains and removed sort coordinates.
+
+H1/H3/H4: 13 support / 0 conflict / 0 abstention each. H2/H5: 0/0/13 each.
+The adjacency-only null remains unresolved; agreement cannot prove semantic linkage.
+All hypotheses remain `semantic_linkage_proven=false`, `parser_safe=false`.
+Conclusion: `raw_source_chain_relationship_supported`; ownership is not ready.
+Structural data are frozen before oracle/intent, unchanged with `--no-oracle`
+or missing intent, with bounded output and no parser/model changes. See the
+[ownership RFC](text_anchor_ownership_mapping_rfc.md#cparagraphe-source-linkage-audit-2026-09-06)
+for grouped ABC/CBA, ungrouped color, content, two-object and reversed-selection
+contrasts and exact sort mappings.

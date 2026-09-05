@@ -478,3 +478,80 @@ from the report. Missing inputs and unavailable oracles should be explicit warni
 
 This RFC does not authorize parser promotion. Active anchors and the
 `baseline_midpoint` fallback remain unchanged.
+
+### CParagraphe source-linkage audit (2026-09-06)
+
+Run `python tools/analyze_text_cparagraphe_source_linkage.py --json` (or
+`--no-oracle`). This separate bounded analyzer changes no parser, decoder, model,
+active anchor, or `matched_chain` assignment.
+
+The previous next-chain-producing-CContour correlation survives before coordinate
+sorting: 13 support / 0 conflict / 0 abstention. The analyzer executes the existing
+node grouping and chain construction methods on copied nodes, records their actual
+return order, and reconciles sources with final chains using node provenance and
+payload-relative record positions. It does not reconstruct source order by sorting
+final coordinates. Addresses are used internally only to reconcile parser/body
+origins, never as an ownership rule or emitted file offset.
+
+All 13 fixtures have the scanned sequence CZone (0), CParagraphe (1), CCourbe (2),
+CContour (3), then CPropertyExtend. Raw chain 0 comes from CContour; subsequent
+chains come from embedded records in CPropertyExtend. CCourbe is context, not a
+chain-producing source in these fixtures. The paragraph direct anchor at
+payload-local +158 is decoded only in the diagnostic oracle phase.
+
+The scanner cuts each payload at the next plausible class header. This establishes
+flat scanner node spans, not verified object lengths, nesting, or parent-child
+links. The chain builder starts a group at CZone or a repeated CContour. These are
+parser construction heuristics. In this corpus, the paragraph and all produced
+chains share the same parser group; embedded chains inherit its node list.
+CPropertyExtend is a scanner node boundary but does not terminate that parser
+group. Additional producing records occur before the group ends. No independently
+validated enclosing object block or explicit paragraph-to-contour reference was
+identified. The common range therefore cannot uniquely establish ownership.
+
+The text pipeline subsequently sorts chains by active anchor (x, y), falling back
+to bbox center (x, y), then infinity. Of 34 chains, 10 change index in five fixtures.
+The following lists final indices in raw construction order:
+
+| Contrast | Raw-to-final indices |
+| --- | --- |
+| Grouped ABC, including mixed color, height, font and content variations | [0, 1, 2] |
+| Grouped CBA | [2, 1, 0] |
+| Not-grouped ABC, same color and mixed color | [2, 1, 0] |
+| Two-object grouped, same color and mixed color | [0, 1] |
+| Two-object not-grouped, same color and mixed color | [1, 0] |
+| Two-object reversed selection | [0, 1] |
+
+These contrast labels are reporting context only. No fixture name, attempted
+order, expected coordinate, baseline equality, or intent selects a source.
+
+| Hypothesis | Support | Conflict | Abstention |
+| --- | ---: | ---: | ---: |
+| H1 immediate next producing CContour | 13 | 0 | 0 |
+| H2 independently delimited same local block | 0 | 0 | 13 |
+| H3 first raw chain constructed from paragraph parser group | 13 | 0 | 0 |
+| H4 contiguous CParagraphe / CCourbe / producing CContour | 13 | 0 | 0 |
+| H5 adjacency-only null hypothesis | 0 | 0 | 13 |
+
+Counts measure post-freeze diagnostic owner agreement, not independent semantic
+validation. H3 can be stated without next-CContour wording, but remains dependent
+on parser grouping and construction order. H4 is a repeatable class sequence;
+its semantic distinction from later embedded contours is unproven. H2 has no
+validated block selector. H5 remains viable: oracle agreement cannot distinguish
+accidental layout adjacency from semantic linkage. No current fixture contradicts
+H1/H3/H4, and this corpus does not discriminate between them.
+
+The entire structural corpus is serialized before any oracle or intent load.
+`--no-oracle` preserves fixture structural results and structural summaries;
+intent removal also preserves them. Tests reverse final chain order and remove
+sort coordinates without changing source hypotheses, compare active parser
+objects before/after, and verify source files are unchanged by analysis.
+
+Conclusion: `raw_source_chain_relationship_supported`, with
+`independent_linkage_found=false`. This does not prove adjacency is accidental,
+nor that adjacency means ownership. Every hypothesis retains
+`semantic_linkage_proven=false` and `parser_safe=false`; parser-safe CParagraphe
+ownership is still not ready. Further evidence needs an independently decoded
+object delimiter/reference or a discriminating layout, not more identical
+adjacency examples. Output is bounded to <100 KB JSON / <50 KB text with no raw
+payload dumps.
