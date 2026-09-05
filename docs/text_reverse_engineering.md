@@ -2,6 +2,12 @@
 
 This document records the current text-object reverse-engineering status and revises fixture planning based on newly confirmed behavior.
 
+Current track status: Phase 2A anchor ownership investigation complete; Phase 2
+parser ownership implementation deferred / not ready pending independent evidence.
+Ownership is not solved. The next investigation track is color ownership.
+The [final closeout](text_anchor_ownership_mapping_rfc.md#12-final-ownership-investigation-closeout)
+supersedes earlier anchor investigation plans in these notes.
+
 Conservative policy:
 
 - preserve Korean UI terminology exactly as observed
@@ -594,6 +600,9 @@ Operational note:
 ---
 
 ## Current High-Priority Reverse-Engineering Targets
+
+Next track: color ownership. Anchor ownership implementation remains deferred;
+the broader targets below are a backlog, not a Phase 2 implementation plan.
 
 - visible string storage
 - font name storage
@@ -1295,3 +1304,51 @@ of final coordinate sorting. Conclusion: `raw_source_chain_relationship_supporte
 no independent linkage found, all hypotheses `parser_safe=false`. The exact
 construction, boundary limitations and all cross-fixture mappings are documented
 in [the ownership RFC](text_anchor_ownership_mapping_rfc.md#cparagraphe-source-linkage-audit-2026-09-06).
+
+## Anchor Ownership Closeout and Color Ownership Handoff
+
+Phase 2A shadow mapping and source-linkage investigation are complete. Phase 2
+active parser ownership implementation is explicitly deferred until independent
+evidence establishes a valid link. Final structural conclusion:
+`raw_source_chain_relationship_supported`.
+
+Strong observations: all 13 fixtures preserve the same relationship before
+coordinate sorting, with candidate raw chain 0 from CContour and later chains
+from CPropertyExtend embedded contours. Ten of 34 chains across five fixtures
+change final index after sorting. Raw/source provenance is therefore more
+fundamental for construction tracing than final parser index; neither establishes
+semantic ownership by itself.
+
+Provisional: CParagraphe-to-raw-source and CCourbe/CContour sequence correlations.
+Unresolved: semantic CParagraphe ownership, independently verified object-block
+linkage, unique local object identifiers, CPropertyExtend candidate-to-chain
+mapping, and actual stored object order. Adjacency-only remains viable.
+
+Rejected as parser ownership rules: baseline equality, expected-anchor selection,
+attempted selection order, final sorted chain index, fixture filename, absolute
+offsets, and unconditional chain-order pairing. All ownership hypotheses remain
+`parser_safe=false`; no parser-safe CParagraphe or CPropertyExtend ownership rule
+has been established.
+
+| Area | Readiness |
+| --- | --- |
+| CPropertyExtend candidate decode | Provisional implemented |
+| Raw source relationship | Structurally supported |
+| Semantic CParagraphe ownership | Unresolved |
+| CPropertyExtend ownership | Unresolved |
+| Phase 2 active ownership implementation | Deferred / not ready |
+
+`matched_chain = None`, active text anchors, and the `baseline_midpoint` fallback
+remain unchanged. Reopen anchor ownership only with independent boundary,
+reference, or semantic identifier evidence that distinguishes linkage from
+adjacency; more coordinate agreement alone is insufficient.
+
+Next track: **color ownership**, starting from existing color candidate and
+single-object/grouped/not-grouped mixed-color evidence. Distinguish field decoding
+from candidate-to-object ownership and trace raw sources separately from sorted
+indices. Do not use unresolved anchor ownership as a color ownership oracle.
+This handoff adds no analyzer, parser/decoder/model change, ownership heuristic,
+or fixture. See the [ownership RFC closeout](text_anchor_ownership_mapping_rfc.md#12-final-ownership-investigation-closeout)
+for the authoritative status and reopening requirements.
+
+Verification baseline: `PYTHONPATH=src pytest -q` — **311 passed**.
