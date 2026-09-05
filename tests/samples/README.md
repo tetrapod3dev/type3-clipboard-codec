@@ -1339,3 +1339,63 @@ Known limitations from current inventory/parsing:
 
 Do not overgeneralize unsupported format rules from this file alone.
 Prefer conservative parsing and preserve unknown/raw bytes where possible.
+
+## Multi-object intent order metadata (schema v1)
+
+The visible ownership analyzer reads a fenced `yaml` block under `intent_metadata`.
+Existing human-readable capture notes are preserved. Example for a known attempted order:
+
+```yaml
+intent_metadata:
+  schema_version: 1
+  object_count: 2
+  grouping: not_grouped
+  order_control_status: attempted
+  attempted_selection_order:
+    - label: B
+      text: "1234567890"
+      anchor_mm: [211.111, 322.222, 0.0]
+      color: Army Green
+    - label: A
+      text: abcdefg
+      anchor_mm: [111.111, 222.222, 0.0]
+      color: Army Green
+  actual_stored_order: unresolved
+  notes:
+    - attempted selection order is user-observed or user-attempted
+    - actual payload stored order is not assumed
+```
+
+`grouping` is `grouped`, `not_grouped`, or `unknown`. `order_control_status` is
+`attempted`, `unknown`, or `controlled_observed`; the last value requires explicit
+capture evidence and is not inferred from a filename or parser output. Unknown older
+captures use `attempted_selection_order: []` and a note that selection order was not
+recorded. Labels identify objects, and list position records attempted selection order.
+Quote numeric text strings; anchors contain three finite coordinates in mm.
+
+Attempted selection order and parser chain text order are separate observations.
+Neither proves actual payload stored order; `actual_stored_order` stays `unresolved`
+in this schema. Intent anchors/colors describe capture intent, not assigned ownership.
+The analyzer uses intent metadata only for reporting. Parser, decoder and model logic
+must never use fixture intent metadata or change active anchors based on it.
+CPropertyExtend ownership remains unassigned.
+
+Install the development dependencies (including PyYAML) to run
+`tools/analyze_text_visible_ownership.py --json`. Valid YAML takes precedence over
+loose notes. Missing/invalid YAML produces warnings and falls back to loose text,
+then filename grouping/unknown order. Missing intent files do not fail analysis and
+appear in `missing_intent_files` and `warnings`.
+
+Each fixture summary includes `normalized_intent_metadata`, `attempted_order_source`
+(`yaml`, `loose_text`, `filename_or_unknown`, `missing`), `order_control_status`, and
+`actual_stored_order`. Missing files have null normalized metadata; legacy fallback
+entries use null for unrecorded label/anchor/color rather than inventing evidence.
+`intent_metadata_summary` counts processed fixtures (`total_fixtures`), validated YAML
+(`with_yaml_metadata`), fixtures without valid YAML (`missing_metadata`, including
+invalid or absent metadata), and unknown/attempted/controlled-observed order states.
+Missing payload fixtures are excluded from these counts and listed in `missing_fixtures`.
+
+Current inventory: all 13 current visible-ownership fixtures have schema v1 intent
+metadata (9 attempted, 4 unknown), with no missing intent files and 0
+controlled-observed orders. Unknown means explicitly not recorded, not inferred;
+actual payload stored order remains unresolved for all fixtures.

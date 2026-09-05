@@ -10,6 +10,36 @@
 - description: Two independent text objects, same color, not grouped, attempted reversed selection order
 - external intent file: 
 
+
+## Machine-readable intent metadata
+
+```yaml
+intent_metadata:
+  schema_version: 1
+  object_count: 2
+  grouping: not_grouped
+  order_control_status: attempted
+  attempted_selection_order:
+  - label: B
+    text: '1234567890'
+    anchor_mm:
+    - 211.111
+    - 322.222
+    - 0.0
+    color: Army Green
+  - label: A
+    text: abcdefg
+    anchor_mm:
+    - 111.111
+    - 222.222
+    - 0.0
+    color: Army Green
+  actual_stored_order: unresolved
+  notes:
+  - attempted selection order is user-observed or user-attempted
+  - actual payload stored order is not assumed
+```
+
 ## User intent / ground truth
 
 - source object:

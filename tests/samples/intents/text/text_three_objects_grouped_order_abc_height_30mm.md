@@ -10,6 +10,43 @@
 - description: Three text objects, grouped, order A-B-C, height 30mm
 - external intent file: 
 
+
+## Machine-readable intent metadata
+
+```yaml
+intent_metadata:
+  schema_version: 1
+  object_count: 3
+  grouping: grouped
+  order_control_status: attempted
+  attempted_selection_order:
+  - label: A
+    text: abcdefg
+    anchor_mm:
+    - 111.111
+    - 222.222
+    - 0.0
+    color: Army Green
+  - label: B
+    text: '1234567890'
+    anchor_mm:
+    - 211.111
+    - 322.222
+    - 0.0
+    color: Army Green
+  - label: C
+    text: XYZ
+    anchor_mm:
+    - 311.111
+    - 422.222
+    - 0.0
+    color: Army Green
+  actual_stored_order: unresolved
+  notes:
+  - attempted selection order is user-observed or user-attempted
+  - actual payload stored order is not assumed
+```
+
 ## User intent / ground truth
 
 - source object:

@@ -10,6 +10,21 @@
 - description: Two independent text objects, same color, not grouped
 - external intent file: 
 
+
+## Machine-readable intent metadata
+
+```yaml
+intent_metadata:
+  schema_version: 1
+  object_count: 2
+  grouping: not_grouped
+  order_control_status: unknown
+  attempted_selection_order: []
+  actual_stored_order: unresolved
+  notes:
+  - selection order was not recorded when this fixture was created
+```
+
 ## User intent / ground truth
 
 - source object:
