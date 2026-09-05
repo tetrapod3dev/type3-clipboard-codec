@@ -2,6 +2,16 @@
 
 This document records the current text-object reverse-engineering status and revises fixture planning based on newly confirmed behavior.
 
+Color Phase 1 now has a separate [field-decode RFC](text_color_decode_rfc.md) and
+`tools/analyze_text_color_record.py`. The oracle-free strongest primary candidate
+is CParagraphe candidate-record +0x8B, u32le/RGB0. Black/Army Green/Navy Blue
+controls yield 9/8/8 palette observations out of 10 full-fit chunks each; unknown
+header/tail values remain visible. A shifted big-endian comparison remains viable.
+Mixed-fixture color presence needs bounded CPropertyExtend side evidence and does
+not yield ownership. The general CPropertyExtend field status remains
+`no_stable_cpropertyextend_color_field_found`. Structural results are identical
+with `--no-oracle`; parser behavior and anchor closeout remain unchanged.
+
 Independent format audit: the [MFC CArchive compatibility investigation](typeeditzone_mfc_archive_investigation.md)
 finds 35 exact runtime-class-like descriptors across three text and five geometry
 fixtures, with five stable per-class schemas. The global assessment is

@@ -1,6 +1,8 @@
 # TypeEditZone MFC CArchive Compatibility Investigation
 
 Status: first analyzer-only compatibility audit complete; parser refactor not ready.
+
+[Color Phase 1](text_color_decode_rfc.md) proceeded using descriptor/payload provenance without a parser refactor.
 This track is independent of anchor and color ownership. The anchor closeout is
 unchanged: semantic ownership unresolved, implementation deferred,
 `matched_chain=None`, active anchors and `baseline_midpoint` unchanged.

@@ -2,6 +2,16 @@
 
 This document defines the complete first-stage fixture plan for reverse-engineering Type3 clipboard text objects.
 
+Color Phase 1 field decoding is documented in the [color decode RFC](text_color_decode_rfc.md).
+The separate analyzer finds +0x8B/u32le/RGB0 as the strongest primary candidate
+without expected-color selection. The provisional 204-byte chunk model includes
+unmapped header/tail values and repeated color copies, not one record per object.
+Grouped/not-grouped mixed and three-object contrasts use multisets and retain
+multiplicity. CPropertyExtend +30 contributes bounded side evidence but fails
+the single-object controls as a general color field. Ownership remains not ready;
+anchor closeout and scanner/parser behavior are unchanged. Runtime descriptor
+positions are provenance only and schema 6 is not interpreted as color metadata.
+
 Independent format audit: see the [MFC CArchive compatibility investigation](typeeditzone_mfc_archive_investigation.md).
 The observed FFFF/schema/WORD-length/ASCII-name pattern matches 35 descriptors
 across text and geometry; the five descriptor classes have stable schema
