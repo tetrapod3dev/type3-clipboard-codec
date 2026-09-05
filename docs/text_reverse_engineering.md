@@ -2,6 +2,16 @@
 
 This document records the current text-object reverse-engineering status and revises fixture planning based on newly confirmed behavior.
 
+Color Phase 1B adds a separate byte-boundary/chunk-role analyzer; see the
+[RFC results](text_color_decode_rfc.md#phase-1b-byte-boundary-and-chunk-role-audit).
+Primary ordinals 1..8 change exactly 0x8B..0x8D in all 24 pair comparisons.
+Both adjacent bytes remain zero, so three-byte RGB and the two four-byte views
+remain compatible. Ordinal 0 is header-like and ordinal 9 terminal/invariant;
+Black's extra match is the header-like zero word, not a ninth repeated color
+record. The 204-byte model has mixed provisional local roles. Typed width,
+candidate parser modeling and ownership remain not ready; oracle on/off preserves
+the complete structural result. Parser behavior and anchor closeout are unchanged.
+
 Color Phase 1 now has a separate [field-decode RFC](text_color_decode_rfc.md) and
 `tools/analyze_text_color_record.py`. The oracle-free strongest primary candidate
 is CParagraphe candidate-record +0x8B, u32le/RGB0. Black/Army Green/Navy Blue

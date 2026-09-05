@@ -1,5 +1,10 @@
 # Text Color Decode RFC: Phase 1 Evidence
 
+Phase 1B update: changed bytes independently support the variable span
+**0x8B..0x8D**, but the typed field start/width remain unresolved. A three-byte
+RGB value, a trailing-zero u32le view, and a leading-zero big-endian view remain
+compatible. See [Phase 1B](#phase-1b-byte-boundary-and-chunk-role-audit).
+
 Status: strong field candidate, analyzer only. Parser color implementation and
 color ownership are not ready. Anchor ownership remains closed out and deferred;
 this RFC does not reopen it or change active anchors, `matched_chain`, or fallback
@@ -189,3 +194,160 @@ $env:PYTHONPATH = 'src'
 Integration: 11 passed. Full suite: 345 passed (previous baseline 334).
 Parser, decoder, model, scanner, anchor closeout conclusions and active color
 selection remain unchanged.
+
+## Phase 1B: Byte Boundary and Chunk Role Audit
+
+`tools/analyze_text_color_field_boundary.py` is a separate small analyzer. It
+examines the requested 11 existing fixtures: the three primary single-object
+controls, four two-object controls and four three-object controls. No new fixture
+capture, parser implementation, ownership inference, chain mapping or MFC
+refactor is performed. The Phase 1 findings above remain historical evidence;
+Phase 1B adds the following narrower boundary and local-role conclusions.
+
+### Method and scope
+
+The provisional model remains payload-relative 47 with stride 204. Exact byte
+comparisons are limited to record-relative 0x80..0x98 inclusive. Each chunk reports
+bytes 0x89..0x90 and u32le/u32be views at 0x8A/0x8B/0x8C with the existing palette
+interpretations. Column tables preserve all chunk rows without raw payload dumps.
+
+The only outside-window chunk reads are fixed, previously observed context
+checks: OBJETINFOS_CLASSNAME at +53, its neighboring length 6, and CObDao at +77.
+These identify a header-like context; they are not a new search or comparison
+across the rest of the chunk. Consequently, whole-record equality except color
+bytes is **untested** and reported as null. The analyzer separately reports
+equality except the candidate span within the bounded window.
+
+The boundary is selected from the unique most-repeated contiguous changed-byte
+pattern shared by all three pairwise control comparisons. Fixed-marker chunks
+are excluded from that repeated-context pattern, independently of palette
+matches. Chunk roles use that context and terminal positions, not expected color
+or palette scores. A synthetic shifted-delta test moves the selected boundary;
+disabling all palette mappings does not change the boundary or role labels.
+
+The complete structural report is serialized before oracle/intent loading.
+Oracle assessment can report decoding consistency but cannot modify boundaries,
+roles or alignment. With `--no-oracle`, the entire JSON except `oracle_summary`
+is identical, including answers. Changed expected colors leave structure intact.
+
+### Actual changed-byte boundaries
+
+For each ordinal 1 through 8, all three comparisons (Black/Green, Black/Navy,
+Green/Navy) change exactly **0x8B, 0x8C, 0x8D**, one contiguous three-byte run.
+That is eight ordinal observations and 24 pairwise comparisons. In all 24
+fixture/chunk observations, both neighboring bytes 0x8A and 0x8E are zero.
+
+| Ordinal | Black -> Army Green | Black -> Navy Blue | Army Green -> Navy Blue |
+| --- | --- | --- | --- |
+| 0 | 0x8D..0x8E | 0x8C..0x8E | 0x8C..0x8E |
+| 1..8, each | 0x8B..0x8D | 0x8B..0x8D | 0x8B..0x8D |
+| 9 | No changes | No changes | No changes |
+
+The local bytes 0x89..0x90 in repeated ordinal 1 illustrate the distinction:
+
+```text
+Offsets:     89 8A 8B 8C 8D 8E 8F 90
+Black:       00 00 00 00 00 00 00 00
+Army Green:  00 00 98 CC 98 00 00 00
+Navy Blue:   00 00 30 60 CC 00 00 00
+```
+
+There is strong changed-byte support for the start of the **variable RGB span**
+at 0x8B. This is more specific than the Phase 1 palette score, but does not prove
+that a typed serialized field starts there: invariant bytes can belong to a
+larger field or lie beside it.
+
+| Hypothesis | Repeated-context changed-byte support | Remaining ambiguity |
+| --- | ---: | --- |
+| H1: +0x8B, four-byte u32le RGB0 | 24 pair comparisons | Fourth zero may instead be padding |
+| H2: +0x8B, three RGB bytes plus adjacent zero/padding | 24 | No independent width/type delimiter |
+| H3: +0x8A, four-byte big-endian/BGR0-like field | 24 | Leading zero may belong to this view or precede RGB |
+| H4: coincidence / typed boundary unresolved | No positive width proof | Remains viable for typed-boundary semantics |
+
+H1/H2/H3 remain compatible and not distinguished. The observable color-bearing
+part is three bytes; **storage width is not established**. The report therefore
+sets `best_field_start=139` with variable-span scope, `best_field_width=null`, and
+`observed_variable_span_width=3`. Integer byte order remains unresolved even
+though the three color bytes fit an RGB sequence. The fourth zero's ownership by
+the field cannot be inferred from these fixtures.
+
+### Why 8/10 and 9/10 palette matches occur
+
+All three primary fixtures have the same provisional local-role layout:
+
+| Role candidate | Ordinals | Structural basis |
+| --- | --- | --- |
+| header_like_chunk | 0 | Fixed prior marker context; different delta run |
+| repeated_color_record_candidate | 1..8 | Repeated masked local context and the common three-byte delta |
+| tail_like_chunk | 9 | Terminal nonmatching context, invariant window across the controls |
+
+| Primary control | u32le/RGB0 matching ordinals | Nonmatching ordinals |
+| --- | --- | --- |
+| Black | 0..8 | 9 |
+| Army Green | 1..8 | 0, 9 |
+| Navy Blue | 1..8 | 0, 9 |
+
+Black's ninth palette match is **the zero word in header-like chunk 0**. It does
+not turn that chunk into a repeated color record. Header roles stay the same in
+all controls even when palette success changes. The terminal chunk's bounded
+bytes are identical across controls and remain unmapped. Thus the unmatched
+positions and their local structural roles are repeatable; this explains the
+match counts without inventing additional owners or discarding failed chunks.
+
+These results support mixed local roles within the fixed 204-byte chopping
+model, not a homogeneous array of verified typed color records. Role names are
+provisional: no semantic header/footer format or entire-record identity is proven.
+
+### Cross-fixture alignment
+
+| Layout | Header-like | Repeated context | Terminal candidates |
+| --- | --- | --- | --- |
+| Primary and grouped 10-chunk cases | 0 | 1..8 | 9 |
+| Not-grouped two-object 14-chunk cases | 0 | 1..11 | 12..13 |
+| Not-grouped three-object 6-chunk cases | 0 | 1..4 | 5 |
+
+The grouped cases share the repeated masked context at matching ordinals with
+the primary controls, but their header/tail windows need not be byte-identical.
+The 14-chunk layout has three more repeated candidates and one more terminal
+candidate than the 10-chunk layout. The 6-chunk layout has four fewer repeated
+candidates. Those are count/profile differences, **not localized insertion or
+deletion events**: duplicate local signatures prevent a unique edit alignment.
+No semantic object count, stored order, or chain correspondence is inferred.
+
+### CPropertyExtend and readiness
+
+Only the already established bounded textual sections and local +30 probe are
+reused. No new CPropertyExtend offsets or anchor-record semantics are searched.
+Its side observations supply the color name missing from CParagraphe in all four
+mixed-intent fixtures. The textual section frame is repeatable, but its +30 value
+does not have a demonstrated uniform color role. The status remains
+`no_stable_cpropertyextend_color_field_found`.
+
+`field_boundary_readiness=changed_span_supported_typed_boundary_not_ready`.
+`candidate_parser_model_ready=false`: variable-byte evidence is stronger, but a
+typed field width and independently validated per-record applicability rule are
+still missing. `color_ownership_readiness=not_ready`; ownership is out of scope.
+MFC framing remains provenance terminology and schema 6 has no color semantics.
+
+### Phase 1B verification
+
+```powershell
+$env:PYTHONPATH = 'src'
+.venv/Scripts/python.exe tools/analyze_text_color_field_boundary.py --json
+.venv/Scripts/python.exe tools/analyze_text_color_field_boundary.py --json --no-oracle
+.venv/Scripts/python.exe -m pytest tests/integration/test_text_color_field_boundary_cli.py -q
+.venv/Scripts/python.exe -m pytest -q
+```
+
+Tests cover exact delta runs, unchanged neighbors, unresolved width, role and
+match ordinals, all six integer views, bounded-only comparisons, ambiguous
+alignment, +30-only side evidence, oracle isolation, palette-independent boundary
+selection, moved synthetic deltas, prefix shifts, truncation abstention and
+unchanged parser sources/objects. No fixture files are created.
+
+Results: 14 integration tests passed; full suite **359 passed** (prior baseline
+345). Ruff and whitespace checks passed. Default output sizes are text 5,521
+bytes, Markdown 5,523 bytes, and JSON 76,423 bytes; no-oracle JSON is 71,931 bytes.
+All 110 chunk rows and 65 bounded +30 section observations are retained.
+Parser/decoder/model sources, the anchor closeout RFC and the MFC investigation
+document have no changes in this phase.

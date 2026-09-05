@@ -2,6 +2,15 @@
 
 This document defines the complete first-stage fixture plan for reverse-engineering Type3 clipboard text objects.
 
+Color Phase 1B [boundary/role results](text_color_decode_rfc.md#phase-1b-byte-boundary-and-chunk-role-audit)
+support a variable RGB span at record-relative 0x8B..0x8D from actual byte deltas.
+The typed field may still include an invariant leading or trailing zero. Primary
+chunk roles align as header-like 0, repeated context 1..8, and terminal 9;
+not-grouped layouts instead show repeated ranges 1..11 or 1..4. Repeated local
+signatures cannot uniquely locate insertions/deletions or identify semantic
+objects. CPropertyExtend stays +30 side evidence only. No new captures, parser
+changes, ownership work, or anchor closeout changes accompany this analyzer.
+
 Color Phase 1 field decoding is documented in the [color decode RFC](text_color_decode_rfc.md).
 The separate analyzer finds +0x8B/u32le/RGB0 as the strongest primary candidate
 without expected-color selection. The provisional 204-byte chunk model includes
