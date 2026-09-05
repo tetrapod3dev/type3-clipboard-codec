@@ -1073,6 +1073,23 @@ and E finds no typed linkage; conditional pairing contradicts three fixtures.
 Parser output, `matched_chain=None`, and active anchors are unchanged;
 `parser_safe=false` remains mandatory and Phase 2 parser ownership is not authorized.
 
+CParagraphe ownership is now the primary structural blocker. The dedicated
+`tools/analyze_text_cparagraphe_owner_structure.py` freezes all 13 structural
+inventories before oracle/intent access and supports `--no-oracle`. It finds a
+nearest-following CContour source-chain correlation with 13 diagnostic agreements,
+while the chain0 control has 8 agreements and 5 conflicts. CParagraphe adjacency
+is constant (CZone before, CCourbe after), but the output chain sourced from
+CContour differs between ABC, CBA, and not-grouped layouts. Existing parser
+coordinate sorting explains why source role and output index are distinct;
+the analyzer adds no sorting or anchor-equality selector. Grouping changes
+CObDao section counts, not the top-level class sequence, and local shared
+integer 2 matches every chain preamble rather than a unique owner. The
+content-variation source relationship survives changed text labels.
+These remain correlations: `no_parser_safe_cparagraphe_owner_rule_found`.
+All hypotheses stay `parser_safe=false`; parser/active anchors/matched_chain
+are unchanged and ownership implementation remains unauthorized. Detailed
+case evidence is in the [ownership RFC](text_anchor_ownership_mapping_rfc.md#cparagraphe-owner-structural-investigation).
+
 - This stage adds analyzer-only visibility for multi-object text ownership:
   - parser chain order
   - chain text candidate vs chain anchor candidate

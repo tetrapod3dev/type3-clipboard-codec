@@ -1178,6 +1178,23 @@ has 10 agreements and 3 contradictions, separate from 13 abstentions per strateg
 Parser output and active anchors are unchanged, every strategy remains
 `parser_safe=false`, and Phase 2 parser ownership is still not authorized.
 
+The primary structural blocker is the independent CParagraphe owner rule.
+`tools/analyze_text_cparagraphe_owner_structure.py` now inventories bounded local
+fields, node adjacency, and source-chain provenance for all 13 fixtures. The
+nearest following chain-producing CContour maps to the diagnostic owner in 13/13;
+the fixed chain0 control agrees in 8 and conflicts in 5. Class adjacency is
+identical across captures, while the CContour source chain changes from 0 (ABC)
+to 2 (CBA/not-grouped ABC). The existing parser's coordinate-based output sorting
+is unchanged; the analyzer does not sort coordinates or infer stored order.
+Content variation retains the source relationship despite different text labels.
+The only shared local integer (`u32@138 = 2`) appears in every chain preamble and
+does not distinguish an owner. No explicit structural linkage was found.
+All structural results are frozen before isolated oracle/intent reporting;
+`--no-oracle` preserves them. The conclusion is
+`no_parser_safe_cparagraphe_owner_rule_found`; ownership implementation remains
+unauthorized. See the [RFC findings](text_anchor_ownership_mapping_rfc.md#cparagraphe-owner-structural-investigation)
+for case comparisons and the limits of the 13/13 correlation.
+
 - New analyzer: `tools/analyze_text_visible_ownership.py`
 - Scope: visible text ownership analysis only (no parser behavior change)
 - Policy:

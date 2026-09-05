@@ -302,6 +302,108 @@ Phase A-before-oracle call order, and full parser result equality before/after
 analysis. `parser_safe` remains false everywhere; Phase 2 parser ownership is
 still not authorized.
 
+### CParagraphe owner structural investigation
+
+The primary structural blocker exposed by Phase 2A is the absence of an
+independently established CParagraphe direct-anchor owner. B remains blocked in
+13 fixtures, D unresolved in 13, and E has no typed linkage; the earlier B/D
+conditional comparisons remain 10 agreements / 3 contradictions.
+
+[`analyze_text_cparagraphe_owner_structure.py`](../tools/analyze_text_cparagraphe_owner_structure.py)
+now investigates this blocker separately. Run it with no arguments for a small
+text report, `--json` for compact JSON, or `--json --no-oracle` for structural
+inventory without intent loading or equality diagnostics. All 13 structural
+inventories, hypotheses, and cross-fixture field/adjacency summaries are computed
+and frozen before the first intent read or oracle calculation. Only Phase B
+stratifies these frozen layouts using intent grouping labels.
+
+The structural signal is the nearest following node that produces a parser
+chain: in all current fixtures this is `CContour`. The source-chain hypothesis
+agrees with the direct-anchor diagnostic oracle in 13/13 cases. This uses the
+parser's source node class and node-relative contour provenance, not expected
+coordinates, attempted order, or an oracle owner index. Shared source-node ties
+remain ambiguous; no chain is chosen by tie-breaking on coordinates or index.
+
+All fixtures have one CParagraphe at traversal ordinal 1 (zero-based), following
+`CZone` and preceding `CCourbe`; the next chain-producing node is `CContour` at
+ordinal 3. The complete class sequence is unchanged:
+`CZone -> CParagraphe -> CCourbe -> CContour -> CPropertyExtend`.
+The direct triple is recorded at CParagraphe payload-relative offset 158, and the
+CContour source record currently starts at its payload-relative offset 98.
+These offsets locate evidence; neither numeric offset is an ownership selector.
+
+| Comparison case | CParagraphe payload bytes | CPropertyExtend CObDao sections | Source classes in parser chain order | Following CContour source-chain hypothesis / diagnostic owner |
+|---|---:|---:|---|---|
+| Grouped ABC | 2290 | 9 | CContour, CPropertyExtend, CPropertyExtend | 0 / 0 |
+| Grouped CBA | 1330 | 9 | CPropertyExtend, CPropertyExtend, CContour | 2 / 2 |
+| Not-grouped ABC, same or mixed color | 1330 | 11 | CPropertyExtend, CPropertyExtend, CContour | 2 / 2 |
+| Grouped ABC, content variation | 1810 | 9 | CContour, CPropertyExtend, CPropertyExtend | 0 / 0 |
+| Two grouped, same or mixed color | 2290 | 5 | CContour, CPropertyExtend | 0 / 0 |
+| Two not grouped, same or mixed color | 3010 | 6 | CPropertyExtend, CContour | 1 / 1 |
+| Two not grouped, reversed selection | 2290 | 6 | CContour, CPropertyExtend | 0 / 0 |
+
+These are payload/source-provenance differences that correlate with the reported
+owner movement. The class sequence alone cannot explain it: ABC and CBA have the
+same adjacency and section count but different chains sourced from CContour.
+Grouping changes section counts (5/6 for two objects and 9/11 for three), yet
+not-grouped reversed selection demonstrates that those counts do not determine
+an owner. No added/removed top-level class in this set provides an explicit link.
+
+The existing [text pipeline](../src/type3_clipboard_codec/parsers/text/text_pipeline.py)
+sorts emitted chains by active anchor coordinates, falling back to bbox center;
+that implementation is unchanged. Thus the source node can remain the same
+structural role while its output chain index changes. This analyzer never sorts
+coordinates and does not interpret parser chain index as stored object order.
+It follows source provenance into the already-emitted chain list. This dependency
+on current parser construction, plus the absence of an explicit anchor-to-contour
+link, prevents promotion of the correlation to parser-safe ownership.
+
+Content variation retains the CContour-to-chain0 source relationship while its
+parser text is `Type3` and attempted first text is `HELLO`. Payload length changes
+to 1810 without breaking that source-role correlation. This supports limited
+content independence of the structural signal, not text identity ownership;
+neither payload length nor the visible string is used to select the chain.
+
+Local mining is restricted to sixteen u32 words: payload-relative offsets
+126..154 and 182..210, stride 4, excluding the entire anchor triple [158,182).
+Reference regions are each chain source's 16-byte preamble and bounded non-anchor,
+non-signature words in candidate CObDao sections. Zero padding is excluded from
+shared-value evidence; there is no full-payload pairwise mining or local hex dump.
+The only shared nonzero field is `u32@138 = 2`, which occurs in every chain's
+reference preamble and therefore cannot distinguish an owner. No shared nonzero
+field identifies a CPropertyExtend candidate section in this probe. Fourteen of
+the sixteen local words are invariant; `+154` has two values and `+186` eight.
+Their semantics are untyped and no identifier claim is made from these variations.
+Larger windows, alternate alignments, and other identifier encodings remain untested.
+
+| Frozen structural hypothesis | Diagnostic support | Conflict | Abstention | Interpretation |
+|---|---:|---:|---:|---|
+| Nearest following chain source | 13 | 0 | 0 | Supported correlation only; structural status remains unresolved |
+| First parser chain (control) | 8 | 5 | 0 | Contradicted as a general owner hypothesis |
+| Exclusive CParagraphe node membership | 0 | 0 | 13 | Blocked: current chains share CParagraphe node membership |
+| Local shared identifier | 0 | 0 | 13 | No typed owner-discriminating signal |
+| Layout-only owner | 0 | 0 | 13 | Blocked: class/section counts have no ownership semantics |
+
+The five control conflicts are the two ordinary not-grouped two-object fixtures,
+grouped CBA, and not-grouped ABC same/mixed color. Counts in `hypothesis_summary`
+are explicitly post-oracle diagnostic counts; per-fixture frozen hypotheses are
+not rewritten, and `supported` in the summary does not mean parser-safe. All 13
+direct-anchor oracles are unique with per-axis tolerance `1e-6` mm. Disabled or
+unavailable oracles are null and comparisons abstain, distinct from a computed
+`none` match. All hypotheses retain `parser_safe=false`.
+
+Integration tests verify all 13 inventories are frozen before oracle loading,
+structural equality with/without oracles and missing intent, full parser result
+immutability, coordinate-window exclusion, source-chain reordering and ambiguous
+ties. Output is bounded by 32 nodes, four CParagraphe nodes, eight chain references,
+and eight shared-field rows per CParagraphe; existing candidate-reference bounds
+also apply. Overflow is marked truncated rather than used for complete claims.
+
+The conclusion remains `no_parser_safe_cparagraphe_owner_rule_found`. A promising
+source-node correlation was found, but an independent ownership link was not.
+Phase 2 ownership implementation is still not authorized; active anchors,
+baseline_midpoint, CPropertyExtend ownership, and matched_chain are unchanged.
+
 ## 7. Phase 2A Success Criteria
 
 Before considering parser ownership implementation, require at least:
@@ -369,7 +471,7 @@ from the report. Missing inputs and unavailable oracles should be explicit warni
 |---|---|
 | Intent metadata | Complete for 13/13; 9 attempted, 4 explicitly unknown |
 | Visible text identity | Provisional but relatively stable in current observations |
-| CParagraphe ownership | Unresolved/provisional; analyzer matches only |
+| CParagraphe ownership | Nearest following CContour source-chain correlation: 13/13 diagnostic agreement; no parser-safe link |
 | CPropertyExtend ownership | Unresolved; `matched_chain = None` |
 | Active ownership implementation | Not ready |
 | Analyzer-only shadow mapping | Phase 2A implemented; blocked/unresolved hypotheses and diagnostic comparisons reported |
