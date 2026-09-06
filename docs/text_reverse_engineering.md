@@ -1382,3 +1382,26 @@ or fixture. See the [ownership RFC closeout](text_anchor_ownership_mapping_rfc.m
 for the authoritative status and reopening requirements.
 
 Verification baseline: `PYTHONPATH=src pytest -q` — **311 passed**.
+## Color Phase 1C: text slot count evidence
+
+The bounded analyzer `tools/analyze_text_color_record_semantics.py` compares
+existing parser slot runs with provisional color-bearing chunks. Across 22
+context-matched controls, the candidate count equals extracted ASCII length + 1,
+including spaces and the final zero-code slot. Existing slot headers at chunk
++59 match the run's code sequence on a 204-byte grid. Single-chain examples
+range from 8 to 11 candidates while CContour count stays 1 and parsed contour
+point count stays 2. Geometry/glyph semantics remain unresolved.
+
+`text_multiline_basic.txt` is an explicit exception to classifier applicability:
+the parser extracts `abcd\nefgh` and ten slots, but its bounded context differs.
+The analyzer abstains from a repeated-color candidate count there. This prevents
+the single-line N+1 observation from becoming an unsupported universal rule.
+The 22 classified fixtures are homogeneous only in the tested masked 0x70..0xA0
+window; header and tail slices are structurally different. Same-content color,
+height and font controls preserve the repeated layout and masked window.
+
+The complete Phase A report is frozen before expected colors load;
+`--no-oracle` produces identical structure. The parser, decoder and model are
+unchanged. Color field start/width remain typed-unresolved despite the observed
+0x8B..0x8D delta. See [Phase 1C evidence](text_color_decode_rfc.md) for counts,
+limitations and validation. Anchor closeout and MFC conclusions are unchanged.

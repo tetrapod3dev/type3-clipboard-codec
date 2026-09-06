@@ -1271,3 +1271,34 @@ or fixture. See the [ownership RFC closeout](text_anchor_ownership_mapping_rfc.m
 for the authoritative status and reopening requirements.
 
 Verification baseline: `PYTHONPATH=src pytest -q` — **311 passed**.
+## Color Phase 1C: multi-chain scaling without ownership
+
+`tools/analyze_text_color_record_semantics.py` reports chain counts separately
+from paragraph chunks and CPropertyExtend textual CObDao sections. The table
+uses fixture labels to identify the requested controls; grouping itself is not
+independently decoded and remains null in the structural output.
+
+| Fixture cohort | Parser chains | Chunks | Repeated | Sections | Extracted paragraph text |
+| --- | ---: | ---: | ---: | ---: | --- |
+| grouped two, same/mixed color | 2 | 10 | 8 | 5 | abcdefg |
+| not-grouped two, same/mixed color | 2 | 14 | 11 | 6 | 1234567890 |
+| grouped three, baseline/mixed color | 3 | 10 | 8 | 9 | abcdefg |
+| grouped three, content variation | 3 | 8 | 6 | 9 | HELLO |
+| not-grouped three, baseline/mixed color | 3 | 6 | 4 | 11 | XYZ |
+
+Every row has one CContour node; existing parsed contour record totals are
+twice the chain count. Repeated count instead matches the extracted paragraph's
+slot count, including a zero-code slot. In particular, changing content at
+three chains/nine sections changes repeated count from eight to six. Neither
+chain count nor section count explains that change. One chunk per object or
+per text run is not supported. The 204-byte slot stride remains credible, while
+the entire paragraph's fixed slicing is only a provisional inventory.
+
+These are paragraph text candidates, not complete text inventories across all
+objects. Total character count across objects, selected-object correspondence,
+and a grouping-specific serialization rule remain unresolved. No anchor mapping
+or color ownership is used. A structurally usable multiline control also has
+two chains, but its local color context is unmatched and candidate count is
+left null. Field decoding and ownership remain not ready; typed color width
+is null. See [Color Phase 1C](text_color_decode_rfc.md) for oracle isolation and
+bounded-window evidence. Existing anchor and MFC conclusions are unchanged.

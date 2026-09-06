@@ -351,3 +351,73 @@ bytes, Markdown 5,523 bytes, and JSON 76,423 bytes; no-oracle JSON is 71,931 byt
 All 110 chunk rows and 65 bounded +30 section observations are retained.
 Parser/decoder/model sources, the anchor closeout RFC and the MFC investigation
 document have no changes in this phase.
+
+## Color Phase 1C — repeated record semantics
+
+`tools/analyze_text_color_record_semantics.py` inventories 23 existing fixtures
+(22 requested controls plus `text_multiline_basic.txt`). Phase A is serialized
+before any intent/expected-color load. `--no-oracle` leaves every structural
+result and hypothesis unchanged. Roles use the unique corpus-modal masked
+Phase 1B context and fixed header marker, never filenames or palette matches.
+
+The strongest explanation is an **existing text slot run including a zero-code
+slot**. In 22 context-matched fixtures, repeated count equals extracted ASCII
+character count + 1. The bounded eight-byte slot headers at provisional chunk
+offset +59 match the existing parser's entire code sequence, including its
+final zero. This supports the 204-byte stride; it does not establish that every
+204-byte slice of the paragraph payload is a record of that type.
+
+| Extracted text/control | Characters | Chunks | Repeated candidates |
+| --- | ---: | ---: | ---: |
+| abcdefg / ABCDEFG | 7 | 10 | 8 |
+| 1234567890 | 10 | 14 | 11 |
+| A1B2C3d4 / ab cd ef | 8 | 12 | 9 |
+| +-*/#@&() | 9 | 13 | 10 |
+| HELLO (content variation) | 5 | 8 | 6 |
+| XYZ (three-chain controls) | 3 | 6 | 4 |
+| abcd newline efgh | 9 including newline | 13 | unresolved |
+
+Multiline has an existing ten-slot run, including newline and zero, but fails
+the Phase 1B masked-context classifier. Its candidate count and character delta
+are null, not zero or a forced N+1 result. Non-ASCII decoding, when unavailable,
+is not replaced by codepoint counts or fixture-name text. No new glyph boundary
+is introduced. Single-chain controls retain one CContour and two parsed contour
+points while repeated count varies 8..11: these geometry counts do not explain
+the variation. Glyph/geometry semantics remain unresolved.
+
+All 179 classified candidates have one masked signature class per fixture in
+0x70..0xA0 excluding 0x8B..0x8D. `identical_except_color_count` includes the modal
+representative; `structurally_similar_count` counts other wide signatures sharing
+the narrower Phase 1B context. Both that latter count and divergent count are
+zero in the 22 classified fixtures. Multiline has unresolved interior contexts
+and `mixed_record_roles_possible=true`. Homogeneity is local, not full-record
+identity or a claim that header/tail slices have the same role.
+
+The 28 structurally selected same-text, single-chain pairs retain candidate
+count/layout and masked repeated windows across color, height and font controls.
+This supports color modifying an existing repeated record. The three primary
+color-only pairs also retain the terminal window. Height/font changes can
+change terminal geometry; whole-payload color-only equality is not asserted.
+
+Ordinal zero and the final ordinal differ from the candidate context in every
+fixture. Ordinal zero retains its fixed prior marker. A bounded prefix +5 u32
+probe is always 8 even as slot counts vary, so it is **not** a demonstrated text
+count field. The baseline header's zero bytes merely alias Black. Header-like
+and terminal-like remain provisional roles; extra tail slices are not uniquely
+decoded or aligned as insertion/deletion events.
+
+The observed span remains start 0x8B, changed width 3. Typed width is null and
+typed start unresolved: no independent next-field start at 0x8E or typed field
+declaration has been found. Field decode and ownership remain not ready.
+CPropertyExtend section counts are structural inventory only;
+`no_stable_cpropertyextend_color_field_found` remains the prior conclusion.
+
+Validation: eight new integration tests cover bounds, freeze ordering, disabled
+and adversarial oracle inputs, filename-independent roles, raw-color mutation,
+slot evidence, multiline abstention, and unchanged parser source/results.
+Run with `PYTHONPATH=src`: `.venv/Scripts/python.exe -m pytest -q`.
+Full suite: **367 passed**; Ruff and whitespace checks passed. Parser/decoder/model
+sources and fixtures have no diff.
+Default output retains 242 chunks: JSON 178,945 bytes, no-oracle JSON 175,355
+bytes, text 11,134 bytes, Markdown 11,136 bytes (including Windows line endings).
+Output budgets are 180,000 JSON / 50,000 text bytes; oversized inputs fail closed.
