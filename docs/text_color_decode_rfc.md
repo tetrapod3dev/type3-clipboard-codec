@@ -665,3 +665,153 @@ relocation, internal zeros, periodic filler, count disagreement, competing eligi
 runs, and a distinct synthetic first context. Code/color mutations do not select
 the prefix, and source/result snapshots preserve parser/model behavior. No fixture
 files are created or changed.
+
+## Text Slot Phase 1F — count and prefix-family semantics
+
+`tools/analyze_text_slot_run_framing_semantics.py` retains the 24 Phase 1E controls
+and inventories every periodic prefix candidate in the same bounded [128, 768)
+payload region. It reuses only the small candidate enumerator, ignoring its combined
+selection. A prefix-family test (A) and the preceding count view (B) are evaluated
+independently. No fixed payload start, expected text/count, anchor, chain or object
+mapping selects a run. Descriptor position, payload position and prefix position
+remain distinct; MFC schema has provenance significance only.
+
+### Count-field evidence
+
+All prefix-family runs are retained for count analysis, including disagreements.
+The analyzer inventories the 16 bytes immediately preceding each prefix and tests
+44 bounded u8/u16le/u32le views. Count-offset selection uses agreement with the
+independently observed run length across this population, not just successful
+combined detections. The strongest start is **prefix -4**. Three views tie in all
+24 runs: u8, u16le and u32le at -4. Only byte -4 changes across the corpus; bytes
+-3..-1 stay zero. Candidate typed start is -4, but typed start and width remain
+null, with `status=ambiguous_width`. Adjacent zeros and small positive values do
+not establish the integer type or its extent.
+
+| Hypothesis at the prior -4 four-byte view | Matching runs |
+| --- | ---: |
+| C1 nonterminal slots | 0 / 24 |
+| C2 total slots including final zero slot | 24 / 24 |
+| C3 provisional run byte extent | 0 / 24 |
+| C4 slots × 204 | 0 / 24 |
+
+C3 is explicitly measured as `total_slots * 204`, so it equals C4 here and is not
+an independent second test. The observed first-to-last-prefix span is also
+reported separately; no full-record byte-length boundary is claimed. Counts range
+over 4, 6, 8, 9, 10 and 11, with **207 total slots**. C2 is the strongest bounded
+structural interpretation. C5, a correlated header field with unresolved formal
+semantics, cannot be ruled out by this fixture corpus alone.
+
+Terminal position is established from final zero plus prefix loss, without visible
+text. Every fixture count includes that slot. Nonterminal count is total minus
+the validated final slot, not the number of nonzero codes: synthetic internal
+zeros remain ordinary traversed positions. Count agreement without a final zero
+does not establish terminal semantics or RFC readiness.
+
+The combined detector retains the conservative Phase 1E four-byte **view** for B;
+this is not a u32 field declaration. If high bytes change so that u8/u16le still
+match but the four-byte view conflicts, the analyzer reports conflict and abstains
+instead of choosing a narrower width to rescue acceptance.
+
+### Three variants as one bounded family
+
+The three frozen Phase 1E masked signatures are structural reference hypotheses,
+not text/color oracles. Family membership is tested before count acceptance.
+The normalized representation consists of **20 invariant bytes** in prefix
++0..+31, code bytes +4..+7 excluded, plus **three exact allowed vectors** at
+positions +8 and +12..+18. Color +0x50..+0x52 lies outside this signature. Unknown
+combinations are rejected: this is not a Cartesian wildcard mask or a single
+`05` token rule. The secondary periodic prefix at +92 fails the family test.
+
+| Frozen variant | Fixtures / runs | Post-freeze diagnostic association |
+| --- | ---: | --- |
+| 0 | 22 / 22 | baseline, multiple contents/styles, grouped/not-grouped controls, all four multiline controls |
+| 1 | 1 / 1 | `text_height_30mm.txt`; difference at +12..+18 |
+| 2 | 1 / 1 | `text_group_mixed_color_two_objects.txt`; difference at +8 |
+
+Every run remains locally homogeneous, including first and terminal positive
+prefixes. Upstream first-slot context still differs. All three classes can carry
+the same diagnostic text `abcdefg`; multiline also uses variant 0. Grouped controls
+span variants 0 and 2, and another mixed-color control uses variant 0. Thus neither
+text, multiline, grouping nor first/terminal position alone explains all variants.
+The height-control association is evidence for a fixture-linked change, not a
+promoted height field. Unknown variant semantics remain explicit.
+
+`P_family` is supported as a bounded invariant core plus exact variants.
+`P_multiple` remains possible at the semantic level. Field types and full record
+boundaries are not implied by family membership. Grouping/style/content labels
+are added only in `oracle_summary`, after structural classes are frozen; absent
+capture grouping is reported as unavailable.
+
+### Independent detector outcomes and negative controls
+
+All 24 fixture paragraphs are `both_agree`. The complete candidate inventory
+retains 48 periodic candidates: **24 both-agree, 24 neither**. Fixture-level and
+candidate-level disagreement counts are both zero; the rejected secondary
+candidates are not hidden or relabeled as semantic records.
+
+Synthetic tests distinguish valid count/family agreement, valid family with wrong
+count (`conflict`), zero/unavailable count (`prefix_only`), and matching count with
+invalid periodic context (`count_only`). More than one family-valid run remains
+`ambiguous`, even if one count matches and another conflicts. A weak out-of-family
+competitor does not prevent selection when one family-valid run has matching count.
+The count never rewrites prefix evidence. Shifted inputs preserve the same relative
+count/family rule, and unobserved combinations of reference variants are rejected.
+
+### Multiline, multi-object and normalized fields
+
+All four code-13 runs have prefix-relative count -4, total ten slots, nine
+nonterminal slots, one code-13 slot and an included final zero. Their shift is
+discovered structurally; no alternate count layout or hard-coded correction is
+needed. Typed count width remains unresolved for them as for single-line controls.
+All seven requested multi-object controls preserve the same relationship without
+slot-to-object/chain assignment.
+
+Prefix +4 code and +0x50..+0x52 color hypotheses remain compatible across all three
+variants. The masked color context has one class across the corpus and terminal
+color bytes match the preceding slot. Typed code/color widths remain null; this
+phase does not rediscover color or investigate ownership.
+
+### Readiness, oracle isolation and output
+
+`structural_framing_readiness=bounded_count_and_family_candidate_supported`.
+**`candidate_parser_rfc_readiness=ready`** for a bounded candidate RFC that records
+the exact reference family, conservative count view, structural terminal rule,
+conflict/ambiguity abstention, coverage limits and unresolved typed fields. The
+readiness gate requires multiple lengths, all three variants, shifted/code-13
+coverage, shared normalized context and agreement across the selected corpus;
+a baseline-only CLI subset does not satisfy it.
+
+This is not parser implementation authorization or a production schema claim.
+`candidate_parser_model_readiness=not_ready`, `parser_safe=false`, and color
+ownership readiness remains `not_ready`. Existing parser/decoder/model code,
+analyzers, fixtures, anchor closeout and MFC conclusions are unchanged.
+
+The entire structural report and private diagnostic evidence are serialized before
+any oracle access. Wrong expected text and fabricated grouping/cohort labels alter
+only oracle output. `--no-oracle` preserves identical structure, hypotheses,
+variants, terminal decisions and readiness. Default output contains no slot rows;
+details are bounded to three fixtures, five slot rows and eight count-view examples
+each, selected before constructing optional rows.
+
+```powershell
+$env:PYTHONPATH = 'src'
+.venv/Scripts/python.exe tools/analyze_text_slot_run_framing_semantics.py --json
+.venv/Scripts/python.exe tools/analyze_text_slot_run_framing_semantics.py --json --no-oracle
+.venv/Scripts/python.exe tools/analyze_text_slot_run_framing_semantics.py --json --details
+.venv/Scripts/python.exe -m pytest tests/integration/test_text_slot_run_framing_semantics_cli.py tests/unit/test_text_slot_run_framing_semantics.py -q
+.venv/Scripts/python.exe -m pytest -q
+```
+
+Measured output including Windows line endings: JSON **60,761 bytes**, no-oracle
+JSON **57,206 bytes**, details JSON **64,165 bytes**, text **6,445 bytes**, Markdown
+**6,447 bytes**, details text **9,850 bytes**. JSON remains below 100,000 bytes and
+text below 50,000 bytes.
+
+Validation: **26 new integration/unit cases passed; full pytest 428 passed** with
+`PYTHONPATH=src`. Ruff and whitespace checks passed. Tests cover complete freeze,
+adversarial text/grouping labels, descriptor and payload shifts, independent
+count/prefix disagreements, exact-family rejection, internal zeros/code 13,
+conflicting narrow/wide count views, count agreement without a terminal, compact
+details, and unchanged parser/model source and result snapshots. No fixtures are
+created or modified.

@@ -1360,3 +1360,31 @@ The [Phase 1E RFC](text_color_decode_rfc.md) documents a supported bounded frami
 candidate with `parser_safe=false`. Candidate parser-model and color-ownership
 readiness remain `not_ready`. Existing parser/decoder/model behavior, anchor
 closeout and MFC conclusions are unchanged.
+
+## Text Slot Phase 1F: paragraph-run count, not object count
+
+For every requested multi-object control, the candidate at prefix -4 counts the
+enumerated paragraph slots including the final zero. It is not an object count,
+chain count or text-to-object mapping. Grouped two controls have eight slots,
+not-grouped two eleven, grouped three baseline eight, grouped content variation
+six, and not-grouped three four. These remain bounded leading-run inventories.
+
+All seven controls fit the invariant-core/exact-variant family. The baseline
+signature occurs in both grouped and not-grouped fixtures; a second signature
+occurs in the grouped mixed-color two-object control. This does not establish a
+general grouping or mixed-color flag. Grouping and style/content labels are
+applied only after structural freeze. Four shifted multiline controls use the
+baseline prefix family and the same count offset, including code 13 and final zero.
+
+Count evidence and family evidence are reported independently. A valid family
+with wrong count remains visible as conflict, while a matching count cannot
+validate false periodic context. Multiple family-valid runs are left ambiguous;
+the analyzer does not resolve them through object labels, anchors or order.
+Typed count, slot-code and color widths remain unresolved, with normalized code
++4 and color +0x50..+0x52 retained as candidates.
+
+The [Phase 1F evidence](text_color_decode_rfc.md) supports readiness for a bounded
+candidate parser RFC, with explicit coverage/abstention rules. Candidate parser
+model and ownership readiness remain `not_ready`; no parser/model implementation
+or ownership assignment is performed. Anchor closeout and MFC conclusions are
+unchanged.

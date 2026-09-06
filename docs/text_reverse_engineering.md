@@ -1461,3 +1461,38 @@ See [Phase 1E RFC](text_color_decode_rfc.md) and
 slot rows; optional details stay below 100 KB. Structural framing is supported as
 a bounded candidate. Parser modeling and ownership remain not ready. Oracle input
 is loaded only after complete freeze, and parser/model behavior is unchanged.
+
+## Text Slot Phase 1F: count semantics and bounded prefix family
+
+The dedicated framing-semantics analyzer compares the preceding 16-byte window
+against all prefix-family runs, retaining count conflicts rather than analyzing
+only successful combined detections. The best count start is prefix -4, with tied
+u8/u16le/u32le views. It matches total slots including final zero in 24/24 runs;
+nonterminal count and provisional byte length do not match. Only byte -4 changes,
+so typed count width remains null. The conservative four-byte detector view is
+not promoted to a u32 declaration.
+
+The 24 runs contain 207 slots. Code 13 and synthetic internal zeros are included
+as traversed slots; only the structurally validated final zero is excluded from
+the reported nonterminal count. Four shifted multiline/spacing controls retain
+the same relative count representation and total ten slots.
+
+Three Phase 1E signatures normalize to 20 invariant prefix-local bytes and three
+exact variant vectors at +8/+12..+18, excluding code and color. They occur in
+22/1/1 fixtures. Post-freeze labels associate the small classes with a height
+control and one mixed-group control, without proving field meanings. First and
+terminal positive prefixes share their run's signature. All variants can carry
+`abcdefg`, and multiline uses the baseline variant; content or multiline alone
+does not explain the classes. Unobserved wildcard combinations remain invalid.
+
+Both count and family evidence agree in all fixture paragraphs; 24 additional
+periodic candidates fail both tests and remain visible in the inventory. Synthetic
+wrong/missing counts, invalid contexts and multiple family-valid runs preserve
+explicit conflict, prefix-only, count-only or ambiguous outcomes. See the
+[Phase 1F RFC evidence](text_color_decode_rfc.md) and
+`tools/analyze_text_slot_run_framing_semantics.py`.
+
+The bounded candidate parser RFC is ready to be specified, with unresolved typed
+fields and abstention rules. Parser-model implementation remains not ready and
+is not authorized by this result. Default JSON is 60,761 bytes; oracle isolation
+and unchanged parser/model behavior are tested. Anchor and MFC conclusions stand.
