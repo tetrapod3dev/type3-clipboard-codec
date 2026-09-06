@@ -1388,3 +1388,8 @@ candidate parser RFC, with explicit coverage/abstention rules. Candidate parser
 model and ownership readiness remain `not_ready`; no parser/model implementation
 or ownership assignment is performed. Anchor closeout and MFC conclusions are
 unchanged.
+
+The [text-slot framing candidate RFC](text_slot_framing_rfc.md) defines the bounded
+candidate grammar and unresolved fallback rules. Multi-object compatibility does
+not grant slot-to-object/chain ownership or order semantics. The illustrative
+candidate-only output is documentation, not an implemented field or parser model.

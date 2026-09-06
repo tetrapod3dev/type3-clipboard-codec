@@ -1,5 +1,9 @@
 # Text Color Decode RFC: Phase 1 Evidence
 
+The [CParagraphe text-slot framing candidate RFC](text_slot_framing_rfc.md)
+consolidates Phase 1A–1F into a draft bounded grammar, failure behavior and promotion
+gates. It does not authorize parser/model implementation or color ownership.
+
 Phase 1B update: changed bytes independently support the variable span
 **0x8B..0x8D**, but the typed field start/width remain unresolved. A three-byte
 RGB value, a trailing-zero u32le view, and a leading-zero big-endian view remain

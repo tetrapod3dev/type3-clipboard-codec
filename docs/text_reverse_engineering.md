@@ -1496,3 +1496,8 @@ The bounded candidate parser RFC is ready to be specified, with unresolved typed
 fields and abstention rules. Parser-model implementation remains not ready and
 is not authorized by this result. Default JSON is 60,761 bytes; oracle isolation
 and unchanged parser/model behavior are tested. Anchor and MFC conclusions stand.
+
+The [text-slot framing candidate RFC](text_slot_framing_rfc.md) now records the
+descriptive grammar, exact closed prefix family, untyped count/code/color views,
+fail-safe behavior and future candidate-only experiment gates. It remains a draft;
+implementation is not authorized and existing extraction behavior must be preserved.
