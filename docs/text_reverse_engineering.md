@@ -1432,3 +1432,32 @@ record rows and stays below 100 KB; details are limited before construction.
 `--no-oracle` preserves identical structural results. See
 [Phase 1D evidence](text_color_decode_rfc.md) for limits and tests. Parser/model
 implementation and ownership remain not ready; anchor and MFC conclusions stand.
+
+## Color/Text Slot Phase 1E: dynamically located prefix run
+
+The bounded prefix-framing analyzer locates slot runs without start 47, start 310,
+or a multiline shift correction. It searches [128, 768) inside each CParagraphe
+payload and independently traverses `05 00 00 00` recurrence at 204-byte intervals.
+A second periodic prefix at +92 has the same count in every fixture, so longest
+run alone is ambiguous. A matching preceding count view plus repeated masked
+context uniquely selects a run in all 24 controls. Multiple eligible runs remain
+ambiguous; code values and expected text never break ties.
+
+The positive-prefix window +0..+31, excluding code +4..+7, is homogeneous within
+each run. Three cross-fixture classes reflect style/control variation; first-slot
+differences are in the 16 bytes upstream. Code +4 and color +0x50..+0x52 normalize
+across the selected runs. Typed code/color widths remain null. Traversal stops on
+prefix loss and only then checks final zero; synthetic internal zeros do not stop
+it. All fixture terminal slots remain `zero_code_terminal_candidate`.
+
+Multiline basic and three paragraph-spacing controls are automatically found at
+378 rather than 310. They share the baseline prefix-local signature, retain code
+13 within the run, and share the masked color context. The previous fixed-grid
+incompatibility therefore does not require a separate positive-prefix schema.
+This is bounded evidence, not proof of a complete paragraph/record format.
+
+See [Phase 1E RFC](text_color_decode_rfc.md) and
+`tools/analyze_text_slot_prefix_framing.py`. Default JSON is 91,387 bytes with no
+slot rows; optional details stay below 100 KB. Structural framing is supported as
+a bounded candidate. Parser modeling and ownership remain not ready. Oracle input
+is loaded only after complete freeze, and parser/model behavior is unchanged.

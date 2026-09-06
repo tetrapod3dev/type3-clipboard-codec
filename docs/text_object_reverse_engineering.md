@@ -1334,3 +1334,29 @@ The final zero remains a terminal candidate; typed color width is null. Both
 candidate parser model and color ownership readiness are `not_ready`. The
 [Phase 1D RFC](text_color_decode_rfc.md) records compact-output bounds and tests.
 Parser, decoder, model, anchor closeout and MFC conclusions are unchanged.
+
+## Color/Text Slot Phase 1E: prefix compatibility without ownership
+
+Dynamic count-framed prefix discovery succeeds for all seven multi-object controls:
+grouped two have eight slots; not-grouped two have eleven; grouped three baseline
+has eight, grouped content variation six, and not-grouped three four. Each retains
+204 recurrence, prefix-relative code +4, candidate color +0x50..+0x52 and final
+zero plus prefix loss. No slots are mapped to objects, chains, anchors or order.
+
+The raw `05` prefix alone yields two equal-length periodic candidates, separated
+by 92 bytes. The leading count/context condition distinguishes the proposed slot
+run structurally. These counts describe bounded paragraph runs, not object totals.
+Fixture names and capture expectations do not enter discovery. The historical
+payload location 310 is retained only as a control hypothesis, which conflicts
+with the four multiline/spacing controls automatically found at 378.
+
+Those four shifted runs share the baseline positive-prefix signature and retain
+code 13 inside the same 204-byte recurrence. Color normalization there is supported
+by matching masked local context; no changed-color multiline capture proves typed
+color semantics. First-slot differences observed previously are upstream of the
+prefix; no semantic subtype is assigned. Typed code and color widths stay null.
+
+The [Phase 1E RFC](text_color_decode_rfc.md) documents a supported bounded framing
+candidate with `parser_safe=false`. Candidate parser-model and color-ownership
+readiness remain `not_ready`. Existing parser/decoder/model behavior, anchor
+closeout and MFC conclusions are unchanged.

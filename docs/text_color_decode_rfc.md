@@ -531,3 +531,137 @@ Windows line endings: default JSON **85,453 bytes**, no-oracle JSON **78,990 byt
 details JSON **90,453 bytes**, text **12,435 bytes**, Markdown **12,437 bytes**,
 details text **16,521 bytes**. Parser/decoder/model sources, existing analyzers,
 fixture files, anchor closeout and the MFC investigation have no changes.
+
+## Color/Text Slot Phase 1E — dynamic prefix framing candidate
+
+`tools/analyze_text_slot_prefix_framing.py` searches payload-relative [128, 768)
+inside structurally identified CParagraphe payloads. This is a bounded leading
+search region, not a fixed record-start rule or whole-payload scan. It inventories
+the prior `05 00 00 00` lead, skips suffixes with a predecessor at -204, traverses
+maximal prefix sequences, and tests their local context. Code values, printable
+text, colors, fixture names, anchors and object/chain order never select a run.
+
+### Competing starts and framing rules
+
+All 24 existing fixtures contain **two** maximal periodic `05` sequences in this
+search: the proposed slot prefix and another prefix 92 bytes later. Their counts
+are equal. Therefore R1 (longest periodic run) alone is ambiguous in 24/24 cases;
+the raw token is insufficient to identify a text-slot run. P2, incidental internal
+periodicity, is not excluded by token matching alone.
+
+R2 adds a preceding-header transition: the u32le view immediately before a run
+must equal the independently traversed prefix count, and masked contexts must
+repeat after an optional distinct first context. The count is checked **after**
+enumeration; it does not determine traversal length. R2 uniquely selects one run
+in 24/24 fixtures. The competing +92 prefix has preceding view 1072693248 rather
+than the run count. This is a structural rejection, not proof of that region's
+semantic role. Multiple qualifying candidates cause abstention.
+
+| Rule | Support | Conflict | Ambiguity | Structurally rejected candidates proposed |
+| --- | ---: | ---: | ---: | ---: |
+| R1 longest raw-prefix run | 0 | 0 | 24 | 24 |
+| R2 preceding count + repeated context | 24 | 0 | 0 | 0 |
+| R3 distinct first positive-prefix signature | 0 | 24 | 0 | 0 |
+| R4 historical start 310, diagnostic only | 20 | 4 | 0 | 0 |
+
+These are internal consistency scores against count/context framing, not an
+external semantic oracle. The analyzer permits a distinct first prefix context;
+P3/P4 are not rejected by definition. A synthetic first-context control exercises
+that case. Absolute descriptor/payload positions and MFC schema remain provenance.
+
+### Prefix signature and first-slot context
+
+The tested positive-prefix window is +0..+31 with +4..+7 masked. Color bytes are
+outside that window and are never required invariants. Nearby origins -8..+8 are
+compared while keeping masks anchored to the nominated prefix, so moving a window
+does not accidentally require invariant code bytes. Nearby windows can also
+repeat: context repetition alone still does not prove an outer record boundary.
+
+Each selected run has **one** masked positive-prefix signature, including first
+and terminal slots. Across fixtures there are **three** classes: the baseline,
+height-control variation around +12..+18, and a mixed-group control's +8 variation.
+These are fixture-level differences, not established semantic subtypes. Common
+invariant positions are reported from structural evidence; no unknown coordinate
+fields are silently masked. The 16 bytes before the prefix have two classes:
+first-slot upstream context versus later slots. Thus Phase 1D's widened first-slot
+difference belongs upstream of the positive prefix in these fixtures, not to a
+demonstrated separate first-slot record schema.
+
+### Normalized code, color and terminal
+
+All 24 selected runs, totaling **207 slots**, preserve 204-byte recurrence. In the
+bounded comparison 196..212, other tested strides retain only the initial prefix.
+The prior code hypothesis is prefix +4. Phase A reports zero/nonzero statistics
+and narrow u8/u16le/u32le distributions around +0..+8; expected characters do not
+select +4. Only byte +4 varies within the four-byte code view in these fixtures.
+`observed_variable_width=1` is not a storage declaration: `typed_code_start` and
+`typed_code_width` remain null.
+
+For the 20 single-line controls, discovered prefix equals provisional grid
++0x3B, and +0x50..+0x52 equals the prior grid +0x8B..+0x8D at all **167 slots**.
+This comparison occurs only after run discovery and uses coordinate equality,
+not coincident zero-byte matches. All 24 fixtures have one shared masked color
+context at prefix +72..+91, excluding +80..+82. The shifted multiline cases
+therefore support the normalized position by context, although no changed-color
+multiline controls independently establish its color semantics.
+`observed_color_changed_width=3`, `typed_color_width=null` remain unchanged.
+
+Traversal never stops on a code value. It ends when prefix recurrence ends, then
+checks final zero plus absence of the next prefix (T1). All 24 fixture runs meet
+T1; the final masked signature and color bytes match the previous slot. T2, zero
+alone, has no internal-zero counterexample in these fixtures but fails the synthetic
+internal-zero test. T3, prefix loss alone, locates the sequence end without proving
+terminal semantics. The role remains `zero_code_terminal_candidate`, not a proven
+sentinel versus padding/default slot.
+
+### Multiline, isolation and readiness
+
+`text_multiline_basic.txt` and the fixed/proportional/print-proportional spacing
+controls are all found automatically at prefix 378, while single-line controls
+are found at 310. There is no +68 correction in discovery. All four have ten slots,
+the same positive-prefix signature as the baseline, code 13 inside the same run,
+and compatible +0x50 color context. This strengthens the dynamic prefix-local
+schema and qualifies Phase 1D's single-line-grid incompatibility; it does not
+confirm the entire paragraph or a 204-byte outer record extent.
+
+All seven requested multi-object controls are structurally compatible; counts
+cover enumerated paragraph runs only, with no object/chain mapping. The complete
+structural report and private diagnostic code ordering are serialized before any
+text oracle access. Phase A exposes distributions, not decoded text. Wrong expected
+text changes only oracle diagnostics; `--no-oracle` preserves identical structure.
+
+`structural_slot_run_readiness=bounded_framing_candidate_supported`.
+`candidate_parser_model_readiness=not_ready`, `parser_safe=false`: bounded corpus
+coverage, competing periodic tokens, and the unproven general count/prefix grammar
+still limit parser applicability. Typed field widths remain unresolved. Color
+ownership stays `not_ready` and is not investigated. Parser/decoder/model, existing
+analyzers, fixtures, anchor closeout and MFC conclusions are unchanged.
+
+### Compact CLI and verification
+
+Default reports have no per-slot rows. `--details` constructs at most five rows
+for the first paragraph of at most three fixtures, selected before row construction.
+Signature examples are bounded to three. Input, candidate, traversal and output
+budgets fail closed rather than silently truncating evidence.
+
+```powershell
+$env:PYTHONPATH = 'src'
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_framing.py --json
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_framing.py --json --no-oracle
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_framing.py --json --details
+.venv/Scripts/python.exe -m pytest tests/integration/test_text_slot_prefix_framing_cli.py -q
+.venv/Scripts/python.exe -m pytest -q
+```
+
+Measured CLI output including Windows line endings: JSON **91,387 bytes**,
+no-oracle JSON **87,672 bytes**, details JSON **94,362 bytes**, text **11,798 bytes**,
+Markdown **11,800 bytes**, details text **14,774 bytes**. Both JSON modes stay below
+100,000 bytes; text stays below 50,000 bytes.
+
+Validation: **20 new integration cases passed; full pytest 402 passed** with
+`PYTHONPATH=src`. Ruff and whitespace checks passed. Tests cover oracle isolation,
+wrong expected text, shifted real/synthetic payloads (+37/+68/+113), descriptor
+relocation, internal zeros, periodic filler, count disagreement, competing eligible
+runs, and a distinct synthetic first context. Code/color mutations do not select
+the prefix, and source/result snapshots preserve parser/model behavior. No fixture
+files are created or changed.
