@@ -4,6 +4,11 @@ Status: **Draft candidate framing RFC.** Phase 1A–1F analyzer evidence support
 bounded candidate grammar. Parser/decoder/model implementation is **not authorized**.
 No candidate fields or new parser behavior are implemented by this document.
 
+Subsequent decision: the [promotion gate review](text_slot_framing_promotion_review.md)
+governs the narrowly conditioned future candidate-only experiment. It supersedes
+this draft's pre-review authorization status within that scope only; the grammar
+remains descriptive, and neither document implements parser behavior.
+
 Evidence closeout: [text/color investigation through Phase 1F](text_color_decode_rfc.md),
 [text reverse engineering](text_reverse_engineering.md), and
 [multi-object investigation](text_object_reverse_engineering.md).
