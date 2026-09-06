@@ -421,3 +421,113 @@ sources and fixtures have no diff.
 Default output retains 242 chunks: JSON 178,945 bytes, no-oracle JSON 175,355
 bytes, text 11,134 bytes, Markdown 11,136 bytes (including Windows line endings).
 Output budgets are 180,000 JSON / 50,000 text bytes; oversized inputs fail closed.
+
+## Color Phase 1D — provisional CParagraphe text-slot record schema
+
+`tools/analyze_text_slot_record_schema.py` validates 21 existing controls without
+changing parser, decoder or model code. It does not import the Phase 1C analyzer
+or generate its large report. Analysis uses runtime-descriptor-derived CParagraphe
+payloads; absolute clipboard positions and MFC schema 6 are provenance only.
+No chain, anchor, order or color ownership mapping is performed.
+
+### Boundary versus periodicity
+
+H1 uses the original payload-relative grid `47 + ordinal * 204`. Ordinal zero
+remains header-like; the first repeated slot candidate is ordinal one, at 251.
+Twenty single-line fixtures retain this grid, totaling 167 aligned candidates.
+H2 compares starts 39..55 with the same exact adjacent-boundary repetition score
+over bounded -8..+7 windows. **No fixture uniquely selects start 47**. Some have
+47..55 ties; others favor 50..55, and multiline favors 50..52. Padding can produce
+equal or better repetition at shifted starts. `best_record_start=null` is deliberate.
+
+A stronger independent lead is repeated `05 00 00 00` at payload-relative 310
+for all 20 single-line controls, +0x3B inside provisional ordinal one. The immediately
+preceding u32le view at 306 equals the independently enumerated prefix count,
+varying with content. This is distinct from Phase 1C's invariant header +5 probe.
+Enumeration stops at prefix loss or bounds, never because a code is zero or
+printable. The next prefix is absent after the final slot in every covered fixture.
+
+The bounded stride comparison 196..212 uniquely supports 204 in all 21 fixtures,
+including multiline. Other tested strides retain only the initial prefix. This
+supports **204-byte periodicity and a count-prefixed slot run**, while H3 (internal
+period, not complete record width) and H4 (mixed family or repetition window)
+remain viable. Neither 47 nor 310 is promoted to a confirmed outer record boundary.
+
+### Slot code, terminal and homogeneity
+
+Within 0x30..0x50, the unique longest repetition of the prior prefix lead selects
+the following candidate code at **+0x3F**, or prefix-relative +4. Narrow u8/u16le/
+u32le summaries retain varying/terminal-zero alternatives; no expected character
+or ASCII score selects the offset. Values remain compatible with all three views;
+code storage width is also unresolved.
+
+Only after the complete structural report is serialized does the diagnostic
+oracle load documented ASCII controls or capture text-content alternatives.
+All seven primary ASCII fixtures match ordinally, including both spaces in
+`ab cd ef`, all ten digits, and all nine punctuation characters. Slot counts are
+8 for seven-letter controls, 11 for digits, 9 for alphanumeric/spaces and 10 for
+punctuation: N+1. Overall, 18 fixtures match available text oracles; three multi-object
+controls have unavailable text metadata and are not counted as matches. Unordered
+text alternatives never identify an object.
+
+All 21 runs have exactly one final zero code, a retained prefix at that slot,
+prefix loss at the next stride, and agreement with the preceding count. In the
+20 aligned cases the terminal masked signature and color bytes match the preceding
+slot, including nonzero Army Green/Navy Blue controls. This supports
+`zero_code_terminal_candidate`, without distinguishing terminator from padding/
+default slot or proving C-string semantics.
+
+The wider homogeneity test combines 0x30..0x50 and 0x70..0xA0, masking only the
+four-byte code *view* and color bytes 0x8B..0x8D. No coordinates are silently
+excluded. Every aligned fixture has **two signature classes**: first-slot context
+versus remaining slots, including the final zero slot. Color-local signatures
+still have one class. `multiple_slot_subtypes` is a bounded observation: a run
+prefix crossing the provisional boundary can explain the difference, so semantic
+subtypes are not proven. Phase 1C's narrower homogeneity remains valid.
+
+### Multiline and color applicability
+
+Multiline has no single-line prefix lead in the code window. A separate bounded
+prefix-window contrast finds its prefix at 378, shifted +68 from 310, with preceding
+count 10 and the same 204-byte period. Code 13 occurs at slot five with no prefix
+break; the post-freeze oracle reads `abcd\nefgh` followed by the zero slot. This is
+`alternate_layout_or_unresolved` / `single_line_schema_not_directly_applicable`.
+Single-line homogeneity masks and color positions are not transferred to it.
+Additional runs are not exhaustively searched; totals cover enumerated leading runs.
+
+The observed color region stays at +0x8B..+0x8D in all 167 aligned candidates,
+equivalently +0x50 from the repeated prefix lead. Terminal values match preceding
+slots. This is position consistency in the provisional grid, not a typed boundary.
+`observed_changed_width=3`, `typed_color_field_width=null`; no independent next-field
+start at 0x8E is demonstrated. Candidate parser modeling and color ownership remain
+`not_ready`. Anchor closeout and MFC conclusions are unchanged.
+
+### Compact reporting and validation
+
+Default output has counts, code sequences and compact signature/view statistics,
+with **zero per-record rows**. `--details` constructs at most four rows and two
+signature examples for the first paragraph of at most three selected fixtures.
+Limits apply before row construction. JSON is capped at 100,000 bytes and text
+at 50,000 bytes in both modes. The previous Phase 1C analyzer is unchanged.
+
+```powershell
+$env:PYTHONPATH = 'src'
+.venv/Scripts/python.exe tools/analyze_text_slot_record_schema.py --json
+.venv/Scripts/python.exe tools/analyze_text_slot_record_schema.py --json --no-oracle
+.venv/Scripts/python.exe tools/analyze_text_slot_record_schema.py --json --details
+.venv/Scripts/python.exe -m pytest tests/integration/test_text_slot_record_schema_cli.py -q
+.venv/Scripts/python.exe -m pytest -q
+```
+
+Fifteen new tests cover compact output, bounded details, freeze ordering,
+adversarial expected text, no-oracle equality, filename-independent structure,
+shifted descriptor provenance, unchanged parser/model sources and results,
+multiline abstention, and synthetic exact/shifted periods, internal zeros and
+periodic bytes without a prefix. No fixtures are added.
+
+Validation result: **15 new tests passed; full pytest 382 passed** with
+`PYTHONPATH=src`. Ruff and whitespace checks passed. Measured CLI sizes including
+Windows line endings: default JSON **85,453 bytes**, no-oracle JSON **78,990 bytes**,
+details JSON **90,453 bytes**, text **12,435 bytes**, Markdown **12,437 bytes**,
+details text **16,521 bytes**. Parser/decoder/model sources, existing analyzers,
+fixture files, anchor closeout and the MFC investigation have no changes.

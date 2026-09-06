@@ -1302,3 +1302,35 @@ two chains, but its local color context is unmatched and candidate count is
 left null. Field decoding and ownership remain not ready; typed color width
 is null. See [Color Phase 1C](text_color_decode_rfc.md) for oracle isolation and
 bounded-window evidence. Existing anchor and MFC conclusions are unchanged.
+
+## Color Phase 1D: paragraph schema compatibility without object mapping
+
+The new bounded schema analyzer reports the following leading paragraph runs.
+The cohort names identify fixtures only; no object, chain, anchor or attempted-order
+mapping enters extraction or scoring.
+
+| Existing fixture cohort | Enumerated slots | Single-line grid compatible |
+| --- | ---: | --- |
+| grouped two, same/mixed color | 8 | yes, provisional |
+| not-grouped two, same/mixed color | 11 | yes, provisional |
+| grouped three, baseline | 8 | yes, provisional |
+| grouped three, content variation | 6 | yes, provisional |
+| not-grouped three | 4 | yes, provisional |
+| multiline contrast | 10 | no; alternate prefix +68 |
+
+All these runs retain a 204-byte prefix period and a preceding count equal to
+enumeration. There are no interior prefix breaks in the enumerated run, including
+at multiline's code 13. Additional runs outside the bounded leading region remain
+unresolved; these counts are not document-wide or per-object text totals.
+Diagnostic capture text alternatives are unordered and used only after structural
+freeze. They cannot select a boundary, code position or object correspondence.
+
+Start 47 is not uniquely favored over nearby starts by structural repetition.
+The supported prefix is 310 for single-line controls and 378 for multiline.
+Code +0x3F is relative to the provisional single-line grid. Wider windows reveal
+first-slot context versus remaining-slot classes, so the result is a
+**provisional CParagraphe text-slot record schema**, not a confirmed record model.
+The final zero remains a terminal candidate; typed color width is null. Both
+candidate parser model and color ownership readiness are `not_ready`. The
+[Phase 1D RFC](text_color_decode_rfc.md) records compact-output bounds and tests.
+Parser, decoder, model, anchor closeout and MFC conclusions are unchanged.

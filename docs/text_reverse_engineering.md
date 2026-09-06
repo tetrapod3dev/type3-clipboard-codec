@@ -1405,3 +1405,30 @@ The complete Phase A report is frozen before expected colors load;
 unchanged. Color field start/width remain typed-unresolved despite the observed
 0x8B..0x8D delta. See [Phase 1C evidence](text_color_decode_rfc.md) for counts,
 limitations and validation. Anchor closeout and MFC conclusions are unchanged.
+
+## Color Phase 1D: provisional text-slot record schema
+
+`tools/analyze_text_slot_record_schema.py` distinguishes a supported 204-byte
+period from an unconfirmed record boundary. All 20 single-line controls have
+repeated `05 00 00 00` at payload-relative 310, code candidate +4 from that prefix
+(+0x3F from the provisional grid), and an immediately preceding count matching
+the independently enumerated slots. Enumeration ignores text expectations and
+zero codes, stopping at prefix loss. Nearby strides 196..212 favor 204, but
+boundary-window comparisons at starts 39..55 never uniquely favor 47.
+
+The code and final zero agree with all seven primary ASCII text oracles after
+structural freeze; spaces, digits and punctuation preserve N+1 slots. The final
+slot is `zero_code_terminal_candidate`, not a confirmed terminator. Widening the
+masked comparison to include 0x30..0x50 exposes a first-slot context difference:
+two local classes, even though color-local signatures remain homogeneous.
+The run prefix may cross the provisional boundary; full-record subtypes remain
+unproven. No full 204-byte comparisons or coordinate masks are used.
+
+Multiline retains 204 periodicity at prefix 378 (+68), with count ten and code 13
+at slot five. This is an alternate-layout contrast, not confirmation of the
+single-line schema. Color +0x8B..+0x8D is validated only for the 167 aligned
+single-line candidates; typed width remains null. The default report omits
+record rows and stays below 100 KB; details are limited before construction.
+`--no-oracle` preserves identical structural results. See
+[Phase 1D evidence](text_color_decode_rfc.md) for limits and tests. Parser/model
+implementation and ownership remain not ready; anchor and MFC conclusions stand.
