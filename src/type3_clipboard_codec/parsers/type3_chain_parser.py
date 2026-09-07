@@ -52,6 +52,7 @@ from .text.cparagraphe_parser import (
     records_to_text_run,
 )
 from .text.text_pipeline import run_text_pipeline
+from .text.text_slot_candidate import extract_text_slot_candidate
 
 
 class Type3ChainParser(BaseParser):
@@ -285,6 +286,17 @@ class Type3ChainParser(BaseParser):
                     "active text anchor remains unchanged and ownership is unresolved."
                 )
             
+        # All existing parsing is complete. This evidence has no semantic consumer.
+        paragraph_nodes = [node for node in all_nodes if node.header.class_name == "CParagraphe"]
+        slot_candidate = extract_text_slot_candidate(node.payload for node in paragraph_nodes)
+        if slot_candidate is not None:
+            node = paragraph_nodes[slot_candidate["payload_index"]]
+            slot_candidate["payload_span"] = {
+                "buffer": "raw_data", "coordinate_domain": "raw_data_relative",
+                "start": payload_offset + node.payload_offset, "length": len(node.payload),
+            }
+            slot_candidate["descriptor_relative_offset"] = payload_offset + node.start_offset
+            result.candidate_fields["text_slot_run"] = slot_candidate
         return result
 
     def _extract_cproperty_anchor_candidates(self, nodes: List[Type3Node]) -> List[dict[str, Any]]:

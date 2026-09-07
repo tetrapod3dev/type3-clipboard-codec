@@ -1,5 +1,66 @@
 # Type3 Text Reverse-Engineering Notes (Revised)
 
+## Candidate-only implementation update (2026-09-07)
+
+**candidate-only experiment implemented under Promotion Review conditions**.
+This implementation update supersedes historical statements below that the
+candidate experiment is future work; the review and research history remain intact.
+Semantic promotion is not authorized. `parser_safe=false`, typed widths unresolved,
+and ownership unresolved remain mandatory; this is not production parser support.
+
+The internal `parsers/text/text_slot_candidate.py` helper reads structurally
+identified CParagraphe payloads. `Type3ChainParser.parse` calls it after all existing
+semantic work, immediately before returning, and adds only
+`candidate_fields["text_slot_run"]` on complete success. No model, serializer,
+semantic text/color, anchor, chain mapping, ownership or MFC changes are involved.
+
+The complete eligible payloads are searched under global limits: 32 payloads,
+1,048,576 aggregate bytes, 4,096 raw token hits, 256 traversed slots and
+`2 * aggregate_payload_length + 4096` signature/probe evaluations. Limits are
+safety budgets, not format constants. Incomplete scans/probes or exceeded budgets
+omit the key. Exact invariant bytes and the three joint variants alone identify
+prefixes. Core-like unknown variants anywhere cause abstention; token-like
+unsupported continuation cannot establish a terminal. Suffixes are deduplicated
+by their predecessor at stride 204. Policy A requires exactly one maximal run
+across the entire input, before any count/code/RGB validation.
+
+Traversal follows independently validated prefixes, including internal zero
+windows. The final four-byte code candidate window must be zero with a complete
+next-prefix mismatch probe. Only then must all three count views (u8/u16le/u32le)
+agree with the actual slot total. Their diagnostic widths do not confirm storage
+widths. Known joint variants are checked independently at each traversed prefix.
+
+Output retains the preceding 16-byte count window, four raw code candidate bytes,
+three raw RGB candidate bytes, per-slot variant and terminal evidence. A 92-byte
+local span is inspection provenance, not a semantic record extent; 204 is prefix
+periodicity. Payload and descriptor provenance locate the exact existing lossless
+`raw_data`; per-slot spans are payload-relative and do not duplicate full payloads.
+Payload index is provenance only, never a chain or ownership assignment.
+
+Whole-payload results for the reviewed corpus: 24 candidates / 207 slots, including
+four multiline controls (10 slots each, including code-view 13 and terminal) and
+seven multi-object controls. No competing-run contradiction was found in this
+corpus. Additional text controls also yield provisional candidates; mirror-on,
+slant-15/custom-30 and width-50/150 controls have no exact family-valid prefixes
+and omit the key. This does not establish support for their layouts or non-ASCII
+encoding. Multi-object candidates do not establish which object owns the run.
+
+Regression coverage compares all 63 text fixtures and two geometry controls,
+removing ONLY `candidate_fields["text_slot_run"]`. Dataclass values, raw bytes,
+all other candidates, notes/warnings, order, attachment, anchors (including
+baseline-midpoint/fallback), style and geometry remain equal. A separate comparison
+against the actual pre-change HEAD parser source also passed all 65 fixtures.
+Non-verbose preview and normalized inspect JSON are equal; verbose preview is
+equal after removing only the new candidate. Generic rendering requires no change.
+
+Validation: **152 focused candidate tests passed** (58 unit + 94 integration);
+**580 full-suite tests passed** (428 baseline + 152 new). Ruff passes for
+all three new Python files. Repository-wide Ruff reports 102 pre-existing
+diagnostics; the modified existing parser retains its one unchanged F401
+(unused Point import), verified against HEAD. No unrelated lint cleanup
+was included. `git diff --check` passes.
+
+
 This document records the current text-object reverse-engineering status and revises fixture planning based on newly confirmed behavior.
 
 Color Phase 1B adds a separate byte-boundary/chunk-role analyzer; see the
