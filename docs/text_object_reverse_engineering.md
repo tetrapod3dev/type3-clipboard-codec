@@ -1,5 +1,42 @@
 # Type3 Text Object Reverse-Engineering Fixture Plan
 
+## Prefix redesign analysis update (2026-09-07)
+
+**The v0/v1/v2 runtime family is retained for safety while redesign evidence is reviewed.**
+
+The [prefix redesign analysis](text_slot_style_field_investigation.md#prefix-family-redesign-analysis-2026-09-07)
+evaluates F0–F4 across 72 text fixtures / 592 reference slots, 72 known +92
+competitor runs, 32 geometry scope controls and nine synthetic challenges.
+Style exclusions increase recall from F0 62/72 to F3 72/72, but F3 admits three
+of six general synthetic negatives. Its zero filler also passes count/terminal;
+those layers cannot conceal weak prefix discrimination.
+
+The proposed **F4 research predicate** adds zero bytes at +0x24..+0x2B and the
+raw constant `9A 99 99 99 99 99 D9 BF` at +0x38..+0x3F to the retained token/
++0x08..+0x0B core. It supports all 72 references (including controlled 9,
+previous 24, multiline 4, multi-object 7 and unsupported-style 5), rejects all
+known decoys and all six general synthetic negatives. Exact identity clones
+still match F0/F4: including those two negative cases gives 2/8 prefix false
+positives for both. Competing complete clones remain ambiguous independently
+of count. Geometry captures contain no eligible paragraphs and therefore test
+scope, not in-domain discrimination.
+
+The wider constants are candidates with no assigned semantics. Variability also
+extends to +0x2C; it is not used as an invariant. Old v0/v1 differ only inside
+the height-correlated region, while v2 +0x08 remains unresolved; F4 explicitly
+allows only 00/01 and rejects other values. The result is
+`runtime_prefix_redesign_readiness=ready_for_rfc_review`, **not runtime approval**.
+Full details retain corpus limitations, identity collisions, separate evidence
+layers and oracle-isolation tests. New tests: 90 passed; full suite: 722 passed;
+Ruff passes both new Python files.
+
+No runtime family/mask, candidate output, semantic model, typed widths, ownership,
+chain mapping, anchors, Z behavior, MFC conclusion or previous analyzer output
+changes are made or authorized. `parser_safe=false` and ownership unresolved.
+Any future implementation requires its own RFC/promotion review; no v3/v4/v5
+addition is proposed.
+
+
 ## Controlled per-slot style investigation (2026-09-07)
 
 The [controlled style investigation](text_slot_style_field_investigation.md)

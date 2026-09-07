@@ -220,3 +220,234 @@ Snapshot evidence: `tests/samples/reports/text/text_slot_style_runtime_baseline.
 The report is reproducible without an external service. No new fixture was
 captured, no raw fixture was rewritten and no runtime candidate expectation was
 relaxed to make unsupported styles pass.
+
+## Prefix family redesign analysis (2026-09-07)
+
+**The v0/v1/v2 runtime family is retained for safety while redesign evidence is reviewed.**
+
+[New standalone analyzer](../tools/analyze_text_slot_prefix_redesign.py) evaluates
+F0–F4 without changing this investigation's analyzer, its output, the runtime
+extractor, models, ownership, anchors or raw fixtures. No v3/v4/v5 are introduced.
+Result: `runtime_prefix_redesign_readiness=ready_for_rfc_review` for F4 on this
+bounded corpus. This is analysis readiness only, not runtime authorization or
+production support. `parser_safe=false`; typed widths and ownership unresolved.
+
+### Corpus and reference evidence
+
+The full selected corpus has 104 captured inputs: all 72 text fixtures and 32
+geometry fixtures. Text includes nine controlled style captures, the previous
+24-run / 207-slot Phase 1F corpus, five formerly unsupported mirror/slant/width
+controls, and 34 other text captures. Multiline (4) and multi-object (7) are
+subsets of the previous 24, not additional independent runs. All 72 text inputs
+have one count/terminal-nominated reference run, totaling 592 slots, plus one
+same-length raw +92 competitor, also totaling 592 slots. There are 1,184 raw token
+hits and 144 raw recurring runs. No captured CParagraphe without a research-supported
+reference was found. The 32 geometry negatives have zero eligible CParagraphe
+payloads: zero matches is a scope check, not strong in-domain discrimination evidence.
+
+Reference nomination uses complete bounded windows, independent raw token
+recurrence, unanimous count views and terminal evidence. These research reference
+labels are not ownership or ground truth semantics. **Every hypothesis scans all
+eligible payload token positions independently**, before count/terminal validation.
+Neither reference nomination nor +92 competitor identification filters hypothesis
+hits. Prefix matches, suffix-deduplicated runs and ambiguity remain visible even
+when count/terminal fails. No expected style, text, color, target index, numeric
+encoding or filename meaning selects a prefix.
+
+Nine synthetic challenges are generated in memory from a seed selected by raw
+structural evidence and digest, without fixture labels. Six are general negatives:
+zero filler, nonzero filler, known-decoy replay, decoy with +08..+0B repaired,
+decoy with both that core and +24..+2B padding repaired, and unknown +08=02.
+Two additional negative identity clones retain a matching prefix but corrupt
+count or terminal. A ninth challenge contains two complete identity clones in
+distinct payloads, explicitly testing global ambiguity.
+
+### Variability map and wider structural candidates
+
+JSON inventories every byte at prefix-relative −0x10..+0x5F: unique raw values,
+within-run constancy, cross-fixture constancy, terminal/nonterminal value classes,
+and variation within equal raw code classes. Phase B adds controlled-style,
+multiline, multi-object and unsupported-style cohort maps. Rows are summarized
+per position; full slot rows are not dumped.
+
+The observed height, width and slant regions overlap old identity constraints.
+Rotation +48..+4F and RGB +50..+52 are inventoried but remain outside the old
+32-byte predicate. In the broader corpus, variability extends to **+2C**, not
+only the formerly highlighted +2D..+2F; +30..+37 and +40..+46 also vary. These
+observations are preserved without giving the auxiliary bytes semantic names.
+
+| Wider area (inclusive) | Real-slot evidence | Known decoy evidence | Candidate interpretation |
+| --- | --- | --- | --- |
+| +24..+2B | Eight zero bytes in all 592 slots | +24 is 04; remaining bytes zero | padding_candidate; full range is F4 evidence |
+| +2C..+2F | Variable, including +2C | +2C is 04, others zero | Unresolved; not required by F4 |
+| +30..+37 | Variable | Zero | Not a framing constant |
+| +38..+3F | `9A 99 99 99 99 99 D9 BF` in all 592 slots | Eight zero bytes | unknown_stable_field; no decoded semantics used |
+| +40..+46 | Variable | Zero | Not required by F4 |
+| +47 | Stable 3F | Zero | Additional constant candidate, not selected for F4 |
+
+No byte is established as *genuinely structural* in all future formats. In
+particular, the new +38 constant might still represent an unperturbed field.
+Its value is not numerically decoded or treated as a confirmed storage type.
+F4 is a declared few-range hypothesis, not an automatically learned mask that
+keeps every constant or discards every variable in this corpus.
+
+### Explicit predicate hypotheses
+
+All predicates exclude code candidate +04..+07. Byte ranges below are inclusive;
+JSON exclusions and local windows use half-open coordinates. No numeric style
+value is tested during prefix matching.
+
+| Hypothesis | Identity rule | Required local bytes |
+| --- | --- | ---: |
+| F0 | Existing exact v0/v1/v2 joint family | 32 |
+| F1 | Project F0 joint vectors excluding +0C..+13 | 32 |
+| F2 | Project F0 joint vectors excluding +0C..+1B | 32 |
+| F3 | Project F0 excluding +0C..+23; retain token and +08..+0B core | 12 |
+| F4 | F3 core plus fixed +24..+2B and +38..+3F ranges | 64 |
+
+F1/F2/F3 retain projections of exact allowed joint vectors, not independently
+wildcarded components. F4 explicitly requires:
+
+- +00..+03 = `05 00 00 00`.
+- +08 is exactly `00` or `01`; every other value fails. This is a bounded raw
+  class policy, not an unrestricted wildcard or assigned semantic flag.
+- +09..+0B = `00 00 00`.
+- +24..+2B = eight zero bytes.
+- +38..+3F = `9A 99 99 99 99 99 D9 BF`.
+- Complete bounds through +3F. Code, style region +0C..+23, auxiliary +2C..+37,
+  rotation/RGB and other unrequired bytes do not participate.
+
+There are 24 required byte positions over a 64-byte local span. These are
+identity bounds only; recurrence, count, terminal and global ambiguity are
+separate evidence layers. The analyzer's declaration is not a new runtime mask.
+
+### Recall and known-decoy discrimination
+
+The following numerators are complete reference-run matches before count is
+used to reject any hypothesis run. F4 also has a unique maximal run in every
+positive fixture; the old-family ambiguities are not resolved using count.
+
+| Corpus | Runs | F0 | F1 | F2 | F3 | F4 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| All text | 72 | 62 | 63 | 68 | 72 | 72 |
+| Controlled style | 9 | 4 | 5 | 7 | 9 | 9 |
+| Previous Phase 1F | 24 | 24 | 24 | 24 | 24 | 24 |
+| Multiline subset | 4 | 4 | 4 | 4 | 4 | 4 |
+| Multi-object subset | 7 | 7 | 7 | 7 | 7 | 7 |
+| Previously unsupported styles | 5 | 0 | 0 | 3 | 5 | 5 |
+
+Height exclusion recovers the controlled height20 slot. Width exclusion recovers
+the two controlled widths and old mirror/width50/width150 captures. Slant exclusion
+recovers both controlled slants and both old slant controls. All nine controlled
+captures therefore share F3/F4 framing without their style values entering the
+predicate. F4 is preferred over F3 because synthetic discrimination differs.
+
+All five hypotheses reject **all 592 known decoy slots / all 72 decoy runs**:
+known-decoy false-positive rate 0/72. Known decoy +08..+0B is `4D 62 40 3F`,
+already incompatible with the retained F3 core. F4 has additional independent
+mismatches at +24 and +38..+3F. Thus known-decoy rejection alone is insufficient
+reason to accept F3: it is easier to satisfy than the wider candidate.
+
+### Synthetic false positives and layer contributions
+
+| Hypothesis | General negative identity matches | Including the two identity-clone negatives | Captured-input ambiguity |
+| --- | ---: | ---: | ---: |
+| F0 | 0/6 | 2/8 (25%) | 5 |
+| F1 | 0/6 | 2/8 (25%) | 4 |
+| F2 | 1/6 | 3/8 (37.5%) | 2 |
+| F3 | 3/6 | 5/8 (62.5%) | 0 |
+| F4 | 0/6 | 2/8 (25%) | 0 |
+
+These are deliberately adversarial test-case rates, not estimates of production
+prevalence. Identity-clone failures are not removed from the total denominator.
+F4 does not materially increase these measured negatives over F0, but it does
+not eliminate collisions with copied identity bytes. The two-full-clone challenge
+produces two matches under every hypothesis and remains ambiguous even though
+both count and terminal validate.
+
+The zero-filled periodic synthetic is especially diagnostic: F2 and F3 pass
+prefix, recurrence, count **and** terminal. Count cannot rescue a weak predicate.
+F4 rejects it at identity because it lacks the nonzero wider constant. Repaired
+known decoys likewise expose F3's weakness; F4 rejects them before count checks.
+
+| Layer quantity, captured corpus | F0 | F1 | F2 | F3 | F4 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Prefix slot matches | 547 | 548 | 574 | 592 | 592 |
+| Maximal accepted runs (suffixes deduplicated) | 72 | 71 | 72 | 72 | 72 |
+| Runs with ≥2 accepted prefixes at stride 204 | 72 | 71 | 72 | 72 | 72 |
+| Recurring runs passing count | 62 | 63 | 68 | 72 | 72 |
+| Recurring runs passing terminal independently | 67 | 67 | 70 | 72 | 72 |
+| Recurring runs passing both count and terminal | 62 | 63 | 68 | 72 | 72 |
+
+The raw token layer initially has 144 recurring sequences. F4 removes the 72
+competitors using identity; count and terminal add validation but no further
+captured-corpus discrimination. In synthetic identity clones, count rejects the
+wrong-count clone, terminal rejects the nonzero-terminal clone, and uniqueness
+rejects the two-complete-run challenge. None of these filters erases the reported
+prefix matches or competing-run counts. Runtime Policy A itself is unchanged.
+
+### +08 and old variant reinterpretation
+
+All 72 reference runs are homogeneous at +08. Exactly one fixture has 01:
+`text_group_mixed_color_two_objects.txt`. The other 71, including all controlled
+styles, other mixed-color/grouped/not-grouped captures, multiline and formerly
+unsupported styles, have 00. Intent grouping and filename hints are loaded only
+after structural freeze and are reported as diagnostics. This distribution does
+not establish a group, color, object, style or ownership meaning. +08 remains an
+unresolved raw class; F4 retains the explicit 00/01 enumeration and rejects 02,
+4D and FF in tests.
+
+The observed v0/v1 byte differences are wholly inside the height-correlated
+region. In this corpus they are fully explainable by the previously diagnostic
+0.01/0.03 height values and the new controlled 0.02 evidence; excluding that
+region merges the identity vectors. The distinction is not needed for observed
+framing. This is not proof of a universal typed height field or every possible
+meaning of a serialized version. Old invariants also overlap width and slant.
+Conclusion: `old_family_overconstrained_by_style_fields`. V2 remains a distinct
+raw +08 class with **unresolved interpretation**, not a newly named semantic flag.
+
+### Freeze, readiness, limitations and verification
+
+The complete raw structural report, predicate hits, positional profiles and
+synthetic results are serialized before `load_labels` can run. No-oracle output
+retains identical structural results, rankings/definitions and layer totals.
+Wrong labels/intents and renaming/reordering inputs do not change predicate
+results. Label-dependent cohort metrics and readiness are unresolved without
+oracle labels; the matcher does not need those labels to reproduce its decisions.
+No existing analyzer output was modified.
+
+Readiness is limited to **ready_for_rfc_review**, because F4 supports all controlled,
+previous, multiline/multi-object and additional references, rejects known decoys,
+retains bounded +08 handling, and does not increase measured negative identity
+matches over F0. Geometry controls are scope-only and true unsupported captured
+paragraphs are absent, so additional in-domain negatives and independently varied
+wider fields would strengthen a future review. Identity-clone collisions and the
+possible nonstructural meaning of wider constants must remain explicit RFC risks.
+No runtime parser change, typed style promotion, chain mapping, anchor ownership,
+Z behavior or MFC work is authorized by this result.
+
+```powershell
+$env:PYTHONPATH = 'src'
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_redesign.py --json
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_redesign.py --json --no-oracle
+.venv/Scripts/python.exe tools/analyze_text_slot_prefix_redesign.py --json --details
+.venv/Scripts/python.exe -m pytest tests/integration/test_text_slot_prefix_redesign_cli.py -q
+.venv/Scripts/python.exe -m pytest -q
+```
+
+The CLI also accepts explicit `--fixtures` paths. Limits: 128 inputs, 8 MiB hex
+text/input, 1 MiB aggregate paragraph bytes/input, 32 paragraphs/input,
+4,096 raw token hits/payload, 256 slots/run, 512 maximal runs/payload and 32,768
+signature evaluations/input. Bounds/cap failures produce warnings and block
+review readiness. Output-cap failure emits no partial report.
+
+Measured UTF-8 sizes including final newline: **96,553 bytes** default JSON,
+**97,700 bytes** details JSON; **8,118 bytes** text in either mode. JSON includes
+column-described compact tables instead of full slot dumps. Details add at most
+four fixture summaries. New targeted tests: **90 passed**. Full suite:
+**722 passed** (632 baseline + 90 new). Ruff passes both new Python files.
+Tests compare F0 with the actual runtime predicate at every captured token hit,
+verify runtime source hashes and exact whole-result controlled snapshots, and
+exercise styles, unknown +08, complete bounds, ambiguity, synthetic negatives,
+oracle isolation and output caps. No runtime, fixture or previous-analyzer changes
+are part of this task.
