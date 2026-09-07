@@ -1,5 +1,22 @@
 # Type3 Text Reverse-Engineering Notes (Revised)
 
+## Prefix Family v2 RFC status (2026-09-07)
+
+The [Prefix Family v2 Redesign RFC](text_slot_prefix_family_v2_rfc.md) is a
+**Draft redesign RFC**, freezing F4 evidence, identity-collision limitations,
+Policy A, fail-closed behavior, output compatibility and eight promotion gates.
+Current family v1 (source `CParagraphe_slot_prefix_family_v1`, with legacy exact
+variants v0/v1/v2) remains the implemented candidate-only runtime. Proposed family
+v2/F4 is a research redesign only: **runtime implementation/replacement not authorized**.
+The draft recommends a separately reviewed independent v1/v2 shadow study, not
+automatic fallback or two public candidates. Both wider F4 regions are termed
+`structural_constant_candidate`; no padding or semantic meaning is promoted.
+
+**The v0/v1/v2 runtime family is retained for safety while redesign evidence is reviewed.**
+Historical analysis and review conclusions below remain unchanged. This status
+update adds no runtime, analyzer, fixture or test behavior.
+
+
 ## Prefix redesign analysis update (2026-09-07)
 
 **The v0/v1/v2 runtime family is retained for safety while redesign evidence is reviewed.**
