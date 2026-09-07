@@ -1,0 +1,73 @@
+{
+  "source_sha256": {
+    "src/type3_clipboard_codec/parsers/type3_chain_parser.py": "9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb",
+    "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py": "76458eecec602b6e41f97c06b7188723fcf7a53e0bec1fe99445a586625d7d28",
+    "src/type3_clipboard_codec/parsers/text/text_pipeline.py": "ff6745a89de61fa85d4187fb2b80d632154ca5f738f46a87de25080356289503",
+    "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py": "65f94c639049ad8cfce1374c8933b51c5f0d6f8b214adbe285b17c07d2dd9133"
+  },
+  "fixtures": {
+    "text_slotstyle_a8_baseline.txt": {
+      "fixture_file_sha256": "994c115e0dab58c605747420e7ba1e67961835ed4ef17aae0951bf899a406392",
+      "parser_result_sha256": "d37ff8d5a414591aea1499909f1c7bd1b94c652c50e08bc16850526f2df26620",
+      "candidate_present": true,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_height20.txt": {
+      "fixture_file_sha256": "7a2f718e77b8419c1e650104f996b484f716fbe03a0dbe1ee9d78347a6857c59",
+      "parser_result_sha256": "be1fa91f547d71244cd819364324cc1822191ba7f38dd480817446b29cf474d3",
+      "candidate_present": false,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_navy.txt": {
+      "fixture_file_sha256": "152096a49b7013f2a987bdc4ede83b7038228410634b2339be70a94583d294dc",
+      "parser_result_sha256": "c2f9cfa3036a5756da7d2fbe5344d3cd95771252ecf2bbd6493f6b0463e06396",
+      "candidate_present": true,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_rotation_m15.txt": {
+      "fixture_file_sha256": "c1bd80bcf33aa4091b6f800802d4ef9d471e84fd80adac1e082da22c9966313d",
+      "parser_result_sha256": "d2bdaef90c5e3746a43d7f605817729ee2f77823168368c9e3c57c4eaf7e774c",
+      "candidate_present": true,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_rotation_p15.txt": {
+      "fixture_file_sha256": "5864c252344e8eb2380b1a7e050d1d0ad06105c103c4decbe99c67cf8d64f9a0",
+      "parser_result_sha256": "14bcadccb47eee376922eddc5902ed473e7ad602118e636f743da1e73f6d0cdc",
+      "candidate_present": true,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_slant_m15.txt": {
+      "fixture_file_sha256": "5ad06e30a5ed82ef5b0db1bf8e4b919a5956ddf17c38dfe3740a607a588514de",
+      "parser_result_sha256": "7779b52945a402676d240bfe143a918b878b4f12b450a7934b2434491ce77eff",
+      "candidate_present": false,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_slant_p15.txt": {
+      "fixture_file_sha256": "ef2a25a6b72b4b1b08986c6097464d9fd4e5fa6a2d11a9fe3686f1f76b2a1634",
+      "parser_result_sha256": "f7ba44c7a5c748aec599e9244096cec0dee73317a7cc57ff98ddf684aeb32f69",
+      "candidate_present": false,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_width150.txt": {
+      "fixture_file_sha256": "a887a24a4d3a91ae1a3eb5dc303ec212726d04cce323069166eff997550e104e",
+      "parser_result_sha256": "7c2e82685d3540916051bc680d07ded3b4c1c6eb6d1afbc8b0ebd02ff81a4e3f",
+      "candidate_present": false,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    },
+    "text_slotstyle_a8_char4_width50.txt": {
+      "fixture_file_sha256": "2f7969efbae197c145c778c24dab4115fd84e08cd850067bbb6bf79f011a4954",
+      "parser_result_sha256": "157e327618b0e1d7587a6a8fe5d9efef0fec252eb93356a7fcc09bc5fce7f372",
+      "candidate_present": false,
+      "source_text": "AAAAAAAA",
+      "display_text": null
+    }
+  }
+}

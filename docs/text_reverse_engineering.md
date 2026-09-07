@@ -1,5 +1,31 @@
 # Type3 Text Reverse-Engineering Notes (Revised)
 
+## Controlled per-slot style investigation (2026-09-07)
+
+The [controlled style investigation](text_slot_style_field_investigation.md)
+documents nine `text_slotstyle_a8_*` captures: Arial `AAAAAAAA`, fourth-character
+single-property changes with reset between captures, center-bottom alignment,
+lower-left `[31.123,72.234,1.234]` mm and anchor `[68.415,72.234]` mm.
+Z=1.234 is only a diagnostic control against zero-heavy byte patterns.
+
+Analyzer-only results support provisional f64le candidates at prefix +0x0C
+(height in meters), +0x14 (width ratio), +0x1C (slant radians), and +0x48
+(rotation radians). Navy isolates RGB at +0x50..+0x52 in the intended slot.
+Several captures also change unexplained +0x2D..+0x2F bytes in other slots,
+including a terminal window, plus upstream/layout bytes. Full-slot isolation is
+therefore qualified; these exceptions are retained rather than normalized away.
+
+The proposed Phase 1G v3/v4/v5 variant expansion is abandoned. Controlled style
+changes show that parts of the current exact prefix family contain style values;
+v2's +0x08 remains unexplained. `runtime_prefix_family_review_readiness` is
+`ready_for_review`, but `candidate_parser_change_readiness` remains `not_ready`.
+Runtime v0/v1/v2, Policy A and safe abstention are unchanged. No semantic model,
+anchor/baseline_midpoint/Z behavior, MFC conclusion or color-ownership readiness
+changes are authorized or implemented. Typed widths and ownership remain unresolved;
+`parser_safe=false`. See the dedicated document for raw evidence, exact fixture
+matrix, oracle isolation, regression snapshots and verification results.
+
+
 ## Candidate-only implementation update (2026-09-07)
 
 **candidate-only experiment implemented under Promotion Review conditions**.
