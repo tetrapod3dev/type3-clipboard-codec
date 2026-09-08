@@ -1,5 +1,90 @@
 # CParagraphe Text-Slot Prefix Family v2 Runtime Promotion Gate Review
 
+## Candidate-only runtime v2 acceptance (2026-09-09)
+
+runtime_v2_replacement_acceptance = **accepted_candidate_only**.
+
+The authorized Strategy A implementation and acceptance conditions now pass.
+The active public source is **CParagraphe_slot_prefix_family_v2** within the
+existing candidate_fields["text_slot_run"] key. This acceptance supersedes the
+earlier current-runtime-v1 and pending-implementation status statements below;
+their dated review decisions and historical evidence remain unchanged.
+
+Only the [candidate extractor](../src/type3_clipboard_codec/parsers/text/text_slot_candidate.py)
+changed in runtime source. It uses exact bounded F4 identity, the reviewed
+rejection-only possible-context recognizer and global unsupported-context veto,
+204-periodic roots with suffix deduplication, Policy A before independent
+count/terminal validation, and candidate construction only after every check.
+Private accounting separates token hits, identity positions, roots, suffixes,
+unsupported contexts and competitors. Early failure marks the scan incomplete;
+diagnostics never enter the public candidate or select a run.
+
+The positive predicate requires complete 64-byte context, token 05000000,
++08 in {00,01}, +09..+0B zeros, +24..+2B eight zeros, and +38..+3F
+9A9999999999D9BF. All prefixes in a successful run have the same raw +08.
+Both wider regions remain structural_constant_candidate with unresolved meaning.
+Gate 8 now globally rejects unknown_plus08, unknown_structural_constant and
+unknown_core under the exact reviewed conditions, including valid plus
+unsupported contexts in either order within/across payloads and at
+first/interior/last/next positions. Ordinary mismatches do not become vetoes.
+No fallback, dual family, mask widening, learned values or oracle selection exists.
+
+| Acceptance obligation | Verified result |
+| --- | --- |
+| Real corpus | 104: 72 text, 32 geometry scope controls |
+| Overlaps | All 62 same payload/run/provenance; exact metadata allowlist only |
+| Reviewed gains | Exactly the ten fixtures listed in section 4; full new candidate independently matches frozen positions/raw provenance |
+| Other presence transitions / losses / different runs | 0 / 0 / 0 |
+| Remaining controls | All 32 retain candidate absence |
+| Runtime identity accounting | 1,184 tokens; 592 identity positions; 72 maximal runs; 520 suffixes removed; zero unsupported contexts or competitors in real corpus |
+| Known +92 decoys | 72 runs / 592 positions: ordinary identity mismatch, no global veto |
+| Prior general negatives | 0/6 accepted |
+| Identity clones | Wrong count fails count; nonzero terminal fails terminal; two runs fail Policy A |
+| Competing invalid-count/terminal runs | Neither later validation can choose a winner |
+| +08 and wider constants | Both allowed uniform values pass; unknown/switch and single/multiple-byte constant mutations fail closed, including mixed inputs |
+| Bounds | Exact 64-byte identity and next probes; 63-byte/incomplete probes fail; count/RGB/92-byte raw context separately bounded |
+| Caps | Existing five caps unchanged; limit/over-limit and injected probe guard checked; exhaustion never returns partial success |
+| Semantic regression | All 104 exact outside the reviewed candidate delta, including raw_data, notes/warnings, unrelated candidates and ordering |
+| Inspect/preview | Exact candidate-only display delta; non-verbose output unchanged |
+
+Metadata changes are exactly source v1 -> v2, removal of run/slot prefix_variant,
+and addition of run-level prefix_family="F4" and raw integer plus08_value.
+There is no per-slot replacement field. All count/code/RGB values, spans,
+terminal flags, provisional confidence and unresolved/null metadata remain
+equal for overlaps. The 256-slot safety boundary does not waive count agreement:
+u8 cannot represent 256, so that synthetic case fails count after traversal;
+257 fails the slot cap. This retains the existing contract without typed promotion.
+
+[Runtime unit acceptance](../tests/unit/test_text_slot_candidate_v2.py) and
+[104-real migration regression](../tests/integration/test_text_slot_candidate_v2_migration.py)
+validate current v2 directly. The byte-exact
+[frozen v1 extractor](../tests/frozen_text_slot_candidate_v1.py) is test-only and
+its hash matches the pre-migration baseline. Historical Phase 1F/1G/shadow tests
+use an isolated temporary v1 replay through
+[test support](../tests/text_slot_v1_replay.py), preserving their assertions,
+analyzers, reports and captures. Those historical analyzer entry points target
+v1 and are replayed in that historical environment, not used as current-v2
+acceptance tools. No production import or retry path uses the frozen extractor.
+The historical shadow helper's mixed-context limitation remains historical;
+the runtime implementation closes it without rewriting shadow evidence.
+
+Validation: focused runtime units **228 passed**; migration integration
+**107 passed**; candidate/anchor/text/color/geometry regressions **957 passed,
+104 deselected**; full PYTHONPATH=src pytest **1061 passed in 53.23s**
+(pre-migration baseline 784). Ruff passes all ten changed/added Python files.
+git diff --check passes; runtime diff is limited to the candidate extractor.
+No parser integration, analyzer, fixture, model, semantic consumer, formatter,
+decoder interface, geometry/anchor/style/color parser or MFC change was needed.
+
+parser_safe remains **false**; typed widths remain **null/unresolved**;
+ownership remains **unresolved**, matched_chain remains **null**. Semantic
+promotion is not authorized. No new real-corpus contradiction was found.
+Unsupported real CParagraphe-without-slot-run negatives, broader layouts,
+encoding, full record extent, constant/+08 meanings and ownership remain evidence
+gaps. Geometry is scope-only evidence; tested safe clone rejection is not a
+global uniqueness or zero false-positive-rate claim.
+
+
 Date: 2026-09-08. Documentation review only; runtime remains family v1.
 
 ## 1. Scope

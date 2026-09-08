@@ -3,14 +3,23 @@
 import hashlib
 import importlib.util
 import json
-from pathlib import Path
 import subprocess
 import sys
 
 import pytest
 
-ROOT = Path(__file__).resolve().parents[2]
+from tests.text_slot_v1_replay import historical_root, replay_parser
+
+# Historical study replay, with the actual frozen v1 extractor. Current v2 is
+# checked separately by test_text_slot_candidate_v2_migration.py.
+ROOT = historical_root()
 CLI = ROOT / "tools/analyze_text_slot_family_shadow.py"
+
+
+@pytest.fixture(scope="module", autouse=True)
+def historical_v1_runtime():
+    with replay_parser():
+        yield
 
 
 @pytest.fixture(scope="module")

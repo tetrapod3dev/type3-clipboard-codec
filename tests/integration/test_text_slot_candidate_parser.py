@@ -35,11 +35,12 @@ def test_reviewed_fixture_candidates(name, count):
     obj, _ = parse(name)
     candidate = obj.candidate_fields['text_slot_run']
     assert len(candidate['slots']) == candidate['count_candidate']['validated_total_slot_count'] == count
-    assert candidate['source'] == 'CParagraphe_slot_prefix_family_v1'
+    assert candidate['source'] == 'CParagraphe_slot_prefix_family_v2'
     assert candidate['confidence'] == 'provisional' and candidate['parser_safe'] is False
     assert candidate['ownership'] == 'unresolved' and candidate['matched_chain'] is None
-    expected_variant = {'text_height_30mm': 'v1', 'text_group_mixed_color_two_objects': 'v2'}.get(name, 'v0')
-    assert candidate['prefix_variant'] == expected_variant
+    assert candidate['prefix_family'] == 'F4'
+    assert candidate['plus08_value'] == int(name == 'text_group_mixed_color_two_objects')
+    assert 'prefix_variant' not in candidate
     span = candidate['payload_span']
     payload = obj.raw_data[span['start']:span['start'] + span['length']]
     assert span['buffer'] == 'raw_data'
@@ -51,6 +52,8 @@ def test_reviewed_fixture_candidates(name, count):
     assert all(v['value'] == count for v in candidate['count_candidate']['numeric_views'].values())
     for slot in candidate['slots']:
         p = slot['raw_span']['start']
+        assert 'prefix_variant' not in slot
+        assert payload[p + 8] == candidate['plus08_value']
         assert slot['slot_code_candidate']['raw_bytes'] == payload[p + 4:p + 8]
         assert slot['rgb_bytes_candidate']['raw_bytes'] == list(payload[p + 80:p + 83])
         assert slot['raw_span']['length'] == 92
@@ -89,6 +92,6 @@ def test_exact_parser_and_presentation_equality(name, monkeypatch):
 
 @pytest.mark.parametrize('name', ['text_mirror_on', 'text_slant_15deg', 'text_slant_custom_30deg',
                                   'text_width_150_percent', 'text_width_50_percent'])
-def test_unsupported_fixture_omits_key(name):
+def test_reviewed_prior_unsupported_fixture_gains_candidate(name):
     obj, _ = parse(name)
-    assert 'text_slot_run' not in obj.candidate_fields
+    assert obj.candidate_fields['text_slot_run']['source'] == 'CParagraphe_slot_prefix_family_v2'

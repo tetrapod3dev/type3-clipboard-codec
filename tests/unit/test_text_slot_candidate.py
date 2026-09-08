@@ -4,14 +4,17 @@ from type3_clipboard_codec.parsers.text import text_slot_candidate as module
 
 
 def make_run(start=40, codes=(65, 66, 0), variant=0):
-    data = bytearray(b'\xcc' * (start + len(codes) * 204 + 32))
+    data = bytearray(b'\xcc' * (start + len(codes) * 204 + 64))
     data[start - 4:start] = len(codes).to_bytes(4, 'little')
     vectors = [(0, '7B14AE47E17A84'), (0, 'B81E85EB51B89E'), (1, '7B14AE47E17A84')]
     flag, vector = vectors[variant]
     for i, code in enumerate(codes):
         p = start + i * 204
         data[p:p + 32] = (module.TOKEN + code.to_bytes(4, 'little') + bytes([flag])
-                          + b'\0' * 3 + bytes.fromhex(vector) + b'\x3f' + module.TAIL)
+                          + b'\0' * 3 + bytes.fromhex(vector) + b'\x3f'
+                          + bytes.fromhex('000000000000f03f00000000'))
+        data[p + 36:p + 44] = b'\0' * 8
+        data[p + 56:p + 64] = bytes.fromhex('9a9999999999d9bf')
         data[p + 80:p + 83] = b'\x10\x20\x30'
     return data
 
@@ -22,10 +25,12 @@ def extract(data):
 
 @pytest.mark.parametrize('start', [16, 40, 177, 1100])
 @pytest.mark.parametrize('variant', [0, 1, 2])
-def test_valid_shifted_exact_variants(start, variant):
+def test_valid_shifted_f4_with_legacy_style_bytes(start, variant):
     candidate = extract(make_run(start, variant=variant))
     assert candidate['first_prefix_relative_offset'] == start
-    assert candidate['prefix_variant'] == f'v{variant}'
+    assert candidate['prefix_family'] == 'F4'
+    assert candidate['plus08_value'] == int(variant == 2)
+    assert 'prefix_variant' not in candidate
     assert candidate['count_candidate']['validated_total_slot_count'] == 3
     assert candidate['parser_safe'] is False
 
@@ -48,7 +53,7 @@ def test_global_uniqueness():
     assert module.extract_text_slot_candidate([bytes(make_run()), bytes(make_run())]) is None
 
 
-@pytest.mark.parametrize('offset', [8, 12, 204 + 8])
+@pytest.mark.parametrize('offset', [8, 9, 204 + 8])
 def test_unknown_joint_or_mixed_unknown(offset):
     data = make_run()
     data[40 + offset] = 2
@@ -64,7 +69,7 @@ def test_unobserved_combination():
 def test_weak_periodic_filler():
     data = make_run()
     for p in (40, 244, 448):
-        data[p + 19] = 0
+        data[p + 56] = 0
     assert extract(data) is None
 
 
@@ -89,7 +94,7 @@ def test_missing_four_byte_terminal(code):
     assert extract(make_run(codes=(65, code))) is None
 
 
-@pytest.mark.parametrize('remaining', [0, 1, 31])
+@pytest.mark.parametrize('remaining', [0, 1, 31, 32, 63])
 def test_incomplete_next_probe(remaining):
     data = make_run()
     assert extract(data[:40 + 3 * 204 + remaining]) is None
@@ -143,7 +148,7 @@ def test_partial_search_evidence(tail):
 def test_empty():
     assert module.extract_text_slot_candidate([]) is None
 
-@pytest.mark.parametrize('limit,value', [('MAX_PAYLOADS', 1), ('MAX_PAYLOAD_BYTES', 684),
+@pytest.mark.parametrize('limit,value', [('MAX_PAYLOADS', 1), ('MAX_PAYLOAD_BYTES', 716),
                                        ('MAX_PREFIX_HITS', 3), ('MAX_SLOTS', 3)])
 def test_resource_limit_exact_boundary(monkeypatch, limit, value):
     monkeypatch.setattr(module, limit, value)
@@ -158,12 +163,11 @@ def test_unknown_outside_selected_run():
     assert extract(other) is None
 
 
-def test_known_variants_independently_checked():
+def test_allowed_plus08_values_cannot_switch_within_run():
     data = make_run()
     other = make_run(variant=2)
     data[244:276] = other[244:276]
-    candidate = extract(data)
-    assert [s['prefix_variant'] for s in candidate['slots']] == ['v0', 'v2', 'v0']
+    assert extract(data) is None
 
 
 def test_truncated_local_color_context():
@@ -171,7 +175,7 @@ def test_truncated_local_color_context():
 
 
 def test_weak_filler_elsewhere_does_not_compete():
-    assert extract(make_run() + module.TOKEN + b'\xcc' * 40) is not None
+    assert extract(make_run() + module.TOKEN + b'\xcc' * 64) is not None
 
 
 def test_damaged_token_at_expected_continuation():

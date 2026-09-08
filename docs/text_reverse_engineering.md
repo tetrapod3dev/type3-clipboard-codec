@@ -1,5 +1,27 @@
 # Type3 Text Reverse-Engineering Notes (Revised)
 
+## Candidate-only runtime v2 acceptance (2026-09-09)
+
+The [implementation acceptance](text_slot_prefix_family_v2_promotion_review.md#candidate-only-runtime-v2-acceptance-2026-09-09)
+records runtime_v2_replacement_acceptance = **accepted_candidate_only**.
+Active source is **CParagraphe_slot_prefix_family_v2**, solely under text_slot_run:
+exact F4, global Gate 8 unsupported-context veto, uniform raw +08, unchanged
+Policy A and resource caps, and conservative 64-byte probes. All 62 overlaps
+preserve the same candidate except reviewed metadata; exactly the ten reviewed
+height20/mirror/width/slant fixtures gain candidates. No other transitions,
+losses or different runs occur; 32 scope controls remain absent. Legacy run/slot
+prefix_variant is removed; run-level prefix_family="F4" and raw plus08_value
+replace it. All 104 semantic outputs and inspect/preview outside this exact
+candidate delta remain equal. Full pytest: **1061 passed** (baseline 784);
+Ruff and git diff --check pass.
+
+No fallback, dual family, model, semantic consumer or analyzer change was made.
+parser_safe=false, typed widths null/unresolved, ownership unresolved and
+matched_chain=null remain mandatory; semantic promotion is not authorized.
+This current status supersedes earlier pending implementation/runtime-v1 status
+only. Historical v1, RFC, review and shadow evidence below is preserved.
+
+
 ## Runtime v2 candidate promotion review (2026-09-08)
 
 The [v2 Runtime Promotion Gate Review](text_slot_prefix_family_v2_promotion_review.md)

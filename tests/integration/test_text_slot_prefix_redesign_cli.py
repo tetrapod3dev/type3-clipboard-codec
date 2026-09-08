@@ -2,7 +2,6 @@ from dataclasses import asdict
 import hashlib
 import importlib.util
 import json
-from pathlib import Path
 import subprocess
 import sys
 
@@ -11,11 +10,19 @@ import pytest
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser
 from type3_clipboard_codec.inspect.formatters import _json_safe
 from type3_clipboard_codec.inspect.hex_input import hex_text_to_bytes
-from type3_clipboard_codec.parsers.text import text_slot_candidate as runtime
+from tests import frozen_text_slot_candidate_v1 as runtime
+from tests.text_slot_v1_replay import historical_root, replay_parser
 
-ROOT = Path(__file__).resolve().parents[2]
+# F0 is a historical v1 hypothesis, never reinterpreted as current runtime v2.
+ROOT = historical_root()
 CLI = ROOT / "tools/analyze_text_slot_prefix_redesign.py"
 GOLDEN = json.loads((ROOT / "tests/samples/reports/text/text_slot_style_runtime_baseline.json").read_text())
+
+
+@pytest.fixture(scope="module", autouse=True)
+def historical_v1_runtime():
+    with replay_parser():
+        yield
 
 
 @pytest.fixture(scope="module")
