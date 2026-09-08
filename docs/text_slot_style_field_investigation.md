@@ -1,5 +1,20 @@
 # CParagraphe Controlled Per-Slot Style Field Investigation
 
+## Spacing / maximum-length fixture inventory (2026-09-09)
+
+The [controlled fixture plan](text_spacing_maxlength_fixture_plan.md) documents
+eight new captures and their intent metadata: four character-spacing controls
+(char4 50/150%, char6 150%, all visible characters 150%) and four object-level
+maximum-length controls (+100/+60/+40/-60 mm). All use the existing AAAAAAAA/Arial
+controlled baseline: spacing 100%, maximum length 0 mm, operator-confirmed natural
+text-box length 74.584 mm. Reset-between-captures and baseline anchor/setup intent
+are explicit; resulting lower-left/bounding-box equality is not asserted.
+Maximum length remains an object/text-box experiment, not a per-slot style claim.
+This is inventory only: no byte differential, F4 constant validation or runtime/
+analyzer change. Future questions and oracle isolation are recorded in the plan.
+Historical findings below are unchanged.
+
+
 ## Independent v1/F4 shadow status (2026-09-08)
 
 [Gate 3/4 shadow evidence and limitations](text_slot_prefix_family_v2_rfc.md#independent-v1f4-shadow-status-2026-09-08)

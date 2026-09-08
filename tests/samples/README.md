@@ -7,6 +7,12 @@ They are used as reference fixtures for parsing, testing, and documenting curren
 
 ## Recommended Capture Workflow
 
+For the eight spacing / maximum-length controlled captures added in September
+2026, see the [fixture inventory and capture intent](../../docs/text_spacing_maxlength_fixture_plan.md).
+It separates four character-spacing experiments from four object/text-box
+maximum-length experiments, using the existing controlled baseline (natural
+length 74.584 mm). This inventory adds no binary-analysis or parser conclusions.
+
 New Type3 clipboard samples should be captured with the project CLI instead of manual hex copy/paste.
 After copying the object in Type3, run:
 
