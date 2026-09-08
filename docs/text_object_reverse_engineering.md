@@ -1,5 +1,22 @@
 # Type3 Text Object Reverse-Engineering Fixture Plan
 
+## Runtime v2 candidate promotion review (2026-09-08)
+
+The [v2 Runtime Promotion Gate Review](text_slot_prefix_family_v2_promotion_review.md)
+decides **runtime_v2_candidate_replacement_authorized_with_conditions**:
+future Strategy A replacement only within text_slot_run, with neutral run-level
+prefix_family=F4 and raw plus08_value metadata replacing legacy run/slot
+prefix_variant. Gates 3/4 pass; Gates 1/2/5/6/7/8 pass with concrete conditions.
+These include a global veto for recognized unsupported contexts mixed with a
+valid run, which the existing shadow helper does not yet enforce, and exact
+allowlist-based runtime regression. No implementation occurs in this review.
+Current runtime remains v1; parser_safe=false, typed widths and ownership remain
+unresolved. No fallback, dual family or semantic promotion is authorized.
+This current authorization status supersedes earlier not-authorized status
+statements for the narrowly scoped future experiment only; historical evidence,
+the Draft redesign RFC text and prior review scopes below are preserved.
+
+
 ## Independent v1/F4 shadow status (2026-09-08)
 
 [Gate 3/4 shadow evidence and limitations](text_slot_prefix_family_v2_rfc.md#independent-v1f4-shadow-status-2026-09-08)
