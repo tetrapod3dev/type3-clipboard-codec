@@ -1,5 +1,20 @@
 # Type3 Text Reverse-Engineering Notes (Revised)
 
+## Independent v1/F4 shadow status (2026-09-08)
+
+[Gate 3/4 shadow evidence and limitations](text_slot_prefix_family_v2_rfc.md#independent-v1f4-shadow-status-2026-09-08)
+now cover 104 real fixtures and 32 synthetic controls. Actual runtime v1: 62
+candidates; F4 shadow: 72; identical runs: 62; structurally explained disagreements:
+10 gains; losses, different-run disagreements and real ambiguities: zero.
+All 72 known decoys and six general negatives remain rejected. Clone, +08,
+constant, bounds, resource, oracle-isolation and runtime regression checks pass.
+Both disagreement closeout and v2 promotion-review readiness are ready_for_review.
+This does **not** authorize runtime v2 implementation/replacement. The RFC remains
+Draft redesign RFC; runtime v1 is unchanged, no public v2 candidate or fallback
+is emitted, parser_safe=false, and ownership/style/typed widths remain unresolved.
+Historical evidence and authorization scopes below are preserved.
+
+
 ## Prefix Family v2 RFC status (2026-09-07)
 
 The [Prefix Family v2 Redesign RFC](text_slot_prefix_family_v2_rfc.md) is a

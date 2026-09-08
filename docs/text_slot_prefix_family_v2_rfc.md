@@ -1,5 +1,60 @@
 # CParagraphe Text-Slot Prefix Family v2 Redesign RFC
 
+## Independent v1/F4 shadow status (2026-09-08)
+
+Promotion Gate 3/4 shadow evidence is now available in the
+[standalone analyzer](../tools/analyze_text_slot_family_shadow.py) and
+[frozen comparison report](../tests/samples/reports/text/text_slot_family_shadow_comparison.json).
+The actual v1 parser produced 62 candidates across 104 real fixtures
+(72 text, including all 9 controlled styles, 5 prior unsupported styles,
+4 multiline and 7 multi-object captures; 32 geometry controls).
+Independent F4 produced 72 shadow candidates: 62 identical raw-provenance runs,
+10 v1-absent/v2-present disagreements, 32 both-absent controls, no losses,
+different-run disagreements, real ambiguities or resource/bounds differences.
+
+The 10 disagreements are structurally explained by legacy predicate mismatches:
+height bytes in controlled height20 (1); width invariant bytes in mirror,
+prior width50/150 and controlled width50/150 (5); slant invariant bytes in
+prior slant15/30 and controlled slant +/-15 (4). These semantic region labels
+are applied only after structural results freeze, and do not select runs.
+Raw identity accounting: 1,184 token hits, 592 F4 matches, 72 maximal recurring
+and deduplicated runs, 520 suffix starts removed, zero global competitors,
+zero count/terminal failures and 72 final successes. All 72 known +92 decoy
+runs (592 prefixes) fail identity.
+
+The separate 32-case synthetic harness rejects all six general negatives.
+Identity clones still pass identity/recurrence: wrong count fails count,
+nonzero terminal fails terminal, and two complete runs abstain under Policy A.
+The old synthetic templates receive 64 continuation bytes for this study;
+otherwise their 32-byte context would fail bounds before testing later layers.
+This is safe abstention evidence, **not a zero false-positive-rate claim**.
+
+Observed +08 is constant within every run (71 runs use 00, one uses 01);
+unknown values and mixed 00/01 runs fail closed without semantic inference.
+Both wider constants reject one-byte and multi-byte mutations. Exact 64-byte
+identity bounds pass; 63-byte identity and incomplete next-prefix probes fail
+conservatively. RGB/raw-span bounds are separate. Existing resource caps remain
+unchanged; synthetic exhaustion yields no candidate and no real exhaustion
+occurs (maximum 23 probe evaluations). Probe-budget exhaustion is guard-tested
+by fault injection; the reviewed formula exceeds reachable token probes.
+
+All 104 parser serializations, inspect/preview outputs and runtime source hashes
+match the pre-existing frozen baseline. Oracle-disabled output differs only in
+oracle_summary; adversarial labels and renamed input preserve structural outcomes.
+Default JSON is 90,523 bytes, text 10,090 bytes; bounded details JSON is 92,243 bytes.
+Focused tests: 62 passed. Full PYTHONPATH=src pytest: 784 passed (722 baseline
+plus 62 new tests). Ruff on all three shadow Python files and git diff --check
+pass. Historical evidence below remains unchanged.
+
+disagreement_closeout_readiness and runtime_v2_promotion_review_readiness:
+**ready_for_review**. This is independent evidence for a separate Promotion Review,
+not runtime adoption approval. RFC remains **Draft redesign RFC**.
+Runtime v1, public candidate fields, source string, models and parser behavior
+remain unchanged; no v2 public candidate or fallback exists. Runtime v2
+implementation/replacement remains **not authorized**. parser_safe=false;
+ownership, style semantics and typed widths remain unresolved.
+
+
 Status: **Draft redesign RFC.** F4 evidence supports a style-independent bounded
 identity candidate in the observed corpus. **Runtime implementation/replacement
 not authorized.** Date: 2026-09-07. Current full pytest baseline: 722 passed.
