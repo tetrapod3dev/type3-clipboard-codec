@@ -569,3 +569,42 @@ runtime_f4_review_readiness=no_spacing_falsification_trigger;
 runtime_change_readiness=not_authorized_in_this_task; parser_safe=false;
 ownership and typed widths unresolved; matched_chain=null.
 Maximum-length fixtures remain **captured / analysis pending**.
+
+## Maximum-length controlled analysis (2026-09-10)
+
+Maximum length is now **analysis complete / provisional findings**; the
+[full differential report](text_spacing_maxlength_fixture_plan.md#maximum-length-differential-results-2026-09-10)
+records exactly the baseline and +100/+60/+40/-60 fixtures, all seven required
+comparisons (plus three additional unordered pairs), raw freeze and oracle
+separation. Character-spacing findings remain unchanged historical evidence.
+
+CParagraphe payload [262,270), upstream of slots, is the unique nominated
+object_setting_candidate matching f64le meters 0, .100, .060, .040, -.060.
+This is a strong_object_setting_candidate with typed width/ownership unresolved.
+The duplicated [214,222) and [286,294) diagnostic scalar profiles are
+0.999, 1.0, 0.8034631424913115, 0.5353087616608744, 0.8034631424913115.
+They support compression correlation but do not match requested/74.584;
+approximately -0.001 residuals and baseline != 1.0 remain an explicit model gap.
+The [298,306) candidate changes only in +100; its layout meaning is unresolved.
+No arbitrary offset/type search or production decoding is introduced.
+
+All complete 204-byte slots, including terminal, remain unchanged: character
+Width +14 and spacing +40 stay diagnostic 1.0. This separates unchanged
+per-character state from changing object/layout metadata in these captures.
++60/-60 share scalar magnitudes; only byte 269 of the requested-setting
+candidate changes 3F -> BF. Additional paragraph/suffix/geometry changes are
+reported as negative-length correlation, not a confirmed reflection transform.
+CZone X extents are 74.5839017735334, 100, 60, 40, 60 mm; negative capture Y
+bounds become 62.234..72.234 mm versus 72.234..82.234 mm. These are serialized
+bbox diagnostics, not rendered glyph measurements. Opaque secondary changes
+remain unresolved.
+
+All five runtime candidates remain present (source family v2, F4, +08=0,
+first prefix 310, nine slots). F4 +24 and +38 are independently
+not_falsified_by_current_maxlength_controls; no constants are confirmed and no
+F4 contamination is demonstrated. Active runtime remains accepted_candidate_only,
+Policy A, exact F4, rejection-only Gate 8, matched_chain=null, parser_safe=false.
+Runtime/parser/models/previous analyzers/fixture bytes are unchanged.
+runtime_f4_review_readiness=no_maxlength_falsification_trigger;
+runtime_change_readiness=not_authorized_in_this_task. Compression and negative
+reflection models remain unresolved; no ownership or semantic promotion.

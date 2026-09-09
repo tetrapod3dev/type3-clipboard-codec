@@ -367,3 +367,199 @@ Raw windows and f64 reads have structural freeze SHA-256
 Tests cover exact window-only access, preserved raw mismatching numeric reads,
 pre-oracle freeze, oracle-disabled equality, adversarial targets/percentages,
 renamed inputs, terminal separation, unchanged runtime/hashes and CLI bounds.
+
+## Maximum-length differential results (2026-09-10)
+
+Maximum-length status: **analysis complete / provisional findings**. This section
+supersedes only the earlier maximum-length "captured / analysis pending" status.
+Character-spacing findings, including the fixed +40..47 f64 ratio follow-up,
+remain unchanged historical evidence. No runtime or semantic-model changes are
+authorized.
+
+New standalone analyzer: `tools/analyze_text_maximum_length.py`;
+new integration suite: `tests/integration/test_text_maximum_length_cli.py`.
+Run with `--json`, `--no-oracle`, or `--details`. `--fixtures` accepts exactly
+five paths in reference-first order; neutral f0..f4 identifiers are input-order
+labels only. All ten unordered pairs are structurally compared, covering all
+seven required comparisons without using length labels to choose comparisons.
+Every node payload and header is compared before paragraph region breakdown.
+All ranges below are half-open and node-payload-relative unless specified.
+
+| ID | Exact fixture | Runtime result | Independent alignment |
+| --- | --- | --- | --- |
+| f0 | text_slotstyle_a8_baseline.txt | candidate present | 9 slots, first prefix 310 |
+| f1 | text_maxlength_a8_100mm.txt | candidate present | 9 slots, first prefix 310 |
+| f2 | text_maxlength_a8_60mm.txt | candidate present | 9 slots, first prefix 310 |
+| f3 | text_maxlength_a8_40mm.txt | candidate present | 9 slots, first prefix 310 |
+| f4 | text_maxlength_a8_m60mm.txt | candidate present | 9 slots, first prefix 310 |
+
+All five parse successfully. Source=CParagraphe_slot_prefix_family_v2,
+prefix_family=F4, plus08_value=0, slot_count=9, first_prefix=310. Runtime is
+observed before independent research alignment; current F4 positivity is not a
+prerequisite. Node sequence is CZone, CParagraphe, CCourbe, CContour,
+CPropertyExtend with payload sizes 98, 2530, 98, 170, 5006 respectively.
+Complete periodic windows occupy CParagraphe [310,2146), with suffix
+[2146,2530). No slot byte changes in any pair, including terminal slot 8.
+
+### Requested-setting candidate
+
+A cohort-wide exact eight-byte changed range independently nominates
+CParagraphe **[262,270), +0x106..+0x10D**. It is upstream of the slot run,
+not a prefix-relative field. Post-freeze diagnostic values are:
+
+| Capture | Exact bytes at [262,270) | f64le |
+| --- | --- | ---: |
+| baseline | 00 00 00 00 00 00 00 00 | 0.0 |
+| +100 | 9A 99 99 99 99 99 B9 3F | 0.100 |
+| +60 | B8 1E 85 EB 51 B8 AE 3F | 0.060 |
+| +40 | 7B 14 AE 47 E1 7A A4 3F | 0.040 |
+| -60 | B8 1E 85 EB 51 B8 AE BF | -0.060 |
+
+This is the unique nominated window matching all five requested lengths in
+meters, an **object_setting_candidate** / **strong_object_setting_candidate**.
+The millimeter hypothesis does not match. Typed width and ownership remain
+unresolved, and no production maximum-length field is added.
+
+Numeric nomination uses only isolated 7/8-byte cohort-union payload deltas.
+An exact 8-byte range is tested directly; a 7-byte range may include exactly
+one following cohort-stable byte as an explicit untyped f64 hypothesis.
+No alternative offsets, overlapping alignments, arbitrary blob subdivision or
+value-based nomination is allowed. Fifteen raw windows are frozen; f64 reads
+and UI matching occur afterward. No f32/integer hypotheses are promoted.
+The raw range and nominated-window lists remain identical without oracle.
+
+### Seven complementary comparisons
+
+| Pair | Upstream changed bytes | Suffix changed bytes | Complete slot changed bytes | Main evidence |
+| --- | ---: | ---: | ---: | --- |
+| baseline vs +100 | 63 | 82 | 0 | requested setting, layout/bbox changes; no operator-observed compression |
+| baseline vs +60 | 57 | 118 | 0 | setting and decreasing duplicated scalar candidates |
+| baseline vs +40 | 57 | 120 | 0 | further decrease of the same scalar candidates |
+| baseline vs -60 | 71 | 244 | 0 | signed setting plus additional geometry/suffix changes |
+| +100 vs +60 | 58 | 118 | 0 | duplicated scalar decreases, +298 layout candidate returns to baseline |
+| +60 vs +40 | 50 | 116 | 0 | scalar decreases further; simple natural-length ratio does not match |
+| +60 vs -60 | 30 | 232 | 0 | requested-setting sign change; duplicated scalar remains identical |
+
+The JSON retains every contiguous changed range in every complete node payload,
+node header and outside-node gap. CZone payload stays unchanged; its header/bbox
+changes. CCourbe/CContour payloads and headers, CPropertyExtend payload, and
+CParagraphe upstream/suffix all have secondary changes. CParagraphe node header
+remains unchanged. Opaque 16-byte changes (for example paragraph [76,92),
+CCourbe/CContour [28,44), CPropertyExtend [214,230)) are not assigned semantics.
+Range-category defaults are unresolved; bounded candidate/negative-only maps
+assign categories only within their supported boundaries.
+
+### Compression and layout candidates, with a model gap
+
+The discovered 7-byte deltas [214,221) and [286,293), each followed by a stable
+high byte, nominate **[214,222)** and **[286,294)** as diagnostic f64 containers.
+They have identical full raw profiles across all five inputs:
+
+| Capture | f64 diagnostic at both windows |
+| --- | ---: |
+| baseline | 0.9989999999999998 |
+| +100 | 1.0 |
+| +60 | 0.8034631424913115 |
+| +40 | 0.5353087616608744 |
+| -60 | 0.8034631424913115 |
+
+These are **compression_correlated_candidate** windows, not confirmed scale
+fields. +60 and +40 move in the expected direction, but requested/74.584 gives
+0.8044620830204869 and 0.5363080553469913. Residuals are
+-0.000998940529175485 and -0.0009992936861169532. Neither matches the narrow
+simple-ratio hypothesis; baseline also differs from 1.0. No exact compression
+formula is established. The rounded UI natural length is never searched in raw
+bytes or used to choose a window. The report also retains inverse-ratio values.
+
+Another nominated upstream window **[298,306)** is
+0.000037291950886766956 in baseline/+60/+40/-60, but 0.01270804911323329 in
++100. It is a +100-only layout-correlated observation; semantics remain
+unresolved. Compression-related metadata already changes in baseline vs +100
+(0.999 -> 1.0), so those regions are not described as exclusively activated
+only for compressed captures.
+
+Every visible and terminal slot retains the height, width, slant, auxiliary,
+spacing, rotation and RGB candidates. In particular prefix +14..1B stays f64
+1.0 and +40..47 stays f64 1.0 across all 45 slots. Operator-observed compression
+therefore does not reuse/change the existing character Width candidate in this
+cohort; its serialized state is separate from the changing object/layout
+metadata. This does not establish an ownership or complete compression model.
+
+### +60 / -60 symmetry and geometry
+
+The dedicated symmetry report separates common baseline-changed positions,
+identical range boundaries, negative-only positions, direct +60/-60 changes,
+and magnitude-identical / sign-only nominated numeric windows.
+At [262,270), only byte **269 (+0x10D)** changes **3F -> BF** between +60/-60;
+f64 magnitude stays 0.060. This is a **sign_correlated_candidate**, not an
+independent mirror flag. The two compression candidates and [298,306) remain
+byte-identical. Upstream direct differences are [8,15), [32,39), [76,83),
+[84,92), [269,270). Additional negative-only positions occur in the suffix,
+including [2162,2169), [2186,2193), and many later short ranges. These are
+negative_length_correlated_candidate / meaning_unresolved observations.
+No transform matrix, Y-flip implementation or terminal formatting ownership is
+inferred.
+
+| Capture | Parsed CZone X extent mm | CZone xmin / xmax mm | CZone ymin / ymax mm |
+| --- | ---: | --- | --- |
+| baseline | 74.5839017735334 | 31.123 / 105.7069017735334 | 72.234 / 82.234 |
+| +100 | 100 | 18.415 / 118.415 | 72.234 / 82.234 |
+| +60 | 60 | 38.415 / 98.415 | 72.234 / 82.234 |
+| +40 | 40 | 48.415 / 88.415 | 72.234 / 82.234 |
+| -60 | 60 | 38.415 / 98.415 | 62.234 / 72.234 |
+
+Requested values are oracle inputs; extents above are independently parsed
+serialized bboxes, not rendered glyph measurements. CCourbe/CContour X extents
+follow the same values and their Y bounds remain at 72.234 mm, including -60.
+CZone's negative capture has a changed Y interval with the same 10 mm extent.
+CParagraphe/CPropertyExtend have no parsed bbox in the existing node model.
+The report does not equate CZone width with glyph width or claim the parser
+measures the rendered compression/reflection. Baseline parsed X extent differs
+slightly from rounded UI 74.584 mm; that difference is preserved.
+
+All required F4 regions (+00..03, +08, +09..0B, +24..2B, +38..3F) remain
+unchanged in all 45 slots. +24 and +38 independently receive
+**not_falsified_by_current_maxlength_controls**, never confirmed constants.
+No F4 style contamination or abstention is observed.
+Runtime remains family v2/F4, accepted_candidate_only, exact identity, Policy A,
+Gate 8 rejection-only veto; matched_chain=null; parser_safe=false;
+ownership and typed widths unresolved. runtime_f4_review_readiness=
+no_maxlength_falsification_trigger; runtime_change_readiness=
+not_authorized_in_this_task. Compression-model readiness and negative-length
+reflection-model readiness remain unresolved beyond the provisional candidates.
+
+### Validation and preserved inputs
+
+Targeted maximum-length suite: **35 passed**. Full
+`PYTHONPATH=src pytest -q`: **1134 passed** (1099 baseline + 35 new).
+Ruff passes both new Python files. `git diff --check` passes;
+`git diff -- src/type3_clipboard_codec` is empty. Existing spacing/style analyzer
+hashes are pinned in tests and unchanged. No fixture, model or runtime file is
+modified. Oracle tests include wrong natural length, wrong requested values,
+wrong relationship classification, changed/removed reflection wording, injected
+target-character metadata, renamed filenames and disabled oracle. All retain
+identical raw structural results and numeric nominations. Structural SHA-256:
+`3f9b87b91dd58688de8a73ef461d279c1ac21f4b058e817238c719a13408437b`.
+
+Raw fixture file SHA-256 values, preserved from the initial observation:
+
+| ID | SHA-256 |
+| --- | --- |
+| f0 | 994c115e0dab58c605747420e7ba1e67961835ed4ef17aae0951bf899a406392 |
+| f1 | 1f24a7b2042dca993977690fa295aa7295593572103cb04523cc06ac1bd89046 |
+| f2 | b8281f358591493b1dadf609c18ab788d8d73c1ae5f222045dbdb3a9033b25b6 |
+| f3 | 44b998a2e69cd08618936da6a5250a11bf223b7d0f89f3aef3deb1bb9ab6d49a |
+| f4 | e9bb3439205bab970b73b1b6fc70d2814d77e0d088cb577ed6d37802b4d27d85 |
+
+Measured UTF-8 output including final LF: default JSON **95,721 bytes**,
+text **46,452 bytes**; details JSON **97,523 bytes**, details text **47,658 bytes**.
+Details add at most four eight-byte changed fragments per region for the first
+comparison only. No full payload dumps. Parsed geometry is not normalized away.
+
+In the dedicated +60/-60 comparison, CZone has 14 header-changed bytes and a
+changed bbox but zero payload changes; CCourbe/CContour bboxes and headers are
+unchanged despite payload changes (16/33 bytes), and CPropertyExtend has 16
+payload-changed bytes. CParagraphe has 30 upstream + 232 suffix changed bytes,
+zero slot/header changes. This explicitly separates geometry-only node evidence
+from opaque metadata and signed-setting evidence; a rendering transform model
+remains unresolved.
