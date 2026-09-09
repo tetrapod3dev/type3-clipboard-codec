@@ -32,8 +32,18 @@ def historical_root():
     assert hashlib.sha256(old.read_bytes()).hexdigest() == baseline["source_sha256"][SOURCE.as_posix()]
     _TEMP = tempfile.TemporaryDirectory(prefix="text-slot-v1-replay-")
     root = Path(_TEMP.name)
+    # Replay the recorded corpus, not captures added after v1 evidence froze.
+    # In particular, new spacing/maximum-length controls belong to later studies.
+    recorded = set(baseline["fixtures"])
+
+    def historical_inputs(directory, names):
+        ignored = {name for name in names if name == "__pycache__"}
+        if Path(directory) == ROOT / "tests/samples/text":
+            ignored.update(name for name in names if name.endswith(".txt") and name not in recorded)
+        return ignored
+
     for folder in ("src", "tools", "tests/samples"):
-        shutil.copytree(ROOT / folder, root / folder, ignore=shutil.ignore_patterns("__pycache__"))
+        shutil.copytree(ROOT / folder, root / folder, ignore=historical_inputs)
     shutil.copyfile(old, root / SOURCE)
     return root
 

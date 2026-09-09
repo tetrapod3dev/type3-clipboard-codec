@@ -194,3 +194,103 @@ fixture/baseline references, local links and twelve plan sections pass the
 inventory checks. All eight raw-file SHA-256 hashes match their values at task
 start, preserving the operator's existing staged/unstaged capture edits.
 git diff --check passes. No new fixture is parsed or interpreted by these checks.
+
+## Character-spacing differential results (2026-09-10)
+
+This section supersedes the earlier spacing-only "future/unanswered" status;
+prior inventory and accepted runtime history remain historical evidence.
+Maximum-length fixtures: **captured / analysis pending**. They are excluded
+from the new spacing analyzer's exact five-input inventory.
+
+Analyzer: `tools/analyze_text_slot_spacing_fields.py`; regression tests:
+`tests/integration/test_text_slot_spacing_fields_cli.py`. Run with `--json`,
+`--no-oracle`, or `--details`. Numeric ranges in JSON are half-open.
+Phase A observes runtime before independent CParagraphe token recurrence,
+count views and zero-terminal boundary validation. It compares every byte in
+nine complete 204-byte windows; first prefix is payload-relative 310 (0x136),
+run end 2146. A second recurrence at 402 is retained but fails framing.
+Ambiguous compatible runs remain unresolved. Filename spelling, target indices,
+spacing percentages, RGB expectations and natural length do not select runs.
+Frozen structural JSON is hashed before any intent file is read.
+
+| Exact fixture | Runtime candidate | Changed zero-based slots | Exact local delta |
+| --- | --- | --- | --- |
+| text_slotstyle_a8_baseline.txt | present | none | reference F0 |
+| text_slotstyle_a8_char4_spacing50.txt | present | 3 | +0x46: F0 -> E0 |
+| text_slotstyle_a8_char4_spacing150.txt | present | 3 | +0x46: F0 -> F8 |
+| text_slotstyle_a8_char6_spacing150.txt | present | 5 | +0x46: F0 -> F8 |
+| text_slotstyle_a8_all_spacing150.txt | present | 0..8 | +0x46: F0 -> F8 |
+
+All five parse successfully and independently align. Every runtime result has
+source `CParagraphe_slot_prefix_family_v2`, prefix_family=F4, first prefix=310,
+slot_count=9 and plus08_value=0. No runtime abstention occurs in this cohort.
+The only changed byte inside complete slot windows is +0x46 (JSON [70,71)).
+After freeze, intent supports `spacing_correlated_field_candidate` and
+`strong_style_field_candidate`: char4 low/high isolation is supported,
+`ordinal_transfer_supported=true`, and `visible_slot_replication_supported=true`.
+The two single-position 150% captures have identical raw F8 at different ordinals.
+All eight visible slots repeat F8. Terminal slot 8 ALSO changes F0 -> F8 in
+all-spacing150, despite not being an intentionally styled visible character.
+Single-character controls leave terminal unchanged. Its slot-code remains zero;
+visible code diagnostics remain 65 x 8 and RGB diagnostics remain unchanged.
+Terminal setting propagation/ownership semantics remain unresolved.
+
+The exact discovered delta is ONE byte. No exact discovered 4/8-byte range
+exists, so normalized-ratio, delta-from-baseline and raw-percentage float/integer
+diagnostics are inapplicable under this task's exact-range restriction.
+The analyzer does not widen +0x46 to nearby 4/8-byte containers to seek a match.
+`diagnostic_spacing_encoding=unresolved`; typed width remains null/unresolved.
+No `character_spacing_field_confirmed` promotion is made.
+
+F4 region A (+0x24..+0x2B) remains `00 00 00 00 00 00 00 00` in all 45
+aligned slots. Region B (+0x38..+0x3F) independently remains
+`9A 99 99 99 99 99 D9 BF`. Targets, non-targets and terminal are all invariant.
+Both results are `not_falsified_by_current_spacing_controls`, not confirmation
+of structural constants. No F4 style contamination is demonstrated here.
+Auxiliary +0x2C..+0x2F is unchanged in every slot: no target-local, all-slot,
+direction or magnitude correlation is demonstrated; semantics remain unresolved.
+
+Secondary changes are retained, without speculative field names:
+
+| Capture suffix | Before first slot | After slot windows | Before payload | After payload |
+| --- | ---: | ---: | ---: | ---: |
+| char4_spacing50 | 48 | 116 | 14 | 95 |
+| char4_spacing150 | 47 | 113 | 13 | 92 |
+| char6_spacing150 | 47 | 113 | 13 | 93 |
+| all_spacing150 | 63 | 126 | 14 | 96 |
+
+Counts are changed bytes within each comparison domain, not disjoint global
+summands. CParagraphe node header is unchanged. CZone, CCourbe and CContour bbox
+changes provide derived geometry evidence; CCourbe, CContour and CPropertyExtend
+payload changes are also reported. Other secondary range semantics are unresolved.
+Baseline natural text-box length is 74.584 mm; it is documentation only and
+never used as a binary selector or normalization target.
+
+Active runtime remains family v2/F4, `accepted_candidate_only`, Policy A,
+exact F4 identity and Gate 8 rejection-only veto. Runtime source, models,
+fixtures and prior analyzers are unchanged. `matched_chain=null`;
+`runtime_f4_review_readiness=no_spacing_falsification_trigger`;
+`runtime_change_readiness=not_authorized_in_this_task`; `parser_safe=false`;
+ownership unresolved. These controls do not justify widening or masking F4.
+
+Validation: targeted spacing CLI tests **19 passed**; full
+`PYTHONPATH=src pytest -q`: **1088 passed** (historical pre-analysis reference:
+1061). Ruff passes the new analyzer, new tests and modified test-only replay
+helper. `git diff --check` passes; `git diff -- src/type3_clipboard_codec` is empty.
+All five raw-file SHA-256 hashes match the initial observation and are pinned in
+the new tests; fixture and previous-analyzer diffs are empty. The configured
+PyCharm SDK used for verification is Python 3.13.5.
+
+The initial full-suite attempt exposed historical v1 replay copying later
+captures into its frozen corpus (22 failures, 17 errors). The test-only
+`tests/text_slot_v1_replay.py` now copies text captures from the stored historical
+baseline inventory. No analyzer or capture is edited, and maximum-length inputs
+are excluded from those historical replays. The successful full rerun includes
+all original assertions; none were removed or skipped.
+
+UTF-8 rendered sizes including final LF: default JSON **79,571 bytes**;
+text **27,539 bytes**; details JSON **81,580 bytes**; details text **27,539 bytes**.
+Default structural freeze SHA-256:
+`57e844610b3b3acf5619e0b952e075b5ed65e112cc1a40f35576da3237bb2c06`.
+No full slot dumps are emitted. Oracle-disabled/adversarial target/value tests
+preserve this structural evidence, and renamed copies select the same raw run.

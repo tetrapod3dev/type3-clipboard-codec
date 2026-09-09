@@ -1711,3 +1711,31 @@ The [text-slot framing candidate RFC](text_slot_framing_rfc.md) now records the
 descriptive grammar, exact closed prefix family, untyped count/code/color views,
 fail-safe behavior and future candidate-only experiment gates. It remains a draft;
 implementation is not authorized and existing extraction behavior must be preserved.
+
+## Spacing controls follow-up (2026-09-10)
+
+The [spacing differential results](text_spacing_maxlength_fixture_plan.md#character-spacing-differential-results-2026-09-10)
+record five independently aligned captures, all retaining the active v2/F4
+runtime candidate (first prefix 310, nine slots, +08=0). Complete 204-byte
+comparisons discover only +0x46 inside slots: F0 -> E0 for char4 50%, F0 -> F8
+for char4/char6 150%. Ordinal transfer 3 -> 5 and visible-slot replication
+0..7 are supported. All-spacing150 also changes terminal slot 8 to F8;
+single-character fixtures leave terminal unchanged. Terminal is not an intended
+visible target. This is a strong_style_field_candidate, not a confirmed field.
+The exact delta is one byte; typed width and encoding remain unresolved because
+numeric probes are restricted to exact discovered 4/8-byte ranges.
+
+F4 +0x24..+0x2B and +0x38..+0x3F are independently
+not_falsified_by_current_spacing_controls; neither is confirmed structural.
+Auxiliary +0x2C..+0x2F stays unchanged, semantics unresolved. Secondary paragraph,
+geometry/bbox and other payload changes remain separately reported. Natural
+baseline length 74.584 mm is never a binary selector. Frozen raw discovery is
+identical with --no-oracle or adversarial intent/renamed labels.
+
+Active runtime remains CParagraphe_slot_prefix_family_v2, accepted_candidate_only,
+Policy A, exact F4 and rejection-only Gate 8; accepted v2 history is unchanged.
+No runtime/parser/model/previous-analyzer/fixture edits are made.
+runtime_f4_review_readiness=no_spacing_falsification_trigger;
+runtime_change_readiness=not_authorized_in_this_task; parser_safe=false;
+ownership and typed widths unresolved; matched_chain=null.
+Maximum-length fixtures remain **captured / analysis pending**.
