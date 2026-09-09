@@ -526,3 +526,32 @@ runtime_f4_review_readiness=no_spacing_falsification_trigger;
 runtime_change_readiness=not_authorized_in_this_task; parser_safe=false;
 ownership and typed widths unresolved; matched_chain=null.
 Maximum-length fixtures remain **captured / analysis pending**.
+
+## Fixed-window spacing numeric follow-up (2026-09-10)
+
+The [fixed-window follow-up](text_spacing_maxlength_fixture_plan.md#fixed-window-spacing-ratio-follow-up-2026-09-10)
+tests only the pre-registered +0x40..+0x47 window using the existing alignment.
+The opt-in `--spacing-ratio` analyzer mode freezes all raw eight-byte windows
+and f64le reads before loading intent; `--no-oracle` preserves those reads.
+No new field discovery or neighboring-offset search occurs.
+
+Baseline: `00 00 00 00 00 00 F0 3F` = 1.0;
+50% target: `00 00 00 00 00 00 E0 3F` = 0.5;
+150% target: `00 00 00 00 00 00 F8 3F` = 1.5.
+Char4/char6 eight-byte equality and ordinal transfer hold; single-character
+non-targets stay at baseline. All visible slots replicate 1.5. Terminal is 1.0
+in baseline and single-character captures, but 1.5 in all-spacing150:
+terminal_spacing_state_propagation_observed. Copying paragraph style state is
+speculation; no terminal character/formatting ownership is assigned.
+
+spacing_ratio_f64_candidate: diagnostic_storage_candidate=f64le;
+confidence=strong_style_field_candidate; typed_width=null/unresolved.
+This supersedes the previous encoding-unresolved status only for this newly
+authorized fixed-window diagnostic, preserving the exact-delta analysis history.
+Stable high byte +47=3F is compatible with the earlier +40..46 variability map
+and a multi-byte ratio candidate; it is not a retrospective structural selector.
+The window is outside required F4 bytes: identity is unchanged, and all five
+runtime candidates remain present. This supports framing/style separation in
+these controls. Runtime remains family v2/F4, with no production decoding or
+style output added; parser_safe=false; ownership unresolved.
+Maximum-length remains **captured / analysis pending**.

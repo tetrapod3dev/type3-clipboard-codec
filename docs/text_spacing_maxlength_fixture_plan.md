@@ -294,3 +294,76 @@ Default structural freeze SHA-256:
 `57e844610b3b3acf5619e0b952e075b5ed65e112cc1a40f35576da3237bb2c06`.
 No full slot dumps are emitted. Oracle-disabled/adversarial target/value tests
 preserve this structural evidence, and renamed copies select the same raw run.
+
+## Fixed-window spacing ratio follow-up (2026-09-10)
+
+This numeric interpretation follow-up explicitly authorizes only prefix
++0x40..+0x47, following the independently discovered +0x46 delta. It supersedes
+encoding-unresolved status for this diagnostic hypothesis only; the earlier
+exact-delta analysis and its restriction remain valid historical results.
+Use `tools/analyze_text_slot_spacing_fields.py --spacing-ratio --json`;
+`--no-oracle` retains identical `spacing_ratio_raw` and structural freeze hash.
+The default CLI and its previous exact-delta tests remain unchanged.
+
+No new field discovery or neighboring-offset search is performed. Existing
+independent alignment is reused; every aligned slot is read at the same fixed
+[64,72) window. Exact eight-byte windows AND f64le raw reads are frozen before
+intent loading. `spacing_ratio_summary` then records target/non-target/terminal
+roles and expected-ratio matching, separate from raw evidence. No other numeric
+encoding is tested in this follow-up.
+
+Define exact raw windows (little-endian):
+
+| Window | Exact +0x40..+0x47 bytes | f64le |
+| --- | --- | ---: |
+| B | 00 00 00 00 00 00 F0 3F | 1.0 |
+| L | 00 00 00 00 00 00 E0 3F | 0.5 |
+| H | 00 00 00 00 00 00 F8 3F | 1.5 |
+
+| Exact fixture | Visible slots (zero-based) | Terminal slot 8 |
+| --- | --- | --- |
+| text_slotstyle_a8_baseline.txt | 0..7: B | B |
+| text_slotstyle_a8_char4_spacing50.txt | target 3: L; non-target 0..2,4..7: B | B |
+| text_slotstyle_a8_char4_spacing150.txt | target 3: H; non-target 0..2,4..7: B | B |
+| text_slotstyle_a8_char6_spacing150.txt | target 5: H; non-target 0..4,6..7: B | B |
+| text_slotstyle_a8_all_spacing150.txt | 0..7: H | H |
+
+All strong-support criteria pass: baseline values are 1.0, low target is 0.5,
+high targets are 1.5, char4 and char6 carry identical eight-byte H at different
+ordinals, single-character non-targets remain B, and all eight visible slots
+replicate H. `spacing_ratio_f64_candidate` has
+`diagnostic_storage_candidate=f64le`, `confidence=strong_style_field_candidate`.
+`typed_width=null` remains formally unresolved. No production typed decoding,
+style output, confirmed-field promotion or ownership assignment is authorized.
+
+Terminal baseline is B/1.0; all single-character captures preserve it;
+all-spacing150 terminal is H/1.5, identical to every visible slot. Conclusion:
+`terminal_spacing_state_propagation_observed`. Whether this copies final/current
+paragraph style remains semantic speculation. No real-character, formatting
+ownership or character-8 membership conclusion follows.
+
+The tested window is disjoint from F4-required +00..03, +08, +09..0B,
++24..2B and +38..3F. All required bytes remain unchanged and all five runtime
+candidates remain present with active source CParagraphe_slot_prefix_family_v2.
+Spacing can vary without abstention in this cohort, supporting separation of
+framing identity from the spacing style candidate. F4 is unchanged.
+
+Earlier +40..46 variability with +47 stable 3F is compatible with a multi-byte
+numeric field whose high byte remains stable across these ratios. The current
+controls vary only +46; they do not independently demonstrate variability of
+every earlier byte. This is interpretation of frozen evidence, never a selector.
+Baseline natural length 74.584 mm is not a binary selector.
+Runtime unchanged; parser_safe=false; ownership unresolved; typed width
+unresolved; runtime_change_readiness=not_authorized_in_this_task.
+Maximum-length fixtures remain **captured / analysis pending**.
+
+Follow-up validation: targeted spacing suite **30 passed** (previous 19 retained,
+11 follow-up cases added); full `PYTHONPATH=src pytest -q`: **1099 passed**.
+Ruff and `git diff --check` pass. Runtime source hashes and all five fixture
+hashes remain unchanged; runtime/fixture/F4 RFC diffs are empty.
+Opt-in output: JSON **85,104 bytes**, text **33,098 bytes** (UTF-8 with final LF).
+Raw windows and f64 reads have structural freeze SHA-256
+`cc40310b2cece13a168cc37f494f684bb92e210c02203201cf8fd253850572e2`.
+Tests cover exact window-only access, preserved raw mismatching numeric reads,
+pre-oracle freeze, oracle-disabled equality, adversarial targets/percentages,
+renamed inputs, terminal separation, unchanged runtime/hashes and CLI bounds.

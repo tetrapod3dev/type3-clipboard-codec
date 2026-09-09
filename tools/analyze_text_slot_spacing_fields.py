@@ -166,7 +166,18 @@ def compare(base, capture, details=False):
     return result
 
 
-def structural_phase(paths, baseline, details=False):
+def read_ratio_windows(data):
+    """Pre-registered +40..47 hypothesis only; no target, value or offset search."""
+    rows = []
+    for ordinal, slot in enumerate(slots(data)):
+        raw = slot[0x40:0x48]
+        value = struct.unpack("<d", raw)[0]
+        rows.append(dict(ordinal=ordinal, terminal=ordinal == data["selected"]["count"]-1,
+                         raw_hex=raw.hex(), f64le=value if math.isfinite(value) else repr(value)))
+    return rows
+
+
+def structural_phase(paths, baseline, details=False, spacing_ratio=False):
     if len(paths) > LIMITS["max_fixtures"] or len({p.name for p in paths}) != len(paths):
         raise ValueError("fixture budget or duplicate labels")
     loaded, inventory, warnings = {}, [], []
@@ -209,7 +220,7 @@ def structural_phase(paths, baseline, details=False):
         _, after = observe_runtime(data["raw"])
         if after != data["parser_digest"]:
             raise ValueError("runtime parser output changed during independent analysis")
-    return dict(
+    result = dict(
         mode="details" if details else "summary", policy=POLICY, limits=LIMITS, warnings=warnings,
         fixture_inventory=inventory, runtime_candidate_summary={n: d["runtime"] for n, d in loaded.items()},
         structural_alignment_summary={n: dict(status=diffs[n]["status"], raw_runs=d["runs"],
@@ -224,6 +235,75 @@ def structural_phase(paths, baseline, details=False):
         **regions,
         secondary_change_summary={n: d.pop("secondary") for n, d in diffs.items() if d["status"] == "aligned"},
     )
+    if spacing_ratio:
+        result["spacing_ratio_raw"] = dict(
+            relative_range=[0x40, 0x48], diagnostic_storage_candidate="f64le", typed_width=None,
+            fixtures={name: read_ratio_windows(data) for name, data in loaded.items()
+                      if diffs[name]["status"] == "aligned"})
+    return result
+
+
+def evaluate_spacing_ratio(frozen, oracle, baseline):
+    """Post-freeze matching only. No binary reads or structural selection here."""
+    evidence = json.loads(frozen)
+    profiles = evidence["spacing_ratio_raw"]["fixtures"]
+    result = dict(candidate="spacing_ratio_f64_candidate", diagnostic_storage_candidate="f64le",
+                  confidence="unresolved", typed_width=None, ownership_status="unresolved",
+                  terminal_status="terminal_behavior_unresolved", per_fixture={},
+                  ordinal_transfer_supported=False, visible_slot_replication_supported=False,
+                  prior_plus47_compatible=bool(profiles) and all(
+                      r["raw_hex"][-2:] == "3f" for rows in profiles.values() for r in rows),
+                  f4_required_bytes_unaffected=all(
+                      not any(lo < end and hi > start for start, end in
+                              ((0, 4), (8, 12), (36, 44), (56, 64)))
+                      for d in evidence["per_fixture_differentials"].values()
+                      for s in d.get("slots", []) for r in s["ranges"]
+                      for lo, hi in [r["relative_range"]]),
+                  runtime_candidates_present=bool(profiles) and all(
+                      r["candidate_present"] for r in evidence["runtime_candidate_summary"].values()))
+    if not oracle.get("enabled") or baseline not in profiles:
+        return result
+    reference = profiles[baseline]
+    result["baseline_matches"] = all(r["f64le"] == 1.0 for r in reference)
+    result["per_fixture"][baseline] = dict(roles=["terminal" if r["terminal"] else "baseline_visible"
+                                                for r in reference])
+    singles, all_visible = [], []
+    for name, meta in oracle.get("labels", {}).items():
+        rows = profiles.get(name)
+        isolation = oracle["per_fixture"].get(name, {})
+        if not rows or not isolation.get("valid_visible_targets"):
+            continue
+        targets = isolation["intended_visible_ordinals"]
+        expected = meta["changed_value_percent"] / 100
+        match = all(r["f64le"] == (expected if r["ordinal"] in targets else 1.0)
+                    for r in rows if not r["terminal"])
+        match &= meta["baseline_value_percent"] == 100
+        result["per_fixture"][name] = dict(
+            roles=["terminal" if r["terminal"] else "visible_target" if r["ordinal"] in targets
+                   else "visible_non_target" for r in rows], expected_ratio=expected, visible_match=match,
+            terminal_unchanged=rows[-1]["raw_hex"] == reference[-1]["raw_hex"],
+            terminal_matches_visible=all(rows[-1]["raw_hex"] == r["raw_hex"] for r in rows[:-1]))
+        if len(targets) == 1:
+            singles.append((name, targets[0], expected, rows[targets[0]]["raw_hex"]))
+        elif targets == list(range(len(rows)-1)):
+            all_visible.append(name)
+    pairs = [(a, b) for i, a in enumerate(singles) for b in singles[i+1:]
+             if a[1] != b[1] and a[2] == b[2] == 1.5]
+    result["ordinal_transfer_supported"] = bool(pairs) and all(a[3] == b[3] for a, b in pairs)
+    result["visible_slot_replication_supported"] = bool(all_visible) and all(
+        all(r["f64le"] == 1.5 and r["raw_hex"] == profiles[name][0]["raw_hex"]
+            for r in profiles[name][:-1]) for name in all_visible)
+    complete = len(profiles) == 5 and len(singles) == 3 and len(all_visible) == 1
+    matches = all(r.get("visible_match", True) for r in result["per_fixture"].values())
+    if (complete and result["baseline_matches"] and matches and
+            sorted(s[2] for s in singles) == [0.5, 1.5, 1.5] and
+            result["ordinal_transfer_supported"] and result["visible_slot_replication_supported"]):
+        result["confidence"] = "strong_style_field_candidate"
+    if (complete and all(result["per_fixture"][s[0]]["terminal_unchanged"] for s in singles)
+            and all(result["per_fixture"][n]["terminal_matches_visible"] and
+                    not result["per_fixture"][n]["terminal_unchanged"] for n in all_visible)):
+        result["terminal_status"] = "terminal_spacing_state_propagation_observed"
+    return result
 
 
 def load_intent(name):
@@ -410,12 +490,15 @@ def finish_report(evidence, oracle):
     return evidence
 
 
-def build_report(paths=None, baseline=BASELINE, oracle_enabled=True, details=False):
+def build_report(paths=None, baseline=BASELINE, oracle_enabled=True, details=False, spacing_ratio=False):
     paths = [TEXT / name for name in FIXTURES] if paths is None else list(paths)
-    frozen = compact(structural_phase(paths, baseline, details))
+    frozen = compact(structural_phase(paths, baseline, details, spacing_ratio))
     oracle = oracle_phase(frozen, oracle_enabled, baseline)
     oracle["structural_sha256"] = hashlib.sha256(frozen.encode()).hexdigest()
-    return finish_report(json.loads(frozen), oracle)
+    result = finish_report(json.loads(frozen), oracle)
+    if spacing_ratio:
+        result["spacing_ratio_summary"] = evaluate_spacing_ratio(frozen, oracle, baseline)
+    return result
 
 
 def render(report, json_output=False):
@@ -429,6 +512,9 @@ def render(report, json_output=False):
                 if slot["changed_byte_count"]:
                     output += compact(slot) + "\n"
         output += "Secondary changes (raw ranges, not semantic assignments):\n" + compact(report["secondary_change_summary"]) + "\n"
+        if "spacing_ratio_raw" in report:
+            output += "Fixed +0x40..+0x47 follow-up (separate from exact-delta diagnostics):\n"
+            output += compact(report["spacing_ratio_raw"]) + "\n" + compact(report["spacing_ratio_summary"]) + "\n"
     if len(output.encode()) >= LIMITS["json_bytes" if json_output else "text_bytes"]:
         raise ValueError("output budget exceeded; no partial report")
     return output
@@ -439,11 +525,13 @@ def main():
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--no-oracle", action="store_true")
     parser.add_argument("--details", action="store_true")
+    parser.add_argument("--spacing-ratio", action="store_true", help="fixed +40..47 post-discovery f64le hypothesis")
     parser.add_argument("--fixtures", type=Path, nargs="+")
     parser.add_argument("--baseline", default=BASELINE, help="comparison reference label only")
     args = parser.parse_args()
     try:
-        print(render(build_report(args.fixtures, args.baseline, not args.no_oracle, args.details), args.json), end="")
+        print(render(build_report(args.fixtures, args.baseline, not args.no_oracle, args.details,
+                                  args.spacing_ratio), args.json), end="")
     except (ValueError, OSError) as exc:
         parser.error(str(exc))
 
