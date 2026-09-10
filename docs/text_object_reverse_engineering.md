@@ -1697,5 +1697,10 @@ F4 contamination is demonstrated. Active runtime remains accepted_candidate_only
 Policy A, exact F4, rejection-only Gate 8, matched_chain=null, parser_safe=false.
 Runtime/parser/models/previous analyzers/fixture bytes are unchanged.
 runtime_f4_review_readiness=no_maxlength_falsification_trigger;
+Boundary inventory update: four +74.50/+74.58/+74.60/+74.66 mm captures have
+[oracle-only intents and experimental design](text_spacing_maxlength_fixture_plan.md#maximum-length-boundary-fixture-inventory--analysis-pending).
+Analysis pending; UI compression not_recorded for all four. No new binary
+findings or runtime/analyzer/F4 changes; historical full-suite baseline 1151 passed.
+
 runtime_change_readiness=not_authorized_in_this_task. Compression and negative
 reflection models remain unresolved; no ownership or semantic promotion.

@@ -686,3 +686,84 @@ the package was not importable. Scoped Ruff and `git diff --check` pass.
 Fixture SHA-256 checks pass; runtime/parser/F4 sources remain unchanged.
 The complete round-trip-safe machine report is
 `docs/text_maximum_length_numeric_closeout.json`.
+
+## Maximum-length boundary fixture inventory — analysis pending
+
+Inventory-only update (2026-09-11). Established broad controls remain baseline
+0 mm, +100 mm, +60 mm, +40 mm and -60 mm. The following boundary controls are
+object/text-box-level maximum-length experiments, not per-character style fixtures.
+
+Shared baseline: AAAAAAAA, Arial, height 10 mm, width 100%, slant 0, rotation 0,
+Army Green, character spacing 100%, maximum length 0 mm; alignment/anchor inherit
+the existing controlled center-bottom baseline setup. Only maximum length is
+intended to change. Operator-confirmed natural UI text-box length is 74.584 mm.
+Exact previously decoded baseline extent N is 74.58390177353341 mm.
+
+| Raw fixture | Intent | Length mm | Relative to N | Relative to provisional crossover | UI compression |
+| --- | --- | ---: | --- | --- | --- |
+| [text_maxlength_a8_74p50mm.txt](../tests/samples/text/text_maxlength_a8_74p50mm.txt) | [intent](../tests/samples/intents/text/text_maxlength_a8_74p50mm.md) | 74.50 | below | below | not_recorded |
+| [text_maxlength_a8_74p58mm.txt](../tests/samples/text/text_maxlength_a8_74p58mm.txt) | [intent](../tests/samples/intents/text/text_maxlength_a8_74p58mm.md) | 74.58 | below | below | not_recorded |
+| [text_maxlength_a8_74p60mm.txt](../tests/samples/text/text_maxlength_a8_74p60mm.txt) | [intent](../tests/samples/intents/text/text_maxlength_a8_74p60mm.md) | 74.60 | above | below | not_recorded |
+| [text_maxlength_a8_74p66mm.txt](../tests/samples/text/text_maxlength_a8_74p66mm.txt) | [intent](../tests/samples/intents/text/text_maxlength_a8_74p66mm.md) | 74.66 | above | above | not_recorded |
+
+The previous below-natural evidence suggested S ≈ L/N - 0.001, still only a
+strong_correlated_numeric_candidate with semantic_formula_readiness=provisional_not_ready.
+The provisional crossover of that expression is 1.001N ≈ 74.65848567530693 mm.
+This is post_discovery_hypothesis_only, not a confirmed boundary or scalar ground truth.
+
+- 74.50 samples clearly below N but very near it.
+- 74.58 samples immediately below N.
+- 74.60 is above N but below 1.001N: the critical discriminator between possible
+  natural-length behavior and scalar/clamp transitions.
+- 74.66 samples immediately beyond the provisional crossover.
+
+Future competing hypotheses, documented only:
+
+- H-natural: scalar/rendering behavior switches to non-compression at L >= N;
+  under this hypothesis 74.60 would already be on the above-natural branch.
+- H-scalar: S ≈ L/N - 0.001 continues until approximately 1.001N; under this
+  hypothesis 74.60 may retain S < 1 while 74.66 may cross/clamp to 1.
+- H-other: threshold/formula may differ from both. Future analysis must allow
+  falsification of both proposed models.
+
+No UI observation is inferred from these hypotheses, length values or bytes.
+No expected raw bytes or authoritative expected scalar is recorded.
+
+Oracle isolation: raw windows, numeric reads and structural results must freeze
+before any future analyzer reads these experimental labels. N, crossover,
+relationships, intent and filenames cannot locate bytes, select a CParagraphe,
+choose a scalar field, nominate a run or validate a structural candidate.
+Actual repository filenames are authoritative inventory identifiers only;
+raw captures are not renamed and filenames never become runtime/parser selectors.
+
+Spacing remains separate: prefix +0x40..+0x47, diagnostic ratios 1.0/0.5/1.5
+for 100%/50%/150%, strong_style_field_candidate. Broad maximum-length controls
+previously left all slots, including width and spacing, unchanged. No claim
+about new boundary slot bytes is made.
+
+F4 carry-forward from broad controls only: +0x24..+0x2B and +0x38..+0x3F are
+not_falsified_by_current_maxlength_controls. The four new captures were not
+inspected for F4 behavior. Runtime remains CParagraphe_slot_prefix_family_v2,
+runtime_v2_replacement_acceptance=accepted_candidate_only, parser_safe=false,
+typed widths=null/unresolved, ownership=unresolved, matched_chain=null.
+
+### Boundary raw preservation
+
+SHA-256 recorded at task start; the same hashes must hold at completion:
+
+| Fixture | SHA-256 |
+| --- | --- |
+| text_maxlength_a8_74p50mm.txt | `d1a2a1989f91439964f92d70c3f2660ae825ca154000e1f0f1a2c515fe4e2c71` |
+| text_maxlength_a8_74p58mm.txt | `0ed160771700001d8541fd928aaae2ddcdfcbac0093546bb680e9d2e43fb3046` |
+| text_maxlength_a8_74p60mm.txt | `9611d0940a6597383fea97cf610d0bfd1132df55df152ab9d2c4ebdabd23f57c` |
+| text_maxlength_a8_74p66mm.txt | `4a757614a844b13be6725fefa83c27c6beded576d68896b25549deaac875d6de` |
+
+No raw differential, scalar formula test or boundary binary interpretation is
+part of this update. Runtime, parser, F4 and analyzers remain unchanged.
+Historical full-suite baseline: 1151 passed; this inventory step runs only
+focused metadata/hash/link validation, without invoking binary analyzers.
+
+Completion validation: `tests/integration/test_text_maxlength_boundary_inventory.py`
+5 passed. All four raw SHA-256 values match the task-start inventory; local links
+and relationship labels pass. `git diff --check` passes. No full-suite rerun or
+boundary differential analysis was performed; 1151 passed remains historical.
