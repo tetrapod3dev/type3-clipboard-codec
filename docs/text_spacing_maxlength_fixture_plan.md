@@ -767,3 +767,23 @@ Completion validation: `tests/integration/test_text_maxlength_boundary_inventory
 5 passed. All four raw SHA-256 values match the task-start inventory; local links
 and relationship labels pass. `git diff --check` passes. No full-suite rerun or
 boundary differential analysis was performed; 1151 passed remains historical.
+
+## Maximum-length boundary findings (2026-09-11)
+
+The fixed-window [boundary results](text_maximum_length_boundary_results.md)
+and [exact machine report](text_maximum_length_boundary_results.json) extend the
+historical inventory without replacing it. Use the existing maximum-length
+analyzer's --boundary mode; default historical output remains unchanged.
+
+74.50/74.58 follow H2 within 0/4 ULP; 74.60 and 74.66 both store exactly 1.0.
+boundary_model_status=natural_threshold_supported;
+compression_formula_status=formula_breaks_near_boundary.
+H4's continuation to the provisional 1.001N crossover is contradicted by 74.60;
+H3 misses the below-N controls. Neither simple clamp explains all four points.
+The exact threshold is unresolved; UI compression remains not_recorded.
+
+Duplicate scalar bytes remain identical and CZone extent follows requested
+length within 0–1 ULP. Runtime family v2/F4 remains present and unchanged.
+No field discovery, whole-payload differential or new per-slot style analysis.
+Spacing history remains separate. semantic_formula_readiness=provisional_not_ready,
+parser_safe=false, typed widths=null/unresolved, ownership=unresolved.

@@ -394,15 +394,178 @@ def render(report, json_output=False):
     return output
 
 
+
+BOUNDARY_FIXTURES = tuple(f'text_maxlength_a8_74p{s}mm.txt' for s in ('50', '58', '60', '66'))
+
+
+def boundary_structural(paths):
+    """Fixed windows only; filenames/order never select structures or fields."""
+    import analyze_text_maximum_length_numeric as numeric
+    reference = research.read_capture(research.TEXT / FIXTURES[0])
+    reference_slots = research.slots(reference) if reference['selected'] else []
+    rows = {}
+    for path in paths:
+        data = research.read_capture(path)
+        run = data['selected']
+        slots = research.slots(data) if run else []
+        aligned = bool(run and len(data['paragraphs']) == 1 and len(slots) == 9 and
+                       run['start'] == reference['selected']['start'] and
+                       [n.header.class_name for n in data['nodes']] ==
+                       [n.header.class_name for n in reference['nodes']] and
+                       [s[:8] for s in slots] == [s[:8] for s in reference_slots])
+        f4 = {name: [s[lo:hi].hex() for s in slots]
+              for name, (lo, hi) in F4.items() if name in ('plus24', 'plus38')}
+        invariant = aligned and all(
+            f4[name] == [s[F4[name][0]:F4[name][1]].hex() for s in reference_slots] for name in f4)
+        row = dict(file_sha256=data['file_sha256'], runtime=data['runtime'],
+                   alignment='aligned' if aligned else 'unresolved', run=run,
+                   f4=f4, f4_unchanged=invariant)
+        if aligned and invariant:
+            payload = data['paragraphs'][run['paragraph_index']].payload
+            row['windows'] = {name: dict(relative_range=[lo, hi], **numeric.raw_numeric(payload[lo:hi]))
+                              for name, (lo, hi) in numeric.WINDOWS.items()}
+            row['extent'] = numeric.czone_extent(data)
+            a, b = row['windows']['scalar_a'], row['windows']['scalar_b']
+            row['duplicate_byte_identity'] = a['raw_hex'] == b['raw_hex']
+            row['duplicate_numeric_identity'] = a['f64le']['value'] == b['f64le']['value']
+        rows[data['file_sha256']] = row
+    if len(rows) != 5:
+        raise ValueError('five distinct captures required')
+    return dict(reference_sha256=reference['file_sha256'],
+                natural_extent=numeric.czone_extent(reference), rows=rows)
+
+
+def boundary_hypotheses(length, natural):
+    ratio = length / natural
+    return dict(H1=ratio, H2=ratio-0.001, H3=min(1.0, ratio), H4=min(1.0, ratio-0.001))
+
+
+def boundary_oracle(frozen, enabled):
+    """Labels and hypothesis interpretation are strictly downstream of frozen bytes."""
+    import analyze_text_maximum_length_numeric as numeric
+    from decimal import Decimal
+    raw = json.loads(frozen)
+    result = dict(enabled=enabled, cases={}, boundary_model_status='unresolved',
+                  compression_formula_status='unresolved')
+    if not enabled:
+        return result
+    n = raw['natural_extent']['extent_mm']['value']
+    for name in BOUNDARY_FIXTURES:
+        digest = hashlib.sha256((research.TEXT / name).read_bytes()).hexdigest()
+        row = raw['rows'].get(digest)
+        if row is None or 'windows' not in row:
+            continue
+        meta = load_intent(name)
+        if meta['property'] != 'maximum_length' or meta['changed_scope'] != 'text_object':
+            raise ValueError('wrong boundary intent scope')
+        length = float(meta['changed_value_mm'])
+        observed = row['windows']['scalar_a']['f64le']['value']
+        values = boundary_hypotheses(length, n)
+        result['cases'][name] = dict(
+            file_sha256=digest, labels=meta, requested_mm=length,
+            observed_scalar=observed, scalar_raw=row['windows']['scalar_a']['raw_hex'],
+            extent_mm=row['extent']['extent_mm']['value'],
+            relation_to_n='below' if length < n else 'above' if length > n else 'equal',
+            relation_to_crossover='below' if length < 1.001*n else 'above' if length > 1.001*n else 'equal',
+            hypotheses={h: numeric.residual(p, observed) for h, p in values.items()},
+            requested_setting=numeric.residual(float(Decimal(str(length))/1000),
+                                               row['windows']['object_setting']['f64le']['value']),
+            requested_setting_binary64_division=numeric.residual(
+                length/1000, row['windows']['object_setting']['f64le']['value']),
+            extent_vs_requested=numeric.residual(length, row['extent']['extent_mm']['value']),
+            extent_vs_natural=numeric.residual(n, row['extent']['extent_mm']['value']),
+            ui_compression='not_recorded')
+    cases = result['cases']
+    by_length = {r['requested_mm']: r for r in cases.values()}
+    if set(by_length) == {74.50, 74.58, 74.60, 74.66}:
+        def close(row):
+            distance = row['hypotheses']['H2']['ulp_distance']
+            return distance is not None and distance <= 4
+        continuous = all(close(by_length[v]) for v in (74.50, 74.58))
+        mid, high = by_length[74.60], by_length[74.66]
+        result['below_boundary_continuity'] = ('below_boundary_formula_continuity_supported'
+                                              if continuous else 'formula_breaks_near_boundary')
+        result['discriminator_74p60'] = ('exactly_one' if mid['observed_scalar'] == 1 else
+                                        'h2_below_one' if close(mid) and mid['observed_scalar'] < 1 else 'other')
+        result['discriminator_74p66'] = ('exactly_one' if high['observed_scalar'] == 1 else
+                                        'h2_above_one' if close(high) and high['observed_scalar'] > 1 else 'other')
+        if continuous and close(mid) and mid['observed_scalar'] < 1 and high['observed_scalar'] == 1:
+            result.update(boundary_model_status='scalar_crossover_supported',
+                          compression_formula_status='clamp_like_transition_observed',
+                          transition_status='clamp_like_transition_candidate')
+        elif continuous and mid['observed_scalar'] == high['observed_scalar'] == 1:
+            result.update(boundary_model_status='natural_threshold_supported',
+                          compression_formula_status='formula_breaks_near_boundary')
+        else:
+            result.update(boundary_model_status='mixed_boundary_behavior' if continuous else 'neither_model_supported',
+                          compression_formula_status='below_boundary_formula_extended'
+                          if all(close(r) for r in by_length.values()) else 'formula_breaks_near_boundary')
+    # Previously frozen broad evidence, never rerun broad differential discovery.
+    previous = json.loads((ROOT / 'docs/text_maximum_length_numeric_closeout.json').read_text(encoding='utf-8'))
+    structural = previous['structural']
+    ordered = []
+    for key, length in (('f3', 40), ('f2', 60), ('f1', 100)):
+        zone = next(r['bbox'] for r in structural['geometry'][key] if r['class_name'] == 'CZone')
+        ordered.append(dict(requested_mm=length,
+            observed_scalar=structural['windows'][key]['scalar_a']['f64le']['value'],
+            scalar_raw=structural['windows'][key]['scalar_a']['raw_hex'],
+            extent_mm=(zone['xmax_m']-zone['xmin_m'])*1000,
+            relation_to_n='below' if length < n else 'above',
+            relation_to_crossover='below' if length < 1.001*n else 'above', evidence='previous_frozen_report'))
+    keys = ('requested_mm', 'observed_scalar', 'scalar_raw', 'extent_mm', 'relation_to_n', 'relation_to_crossover')
+    ordered.extend({k: r[k] for k in keys} for r in cases.values())
+    result['ordered_positive_scalars'] = sorted(ordered, key=lambda r: r['requested_mm'])
+    result['baseline_separate'] = dict(requested_mm=0, scalar=structural['windows']['f0']['scalar_a'],
+                                      mode='default_natural_mode_scalar_candidate')
+    result['prior_negative_sign_control'] = structural['windows']['f4']
+    result['natural_mm'] = n
+    result['provisional_crossover_mm'] = 1.001*n
+    result['ulp_comparison_threshold'] = 4
+    result['duplicate_scalar_status'] = ('duplicate_scalar_storage_observed'
+        if len(cases) == 4 and all(raw['rows'][r['file_sha256']]['duplicate_byte_identity']
+                                   for r in cases.values()) else 'unresolved_or_contradicted')
+    result['object_setting_readiness'] = ('strong_object_setting_candidate_extended_to_boundary_controls'
+        if len(cases) == 4 and all(r['requested_setting']['ulp_distance'] == 0 for r in cases.values()) else 'unresolved')
+    result['bbox_relationship'] = ('tracks_requested_object_length_within_1_ulp'
+        if len(cases) == 4 and all(r['extent_vs_requested']['ulp_distance'] <= 1 for r in cases.values()) else 'other_or_unresolved')
+    result['whole_boundary_clamp_comparison'] = {
+        h: dict(within_4_ulp_all=len(cases) == 4 and all(r['hypotheses'][h]['ulp_distance'] <= 4 for r in cases.values()),
+                contradicted_by=[name for name, r in cases.items() if r['hypotheses'][h]['ulp_distance'] > 4])
+        for h in ('H3', 'H4')}
+    return result
+
+
+def build_boundary_report(paths=None, oracle_enabled=True):
+    paths = list(paths) if paths is not None else [research.TEXT / n for n in (FIXTURES[0], *BOUNDARY_FIXTURES)]
+    if len(paths) != 5:
+        raise ValueError('baseline and four boundary captures required')
+    frozen = compact(boundary_structural(paths))
+    return dict(mode='boundary', structural=json.loads(frozen),
+                structural_sha256=hashlib.sha256(frozen.encode()).hexdigest(),
+                oracle_summary=boundary_oracle(frozen, oracle_enabled),
+                policy=dict(field_discovery='not_performed', full_payload_differential='not_performed',
+                    runtime_v2_replacement_acceptance='accepted_candidate_only',
+                    constant_fitting='not_performed', compression_scalar_readiness='strong_correlated_numeric_candidate',
+                    semantic_formula_readiness='provisional_not_ready', parser_safe=False, typed_width=None,
+                    ownership_status='unresolved', matched_chain=None, runtime_change_readiness='not_authorized_in_this_task',
+                    rendered_behavior='unresolved'))
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--json', action='store_true')
     parser.add_argument('--no-oracle', action='store_true')
     parser.add_argument('--details', action='store_true')
+    parser.add_argument('--boundary', action='store_true')
     parser.add_argument('--fixtures', type=Path, nargs=5)
     args = parser.parse_args()
     try:
-        print(render(build_report(args.fixtures, not args.no_oracle, args.details), args.json), end='')
+        if args.boundary:
+            output = compact(build_boundary_report(args.fixtures, not args.no_oracle)) + '\n'
+            if len(output.encode()) >= LIMITS['json_bytes' if args.json else 'text_bytes']:
+                raise ValueError('boundary output budget exceeded')
+            print(output, end='')
+        else:
+            print(render(build_report(args.fixtures, not args.no_oracle, args.details), args.json), end='')
     except (ValueError, OSError) as exc:
         parser.error(str(exc))
 
