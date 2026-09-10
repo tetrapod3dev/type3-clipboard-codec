@@ -563,3 +563,126 @@ payload-changed bytes. CParagraphe has 30 upstream + 232 suffix changed bytes,
 zero slot/header changes. This explicitly separates geometry-only node evidence
 from opaque metadata and signed-setting evidence; a rendering transform model
 remains unresolved.
+
+## Maximum-length numeric closeout (2026-09-10)
+
+The fixed-window closeout adds `tools/analyze_text_maximum_length_numeric.py`
+and `tests/integration/test_text_maximum_length_numeric_cli.py`. It does not
+modify prior analyzers, runtime, F4, models or fixtures. Run with `--json` or
+`--no-oracle`. Only the already frozen scalar windows [214,222), [286,294)
+and object-setting window [262,270) are numerically read. The 44 previously
+reported negative-only ranges are carried forward without new range discovery.
+
+Raw windows, full-precision f64 reads, exact decoded CZone extent, geometry and
+slot/F4 invariance freeze before intent. Machine JSON uses round-trip-safe JSON
+numbers plus Python `repr` and hexadecimal float representations. No arbitrary
+constant fitting, alternative offsets or numerical type search is performed.
+
+### Exact duplicated scalar inventory
+
+| Fixture suffix | [214,222) raw bytes | [286,294) raw bytes | f64le at both |
+| --- | --- | --- | ---: |
+| baseline | 29 87 16 D9 CE F7 EF 3F | 29 87 16 D9 CE F7 EF 3F | 0.9989999999999998 |
+| 100mm | 00 00 00 00 00 00 F0 3F | 00 00 00 00 00 00 F0 3F | 1.0 |
+| 60mm | 8C 54 11 56 F8 B5 E9 3F | 8C 54 11 56 F8 B5 E9 3F | 0.8034631424913115 |
+| 40mm | 17 10 13 D7 3F 21 E1 3F | 17 10 13 D7 3F 21 E1 3F | 0.5353087616608744 |
+| m60mm | 8C 54 11 56 F8 B5 E9 3F | 8C 54 11 56 F8 B5 E9 3F | 0.8034631424913115 |
+
+Both locations are always byte-identical AND numerically identical:
+**duplicate_scalar_storage_observed**. Why two copies exist remains unresolved.
+Object-setting raw values remain the previously recorded five values:
+0000000000000000, 9a9999999999b93f, b81e85eb51b8ae3f,
+7b14ae47e17aa43f, b81e85eb51b8aebf (0, .1, .06, .04, -.06 meters).
+
+### Exact serialized natural extent and provenance
+
+The existing `parse_single_node -> read_bbox` path decodes CZone's six f64le
+coordinates immediately after its object header. In the baseline raw capture:
+
+- xmin raw absolute [81,89): `FE 16 9D 2C B5 DE 9F 3F`;
+  decoded **0.031123000000000005 m**.
+- xmax raw absolute [105,113): `EC 2C 14 86 9B 0F BB 3F`;
+  decoded **0.10570690177353342 m**.
+- Python binary64 `xmax - xmin` = **0.07458390177353341 m**
+  (`0x1.317ee3aece72cp-4`).
+- `N = (xmax - xmin) * 1000` = **74.58390177353341 mm**
+  (`0x1.2a55ea58b59c1p+6`).
+
+For reproducibility beyond the rounded subtraction result, the exact rational
+difference of the two decoded binary64 coordinates is
+10748673031523929 / 144115188075855872 meters. The formula tests use the declared
+binary64 subtraction-then-conversion sequence, without adjusting its rounding
+to improve agreement. Decoder precision is binary64; decimal strings are the
+shortest round-trip-safe representations, not exact decimal real measurements.
+The UI value 74.584 is retained only as an oracle/documentation label.
+Geometry never selects the already frozen scalar offsets.
+
+### Explicit formula residuals
+
+L is the absolute requested length in mm; S is the decoded scalar. Only H1=L/N,
+H2=L/N-0.001 and H3=(L-0.001*N)/N are tested. The constant 0.001 is fixed by the
+requested hypothesis, never fitted. Relative residual uses abs(S) as denominator.
+
+| Case | Hypothesis | Predicted | Observed | Absolute residual | Relative residual | ULP distance |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| +60 / -60 | H1 | 0.8044631424913117 | 0.8034631424913115 | 0.001000000000000223 | 0.0012446121634148723 | 9007199254743 |
+| +60 / -60 | H2 | 0.8034631424913117 | 0.8034631424913115 | 2.220446049250313e-16 | 2.763594161102822e-16 | 2 |
+| +60 / -60 | H3 | 0.8034631424913116 | 0.8034631424913115 | 1.1102230246251565e-16 | 1.381797080551411e-16 | 1 |
+| +40 | H1 | 0.5363087616608744 | 0.5353087616608744 | 0.0010000000000000009 | 0.0018680807631419173 | 9007199254741 |
+| +40 | H2 | 0.5353087616608744 | 0.5353087616608744 | 0 | 0 | 0 |
+| +40 | H3 | 0.5353087616608744 | 0.5353087616608744 | 0 | 0 | 0 |
+
+H2/H3 provide very close mathematical correlation; operation order accounts
+for their different rounded predictions even though the expressions are
+algebraically equivalent. The analyzer's explicitly reported support threshold
+is four ULP, with actual observed residuals only 0..2 ULP. This threshold does
+not alter predictions or fit constants. Numerical agreement does not identify
+a serialization algorithm, rendering formula or meaning of the 0.001 term.
+
+### +100 clamp and zero/default-mode contradictions
+
+At +100, L/N=1.340771904152186; H2/H3=1.339771904152186. Observed S=1.0.
+Both `min(1.0,L/N)` and `min(1.0,L/N-0.001)` predict 1.0 exactly here:
+**no_compression_clamp_candidate**, not a confirmed clamp algorithm.
+
+Neither clamp explains the whole observed set:
+
+- `min(1,L/N)` misses +60/+40/-60 by approximately 0.001 and predicts zero for
+  baseline instead of 0.9989999999999998.
+- `min(1,L/N-0.001)` is within 0..2 ULP on nonzero captures, but predicts -0.001
+  for baseline, giving absolute residual 0.9999999999999998. It is not an exact
+  whole-set formula, even ignoring the small +60/-60 rounding residuals.
+
+Baseline is **default_natural_mode_scalar_candidate**. maximum_length=0 is the
+operator-observed UI sentinel/default natural-length mode; binary sentinel
+semantics remain provisional. It is explicitly excluded from below-natural
+constrained-length evaluation rather than forcing 0/N to describe its state.
+
+### Negative, slot and F4 carry-forward
+
++60/-60 object-setting raw differs only at its high byte (3F/BF). Both copies of
+the scalar remain exactly byte-identical across those captures:
+**compression_magnitude_uses_absolute_length_candidate**. CZone's Y bbox differs,
+CCourbe/CContour bboxes do not, and the prior 44 negative-only paragraph ranges
+remain separately reported with raw provenance. No mirror flag or transform
+encoding is inferred.
+
+All nine complete 204-byte slots remain byte-identical across controls; width
++0x14 and spacing +0x40 stay 1.0, including terminal. The changing scalar state
+is outside these per-character candidates, without establishing a complete
+rendering model. F4 +24..2B and +38..3F remain invariant:
+not_falsified_by_current_maxlength_controls. All five runtime candidates remain
+present, active family v2/F4 unchanged.
+
+compression_scalar_readiness=strong_correlated_numeric_candidate;
+semantic_formula_readiness=provisional_not_ready;
+runtime_change_readiness=not_authorized_in_this_task;
+parser_safe=false; typed_width=null/unresolved; ownership_status=unresolved.
+
+Validation (2026-09-11): focused numeric CLI tests 17 passed; full pytest with
+`PYTHONPATH=src` 1151 passed (1134 existing + 17 numeric closeout tests).
+The initial full invocation without the source path failed collection because
+the package was not importable. Scoped Ruff and `git diff --check` pass.
+Fixture SHA-256 checks pass; runtime/parser/F4 sources remain unchanged.
+The complete round-trip-safe machine report is
+`docs/text_maximum_length_numeric_closeout.json`.
