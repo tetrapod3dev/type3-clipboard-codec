@@ -359,6 +359,39 @@ def summarize(oracle, property_name, evidence):
                 typed_width=None, ownership='unresolved')
 
 
+# Code-model evidence only. These offsets never select a runtime record or field.
+_ARCHIVE_STYLE_FIELDS = {
+    "height": (0x0C, 0x10, 0x18, 0x4D7F1),
+    "width": (0x14, 0x18, 0x20, 0x4D7FE),
+    "slant": (0x1C, 0x20, 0x28, 0x4D80B),
+    "spacing": (0x40, 0x30, 0x38, 0x4D84C),
+    "rotation": (0x48, 0x38, 0x40, 0x4D859),
+}
+
+
+def archive_type_metadata(field):
+    """Describe a reviewed hypothesis, not a decoded instance or layout permit."""
+    start, char_member, style_member, write_rva = _ARCHIVE_STYLE_FIELDS[field]
+    return {
+        "archive_type_evidence": "confirmed_archive_double",
+        "archive_type_provenance": {
+            "scope": "vendor_current_store_code_only",
+            "binary": "MaudeTxt.dll",
+            "serializer": "CTxtAttrChar::Serialize",
+            "serializer_rva": hex(0x4D790),
+            "write_rva": hex(write_rva),
+            "source_member_offset": hex(char_member),
+            "style_member_offset": hex(style_member),
+            "code_record_relative_range": [start, start + 8],
+            "archive_width_bytes": 8,
+            "representation": "binary64",
+            "runtime_layout_applicability": "not_established_by_this_metadata",
+            "semantic_ownership": "unchanged",
+            "reference": "docs/slot_style_archive_type_evidence.md",
+        },
+    }
+
+
 def build_report(paths=None, baseline=BASELINE, oracle_enabled=True, details=False):
     paths = sorted(TEXT_DIR.glob('text_slotstyle_a8_*.txt')) if paths is None else paths
     frozen = compact(structural_phase(paths, baseline, details))
@@ -406,6 +439,9 @@ def build_report(paths=None, baseline=BASELINE, oracle_enabled=True, details=Fal
     report['warnings'].extend(oracle.get('warnings',[]))
     if not oracle_enabled:
         report['warnings'].append('Intent/oracle disabled; semantic hypotheses unresolved')
+    # Append code evidence only after all discovery, ranking, and oracle decisions.
+    for label in ("height", "width", "slant", "rotation"):
+        report[label + "_candidate_summary"].update(archive_type_metadata(label))
     return report
 
 

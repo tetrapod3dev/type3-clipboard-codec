@@ -498,6 +498,10 @@ def build_report(paths=None, baseline=BASELINE, oracle_enabled=True, details=Fal
     result = finish_report(json.loads(frozen), oracle)
     if spacing_ratio:
         result["spacing_ratio_summary"] = evaluate_spacing_ratio(frozen, oracle, baseline)
+    # Evidence about the reviewed hypothesis; no change to typed_width or selection.
+    result["spacing_encoding_summary"].update(prior.archive_type_metadata("spacing"))
+    if spacing_ratio:
+        result["spacing_ratio_summary"].update(prior.archive_type_metadata("spacing"))
     return result
 
 
