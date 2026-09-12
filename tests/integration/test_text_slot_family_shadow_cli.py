@@ -1,6 +1,5 @@
 """Actual parser provenance and full-corpus isolation regression."""
 
-import hashlib
 import importlib.util
 import json
 import subprocess
@@ -8,6 +7,7 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
 from tests.text_slot_v1_replay import historical_root, replay_parser
 
 # Historical study replay, with the actual frozen v1 extractor. Current v2 is
@@ -60,8 +60,8 @@ def test_full_corpus_actual_v1_and_exact_same_run(report):
 def test_all_runtime_outputs_and_source_bytes_unchanged(shadow, report):
     baseline = json.loads(shadow.BASELINE.read_text())
     assert len(baseline["fixtures"]) == 104
-    for path, expected in baseline["source_sha256"].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected
+    for path, expected in source_baseline("family").items():
+        assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
     assert report["corpus_summary"]["runtime_source_equal"]
     assert report["corpus_summary"]["runtime_outputs_equal"]
     assert all(row["runtime_regression_equal"] for row in report["fixture_results"])

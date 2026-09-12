@@ -1,0 +1,520 @@
+{
+  "policy": "python_source_crlf_to_lf_only",
+  "legacy_raw_policy": "provenance_only_not_readiness",
+  "records": {
+    "historical:src/type3_clipboard_codec/__init__.py": {
+      "path": "src/type3_clipboard_codec/__init__.py",
+      "canonical_source_sha256": "a0bae2bbf9c6c5e2c3419c1095c76451a47aaee5d1374ec9171cad49f40afe98",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/__init__.py",
+      "legacy_raw_sha256": "7ded14d133b560f68c960f0ec92f6bc9d052dbde0c373b86d42be57c571a902f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/adapters/input_base.py": {
+      "path": "src/type3_clipboard_codec/adapters/input_base.py",
+      "canonical_source_sha256": "979d2e1459071c9edbe40aacd29b80156ddd5a1e87cef36f007ccf8539561321",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/adapters/input_base.py",
+      "legacy_raw_sha256": "d0a22f7f6b195c8ff01c27f0ce721d9ff0fb5f59df9abe65e193b6975cbe0183",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/adapters/manual_hex_input.py": {
+      "path": "src/type3_clipboard_codec/adapters/manual_hex_input.py",
+      "canonical_source_sha256": "01962f7a7de68374b8c8b88338140f700d2abe22345c72ace42e6ca7705b1ede",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/adapters/manual_hex_input.py",
+      "legacy_raw_sha256": "c567b48f7a261b76e45d56efc0ad9541150dd491f3ce284724c4badb10a09c5f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/adapters/win32_clipboard.py": {
+      "path": "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "canonical_source_sha256": "9330510157a93c7059697e4bf988eae5c09870d71dec4b62353ee15fefe60014",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "legacy_raw_sha256": "8b3b5ebf36498f5a8e7610528c2100b20ee506c2f6e468d89ed46005ebb3157c",
+      "legacy_raw_status": "raw_preimage_unresolved",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/codec/__init__.py": {
+      "path": "src/type3_clipboard_codec/codec/__init__.py",
+      "canonical_source_sha256": "a76fb786c712d50f7c041d1ecfbb95532d4dbe9f1e32a87f9ca22d377baee245",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/codec/__init__.py",
+      "legacy_raw_sha256": "ff2906abfa31464c775c96d530c9e5bd71b5f9297c269aff5d55ff60f54348d0",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/codec/decoder.py": {
+      "path": "src/type3_clipboard_codec/codec/decoder.py",
+      "canonical_source_sha256": "3920cb5d0212003b0ac52bafc26c6fabe9666c01bbc22cd8fdf1cf8f33a00525",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/codec/decoder.py",
+      "legacy_raw_sha256": "41489dd1ecfcb1d07be911908bc915ce2a11017a3d7821b78fcbcb3a2aa7c74b",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/codec/encoder.py": {
+      "path": "src/type3_clipboard_codec/codec/encoder.py",
+      "canonical_source_sha256": "99f88d3619813f687edab1e12da006a3d4de6a6cdf174757c9392fc0d1b93bc7",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/codec/encoder.py",
+      "legacy_raw_sha256": "04984d33c6bbe8a251df1ea881924b3c66cfefa89ec94a1b395b96448eec207f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/codec/preview.py": {
+      "path": "src/type3_clipboard_codec/codec/preview.py",
+      "canonical_source_sha256": "2d50bf24527579158c71059939583b8f890ea290f5e51fdd022182ff6360a6ad",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/codec/preview.py",
+      "legacy_raw_sha256": "2e32f21e9e374d989ae7404ee6bce70961be4f3ba3ad97bf74bb1f99553c55cd",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/exceptions.py": {
+      "path": "src/type3_clipboard_codec/exceptions.py",
+      "canonical_source_sha256": "71a9a680d7cb8994c29d4b34d6821362276515bf999fb912449d84c7eedec711",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/exceptions.py",
+      "legacy_raw_sha256": "e91f75fbec05243151c2b8c708a138ad4352f03cef155d01cd4311cd02325bcb",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/inspect/__init__.py": {
+      "path": "src/type3_clipboard_codec/inspect/__init__.py",
+      "canonical_source_sha256": "95e1605be1b5cc34239294635370da61db3bbd19bb884e065dff6ce147359ff3",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/inspect/__init__.py",
+      "legacy_raw_sha256": "2aed9d44643c35a380a9bb29bf699a5f08baab287b4f493e223bc3b7932536ac",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/inspect/formatters.py": {
+      "path": "src/type3_clipboard_codec/inspect/formatters.py",
+      "canonical_source_sha256": "d2df8b2213377e89f324e6142fcd9423deee53ffd2c7fb3d68a2add460c112be",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/inspect/formatters.py",
+      "legacy_raw_sha256": "c4e9a0b2fd5a0e8b2e02d03162222b7082ba52591e5b4c7b440518e0392d7921",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/inspect/hex_input.py": {
+      "path": "src/type3_clipboard_codec/inspect/hex_input.py",
+      "canonical_source_sha256": "924b568d1c3ad7e65c76f3f03d80e949dfbbca186377cd51fbcb09779b9b6c78",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/inspect/hex_input.py",
+      "legacy_raw_sha256": "f68c701f26d8dca4b3855cf8194586f32d795afd94f90b40f26c60a1402aecea",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/models/__init__.py": {
+      "path": "src/type3_clipboard_codec/models/__init__.py",
+      "canonical_source_sha256": "dbf27fd638a53c1df97d75447184e8c9a7ac8ec838d44caef812709a56945d12",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/models/__init__.py",
+      "legacy_raw_sha256": "74dfe83ee7f2b7b5b59249c782cb4092724f2fa4cdff466d58f0686e059735d4",
+      "legacy_raw_status": "mixed_line_endings_reconstructed",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/models/colors.py": {
+      "path": "src/type3_clipboard_codec/models/colors.py",
+      "canonical_source_sha256": "07a3cb26d563e74c31822147ef0cfce838c5c22eefce858009cdcde21b308780",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/models/colors.py",
+      "legacy_raw_sha256": "b7ef8b67ca8a0720070c9d7836595aeb62090f6eedb80fe2fa1512ca8868bbbe",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/models/geometry.py": {
+      "path": "src/type3_clipboard_codec/models/geometry.py",
+      "canonical_source_sha256": "be8aa6de5fc5bad976343bd5a693831152ae11168617269f9f89a8c544277812",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/models/geometry.py",
+      "legacy_raw_sha256": "f08836e3155175e5be7b1bc9e52d4d4a2842ce1fabd2d1befe4cc028832bd259",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/models/parsed_object.py": {
+      "path": "src/type3_clipboard_codec/models/parsed_object.py",
+      "canonical_source_sha256": "f6e7f638341f23aa80e0d36182ef251a8409090240068ed65efcbddfd8be7bac",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/models/parsed_object.py",
+      "legacy_raw_sha256": "b794ed0be5b99076eb51d5f4129b6eb659c03f8d2508a2854c4c6d37561b5c65",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/models/text_object.py": {
+      "path": "src/type3_clipboard_codec/models/text_object.py",
+      "canonical_source_sha256": "8effb290ae82ccafaa7fa95f901b90d94918bc3baa7c1956686ba36798790886",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/models/text_object.py",
+      "legacy_raw_sha256": "f712aa6954b75a0025870fb16abe3b0485597b1792d74e191dd155cf976139a4",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/__init__.py": {
+      "path": "src/type3_clipboard_codec/parsers/__init__.py",
+      "canonical_source_sha256": "317a08a6bc1d8fcec75c2c2480e13e21460c263ab0711f4abc13b50fb61ebee9",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/__init__.py",
+      "legacy_raw_sha256": "48e03662007937a20db1e7303588f7fd5e33ad26e96bc50f8db71b226088900e",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/base.py": {
+      "path": "src/type3_clipboard_codec/parsers/base.py",
+      "canonical_source_sha256": "3c2920663f62a50b9f8656e2d2dcf13091fcf49fdcd95b35056e24eb0e31bae1",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/base.py",
+      "legacy_raw_sha256": "fe40a0419c0b1990fe98da3731827281ecce4749d63f1e75e220d189a4732ce4",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/binary/__init__.py": {
+      "path": "src/type3_clipboard_codec/parsers/binary/__init__.py",
+      "canonical_source_sha256": "381264efe384836da4adf3003da8337d3bec31751c870b42eb1a0b665bd97e56",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/binary/__init__.py",
+      "legacy_raw_sha256": "f178f1d50f866ba3df118cf8564a31f6dbd401332f6d0a99554a6bab02b22380",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/binary/header_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/binary/header_parser.py",
+      "canonical_source_sha256": "5cfc67388628668c0134f7040952af825f4f5584a5a1fdfd7167256bd3609e66",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/binary/header_parser.py",
+      "legacy_raw_sha256": "918480df5bdfc71903ec96408408b6d5b9f9b64264f05cda2d9ecfeccefbfede",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/binary/node_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "canonical_source_sha256": "c10cf6bbabe61b334f38c5844d04be8ec803f8011359090b866cf2d371a81e4f",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "legacy_raw_sha256": "b345d4707f0a75fb6c1eee4d75fc0779e6d91bd5249057f98a45d38ce4ad9bad",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/binary/node_scanner.py": {
+      "path": "src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "canonical_source_sha256": "eddc1088c7b8b7cc738105a00b3fe4620bbe699e4e4bde4517f2e549760b127e",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "legacy_raw_sha256": "335fe32e0b846a2db16b7c8f6e37c1fecbd7cd225b73c473ad3f5c777d1d9cb5",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/common.py": {
+      "path": "src/type3_clipboard_codec/parsers/common.py",
+      "canonical_source_sha256": "af28d6e55cba0c889fb07b0368afca5c8bc901d67e9c4caad3d67f570f824dda",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/common.py",
+      "legacy_raw_sha256": "3df65c47c8a39816b667562166e7c37ffcaa6c92d77dc53ef2dcc7f4fb082931",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/__init__.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/__init__.py",
+      "canonical_source_sha256": "e6bf4e4b90a887fc280e7fa5f677e9db1906bc83d17343ebf7a0c3e329909120",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/__init__.py",
+      "legacy_raw_sha256": "b54ef95e41199d340f317b02ac157c06b0b4ea71fbf136dd7424ac1f5e521261",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/chain_builder.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "canonical_source_sha256": "d4dcb68f46ba15d02ebeb3c590af97f1945c49c0f0db37e8b37ac848a178ab63",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "legacy_raw_sha256": "9d4147af5f5cd1f95473be0c37c76747268b18d3e8d76a0250c90c06937c408f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py",
+      "canonical_source_sha256": "c6513a6eb13d883b0fb0cc8f7a31c1ca14fd80ffe167203b54f02e84d04df1b4",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py",
+      "legacy_raw_sha256": "da8eb3fddbe9f17acbb427dc030a5948646143a1bd925b2e0aa824092458c40b",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py",
+      "canonical_source_sha256": "18359d6651b8c39b39aa502c2b27caa6c6ba0a565d5786fa01fdbe017cbcea4f",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py",
+      "legacy_raw_sha256": "61c83ac7e65fce05a20ccd69a6e2f167ecf63d5b6a8dc759b858c5593d9954cb",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/contour_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "canonical_source_sha256": "1882f894b333f6f3a005b4d0713d29bd0215ec5c9316e4b64f61d68ea61b65a4",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "legacy_raw_sha256": "2e2393fe9cf1c7e4aea3cdaf2a5ee6dd214c07f42a4a31a9e64f97381cfde862",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/geometry/shape_classifier.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
+      "canonical_source_sha256": "c79cd91a6c480b437437f640db392420166432f9df96b27e58c494007107684c",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
+      "legacy_raw_sha256": "1df04e398b47112b0c99d929f2c5391099e2ba7ce611150e964bafebd0ad2f64",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/object_detector.py": {
+      "path": "src/type3_clipboard_codec/parsers/object_detector.py",
+      "canonical_source_sha256": "b5f84b49b194f422af37a3845edc5c3a825f13d9a91eb14c0aa4c0209c4604a1",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/object_detector.py",
+      "legacy_raw_sha256": "fa4451535646d9edc115e532f7296f651d056d329433809138730f44d8e58ac1",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/registry.py": {
+      "path": "src/type3_clipboard_codec/parsers/registry.py",
+      "canonical_source_sha256": "f14535a287948f7d3e68021cf0321e713f0c69c117c5012050da43735406f474",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/registry.py",
+      "legacy_raw_sha256": "d5c81d5bb78ad5fd487e8c95c23be3a5490c14b9747e38126ac10b740690fceb",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/style/__init__.py": {
+      "path": "src/type3_clipboard_codec/parsers/style/__init__.py",
+      "canonical_source_sha256": "1b5924342dd197c29eae0b712a38b8679c48dd21bd0a7f6ce66459db86bf9b66",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/style/__init__.py",
+      "legacy_raw_sha256": "20560e46f293c97ecc7861ba457d3b0bb7f6fd7100c4ac0508207b76738e484a",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/style/property_extend_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/style/property_extend_parser.py",
+      "canonical_source_sha256": "fe665118bf7b5b814e290240c395d0421336f152f9c9f38d3b3a182d33744bfd",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/style/property_extend_parser.py",
+      "legacy_raw_sha256": "6f0e9a80d8802c61becea5cdaee5b40710f10f68fe07c6ba6e81398abbbeaa21",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/text/__init__.py": {
+      "path": "src/type3_clipboard_codec/parsers/text/__init__.py",
+      "canonical_source_sha256": "95dfd0cbcbecd6e6cb050e57854bf1db8aea1d441c380191768a04f16dfc1cba",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/text/__init__.py",
+      "legacy_raw_sha256": "7d5748fe06593b049b13b5a670399defdda2119cf3e0f6b55651ef052192e65f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "canonical_source_sha256": "5b316bd6f7eb9b4b48edcd1aa86a5e10f47157d52bffa6a9ad0c80bef501e5d7",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "legacy_raw_sha256": "65f94c639049ad8cfce1374c8933b51c5f0d6f8b214adbe285b17c07d2dd9133",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance.",
+      "equivalent_style_baseline_commit": "4e5dcbe1a53ca378c7130e87e5859882cef94486"
+    },
+    "historical:src/type3_clipboard_codec/parsers/text/text_pipeline.py": {
+      "path": "src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "canonical_source_sha256": "54a2bb412ce06b718595b18442d74c7490d64dc3fd6574bb78e48b26bc58ac0e",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "legacy_raw_sha256": "ff6745a89de61fa85d4187fb2b80d632154ca5f738f46a87de25080356289503",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance.",
+      "equivalent_style_baseline_commit": "4e5dcbe1a53ca378c7130e87e5859882cef94486"
+    },
+    "historical:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py": {
+      "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "canonical_source_sha256": "76458eecec602b6e41f97c06b7188723fcf7a53e0bec1fe99445a586625d7d28",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "legacy_raw_sha256": "76458eecec602b6e41f97c06b7188723fcf7a53e0bec1fe99445a586625d7d28",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance.",
+      "equivalent_style_baseline_commit": "4e5dcbe1a53ca378c7130e87e5859882cef94486",
+      "frozen_snapshot_path": "tests/frozen_text_slot_candidate_v1.py"
+    },
+    "historical:src/type3_clipboard_codec/parsers/text_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/text_parser.py",
+      "canonical_source_sha256": "8f258b9b20a8673b869872e61dd750b160a9ee307d86d0f21d6e4b78053e943d",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/text_parser.py",
+      "legacy_raw_sha256": "9cb37b272d52eff2b80914c2281f98e1728b721d79ae7ddd93a6c169a350c2b3",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/parsers/type3_chain_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "canonical_source_sha256": "8a7ffcc8eefa0315e6d299895dbaed9ca283cadb6618d04d5704664a7712931b",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "legacy_raw_sha256": "9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb",
+      "legacy_raw_status": "mixed_line_endings_reconstructed",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance.",
+      "equivalent_style_baseline_commit": "4e5dcbe1a53ca378c7130e87e5859882cef94486"
+    },
+    "historical:src/type3_clipboard_codec/parsers/unknown_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/unknown_parser.py",
+      "canonical_source_sha256": "462f0836db85a955aa0d18bd3a778e617ea4c0e386d80bb08567a5679f6b7265",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/parsers/unknown_parser.py",
+      "legacy_raw_sha256": "408b62a65ae82fe183f83bd6dc15692aa33b398a9bf324249ea0f1a2f6726966",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/services/inspect_service.py": {
+      "path": "src/type3_clipboard_codec/services/inspect_service.py",
+      "canonical_source_sha256": "f5c2519d5c71881712077cc1bb8c713de3c63a66300f0445e5b61e1920e890aa",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/services/inspect_service.py",
+      "legacy_raw_sha256": "c6a50cf3b53c8a4d2a7a3296b8a8c74045bfca83e14b18e6e906343defbbab8f",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/utils/__init__.py": {
+      "path": "src/type3_clipboard_codec/utils/__init__.py",
+      "canonical_source_sha256": "c38ef3b8967c9ad1961fda27b9c44b594a75fc8dfc0541724195b12100ff1dba",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/utils/__init__.py",
+      "legacy_raw_sha256": "d8b47acf872628fb5eaef92879c08bbb4980d1d7af57bd8138dafe924706480a",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/utils/ascii_scan.py": {
+      "path": "src/type3_clipboard_codec/utils/ascii_scan.py",
+      "canonical_source_sha256": "dabd19aefe2ec6ad5232429523ef26ef07dacb0255c118a8a7dbbe0290135cf3",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/utils/ascii_scan.py",
+      "legacy_raw_sha256": "af2993a4b31c459ee6eb11ad9636bab8ea887df242e25bb739938ec6a2b894ea",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/utils/bytes_reader.py": {
+      "path": "src/type3_clipboard_codec/utils/bytes_reader.py",
+      "canonical_source_sha256": "3fb9fe2c29ac1b5a1d953dc25e891e2abde15558214d9879689893e6105e5d4e",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/utils/bytes_reader.py",
+      "legacy_raw_sha256": "9bbc847b5356c6100b57980bd647e2a16d42a225b84b2d3ecdfa24d5fb81dfef",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "historical:src/type3_clipboard_codec/utils/hex_text.py": {
+      "path": "src/type3_clipboard_codec/utils/hex_text.py",
+      "canonical_source_sha256": "a4999b1bd9334c71e433eb6b86c2907b04d65b9cb03863c87c1e5f3d578e2f4a",
+      "baseline_commit_or_snapshot": "517469504bc87f00c6a2145e897f1bf49b1a8068",
+      "blob_path": "src/type3_clipboard_codec/utils/hex_text.py",
+      "legacy_raw_sha256": "dc486df3ccc87f6686e42e599f9817740148b32e6b0d5657951f82e87ac54d6c",
+      "legacy_raw_status": "exact_known",
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+    },
+    "current:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py": {
+      "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "canonical_source_sha256": "31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876",
+      "baseline_commit_or_snapshot": "a220a4830239b94fb6690c4c7aa42e4005f84ff4",
+      "blob_path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "legacy_raw_sha256": "31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876",
+      "legacy_raw_status": "exact_known",
+      "reason": "Reviewed current v2 migration commit, not working tree."
+    },
+    "approved:tools/analyze_text_slot_style_fields.py": {
+      "path": "tools/analyze_text_slot_style_fields.py",
+      "canonical_source_sha256": "b20302ec81c3775808c5f67456860cff9a07ba309ba6625ff8fef6204add002d",
+      "baseline_commit_or_snapshot": "333d59bd32ee0aed8418edf806be9c9604e0e785",
+      "blob_path": "tools/analyze_text_slot_style_fields.py",
+      "legacy_raw_sha256": "d19a4a2345209c023c763860eba8f9c0191582616c9490aca23c8695079b30f2",
+      "legacy_raw_status": "superseded_by_approved_source_change",
+      "legacy_baseline_commit": "4e5dcbe1a53ca378c7130e87e5859882cef94486",
+      "legacy_raw_representation": "CRLF",
+      "reason": "Explicitly approved archive-type evidence metadata source delta; behavioral preservation tests remain active."
+    },
+    "approved:tools/analyze_text_slot_spacing_fields.py": {
+      "path": "tools/analyze_text_slot_spacing_fields.py",
+      "canonical_source_sha256": "671c58fc4c9398c6dd1220f3390ff222ff5553c6736cc76c5ea6a6033dec2409",
+      "baseline_commit_or_snapshot": "333d59bd32ee0aed8418edf806be9c9604e0e785",
+      "blob_path": "tools/analyze_text_slot_spacing_fields.py",
+      "legacy_raw_sha256": "3b2d7545189da35b9682c61575e946ea48b1cc2f4dc6fd3938ce49b9f39094b3",
+      "legacy_raw_status": "superseded_by_approved_source_change",
+      "legacy_baseline_commit": "82089a1efee1ee65b540bbede57f5bc139149d77",
+      "legacy_raw_representation": "LF",
+      "reason": "Explicitly approved archive-type evidence metadata source delta; behavioral preservation tests remain active."
+    }
+  },
+  "groups": {
+    "family": [
+      "historical:src/type3_clipboard_codec/__init__.py",
+      "historical:src/type3_clipboard_codec/adapters/input_base.py",
+      "historical:src/type3_clipboard_codec/adapters/manual_hex_input.py",
+      "historical:src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "historical:src/type3_clipboard_codec/codec/__init__.py",
+      "historical:src/type3_clipboard_codec/codec/decoder.py",
+      "historical:src/type3_clipboard_codec/codec/encoder.py",
+      "historical:src/type3_clipboard_codec/codec/preview.py",
+      "historical:src/type3_clipboard_codec/exceptions.py",
+      "historical:src/type3_clipboard_codec/inspect/__init__.py",
+      "historical:src/type3_clipboard_codec/inspect/formatters.py",
+      "historical:src/type3_clipboard_codec/inspect/hex_input.py",
+      "historical:src/type3_clipboard_codec/models/__init__.py",
+      "historical:src/type3_clipboard_codec/models/colors.py",
+      "historical:src/type3_clipboard_codec/models/geometry.py",
+      "historical:src/type3_clipboard_codec/models/parsed_object.py",
+      "historical:src/type3_clipboard_codec/models/text_object.py",
+      "historical:src/type3_clipboard_codec/parsers/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/base.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/header_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "historical:src/type3_clipboard_codec/parsers/common.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
+      "historical:src/type3_clipboard_codec/parsers/object_detector.py",
+      "historical:src/type3_clipboard_codec/parsers/registry.py",
+      "historical:src/type3_clipboard_codec/parsers/style/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/style/property_extend_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/text/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "historical:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "historical:src/type3_clipboard_codec/parsers/text_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/unknown_parser.py",
+      "historical:src/type3_clipboard_codec/services/inspect_service.py",
+      "historical:src/type3_clipboard_codec/utils/__init__.py",
+      "historical:src/type3_clipboard_codec/utils/ascii_scan.py",
+      "historical:src/type3_clipboard_codec/utils/bytes_reader.py",
+      "historical:src/type3_clipboard_codec/utils/hex_text.py"
+    ],
+    "style": [
+      "historical:src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "historical:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "historical:src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+    ],
+    "current": [
+      "current:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "historical:src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+    ],
+    "approved_analyzers": [
+      "approved:tools/analyze_text_slot_style_fields.py",
+      "approved:tools/analyze_text_slot_spacing_fields.py"
+    ]
+  }
+}

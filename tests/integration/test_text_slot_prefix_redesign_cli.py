@@ -7,6 +7,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser
 from type3_clipboard_codec.inspect.formatters import _json_safe
 from type3_clipboard_codec.inspect.hex_input import hex_text_to_bytes
@@ -249,9 +251,9 @@ def test_f0_matches_runtime_exact_family(analyzer):
     }
 
 
-@pytest.mark.parametrize("path,digest", GOLDEN["source_sha256"].items())
+@pytest.mark.parametrize("path,digest", source_baseline("style").items())
 def test_current_runtime_source_unchanged(path, digest):
-    assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest
+    assert canonical_source_sha256(ROOT / path) == digest["canonical_source_sha256"]
 
 
 @pytest.mark.parametrize("name,old", GOLDEN["fixtures"].items())

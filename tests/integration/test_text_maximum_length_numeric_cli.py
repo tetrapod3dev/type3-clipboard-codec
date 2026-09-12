@@ -11,6 +11,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 ROOT = Path(__file__).resolve().parents[2]
 CLI = ROOT / 'tools/analyze_text_maximum_length_numeric.py'
 HASHES = ('994c115e0dab58c605747420e7ba1e67961835ed4ef17aae0951bf899a406392',
@@ -174,12 +176,8 @@ def test_source_fixture_preservation(analyzer, report):
     assert tuple(r['file_sha256'] for r in report['structural']['fixture_inventory']) == HASHES
     for filename, expected in zip(analyzer.FIXTURES, HASHES, strict=True):
         assert hashlib.sha256((analyzer.previous.research.TEXT/filename).read_bytes()).hexdigest() == expected
-    for path, expected in (
-        ('src/type3_clipboard_codec/parsers/text/text_slot_candidate.py',
-         '31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876'),
-        ('src/type3_clipboard_codec/parsers/type3_chain_parser.py',
-         '9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb')):
-        assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == expected
+    for path, expected in source_baseline("current").items():
+        assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
     assert all(r['source'] == 'CParagraphe_slot_prefix_family_v2' and r['candidate_present']
                for r in report['structural']['runtime_candidate_summary'].values())
     assert report['answers']['typed_width'] is None

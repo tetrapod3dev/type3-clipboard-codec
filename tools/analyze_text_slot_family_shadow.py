@@ -11,6 +11,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser  # noqa: E402
@@ -20,6 +21,7 @@ from type3_clipboard_codec.inspect.hex_input import hex_text_to_bytes  # noqa: E
 from type3_clipboard_codec.parsers.type3_chain_parser import Type3ChainParser  # noqa: E402
 from type3_clipboard_codec.parsers.text import text_slot_candidate as runtime  # noqa: E402
 import analyze_text_slot_prefix_redesign as research  # noqa: E402
+from tests.source_integrity import source_integrity  # noqa: E402
 
 SAMPLES = ROOT / "tests/samples"
 BASELINE = SAMPLES / "reports/text/text_slot_family_shadow_baseline.json"
@@ -516,9 +518,8 @@ def structural_phase(paths):
         raise ValueError("analysis fixture-file cap")
     frozen_baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
     by_raw = {v["raw_sha256"]: v for v in frozen_baseline["fixtures"].values()}
-    source_equal = all(
-        hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == h for p, h in frozen_baseline["source_sha256"].items()
-    )
+    integrity = source_integrity(ROOT, "family")
+    source_equal = integrity["canonical_source_equal"]
     rows = []
     seeds = []
     flags = Counter()
@@ -536,7 +537,7 @@ def structural_phase(paths):
                 seeds.append((nodes[selected["payload_index"]][2], selected["positions"]))
         evaluations.append(shadow["accounting"]["probe_evaluations"])
     if not source_equal:
-        warnings.append("Runtime source hash disagreement")
+        warnings.append("Canonical runtime source disagreement")
     seed = min(seeds, key=lambda x: (len(x[1]), hashlib.sha256(x[0]).hexdigest())) if seeds else None
     challenges = challenge_study(seed)
     if seed is None:
@@ -631,7 +632,12 @@ def structural_phase(paths):
             text_paragraph_inputs=sum(r["paragraph_count"] > 0 for r in rows),
             geometry_scope_inputs=sum(r["paragraph_count"] == 0 for r in rows),
             synthetic_cases=len(challenges),
-            runtime_source_equal=source_equal,
+            runtime_source_equal=source_equal,  # Compatibility alias for canonical source equality.
+            canonical_source_equal=source_equal,
+            legacy_raw_source_equal=integrity["legacy_raw_source_equal"],
+            source_integrity=integrity,
+            source_provenance_information=([] if integrity["legacy_raw_source_equal"] else
+                                           ["Legacy raw snapshot byte representation differs"]),
             runtime_outputs_equal=corpus_complete,
         ),
         fixture_results=rows,

@@ -10,6 +10,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 ROOT = Path(__file__).resolve().parents[2]
 CLI = ROOT / 'tools/analyze_text_maximum_length.py'
 NAMES = ('text_slotstyle_a8_baseline.txt', 'text_maxlength_a8_100mm.txt',
@@ -201,16 +203,9 @@ def test_geometry_is_separate(report):
 
 
 def test_sources_and_policies_unchanged(report):
-    hashes = {'src/type3_clipboard_codec/parsers/text/text_slot_candidate.py':
-              '31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876',
-              'src/type3_clipboard_codec/parsers/type3_chain_parser.py':
-              '9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb',
-              'tools/analyze_text_slot_spacing_fields.py':
-              '3b2d7545189da35b9682c61575e946ea48b1cc2f4dc6fd3938ce49b9f39094b3',
-              'tools/analyze_text_slot_style_fields.py':
-              'd19a4a2345209c023c763860eba8f9c0191582616c9490aca23c8695079b30f2'}
-    for path, expected in hashes.items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected
+    sources = {**source_baseline("current"), **source_baseline("approved_analyzers")}
+    for path, expected in sources.items():
+        assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
     assert report['policy']['runtime_parser_behavior'] == 'not_modified'
     assert not report['answers']['parser_safe']
     assert report['answers']['ownership_status'] == 'unresolved'

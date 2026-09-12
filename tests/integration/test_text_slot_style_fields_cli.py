@@ -7,6 +7,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser
 from type3_clipboard_codec.inspect.formatters import _json_safe
 from type3_clipboard_codec.inspect.hex_input import hex_text_to_bytes
@@ -114,9 +116,9 @@ def test_runtime_exact_snapshot_and_capture_unchanged(name):
     assert obj.source_text_candidate == 'AAAAAAAA' and obj.display_text_candidate is None
 
 
-@pytest.mark.parametrize('path,digest', GOLDEN['source_sha256'].items())
+@pytest.mark.parametrize('path,digest', source_baseline('style').items())
 def test_runtime_source_and_anchor_pipeline_unchanged(path,digest):
-    assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest
+    assert canonical_source_sha256(ROOT/path) == digest['canonical_source_sha256']
 
 
 def test_family_has_no_new_variant_or_mask():

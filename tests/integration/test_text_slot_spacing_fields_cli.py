@@ -9,6 +9,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 ROOT = Path(__file__).resolve().parents[2]
 CLI = ROOT / 'tools/analyze_text_slot_spacing_fields.py'
 NAMES = ('text_slotstyle_a8_baseline.txt', 'text_slotstyle_a8_char4_spacing50.txt',
@@ -146,11 +148,8 @@ def test_runtime_source_and_hashes(report):
         assert row['parse_success'] and row['candidate_present']
         assert row['source'] == 'CParagraphe_slot_prefix_family_v2'
         assert (row['first_prefix'], row['slot_count'], row['prefix_family'], row['plus08_value']) == (310, 9, 'F4', 0)
-    for path, expected in (
-        ('parsers/text/text_slot_candidate.py', '31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876'),
-        ('parsers/type3_chain_parser.py', '9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb'),
-    ):
-        assert hashlib.sha256((ROOT / 'src/type3_clipboard_codec' / path).read_bytes()).hexdigest() == expected
+    for path, expected in source_baseline("current").items():
+        assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
     assert not report['answers']['parser_safe']
     assert report['answers']['runtime_change_readiness'] == 'not_authorized_in_this_task'
     assert report['answers']['ownership_status'] == 'unresolved'

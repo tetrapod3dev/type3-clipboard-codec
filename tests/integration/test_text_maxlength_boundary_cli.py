@@ -10,6 +10,8 @@ import sys
 
 import pytest
 
+from tests.source_integrity import canonical_source_sha256, source_baseline
+
 ROOT = Path(__file__).resolve().parents[2]
 CLI = ROOT / "tools/analyze_text_maximum_length.py"
 CASES = [
@@ -188,13 +190,8 @@ def test_cli_bounds(flags):
 
 
 def test_runtime_preserved_and_policy(report):
-    for path, expected in (
-        ("src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
-         "31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876"),
-        ("src/type3_clipboard_codec/parsers/type3_chain_parser.py",
-         "9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb"),
-    ):
-        assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == expected
+    for path, expected in source_baseline("current").items():
+        assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
     assert report["policy"]["semantic_formula_readiness"] == "provisional_not_ready"
     assert report["policy"]["typed_width"] is None
     assert report["policy"]["parser_safe"] is False

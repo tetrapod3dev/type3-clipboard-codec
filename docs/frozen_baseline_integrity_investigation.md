@@ -438,3 +438,117 @@ Additional hard-coded assertions (all raw bytes):
 | src/type3_clipboard_codec/parsers/type3_chain_parser.py | `9eed3128222722ca9300e3a3845600026c6562aec951c04772f86d22d03f9dbb` | spacing:151, maximum:207, maximum numeric:181, boundary:195; same value as S/F |
 | tools/analyze_text_slot_style_fields.py | `d19a4a2345209c023c763860eba8f9c0191582616c9490aca23c8695079b30f2` | test_text_maximum_length_cli.py:211–213 (masked) |
 | tools/analyze_text_slot_spacing_fields.py | `3b2d7545189da35b9682c61575e946ea48b1cc2f4dc6fd3938ce49b9f39094b3` | test_text_maximum_length_cli.py:209–213 (masked) |
+
+
+## Approved canonical source-integrity policy
+
+This section records the subsequently authorized policy migration. The diagnosis
+above remains historical evidence; its raw-byte failure status is not erased.
+
+Python source snapshot integrity now uses `tests/source_integrity.py`:
+read bytes, replace CRLF pairs with LF, then SHA256. Bare CR, whitespace, tabs,
+encoding, Unicode byte sequences and final-newline presence are preserved.
+The path-level API rejects non-`.py` artifacts. This helper is test/diagnostic
+support, not production codec functionality.
+
+Fixtures, clipboard captures, serialized payloads, binary/vendor evidence,
+JSON golden outputs and before/after byte-preservation checks remain raw-byte
+protected. Nothing under `src/type3_clipboard_codec` or `tests/samples` is changed.
+
+`tests/source_integrity_baselines.json` centralizes 49 records representing 48
+distinct logical source paths; the historical slot source also has a separate
+frozen-v1 file, making 49 physical paths protected across the snapshots.
+It retains every original legacy raw SHA, status, reason and committed provenance:
+
+- Historical F source text: the original family-baseline commit `5174695`.
+  The four S entries are also checked to equal their earlier `4e5dcbe` blobs.
+- Current v2 slot source: reviewed migration commit `a220a48`.
+- Only the two analyzers move to approved archive-metadata commit
+  `333d59bd32ee0aed8418edf806be9c9604e0e785`. Their legacy baselines are marked
+  `superseded_by_approved_source_change`; the 16 metadata-preservation tests remain.
+- Chain/models mixed endings remain historical provenance. The adapter still says
+  `raw_preimage_unresolved`; its canonical expectation comes from the known
+  baseline commit, without claiming recovery of unknown historical raw bytes.
+
+The new expected digests were calculated from `git show <commit>:<path>` binary
+stdout followed only by CRLF-to-LF conversion, not from working-tree content.
+Runtime tests load the committed metadata file; Git is not a test dependency.
+
+All fixed Python-source gates in the diagnosis inventory now use this helper,
+including historical replay entry, S/F snapshot loops and current/analyzer checks.
+The original raw SHA JSON files are unmodified and remain provenance.
+Historical replay still substitutes the frozen v1 extractor and checks all 104
+recorded runtime outputs. The replay copy includes the new support helper/table.
+
+The diagnostic shadow report separates `canonical_source_equal` from
+`legacy_raw_source_equal`. The existing `runtime_source_equal` key remains as
+a compatibility alias of canonical equality. Canonical mismatch produces
+`Canonical runtime source disagreement` and blocks readiness. Legacy-only
+mismatch produces separate provenance information,
+`Legacy raw snapshot byte representation differs`, and does not enter warnings.
+Source integrity, runtime equality, warning constraints and all structural gates
+remain required. No source check is skipped for the adapter.
+
+No `.gitattributes`, Git setting, source encoding, parser decision or archive-type
+metadata was changed. This is an explicit integrity-policy migration, not an
+unconditional baseline refresh or a parser promotion.
+
+
+### Migration validation and resulting status
+
+The source-integrity baseline is **repaired under the approved canonical-source
+policy**. The earlier `multiple_causes` diagnosis remains true for the historical
+raw-byte policy; it is not evidence of a current canonical mismatch. The adapter's
+legacy raw preimage remains unresolved provenance, not a skipped integrity check.
+
+Acceptance used the **real original checkout** with system `core.autocrlf=true`
+and project Python 3.14.7 at
+`C:\work\develop\type3-clipboard-codec\.venv\Scripts\python.exe`.
+The request's `type3-clipboard-codec.venv` path did not exist; the existing
+project-local `.venv` above was used. No disposable LF-normalized acceptance
+checkout, dependency injection or Git setting change was needed.
+
+| Check | Result |
+| --- | --- |
+| New source-policy tests | 70 passed |
+| Existing archive-metadata tests | 16 passed |
+| Full actual-checkout suite: PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider | **1266 passed**, 80.21 seconds |
+| Collection errors / failed / skipped / xfailed | 0 / 0 / 0 / 0 |
+| Historical 104-fixture replay | runtime_outputs_equal=true; canonical_source_equal=true; readiness=ready_for_review |
+| Canonical adapter/text mutation | Integrity fails; synthetic canonical mismatch still blocks readiness |
+| Legacy-only mismatch | Reported as provenance, outside warning/readiness failure |
+| New helper and new tests: default Ruff | Passed |
+| Changed legacy tests/support: default Ruff | 37 pre-existing diagnostics remain (I001=9, C408=19, PERF102=1, PLW1510=8); no new diagnostics |
+| All changed Python: Ruff E4/E7/E9/F | Passed |
+| git diff --check | Passed |
+| Production src / fixtures / archive style+spacing implementation diffs | Empty |
+
+The existing family-shadow tests were also rerun (10 passed). After the full suite,
+only a superfluous blank line in that test's imports was removed for Ruff; no
+behavioral code changed. There are no remaining test failures. Broad legacy Ruff
+cleanup was intentionally not performed.
+
+Raw SHA256 preservation was checked before and after, not merely Git's normalized
+diff. Each aggregate hashes sorted `relative_path:raw_file_sha256` rows:
+- 46 production files: `8956966a68e447c0402b72e20f49ed95fffe03a2dc6d3964c3f35f94dba95422`.
+- 204 files under tests/samples: `b71e8ac36824d7876d7e0d39e8a8fc15d99dcdfe35805d37a473cbf83d6b9b30`.
+
+Changed files in this policy migration:
+- `tests/source_integrity.py`
+- `tests/source_integrity_baselines.json`
+- `tests/integration/test_source_integrity_policy.py`
+- `tests/text_slot_v1_replay.py`
+- `tests/integration/test_text_maximum_length_cli.py`
+- `tests/integration/test_text_maximum_length_numeric_cli.py`
+- `tests/integration/test_text_maxlength_boundary_cli.py`
+- `tests/integration/test_text_slot_candidate_v2_migration.py`
+- `tests/integration/test_text_slot_family_shadow_cli.py`
+- `tests/integration/test_text_slot_prefix_redesign_cli.py`
+- `tests/integration/test_text_slot_spacing_fields_cli.py`
+- `tests/integration/test_text_slot_style_fields_cli.py`
+- `tools/analyze_text_slot_family_shadow.py`
+- `docs/frozen_baseline_integrity_investigation.md`
+
+No production parser, adapter, model, fixture, original raw snapshot JSON, archive
+metadata implementation or its 16 tests changed. No empty-extension work or further
+semantic promotion was started.
