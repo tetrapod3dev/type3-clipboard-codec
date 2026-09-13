@@ -120,7 +120,7 @@ def test_suffix_accounting_and_recurrence():
     assert candidate is not None
     assert {k: audit[k] for k in ("raw_token_hits", "identity_positions", "maximal_runs",
                                   "suffix_positions_removed", "unsupported_contexts")} == {
-        "raw_token_hits": 3, "identity_positions": 3, "maximal_runs": 1,
+        "raw_token_hits": 6, "identity_positions": 3, "maximal_runs": 1,
         "suffix_positions_removed": 2, "unsupported_contexts": 0,
     }
     data = make_run()
@@ -134,7 +134,7 @@ def test_identity_rgb_and_raw_span_bounds(remaining):
     candidate, audit = evaluate(data)
     assert candidate is None and audit["failing_layer"] == "bounds"
     expected = ("incomplete_identity" if remaining < 64 else
-                "incomplete_raw_rgb_span" if remaining < 92 else "incomplete_next_prefix")
+                "incomplete_raw_rgb_span" if remaining < 92 else "truncated")
     assert audit["reason"] == expected
     assert len(data[120:123]) == min(3, max(0, remaining - 80))
     assert runtime._family(data, -1) == "incomplete"
@@ -163,7 +163,7 @@ def test_real_cap_boundaries_and_explicit_probe_guard(monkeypatch):
     exact_bytes = good + b"\xcc" * (1_048_576 - len(good))
     assert evaluate(exact_bytes)[0] is not None
     assert evaluate(exact_bytes + b"\xcc")[1]["reason"] == "payload_cap"
-    exact_hits = good + (runtime.TOKEN + b"\xcc" * 60) * 4093
+    exact_hits = good + (runtime.TOKEN + b"\xcc" * 60) * 4090
     assert evaluate(exact_hits)[0] is not None
     assert evaluate(exact_hits + runtime.TOKEN + b"\xcc" * 60)[1]["reason"] == "token_cap"
     candidate, audit = evaluate(make_run(codes=(65,) * 255 + (0,)))
@@ -174,9 +174,9 @@ def test_real_cap_boundaries_and_explicit_probe_guard(monkeypatch):
     assert (runtime.MAX_PAYLOADS, runtime.MAX_PAYLOAD_BYTES, runtime.MAX_PREFIX_HITS, runtime.MAX_SLOTS,
             runtime.PROBE_FACTOR, runtime.PROBE_ALLOWANCE) == (32, 1_048_576, 4096, 256, 2, 4096)
     monkeypatch.setattr(runtime, "PROBE_FACTOR", 0)
-    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 4)
+    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 7)
     assert evaluate(good)[0] is not None
-    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 3)
+    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 6)
     assert evaluate(good)[1]["reason"] == "probe_cap"
-    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 2)
+    monkeypatch.setattr(runtime, "PROBE_ALLOWANCE", 5)
     assert evaluate(good)[1]["reason"] == "probe_cap"

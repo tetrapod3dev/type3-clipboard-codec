@@ -132,7 +132,7 @@ def test_runtime_raw_chains_and_rgb_unchanged(modules):
     assert {p: hashlib.sha256(p.read_bytes()).digest() for p in paths} == hashes
 
 
-def test_f4_stride_and_unknown_extension_behavior_unchanged(modules):
+def test_f4_stride_preserved_and_nonempty_extension_rejected(modules):
     spacing = modules[1]
     raw = hex_text_to_bytes((spacing.TEXT / spacing.BASELINE).read_text(encoding="utf-8"))
     obj, _ = parse_type3_clipboard_bytes_with_parser(raw)
@@ -146,10 +146,10 @@ def test_f4_stride_and_unknown_extension_behavior_unchanged(modules):
     changed = bytearray(payload)
     changed[first + 0x24] ^= 1
     assert extract_text_slot_candidate([bytes(changed)]) is None
-    # The old recognizer still does not validate empty-extension state.
+    # The approved current/empty gate now rejects this former false positive.
     changed = bytearray(payload)
     changed[first + 92 + 40] ^= 1
-    assert extract_text_slot_candidate([bytes(changed)]) == original
+    assert extract_text_slot_candidate([bytes(changed)]) is None
     spacing.build_report()
     assert extract_text_slot_candidate([payload]) == original
 

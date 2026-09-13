@@ -120,7 +120,10 @@ def test_f4_partial_correlation_and_extension_version_independence():
     before = SHADOW.EMPTY.extract_text_slot_candidate([bytes(payload)])
     first = before["first_prefix_relative_offset"]
     payload[first + 92:first + 96] = (4).to_bytes(4, "little")
-    assert SHADOW.EMPTY.extract_text_slot_candidate([bytes(payload)]) == before
+    from type3_clipboard_codec.parsers.text.text_slot_candidate import _family
+
+    assert _family(payload, first) == "F4"
+    assert SHADOW.EMPTY.extract_text_slot_candidate([bytes(payload)]) is None
     assert SHADOW.current_slot_layout_evidence(payload[first:first + 204])["status"] == "legacy_or_other_layout"
     # Both version markers may match without the other F4 constants.
     assert SHADOW.current_slot_layout_evidence(current_record())["status"] == "current_layout_supported"

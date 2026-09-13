@@ -235,7 +235,13 @@ def test_runtime_full_identity_accounting_decoys_and_prior_challenges():
         assert candidate is None
         if kind == "identity_collision":
             assert audit["identity_positions"] > 0 and audit["maximal_runs"] == 1
-            assert audit["failing_layer"] == ("count" if name.endswith("wrong_count") else "terminal")
+            from tests import frozen_text_slot_candidate_v2 as before_gate
+
+            _, old_audit = before_gate._evaluate([p + b"\xcc" * 32 for p in payloads])
+            assert old_audit["failing_layer"] == ("count" if name.endswith("wrong_count") else "terminal")
+            # Historical clones copied only 96 bytes, leaving nonempty array words.
+            assert audit["failing_layer"] == "layout"
+            assert audit["reason"] == "nonempty_array"
         elif kind == "ambiguity_control":
             assert audit["reason"] == "multiple_runs"
 

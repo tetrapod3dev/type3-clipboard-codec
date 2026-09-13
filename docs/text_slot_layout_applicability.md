@@ -1,3 +1,149 @@
+# Production current/empty 204-byte layout gate
+
+**production_204_gate_status = implemented_fail_closed**.
+Support is restricted to existing structurally aligned candidates with current
+**CTxtAttrChar v5 / CPropertyExtend v5 / empty extension**. Unsupported layouts
+abstain. Typed parsing readiness and all semantic labels remain unchanged.
+
+The applicability investigation below is retained as historical code/corpus
+evidence. Its statements that no production gate is active describe the earlier
+shadow batch; this production update supersedes that implementation status only.
+Both shadow analyzers and both JSON evidence models are unchanged.
+
+## Conditions and placement
+
+Only `src/type3_clipboard_codec/parsers/text/text_slot_candidate.py` changes in
+production. Its private pure `_validate_current_empty_slot_layout(record)` requires
+an exact 204-byte window and returns a compact failure reason or `None` for success.
+It imports no tool, evidence JSON, UI code or semantic parser.
+
+| Record-relative field | Width | Required value |
+| --- | ---: | ---: |
+| AttrChar version, +0 | 4 LE | exactly 5 |
+| Extension version, +92 | 4 LE | exactly 5 |
+| Array count #1, +132 | 4 LE | 0 |
+| Array count #2, +152 | 4 LE | 0 |
+| String length #1, +188 | 4 LE | 0 |
+| Optional zone #1, +192 | 4 LE | 0 |
+| String length #2, +196 | 4 LE | 0 |
+| Optional zone #2, +200 | 4 LE | 0 |
+
+The six guards are checked in frozen archive order, stopping at the first failure.
+Their offsets and the version/size definitions are immutable tuples/integers in
+the candidate module. Other fixed extension bytes remain unconstrained. Neither
+an all-zero extension nor `version>=5` is accepted as a substitute.
+
+Existing token discovery, F4 classification and root calculation are unchanged.
+The original 204-spaced root calculation is tentative candidate topology, not a
+successful length validation. Once it identifies a unique root, the existing run
+loop validates that first window **before** adding its position or advancing by
+204. Each subsequent window, including the terminal record, uses the same gate.
+The original count agreement and terminal/continuation checks still run before
+returning a candidate. Final count agreement is not moved ahead of record validation.
+
+Any failed record rejects the entire candidate; no partial run escapes. Truncation
+maps to the existing private bounds audit, other layout failures to its private
+layout audit. No public candidate keys are added. The helper does not scan bytes
+for version pairs, determine ownership, skip variable data or infer another stride.
+
+AttrChar v0-v4, extension v0-v4, unknown higher versions, negative-bit-pattern
+versions, nonzero counts/lengths, and any nonzero zone presence all abstain.
+No array, string or zone payload is parsed. Real nonempty extension coverage remains
+**zero**; the new negatives exist only as in-memory mutations.
+
+## Preservation and regression coverage
+
+The regression freezes the pre-gate v2 extractor directly from the previously
+committed source in `tests/frozen_text_slot_candidate_v2.py`. It uses that original
+extractor to establish corpus alignment, so a new rejection cannot silently shrink
+the production/shadow comparison population. Production never imports this copy.
+
+- All **700** reviewed records pass: **616 visible, 84 terminal**.
+- All 700 production decisions agree with shadow `combined_future_204_supported`.
+- Full parser dataclass/chain output for **116 valid hex captures** is equal to
+  both the frozen v2 implementation and the actual pre-task in-memory snapshot.
+- Per-paragraph candidate dictionaries remain exactly equal, including source,
+  presence, F4 family, +08, count, stride, raw/unknown bytes and terminal state.
+- No archive_type_evidence, typed_width, RGB projection, callback ownership,
+  Maximum Length, compression, spacing, style-field or terminal semantics change.
+- F4's function text is checked for exact equality to the committed pre-gate copy.
+
+Synthetic tests mutate both versions through 0/1/2/3/4/6/0x7FFFFFFF/0xFFFFFFFF
+on first, interior and terminal records; each of six guards through positive and
+invalid nonzero words on every record; all 204 proper record prefixes; meaningful
+enclosing-payload boundaries; and input names/order/offsets. Whole-parser negative
+tests verify candidate abstention without changing the parser chain or crashing.
+A spy on validation confirms first-record failure stops before any stride advance.
+
+Existing valid synthetic run builders now emit the reviewed extension version
+and guards while preserving arbitrary nonzero opaque fields. Their exact token
+and probe budgets account for the additional version token in each record.
+Three existing shadow/metadata test locations formerly asserting nonempty/legacy
+production acceptance now assert rejection; their shadow and metadata assertions
+remain. No shadow evidence was changed to force agreement.
+
+## Canonical source provenance
+
+Production commit: `4836b5a37bcfb21570b995d011905c4cfdfe57ad` (local; no push).
+Its only file is the candidate implementation. The one current source-integrity
+record now names this commit and blob `9b26098cf6f257594af3b5c0294dc8ccbaae3a12`.
+Canonical SHA256, computed with `tests/source_integrity.py` from binary
+`git show <commit>:<path>` output, is:
+`f5c976698d519dc725dc03412f5e6026b0a71c8c8312a6da60d24f5f430206d2`.
+
+The prior complete canonical/commit/legacy record is retained in
+`previous_baselines`; its canonical SHA remains
+`31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876`.
+Legacy raw SHA is unchanged and status records `superseded_by_approved_source_change`.
+The reason is explicitly approved production current-layout gate. Every other
+baseline record and group membership is identical; there is no blanket rebaseline,
+historical output regeneration, policy bypass or dirty-tree-derived expectation.
+
+## Actual checkout validation
+
+Validation uses `C:/work/develop/type3-clipboard-codec/.venv/Scripts/python.exe`,
+Python 3.14.7. The supplied path lacking the separator before `.venv` does not
+exist; IDE lookup still returns the other open project's Python 3.12.
+
+| Check | Result |
+| --- | --- |
+| New production-gate tests | 29 passed |
+| Existing applicability tests | 36 passed |
+| Existing empty-extension tests | 26 passed |
+| Archive metadata tests | 16 passed |
+| Historical replay | 1 passed; 104 fixtures, runtime_outputs_equal=true, canonical_source_equal=true, readiness=ready_for_review |
+| Existing migration challenge regression | 1 passed |
+| Combined focused run | **109 passed in 15.16s** |
+| Full actual checkout: `PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider` | **1357 passed in 88.04s**, baseline 1328 + 29 |
+| Default Ruff on all changed/new Python | 14 inherited diagnostics (C408=12, I001=2); zero newly introduced diagnostics against pre-gate committed code |
+| Ruff E4/E7/E9/F | Passed |
+| `git diff --check` and new-file whitespace checks | Passed |
+| Fixture inventory/raw SHA256 | 204 before and after; zero mismatches |
+| Tools/shadow evidence and chain-parser diffs | Empty |
+| Production diff versus pre-task commit | One candidate file only, 36 additions / 1 replacement |
+| Baseline scope audit | 1 of 49 source records changed; group membership unchanged |
+
+The default Ruff findings are retained source-style issues, including the exact
+pre-gate snapshot's inherited C408. New production/test logic adds no diagnostics;
+unrelated source cleanup was not mixed into the structural gate.
+
+Modified production file: `src/type3_clipboard_codec/parsers/text/text_slot_candidate.py`.
+Other files: this document, `tests/source_integrity_baselines.json`, new
+`tests/frozen_text_slot_candidate_v2.py` and
+`tests/integration/test_text_slot_current_empty_gate.py`, existing applicability,
+empty-extension, archive-metadata and v2-migration integration tests, and the two
+candidate unit-test modules. Historical v1 source/runtime outputs and all evidence
+captures remain immutable. The migration challenge still verifies the original
+count/terminal failure using frozen v2, then verifies the new earlier layout veto.
+
+There is no remaining implementation blocker for this reviewed current/empty gate.
+Nonempty extensions, alternate versions, global MFC schema decoding and typed
+semantics remain unsupported or independently unready; this batch does not start
+those tasks. All checks ran against the actual checkout, with no skips or xfails.
+
+---
+
+
 # Text-slot current serializer applicability investigation
 
 **serializer_applicability_readiness = ready_for_production_gate_review**, scoped

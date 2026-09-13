@@ -89,7 +89,9 @@ def test_nonempty_component_and_production_candidate_independence(operation):
     assert result["checks"][-1]["extension_relative_offset"] == operation["extension_relative_start"]
     assert len(result["checks"]) == GUARDS.index(operation) + 1
     assert "record_length_evidence" not in result
-    assert extract_text_slot_candidate([bytes(mutation)]) == production_before
+    assert production_before is not None
+    # F4 still aligns; the approved production layout gate now vetoes nonempty data.
+    assert extract_text_slot_candidate([bytes(mutation)]) is None
 
 
 @pytest.mark.parametrize("operation", GUARDS, ids=lambda o: o["empty_guard"])

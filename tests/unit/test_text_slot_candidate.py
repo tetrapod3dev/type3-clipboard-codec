@@ -16,6 +16,10 @@ def make_run(start=40, codes=(65, 66, 0), variant=0):
         data[p + 36:p + 44] = b'\0' * 8
         data[p + 56:p + 64] = bytes.fromhex('9a9999999999d9bf')
         data[p + 80:p + 83] = b'\x10\x20\x30'
+        # Valid reviewed current/empty layout; other opaque bytes remain nonzero.
+        data[p + 92:p + 96] = (5).to_bytes(4, 'little')
+        for offset in (132, 152, 188, 192, 196, 200):
+            data[p + offset:p + offset + 4] = b'\0' * 4
     return data
 
 
@@ -149,7 +153,7 @@ def test_empty():
     assert module.extract_text_slot_candidate([]) is None
 
 @pytest.mark.parametrize('limit,value', [('MAX_PAYLOADS', 1), ('MAX_PAYLOAD_BYTES', 716),
-                                       ('MAX_PREFIX_HITS', 3), ('MAX_SLOTS', 3)])
+                                       ('MAX_PREFIX_HITS', 6), ('MAX_SLOTS', 3)])
 def test_resource_limit_exact_boundary(monkeypatch, limit, value):
     monkeypatch.setattr(module, limit, value)
     assert extract(make_run()) is not None
