@@ -1,5 +1,14 @@
 # Optional parent-gated pre-slot archive doubles
 
+> **Historical status note**
+>
+> This document records the three-field pre-slot implementation batch. Those
+> canonical fields remain current; later alias work added references only in a
+> separate map. Neutral P-relative keys remain canonical, and aliases do not
+> replace their field objects or establish UI ownership. For current
+> consumer-facing interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 Three pre-slot binary64 fields are now exposed as an approved additive production
 candidate output. **The parent gate only controls the new dictionary; existing
 slot candidate acceptance is unchanged.** UI/model semantic ownership is unchanged.

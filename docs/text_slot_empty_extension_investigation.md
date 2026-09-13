@@ -1,5 +1,14 @@
 # Text slot empty-extension investigation
 
+> **Historical status note**
+>
+> This document records the shadow investigation at that time; its evidence and
+> readiness results are preserved. The statement that no production gate is
+> enabled was later superseded: current production requires exact AttrChar v5,
+> CPropertyExtend v5 and all six empty-extension guards, failing closed otherwise.
+> For current consumer-facing interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 This batch adds **analyzer-only shadow evidence**. Production F4 recognition,
 candidate selection, count/stride/terminal rules, typed widths, ownership, style
 archive metadata, Maximum Length and compression extraction are unchanged.

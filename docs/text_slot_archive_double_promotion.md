@@ -1,5 +1,14 @@
 # Five current/empty text-slot archive doubles
 
+> **Historical status note**
+>
+> This document records the five-slot-field implementation batch. Its exclusion
+> of pre-slot promotion applies to that batch only: three parent-gated pre-slot
+> fields and two additive internal-role aliases were implemented later. The
+> five-field history and semantic limits below are preserved. For current
+> consumer-facing interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 The production candidate now adds five raw-preserving `f64le` fields after the
 complete current/empty run has passed every structural check. This is an approved
 additive typed-output change. Candidate selection and semantic ownership remain

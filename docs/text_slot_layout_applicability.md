@@ -1,5 +1,9 @@
 # Production current/empty 204-byte layout gate
 
+For current consumer-facing interpretation across the subsequent typed-output
+and alias batches, use the
+[text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 **production_204_gate_status = implemented_fail_closed**.
 Support is restricted to existing structurally aligned candidates with current
 **CTxtAttrChar v5 / CPropertyExtend v5 / empty extension**. Unsupported layouts

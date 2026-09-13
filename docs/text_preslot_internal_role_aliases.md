@@ -1,5 +1,8 @@
 # Two additive pre-slot internal-role aliases
 
+For the consolidated current consumer-facing interpretation, use the
+[text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 Only two Tier A stored model-side roles from the
 [semantic contract review](text_typed_field_semantic_contract_review.md) receive
 aliases. **Neutral P-relative keys remain canonical. UI semantic ownership is

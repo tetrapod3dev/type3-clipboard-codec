@@ -1,5 +1,14 @@
 # Eight archive doubles: semantic naming and confidence review
 
+> **Historical status note**
+>
+> This document records a review-only stage; no aliases were implemented in that
+> review. Its two recommended internal-role aliases were subsequently implemented.
+> Tier A remains limited to those narrow internal roles; all Tier B decisions and
+> unresolved UI ownership remain unchanged. For current consumer-facing
+> interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 Review only; no parser/schema change, alias, field, fixture or runtime investigation.
 Reviewed checkout: `6db557c7b2af78790c24edab33245a3866a14636`. Supplied baseline:
 1468 passed; historical104 replay has runtime/canonical equality and ready_for_review.

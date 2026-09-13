@@ -1,5 +1,13 @@
 # CParagraphe current pre-slot internal crosswalk
 
+> **Historical status note**
+>
+> This document records the shadow crosswalk investigation. Its proposed next
+> step was subsequently completed by parent-gated pre-slot production output.
+> The 84-paragraph evidence and historical readiness conclusions below are
+> preserved. For current consumer-facing interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 `pre_slot_crosswalk_readiness = broad_current_corpus_supported`.
 
 All 84 analyzer-recognized current text paragraphs independently produce

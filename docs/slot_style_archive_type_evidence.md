@@ -1,5 +1,16 @@
 # Slot-style archive-type evidence metadata
 
+> **Historical status note**
+>
+> This document records an evidence-only analyzer batch. Its `typed_width=None`
+> statements describe that batch, not today's runtime typed fields. The full
+> current/empty production gate and five slot-local f64le candidates were
+> implemented later; RGB remains a separate three-byte projection. The historical
+> five-fixture crosswalk scope was subsequently broadened by the pre-slot
+> investigation without making it a universal layout claim. Evidence below is
+> preserved. For current consumer-facing interpretation, use the
+> [text-slot typed candidate consumer contract](text_slot_typed_candidate_contract.md).
+
 This batch records vendor **archive representation** on the diagnostic analyzer side.
 A confirmed archive type does **not** mean that runtime layout is universally
 confirmed or that UI semantic ownership is confirmed. Production parser output
