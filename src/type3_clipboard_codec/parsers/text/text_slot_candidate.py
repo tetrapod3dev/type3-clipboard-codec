@@ -50,6 +50,89 @@ def _validate_current_empty_slot_layout(record: bytes) -> str | None:
     return None
 
 
+def _derive_current_preslot_layout(payload: bytes) -> tuple[int, int, int, int] | None:
+    """Walk from CParagraphe payload start, without any slot-alignment input.
+
+    Reviewed provenance: docs/text_preslot_crosswalk_investigation.md. Variable
+    property strings are length-delimited; only empty extra maps and provably
+    absent CObDaoFin optional words are supported. Failure never rejects slots.
+    Returns P, first AttrChar, char count and line count after a complete walk.
+    """
+    cursor = 0
+
+    def take(width: int) -> int:
+        nonlocal cursor
+        if width > len(payload) - cursor:
+            raise ValueError("truncated")
+        start = cursor
+        cursor += width
+        return start
+
+    def word(width: int = 4) -> int:
+        start = take(width)
+        return int.from_bytes(payload[start:cursor], "little")
+
+    def version(expected: int, reason: str) -> None:
+        if word() != expected:
+            raise ValueError(reason)
+
+    try:
+        take(2 * 3 * 8)  # CObDao cube: two CVect3D emissions.
+        flags = word()
+        version(8, "unsupported_cobdao_version")
+        take(4 * 4)  # CObDao members +58,+5c,+60,+64.
+        version(2, "unsupported_guid_version")
+        take(16)
+        properties = word()
+        if properties > (len(payload) - cursor) // 8:
+            raise ValueError("truncated")
+        for _ in range(properties):
+            take(word())  # Key byte length, then exactly those bytes.
+            take(word())  # Value byte length, then exactly those bytes.
+        if word(8):
+            raise ValueError("unsupported_map")
+        if flags & 0x01001000 != 0x01001000:
+            raise ValueError("unsupported_stored_flags")
+        if flags in (0x01001010, 0x01001011, 0x01001100, 0x01001101):
+            raise ValueError("ambiguous_optional_field")
+        take(4 + 8 + 4 + 4 + 3 * 8)  # Paragraph +a8,+d8,+e4,+ec and vector +b8.
+        p_origin = cursor
+        version(4, "unsupported_attrpara_version")
+        take(4 + 5 * 8 + 4)  # Remaining current AttrPara emissions (total 52).
+        lines = word()
+        if lines > (len(payload) - cursor) // 4:
+            raise ValueError("truncated")
+        for _ in range(lines):
+            version(4, "unsupported_attrline_version")
+            take(4 + 6 * 8 + 4 + 8)  # Current AttrLine remainder, total 68.
+        chars = word()
+        return p_origin, cursor, chars, lines  # first = P + 60 + 68*L.
+    except ValueError:
+        return None
+
+
+def _preslot_archive_double_candidates(payload: bytes, first: int, count: int) -> dict | None:
+    """Optional run-level archive output; parent failure leaves slot acceptance intact."""
+    parent = _derive_current_preslot_layout(payload)
+    if parent is None:
+        return None
+    p_origin, derived_first, chars, lines = parent
+    if lines < 1 or derived_first != first or chars != count:
+        return None
+    result = {}
+    for relative, source in ((0x20, "CTxtAttrPara+0x20"),
+                             (0x50, "CTxtAttrLine[0]+0x30"),
+                             (0x68, "CTxtAttrLine[0]+0x10")):
+        position = p_origin + relative
+        raw = bytes(payload[position:position + 8])
+        value = struct.unpack("<d", raw)[0]
+        result[f"P+{hex(relative)}"] = {
+            "raw_bytes": raw, "f64le": value if math.isfinite(value) else repr(value),
+            "typed_width": 8, "payload_relative_offset": position, "source": source,
+        }
+    return result
+
+
 def _family(payload: bytes, p: int) -> str | None:
     """Exact F4, or rejection-only Gate 8 context; None is a complete mismatch."""
     if p < 0 or p + IDENTITY_SPAN > len(payload):
@@ -203,7 +286,7 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
                          "start": p, "length": LOCAL_SPAN},
             "archive_double_candidates": archive_doubles,
         })
-    return {
+    candidate = {
         "source": "CParagraphe_slot_prefix_family_v2", "confidence": "provisional",
         "parser_safe": False, "ownership": "unresolved", "matched_chain": None,
         "payload_index": index, "first_prefix_relative_offset": first,
@@ -214,4 +297,9 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
             "confidence": "provisional",
         },
         "stride": STRIDE, "prefix_family": "F4", "plus08_value": prefixes[index, first], "slots": slots,
-    }, audit
+    }
+    # Optional parent evidence is downstream of every existing candidate decision.
+    preslot = _preslot_archive_double_candidates(payload, first, len(positions))
+    if preslot is not None:
+        candidate["preslot_archive_double_candidates"] = preslot
+    return candidate, audit
