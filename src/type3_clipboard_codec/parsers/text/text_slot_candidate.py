@@ -302,4 +302,13 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
     preslot = _preslot_archive_double_candidates(payload, first, len(positions))
     if preslot is not None:
         candidate["preslot_archive_double_candidates"] = preslot
+        # Internal storage roles only; neutral entries remain the sole value authority.
+        aliases = {
+            name: key for name, key in (
+                ("stored_minimum_line_layout_scale", "P+0x20"),
+                ("stored_first_line_layout_scale", "P+0x68"),
+            ) if key in preslot
+        }
+        if aliases:
+            candidate["preslot_archive_double_aliases"] = aliases
     return candidate, audit
