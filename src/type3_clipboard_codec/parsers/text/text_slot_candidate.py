@@ -9,11 +9,41 @@ MAX_PREFIX_HITS = 4096
 MAX_SLOTS = 256
 PROBE_FACTOR = 2
 PROBE_ALLOWANCE = 4096
-STRIDE = 204
+RECORD_SIZE = 204
+STRIDE = RECORD_SIZE
+ATTRCHAR_VERSION_OFFSET = 0
+ATTRCHAR_CURRENT_VERSION = 5
+EXTENSION_OFFSET = 92
+EXTENSION_VERSION_OFFSET = EXTENSION_OFFSET
+EXTENSION_CURRENT_VERSION = 5
+# Reviewed v5 archive order; later offsets apply only after earlier empty guards.
+EMPTY_FIELDS = ((132, "nonempty_array"), (152, "nonempty_array"),
+                (188, "nonempty_string"), (192, "optional_zone_present"),
+                (196, "nonempty_string"), (200, "optional_zone_present"))
 IDENTITY_SPAN = 64
 LOCAL_SPAN = 92  # Retained inspection context, not semantic record extent.
 TOKEN = b"\x05\x00\x00\x00"
 STRUCTURAL_CONSTANTS = ((0x24, b"\0" * 8), (0x38, bytes.fromhex("9A9999999999D9BF")))
+
+
+def _validate_current_empty_slot_layout(record: bytes) -> str | None:
+    """Return a structural failure reason, or None for one complete reviewed window.
+
+    Caller supplies existing alignment. AttrChar's fixed emissions total 92 bytes;
+    the v5 empty extension adds 112. No other extension bytes are constrained.
+    """
+    if len(record) != RECORD_SIZE:
+        return "truncated" if len(record) < RECORD_SIZE else "oversized_record_window"
+    for offset, version, reason in (
+        (ATTRCHAR_VERSION_OFFSET, ATTRCHAR_CURRENT_VERSION, "attrchar_version_mismatch"),
+        (EXTENSION_VERSION_OFFSET, EXTENSION_CURRENT_VERSION, "extension_version_mismatch"),
+    ):
+        if int.from_bytes(record[offset:offset + 4], "little") != version:
+            return reason
+    for offset, reason in EMPTY_FIELDS:
+        if int.from_bytes(record[offset:offset + 4], "little") != 0:
+            return reason
+    return None
 
 
 def _family(payload: bytes, p: int) -> str | None:
@@ -111,6 +141,11 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
             return fail("bounds", "incomplete_raw_rgb_span")
         if prefixes[index, p] != prefixes[index, first]:
             return fail("identity", "plus08_switch")
+        # Root/stride topology above is candidate alignment only. Validate the first
+        # record before advancing, and every later record (including the zero tail).
+        layout_error = _validate_current_empty_slot_layout(payload[p:p + RECORD_SIZE])
+        if layout_error is not None:
+            return fail("bounds" if layout_error == "truncated" else "layout", layout_error)
         positions.append(p)
         audit["traversed_slots"] = len(positions)
         p += STRIDE
