@@ -1,0 +1,46 @@
+{
+  "scope": "Reviewed MaudeTxt/Maude serializer family, structurally aligned AttrChar candidates only",
+  "position_derivation": "Archive order frozen before corpus comparison; no corpus constants or absolute offsets",
+  "markers": [
+    {"serializer": "CTxtAttrChar", "classification": "exact_local", "record_relative_offset": 0, "width": 4, "current": 5, "store_rva": "0x4d7b9", "read_rva": "0x4d892", "source": "literal 5 at 0x4d7b1"},
+    {"serializer": "CPropertyExtend", "classification": "exact_local", "record_relative_offset": 92, "width": 4, "current": 5, "store_rva": "0x603b2", "read_rva": "0x605f4", "source": "member+4 initialized to 5 at 0x5ff83; copy constructor copies at 0x60064/0x60067; load reads a stack-local discriminator"}
+  ],
+  "serializers": [
+    {"name": "CTxtAttrChar", "rva": "0x4d790", "current_store": 5, "own_version_width": 4, "own_version_offset": 0, "static_version_state": false, "load_policy": "signed v>=2 common path; v1 special flags conversion; other v<2 consumes version only; no upper-version rejection", "branches": [
+      {"version": 1, "fixed_bytes": 72, "extension": false, "difference": "packed flags conversion; no member+48, +54 or +58"},
+      {"version": 2, "fixed_bytes": 80, "extension": false, "difference": "adds member+48 double"},
+      {"version": 3, "fixed_bytes": 84, "extension": false, "difference": "adds member+54 DWORD; comparison 0x4d957"},
+      {"version": 4, "fixed_bytes": 92, "extension": false, "difference": "adds member+58 double; comparison 0x4d96b"},
+      {"version": 5, "fixed_bytes": 92, "extension": true, "difference": "extension call 0x4d994 gated by v>=5 at 0x4d97f"}
+    ]},
+    {"name": "CPropertyExtend", "binary": "Maude.dll", "rva": "0x60370", "current_store": "member+4; default 5, not a store literal", "own_version_width": 4, "own_version_offset": 0, "static_version_state": false, "load_policy": "signed thresholds 1,2,3,4,5; no upper-version rejection", "branches": [
+      {"version": 0, "empty_bytes": 4, "difference": "version only; all six empty fields absent"},
+      {"version": 1, "empty_bytes": 20, "difference": "adds +10:8,+8:4,+18:4; gate 0x605f9"},
+      {"version": 2, "empty_bytes": 24, "difference": "adds +1c:4; gate 0x60627"},
+      {"version": 3, "empty_bytes": 52, "difference": "adds four DWORDs, array30 count/elements, two DWORDs; gate 0x6063b"},
+      {"version": 4, "empty_bytes": 64, "difference": "adds +40:8 and array48 count/elements; gate 0x606eb"},
+      {"version": 5, "empty_bytes": 112, "difference": "adds four 8-byte fields and string50, zone54, string58, zone5c; gate 0x60756"}
+    ], "optional_encoding": "v<5 has no optional-zone presence words; v5 has 4-byte presence followed by direct virtual CZone Serialize, no WriteObject framing"},
+    {"name": "CTxtAttrLine", "rva": "0x4ddf0", "current_store": 4, "own_version_width": 4, "own_version_offset": 0, "classification": "requires_parent_context", "static_version_state": false, "load_policy": "v<4 flags conversion; >=2 adds +10 double; >=3 adds +40 DWORD; >=4 adds +18 double; no upper rejection", "lengths": {"1": 48, "2": 56, "3": 60, "4": 68}, "store_rva": "0x4de17", "read_rva": "0x4de97"},
+    {"name": "CTxtAttrPara", "rva": "0x4e1f0", "current_store": 4, "own_version_width": 4, "own_version_offset": 0, "classification": "requires_parent_context", "static_version_state": false, "load_policy": "common 24 bytes; >=2 adds +18 double; >=3 adds +20/+28 doubles; >=4 adds +30 DWORD; no upper rejection", "lengths": {"1": 24, "2": 32, "3": 48, "4": 52}, "store_rva": "0x4e212", "read_rva": "0x4e27e"},
+    {"name": "CTxtAttrStyle", "rva": "0x4e480", "classification": "not_serialized", "own_version_width": 0, "static_version_state": false, "order": "Char at object+8, Line at +f0, Para at +138; direct virtual calls 4e492/4e4a4/4e4b6; no wrapper bytes", "current_empty_total": 324, "stream_versions": "Char+0; Line at 92+E; Para at 160+E. Under empty v5 E=112: 0,204,272. Not three markers inside a 204-byte slot."},
+    {"name": "CTxtPara", "rva": "0x4e920", "classification": "not_serialized", "own_version_width": 0, "static_version_state": false, "order": "AttrPara 52; line count u32 at P+52; L AttrLine records 68 each starting P+56; character count u32 at P+56+68L; first Char P+60+68L", "type_evidence": "load constructors at 4ea52 and 4eafe; no serialized per-element class tags"},
+    {"name": "CCaractere", "rva": "0x1900", "classification": "requires_parent_context", "own_version_width": 0, "static_version_state": "m_iVersion RVA7f2d0; ResetVersion 13d0 clears it; ordinal3051 fills at 1945/194a on first load", "current_branch": "store always; load only schema-state ==3 at 1961", "legacy_branch": "load schema-state !=3: CCourbe base then raw 96+96+4*32+4+2*32=388 bytes converted into members", "current_order": "CCourbe base; four CVect3D serializers; embedded AttrChar at object+c8", "slot_relationship": "not the repeated CTxtPara list element; no assumed 204-byte CCaractere size"},
+    {"name": "CParagraphe", "rva": "0xbca0", "classification": "requires_parent_context", "own_version_width": 0, "static_version_state": "m_iVersion RVA7fa24; ResetVersion 6d00; ordinal3051 at bcdc", "current_branch": "store unconditionally; load state>=5; final DWORD present for >=6", "legacy_branch": "state<5 invokes readOldVersion b030; explicit v4 branch b93f; complete old layout unresolved", "schema_limit": "runtime metadata word 0x80000006; second archive descriptor word 6 is only a schema candidate in existing parser; global MFC schema/reference resolution not promoted"}
+  ],
+  "parent_positions": {"attrpara": "P+0", "line_i": "P+56+68*i under current preceding serializers", "first_char": "P+60+68*L", "fixed_record_back_offset": null},
+  "f4_relationship": "partial correlation: same AttrChar==5 condition; F4 never checks extension version at record+92",
+  "unknown_version_policy": "exact equality only, even though vendor loaders accept higher versions via >= branches",
+  "source_evidence": [
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_4d790.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_4ddf0.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_4e1f0.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_4e480.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_4e920.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_MaudeTxt.dll_1900.json",
+    "C:/TypeEdit_2009/_reverse_engineering/data/phase2a_cfg_Maude.dll_60370.json",
+    "C:/TypeEdit_2009_reverse_engineering/reports/phase2d_c_origin_resolution.md",
+    "C:/TypeEdit_2009_reverse_engineering/reports/phase3_codec_promotion_review.md"
+  ],
+  "additional_read_only_pe_evidence": "Maude.dll constructor 5ff50 and copy constructor 5fff0; MaudeTxt ResetVersion 13d0/6d00. PE bytes decoded statically; vendor code never executed."
+}
