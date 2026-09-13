@@ -135,7 +135,7 @@ def test_exact_migration_and_semantic_presentation_allowlist(name):
                 assert previous["prefix_variant"] in ("v0", "v1", "v2")
                 current["prefix_variant"] = previous["prefix_variant"]
             assert adjusted == old
-            assert [k for k in new if k not in {"prefix_family", "plus08_value"}] == [
+            assert [k for k in prior_candidate(new) if k not in {"prefix_family", "plus08_value"}] == [
                 k for k in old if k != "prefix_variant"]
             for current, previous in zip(new["slots"], old["slots"], strict=True):
                 assert [k for k in current if k != "archive_double_candidates"] == [k for k in previous if k != "prefix_variant"]

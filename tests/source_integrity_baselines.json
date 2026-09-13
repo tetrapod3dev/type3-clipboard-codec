@@ -423,13 +423,13 @@
     },
     "current:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py": {
       "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
-      "canonical_source_sha256": "c72d2b7d232d22201f84a25268ced8da78beb45e233e6f41e33762517c2fc3f7",
-      "baseline_commit_or_snapshot": "67679348ad7775cab02705cea118b1b2e624a08e",
+      "canonical_source_sha256": "d401abfb88619c4fda03319d8c74d1703ffc679029e37687be861758e2e0d407",
+      "baseline_commit_or_snapshot": "83bdde4a6b66dc011aa5990ad18ea03be04d0c18",
       "blob_path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
       "legacy_raw_sha256": "31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876",
       "legacy_raw_status": "superseded_by_approved_source_change",
-      "reason": "Approved additive five-field f64le archive output after the current/empty gate; semantic ownership unchanged.",
-      "source_blob_id": "39ebfcc906f4d46d41007b9ae34e8a466c82f525",
+      "reason": "Approved additive three-field preslot f64le output gated by independent current parent walk; existing slot acceptance and semantic ownership unchanged.",
+      "source_blob_id": "f939e32789dddb0348f8270a81e8b36bb0765e8a",
       "previous_baselines": [
         {
           "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
@@ -449,6 +449,16 @@
           "legacy_raw_status": "superseded_by_approved_source_change",
           "reason": "Approved production current-layout gate; current AttrChar v5 / extension v5 / empty only.",
           "source_blob_id": "9b26098cf6f257594af3b5c0294dc8ccbaae3a12"
+        },
+        {
+          "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+          "canonical_source_sha256": "c72d2b7d232d22201f84a25268ced8da78beb45e233e6f41e33762517c2fc3f7",
+          "baseline_commit_or_snapshot": "67679348ad7775cab02705cea118b1b2e624a08e",
+          "blob_path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+          "legacy_raw_sha256": "31ff8567fe65c08ff9085d5433b1b533efc6978f540b6ed0d17dd735dba00876",
+          "legacy_raw_status": "superseded_by_approved_source_change",
+          "reason": "Approved additive five-field f64le archive output after the current/empty gate; semantic ownership unchanged.",
+          "source_blob_id": "39ebfcc906f4d46d41007b9ae34e8a466c82f525"
         }
       ]
     },
