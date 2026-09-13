@@ -10,6 +10,7 @@ import pytest
 
 from tests import frozen_text_slot_candidate_v2 as before_gate
 from tests.source_integrity import canonical_source_sha256, source_baseline
+from tests.text_slot_typed_output import prior_candidate, prior_object_dict
 from tests.unit.test_text_slot_candidate import make_run
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser
 from type3_clipboard_codec.exceptions import InvalidHexError
@@ -46,11 +47,11 @@ def test_constants_match_frozen_archive_order_and_f4_is_unchanged():
 
 def test_pre_gate_snapshot_retains_approved_source_provenance():
     entry = source_baseline("current")["src/type3_clipboard_codec/parsers/text/text_slot_candidate.py"]
-    previous = entry["previous_baselines"][-1]
+    previous = entry["previous_baselines"][0]
     assert canonical_source_sha256(Path(before_gate.__file__)) == previous["canonical_source_sha256"]
     assert previous["baseline_commit_or_snapshot"] == "a220a4830239b94fb6690c4c7aa42e4005f84ff4"
     assert entry["legacy_raw_sha256"] == previous["legacy_raw_sha256"]
-    assert entry["reason"] == "Approved production current-layout gate; current AttrChar v5 / extension v5 / empty only."
+    assert any(row["reason"] == "Approved production current-layout gate; current AttrChar v5 / extension v5 / empty only." for row in entry["previous_baselines"])
 
 
 @pytest.mark.parametrize("offset", [0, 92])
@@ -127,7 +128,7 @@ def test_arbitrary_fixed_extension_bytes_preserved_without_semantic_promotion():
     payload = make_run()
     original = bytes(payload)
     candidate = runtime.extract_text_slot_candidate([payload])
-    assert candidate == before_gate.extract_text_slot_candidate([payload])
+    assert prior_candidate(candidate) == before_gate.extract_text_slot_candidate([payload])
     assert bytes(payload) == original
     for slot in candidate["slots"]:
         start = slot["prefix_relative_offset"]
@@ -171,7 +172,7 @@ def test_full_corpus_pre_gate_outputs_and_shadow_agreement(monkeypatch):
             patch.setattr(type3_chain_parser, "extract_text_slot_candidate", before_gate.extract_text_slot_candidate)
             before, old_chain = parse_type3_clipboard_bytes_with_parser(raw)
         after, new_chain = parse_type3_clipboard_bytes_with_parser(raw)
-        assert (asdict(after), new_chain) == (asdict(before), old_chain), path.name
+        assert (prior_object_dict(after), new_chain) == (asdict(before), old_chain), path.name
         parser = type3_chain_parser.Type3ChainParser()
         _, _, base = parser._read_top_level_header(raw)
         for node in parser._extract_nodes(raw[base:]):
@@ -179,7 +180,7 @@ def test_full_corpus_pre_gate_outputs_and_shadow_agreement(monkeypatch):
                 continue
             old = before_gate.extract_text_slot_candidate([node.payload])
             new = runtime.extract_text_slot_candidate([node.payload])
-            assert old == new, path.name
+            assert old == prior_candidate(new), path.name
             if old is None:
                 continue
             # Use pre-gate alignment so rejection cannot silently reduce the comparison population.

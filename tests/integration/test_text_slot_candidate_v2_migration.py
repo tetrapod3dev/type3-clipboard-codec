@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 
 from tests.source_integrity import canonical_source_sha256, source_baseline
+from tests.text_slot_typed_output import prior_candidate
 
 from tests.text_slot_v1_replay import SOURCE, legacy, replay_parser
 from type3_clipboard_codec import parse_type3_clipboard_bytes_with_parser
@@ -113,7 +114,7 @@ def test_exact_migration_and_semantic_presentation_allowlist(name):
         _, _, base = probe._read_top_level_header(raw)
         nodes = [n for n in probe._extract_nodes(raw[base:]) if n.header.class_name == "CParagraphe"]
         index = next(i for i, n in enumerate(nodes) if base + n.payload_offset == view["payload_source"][0])
-        assert new == expected_candidate(raw, view, index)
+        assert prior_candidate(new) == expected_candidate(raw, view, index)
         span = new["payload_span"]
         payload = raw[span["start"]:span["start"] + span["length"]]
         assert new["plus08_value"] in (0, 1)
@@ -122,7 +123,7 @@ def test_exact_migration_and_semantic_presentation_allowlist(name):
             assert "prefix_variant" not in slot
             assert payload[slot["prefix_relative_offset"] + 8] == new["plus08_value"]
         if old is not None:
-            adjusted = deepcopy(new)
+            adjusted = prior_candidate(new)
             assert adjusted.pop("prefix_family") == "F4"
             adjusted.pop("plus08_value")
             assert adjusted["source"] == "CParagraphe_slot_prefix_family_v2"
@@ -137,7 +138,7 @@ def test_exact_migration_and_semantic_presentation_allowlist(name):
             assert [k for k in new if k not in {"prefix_family", "plus08_value"}] == [
                 k for k in old if k != "prefix_variant"]
             for current, previous in zip(new["slots"], old["slots"], strict=True):
-                assert list(current) == [k for k in previous if k != "prefix_variant"]
+                assert [k for k in current if k != "archive_double_candidates"] == [k for k in previous if k != "prefix_variant"]
             # Restore only removed metadata at its original insertion locations.
             adjusted = {k: adjusted[k] for k in old}
             adjusted["slots"] = [{k: slot[k] for k in previous}
