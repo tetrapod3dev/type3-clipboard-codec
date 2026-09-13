@@ -1,5 +1,7 @@
-"""Read-only, untyped framing experiment; never a semantic text decoder."""
+"""Bounded framing and archive-type candidates; never a semantic text decoder."""
 
+import math
+import struct
 from collections.abc import Iterable
 from typing import Any
 
@@ -20,6 +22,8 @@ EXTENSION_CURRENT_VERSION = 5
 EMPTY_FIELDS = ((132, "nonempty_array"), (152, "nonempty_array"),
                 (188, "nonempty_string"), (192, "optional_zone_present"),
                 (196, "nonempty_string"), (200, "optional_zone_present"))
+# Reviewed current AttrChar binary64 emissions; offsets carry no UI ownership.
+ARCHIVE_DOUBLE_OFFSETS = (0x0C, 0x14, 0x1C, 0x40, 0x48)
 IDENTITY_SPAN = 64
 LOCAL_SPAN = 92  # Retained inspection context, not semantic record extent.
 TOKEN = b"\x05\x00\x00\x00"
@@ -172,6 +176,16 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
     slots = []
     for ordinal, p in enumerate(positions):
         code = payload[p + 4:p + 8]
+        # Every record and the entire run have passed structural validation above.
+        # Decode only here: numeric values never participate in candidate selection.
+        archive_doubles = {}
+        for offset in ARCHIVE_DOUBLE_OFFSETS:
+            raw = payload[p + offset:p + offset + 8]
+            value = struct.unpack("<d", raw)[0]
+            archive_doubles[hex(offset)] = {
+                "raw_bytes": bytes(raw), "f64le": value if math.isfinite(value) else repr(value),
+                "typed_width": 8,
+            }
         slots.append({
             "ordinal": ordinal,
             "prefix_relative_offset": p,
@@ -187,6 +201,7 @@ def _evaluate(payloads: Iterable[bytes]) -> tuple[dict[str, Any] | None, dict[st
             "ownership": "unresolved", "matched_chain": None,
             "raw_span": {"coordinate_domain": "cparagraphe_payload_relative",
                          "start": p, "length": LOCAL_SPAN},
+            "archive_double_candidates": archive_doubles,
         })
     return {
         "source": "CParagraphe_slot_prefix_family_v2", "confidence": "provisional",
