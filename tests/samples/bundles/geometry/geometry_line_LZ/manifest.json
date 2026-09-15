@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T16:44:41.848523+00:00",
+  "description": "Human confirmed baseline restoration, translating whole B along Z by 2.5 mm, final P0 (0,0,2.5) to P1 (10,0,2.5), B only selected, Copy once, no deletion or recreation. Common Z changed by whole-object translation; original A lineage substitution retained. No inspection.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_LZ.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_LZ",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

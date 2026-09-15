@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T15:51:37.400224+00:00",
+  "description": "Human confirmed same A, no edits, one selected object, not grouped, P0 (0,0,0) to P1 (10,0,0) mm; explicitly confirmed copying same A again. Original construction via rectangle breakup and order adjustment retained as deviation; no analysis.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_L00_R.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_L00_R",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

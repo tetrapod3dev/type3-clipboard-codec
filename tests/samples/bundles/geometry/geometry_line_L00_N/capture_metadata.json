@@ -1,0 +1,95 @@
+{
+  "sample_id": "L00_N",
+  "human_ground_truth": {
+    "confirmation": "A 삭제(겹쳐서 제대로 선택하기 힘듬), B 독립 생성. 복제 PASTE 없음. B 하나 선택, 그룹 아님, GEOMETRY, 좌표, 방향 확인, COPY 완료.",
+    "actual_p0": [
+      0,
+      0,
+      0
+    ],
+    "actual_p1": [
+      10,
+      0,
+      0
+    ],
+    "units": "mm",
+    "ui_display_precision": null,
+    "document_identifier": null,
+    "session_identifier": null,
+    "object_lineage": "B",
+    "same_object_status": "not A; independently created B",
+    "same_object_variant": false,
+    "independently_created": true,
+    "A_preserved": false,
+    "A_deletion_reason": "Overlapping objects made selection difficult",
+    "copy_ordinal_in_planned_corpus": 3,
+    "actual_copy_ordinal": null,
+    "copy_count": null,
+    "copy_history": "Same B copied repeatedly, exact number and timestamps unknown",
+    "creation_edit_method": "Almost same as A; A method was rectangle creation, segment breakup, line construction and order adjustment; exact B differences unknown",
+    "creation_method_user_verbatim": "생성 방법은 A와 거의 똑같이 진행함.",
+    "human_confirmed_direction": "P0 (0,0,0) -> P1 (10,0,0)",
+    "origin": null,
+    "workplane": null,
+    "layer": null,
+    "color": null,
+    "line_style": null,
+    "width": null,
+    "selected_object_count": 1,
+    "grouping_state": "not_grouped",
+    "known_deviations": [
+      "A deleted; original A lineage permanently unavailable unless separately established",
+      "Repeated B Copy; not a controlled first-copy B sample",
+      "Creation method only almost identical, exact changes unknown"
+    ],
+    "unknown_facts": [
+      "Actual B copy ordinal/count",
+      "Exact creation-method differences",
+      "UI precision",
+      "Document/session names",
+      "Origin/workplane",
+      "B layer/color/style/width not reconfirmed",
+      "Interference during current L00_N capture not yet human-attested"
+    ],
+    "source": "user statements, no parser values"
+  },
+  "capture": {
+    "capture_utc": "2026-09-16T01:08:26+09:00",
+    "capture_seoul": "2026-09-16T01:08:26+09:00",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_format_id": 49863,
+        "byte_length": 8192,
+        "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21",
+        "file": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone.bin"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_format_id": 49864,
+        "byte_length": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "file": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin"
+      }
+    ],
+    "raw_preservation": "--no-inspect; both raw formats and hex roundtrip verified; no trim",
+    "bundle_verify": {
+      "result": "passed",
+      "zone_match": true,
+      "version_match": true,
+      "recorded_utc": "2026-09-16T01:09:34.1146703+09:00",
+      "method": "existing clipboard_typeeditzone.py verify-bundle"
+    },
+    "capture_interference": null,
+    "interference_note": "Current L00_N pair matched immediate verification; no continuous monitor. Earlier repeated B Copy belongs to reported history, not proven to overlap this capture.",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": false,
+  "eligibility_reason": "A deletion, repeated B copies and nearly-same creation method confound lineage-only contrast",
+  "post_capture_analysis": {
+    "status": "complete",
+    "results": "research/geometry-line/differential_results.json",
+    "permitted_use": "descriptive file observations only",
+    "native_identity_inference": "abstain"
+  }
+}

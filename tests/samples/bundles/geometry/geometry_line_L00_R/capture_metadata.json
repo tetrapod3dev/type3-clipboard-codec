@@ -1,0 +1,90 @@
+{
+  "sample_id": "L00_R",
+  "human_ground_truth": {
+    "confirmation": "같은 A, 편집 없음, A 하나 선택; 좌표 0,0,0 -> 10,0,0; 그룹 아님; 다른 COPY 없음; 이후 같은 A를 다시 COPY 명시 확인",
+    "actual_p0": [
+      0,
+      0,
+      0
+    ],
+    "actual_p1": [
+      10,
+      0,
+      0
+    ],
+    "units": "mm",
+    "ui_display_precision": null,
+    "document_identifier": null,
+    "session_identifier": null,
+    "session_note": "User reported launching TypeEdit before L00",
+    "object_lineage": "A",
+    "same_object_status": "same A as L00; no edits, human confirmed",
+    "independently_created_status": "fresh construction via rectangle breakup reported; direct-line creation not established",
+    "copy_ordinal_in_planned_corpus": 2,
+    "creation_edit_method": "사각형 그리고 선분을 깨고 그 다음 직선을 만들고 순서 조정했다.",
+    "human_confirmed_direction": "P0 (0,0,0) -> P1 (10,0,0)",
+    "origin": null,
+    "workplane": null,
+    "layer": "레이어1",
+    "color": "검정색",
+    "line_style": null,
+    "line_style_statement": "선 스타일은 없음. 있을수도 있지만 일단 나는 선 스타일이 있는지 모른다.",
+    "width": null,
+    "selected_object_count": 1,
+    "grouping_state": "not_grouped; human confirmed",
+    "known_deviations": [
+      "Rectangle-derived geometry with segment breakup and order adjustment, rather than direct open two-point drawing"
+    ],
+    "unknown_facts": [
+      "UI precision",
+      "document/session names",
+      "origin/workplane",
+      "line style",
+      "width",
+      "No clipboard sequence monitoring during R capture"
+    ],
+    "source": "user message, not parser output",
+    "metadata_provenance": "Coordinates, same A, no edits, single selection and grouping confirmed for R. Units/layer/color/creation method inherited from L00, not independently remeasured.",
+    "edit_method_this_sample": "none; recopy only",
+    "independently_created": false
+  },
+  "capture": {
+    "capture_utc": "2026-09-16T00:51:37+09:00",
+    "capture_seoul": "2026-09-16T00:51:37+09:00",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_format_id": 49863,
+        "byte_length": 8192,
+        "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+        "file": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone.bin"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_format_id": 49864,
+        "byte_length": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "file": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin"
+      }
+    ],
+    "raw_preservation": "--no-inspect; raw pair and hex roundtrip verified; no truncation",
+    "bundle_verify": {
+      "result": "passed",
+      "zone_match": true,
+      "version_match": true,
+      "recorded_utc": "2026-09-16T00:52:35.2284197+09:00",
+      "method": "existing clipboard_typeeditzone.py verify-bundle"
+    },
+    "capture_interference": true,
+    "interference_note": "User explicitly reported setting up B and copying the same B multiple times between L00_R Copy and verification completion. Earlier byte equality is retained but does not validate intended A provenance.",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": false,
+  "eligibility_reason": "Human-reported capture interference; no recopy inference, despite saved raw equality",
+  "post_capture_analysis": {
+    "status": "complete",
+    "results": "research/geometry-line/differential_results.json",
+    "permitted_use": "descriptive file observations only",
+    "native_identity_inference": "abstain"
+  }
+}

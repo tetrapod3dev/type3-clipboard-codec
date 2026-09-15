@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T16:24:57.893822+00:00",
+  "description": "Human reported mistakenly moving whole B right 10 mm and copying, then undoing/restoring original baseline, changing only endpoint X from 10 to 20, selecting B only and Copy once. Final P0 (0,0,0) to P1 (20,0,0) mm follows confirmed restoration and edit; not independently parser-derived. Original A deleted. Prior move/copy/undo retained; native identity continuity unproven.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_L01.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_L01",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

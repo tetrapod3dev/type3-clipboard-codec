@@ -1,0 +1,4878 @@
+{
+  "schema_version": 1,
+  "analysis_mode": "file_only_no_payload_generation",
+  "samples": {
+    "L00": {
+      "raw_size": 8192,
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x3a726c0d",
+          "raw_hex": "000000000000000000000000000000000000000000000000000000000000f03f0d6c723a"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x67696c0d",
+          "raw_hex": "7b14ae47e17a843f00000000000000000000000000000000000000000000f03f0d6c6967"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d6c723a"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d6c6967"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "3caaa812759c2e41a6f4433dc2506659"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4dd58946b51cb443ad1e182b558c1247"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "608d0b55e25dcf429acd1cbf70457c3a"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "3caaa812759c2e41a6f4433dc2506659"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4dd58946b51cb443ad1e182b558c1247"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "608d0b55e25dcf429acd1cbf70457c3a"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "L00_R": {
+      "raw_size": 8192,
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x3a726c0d",
+          "raw_hex": "000000000000000000000000000000000000000000000000000000000000f03f0d6c723a"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x67696c0d",
+          "raw_hex": "7b14ae47e17a843f00000000000000000000000000000000000000000000f03f0d6c6967"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d6c723a"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d6c6967"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "3caaa812759c2e41a6f4433dc2506659"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4dd58946b51cb443ad1e182b558c1247"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "608d0b55e25dcf429acd1cbf70457c3a"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "3caaa812759c2e41a6f4433dc2506659"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4dd58946b51cb443ad1e182b558c1247"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "608d0b55e25dcf429acd1cbf70457c3a"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "L00_N": {
+      "raw_size": 8192,
+      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "000000000000000000000000000000000000000000000000000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a843f00000000000000000000000000000000000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "f8b2b69a9e6f3e4aad4844942e252665"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "1e639f2be8030540b3b49992789c2063"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "f8b2b69a9e6f3e4aad4844942e252665"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "1e639f2be8030540b3b49992789c2063"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "L01": {
+      "raw_size": 8192,
+      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          20,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "000000000000000000000000000000000000000000000000000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.02,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a943f00000000000000000000000000000000000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.02,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a943f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.02,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a943f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.02,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a943f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.02,
+          "expected_mm_div_1000": 0.02,
+          "raw_hex": "7b14ae47e17a943f",
+          "expected_raw_hex": "7b14ae47e17a943f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.02,
+          "raw_hex": "7b14ae47e17a943f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.02,
+          "raw_hex": "7b14ae47e17a943f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.02,
+          "raw_hex": "7b14ae47e17a943f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "L02": {
+      "raw_size": 8192,
+      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          10,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "000000000000000000000000000000000000000000000000000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.01,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a843f7b14ae47e17a843f0000000000000000000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0
+          ],
+          "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "f3a77fa4b5a1c64cb954dcf086b993a9"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "f3a77fa4b5a1c64cb954dcf086b993a9"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "L04": {
+      "raw_size": 8192,
+      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          -10,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            -0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "7b14ae47e17a84bf00000000000000000000000000000000000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a843f00000000000000000000000000000000000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            -0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "7b14ae47e17a84bf000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            -0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "7b14ae47e17a84bf000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            -0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "7b14ae47e17a84bf000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": -0.01,
+          "expected_mm_div_1000": -0.01,
+          "raw_hex": "7b14ae47e17a84bf",
+          "expected_raw_hex": "7b14ae47e17a84bf",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": -0.01,
+          "raw_hex": "7b14ae47e17a84bf"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": -0.01,
+          "raw_hex": "7b14ae47e17a84bf"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": -0.01,
+          "raw_hex": "7b14ae47e17a84bf"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "34fba6d00605e145ad1002fffb8d90d5"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "9d4c69acfee4124e839d27142f01bd43"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "34fba6d00605e145ad1002fffb8d90d5"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "9d4c69acfee4124e839d27142f01bd43"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "LY0": {
+      "raw_size": 8192,
+      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          -5.25,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            -0.00525,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "00000000000000001b2fdd24068175bf0000000000000000000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a843f00000000000000000000000000000000000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            -0.00525,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "00000000000000001b2fdd24068175bf00000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            -0.00525,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "00000000000000001b2fdd24068175bf00000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            -0.00525,
+            0.0,
+            0.01,
+            0.0,
+            0.0
+          ],
+          "raw_hex": "00000000000000001b2fdd24068175bf00000000000000007b14ae47e17a843f00000000000000000000000000000000",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": -0.00525,
+          "expected_mm_div_1000": -0.00525,
+          "raw_hex": "1b2fdd24068175bf",
+          "expected_raw_hex": "1b2fdd24068175bf",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": -0.00525,
+          "raw_hex": "1b2fdd24068175bf"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": -0.00525,
+          "raw_hex": "1b2fdd24068175bf"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": -0.00525,
+          "raw_hex": "1b2fdd24068175bf"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "11baa2e3a8834843a6679caab30ff5cd"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "11baa2e3a8834843a6679caab30ff5cd"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    },
+    "LZ": {
+      "raw_size": 8192,
+      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "human_ground_truth": [
+        [
+          0,
+          0,
+          2.5
+        ],
+        [
+          10,
+          0,
+          2.5
+        ]
+      ],
+      "parser": "Type3ChainParser",
+      "parser_confidence": "provisional",
+      "prefix_hex": "000000000100",
+      "descriptors": [
+        {
+          "class": "CZone",
+          "schema": 1,
+          "offset_diagnostic": 6,
+          "offset_from_root_descriptor": 0
+        },
+        {
+          "class": "CCourbe",
+          "schema": 1,
+          "offset_diagnostic": 163,
+          "offset_from_root_descriptor": 157
+        },
+        {
+          "class": "CContour",
+          "schema": 2,
+          "offset_diagnostic": 322,
+          "offset_from_root_descriptor": 316
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "offset_diagnostic": 554,
+          "offset_from_root_descriptor": 548
+        }
+      ],
+      "H_diagnostic": 322,
+      "R_diagnostic": 482,
+      "R_from_H": 160,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "extracted_contour_regions": 1,
+      "contour_count_field": "unresolved",
+      "records": [
+        {
+          "index": 0,
+          "offset_from_R": 0,
+          "xyzw_f64": [
+            0.0,
+            0.0,
+            0.0025,
+            1.0
+          ],
+          "tag_u32_hex": "0x4e45400d",
+          "raw_hex": "000000000000000000000000000000007b14ae47e17a643f000000000000f03f0d40454e"
+        },
+        {
+          "index": 1,
+          "offset_from_R": 36,
+          "xyzw_f64": [
+            0.01,
+            0.0,
+            0.0025,
+            1.0
+          ],
+          "tag_u32_hex": "0xd",
+          "raw_hex": "7b14ae47e17a843f00000000000000007b14ae47e17a643f000000000000f03f0d000000"
+        }
+      ],
+      "bounds": {
+        "CZone": {
+          "offset_from_descriptor": 11,
+          "values": [
+            0.0,
+            0.0,
+            0.0025,
+            0.01,
+            0.0,
+            0.0025
+          ],
+          "raw_hex": "000000000000000000000000000000007b14ae47e17a643f7b14ae47e17a843f00000000000000007b14ae47e17a643f",
+          "bit_exact_expected": true
+        },
+        "CCourbe": {
+          "offset_from_descriptor": 13,
+          "values": [
+            0.0,
+            0.0,
+            0.0025,
+            0.01,
+            0.0,
+            0.0025
+          ],
+          "raw_hex": "000000000000000000000000000000007b14ae47e17a643f7b14ae47e17a843f00000000000000007b14ae47e17a643f",
+          "bit_exact_expected": true
+        },
+        "CContour": {
+          "offset_from_descriptor": 14,
+          "values": [
+            0.0,
+            0.0,
+            0.0025,
+            0.01,
+            0.0,
+            0.0025
+          ],
+          "raw_hex": "000000000000000000000000000000007b14ae47e17a643f7b14ae47e17a843f00000000000000007b14ae47e17a643f",
+          "bit_exact_expected": true
+        }
+      },
+      "fields": {
+        "record[0].x": {
+          "offset_diagnostic": 482,
+          "origin": "R",
+          "offset_from_origin": 0,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].y": {
+          "offset_diagnostic": 490,
+          "origin": "R",
+          "offset_from_origin": 8,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[0].z": {
+          "offset_diagnostic": 498,
+          "origin": "R",
+          "offset_from_origin": 16,
+          "role": "geometry-variable",
+          "value": 0.0025,
+          "expected_mm_div_1000": 0.0025,
+          "raw_hex": "7b14ae47e17a643f",
+          "expected_raw_hex": "7b14ae47e17a643f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].x": {
+          "offset_diagnostic": 518,
+          "origin": "R",
+          "offset_from_origin": 36,
+          "role": "geometry-variable",
+          "value": 0.01,
+          "expected_mm_div_1000": 0.01,
+          "raw_hex": "7b14ae47e17a843f",
+          "expected_raw_hex": "7b14ae47e17a843f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].y": {
+          "offset_diagnostic": 526,
+          "origin": "R",
+          "offset_from_origin": 44,
+          "role": "geometry-variable",
+          "value": 0.0,
+          "expected_mm_div_1000": 0.0,
+          "raw_hex": "0000000000000000",
+          "expected_raw_hex": "0000000000000000",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "record[1].z": {
+          "offset_diagnostic": 534,
+          "origin": "R",
+          "offset_from_origin": 52,
+          "role": "geometry-variable",
+          "value": 0.0025,
+          "expected_mm_div_1000": 0.0025,
+          "raw_hex": "7b14ae47e17a643f",
+          "expected_raw_hex": "7b14ae47e17a643f",
+          "bit_exact_to_binary64_mm_div_1000": true,
+          "abs_error": 0.0
+        },
+        "CZone.min_x": {
+          "offset_diagnostic": 17,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 11,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_y": {
+          "offset_diagnostic": 25,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 19,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.min_z": {
+          "offset_diagnostic": 33,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 27,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "CZone.max_x": {
+          "offset_diagnostic": 41,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 35,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CZone.max_y": {
+          "offset_diagnostic": 49,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 43,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CZone.max_z": {
+          "offset_diagnostic": 57,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 51,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "CCourbe.min_x": {
+          "offset_diagnostic": 176,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 13,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_y": {
+          "offset_diagnostic": 184,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 21,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.min_z": {
+          "offset_diagnostic": 192,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 29,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "CCourbe.max_x": {
+          "offset_diagnostic": 200,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 37,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CCourbe.max_y": {
+          "offset_diagnostic": 208,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 45,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CCourbe.max_z": {
+          "offset_diagnostic": 216,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 53,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "CContour.min_x": {
+          "offset_diagnostic": 336,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 14,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_y": {
+          "offset_diagnostic": 344,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 22,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.min_z": {
+          "offset_diagnostic": 352,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 30,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "CContour.max_x": {
+          "offset_diagnostic": 360,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 38,
+          "role": "derived-geometry-variable",
+          "value": 0.01,
+          "raw_hex": "7b14ae47e17a843f"
+        },
+        "CContour.max_y": {
+          "offset_diagnostic": 368,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 46,
+          "role": "derived-geometry-variable",
+          "value": 0.0,
+          "raw_hex": "0000000000000000"
+        },
+        "CContour.max_z": {
+          "offset_diagnostic": 376,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 54,
+          "role": "derived-geometry-variable",
+          "value": 0.0025,
+          "raw_hex": "7b14ae47e17a643f"
+        },
+        "record[0].w": {
+          "offset_diagnostic": 506,
+          "origin": "R",
+          "offset_from_origin": 24,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[0].tag": {
+          "offset_diagnostic": 514,
+          "origin": "R",
+          "offset_from_origin": 32,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d40454e"
+        },
+        "record[1].w": {
+          "offset_diagnostic": 542,
+          "origin": "R",
+          "offset_from_origin": 60,
+          "width": 8,
+          "role": "unknown",
+          "raw_hex": "000000000000f03f"
+        },
+        "record[1].tag": {
+          "offset_diagnostic": 550,
+          "origin": "R",
+          "offset_from_origin": 68,
+          "width": 4,
+          "role": "unknown",
+          "raw_hex": "0d000000"
+        },
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        }
+      },
+      "opaque_metadata_windows": {
+        "CZone.opaque_metadata_window": {
+          "offset_diagnostic": 93,
+          "origin": "CZone_descriptor",
+          "offset_from_origin": 87,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        "CCourbe.opaque_metadata_window": {
+          "offset_diagnostic": 252,
+          "origin": "CCourbe_descriptor",
+          "offset_from_origin": 89,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        "CContour.opaque_metadata_window": {
+          "offset_diagnostic": 412,
+          "origin": "CContour_descriptor",
+          "offset_from_origin": 90,
+          "width": 16,
+          "role": "unknown",
+          "raw_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        }
+      },
+      "opaque_property_and_tail": {
+        "origin": "CPropertyExtend_descriptor",
+        "payload_offset_from_descriptor": 21,
+        "bytes_to_buffer_end": 7617,
+        "sha256": "5b249eba26725e118ec261bd613ca27423e86d15e4e9687e83ad1f4731099a3e",
+        "nonzero_byte_count": 14,
+        "semantic_extent": "unresolved"
+      },
+      "strict_controlled_eligibility": false,
+      "comparison_scope": "descriptive file observations only; protocol deviations are not cleared"
+    }
+  },
+  "pairs": [
+    {
+      "base": "L00",
+      "sample": "L00_R",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": true,
+      "changed_byte_count": 0,
+      "changed_fields": [],
+      "unknown_changed_byte_count": 0,
+      "changed_ranges": []
+    },
+    {
+      "base": "L00",
+      "sample": "L00_N",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 53,
+      "changed_fields": [
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 53,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 8,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946b51cb443",
+          "after_hex": "f8b2b69a9e6f3e4a"
+        },
+        {
+          "absolute_start_diagnostic": 261,
+          "length": 7,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 98,
+          "classification": "unknown",
+          "before_hex": "1e182b558c1247",
+          "after_hex": "4844942e252665"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "1e639f2be8030540b3b49992789c2063"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00",
+      "sample": "L01",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 58,
+      "changed_fields": [
+        "record[1].x",
+        "CZone.max_x",
+        "CCourbe.max_x",
+        "CContour.max_x",
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 54,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 47,
+          "length": 1,
+          "field": "CZone.max_x",
+          "origin": "CZone_descriptor",
+          "relative_offset": 41,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        {
+          "absolute_start_diagnostic": 206,
+          "length": 1,
+          "field": "CCourbe.max_x",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 43,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946b51cb443ad1e182b558c1247",
+          "after_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        {
+          "absolute_start_diagnostic": 366,
+          "length": 1,
+          "field": "CContour.max_x",
+          "origin": "CContour_descriptor",
+          "relative_offset": 44,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 524,
+          "length": 1,
+          "field": "record[1].x",
+          "origin": "R",
+          "relative_offset": 42,
+          "classification": "geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00",
+      "sample": "L02",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 85,
+      "changed_fields": [
+        "record[1].y",
+        "CZone.max_y",
+        "CCourbe.max_y",
+        "CContour.max_y",
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 53,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 49,
+          "length": 8,
+          "field": "CZone.max_y",
+          "origin": "CZone_descriptor",
+          "relative_offset": 43,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        {
+          "absolute_start_diagnostic": 208,
+          "length": 8,
+          "field": "CCourbe.max_y",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 45,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 4,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946",
+          "after_hex": "f3a77fa4"
+        },
+        {
+          "absolute_start_diagnostic": 257,
+          "length": 11,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 94,
+          "classification": "unknown",
+          "before_hex": "1cb443ad1e182b558c1247",
+          "after_hex": "a1c64cb954dcf086b993a9"
+        },
+        {
+          "absolute_start_diagnostic": 368,
+          "length": 8,
+          "field": "CContour.max_y",
+          "origin": "CContour_descriptor",
+          "relative_offset": 46,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 526,
+          "length": 8,
+          "field": "record[1].y",
+          "origin": "R",
+          "relative_offset": 44,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00",
+      "sample": "L04",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 85,
+      "changed_fields": [
+        "record[0].x",
+        "CZone.min_x",
+        "CCourbe.min_x",
+        "CContour.min_x",
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 53,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 17,
+          "length": 8,
+          "field": "CZone.min_x",
+          "origin": "CZone_descriptor",
+          "relative_offset": 11,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        {
+          "absolute_start_diagnostic": 176,
+          "length": 8,
+          "field": "CCourbe.min_x",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 13,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 8,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946b51cb443",
+          "after_hex": "34fba6d00605e145"
+        },
+        {
+          "absolute_start_diagnostic": 261,
+          "length": 7,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 98,
+          "classification": "unknown",
+          "before_hex": "1e182b558c1247",
+          "after_hex": "1002fffb8d90d5"
+        },
+        {
+          "absolute_start_diagnostic": 336,
+          "length": 8,
+          "field": "CContour.min_x",
+          "origin": "CContour_descriptor",
+          "relative_offset": 14,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "9d4c69acfee4124e839d27142f01bd43"
+        },
+        {
+          "absolute_start_diagnostic": 482,
+          "length": 8,
+          "field": "record[0].x",
+          "origin": "R",
+          "relative_offset": 0,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00",
+      "sample": "LY0",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 85,
+      "changed_fields": [
+        "record[0].y",
+        "CZone.min_y",
+        "CCourbe.min_y",
+        "CContour.min_y",
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 53,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 25,
+          "length": 8,
+          "field": "CZone.min_y",
+          "origin": "CZone_descriptor",
+          "relative_offset": 19,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "fb64a724641e0b4da4414fdae7121a4a"
+        },
+        {
+          "absolute_start_diagnostic": 184,
+          "length": 8,
+          "field": "CCourbe.min_y",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 21,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 7,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946b51cb4",
+          "after_hex": "11baa2e3a88348"
+        },
+        {
+          "absolute_start_diagnostic": 260,
+          "length": 8,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 97,
+          "classification": "unknown",
+          "before_hex": "ad1e182b558c1247",
+          "after_hex": "a6679caab30ff5cd"
+        },
+        {
+          "absolute_start_diagnostic": 344,
+          "length": 8,
+          "field": "CContour.min_y",
+          "origin": "CContour_descriptor",
+          "relative_offset": 22,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        },
+        {
+          "absolute_start_diagnostic": 490,
+          "length": 8,
+          "field": "record[0].y",
+          "origin": "R",
+          "relative_offset": 8,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00",
+      "sample": "LZ",
+      "purpose": "requested",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 118,
+      "changed_fields": [
+        "record[0].z",
+        "record[1].z",
+        "CZone.min_z",
+        "CZone.max_z",
+        "CCourbe.min_z",
+        "CCourbe.max_z",
+        "CContour.min_z",
+        "CContour.max_z",
+        "record[0].tag",
+        "record[1].tag",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 54,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 33,
+          "length": 8,
+          "field": "CZone.min_z",
+          "origin": "CZone_descriptor",
+          "relative_offset": 27,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 57,
+          "length": 8,
+          "field": "CZone.max_z",
+          "origin": "CZone_descriptor",
+          "relative_offset": 51,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "3caaa812759c2e41a6f4433dc2506659",
+          "after_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        {
+          "absolute_start_diagnostic": 192,
+          "length": 8,
+          "field": "CCourbe.min_z",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 29,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 216,
+          "length": 8,
+          "field": "CCourbe.max_z",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 53,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "4dd58946b51cb443ad1e182b558c1247",
+          "after_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        {
+          "absolute_start_diagnostic": 352,
+          "length": 8,
+          "field": "CContour.min_z",
+          "origin": "CContour_descriptor",
+          "relative_offset": 30,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 376,
+          "length": 8,
+          "field": "CContour.max_z",
+          "origin": "CContour_descriptor",
+          "relative_offset": 54,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "608d0b55e25dcf429acd1cbf70457c3a",
+          "after_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        },
+        {
+          "absolute_start_diagnostic": 498,
+          "length": 8,
+          "field": "record[0].z",
+          "origin": "R",
+          "relative_offset": 16,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 515,
+          "length": 3,
+          "field": "record[0].tag",
+          "origin": "R",
+          "relative_offset": 33,
+          "classification": "unknown",
+          "before_hex": "6c723a",
+          "after_hex": "40454e"
+        },
+        {
+          "absolute_start_diagnostic": 534,
+          "length": 8,
+          "field": "record[1].z",
+          "origin": "R",
+          "relative_offset": 52,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 551,
+          "length": 3,
+          "field": "record[1].tag",
+          "origin": "R",
+          "relative_offset": 69,
+          "classification": "unknown",
+          "before_hex": "6c6967",
+          "after_hex": "000000"
+        }
+      ]
+    },
+    {
+      "base": "L00_N",
+      "sample": "L01",
+      "purpose": "supplemental_B_baseline_not_original_A",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 36,
+      "changed_fields": [
+        "record[1].x",
+        "CZone.max_x",
+        "CCourbe.max_x",
+        "CContour.max_x",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 32,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 47,
+          "length": 1,
+          "field": "CZone.max_x",
+          "origin": "CZone_descriptor",
+          "relative_offset": 41,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 206,
+          "length": 1,
+          "field": "CCourbe.max_x",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 43,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        {
+          "absolute_start_diagnostic": 366,
+          "length": 1,
+          "field": "CContour.max_x",
+          "origin": "CContour_descriptor",
+          "relative_offset": 44,
+          "classification": "derived-geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        },
+        {
+          "absolute_start_diagnostic": 524,
+          "length": 1,
+          "field": "record[1].x",
+          "origin": "R",
+          "relative_offset": 42,
+          "classification": "geometry-variable",
+          "before_hex": "84",
+          "after_hex": "94"
+        }
+      ]
+    },
+    {
+      "base": "L00_N",
+      "sample": "L02",
+      "purpose": "supplemental_B_baseline_not_original_A",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 64,
+      "changed_fields": [
+        "record[1].y",
+        "CZone.max_y",
+        "CCourbe.max_y",
+        "CContour.max_y",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 32,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 49,
+          "length": 8,
+          "field": "CZone.max_y",
+          "origin": "CZone_descriptor",
+          "relative_offset": 43,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 208,
+          "length": 8,
+          "field": "CCourbe.max_y",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 45,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "f3a77fa4b5a1c64cb954dcf086b993a9"
+        },
+        {
+          "absolute_start_diagnostic": 368,
+          "length": 8,
+          "field": "CContour.max_y",
+          "origin": "CContour_descriptor",
+          "relative_offset": 46,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        },
+        {
+          "absolute_start_diagnostic": 526,
+          "length": 8,
+          "field": "record[1].y",
+          "origin": "R",
+          "relative_offset": 44,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        }
+      ]
+    },
+    {
+      "base": "L00_N",
+      "sample": "L04",
+      "purpose": "supplemental_B_baseline_not_original_A",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 63,
+      "changed_fields": [
+        "record[0].x",
+        "CZone.min_x",
+        "CCourbe.min_x",
+        "CContour.min_x",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 31,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 17,
+          "length": 8,
+          "field": "CZone.min_x",
+          "origin": "CZone_descriptor",
+          "relative_offset": 11,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 176,
+          "length": 8,
+          "field": "CCourbe.min_x",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 13,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 8,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "f8b2b69a9e6f3e4a",
+          "after_hex": "34fba6d00605e145"
+        },
+        {
+          "absolute_start_diagnostic": 261,
+          "length": 7,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 98,
+          "classification": "unknown",
+          "before_hex": "4844942e252665",
+          "after_hex": "1002fffb8d90d5"
+        },
+        {
+          "absolute_start_diagnostic": 336,
+          "length": 8,
+          "field": "CContour.min_x",
+          "origin": "CContour_descriptor",
+          "relative_offset": 14,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "9d4c69acfee4124e839d27142f01bd43"
+        },
+        {
+          "absolute_start_diagnostic": 482,
+          "length": 8,
+          "field": "record[0].x",
+          "origin": "R",
+          "relative_offset": 0,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        }
+      ]
+    },
+    {
+      "base": "L00_N",
+      "sample": "LY0",
+      "purpose": "supplemental_B_baseline_not_original_A",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 64,
+      "changed_fields": [
+        "record[0].y",
+        "CZone.min_y",
+        "CCourbe.min_y",
+        "CContour.min_y",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 32,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 25,
+          "length": 8,
+          "field": "CZone.min_y",
+          "origin": "CZone_descriptor",
+          "relative_offset": 19,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 184,
+          "length": 8,
+          "field": "CCourbe.min_y",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 21,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "11baa2e3a8834843a6679caab30ff5cd"
+        },
+        {
+          "absolute_start_diagnostic": 344,
+          "length": 8,
+          "field": "CContour.min_y",
+          "origin": "CContour_descriptor",
+          "relative_offset": 22,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        },
+        {
+          "absolute_start_diagnostic": 490,
+          "length": 8,
+          "field": "record[0].y",
+          "origin": "R",
+          "relative_offset": 8,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        }
+      ]
+    },
+    {
+      "base": "L00_N",
+      "sample": "LZ",
+      "purpose": "supplemental_B_baseline_not_original_A",
+      "strict_controlled_pair": false,
+      "identity_inference": "abstain",
+      "raw_equal": false,
+      "changed_byte_count": 112,
+      "changed_fields": [
+        "record[0].z",
+        "record[1].z",
+        "CZone.min_z",
+        "CZone.max_z",
+        "CCourbe.min_z",
+        "CCourbe.max_z",
+        "CContour.min_z",
+        "CContour.max_z",
+        "CZone.opaque_metadata_window",
+        "CCourbe.opaque_metadata_window",
+        "CContour.opaque_metadata_window"
+      ],
+      "unknown_changed_byte_count": 48,
+      "changed_ranges": [
+        {
+          "absolute_start_diagnostic": 33,
+          "length": 8,
+          "field": "CZone.min_z",
+          "origin": "CZone_descriptor",
+          "relative_offset": 27,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 57,
+          "length": 8,
+          "field": "CZone.max_z",
+          "origin": "CZone_descriptor",
+          "relative_offset": 51,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 93,
+          "length": 16,
+          "field": "CZone.opaque_metadata_window",
+          "origin": "CZone_descriptor",
+          "relative_offset": 87,
+          "classification": "unknown",
+          "before_hex": "fb64a724641e0b4da4414fdae7121a4a",
+          "after_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        {
+          "absolute_start_diagnostic": 192,
+          "length": 8,
+          "field": "CCourbe.min_z",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 29,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 216,
+          "length": 8,
+          "field": "CCourbe.max_z",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 53,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 252,
+          "length": 16,
+          "field": "CCourbe.opaque_metadata_window",
+          "origin": "CCourbe_descriptor",
+          "relative_offset": 89,
+          "classification": "unknown",
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        {
+          "absolute_start_diagnostic": 352,
+          "length": 8,
+          "field": "CContour.min_z",
+          "origin": "CContour_descriptor",
+          "relative_offset": 30,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 376,
+          "length": 8,
+          "field": "CContour.max_z",
+          "origin": "CContour_descriptor",
+          "relative_offset": 54,
+          "classification": "derived-geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 412,
+          "length": 16,
+          "field": "CContour.opaque_metadata_window",
+          "origin": "CContour_descriptor",
+          "relative_offset": 90,
+          "classification": "unknown",
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        },
+        {
+          "absolute_start_diagnostic": 498,
+          "length": 8,
+          "field": "record[0].z",
+          "origin": "R",
+          "relative_offset": 16,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "absolute_start_diagnostic": 534,
+          "length": 8,
+          "field": "record[1].z",
+          "origin": "R",
+          "relative_offset": 52,
+          "classification": "geometry-variable",
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        }
+      ]
+    }
+  ],
+  "endpoint_checks": {
+    "record[0].x": {
+      "expected_changed_samples": [
+        "L04"
+      ],
+      "actual_changed_samples": [
+        "L04"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "CZone.min_x",
+        "CCourbe.min_x",
+        "CContour.min_x"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    },
+    "record[0].y": {
+      "expected_changed_samples": [
+        "LY0"
+      ],
+      "actual_changed_samples": [
+        "LY0"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "CZone.min_y",
+        "CCourbe.min_y",
+        "CContour.min_y"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    },
+    "record[0].z": {
+      "expected_changed_samples": [
+        "LZ"
+      ],
+      "actual_changed_samples": [
+        "LZ"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "record[1].z",
+        "CZone.min_z",
+        "CZone.max_z",
+        "CCourbe.min_z",
+        "CCourbe.max_z",
+        "CContour.min_z",
+        "CContour.max_z"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    },
+    "record[1].x": {
+      "expected_changed_samples": [
+        "L01"
+      ],
+      "actual_changed_samples": [
+        "L01"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "CZone.max_x",
+        "CCourbe.max_x",
+        "CContour.max_x"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    },
+    "record[1].y": {
+      "expected_changed_samples": [
+        "L02"
+      ],
+      "actual_changed_samples": [
+        "L02"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "CZone.max_y",
+        "CCourbe.max_y",
+        "CContour.max_y"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    },
+    "record[1].z": {
+      "expected_changed_samples": [
+        "LZ"
+      ],
+      "actual_changed_samples": [
+        "LZ"
+      ],
+      "changed_and_invariant_requirements_match": true,
+      "all_binary64_conversion_matches": true,
+      "identical_scalar_profiles": [
+        "record[0].z",
+        "CZone.min_z",
+        "CZone.max_z",
+        "CCourbe.min_z",
+        "CCourbe.max_z",
+        "CContour.min_z",
+        "CContour.max_z"
+      ],
+      "promotion": "candidate_only; strict provenance and no-competing-hypothesis criteria not satisfied"
+    }
+  },
+  "encoding_comparison": {
+    "<d": {
+      "positions": "xyz slots at record +0/+8/+16 only",
+      "fitted_common_multiplier_to_mm": 1000.0,
+      "mismatches": 0,
+      "first_mismatches": [],
+      "limit": "Does not exclude arbitrary encodings at unmodeled positions or other scales per field"
+    },
+    "<f": {
+      "positions": "xyz slots at record +0/+8/+16 only",
+      "fitted_common_multiplier_to_mm": 0.00011219697722059513,
+      "mismatches": 5,
+      "first_mismatches": [
+        {
+          "raw": 89128.9609375,
+          "expected_mm": 20.0
+        },
+        {
+          "raw": 89128.9609375,
+          "expected_mm": -10.0
+        },
+        {
+          "raw": 9.592327181577281e-17,
+          "expected_mm": -5.25
+        },
+        {
+          "raw": 89128.9609375,
+          "expected_mm": 2.5
+        },
+        {
+          "raw": 89128.9609375,
+          "expected_mm": 2.5
+        }
+      ],
+      "limit": "Does not exclude arbitrary encodings at unmodeled positions or other scales per field"
+    },
+    "<i": {
+      "positions": "xyz slots at record +0/+8/+16 only",
+      "fitted_common_multiplier_to_mm": 8.315380129665598e-09,
+      "mismatches": 5,
+      "first_mismatches": [
+        {
+          "raw": 1202590843,
+          "expected_mm": 20.0
+        },
+        {
+          "raw": 1202590843,
+          "expected_mm": -10.0
+        },
+        {
+          "raw": 618475291,
+          "expected_mm": -5.25
+        },
+        {
+          "raw": 1202590843,
+          "expected_mm": 2.5
+        },
+        {
+          "raw": 1202590843,
+          "expected_mm": 2.5
+        }
+      ],
+      "limit": "Does not exclude arbitrary encodings at unmodeled positions or other scales per field"
+    },
+    "<q": {
+      "positions": "xyz slots at record +0/+8/+16 only",
+      "fitted_common_multiplier_to_mm": 2.184876263677641e-18,
+      "mismatches": 5,
+      "first_mismatches": [
+        {
+          "raw": 4581421828931458171,
+          "expected_mm": 20.0
+        },
+        {
+          "raw": -4646453807550688133,
+          "expected_mm": -10.0
+        },
+        {
+          "raw": -4650669176801906917,
+          "expected_mm": -5.25
+        },
+        {
+          "raw": 4567911030049346683,
+          "expected_mm": 2.5
+        },
+        {
+          "raw": 4567911030049346683,
+          "expected_mm": 2.5
+        }
+      ],
+      "limit": "Does not exclude arbitrary encodings at unmodeled positions or other scales per field"
+    }
+  },
+  "version_all_byte_identical": true,
+  "property_tail_all_byte_identical": true,
+  "version_bytes_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+  "descriptor_layout_stable": true,
+  "all_record_conversion_bit_exact": true,
+  "all_bounds_bit_exact": true,
+  "direction_hypotheses": {
+    "record0_matches_human_P0": true,
+    "record1_matches_human_P1": true,
+    "record0_also_componentwise_min": true,
+    "creation_direction_vs_minmax_order": "not_distinguishable_in_this_corpus"
+  },
+  "identity_limit": "L00_R known interference excludes recopy inference; L00_N changes confounded by A deletion, repeated copies and nearly-same method. No GUID labels assigned; paste identity untouched.",
+  "derived_limit": "Unknown changed ranges and stable opaque bytes do not establish derived-field completeness.",
+  "validation": {
+    "eight_raw_pairs_sha256_matched": true,
+    "eight_hex_roundtrips_matched": true,
+    "raw_unchanged_during_analysis": true
+  },
+  "classifications": {
+    "text_slot_milestone_status": "stable_pause_point",
+    "line_object_structure": "partial",
+    "line_endpoint_fields": "candidate_only",
+    "line_derived_fields": "partial",
+    "line_identity_fields": "unresolved",
+    "line_clipboard_synthesis_strategy": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  }
+}

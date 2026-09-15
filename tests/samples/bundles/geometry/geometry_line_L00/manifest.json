@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T15:30:45.698503+00:00",
+  "description": "Human confirmed A only selected, geometry and coordinates checked, Copy completed. P0 (0,0,0) to P1 (10,0,0) mm. Created via rectangle, segment breakup, line construction and order adjustment. Layer1 black. Document/session, precision, origin/workplane, style and width unknown. Creation-method deviation recorded; eligibility pending.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_L00.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_L00",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

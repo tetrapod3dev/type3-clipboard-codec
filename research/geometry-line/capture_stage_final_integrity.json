@@ -1,0 +1,164 @@
+{
+  "checked_utc": "2026-09-15T16:54:29.2047895+00:00",
+  "baseline_file": "capture_stage_baseline_20260916.json",
+  "baseline_tracked_files": 441,
+  "allowed_modified_existing_files": [
+    "docs/geometry_line_clipboard_contract.md"
+  ],
+  "actual_existing_changes": [
+    {
+      "path": "docs/geometry_line_clipboard_contract.md",
+      "before_sha256": "1623546faae9f88d504dd9d75a48cd092d84491dd02cac5b2f4498d5e5bb0a03",
+      "after_sha256": "32604596a28f49a1c7ea2359d108e35e67bccb504fd2b412c9cbc739d5ae296b"
+    }
+  ],
+  "unexpected_existing_changes": [],
+  "unrelated_existing_files_unchanged": true,
+  "historical_capture_plan_unchanged": true,
+  "text_authoritative_contract_unchanged": true,
+  "raw_files": [
+    {
+      "sample": "L00",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone.bin",
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L00",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L00_R",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone.bin",
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L00_R",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L00_N",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone.bin",
+      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L00_N",
+      "file": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L01",
+      "file": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone.bin",
+      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L01",
+      "file": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L02",
+      "file": "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone.bin",
+      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L02",
+      "file": "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L04",
+      "file": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone.bin",
+      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "L04",
+      "file": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "LY0",
+      "file": "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone.bin",
+      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "LY0",
+      "file": "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "LZ",
+      "file": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone.bin",
+      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded",
+      "matches_capture": true,
+      "size_matches": true
+    },
+    {
+      "sample": "LZ",
+      "file": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true,
+      "size_matches": true
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "docs/geometry_line_clipboard_contract.md",
+      "sha256": "32604596a28f49a1c7ea2359d108e35e67bccb504fd2b412c9cbc739d5ae296b"
+    },
+    {
+      "path": "research/geometry-line/analyze_capture_files.py",
+      "sha256": "5beb6e6bd3c032657f5bb93cfa8b1d86223c5671c8bcc428d7c457668870515f"
+    },
+    {
+      "path": "research/geometry-line/differential_results.json",
+      "sha256": "efa527d3de894fa5bdb905671619d54d7c69f647da231699819e8c3b4c51dcb8"
+    },
+    {
+      "path": "research\\geometry-line\\actual_capture_manifest.json",
+      "sha256": "042fc91bd140394b04facd1e3f10873fcf9c9c07e9f40f5e52c3005c449969e8"
+    },
+    {
+      "path": "research/geometry-line/capture_plan.json",
+      "sha256": "e7b228c2cb4c01db88a83e5b664f509c8a9cb543c9b154412f67c430e70a64ac"
+    }
+  ],
+  "json_and_report_classifications_validated": true,
+  "report_links_validated": true,
+  "capture_count": 8,
+  "raw_pair_count": 8,
+  "clipboard_payload_reads_total": 32,
+  "clipboard_access_after_capture_verification": false,
+  "vendor_files_accessed": 0,
+  "synthetic_payloads_created": 0,
+  "paste_performed": false
+}

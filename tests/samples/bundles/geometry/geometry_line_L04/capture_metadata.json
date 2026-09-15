@@ -1,0 +1,91 @@
+{
+  "sample_id": "L04",
+  "human_ground_truth": {
+    "confirmation": "기준선 복원 함. 시작점만 이동. B하나만 COPY 완료. -10,0,0 -> 10,0,0. 삭제나 재생성 없음. COPY는 한번만 함.",
+    "actual_p0": [
+      -10,
+      0,
+      0
+    ],
+    "actual_p1": [
+      10,
+      0,
+      0
+    ],
+    "coordinate_provenance": "User explicitly stated final endpoints",
+    "units": "mm (inherited confirmed corpus units)",
+    "human_confirmed_direction": "P0 (-10,0,0) -> P1 (10,0,0), start point only moved",
+    "object_lineage": "B",
+    "same_object_variant": false,
+    "same_object_reference": "original L00 A (deleted)",
+    "B_identity_continuity": "No deletion or recreation reported; native identity unproven",
+    "independently_created": false,
+    "copy_ordinal_in_planned_corpus": 6,
+    "actual_copy_ordinal": null,
+    "final_copy_count_reported": 1,
+    "creation_edit_method": "Baseline restored then start point only moved; exact UI command not given",
+    "baseline_restored_by_human": true,
+    "changed_variable": "x0",
+    "deleted_or_recreated_this_sample": false,
+    "selected_object_count": 1,
+    "grouping_state": "not_grouped inherited from B confirmation",
+    "document_identifier": null,
+    "session_identifier": null,
+    "ui_display_precision": null,
+    "origin": null,
+    "workplane": null,
+    "layer": null,
+    "color": null,
+    "line_style": null,
+    "width": null,
+    "known_deviations": [
+      "B substitutes for deleted original A; prior B undo history retained"
+    ],
+    "unknown_facts": [
+      "Exact UI restoration/edit command",
+      "Native identity continuity",
+      "Fixed settings not independently re-attested",
+      "Copy-once statement does not independently timestamp previous/current verification intervals"
+    ],
+    "source": "human statements and labeled inherited context; no parser values"
+  },
+  "capture": {
+    "capture_utc": "2026-09-16T01:36:35+09:00",
+    "capture_seoul": "2026-09-16T01:36:35+09:00",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_format_id": 49863,
+        "byte_length": 8192,
+        "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6",
+        "file": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone.bin"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_format_id": 49864,
+        "byte_length": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "file": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin"
+      }
+    ],
+    "raw_preservation": "--no-inspect; raw pair and hex roundtrip verified; no trim",
+    "bundle_verify": {
+      "result": "passed",
+      "zone_match": true,
+      "version_match": true,
+      "recorded_utc": "2026-09-16T01:37:31.1510718+09:00",
+      "method": "existing clipboard_typeeditzone.py verify-bundle"
+    },
+    "capture_interference": null,
+    "interference_note": "Copy once reported; immediate verification matched. No sequence monitor; verification interval not independently attested.",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": false,
+  "eligibility_reason": "B substitutes for deleted original A; history/fixed-state limitations remain; numerical observations only, not controlled contract promotion",
+  "post_capture_analysis": {
+    "status": "complete",
+    "results": "research/geometry-line/differential_results.json",
+    "permitted_use": "descriptive file observations only",
+    "native_identity_inference": "abstain"
+  }
+}

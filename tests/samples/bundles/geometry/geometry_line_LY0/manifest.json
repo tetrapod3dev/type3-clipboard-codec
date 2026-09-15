@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T16:39:14.449869+00:00",
+  "description": "Human confirmed baseline restored, start point only moved, B only selected, Copy once. Actual P0 (0,-5.25,0) to P1 (10,0,0) mm. No deletion or recreation. Original A deleted earlier; B lineage deviation retained. No inspection.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_LY0.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_LY0",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

@@ -1,0 +1,100 @@
+{
+  "sample_id": "L01",
+  "human_ground_truth": {
+    "confirmation": "B 전체를 10MM 오른쪽 이동 후 복사; 되돌리기; 원래 상태 복원 후 끝점 X만 10->20 변경; B만 선택하고 COPY 1회",
+    "actual_p0": [
+      0,
+      0,
+      0
+    ],
+    "actual_p1": [
+      20,
+      0,
+      0
+    ],
+    "coordinate_provenance": "User-confirmed restoration to recorded baseline followed by x1-only 10->20 edit; tuple reconstructed from that statement, not separately restated or parser-derived",
+    "units": "mm",
+    "human_confirmed_direction": "Inherited P0->P1 direction with reported endpoint X edit; not separately rechecked in this message",
+    "object_lineage": "B",
+    "same_object_variant": false,
+    "same_object_reference": "original L00 A (deleted)",
+    "B_identity_continuity": "User calls object B; native continuity across undo/edit unproven",
+    "independently_created": false,
+    "copy_ordinal_in_planned_corpus": 4,
+    "actual_copy_ordinal": null,
+    "final_copy_count_reported": 1,
+    "creation_edit_method": "Baseline restoration via undo after mistaken full-object translation, followed by endpoint X edit; exact UI command unknown",
+    "baseline_restored_by_human": true,
+    "changed_variable": "x1",
+    "prior_actions": [
+      "Move entire B +10 mm X",
+      "Copy mistaken translated B",
+      "Undo / restore original baseline",
+      "Change endpoint X 10->20",
+      "Select only B",
+      "Copy once"
+    ],
+    "selected_object_count": 1,
+    "grouping_state": "not_grouped inherited from B confirmation; not re-attested",
+    "document_identifier": null,
+    "session_identifier": null,
+    "ui_display_precision": null,
+    "origin": null,
+    "workplane": null,
+    "layer": null,
+    "color": null,
+    "line_style": null,
+    "width": null,
+    "known_deviations": [
+      "B substituted for deleted original A",
+      "Mistaken translation and extra Copy before baseline restoration",
+      "Undo history may affect identity/state"
+    ],
+    "unknown_facts": [
+      "Exact UI restoration/edit commands",
+      "Native identity retention across undo",
+      "Fixed settings independently unchanged",
+      "Interference during current capture not yet attested"
+    ],
+    "source": "human statements and explicitly labeled inherited context; no byte interpretation"
+  },
+  "capture": {
+    "capture_utc": "2026-09-16T01:24:57+09:00",
+    "capture_seoul": "2026-09-16T01:24:57+09:00",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_format_id": 49863,
+        "byte_length": 8192,
+        "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814",
+        "file": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone.bin"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_format_id": 49864,
+        "byte_length": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "file": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin"
+      }
+    ],
+    "raw_preservation": "--no-inspect; raw pair and hex roundtrip verified; no trim",
+    "bundle_verify": {
+      "result": "passed",
+      "zone_match": true,
+      "version_match": true,
+      "recorded_utc": "2026-09-16T01:26:08.1590256+09:00",
+      "method": "existing clipboard_typeeditzone.py verify-bundle"
+    },
+    "capture_interference": false,
+    "interference_note": "User response to L01 interval question reported no other Copy; human attestation plus immediate verification, not continuous monitoring.",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": false,
+  "eligibility_reason": "B substitutes for deleted original A; history/fixed-state limitations remain; numerical observations only, not controlled contract promotion",
+  "post_capture_analysis": {
+    "status": "complete",
+    "results": "research/geometry-line/differential_results.json",
+    "permitted_use": "descriptive file observations only",
+    "native_identity_inference": "abstain"
+  }
+}

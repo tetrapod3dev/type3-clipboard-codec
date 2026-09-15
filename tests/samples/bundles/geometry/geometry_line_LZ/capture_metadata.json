@@ -1,0 +1,92 @@
+{
+  "sample_id": "LZ",
+  "human_ground_truth": {
+    "confirmation": "복원했고 Z를 2.5로 이동. B 하나 선택해서 복사. 삭제 재생성 없음. 0,0,2.5 -> 10,0,2.5. 선분 전체를 Z 2.5로 이동. COPY 1번.",
+    "actual_p0": [
+      0,
+      0,
+      2.5
+    ],
+    "actual_p1": [
+      10,
+      0,
+      2.5
+    ],
+    "coordinate_provenance": "User explicitly stated final endpoints",
+    "units": "mm",
+    "human_confirmed_direction": "P0 (0,0,2.5) -> P1 (10,0,2.5)",
+    "object_lineage": "B",
+    "same_object_variant": false,
+    "same_object_reference": "original L00 A (deleted)",
+    "B_identity_continuity": "No deletion or recreation reported; native identity unproven",
+    "independently_created": false,
+    "copy_ordinal_in_planned_corpus": 8,
+    "actual_copy_ordinal": null,
+    "final_copy_count_reported": 1,
+    "creation_edit_method": "Restore baseline; select whole B and translate along Z by 2.5 mm; both endpoints share Z=2.5",
+    "baseline_restored_by_human": true,
+    "changed_variable": "common z",
+    "deleted_or_recreated_this_sample": false,
+    "selected_object_count": 1,
+    "grouping_state": "not_grouped inherited from B confirmation",
+    "document_identifier": null,
+    "session_identifier": null,
+    "ui_display_precision": null,
+    "origin": null,
+    "workplane": null,
+    "layer": null,
+    "color": null,
+    "line_style": null,
+    "width": null,
+    "known_deviations": [
+      "B substitutes for deleted original A; prior B undo history retained"
+    ],
+    "unknown_facts": [
+      "Exact UI restoration/edit command",
+      "Native identity continuity",
+      "Fixed settings not independently re-attested",
+      "Copy-once statement does not independently timestamp previous/current verification intervals"
+    ],
+    "source": "human statements and labeled inherited context; no parser values",
+    "z_UI_evidence": "User reported whole-object Z translation and explicitly stated both final endpoint tuples; exact UI numeric panel/precision not recorded"
+  },
+  "capture": {
+    "capture_utc": "2026-09-16T01:44:41+09:00",
+    "capture_seoul": "2026-09-16T01:44:41+09:00",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_format_id": 49863,
+        "byte_length": 8192,
+        "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded",
+        "file": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone.bin"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_format_id": 49864,
+        "byte_length": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "file": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin"
+      }
+    ],
+    "raw_preservation": "--no-inspect; raw pair and hex roundtrip verified; no trim",
+    "bundle_verify": {
+      "result": "passed",
+      "zone_match": true,
+      "version_match": true,
+      "recorded_utc": "2026-09-16T01:45:30.6017339+09:00",
+      "method": "existing clipboard_typeeditzone.py verify-bundle"
+    },
+    "capture_interference": null,
+    "interference_note": "Copy once reported; immediate verify matched; no sequence monitor",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": false,
+  "eligibility_reason": "B substitutes for deleted original A; history/fixed-state limitations remain; numerical observations only, not controlled contract promotion",
+  "post_capture_analysis": {
+    "status": "complete",
+    "results": "research/geometry-line/differential_results.json",
+    "permitted_use": "descriptive file observations only",
+    "native_identity_inference": "abstain"
+  }
+}

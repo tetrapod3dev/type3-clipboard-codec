@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-15T16:08:26.844192+00:00",
+  "description": "Human confirmed independently created B, no clone or paste, one B selected, not grouped, geometry coordinates direction verified and Copy completed. P0 (0,0,0) to P1 (10,0,0) mm. A deleted due to selection overlap. Creation method almost same as A, exact differences unknown. B copied repeatedly; copy count unknown. Protocol deviations retained; controlled eligibility pending.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_L00_N.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_L00_N",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}
