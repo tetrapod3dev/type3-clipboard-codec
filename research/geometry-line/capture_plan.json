@@ -1,0 +1,170 @@
+{
+  "status": "planned_not_captured",
+  "human_gate_required": true,
+  "no_typeedit_launch_by_agent": true,
+  "no_paste": true,
+  "units": "Conceptual coordinates only; record actual UI units, exact entered values, display precision and document/workplane state.",
+  "fixed_variables": [
+    "document",
+    "layer",
+    "color",
+    "line style",
+    "width",
+    "draw tool",
+    "selection object count=1",
+    "not grouped",
+    "no text",
+    "no object conversion"
+  ],
+  "samples": [
+    {
+      "id": "L00",
+      "p0": [
+        0,
+        0,
+        0
+      ],
+      "p1": [
+        10,
+        0,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "baseline"
+    },
+    {
+      "id": "L00_R",
+      "p0": [
+        0,
+        0,
+        0
+      ],
+      "p1": [
+        10,
+        0,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "same existing object copied again; no intervening edit, undo, save or paste"
+    },
+    {
+      "id": "L00_N",
+      "p0": [
+        0,
+        0,
+        0
+      ],
+      "p1": [
+        10,
+        0,
+        0
+      ],
+      "object_label": "B",
+      "purpose": "independently drawn identical object; never clone or paste; preserve A"
+    },
+    {
+      "id": "L01",
+      "p0": [
+        0,
+        0,
+        0
+      ],
+      "p1": [
+        20,
+        0,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "x1 only versus L00"
+    },
+    {
+      "id": "L02",
+      "p0": [
+        0,
+        0,
+        0
+      ],
+      "p1": [
+        10,
+        10,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "y1 only versus L00"
+    },
+    {
+      "id": "L04",
+      "p0": [
+        -10,
+        0,
+        0
+      ],
+      "p1": [
+        10,
+        0,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "x0 only versus L00; negative coordinate"
+    },
+    {
+      "id": "LY0",
+      "p0": [
+        0,
+        -5.25,
+        0
+      ],
+      "p1": [
+        10,
+        0,
+        0
+      ],
+      "object_label": "A",
+      "purpose": "y0 only versus L00; fractional coordinate"
+    },
+    {
+      "id": "LZ",
+      "p0": [
+        0,
+        0,
+        2.5
+      ],
+      "p1": [
+        10,
+        0,
+        2.5
+      ],
+      "object_label": "A",
+      "purpose": "common z only versus L00; capture only if supported UI can set and verify it"
+    }
+  ],
+  "minimum_bundle_count": 8,
+  "pair_count_per_bundle": 2,
+  "geometry_variants_policy": "For each variation restore A to recorded baseline by supported UI, then change only named parameter. Log restoration; do not use delete/redraw/clone. If identity retention cannot be attested, mark uncontrolled.",
+  "omitted_preferred_sample": {
+    "id": "L03",
+    "reason": "Both x0 and x1 translation is redundant for initial five-coordinate isolation; not part of the smallest set."
+  },
+  "z_unavailable_policy": "Record unavailable and stop short of arbitrary-z closure; never fabricate a nonzero z capture.",
+  "capture_flags": [
+    "--category geometry",
+    "--object-count 1",
+    "--grouping not_grouped",
+    "--no-inspect"
+  ],
+  "required_metadata": [
+    "sample ID",
+    "human-confirmed visible geometry and start/end direction",
+    "actual entered coordinates and units",
+    "document/session/workplane/origin",
+    "object lineage A/B and selected object count",
+    "fixed layer/style/color",
+    "copy ordinal and capture time",
+    "TypeEditZone and TypeEditZoneVersion names, runtime IDs, exact sizes, SHA256",
+    "byte-preservation and post-capture verify-bundle result",
+    "capture interference or other clipboard writers",
+    "ground truth unknowns"
+  ],
+  "identity_limit": "Copy-only samples can localize stable/variable bytes but cannot establish whether paste regenerates object GUIDs. Readiness stays blocked if identity lifecycle remains unresolved.",
+  "next_task": "Capture exactly eight human-gated two-format bundles: L00, same-object L00_R, independently created L00_N, L01 (x1 only), L02 (y1 only), L04 (x0 only), LY0 (y0 only), and LZ (common z only); preserve both raw formats and metadata; do not paste."
+}
