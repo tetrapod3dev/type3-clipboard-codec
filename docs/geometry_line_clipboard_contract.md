@@ -499,3 +499,44 @@ R2 raw files, M00 micro-corpus, initial exact-replay evidence and earlier geomet
 Recommended next task only:
 
 Capture one direction-disambiguating line whose user-defined start point is componentwise greater than its end point; do not synthesize coordinates yet.
+
+## 16. D00: directed endpoint order resolved (2026-09-16)
+
+**Current endpoint status: `line_record_order = creation_direction`, `line_endpoint_fields = resolved` for the observed single-line family and tested ordering hypotheses.** This supersedes earlier sections' historical direction/minmax ambiguity; previous capture/result artifacts remain unchanged.
+
+Artifacts: [direction manifest](../research/geometry-line/direction_disambiguation_manifest.json), [direction results](../research/geometry-line/direction_disambiguation_results.json), [file-only analyzer](../research/geometry-line/analyze_direction_disambiguation.py), [baseline](../research/geometry-line/direction_disambiguation_baseline.json), [integrity](../research/geometry-line/direction_disambiguation_integrity.json). The only new capture is `tests/samples/bundles/geometry/geometry_line_direction_D00/`.
+
+The user reported that vertex order determines line direction and that the UI allows setting a start point, then explicitly stated construction/orientation as START (10,10,0) -> END (0,0,0) mm. Ground truth is this human vertex/start-point statement, not an inference from screen position. The user confirmed `레이어 1`, black, not grouped, Copy once and no other action. Copy followed the instruction to select only that line; the final user reply did not independently repeat the numeric selected count. `--object-count 1` remains intent metadata, not selection validation. Exact construction command sequence, start-setting command name, line style/width, origin/workplane, document/session identifiers and UI precision are not supplied. Same construction family as M00 is not silently assumed.
+
+Exactly one capture used the existing CLI with `--category geometry --object-count 1 --grouping not_grouped --no-inspect`. Both raw formats and hashes were preserved before interpretation. Immediate `verify-bundle` passed exactly; clipboard access then stopped. Runtime format IDs were 49863 (TypeEditZone, 8192 bytes) and 49864 (Version, 32 bytes). Per-format SHA256 and timestamps are in the bundle/manifest. No clipboard interference was reported, and no adaptive recapture occurred.
+
+Before coordinate decoding, the file-only audit confirmed CZone schema 1 at 6, CCourbe schema 1 at 163, CContour schema 2 at 322 and CPropertyExtend schema 5 at 554; kind candidate 0, point-count candidate 2 and two 36-byte records beginning at 482. Coordinates were read only at the established record +0/+8/+16 little-endian binary64 locations. No other float candidates were searched.
+
+| Observed region | Stored values | UI mm using accepted ×1000 |
+| --- | --- | --- |
+| record 0 xyz, offset 482 | (0.01,0.01,0) | (10,10,0) = human START |
+| record 1 xyz, offset 518 | (0,0,0) | (0,0,0) = human END |
+| CZone bounds, descriptor +11 | (0,0,0,0.01,0.01,0) | min (0,0,0), max (10,10,0) |
+| CCourbe bounds, descriptor +13 | Same | Same |
+| CContour bounds, descriptor +14 | Same | Same |
+
+Both endpoint sequences were checked against exact expected binary64 bytes, not a loose tolerance. Creation-direction prediction matches; componentwise-minmax prediction does not. START exceeds END in X/Y and ties in Z, which still produces mutually exclusive order predictions. Three bounds match exact expected min/max bytes independently of endpoint order. This separates ordered primary endpoint observations from the three derived unordered bounds; it does not prove derived-field completeness.
+
+The result resolves endpoint xyz/order for this observed single-line family using the accepted prior coordinate mapping plus this new discriminator. It is not a universal claim about all geometry types, arbitrary sorting rules or native object internals. There is no competing mapping among the two specified order hypotheses. Opaque uncertainty does not block this narrower endpoint resolution.
+
+Raw windows `[93,109)`, `[252,268)`, `[412,428)`, `[514,518)` and `[550,554)` are recorded only as uninterpreted provenance in the results; no normalization or semantic naming was applied. The full 32-byte Version is byte-identical to M00, SHA256 `33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f`.
+
+```text
+line_record_order = creation_direction
+line_endpoint_fields = resolved
+line_derived_fields = partial
+line_identity_fields = unresolved
+opaque_fields_preservation_for_template_mutation = unresolved
+line_clipboard_runtime_readiness = missing_specific_contract
+```
+
+Full Serialize extent, property/tail semantics, opaque-field preservation and complete derived-field behavior remain separate unresolved contracts. No readiness for synthetic paste is inferred. All pre-existing bundles/results, R2 evidence, micro-corpus and text contract are preserved; this section is appended to the prior contract. No Paste, payload mutation, TypeEdit automation, duplicate replay, native/vendor analysis or text-width work occurred.
+
+Recommended next task only:
+
+Reassess whether the observed opaque metadata can be safely carried through a minimal coordinate-template mutation now that endpoint ordering is resolved; do not generate or paste a synthetic payload yet.

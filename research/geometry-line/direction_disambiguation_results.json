@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T10:55:17.270832+00:00",
+  "sample": "geometry_line_direction_D00",
+  "mode": "file_only_after_raw_preservation_and_immediate_verification",
+  "source_sha256": "3ef75c7606d49cf8bcff8cb5c208c28360018d7d592f85b87cdb6c89c40e6428",
+  "source_size": 8192,
+  "human_ground_truth": {
+    "statements": [
+      "직선 그렸다. 순서는 정점 순서로 판단한다. 시작점을 설정할수 있다. 직선은 가장 끝점이 시작점이 되며 다른 끝점을 향해 나아간다. 닫힌 도형은 정점중에 하나를 시작점으로 정할수 있고, 시계방향으로 진행한다. 10, 10, 0 -> 0, 0, 0 mm 가 되도록 선을 그려놨다.",
+      "레이어 1, 검정색 선. copy 1회 완료. 다른 동작없음. 그룹 아님."
+    ],
+    "start": [
+      10,
+      10,
+      0
+    ],
+    "end": [
+      0,
+      0,
+      0
+    ],
+    "units": "mm",
+    "direction_intent": "START to END",
+    "direction_ground_truth": "User reports vertex order and UI ability to set start point; constructed/oriented this line as (10,10,0) -> (0,0,0)",
+    "source": "Human direction statement, not screen-position inference",
+    "selection_note": "User complied with instruction to select only this line and Copy once; no separate literal selected-count numeral in final response",
+    "selected_object_count_intent": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_other_actions_reported": true,
+    "construction_method": "User reports drawing a straight line; precise tool/rectangle derivation not specified",
+    "unknowns": [
+      "exact construction tool sequence",
+      "start-setting command name",
+      "origin/workplane",
+      "line style",
+      "width",
+      "document/session identifiers",
+      "UI precision"
+    ]
+  },
+  "fixed_settings": {
+    "units": "mm",
+    "layer": "레이어 1",
+    "color": "검정색",
+    "line_style": null,
+    "width": null,
+    "origin": null,
+    "workplane": null,
+    "construction_family_same_as_M00": "not established; no silent inheritance"
+  },
+  "structure": {
+    "descriptors": [
+      {
+        "name": "CZone",
+        "schema": 1,
+        "offset": 6
+      },
+      {
+        "name": "CCourbe",
+        "schema": 1,
+        "offset": 163
+      },
+      {
+        "name": "CContour",
+        "schema": 2,
+        "offset": 322
+      },
+      {
+        "name": "CPropertyExtend",
+        "schema": 5,
+        "offset": 554
+      }
+    ],
+    "expected_schema_family": true,
+    "kind_candidate": 0,
+    "point_count_candidate": 2,
+    "record_start": 482,
+    "record_stride": 36,
+    "record_count": 2,
+    "two_record_layout_retained": true
+  },
+  "structure_matches_observed_family": true,
+  "coordinates_read_only_after_structure_pass": true,
+  "records": [
+    {
+      "index": 0,
+      "start": 482,
+      "xyz_raw_hex": "7b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "stored_xyz": [
+        0.01,
+        0.01,
+        0.0
+      ],
+      "ui_mm_xyz": [
+        10.0,
+        10.0,
+        0.0
+      ]
+    },
+    {
+      "index": 1,
+      "start": 518,
+      "xyz_raw_hex": "000000000000000000000000000000000000000000000000",
+      "stored_xyz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ui_mm_xyz": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "hypothesis_tests": {
+    "creation_direction_byte_exact": true,
+    "componentwise_minmax_byte_exact": false,
+    "predictions_mutually_exclusive": true,
+    "conversion": "accepted little-endian binary64 mm/1000; report mm via *1000",
+    "no_alternative_float_search": true
+  },
+  "bounds": [
+    {
+      "name": "CZone",
+      "descriptor_relative_offset": 11,
+      "start": 17,
+      "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "stored_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.01,
+        0.0
+      ],
+      "ui_mm_values": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0,
+        0.0
+      ],
+      "expected_raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "byte_exact_expected": true
+    },
+    {
+      "name": "CCourbe",
+      "descriptor_relative_offset": 13,
+      "start": 176,
+      "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "stored_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.01,
+        0.0
+      ],
+      "ui_mm_values": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0,
+        0.0
+      ],
+      "expected_raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "byte_exact_expected": true
+    },
+    {
+      "name": "CContour",
+      "descriptor_relative_offset": 14,
+      "start": 336,
+      "raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "stored_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.01,
+        0.0
+      ],
+      "ui_mm_values": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0,
+        0.0
+      ],
+      "expected_raw_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f7b14ae47e17a843f0000000000000000",
+      "byte_exact_expected": true
+    }
+  ],
+  "all_bounds_byte_exact_expected": true,
+  "opaque_provenance": [
+    {
+      "name": "CZone",
+      "start": 93,
+      "end_exclusive": 109,
+      "raw_hex": "f512b15aa5bb4e4b952500e13b256ee8",
+      "meaning": "uninterpreted provenance only"
+    },
+    {
+      "name": "CCourbe",
+      "start": 252,
+      "end_exclusive": 268,
+      "raw_hex": "3009bb13f6297544bb03c79b723dbc51",
+      "meaning": "uninterpreted provenance only"
+    },
+    {
+      "name": "CContour",
+      "start": 412,
+      "end_exclusive": 428,
+      "raw_hex": "0ff8fdc892432e40b3ced589a4a3f725",
+      "meaning": "uninterpreted provenance only"
+    },
+    {
+      "name": "record0.tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "raw_hex": "0d783a41",
+      "meaning": "uninterpreted provenance only"
+    },
+    {
+      "name": "record1.tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "raw_hex": "0d384645",
+      "meaning": "uninterpreted provenance only"
+    }
+  ],
+  "version": {
+    "size": 32,
+    "expected_32_bytes": true,
+    "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+    "raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+    "M00_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+    "exact_equal_M00": true,
+    "meaning": "not inferred"
+  },
+  "classifications": {
+    "line_record_order": "creation_direction",
+    "line_endpoint_fields": "resolved",
+    "line_derived_fields": "partial",
+    "line_identity_fields": "unresolved",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "endpoint_resolution_scope": "Observed single-line family, established xyz slots and the two specified ordering hypotheses; based on human UI vertex/start-point direction. Not all arbitrary serializers, geometries or native identities.",
+  "geometry_wording": "START exceeds END in X/Y, ties in Z; opposite predicted record orders remain unambiguous.",
+  "limitations": [
+    "Exact construction tool sequence and UI command names not supplied; no same-family construction assertion.",
+    "Line style/width, origin/workplane, identifiers and precision remain unknown.",
+    "Raw equality does not independently establish human selection/direction provenance.",
+    "No synthesis, Paste, identity interpretation, full Serialize extent, property/tail semantic closure or derived completeness claim."
+  ],
+  "integrity": {
+    "baseline_file_count": 578,
+    "preexisting_files_except_authorized_contract_unchanged": true,
+    "raw_hashes_and_hex_roundtrip_verified": true
+  },
+  "next_task": "Reassess whether the observed opaque metadata can be safely carried through a minimal coordinate-template mutation now that endpoint ordering is resolved; do not generate or paste a synthetic payload yet."
+}
