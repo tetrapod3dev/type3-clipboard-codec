@@ -1,0 +1,4528 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T11:03:25.865615+00:00",
+  "scope": "Stored files only; no synthetic payload constructed, no writes to byte arrays, no clipboard/native/vendor interaction",
+  "classifications": {
+    "opaque_metadata_pure_function_of_geometry": "no",
+    "opaque_metadata_replay_preservation": "observed",
+    "synthetic_state_novelty": true,
+    "coordinate_patch_allowlist": "partial",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_synthesis_strategy": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract",
+    "line_record_order": "creation_direction",
+    "line_endpoint_fields": "resolved",
+    "line_derived_fields": "partial",
+    "line_identity_fields": "unresolved"
+  },
+  "samples": {
+    "L00": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_L00",
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "3caaa812759c2e41a6f4433dc2506659",
+        "CCourbe": "4dd58946b51cb443ad1e182b558c1247",
+        "CContour": "608d0b55e25dcf429acd1cbf70457c3a",
+        "record0.tag.upper": "6c723a",
+        "record1.tag.upper": "6c6967"
+      },
+      "tags_u32": [
+        "0x3A726C0D",
+        "0x67696C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "L00_N": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_L00_N",
+      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "fb64a724641e0b4da4414fdae7121a4a",
+        "CCourbe": "f8b2b69a9e6f3e4aad4844942e252665",
+        "CContour": "1e639f2be8030540b3b49992789c2063",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "L01": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_L01",
+      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.02,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          20.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.02,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.02,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.02,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.02,
+        0.0,
+        0.0
+      ],
+      "length_mm": 20.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "fb64a724641e0b4da4414fdae7121a4a",
+        "CCourbe": "4a8c7fdb1bcf0648b8edb1228854db9c",
+        "CContour": "99c3936fef4f81458ee5aa0131f8aab1",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "L02": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_L02",
+      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.01,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          10.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.01,
+        0.0
+      ],
+      "length_mm": 14.142135623730951,
+      "orientation": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "fb64a724641e0b4da4414fdae7121a4a",
+        "CCourbe": "f3a77fa4b5a1c64cb954dcf086b993a9",
+        "CContour": "90cca2396b3c3048b8272f58bd736ebf",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "L04": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_L04",
+      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          -0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          -10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          -0.01,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          -0.01,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          -0.01,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.02,
+        0.0,
+        0.0
+      ],
+      "length_mm": 20.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "fb64a724641e0b4da4414fdae7121a4a",
+        "CCourbe": "34fba6d00605e145ad1002fffb8d90d5",
+        "CContour": "9d4c69acfee4124e839d27142f01bd43",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "LY0": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_LY0",
+      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          -0.00525,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          -5.25,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          -0.00525,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.00525,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.00525,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.00525,
+        0.0
+      ],
+      "length_mm": 11.294356998076518,
+      "orientation": [
+        0.8853979028379435,
+        0.4648338989899204,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "fb64a724641e0b4da4414fdae7121a4a",
+        "CCourbe": "11baa2e3a8834843a6679caab30ff5cd",
+        "CContour": "b6ce04702ea3e74a8fa45bfdeb805a0b",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "LZ": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_LZ",
+      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0025
+        ],
+        [
+          0.01,
+          0.0,
+          0.0025
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          2.5
+        ],
+        [
+          10.0,
+          0.0,
+          2.5
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.01,
+          0.0,
+          0.0025
+        ],
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.01,
+          0.0,
+          0.0025
+        ],
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.01,
+          0.0,
+          0.0025
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "a60abed6cacc1845a81e997f43c976ce",
+        "CCourbe": "adf5a81bdb2d4d4892f7a27ea72c5df6",
+        "CContour": "8f2a88de1da5f3499e189bccf94c77a4",
+        "record0.tag.upper": "40454e",
+        "record1.tag.upper": "000000"
+      },
+      "tags_u32": [
+        "0x4E45400D",
+        "0x0000000D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "M00": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "M00_R1": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "M00_R2": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "M00_ER": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER",
+      "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "17d0caef3fb454428ccc559f3d822d67",
+        "CContour": "fb2a28dbb1f4f145be96d7f0ff9cc6f0",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "M00_N": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00_N",
+      "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "b415ed4cf953fd478ae5ad27741204ac",
+        "CCourbe": "42426f839bc4f7429ed89b3d670bbb83",
+        "CContour": "d0f8b07e8a1f5445b3cb2d1d43c888bd",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "484e5f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x5F4E480D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "D00": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_direction_D00",
+      "sha256": "3ef75c7606d49cf8bcff8cb5c208c28360018d7d592f85b87cdb6c89c40e6428",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.01,
+          0.01,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          10.0,
+          10.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.01,
+          0.0
+        ]
+      ],
+      "delta": [
+        -0.01,
+        -0.01,
+        0.0
+      ],
+      "length_mm": 14.142135623730951,
+      "orientation": [
+        -0.7071067811865476,
+        -0.7071067811865476,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "f512b15aa5bb4e4b952500e13b256ee8",
+        "CCourbe": "3009bb13f6297544bb03c79b723dbc51",
+        "CContour": "0ff8fdc892432e40b3ced589a4a3f725",
+        "record0.tag.upper": "783a41",
+        "record1.tag.upper": "384645"
+      },
+      "tags_u32": [
+        "0x413A780D",
+        "0x4546380D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "replay": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "R2_first": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    },
+    "R2_second": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "xyz_stored": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "xyz_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "delta": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "length_mm": 10.0,
+      "orientation": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "opaque_hex": {
+        "CZone": "929ceb038750da4399b8c53ff7a3dbbc",
+        "CCourbe": "b424916574d78e4bbb910724d6c7ddd3",
+        "CContour": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "record0.tag.upper": "444643",
+        "record1.tag.upper": "2c426f"
+      },
+      "tags_u32": [
+        "0x4346440D",
+        "0x6F422C0D"
+      ],
+      "tag_low_hex": [
+        "0d",
+        "0d"
+      ]
+    }
+  },
+  "B_baseline_pairs": [
+    {
+      "base": "L00_N",
+      "sample": "L01",
+      "exact_changed_offsets": [
+        47,
+        206,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        366,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        524
+      ],
+      "changed_ranges": [
+        {
+          "start": 47,
+          "end_exclusive": 48,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 206,
+          "end_exclusive": 207,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        {
+          "start": 366,
+          "end_exclusive": 367,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        },
+        {
+          "start": 524,
+          "end_exclusive": 525,
+          "role": "primary endpoint",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 1,
+        "derived bounds": 3,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L00_N",
+      "sample": "L02",
+      "exact_changed_offsets": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533
+      ],
+      "changed_ranges": [
+        {
+          "start": 49,
+          "end_exclusive": 57,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 208,
+          "end_exclusive": 216,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "f3a77fa4b5a1c64cb954dcf086b993a9"
+        },
+        {
+          "start": 368,
+          "end_exclusive": 376,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        },
+        {
+          "start": 526,
+          "end_exclusive": 534,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 8,
+        "derived bounds": 24,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L00_N",
+      "sample": "L04",
+      "exact_changed_offsets": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489
+      ],
+      "changed_ranges": [
+        {
+          "start": 17,
+          "end_exclusive": 25,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 176,
+          "end_exclusive": 184,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 260,
+          "role": "opaque metadata",
+          "length": 8,
+          "before_hex": "f8b2b69a9e6f3e4a",
+          "after_hex": "34fba6d00605e145"
+        },
+        {
+          "start": 261,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 7,
+          "before_hex": "4844942e252665",
+          "after_hex": "1002fffb8d90d5"
+        },
+        {
+          "start": 336,
+          "end_exclusive": 344,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "9d4c69acfee4124e839d27142f01bd43"
+        },
+        {
+          "start": 482,
+          "end_exclusive": 490,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 8,
+        "derived bounds": 24,
+        "opaque metadata": 31,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L00_N",
+      "sample": "LY0",
+      "exact_changed_offsets": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497
+      ],
+      "changed_ranges": [
+        {
+          "start": 25,
+          "end_exclusive": 33,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "start": 184,
+          "end_exclusive": 192,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "11baa2e3a8834843a6679caab30ff5cd"
+        },
+        {
+          "start": 344,
+          "end_exclusive": 352,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        },
+        {
+          "start": 490,
+          "end_exclusive": 498,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "1b2fdd24068175bf"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 8,
+        "derived bounds": 24,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L00_N",
+      "sample": "LZ",
+      "exact_changed_offsets": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541
+      ],
+      "changed_ranges": [
+        {
+          "start": 33,
+          "end_exclusive": 41,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 57,
+          "end_exclusive": 65,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 93,
+          "end_exclusive": 109,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "fb64a724641e0b4da4414fdae7121a4a",
+          "after_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        {
+          "start": 192,
+          "end_exclusive": 200,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 216,
+          "end_exclusive": 224,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        {
+          "start": 352,
+          "end_exclusive": 360,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 376,
+          "end_exclusive": 384,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        },
+        {
+          "start": 498,
+          "end_exclusive": 506,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 534,
+          "end_exclusive": 542,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 16,
+        "derived bounds": 48,
+        "opaque metadata": 48,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    }
+  ],
+  "B_successive_profiles": [
+    {
+      "base": "L00_N",
+      "sample": "L01",
+      "exact_changed_offsets": [
+        47,
+        206,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        366,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        524
+      ],
+      "changed_ranges": [
+        {
+          "start": 47,
+          "end_exclusive": 48,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 206,
+          "end_exclusive": 207,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f8b2b69a9e6f3e4aad4844942e252665",
+          "after_hex": "4a8c7fdb1bcf0648b8edb1228854db9c"
+        },
+        {
+          "start": 366,
+          "end_exclusive": 367,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "1e639f2be8030540b3b49992789c2063",
+          "after_hex": "99c3936fef4f81458ee5aa0131f8aab1"
+        },
+        {
+          "start": 524,
+          "end_exclusive": 525,
+          "role": "primary endpoint",
+          "length": 1,
+          "before_hex": "84",
+          "after_hex": "94"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 1,
+        "derived bounds": 3,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L01",
+      "sample": "L02",
+      "exact_changed_offsets": [
+        47,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        206,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        252,
+        253,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        366,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        524,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533
+      ],
+      "changed_ranges": [
+        {
+          "start": 47,
+          "end_exclusive": 48,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "94",
+          "after_hex": "84"
+        },
+        {
+          "start": 49,
+          "end_exclusive": 57,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 206,
+          "end_exclusive": 207,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "94",
+          "after_hex": "84"
+        },
+        {
+          "start": 208,
+          "end_exclusive": 216,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 254,
+          "role": "opaque metadata",
+          "length": 2,
+          "before_hex": "4a8c",
+          "after_hex": "f3a7"
+        },
+        {
+          "start": 255,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 13,
+          "before_hex": "db1bcf0648b8edb1228854db9c",
+          "after_hex": "a4b5a1c64cb954dcf086b993a9"
+        },
+        {
+          "start": 366,
+          "end_exclusive": 367,
+          "role": "derived bounds",
+          "length": 1,
+          "before_hex": "94",
+          "after_hex": "84"
+        },
+        {
+          "start": 368,
+          "end_exclusive": 376,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "99c3936fef4f81458ee5aa0131f8aab1",
+          "after_hex": "90cca2396b3c3048b8272f58bd736ebf"
+        },
+        {
+          "start": 524,
+          "end_exclusive": 525,
+          "role": "primary endpoint",
+          "length": 1,
+          "before_hex": "94",
+          "after_hex": "84"
+        },
+        {
+          "start": 526,
+          "end_exclusive": 534,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a843f"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 9,
+        "derived bounds": 27,
+        "opaque metadata": 31,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L02",
+      "sample": "L04",
+      "exact_changed_offsets": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533
+      ],
+      "changed_ranges": [
+        {
+          "start": 17,
+          "end_exclusive": 25,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 49,
+          "end_exclusive": 57,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "7b14ae47e17a843f",
+          "after_hex": "0000000000000000"
+        },
+        {
+          "start": 176,
+          "end_exclusive": 184,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 208,
+          "end_exclusive": 216,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "7b14ae47e17a843f",
+          "after_hex": "0000000000000000"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "f3a77fa4b5a1c64cb954dcf086b993a9",
+          "after_hex": "34fba6d00605e145ad1002fffb8d90d5"
+        },
+        {
+          "start": 336,
+          "end_exclusive": 344,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 368,
+          "end_exclusive": 376,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "7b14ae47e17a843f",
+          "after_hex": "0000000000000000"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "90cca2396b3c3048b8272f58bd736ebf",
+          "after_hex": "9d4c69acfee4124e839d27142f01bd43"
+        },
+        {
+          "start": 482,
+          "end_exclusive": 490,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a84bf"
+        },
+        {
+          "start": 526,
+          "end_exclusive": 534,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "7b14ae47e17a843f",
+          "after_hex": "0000000000000000"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 16,
+        "derived bounds": 48,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "L04",
+      "sample": "LY0",
+      "exact_changed_offsets": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497
+      ],
+      "changed_ranges": [
+        {
+          "start": 17,
+          "end_exclusive": 33,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "7b14ae47e17a84bf0000000000000000",
+          "after_hex": "00000000000000001b2fdd24068175bf"
+        },
+        {
+          "start": 176,
+          "end_exclusive": 192,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "7b14ae47e17a84bf0000000000000000",
+          "after_hex": "00000000000000001b2fdd24068175bf"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "34fba6d00605e145ad1002fffb8d90d5",
+          "after_hex": "11baa2e3a8834843a6679caab30ff5cd"
+        },
+        {
+          "start": 336,
+          "end_exclusive": 352,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "7b14ae47e17a84bf0000000000000000",
+          "after_hex": "00000000000000001b2fdd24068175bf"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "9d4c69acfee4124e839d27142f01bd43",
+          "after_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b"
+        },
+        {
+          "start": 482,
+          "end_exclusive": 498,
+          "role": "primary endpoint",
+          "length": 16,
+          "before_hex": "7b14ae47e17a84bf0000000000000000",
+          "after_hex": "00000000000000001b2fdd24068175bf"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 16,
+        "derived bounds": 48,
+        "opaque metadata": 32,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    },
+    {
+      "base": "LY0",
+      "sample": "LZ",
+      "exact_changed_offsets": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541
+      ],
+      "changed_ranges": [
+        {
+          "start": 25,
+          "end_exclusive": 41,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "1b2fdd24068175bf0000000000000000",
+          "after_hex": "00000000000000007b14ae47e17a643f"
+        },
+        {
+          "start": 57,
+          "end_exclusive": 65,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 93,
+          "end_exclusive": 109,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "fb64a724641e0b4da4414fdae7121a4a",
+          "after_hex": "a60abed6cacc1845a81e997f43c976ce"
+        },
+        {
+          "start": 184,
+          "end_exclusive": 200,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "1b2fdd24068175bf0000000000000000",
+          "after_hex": "00000000000000007b14ae47e17a643f"
+        },
+        {
+          "start": 216,
+          "end_exclusive": 224,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "11baa2e3a8834843a6679caab30ff5cd",
+          "after_hex": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+        },
+        {
+          "start": 344,
+          "end_exclusive": 360,
+          "role": "derived bounds",
+          "length": 16,
+          "before_hex": "1b2fdd24068175bf0000000000000000",
+          "after_hex": "00000000000000007b14ae47e17a643f"
+        },
+        {
+          "start": 376,
+          "end_exclusive": 384,
+          "role": "derived bounds",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "role": "opaque metadata",
+          "length": 16,
+          "before_hex": "b6ce04702ea3e74a8fa45bfdeb805a0b",
+          "after_hex": "8f2a88de1da5f3499e189bccf94c77a4"
+        },
+        {
+          "start": 490,
+          "end_exclusive": 506,
+          "role": "primary endpoint",
+          "length": 16,
+          "before_hex": "1b2fdd24068175bf0000000000000000",
+          "after_hex": "00000000000000007b14ae47e17a643f"
+        },
+        {
+          "start": 534,
+          "end_exclusive": 542,
+          "role": "primary endpoint",
+          "length": 8,
+          "before_hex": "0000000000000000",
+          "after_hex": "7b14ae47e17a643f"
+        }
+      ],
+      "counts": {
+        "primary endpoint": 24,
+        "derived bounds": 72,
+        "opaque metadata": 48,
+        "tag bytes": 0,
+        "unknown": 0
+      }
+    }
+  ],
+  "B_opaque_profiles": {
+    "CZone": {
+      "raw_hex": {
+        "L00_N": "fb64a724641e0b4da4414fdae7121a4a",
+        "L01": "fb64a724641e0b4da4414fdae7121a4a",
+        "L02": "fb64a724641e0b4da4414fdae7121a4a",
+        "L04": "fb64a724641e0b4da4414fdae7121a4a",
+        "LY0": "fb64a724641e0b4da4414fdae7121a4a",
+        "LZ": "a60abed6cacc1845a81e997f43c976ce"
+      },
+      "relative_to_B_baseline": {
+        "L00_N": "unchanged",
+        "L01": "unchanged",
+        "L02": "unchanged",
+        "L04": "unchanged",
+        "LY0": "unchanged",
+        "LZ": "changed"
+      },
+      "successive_capture_transitions": [
+        {
+          "from": "L00_N",
+          "to": "L01",
+          "changed": false
+        },
+        {
+          "from": "L01",
+          "to": "L02",
+          "changed": false
+        },
+        {
+          "from": "L02",
+          "to": "L04",
+          "changed": false
+        },
+        {
+          "from": "L04",
+          "to": "LY0",
+          "changed": false
+        },
+        {
+          "from": "LY0",
+          "to": "LZ",
+          "changed": true
+        }
+      ],
+      "profile": "changed only for Z translation in this sampled sequence; not a Z-specific law"
+    },
+    "CCourbe": {
+      "raw_hex": {
+        "L00_N": "f8b2b69a9e6f3e4aad4844942e252665",
+        "L01": "4a8c7fdb1bcf0648b8edb1228854db9c",
+        "L02": "f3a77fa4b5a1c64cb954dcf086b993a9",
+        "L04": "34fba6d00605e145ad1002fffb8d90d5",
+        "LY0": "11baa2e3a8834843a6679caab30ff5cd",
+        "LZ": "adf5a81bdb2d4d4892f7a27ea72c5df6"
+      },
+      "relative_to_B_baseline": {
+        "L00_N": "unchanged",
+        "L01": "changed",
+        "L02": "changed",
+        "L04": "changed",
+        "LY0": "changed",
+        "LZ": "changed"
+      },
+      "successive_capture_transitions": [
+        {
+          "from": "L00_N",
+          "to": "L01",
+          "changed": true
+        },
+        {
+          "from": "L01",
+          "to": "L02",
+          "changed": true
+        },
+        {
+          "from": "L02",
+          "to": "L04",
+          "changed": true
+        },
+        {
+          "from": "L04",
+          "to": "LY0",
+          "changed": true
+        },
+        {
+          "from": "LY0",
+          "to": "LZ",
+          "changed": true
+        }
+      ],
+      "profile": "changed at every captured edit/restoration stage, including XY and Z"
+    },
+    "CContour": {
+      "raw_hex": {
+        "L00_N": "1e639f2be8030540b3b49992789c2063",
+        "L01": "99c3936fef4f81458ee5aa0131f8aab1",
+        "L02": "90cca2396b3c3048b8272f58bd736ebf",
+        "L04": "9d4c69acfee4124e839d27142f01bd43",
+        "LY0": "b6ce04702ea3e74a8fa45bfdeb805a0b",
+        "LZ": "8f2a88de1da5f3499e189bccf94c77a4"
+      },
+      "relative_to_B_baseline": {
+        "L00_N": "unchanged",
+        "L01": "changed",
+        "L02": "changed",
+        "L04": "changed",
+        "LY0": "changed",
+        "LZ": "changed"
+      },
+      "successive_capture_transitions": [
+        {
+          "from": "L00_N",
+          "to": "L01",
+          "changed": true
+        },
+        {
+          "from": "L01",
+          "to": "L02",
+          "changed": true
+        },
+        {
+          "from": "L02",
+          "to": "L04",
+          "changed": true
+        },
+        {
+          "from": "L04",
+          "to": "LY0",
+          "changed": true
+        },
+        {
+          "from": "LY0",
+          "to": "LZ",
+          "changed": true
+        }
+      ],
+      "profile": "changed at every captured edit/restoration stage, including XY and Z"
+    },
+    "record0.tag.upper": {
+      "raw_hex": {
+        "L00_N": "40454e",
+        "L01": "40454e",
+        "L02": "40454e",
+        "L04": "40454e",
+        "LY0": "40454e",
+        "LZ": "40454e"
+      },
+      "relative_to_B_baseline": {
+        "L00_N": "unchanged",
+        "L01": "unchanged",
+        "L02": "unchanged",
+        "L04": "unchanged",
+        "LY0": "unchanged",
+        "LZ": "unchanged"
+      },
+      "successive_capture_transitions": [
+        {
+          "from": "L00_N",
+          "to": "L01",
+          "changed": false
+        },
+        {
+          "from": "L01",
+          "to": "L02",
+          "changed": false
+        },
+        {
+          "from": "L02",
+          "to": "L04",
+          "changed": false
+        },
+        {
+          "from": "L04",
+          "to": "LY0",
+          "changed": false
+        },
+        {
+          "from": "LY0",
+          "to": "LZ",
+          "changed": false
+        }
+      ],
+      "profile": "unchanged across all B variants"
+    },
+    "record1.tag.upper": {
+      "raw_hex": {
+        "L00_N": "000000",
+        "L01": "000000",
+        "L02": "000000",
+        "L04": "000000",
+        "LY0": "000000",
+        "LZ": "000000"
+      },
+      "relative_to_B_baseline": {
+        "L00_N": "unchanged",
+        "L01": "unchanged",
+        "L02": "unchanged",
+        "L04": "unchanged",
+        "LY0": "unchanged",
+        "LZ": "unchanged"
+      },
+      "successive_capture_transitions": [
+        {
+          "from": "L00_N",
+          "to": "L01",
+          "changed": false
+        },
+        {
+          "from": "L01",
+          "to": "L02",
+          "changed": false
+        },
+        {
+          "from": "L02",
+          "to": "L04",
+          "changed": false
+        },
+        {
+          "from": "L04",
+          "to": "LY0",
+          "changed": false
+        },
+        {
+          "from": "LY0",
+          "to": "LZ",
+          "changed": false
+        }
+      ],
+      "profile": "unchanged across all B variants"
+    }
+  },
+  "B_provenance_limit": "L00_N is documented B, unlike L00 A; repeated copies and near-same construction, prior move/Undo in L01 and later restoration history remain confounders. Every-edit means every saved edited sample, not every unobserved UI step.",
+  "simple_relationship_tests": {
+    "CZone": {
+      "feature_tests": {
+        "start_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L02",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "end_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L04",
+              "LY0",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "bounds": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "translation_invariant_displacement": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "orientation": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L04",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "length": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "full_ordered_geometry": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        }
+      },
+      "edit_event": "Candidate association, not deterministic formula; B captures contain restoration/history and L01 Undo confounds",
+      "lineage": "Same-geometry C vs D candidate difference",
+      "translation": "CZone changes at LZ only among sampled B edits; Z vs whole-object command/history not separable"
+    },
+    "CCourbe": {
+      "feature_tests": {
+        "start_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L02",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "end_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L04",
+              "LY0",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "bounds": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "translation_invariant_displacement": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L01",
+              "L04"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "orientation": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L04",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "length": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L01",
+              "L04"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "full_ordered_geometry": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        }
+      },
+      "edit_event": "Candidate association, not deterministic formula; B captures contain restoration/history and L01 Undo confounds",
+      "lineage": "Same-geometry C vs D candidate difference",
+      "translation": "One Z translation; no deterministic translation rule inferred"
+    },
+    "CContour": {
+      "feature_tests": {
+        "start_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L02",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "end_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L04",
+              "LY0",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "bounds": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "translation_invariant_displacement": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L01",
+              "L04"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "orientation": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L04",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "length": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L01",
+              "L04"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "full_ordered_geometry": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        }
+      },
+      "edit_event": "Candidate association, not deterministic formula; B captures contain restoration/history and L01 Undo confounds",
+      "lineage": "Same-geometry C vs D candidate difference",
+      "translation": "One Z translation; no deterministic translation rule inferred"
+    },
+    "record0.tag.upper": {
+      "feature_tests": {
+        "start_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L02",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "end_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L04",
+              "LY0",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "bounds": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "translation_invariant_displacement": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "orientation": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L04",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "length": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "full_ordered_geometry": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        }
+      },
+      "edit_event": "Candidate association, not deterministic formula; B captures contain restoration/history and L01 Undo confounds",
+      "lineage": "No C vs D change observed; no universal lineage claim",
+      "translation": "One Z translation; no deterministic translation rule inferred"
+    },
+    "record1.tag.upper": {
+      "feature_tests": {
+        "start_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L02",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "end_xyz": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L04",
+              "LY0",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "bounds": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "translation_invariant_displacement": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "orientation": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "L01",
+              "L04",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "length": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "LZ",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ],
+            [
+              "L02",
+              "D00"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        },
+        "full_ordered_geometry": {
+          "equal_feature_different_bytes_groups": [
+            [
+              "L00",
+              "L00_N",
+              "M00",
+              "M00_R1",
+              "M00_R2",
+              "M00_ER",
+              "M00_N",
+              "replay",
+              "R2_first",
+              "R2_second"
+            ]
+          ],
+          "deterministic_function_status": "refuted_by_observed_counterexample"
+        }
+      },
+      "edit_event": "Candidate association, not deterministic formula; B captures contain restoration/history and L01 Undo confounds",
+      "lineage": "Same-geometry C vs D candidate difference",
+      "translation": "One Z translation; no deterministic translation rule inferred"
+    }
+  },
+  "edit_restore_counterexample": {
+    "base": "M00",
+    "sample": "M00_ER",
+    "exact_changed_offsets": [
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427
+    ],
+    "changed_ranges": [
+      {
+        "start": 252,
+        "end_exclusive": 268,
+        "role": "opaque metadata",
+        "length": 16,
+        "before_hex": "b424916574d78e4bbb910724d6c7ddd3",
+        "after_hex": "17d0caef3fb454428ccc559f3d822d67"
+      },
+      {
+        "start": 412,
+        "end_exclusive": 428,
+        "role": "opaque metadata",
+        "length": 16,
+        "before_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "after_hex": "fb2a28dbb1f4f145be96d7f0ff9cc6f0"
+      }
+    ],
+    "counts": {
+      "primary endpoint": 0,
+      "derived bounds": 0,
+      "opaque metadata": 32,
+      "tag bytes": 0,
+      "unknown": 0
+    }
+  },
+  "pure_geometry_conclusion": "The combined opaque metadata, specifically CCourbe and CContour windows, is NOT a pure function of final geometry: same C and byte-identical endpoints/bounds have different windows after edit/restore. This does not rule out dependence on geometry plus history or on other unobserved state.",
+  "replay_conclusion": "TypeEdit accepts and preserves existing self-consistent opaque state in exact replay and duplicate R2; stale opaque state after coordinate mutation was never tested.",
+  "synthetic_state_novelty_scope": {
+    "new_geometry_with_entire_M00_preserve_complement_seen_in_stored_corpus": [],
+    "meaning": "For a genuinely new geometry using old M00 preserved state, no vendor witness exists in these stored samples. Not a claim about unseen geometries or a no-op mutation."
+  },
+  "hypothetical_patch_allowlist": [
+    {
+      "field": "record0.x",
+      "start": 482,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "record0.y",
+      "start": 490,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "record0.z",
+      "start": 498,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "record1.x",
+      "start": 518,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "record1.y",
+      "start": 526,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "record1.z",
+      "start": 534,
+      "length": 8,
+      "status": "resolved",
+      "scope": "Location, binary64 mm/1000 and human START/END mapping; no write executed"
+    },
+    {
+      "field": "CZone.min_x",
+      "start": 17,
+      "length": 8,
+      "descriptor_relative_offset": 11,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CZone.min_y",
+      "start": 25,
+      "length": 8,
+      "descriptor_relative_offset": 19,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CZone.min_z",
+      "start": 33,
+      "length": 8,
+      "descriptor_relative_offset": 27,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CZone.max_x",
+      "start": 41,
+      "length": 8,
+      "descriptor_relative_offset": 35,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CZone.max_y",
+      "start": 49,
+      "length": 8,
+      "descriptor_relative_offset": 43,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CZone.max_z",
+      "start": 57,
+      "length": 8,
+      "descriptor_relative_offset": 51,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.min_x",
+      "start": 176,
+      "length": 8,
+      "descriptor_relative_offset": 13,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.min_y",
+      "start": 184,
+      "length": 8,
+      "descriptor_relative_offset": 21,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.min_z",
+      "start": 192,
+      "length": 8,
+      "descriptor_relative_offset": 29,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.max_x",
+      "start": 200,
+      "length": 8,
+      "descriptor_relative_offset": 37,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.max_y",
+      "start": 208,
+      "length": 8,
+      "descriptor_relative_offset": 45,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CCourbe.max_z",
+      "start": 216,
+      "length": 8,
+      "descriptor_relative_offset": 53,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.min_x",
+      "start": 336,
+      "length": 8,
+      "descriptor_relative_offset": 14,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.min_y",
+      "start": 344,
+      "length": 8,
+      "descriptor_relative_offset": 22,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.min_z",
+      "start": 352,
+      "length": 8,
+      "descriptor_relative_offset": 30,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.max_x",
+      "start": 360,
+      "length": 8,
+      "descriptor_relative_offset": 38,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.max_y",
+      "start": 368,
+      "length": 8,
+      "descriptor_relative_offset": 46,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    },
+    {
+      "field": "CContour.max_z",
+      "start": 376,
+      "length": 8,
+      "descriptor_relative_offset": 54,
+      "status": "candidate_only",
+      "mapping_status": "observed resolved min/max ordering",
+      "scope": "Formula/locations observed; safe writable-set completeness and general rounding remain unproven"
+    }
+  ],
+  "allowlist_bytes": 192,
+  "allowlist_status_reason": "Six endpoint scalar mappings resolved. Eighteen bounds scalars have observed formula/locations but candidate write authorization; complete derived/writable set remains unproven. No mutator is built.",
+  "complete_preserve_partition": [
+    {
+      "start": 0,
+      "end_exclusive": 6,
+      "role": "outer prefix",
+      "length": 6,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 6,
+      "end_exclusive": 17,
+      "role": "class descriptors",
+      "length": 11,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 65,
+      "end_exclusive": 93,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 28,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 93,
+      "end_exclusive": 109,
+      "role": "CZone opaque",
+      "length": 16,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": false,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 109,
+      "end_exclusive": 163,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 54,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 163,
+      "end_exclusive": 176,
+      "role": "class descriptors",
+      "length": 13,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 224,
+      "end_exclusive": 252,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 28,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 252,
+      "end_exclusive": 268,
+      "role": "CCourbe opaque",
+      "length": 16,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": false,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 268,
+      "end_exclusive": 322,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 54,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 322,
+      "end_exclusive": 336,
+      "role": "class descriptors",
+      "length": 14,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 384,
+      "end_exclusive": 412,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 28,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 412,
+      "end_exclusive": 428,
+      "role": "CContour opaque",
+      "length": 16,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": false,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 428,
+      "end_exclusive": 460,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 32,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 460,
+      "end_exclusive": 466,
+      "role": "CObDao ASCII marker; enclosing metadata extent unresolved",
+      "length": 6,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 466,
+      "end_exclusive": 482,
+      "role": "other metadata/framing (includes unresolved CObDao context)",
+      "length": 16,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": true,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 506,
+      "end_exclusive": 514,
+      "role": "record w",
+      "length": 8,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 514,
+      "end_exclusive": 515,
+      "role": "record tag low byte",
+      "length": 1,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 515,
+      "end_exclusive": 518,
+      "role": "record0.tag.upper",
+      "length": 3,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": false,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 542,
+      "end_exclusive": 550,
+      "role": "record w",
+      "length": 8,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 550,
+      "end_exclusive": 551,
+      "role": "record tag low byte",
+      "length": 1,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 551,
+      "end_exclusive": 554,
+      "role": "record1.tag.upper",
+      "length": 3,
+      "preservation_status": "unresolved",
+      "stable_across_all_samples": false,
+      "reason": "Unknown state, linkage or semantic extent; cannot certify stale-state preservation"
+    },
+    {
+      "start": 554,
+      "end_exclusive": 704,
+      "role": "CPropertyExtend descriptor/property/tail",
+      "length": 150,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    },
+    {
+      "start": 704,
+      "end_exclusive": 8192,
+      "role": "trailing zeros (within retained property/tail)",
+      "length": 7488,
+      "preservation_status": "candidate_only",
+      "stable_across_all_samples": true,
+      "reason": "Observed stability/replay only; no mutation acceptance test"
+    }
+  ],
+  "preserve_bytes": 8000,
+  "separate_version_preservation": {
+    "start": 0,
+    "length": 32,
+    "status": "candidate_only"
+  },
+  "decision_table": {
+    "columns": [
+      "Region",
+      "Role",
+      "Geometry dependent?",
+      "Edit-history dependent?",
+      "Lineage dependent?",
+      "Replay-preserved?",
+      "Safe to preserve during coordinate mutation?"
+    ],
+    "rows": [
+      [
+        "record xyz",
+        "ordered primary endpoints",
+        "yes, resolved mapping",
+        "values return on restore",
+        "not needed for coordinate mapping",
+        "yes",
+        "must update; field mapping resolved"
+      ],
+      [
+        "three bounds",
+        "derived min/max blocks",
+        "yes, accepted observed formula",
+        "return on restore",
+        "not needed for formula",
+        "yes",
+        "must update; complete writable contract candidate_only"
+      ],
+      [
+        "CZone opaque",
+        "unknown, distinct profile",
+        "not pure final-geometry function across C/D; B Z association only",
+        "not observed in C restore; B Z/history confounded",
+        "candidate: C/D differ",
+        "yes",
+        "unresolved"
+      ],
+      [
+        "CCourbe opaque",
+        "unknown edit/lineage-variable candidate",
+        "not pure final geometry (same-C counterexample)",
+        "candidate: M00_ER differs",
+        "candidate: C/D differ",
+        "yes",
+        "unresolved"
+      ],
+      [
+        "CContour opaque",
+        "unknown edit/lineage-variable candidate",
+        "not pure final geometry (same-C counterexample)",
+        "candidate: M00_ER differs",
+        "candidate: C/D differ",
+        "yes",
+        "unresolved"
+      ],
+      [
+        "record0 tag",
+        "low 0D; upper uninterpreted",
+        "no B edit variation; cross-context variation not a geometry rule",
+        "not observed for B/ER",
+        "C/D same; earlier cross-object differences confounded",
+        "yes",
+        "low candidate_only; upper unresolved"
+      ],
+      [
+        "record1 tag",
+        "low 0D; upper uninterpreted",
+        "no B edit variation; same geometry C/D differs",
+        "not observed for B/ER",
+        "candidate: C/D high bytes differ",
+        "yes",
+        "low candidate_only; upper unresolved"
+      ],
+      [
+        "property/tail",
+        "opaque stable retained region",
+        "variation not observed",
+        "variation not observed",
+        "variation not observed",
+        "yes",
+        "candidate_only; extent/semantics unresolved"
+      ],
+      [
+        "Version",
+        "32-byte uninterpreted format",
+        "variation not observed",
+        "variation not observed",
+        "variation not observed",
+        "yes",
+        "candidate_only; no regenerated version"
+      ],
+      [
+        "other unchanged bytes",
+        "prefix/descriptors/w/unknown metadata",
+        "not established",
+        "not established",
+        "not established",
+        "yes",
+        "candidate_only for fixed framing/w; unknown metadata unresolved"
+      ]
+    ]
+  },
+  "mutation_reasoning": {
+    "safe_candidate": [
+      "Resolved endpoint order/xyz and observed min/max fields identify a narrow proposed edit set.",
+      "Exact replay and R2 preserve the complete existing M00 state; immediate exact-state coexistence observed.",
+      "B tags/w and property/tail/Version remain stable through observed edits."
+    ],
+    "unsafe_candidate": [
+      "A proposed different-geometry/old-M00-metadata combination is unobserved; replay has not tested stale metadata.",
+      "Vendor edits change CCourbe/CContour even after restoration, so simply carrying them forward differs from observed edit lifecycle.",
+      "CZone change at whole-object Z step cautions against treating every opaque window as a fixed lineage marker."
+    ],
+    "unknown": [
+      "No demonstrated rejection of stale metadata; cannot label preservation proven unsafe/unsupported.",
+      "No exact field meanings, references or complete Serialize extent.",
+      "No evidence that the three bounds exhaust derived state; unknown bytes may encode dependencies.",
+      "One tested family/session context cannot establish general version/property/tag safety."
+    ]
+  },
+  "tail": {
+    "start": 554,
+    "end_exclusive": 8192,
+    "length": 7638,
+    "all_16_equal": true,
+    "sha256_by_sample": {
+      "L00": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "L00_N": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "L01": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "L02": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "L04": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "LY0": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "LZ": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_R1": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_R2": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_ER": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_N": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "D00": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "replay": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "R2_first": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "R2_second": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947"
+    },
+    "semantic_status": "opaque stable region; not safe empty extension"
+  },
+  "trailing_zeros": {
+    "common_start": 704,
+    "end_exclusive": 8192,
+    "semantic_length": "unresolved; preserve exact captured capacity, do not regenerate padding"
+  },
+  "Version": {
+    "all_equal": true,
+    "status": "version_payload_variation_not_observed_in_tested_family",
+    "sha256_by_sample": {
+      "L00": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "L00_N": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "L01": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "L02": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "L04": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "LY0": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "LZ": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "M00": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "M00_R1": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "M00_R2": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "M00_ER": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "M00_N": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "D00": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "replay": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "R2_first": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "R2_second": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    }
+  },
+  "tags": {
+    "low_0D_all_records_all_samples": true,
+    "B_tags_stable": true,
+    "M00_to_N_record0_high_equal": true,
+    "M00_to_N_record1_high_equal": false
+  },
+  "excluded_data": "Compromised L00_R and user-withdrawn duplicate trial are not used. Historical integrity inventory may list other files but they are not analysis samples.",
+  "next_task": "Perform one bounded vendor-generated edit comparison to determine whether TypeEdit accepts stale opaque metadata after geometry changes before any synthetic mutator is built.",
+  "next_task_limit": "Recommendation only. A vendor-generated comparison alone can reveal state changes, not prove stale-state acceptance without a separately specified and authorized intervention. No such intervention is performed here."
+}

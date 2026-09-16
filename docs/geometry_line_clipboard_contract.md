@@ -540,3 +540,48 @@ Full Serialize extent, property/tail semantics, opaque-field preservation and co
 Recommended next task only:
 
 Reassess whether the observed opaque metadata can be safely carried through a minimal coordinate-template mutation now that endpoint ordering is resolved; do not generate or paste a synthetic payload yet.
+## 17. Static reassessment: preserving M00 opaque state during coordinate mutation
+
+**Current decision: `opaque_fields_preservation_for_template_mutation = unresolved`.** Resolved endpoint order does not establish safety of a new geometry combined with M00's old opaque state. See the [full reassessment](../research/geometry-line/opaque_template_preservation_reassessment.md), [machine-readable evidence](../research/geometry-line/opaque_template_preservation_reassessment.json), [file-only analyzer](../research/geometry-line/analyze_opaque_template_preservation.py), [baseline](../research/geometry-line/opaque_template_preservation_baseline.json) and [integrity](../research/geometry-line/opaque_template_preservation_integrity.json).
+
+The stored-file audit used 16 relevant samples: L00, B baseline L00_N and L01/L02/L04/LY0/LZ, five M00 micro-corpus samples, D00, initial exact replay and both R2 captures. Compromised L00_R and withdrawn duplicate evidence were not used. B variants were compared against L00_N, not A/L00. Repeated B copies, L01's prior move/Undo, restoration history and unknown settings remain limitations; endpoint resolution does not repair their historical provenance.
+
+| B sample vs L00_N | Endpoint changed bytes | Bounds changed bytes | Opaque changed bytes | Tags | Unknown |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| L01 | 1 | 3 | 32 | 0 | 0 |
+| L02 | 8 | 24 | 32 | 0 | 0 |
+| L04 | 8 | 24 | 31 | 0 | 0 |
+| LY0 | 8 | 24 | 32 | 0 | 0 |
+| LZ | 16 | 48 | 48 | 0 | 0 |
+
+CZone [93,109) is unchanged through the sampled XY edits and changes at the whole-object Z translation sample LZ. This cannot distinguish Z dependence from operation/history dependence. CCourbe [252,268) and CContour [412,428) change at every saved B edit/restoration stage, including XY and Z. Both tag u32 values remain constant across all B samples. Low bytes remain 0x0D across all 16 samples; record1 upper bytes differ for C versus independently created D, while record0 upper bytes do not in that controlled contrast. Cross-context tag differences do not establish a semantic lineage key.
+
+**Opaque metadata is not a pure function of final geometry.** Same C, byte-identical final endpoints and bounds, but M00_ER differs from M00 in CCourbe/CContour windows. This rules out geometry alone for that metadata vector; geometry plus edit/history/context remains possible. Same-geometry C/D differences also prevent interpreting CZone and record1 high bytes as geometry-only values. The reassessment records equal-feature/different-byte counterexamples for start, end, bounds, length, orientation and translation-invariant displacement; it fits no functions and performs no checksum/hash search.
+
+Exact replay and R2 establish acceptance and preservation of an already self-consistent state. They do not test stale metadata after coordinate mutation. No saved different-geometry sample has M00's entire 8000-byte non-allowlist complement unchanged. Thus new xyz + new bounds + unchanged M00 remainder has no vendor witness in this corpus. This is a scoped novelty statement, not a claim about a no-op edit or every unseen geometry.
+
+The hypothetical allowlist covers 192 bytes: six resolved xyz scalars and eighteen observed bounds scalars. Bounds min/max order and observed formula remain accepted; their writable status is candidate-only because a complete safe mutation contract, all derived dependencies and general rounding are not established. The JSON partitions every other TypeEditZone byte without gaps. Prefix/descriptors, record w, tag low bytes, stable property/tail and Version have candidate-only preservation support. Opaque windows, tag high bytes and remaining unknown/CObDao metadata remain unresolved. No byte writes are implemented.
+
+The complete CPropertyExtend descriptor-to-buffer-end region [554,8192) is byte-identical across all 16 samples, as is Version. The common all-zero suffix starts at 704. These are opaque stable retained regions, not an empty extension, proven padding extent or identity-free state. The full decision table and per-field/per-range preserve statuses are in the reassessment.
+
+```text
+opaque_metadata_pure_function_of_geometry = no
+opaque_metadata_replay_preservation = observed
+synthetic_state_novelty = true
+coordinate_patch_allowlist = partial
+opaque_fields_preservation_for_template_mutation = unresolved
+line_clipboard_synthesis_strategy = unresolved
+line_clipboard_runtime_readiness = missing_specific_contract
+line_record_order = creation_direction
+line_endpoint_fields = resolved
+line_derived_fields = partial
+line_identity_fields = unresolved
+```
+
+No rejection of stale-state mutation has been observed, so unsupported/unsafe is not established either. There are multiple unresolved contracts, not exactly one remaining runtime question. Endpoint resolution is retained independently. No synthesis, clipboard access, TypeEdit interaction, new capture, Paste or vendor/native investigation occurred.
+
+Recommended next task only:
+
+Perform one bounded vendor-generated edit comparison to determine whether TypeEdit accepts stale opaque metadata after geometry changes before any synthetic mutator is built.
+
+A vendor-generated comparison alone reveals state changes; proving acceptance of stale state would require a separately specified and authorized intervention. This recommendation performs or authorizes no such intervention here.

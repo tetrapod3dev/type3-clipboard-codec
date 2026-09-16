@@ -1,0 +1,205 @@
+{
+  "checked_at_utc": "2026-09-16T11:05:08.4269044Z",
+  "baseline_head": "034535c7adf6b2fde9842c6d6b74e7393c4f6a6e",
+  "baseline_file_count": 591,
+  "protected_unchanged_file_count": 590,
+  "historical_contract_prefix_preserved": true,
+  "exact_8192_byte_allowlist_preserve_partition": true,
+  "raw_checks": [
+    {
+      "sample": "L00",
+      "file": "typeeditzone.bin",
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L00",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L00_N",
+      "file": "typeeditzone.bin",
+      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L00_N",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L01",
+      "file": "typeeditzone.bin",
+      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L01",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L02",
+      "file": "typeeditzone.bin",
+      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L02",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L04",
+      "file": "typeeditzone.bin",
+      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6",
+      "matches_analysis": true
+    },
+    {
+      "sample": "L04",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "LY0",
+      "file": "typeeditzone.bin",
+      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0",
+      "matches_analysis": true
+    },
+    {
+      "sample": "LY0",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "LZ",
+      "file": "typeeditzone.bin",
+      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded",
+      "matches_analysis": true
+    },
+    {
+      "sample": "LZ",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_R1",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_R1",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_R2",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_R2",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_ER",
+      "file": "typeeditzone.bin",
+      "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_ER",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_N",
+      "file": "typeeditzone.bin",
+      "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95",
+      "matches_analysis": true
+    },
+    {
+      "sample": "M00_N",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "D00",
+      "file": "typeeditzone.bin",
+      "sha256": "3ef75c7606d49cf8bcff8cb5c208c28360018d7d592f85b87cdb6c89c40e6428",
+      "matches_analysis": true
+    },
+    {
+      "sample": "D00",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "replay",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "replay",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "R2_first",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "R2_first",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    },
+    {
+      "sample": "R2_second",
+      "file": "typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_analysis": true
+    },
+    {
+      "sample": "R2_second",
+      "file": "typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_analysis": true
+    }
+  ],
+  "no_clipboard_access": true,
+  "no_synthetic_payload_generated": true,
+  "git_diff_check": "passed"
+}
