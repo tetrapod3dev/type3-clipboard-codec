@@ -1,0 +1,1789 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T11:50:27.444250+00:00",
+  "stage": "completed",
+  "analysis_mode": "file_only_after_final_capture_verification",
+  "offset_convention": "zero-based absolute, end exclusive",
+  "static_evidence": "research/geometry-line/staleprobe2/static_verification.json",
+  "hashes": {
+    "E0": {
+      "TypeEditZone": "1025dbbb0cb5101992147a0fc21acccf3b0087e1fd44fc924855dedef0307a4b",
+      "TypeEditZoneVersion": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    "E1_vendor": {
+      "TypeEditZone": "cf7a071c69e30abb923462e197388f86ec469a37be838c614f967a96984eae9d",
+      "TypeEditZoneVersion": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    "postpaste": {
+      "TypeEditZone": "7b91e443c0927a3879ad2373bbd5f7457ba2f9f8362e87a9e5c10cd9a7f7f574",
+      "TypeEditZoneVersion": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    "STALE2": {
+      "TypeEditZone": "7b91e443c0927a3879ad2373bbd5f7457ba2f9f8362e87a9e5c10cd9a7f7f574",
+      "TypeEditZoneVersion": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    }
+  },
+  "structures": {
+    "E0": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "E1_vendor": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "postpaste": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "STALE2": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    }
+  },
+  "structure_retained": true,
+  "geometry_fields": [
+    {
+      "name": "record0.xyz",
+      "start": 482,
+      "length": 24,
+      "stored": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          0.015,
+          -0.005,
+          0.0
+        ],
+        "postpaste": [
+          0.015,
+          -0.005,
+          0.0
+        ],
+        "STALE2": [
+          0.015,
+          -0.005,
+          0.0
+        ]
+      },
+      "mm": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          15.0,
+          -5.0,
+          0.0
+        ],
+        "postpaste": [
+          15.0,
+          -5.0,
+          0.0
+        ],
+        "STALE2": [
+          15.0,
+          -5.0,
+          0.0
+        ]
+      },
+      "postpaste_expected": true,
+      "postpaste_byte_equal_E1": true
+    },
+    {
+      "name": "record1.xyz",
+      "start": 518,
+      "length": 24,
+      "stored": {
+        "E0": [
+          0.01,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -0.01,
+          0.012,
+          0.0
+        ],
+        "postpaste": [
+          -0.01,
+          0.012,
+          0.0
+        ],
+        "STALE2": [
+          -0.01,
+          0.012,
+          0.0
+        ]
+      },
+      "mm": {
+        "E0": [
+          10.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -10.0,
+          12.0,
+          0.0
+        ],
+        "postpaste": [
+          -10.0,
+          12.0,
+          0.0
+        ],
+        "STALE2": [
+          -10.0,
+          12.0,
+          0.0
+        ]
+      },
+      "postpaste_expected": true,
+      "postpaste_byte_equal_E1": true
+    },
+    {
+      "name": "CZone.bounds",
+      "start": 17,
+      "length": 48,
+      "stored": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "postpaste": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "STALE2": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ]
+      },
+      "mm": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "postpaste": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "STALE2": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ]
+      },
+      "postpaste_expected": true,
+      "postpaste_byte_equal_E1": true
+    },
+    {
+      "name": "CCourbe.bounds",
+      "start": 176,
+      "length": 48,
+      "stored": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "postpaste": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "STALE2": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ]
+      },
+      "mm": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "postpaste": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "STALE2": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ]
+      },
+      "postpaste_expected": true,
+      "postpaste_byte_equal_E1": true
+    },
+    {
+      "name": "CContour.bounds",
+      "start": 336,
+      "length": 48,
+      "stored": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "postpaste": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ],
+        "STALE2": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.015,
+          0.012,
+          0.0
+        ]
+      },
+      "mm": {
+        "E0": [
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          0.0,
+          0.0
+        ],
+        "E1_vendor": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "postpaste": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ],
+        "STALE2": [
+          -10.0,
+          -5.0,
+          0.0,
+          15.0,
+          12.0,
+          0.0
+        ]
+      },
+      "postpaste_expected": true,
+      "postpaste_byte_equal_E1": true
+    }
+  ],
+  "bounds_sources": {
+    "min_x": "END",
+    "max_x": "START",
+    "min_y": "START",
+    "max_y": "END"
+  },
+  "vendor_edit_diff": {
+    "equal": false,
+    "source_size": 8192,
+    "postpaste_size": 8192,
+    "changed_byte_count": 150,
+    "exact_changed_offsets": [
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      336,
+      337,
+      338,
+      339,
+      340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      368,
+      369,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      490,
+      491,
+      492,
+      493,
+      494,
+      495,
+      496,
+      497,
+      525,
+      526,
+      527,
+      528,
+      529,
+      530,
+      531,
+      532,
+      533
+    ],
+    "ranges": [
+      {
+        "start": 17,
+        "end_exclusive": 33,
+        "length": 16,
+        "source_hex": "00000000000000000000000000000000",
+        "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+      },
+      {
+        "start": 41,
+        "end_exclusive": 48,
+        "length": 7,
+        "source_hex": "7b14ae47e17a84",
+        "postpaste_hex": "b81e85eb51b88e"
+      },
+      {
+        "start": 49,
+        "end_exclusive": 57,
+        "length": 8,
+        "source_hex": "0000000000000000",
+        "postpaste_hex": "fa7e6abc7493883f"
+      },
+      {
+        "start": 176,
+        "end_exclusive": 192,
+        "length": 16,
+        "source_hex": "00000000000000000000000000000000",
+        "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+      },
+      {
+        "start": 200,
+        "end_exclusive": 207,
+        "length": 7,
+        "source_hex": "7b14ae47e17a84",
+        "postpaste_hex": "b81e85eb51b88e"
+      },
+      {
+        "start": 208,
+        "end_exclusive": 216,
+        "length": 8,
+        "source_hex": "0000000000000000",
+        "postpaste_hex": "fa7e6abc7493883f"
+      },
+      {
+        "start": 252,
+        "end_exclusive": 268,
+        "length": 16,
+        "source_hex": "57af0e6f4f087c409f4092b9e04ac203",
+        "postpaste_hex": "ee664f42b0d49f4cb77b31b82459043b"
+      },
+      {
+        "start": 336,
+        "end_exclusive": 352,
+        "length": 16,
+        "source_hex": "00000000000000000000000000000000",
+        "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+      },
+      {
+        "start": 360,
+        "end_exclusive": 367,
+        "length": 7,
+        "source_hex": "7b14ae47e17a84",
+        "postpaste_hex": "b81e85eb51b88e"
+      },
+      {
+        "start": 368,
+        "end_exclusive": 376,
+        "length": 8,
+        "source_hex": "0000000000000000",
+        "postpaste_hex": "fa7e6abc7493883f"
+      },
+      {
+        "start": 412,
+        "end_exclusive": 428,
+        "length": 16,
+        "source_hex": "0d558fa90c206b45a5b1fef61c61a181",
+        "postpaste_hex": "93513bcaaa2cb649a85e20acc92f8bc8"
+      },
+      {
+        "start": 482,
+        "end_exclusive": 498,
+        "length": 16,
+        "source_hex": "00000000000000000000000000000000",
+        "postpaste_hex": "b81e85eb51b88e3f7b14ae47e17a74bf"
+      },
+      {
+        "start": 525,
+        "end_exclusive": 534,
+        "length": 9,
+        "source_hex": "3f0000000000000000",
+        "postpaste_hex": "bffa7e6abc7493883f"
+      }
+    ]
+  },
+  "vendor_difference_partition": [
+    {
+      "region": "record0.x",
+      "start": 482,
+      "end_exclusive": 490,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "b81e85eb51b88e3f",
+      "exact_changed_offsets": [
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489
+      ]
+    },
+    {
+      "region": "record0.y",
+      "start": 490,
+      "end_exclusive": 498,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a74bf",
+      "exact_changed_offsets": [
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497
+      ]
+    },
+    {
+      "region": "record1.x",
+      "start": 518,
+      "end_exclusive": 526,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a84bf",
+      "exact_changed_offsets": [
+        525
+      ]
+    },
+    {
+      "region": "record1.y",
+      "start": 526,
+      "end_exclusive": 534,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "fa7e6abc7493883f",
+      "exact_changed_offsets": [
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533
+      ]
+    },
+    {
+      "region": "CZone.min_x",
+      "start": 17,
+      "end_exclusive": 25,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a84bf",
+      "exact_changed_offsets": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    },
+    {
+      "region": "CZone.min_y",
+      "start": 25,
+      "end_exclusive": 33,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a74bf",
+      "exact_changed_offsets": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    },
+    {
+      "region": "CZone.max_x",
+      "start": 41,
+      "end_exclusive": 49,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "b81e85eb51b88e3f",
+      "exact_changed_offsets": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
+    },
+    {
+      "region": "CZone.max_y",
+      "start": 49,
+      "end_exclusive": 57,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "fa7e6abc7493883f",
+      "exact_changed_offsets": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "region": "CCourbe.min_x",
+      "start": 176,
+      "end_exclusive": 184,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a84bf",
+      "exact_changed_offsets": [
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183
+      ]
+    },
+    {
+      "region": "CCourbe.min_y",
+      "start": 184,
+      "end_exclusive": 192,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a74bf",
+      "exact_changed_offsets": [
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ]
+    },
+    {
+      "region": "CCourbe.max_x",
+      "start": 200,
+      "end_exclusive": 208,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "b81e85eb51b88e3f",
+      "exact_changed_offsets": [
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206
+      ]
+    },
+    {
+      "region": "CCourbe.max_y",
+      "start": 208,
+      "end_exclusive": 216,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "fa7e6abc7493883f",
+      "exact_changed_offsets": [
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    {
+      "region": "CContour.min_x",
+      "start": 336,
+      "end_exclusive": 344,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a84bf",
+      "exact_changed_offsets": [
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343
+      ]
+    },
+    {
+      "region": "CContour.min_y",
+      "start": 344,
+      "end_exclusive": 352,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "7b14ae47e17a74bf",
+      "exact_changed_offsets": [
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351
+      ]
+    },
+    {
+      "region": "CContour.max_x",
+      "start": 360,
+      "end_exclusive": 368,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "b81e85eb51b88e3f",
+      "exact_changed_offsets": [
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366
+      ]
+    },
+    {
+      "region": "CContour.max_y",
+      "start": 368,
+      "end_exclusive": 376,
+      "E0_hex": "0000000000000000",
+      "E1_hex": "fa7e6abc7493883f",
+      "exact_changed_offsets": [
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375
+      ]
+    },
+    {
+      "region": "CZone.opaque",
+      "start": 93,
+      "end_exclusive": 109,
+      "E0_hex": "fd8ca51026921147968d885dc6e44ae6",
+      "E1_hex": "fd8ca51026921147968d885dc6e44ae6",
+      "exact_changed_offsets": []
+    },
+    {
+      "region": "CCourbe.opaque",
+      "start": 252,
+      "end_exclusive": 268,
+      "E0_hex": "57af0e6f4f087c409f4092b9e04ac203",
+      "E1_hex": "ee664f42b0d49f4cb77b31b82459043b",
+      "exact_changed_offsets": [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267
+      ]
+    },
+    {
+      "region": "CContour.opaque",
+      "start": 412,
+      "end_exclusive": 428,
+      "E0_hex": "0d558fa90c206b45a5b1fef61c61a181",
+      "E1_hex": "93513bcaaa2cb649a85e20acc92f8bc8",
+      "exact_changed_offsets": [
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427
+      ]
+    },
+    {
+      "region": "record0.tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "E0_hex": "0d6c723a",
+      "E1_hex": "0d6c723a",
+      "exact_changed_offsets": []
+    },
+    {
+      "region": "record1.tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "E0_hex": "0d484e5f",
+      "E1_hex": "0d484e5f",
+      "exact_changed_offsets": []
+    }
+  ],
+  "patch_fields": [
+    {
+      "name": "record0.x",
+      "start": 482,
+      "end_exclusive": 490,
+      "E1_hex": "b81e85eb51b88e3f"
+    },
+    {
+      "name": "record0.y",
+      "start": 490,
+      "end_exclusive": 498,
+      "E1_hex": "7b14ae47e17a74bf"
+    },
+    {
+      "name": "record1.x",
+      "start": 518,
+      "end_exclusive": 526,
+      "E1_hex": "7b14ae47e17a84bf"
+    },
+    {
+      "name": "record1.y",
+      "start": 526,
+      "end_exclusive": 534,
+      "E1_hex": "fa7e6abc7493883f"
+    },
+    {
+      "name": "CZone.min_x",
+      "start": 17,
+      "end_exclusive": 25,
+      "E1_hex": "7b14ae47e17a84bf"
+    },
+    {
+      "name": "CZone.min_y",
+      "start": 25,
+      "end_exclusive": 33,
+      "E1_hex": "7b14ae47e17a74bf"
+    },
+    {
+      "name": "CZone.max_x",
+      "start": 41,
+      "end_exclusive": 49,
+      "E1_hex": "b81e85eb51b88e3f"
+    },
+    {
+      "name": "CZone.max_y",
+      "start": 49,
+      "end_exclusive": 57,
+      "E1_hex": "fa7e6abc7493883f"
+    },
+    {
+      "name": "CCourbe.min_x",
+      "start": 176,
+      "end_exclusive": 184,
+      "E1_hex": "7b14ae47e17a84bf"
+    },
+    {
+      "name": "CCourbe.min_y",
+      "start": 184,
+      "end_exclusive": 192,
+      "E1_hex": "7b14ae47e17a74bf"
+    },
+    {
+      "name": "CCourbe.max_x",
+      "start": 200,
+      "end_exclusive": 208,
+      "E1_hex": "b81e85eb51b88e3f"
+    },
+    {
+      "name": "CCourbe.max_y",
+      "start": 208,
+      "end_exclusive": 216,
+      "E1_hex": "fa7e6abc7493883f"
+    },
+    {
+      "name": "CContour.min_x",
+      "start": 336,
+      "end_exclusive": 344,
+      "E1_hex": "7b14ae47e17a84bf"
+    },
+    {
+      "name": "CContour.min_y",
+      "start": 344,
+      "end_exclusive": 352,
+      "E1_hex": "7b14ae47e17a74bf"
+    },
+    {
+      "name": "CContour.max_x",
+      "start": 360,
+      "end_exclusive": 368,
+      "E1_hex": "b81e85eb51b88e3f"
+    },
+    {
+      "name": "CContour.max_y",
+      "start": 368,
+      "end_exclusive": 376,
+      "E1_hex": "fa7e6abc7493883f"
+    }
+  ],
+  "comparisons_to_postpaste": {
+    "E0": {
+      "TypeEditZone": {
+        "equal": false,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 118,
+        "exact_changed_offsets": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          336,
+          337,
+          338,
+          339,
+          340,
+          341,
+          342,
+          343,
+          344,
+          345,
+          346,
+          347,
+          348,
+          349,
+          350,
+          351,
+          360,
+          361,
+          362,
+          363,
+          364,
+          365,
+          366,
+          368,
+          369,
+          370,
+          371,
+          372,
+          373,
+          374,
+          375,
+          482,
+          483,
+          484,
+          485,
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496,
+          497,
+          525,
+          526,
+          527,
+          528,
+          529,
+          530,
+          531,
+          532,
+          533
+        ],
+        "ranges": [
+          {
+            "start": 17,
+            "end_exclusive": 33,
+            "length": 16,
+            "source_hex": "00000000000000000000000000000000",
+            "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+          },
+          {
+            "start": 41,
+            "end_exclusive": 48,
+            "length": 7,
+            "source_hex": "7b14ae47e17a84",
+            "postpaste_hex": "b81e85eb51b88e"
+          },
+          {
+            "start": 49,
+            "end_exclusive": 57,
+            "length": 8,
+            "source_hex": "0000000000000000",
+            "postpaste_hex": "fa7e6abc7493883f"
+          },
+          {
+            "start": 176,
+            "end_exclusive": 192,
+            "length": 16,
+            "source_hex": "00000000000000000000000000000000",
+            "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+          },
+          {
+            "start": 200,
+            "end_exclusive": 207,
+            "length": 7,
+            "source_hex": "7b14ae47e17a84",
+            "postpaste_hex": "b81e85eb51b88e"
+          },
+          {
+            "start": 208,
+            "end_exclusive": 216,
+            "length": 8,
+            "source_hex": "0000000000000000",
+            "postpaste_hex": "fa7e6abc7493883f"
+          },
+          {
+            "start": 336,
+            "end_exclusive": 352,
+            "length": 16,
+            "source_hex": "00000000000000000000000000000000",
+            "postpaste_hex": "7b14ae47e17a84bf7b14ae47e17a74bf"
+          },
+          {
+            "start": 360,
+            "end_exclusive": 367,
+            "length": 7,
+            "source_hex": "7b14ae47e17a84",
+            "postpaste_hex": "b81e85eb51b88e"
+          },
+          {
+            "start": 368,
+            "end_exclusive": 376,
+            "length": 8,
+            "source_hex": "0000000000000000",
+            "postpaste_hex": "fa7e6abc7493883f"
+          },
+          {
+            "start": 482,
+            "end_exclusive": 498,
+            "length": 16,
+            "source_hex": "00000000000000000000000000000000",
+            "postpaste_hex": "b81e85eb51b88e3f7b14ae47e17a74bf"
+          },
+          {
+            "start": 525,
+            "end_exclusive": 534,
+            "length": 9,
+            "source_hex": "3f0000000000000000",
+            "postpaste_hex": "bffa7e6abc7493883f"
+          }
+        ]
+      },
+      "TypeEditZoneVersion": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    },
+    "E1_vendor": {
+      "TypeEditZone": {
+        "equal": false,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 32,
+        "exact_changed_offsets": [
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          412,
+          413,
+          414,
+          415,
+          416,
+          417,
+          418,
+          419,
+          420,
+          421,
+          422,
+          423,
+          424,
+          425,
+          426,
+          427
+        ],
+        "ranges": [
+          {
+            "start": 252,
+            "end_exclusive": 268,
+            "length": 16,
+            "source_hex": "ee664f42b0d49f4cb77b31b82459043b",
+            "postpaste_hex": "57af0e6f4f087c409f4092b9e04ac203"
+          },
+          {
+            "start": 412,
+            "end_exclusive": 428,
+            "length": 16,
+            "source_hex": "93513bcaaa2cb649a85e20acc92f8bc8",
+            "postpaste_hex": "0d558fa90c206b45a5b1fef61c61a181"
+          }
+        ]
+      },
+      "TypeEditZoneVersion": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    },
+    "STALE2": {
+      "TypeEditZone": {
+        "equal": true,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      },
+      "TypeEditZoneVersion": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    }
+  },
+  "opaque_tags_and_tail": [
+    {
+      "name": "CZone.opaque",
+      "start": 93,
+      "end_exclusive": 109,
+      "hex": {
+        "E0": "fd8ca51026921147968d885dc6e44ae6",
+        "E1_vendor": "fd8ca51026921147968d885dc6e44ae6",
+        "postpaste": "fd8ca51026921147968d885dc6e44ae6",
+        "STALE2": "fd8ca51026921147968d885dc6e44ae6"
+      },
+      "sha256": {
+        "E0": "4b745b1652b7f5f6515398adb0c7037d20b5834a416b8bb43ad05c53218da7da",
+        "E1_vendor": "4b745b1652b7f5f6515398adb0c7037d20b5834a416b8bb43ad05c53218da7da",
+        "postpaste": "4b745b1652b7f5f6515398adb0c7037d20b5834a416b8bb43ad05c53218da7da",
+        "STALE2": "4b745b1652b7f5f6515398adb0c7037d20b5834a416b8bb43ad05c53218da7da"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": true,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [],
+        "STALE2": []
+      }
+    },
+    {
+      "name": "CCourbe.opaque",
+      "start": 252,
+      "end_exclusive": 268,
+      "hex": {
+        "E0": "57af0e6f4f087c409f4092b9e04ac203",
+        "E1_vendor": "ee664f42b0d49f4cb77b31b82459043b",
+        "postpaste": "57af0e6f4f087c409f4092b9e04ac203",
+        "STALE2": "57af0e6f4f087c409f4092b9e04ac203"
+      },
+      "sha256": {
+        "E0": "32ce84c40d3d7c25d1cbe7d184e511593e4ba0fab3e4c579d9f5dd8aec69df82",
+        "E1_vendor": "226dab2c859201988e9a948ddda4de2757d68c29f5698014fc7be6d569f46cc3",
+        "postpaste": "32ce84c40d3d7c25d1cbe7d184e511593e4ba0fab3e4c579d9f5dd8aec69df82",
+        "STALE2": "32ce84c40d3d7c25d1cbe7d184e511593e4ba0fab3e4c579d9f5dd8aec69df82"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": false,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267
+        ],
+        "STALE2": []
+      }
+    },
+    {
+      "name": "CContour.opaque",
+      "start": 412,
+      "end_exclusive": 428,
+      "hex": {
+        "E0": "0d558fa90c206b45a5b1fef61c61a181",
+        "E1_vendor": "93513bcaaa2cb649a85e20acc92f8bc8",
+        "postpaste": "0d558fa90c206b45a5b1fef61c61a181",
+        "STALE2": "0d558fa90c206b45a5b1fef61c61a181"
+      },
+      "sha256": {
+        "E0": "b1b772b47c22a90aa21f585da568302d64da6fc45724eb91f16c23bf71e248a6",
+        "E1_vendor": "07801c9f9dd66d2e786d34023316bcca6b0c462a3d65e1e7f363e543dcb7476a",
+        "postpaste": "b1b772b47c22a90aa21f585da568302d64da6fc45724eb91f16c23bf71e248a6",
+        "STALE2": "b1b772b47c22a90aa21f585da568302d64da6fc45724eb91f16c23bf71e248a6"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": false,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [
+          412,
+          413,
+          414,
+          415,
+          416,
+          417,
+          418,
+          419,
+          420,
+          421,
+          422,
+          423,
+          424,
+          425,
+          426,
+          427
+        ],
+        "STALE2": []
+      }
+    },
+    {
+      "name": "record0.tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "hex": {
+        "E0": "0d6c723a",
+        "E1_vendor": "0d6c723a",
+        "postpaste": "0d6c723a",
+        "STALE2": "0d6c723a"
+      },
+      "sha256": {
+        "E0": "baf721860ef3271a34a9597abece2657f7a21e575ef9db07125a355ead0249f3",
+        "E1_vendor": "baf721860ef3271a34a9597abece2657f7a21e575ef9db07125a355ead0249f3",
+        "postpaste": "baf721860ef3271a34a9597abece2657f7a21e575ef9db07125a355ead0249f3",
+        "STALE2": "baf721860ef3271a34a9597abece2657f7a21e575ef9db07125a355ead0249f3"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": true,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [],
+        "STALE2": []
+      }
+    },
+    {
+      "name": "record1.tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "hex": {
+        "E0": "0d484e5f",
+        "E1_vendor": "0d484e5f",
+        "postpaste": "0d484e5f",
+        "STALE2": "0d484e5f"
+      },
+      "sha256": {
+        "E0": "b2982703feba9efcb6346e2dfc48ba0852db1311213c250bcef649c07c977922",
+        "E1_vendor": "b2982703feba9efcb6346e2dfc48ba0852db1311213c250bcef649c07c977922",
+        "postpaste": "b2982703feba9efcb6346e2dfc48ba0852db1311213c250bcef649c07c977922",
+        "STALE2": "b2982703feba9efcb6346e2dfc48ba0852db1311213c250bcef649c07c977922"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": true,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [],
+        "STALE2": []
+      }
+    },
+    {
+      "name": "property_tail",
+      "start": 554,
+      "end_exclusive": 8192,
+      "hex": null,
+      "sha256": {
+        "E0": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+        "E1_vendor": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+        "postpaste": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+        "STALE2": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947"
+      },
+      "postpaste_equals": {
+        "E0": true,
+        "E1_vendor": true,
+        "STALE2": true
+      },
+      "exact_changed_offsets_vs_postpaste": {
+        "E0": [],
+        "E1_vendor": [],
+        "STALE2": []
+      }
+    }
+  ],
+  "record_tags": [
+    {
+      "record": 0,
+      "low_byte": {
+        "E0": "0d",
+        "E1_vendor": "0d",
+        "postpaste": "0d",
+        "STALE2": "0d"
+      },
+      "upper_three_bytes": {
+        "E0": "6c723a",
+        "E1_vendor": "6c723a",
+        "postpaste": "6c723a",
+        "STALE2": "6c723a"
+      }
+    },
+    {
+      "record": 1,
+      "low_byte": {
+        "E0": "0d",
+        "E1_vendor": "0d",
+        "postpaste": "0d",
+        "STALE2": "0d"
+      },
+      "upper_three_bytes": {
+        "E0": "484e5f",
+        "E1_vendor": "484e5f",
+        "postpaste": "484e5f",
+        "STALE2": "484e5f"
+      }
+    }
+  ],
+  "Version": {
+    "lengths": {
+      "E0": 32,
+      "E1_vendor": 32,
+      "postpaste": 32,
+      "STALE2": 32
+    },
+    "all_equal": true,
+    "hex": {
+      "E0": "0100000051020000000000000000000000000000000000000000000000000000",
+      "E1_vendor": "0100000051020000000000000000000000000000000000000000000000000000",
+      "postpaste": "0100000051020000000000000000000000000000000000000000000000000000",
+      "STALE2": "0100000051020000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "classifications": {
+    "broad2d_vendor_pair_valid": true,
+    "broad2d_stale_constructed": true,
+    "broad2d_geometry_matches_vendor_E1": true,
+    "broad2d_remainder_matches_E0": true,
+    "broad2d_stale_paste_acceptance": "accepted",
+    "broad2d_postpaste_reserialization": "identical_to_stale",
+    "broad2d_geometry_fidelity": "expected",
+    "stale_opaque_state_preservation_2d": "observed_in_mixed_xy_probe",
+    "broad2d_stale_opaque_state_normalization": "not_observed",
+    "opaque_fields_preservation_for_template_mutation": "strong_candidate",
+    "line_clipboard_synthesis_strategy": "template_mutation_candidate",
+    "line_2d_template_mutation_readiness": "ready_for_static_fail_closed_mutator_design",
+    "line_clipboard_runtime_readiness": "missing_specific_contract",
+    "line_identity_fields": "unresolved",
+    "line_record_order": "creation_direction",
+    "line_endpoint_fields": "resolved",
+    "line_derived_fields": "partial"
+  },
+  "runtime_observations": {
+    "paste_statement": "오류 없고 니가 말한 객체가 정확히 붙여넣어졌다. 붙여넣기 한번 했다.",
+    "copy_statement": "\"1 곡선 개체\", 붙여넣은 객체 선택되어 있음. COPY 1회 진행함. 다른 COPY없음.",
+    "paste_count": 1,
+    "error_reported": false,
+    "selection_ui": "1 곡선 개체",
+    "selected_count": 1,
+    "grouping": "not_grouped",
+    "grouping_basis": "Single curve selection reported in response to ungrouped single-object Copy instructions",
+    "automatic_selection": true,
+    "copy_count": 1,
+    "no_subsequent_copy": true,
+    "start": [
+      15,
+      -5,
+      0
+    ],
+    "end": [
+      -10,
+      12,
+      0
+    ],
+    "units": "mm",
+    "geometry_basis": "User confirmed requested geometry exactly",
+    "inspection_method": "not supplied",
+    "user_action_timestamp": null,
+    "recorded_at_utc": "2026-09-16T11:48:49.6148344Z"
+  },
+  "interpretation": "In this one mixed-XY transition, TypeEdit accepted and preserved E1 ordered endpoints and mixed min/max bounds with E0 opaque/non-patched remainder. Full postpaste serialization equals STALE2; vendor E1 opaque state was not restored.",
+  "readiness_scope": "Static fail-closed design only; observed single-line schema/layout; unchanged Z=0; mm-tested convention. Not arbitrary generated-line Paste authorization or full XYZ readiness.",
+  "rationale": "Prior END.x-only and current mixed-XY probes both preserved intentionally stale remainder. This strengthens a restricted template-mutation candidate but does not resolve all framing, derived-field or identity semantics.",
+  "limitations": [
+    "Only one mixed-XY vendor pair and one STALE2 Paste.",
+    "No Z mutation tested.",
+    "Property/tail remains opaque; full Serialize extent and derived-field completeness remain unresolved.",
+    "No GUID, object ID, timestamp or checksum semantics inferred.",
+    "CLI object count records human intent, not independently measured document totals.",
+    "User reported automatic single-curve selection and expected geometry; inspection method not specified."
+  ],
+  "integrity": {
+    "baseline_files_checked": 632,
+    "protected_prior_artifacts_unchanged": true,
+    "original_contract_prefix_preserved": true,
+    "raw_hashes_and_loaded_readback_verified": true
+  },
+  "stop": {
+    "capture_count": 3,
+    "candidate_count": 1,
+    "clipboard_load_count": 1,
+    "human_paste_count": 1,
+    "clipboard_access": "closed",
+    "further_runtime_actions": false
+  },
+  "next_task": "Design a static fail-closed 2D single-line template mutator restricted to the observed schema/layout and Z=0; do not paste generated arbitrary lines yet."
+}

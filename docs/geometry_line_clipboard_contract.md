@@ -626,3 +626,56 @@ Current classifications (supersede the pending-runtime status in section 18):
 This directly establishes acceptance and preservation of new geometry plus old opaque remainder for this single END.x 10-to-20 mm transition in the observed family. It does not establish arbitrary coordinate mutation safety or production readiness. Endpoint ordering remains creation_direction / resolved; derived-field completeness, full Serialize extent and property/tail semantics remain separate open contracts.
 
 Final machine-readable evidence is in research/geometry-line/stale_opaque_probe_results.json and stale_opaque_probe_manifest.json. Exact byte offsets, all opaque/tag comparisons and full Version comparisons are retained. Prior artifacts remain unchanged; this document retains its original baseline prefix. The experiment is complete: three captures, one generated candidate, one load and one human Paste. No further runtime action is part of this task.
+
+## 19. Bounded mixed-XY stale probe — static stage
+
+A fresh F baseline (0,0,0) to (10,0,0) mm and same-object vendor edit START (15,-5,0), END (-10,12,0) mm were each captured once and immediately verified. The user reported vertex movements: START right 15/down 5 mm; END left 20/up 12 mm, with direction/coordinates confirmed, ungrouped and Copy once without another Copy. Selection count 1 is human-intent metadata confirmed in response to the single-F instructions, not a CLI-derived document count.
+
+Both captures retain the observed schemas, offsets, two 36-byte records, 8192-byte buffer and identical 32-byte Version. Record0 is START and record1 END. All three bounds are min (-10,-5,0), max (15,12,0) mm: X min/max come from END/START, while Y min/max come from START/END. Z fields and [554,8192) remain byte-identical.
+
+Vendor E0-to-E1 changes comprise 118 bytes inside the fixed sixteen XY endpoint/bounds fields and 32 bytes in CCourbe [252,268) and CContour [412,428). No other bytes change. Exactly one STALE2 candidate copied the complete sixteen eight-byte E1 slices (128 transferred bytes) into E0. Candidate SHA256: 7b91e443c0927a3879ad2373bbd5f7457ba2f9f8362e87a9e5c10cd9a7f7f574. STALE2 differs from E0 only in the approved fields, and from E1 only in those two opaque windows. All remaining bytes, including tags, w, CZone window, Z, tail and Version, retain E0.
+
+    broad2d_vendor_pair_valid = true
+    broad2d_stale_constructed = true
+    broad2d_geometry_matches_vendor_E1 = true
+    broad2d_remainder_matches_E0 = true
+
+Status: awaiting explicit clipboard-overwrite approval and disposable blank target confirmation. No STALE2 load or Paste has occurred. Runtime acceptance/fidelity remain unresolved, reserialization unavailable. General preservation remains candidate_only; synthesis remains template_mutation_candidate; full runtime readiness remains missing_specific_contract. Narrow 2D readiness is unresolved pending this experiment.
+
+Evidence: research/geometry-line/stale_opaque_probe_2d_manifest.json, stale_opaque_probe_2d_results.json, and staleprobe2/static_verification.json. The builder is tied to exact E0/E1/output hashes and fixed sixteen field ranges, with no geometry arguments. All 632 baseline artifacts were verified unchanged before this document append.
+
+### 19.1 Completed mixed-XY runtime result
+
+The user confirmed a new document on layer 1 and explicitly approved clipboard replacement. The existing loader loaded STALE2 and unchanged E0 Version exactly once. Immediate readback proved byte-for-byte equality (8192 / 32 bytes, registered IDs 49863 / 49864). The user reported one Paste, no error, exact requested geometry, and automatic selection displaying "1 곡선 개체"; Copy once followed without another Copy.
+
+The final geometry_line_staleprobe2_postpaste capture passed immediate verify-bundle for both formats. Clipboard access then ended. File-only analysis proves:
+- Full TypeEditZone equals STALE2, SHA256 7b91e443c0927a3879ad2373bbd5f7457ba2f9f8362e87a9e5c10cd9a7f7f574.
+- Full Version equals E0/E1/STALE2, SHA256 33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f.
+- Same schemas/layout; record0 START (15,-5,0), record1 END (-10,12,0) mm.
+- All three bounds are min (-10,-5,0), max (15,12,0) mm. Endpoint order and mixed bounds sources remain distinct.
+- Postpaste differs from E0 at 118 bytes, all inside the sixteen authorized XY fields.
+- Postpaste differs from vendor E1 only at [252,268) and [412,428), retaining E0 opaque state.
+- CZone window, both tags, record w, all Z fields, property/tail [554,8192), Version and the complete remaining payload retain E0. No metadata normalization was observed.
+
+Final classifications supersede the pending-runtime status above:
+
+    broad2d_vendor_pair_valid = true
+    broad2d_stale_constructed = true
+    broad2d_geometry_matches_vendor_E1 = true
+    broad2d_remainder_matches_E0 = true
+    broad2d_stale_paste_acceptance = accepted
+    broad2d_postpaste_reserialization = identical_to_stale
+    broad2d_geometry_fidelity = expected
+    stale_opaque_state_preservation_2d = observed_in_mixed_xy_probe
+    opaque_fields_preservation_for_template_mutation = strong_candidate
+    line_clipboard_synthesis_strategy = template_mutation_candidate
+    line_2d_template_mutation_readiness = ready_for_static_fail_closed_mutator_design
+    line_clipboard_runtime_readiness = missing_specific_contract
+
+The earlier END.x-only probe and this mixed-XY probe directly support a stronger restricted candidate. Readiness here means static design only for the observed single-line schema/layout, unchanged Z=0 and mm-tested convention. It does not establish arbitrary 3D safety or authorize arbitrary generated-line Paste. Full Serialize extent, remaining derived-field completeness, property/tail semantics and identity-field meaning remain unresolved. No GUID/object-ID semantics are assigned.
+
+Final results and complete raw diff evidence are in research/geometry-line/stale_opaque_probe_2d_results.json; provenance is in stale_opaque_probe_2d_manifest.json. The original 632 baseline files are unchanged except this authorized contract append; its original prefix is preserved. The bounded experiment ended after three captures, one candidate, one load and one human Paste.
+
+Next task recommendation only:
+
+Design a static fail-closed 2D single-line template mutator restricted to the observed schema/layout and Z=0; do not paste generated arbitrary lines yet.

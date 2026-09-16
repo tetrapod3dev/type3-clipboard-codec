@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-16T11:39:39.369870+00:00",
+  "description": "Same F vertex edit: START right 15 down 5 mm; END left 20 up 12 mm. Confirmed START 15,-5,0 END -10,12,0 mm; one selected ungrouped F per instruction; Copy once no subsequent Copy.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_staleprobe2_E1_vendor.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_staleprobe2_E1_vendor",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}
