@@ -1,0 +1,14 @@
+{
+  "started_at_utc": "2026-09-16T08:38:59.1999542Z",
+  "completed_at_utc": "2026-09-16T08:38:59.4924424Z",
+  "exit_code": 0,
+  "both_formats_equal": true,
+  "output": [
+    "typeeditzone_match=true",
+    "typeeditzone_expected_length=8192",
+    "typeeditzone_actual_length=8192",
+    "typeeditzone_version_match=true",
+    "typeeditzone_version_expected_length=32",
+    "typeeditzone_version_actual_length=32"
+  ]
+}

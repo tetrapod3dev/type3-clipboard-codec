@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T09:03:49.403575+00:00",
+  "analysis_mode": "file_only_after_second_capture_and_verification",
+  "samples": {
+    "source": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+      "zone_size": 8192,
+      "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "structure": {
+        "descriptors": [
+          {
+            "name": "CZone",
+            "schema": 1,
+            "offset": 6
+          },
+          {
+            "name": "CCourbe",
+            "schema": 1,
+            "offset": 163
+          },
+          {
+            "name": "CContour",
+            "schema": 2,
+            "offset": 322
+          },
+          {
+            "name": "CPropertyExtend",
+            "schema": 5,
+            "offset": 554
+          }
+        ],
+        "expected_schema_family": true,
+        "kind_candidate": 0,
+        "point_count_candidate": 2,
+        "record_start": 482,
+        "record_stride": 36,
+        "record_count": 2,
+        "two_record_layout_retained": true
+      }
+    },
+    "preexisting": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00",
+      "zone_size": 8192,
+      "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "structure": {
+        "descriptors": [
+          {
+            "name": "CZone",
+            "schema": 1,
+            "offset": 6
+          },
+          {
+            "name": "CCourbe",
+            "schema": 1,
+            "offset": 163
+          },
+          {
+            "name": "CContour",
+            "schema": 2,
+            "offset": 322
+          },
+          {
+            "name": "CPropertyExtend",
+            "schema": 5,
+            "offset": 554
+          }
+        ],
+        "expected_schema_family": true,
+        "kind_candidate": 0,
+        "point_count_candidate": 2,
+        "record_start": 482,
+        "record_stride": 36,
+        "record_count": 2,
+        "two_record_layout_retained": true
+      }
+    },
+    "second": {
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00",
+      "zone_size": 8192,
+      "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "structure": {
+        "descriptors": [
+          {
+            "name": "CZone",
+            "schema": 1,
+            "offset": 6
+          },
+          {
+            "name": "CCourbe",
+            "schema": 1,
+            "offset": 163
+          },
+          {
+            "name": "CContour",
+            "schema": 2,
+            "offset": 322
+          },
+          {
+            "name": "CPropertyExtend",
+            "schema": 5,
+            "offset": 554
+          }
+        ],
+        "expected_schema_family": true,
+        "kind_candidate": 0,
+        "point_count_candidate": 2,
+        "record_start": 482,
+        "record_stride": 36,
+        "record_count": 2,
+        "two_record_layout_retained": true
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "base": "source",
+      "sample": "preexisting",
+      "typeeditzone": {
+        "equal": true,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      },
+      "version": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    },
+    {
+      "base": "source",
+      "sample": "second",
+      "typeeditzone": {
+        "equal": true,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      },
+      "version": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    },
+    {
+      "base": "preexisting",
+      "sample": "second",
+      "typeeditzone": {
+        "equal": true,
+        "source_size": 8192,
+        "postpaste_size": 8192,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      },
+      "version": {
+        "equal": true,
+        "source_size": 32,
+        "postpaste_size": 32,
+        "changed_byte_count": 0,
+        "exact_changed_offsets": [],
+        "ranges": []
+      }
+    }
+  ],
+  "structure_retained": true,
+  "geometry": [
+    {
+      "name": "record0.xyz",
+      "start": 482,
+      "length": 24,
+      "equal": true,
+      "source_values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "second_values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "record1.xyz",
+      "start": 518,
+      "length": 24,
+      "equal": true,
+      "source_values": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "second_values": [
+        0.01,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CZone.bounds",
+      "start": 17,
+      "length": 48,
+      "equal": true,
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "second_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CCourbe.bounds",
+      "start": 176,
+      "length": 48,
+      "equal": true,
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "second_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CContour.bounds",
+      "start": 336,
+      "length": 48,
+      "equal": true,
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "second_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "known_opaque_regions_and_tags": [
+    {
+      "name": "CZone.window",
+      "start": 93,
+      "end_exclusive": 109,
+      "source_hex": "929ceb038750da4399b8c53ff7a3dbbc",
+      "second_hex": "929ceb038750da4399b8c53ff7a3dbbc",
+      "equal": true,
+      "exact_changed_offsets": []
+    },
+    {
+      "name": "CCourbe.window",
+      "start": 252,
+      "end_exclusive": 268,
+      "source_hex": "b424916574d78e4bbb910724d6c7ddd3",
+      "second_hex": "b424916574d78e4bbb910724d6c7ddd3",
+      "equal": true,
+      "exact_changed_offsets": []
+    },
+    {
+      "name": "CContour.window",
+      "start": 412,
+      "end_exclusive": 428,
+      "source_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+      "second_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+      "equal": true,
+      "exact_changed_offsets": []
+    },
+    {
+      "name": "record0.tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "source_hex": "0d444643",
+      "second_hex": "0d444643",
+      "equal": true,
+      "exact_changed_offsets": []
+    },
+    {
+      "name": "record1.tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "source_hex": "0d2c426f",
+      "second_hex": "0d2c426f",
+      "equal": true,
+      "exact_changed_offsets": []
+    }
+  ],
+  "changed_offsets_outside_known_regions": [],
+  "property_and_tail": {
+    "start": 554,
+    "end_exclusive": 8192,
+    "equal": true,
+    "source_sha256": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+    "second_sha256": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+    "semantic_extent": "unresolved; not asserted empty or identity-free"
+  },
+  "versions": {
+    "all_three_equal": true,
+    "hex_by_sample": {
+      "source": "0100000051020000000000000000000000000000000000000000000000000000",
+      "preexisting": "0100000051020000000000000000000000000000000000000000000000000000",
+      "second": "0100000051020000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "classifications": {
+    "duplicate_identity_replay": "accepted_merge_or_other",
+    "preexisting_object_exact_M00": true,
+    "duplicate_second_object_reserialization": "byte_identical_to_M00",
+    "duplicate_paste_opaque_rewrite": "not_observed",
+    "duplicate_exact_payload_coexistence": "unresolved",
+    "line_identity_fields": "unresolved",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "object_count_evidence": {
+    "statements": [
+      "3개라고 뜨네",
+      "기본 모드에서 선택했다. 그냥 전체 드래그 해서 선택을 했다. ctrl +a와 같은 전체 선택 기능은 없다.",
+      "3 영역에서의 다중 선택 이라고 뜨며 이 말은 3개의 객체가 있다는 말이다."
+    ],
+    "reported_count": 3,
+    "confirmed_count": 3,
+    "method": "human ordinary UI drag-selection object count",
+    "selection_mode": "basic object mode",
+    "exact_UI_label": "3 영역에서의 다중 선택",
+    "user_interpretation": "3 objects",
+    "observation_after_second_capture": true,
+    "unexpected_count": true,
+    "additional_clipboard_access": false,
+    "limit": "Two paste actions were previously reported. The origin and individual identities of the three selected regions are not established. No additional capture or paste performed to investigate."
+  },
+  "outcome_interpretation": "Other accepted outcome: three regions selected in basic mode after two reported pastes. No merge, replacement, third paste or source of the extra count is inferred. Exact M00 coexistence remains unresolved.",
+  "automatic_second_selection": {
+    "statements": [
+      "붙여넣기 한번 실행했다. 객체는 완전히 겹쳐있으니 일단 1개만 보인다. 그리고 붙여넣기 하면 붙여넣기 한 객체가 선택된 상태라서 현재 1개의 객체가 선택되어 있다고 뜬다. 아무런 오류는 없다.",
+      "현재 상태에서 아무런 조작을 하지 않고 copy 1회 완료 했다."
+    ],
+    "second_paste_count": 1,
+    "total_paste_count": 2,
+    "no_error_reported": true,
+    "visual_overlap": true,
+    "visible_line_shapes": 1,
+    "ui_selected_object_count": 1,
+    "automatic_paste_selection_preserved": true,
+    "total_document_object_count": null,
+    "no_intervening_manipulation_reported": true,
+    "copy_count": 1,
+    "grouping_note": "Capture requested as not_grouped; inherited single-line replay context and UI selected count 1; not independently restated after second paste",
+    "clipboard_interference_note": "No interference reported; user confirms Copy once without manipulation; equality alone does not prove absence of interference"
+  },
+  "first_object_after_second_paste": "Not individually reselected or serialized; unexpected total count does not establish the identities, origin or unchanged state of the selected objects.",
+  "limitations": [
+    "Opaque ranges are not identified GUID/object ID fields.",
+    "One document and one duplicate action; no general session/version/document guarantees.",
+    "Document units not explicitly confirmed; first pasted length/position confirmed by user.",
+    "No coordinate mutation or direction-disambiguation tested.",
+    "No third paste, object movement or edits to separate overlapping objects.",
+    "Capture/verify equality establishes raw preservation, not independent proof of human provenance."
+  ],
+  "synthesis_consequence": "Observed exact-payload coexistence, if UI count confirms two objects, lowers concern about necessary immediate collision but cannot establish opaque preservation safety under coordinate mutation.",
+  "integrity": {
+    "baseline_tracked_files": 556,
+    "all_preexisting_files_except_authorized_contract_unchanged": true,
+    "all_source_and_captured_hashes_verified": true
+  },
+  "next_task": "Perform one bounded file-and-provenance analysis of the unexpected three-region selection after the two reported pastes; do not paste again or modify payload bytes."
+}

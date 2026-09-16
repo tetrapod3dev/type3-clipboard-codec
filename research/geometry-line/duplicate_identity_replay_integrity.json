@@ -1,0 +1,42 @@
+{
+  "checked_at_utc": "2026-09-16T09:05:26.5156512Z",
+  "baseline_head": "e1937b3646645662428d6ca53fe2ede98c0f8d58",
+  "tracked_baseline_count": 556,
+  "unchanged_preexisting_files_except_contract": 555,
+  "historical_contract_prefix_preserved": true,
+  "protected_file_mismatches": [],
+  "raw_hash_checks": [
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_M00": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_M00": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_preexisting_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_M00": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_preexisting_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_M00": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_second_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_M00": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_second_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_M00": true
+    }
+  ],
+  "clipboard_access_after_second_capture": false,
+  "git_diff_check": "passed"
+}

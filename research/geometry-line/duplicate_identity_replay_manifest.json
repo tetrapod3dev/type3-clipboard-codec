@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "status": "complete_unexpected_count_classified",
+  "baseline": "research/geometry-line/duplicate_identity_replay_baseline.json",
+  "source_bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+  "source_validation": [
+    {
+      "file": "typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_expected": true
+    },
+    {
+      "file": "typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_expected": true
+    }
+  ],
+  "source_verified_at_utc": "2026-09-16T07:37:49.147541Z",
+  "human_preparation": {
+    "statement": "새로운 미저장 문서 열었다. 새롭게 열어서 아무런 객체없다. 중요한 작업 없다. 현재 레이어는 레이어 1이며 쓰면 된다. paste 준비 되었다.",
+    "new_blank_unsaved_document": true,
+    "no_objects": true,
+    "no_valuable_work": true,
+    "layer": "레이어 1",
+    "writable": true,
+    "ready_for_first_paste": true,
+    "units": null,
+    "units_note": "Not confirmed; no assumption"
+  },
+  "clipboard_overwrite_approval": {
+    "approved": true,
+    "statement": "동의함",
+    "scope": "Original M00 load and reload for this bounded experiment"
+  },
+  "clipboard_load_count": 2,
+  "human_paste_count": 2,
+  "preexisting_sample": "geometry_line_duplicate_preexisting_M00",
+  "second_sample": "geometry_line_duplicate_second_M00",
+  "preexisting_object_exact_M00": true,
+  "second_paste_gate": "Both preexisting raw formats must exactly equal original M00, then original M00 must be reloaded and verified",
+  "object_count_policy": "No count inference from no-error/visual overlap alone; preserve second automatic selection for capture; no movement for disambiguation",
+  "maximum_pastes": 2,
+  "payload_mutation_allowed": false,
+  "typeedit_automation_allowed": false,
+  "clipboard_access_started": true,
+  "first_load": {
+    "started_at_utc": "2026-09-16T07:53:16.9529068Z",
+    "completed_at_utc": "2026-09-16T07:53:17.0882822Z",
+    "exit_code": 0,
+    "source": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+    "output": [
+      "loaded_bytes=8192",
+      "loaded_version_bytes=32",
+      "dir=tests\\samples\\bundles\\geometry\\geometry_line_meta_M00"
+    ]
+  },
+  "first_load_verification": {
+    "started_at_utc": "2026-09-16T07:53:37.6855443Z",
+    "completed_at_utc": "2026-09-16T07:53:37.9822515Z",
+    "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00",
+    "exit_code": 0,
+    "both_formats_byte_equal": true,
+    "output": [
+      "typeeditzone_match=true",
+      "typeeditzone_expected_length=8192",
+      "typeeditzone_actual_length=8192",
+      "typeeditzone_version_match=true",
+      "typeeditzone_version_expected_length=32",
+      "typeeditzone_version_actual_length=32"
+    ]
+  },
+  "preexisting_object_typeeditzone_equal": true,
+  "preexisting_object_version_equal": true,
+  "preexisting_capture": {
+    "sample_id": "geometry_line_duplicate_preexisting_M00",
+    "human_ground_truth": {
+      "statements": [
+        "붙여넣었다. 10mm 맞네. 위치도 정확하다. 현재 선택되어 있는 상태이다. 이번에는 붙여넣기만 하고 아무런 추가 동작을 안했다.",
+        "그대로 copy 1회만 진행했다. 아무것도 건들지 않았다.",
+        "맞음"
+      ],
+      "confirmation_scope": "No error, first pasted object only selected, count 1, not grouped, one Copy, no subsequent clipboard-producing operation",
+      "first_paste_count": 1,
+      "no_additional_actions_reported": true,
+      "geometry_position_matches_M00": true,
+      "length_mm": 10,
+      "automatic_selection_preserved": true
+    },
+    "capture_manifest": {
+      "category": "geometry",
+      "created_at": "2026-09-16T17:38:07.419343+09:00",
+      "description": "First exact M00 paste in fresh disposable blank document; one selected ungrouped line, expected position and 10 mm length, no error or additional action; Copy once, no clipboard interference reported.",
+      "files": {
+        "fixture": "tests\\samples\\geometry_line_duplicate_preexisting_M00.txt",
+        "typeeditzone": "typeeditzone.bin",
+        "typeeditzone_version": "typeeditzone_version.bin"
+      },
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "observed_format_ids": {
+        "typeeditzone": 50107,
+        "typeeditzone_version": 50108
+      },
+      "registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "sample_name": "geometry_line_duplicate_preexisting_M00",
+      "source": "windows_clipboard",
+      "typeeditzone_size": 8192,
+      "typeeditzone_version_size": 32
+    },
+    "hashes": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "recorded_at_utc": "2026-09-16T08:38:07.6395676Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T08:38:07.6425727Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T08:38:59.1999542Z",
+      "completed_at_utc": "2026-09-16T08:38:59.4924424Z",
+      "exit_code": 0,
+      "both_formats_equal": true,
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "source_comparison": [
+      {
+        "file": "typeeditzone.bin",
+        "source_size": 8192,
+        "captured_size": 8192,
+        "source_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "captured_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "byte_equal": true
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "source_size": 32,
+        "captured_size": 32,
+        "source_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "captured_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "byte_equal": true
+      }
+    ],
+    "eligible_for_comparison": true,
+    "clipboard_interference_reported": false
+  },
+  "second_load": {
+    "started_at_utc": "2026-09-16T08:39:51.5291431Z",
+    "completed_at_utc": "2026-09-16T08:39:51.661401Z",
+    "exit_code": 0,
+    "source": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+    "output": [
+      "loaded_bytes=8192",
+      "loaded_version_bytes=32",
+      "dir=tests\\samples\\bundles\\geometry\\geometry_line_meta_M00"
+    ]
+  },
+  "second_load_verification": {
+    "started_at_utc": "2026-09-16T08:40:01.3064418Z",
+    "completed_at_utc": "2026-09-16T08:40:01.606339Z",
+    "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00",
+    "exit_code": 0,
+    "both_formats_byte_equal": true,
+    "output": [
+      "typeeditzone_match=true",
+      "typeeditzone_expected_length=8192",
+      "typeeditzone_actual_length=8192",
+      "typeeditzone_version_match=true",
+      "typeeditzone_version_expected_length=32",
+      "typeeditzone_version_actual_length=32"
+    ]
+  },
+  "second_capture": {
+    "sample_id": "geometry_line_duplicate_second_M00",
+    "human_ground_truth": {
+      "statements": [
+        "붙여넣기 한번 실행했다. 객체는 완전히 겹쳐있으니 일단 1개만 보인다. 그리고 붙여넣기 하면 붙여넣기 한 객체가 선택된 상태라서 현재 1개의 객체가 선택되어 있다고 뜬다. 아무런 오류는 없다.",
+        "현재 상태에서 아무런 조작을 하지 않고 copy 1회 완료 했다."
+      ],
+      "second_paste_count": 1,
+      "total_paste_count": 2,
+      "no_error_reported": true,
+      "visual_overlap": true,
+      "visible_line_shapes": 1,
+      "ui_selected_object_count": 1,
+      "automatic_paste_selection_preserved": true,
+      "total_document_object_count": null,
+      "no_intervening_manipulation_reported": true,
+      "copy_count": 1,
+      "grouping_note": "Capture requested as not_grouped; inherited single-line replay context and UI selected count 1; not independently restated after second paste",
+      "clipboard_interference_note": "No interference reported; user confirms Copy once without manipulation; equality alone does not prove absence of interference"
+    },
+    "capture_manifest": {
+      "category": "geometry",
+      "created_at": "2026-09-16T17:52:07.543392+09:00",
+      "description": "Second exact original M00 paste after existing object proven byte-identical to M00; no errors, complete visual overlap, UI selected count 1; automatic pasted-object selection retained, Copy once with no intervening manipulation. Total document object count not yet established.",
+      "files": {
+        "fixture": "tests\\samples\\geometry_line_duplicate_second_M00.txt",
+        "typeeditzone": "typeeditzone.bin",
+        "typeeditzone_version": "typeeditzone_version.bin"
+      },
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "observed_format_ids": {
+        "typeeditzone": 50107,
+        "typeeditzone_version": 50108
+      },
+      "registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "sample_name": "geometry_line_duplicate_second_M00",
+      "source": "windows_clipboard",
+      "typeeditzone_size": 8192,
+      "typeeditzone_version_size": 32
+    },
+    "hashes": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "recorded_at_utc": "2026-09-16T08:52:07.7370762Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T08:52:07.739485Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T08:52:17.4495173Z",
+      "completed_at_utc": "2026-09-16T08:52:17.7451875Z",
+      "exit_code": 0,
+      "both_formats_equal": true,
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "eligible_for_file_comparison": true
+  },
+  "clipboard_access_closed_at_utc": "2026-09-16T08:52:17.7888158Z",
+  "postcapture_object_count": {
+    "statements": [
+      "3개라고 뜨네",
+      "기본 모드에서 선택했다. 그냥 전체 드래그 해서 선택을 했다. ctrl +a와 같은 전체 선택 기능은 없다.",
+      "3 영역에서의 다중 선택 이라고 뜨며 이 말은 3개의 객체가 있다는 말이다."
+    ],
+    "reported_count": 3,
+    "confirmed_count": 3,
+    "method": "human ordinary UI drag-selection object count",
+    "selection_mode": "basic object mode",
+    "exact_UI_label": "3 영역에서의 다중 선택",
+    "user_interpretation": "3 objects",
+    "observation_after_second_capture": true,
+    "unexpected_count": true,
+    "additional_clipboard_access": false,
+    "limit": "Two paste actions were previously reported. The origin and individual identities of the three selected regions are not established. No additional capture or paste performed to investigate."
+  },
+  "classifications": {
+    "duplicate_identity_replay": "accepted_merge_or_other",
+    "preexisting_object_exact_M00": true,
+    "duplicate_second_object_reserialization": "byte_identical_to_M00",
+    "duplicate_paste_opaque_rewrite": "not_observed",
+    "duplicate_exact_payload_coexistence": "unresolved",
+    "line_identity_fields": "unresolved",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "results": "research/geometry-line/duplicate_identity_replay_results.json",
+  "completed_at_utc": "2026-09-16T09:05:26.1575187Z",
+  "cleanup": {
+    "manual_close_discard_allowed": true,
+    "automatic_action_taken": false,
+    "actual_user_cleanup": "not reported"
+  }
+}
