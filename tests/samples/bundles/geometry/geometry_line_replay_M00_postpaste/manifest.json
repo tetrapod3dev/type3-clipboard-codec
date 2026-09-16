@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-16T06:37:09.257648+00:00",
+  "description": "One exact M00 replay paste in disposable blank document. User inspected via deselection/vertex selection and length viewing; no edits, save, Undo or Redo. One pasted ungrouped object selected and copied once; no clipboard interference reported.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_replay_M00_postpaste.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_replay_M00_postpaste",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

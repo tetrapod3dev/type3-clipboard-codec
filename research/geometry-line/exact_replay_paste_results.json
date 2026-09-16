@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T06:39:42.683908+00:00",
+  "analysis_mode": "file_only_after_clipboard_access_closed",
+  "offset_convention": "zero-based absolute offsets unless explicitly marked relative; exclusive ends",
+  "source": {
+    "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+    "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+    "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+  },
+  "postpaste": {
+    "bundle": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste",
+    "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+    "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+  },
+  "structure": {
+    "source": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "postpaste": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "retained": true,
+    "evaluated_before_semantic_interpretation": true
+  },
+  "geometry_fields": [
+    {
+      "name": "record[0].xyz",
+      "source_start": 482,
+      "postpaste_start": 482,
+      "length": 24,
+      "source_hex": "000000000000000000000000000000000000000000000000",
+      "postpaste_hex": "000000000000000000000000000000000000000000000000",
+      "source_values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "postpaste_values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "byte_equal": true,
+      "numeric_equal": true
+    },
+    {
+      "name": "record[1].xyz",
+      "source_start": 518,
+      "postpaste_start": 518,
+      "length": 24,
+      "source_hex": "7b14ae47e17a843f00000000000000000000000000000000",
+      "postpaste_hex": "7b14ae47e17a843f00000000000000000000000000000000",
+      "source_values": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "postpaste_values": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "byte_equal": true,
+      "numeric_equal": true
+    },
+    {
+      "name": "CZone.bounds",
+      "source_start": 17,
+      "postpaste_start": 17,
+      "length": 48,
+      "source_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "postpaste_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "postpaste_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "byte_equal": true,
+      "numeric_equal": true
+    },
+    {
+      "name": "CCourbe.bounds",
+      "source_start": 176,
+      "postpaste_start": 176,
+      "length": 48,
+      "source_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "postpaste_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "postpaste_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "byte_equal": true,
+      "numeric_equal": true
+    },
+    {
+      "name": "CContour.bounds",
+      "source_start": 336,
+      "postpaste_start": 336,
+      "length": 48,
+      "source_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "postpaste_hex": "0000000000000000000000000000000000000000000000007b14ae47e17a843f00000000000000000000000000000000",
+      "source_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "postpaste_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "byte_equal": true,
+      "numeric_equal": true
+    }
+  ],
+  "typeeditzone_diff": {
+    "equal": true,
+    "source_size": 8192,
+    "postpaste_size": 8192,
+    "changed_byte_count": 0,
+    "exact_changed_offsets": [],
+    "ranges": []
+  },
+  "opaque_windows_and_tags": [
+    {
+      "name": "CZone.window",
+      "start": 93,
+      "end_exclusive": 109,
+      "equal": true,
+      "source_size": 16,
+      "postpaste_size": 16,
+      "changed_byte_count": 0,
+      "relative_exact_changed_offsets": [],
+      "absolute_exact_changed_offsets": [],
+      "range_offsets_relative_to_region": [],
+      "source_hex": "929ceb038750da4399b8c53ff7a3dbbc",
+      "postpaste_hex": "929ceb038750da4399b8c53ff7a3dbbc"
+    },
+    {
+      "name": "CCourbe.window",
+      "start": 252,
+      "end_exclusive": 268,
+      "equal": true,
+      "source_size": 16,
+      "postpaste_size": 16,
+      "changed_byte_count": 0,
+      "relative_exact_changed_offsets": [],
+      "absolute_exact_changed_offsets": [],
+      "range_offsets_relative_to_region": [],
+      "source_hex": "b424916574d78e4bbb910724d6c7ddd3",
+      "postpaste_hex": "b424916574d78e4bbb910724d6c7ddd3"
+    },
+    {
+      "name": "CContour.window",
+      "start": 412,
+      "end_exclusive": 428,
+      "equal": true,
+      "source_size": 16,
+      "postpaste_size": 16,
+      "changed_byte_count": 0,
+      "relative_exact_changed_offsets": [],
+      "absolute_exact_changed_offsets": [],
+      "range_offsets_relative_to_region": [],
+      "source_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+      "postpaste_hex": "d9bd565ffbe6d042b4eafad3ba4b3563"
+    },
+    {
+      "name": "record[0].tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "equal": true,
+      "source_size": 4,
+      "postpaste_size": 4,
+      "changed_byte_count": 0,
+      "relative_exact_changed_offsets": [],
+      "absolute_exact_changed_offsets": [],
+      "range_offsets_relative_to_region": [],
+      "source_hex": "0d444643",
+      "postpaste_hex": "0d444643"
+    },
+    {
+      "name": "record[1].tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "equal": true,
+      "source_size": 4,
+      "postpaste_size": 4,
+      "changed_byte_count": 0,
+      "relative_exact_changed_offsets": [],
+      "absolute_exact_changed_offsets": [],
+      "range_offsets_relative_to_region": [],
+      "source_hex": "0d2c426f",
+      "postpaste_hex": "0d2c426f"
+    }
+  ],
+  "record_tags": [
+    {
+      "record": 0,
+      "source_u32_hex": "0x4346440D",
+      "postpaste_u32_hex": "0x4346440D",
+      "source_low_byte_hex": "0d",
+      "postpaste_low_byte_hex": "0d",
+      "source_upper_three_bytes_hex": "444643",
+      "postpaste_upper_three_bytes_hex": "444643"
+    },
+    {
+      "record": 1,
+      "source_u32_hex": "0x6F422C0D",
+      "postpaste_u32_hex": "0x6F422C0D",
+      "source_low_byte_hex": "0d",
+      "postpaste_low_byte_hex": "0d",
+      "source_upper_three_bytes_hex": "2c426f",
+      "postpaste_upper_three_bytes_hex": "2c426f"
+    }
+  ],
+  "changed_offsets_outside_known_windows_and_tags": [],
+  "non_geometry_changed_offsets": [],
+  "property_and_tail": {
+    "start": 554,
+    "end_exclusive": 8192,
+    "includes_descriptor": true,
+    "semantic_extent": "unresolved; not asserted empty or identity-free",
+    "equal": true,
+    "source_size": 7638,
+    "postpaste_size": 7638,
+    "changed_byte_count": 0,
+    "range_offsets_relative_to_554": [],
+    "absolute_exact_changed_offsets": []
+  },
+  "version": {
+    "source_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+    "postpaste_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+    "equal": true,
+    "source_size": 32,
+    "postpaste_size": 32,
+    "changed_byte_count": 0,
+    "exact_changed_offsets": [],
+    "ranges": []
+  },
+  "classifications": {
+    "exact_replay_paste": "accepted",
+    "paste_geometry_fidelity": "byte_identical",
+    "post_paste_reserialization": "byte_identical",
+    "paste_opaque_metadata_rewrite": "not_observed",
+    "paste_serialized_identity_behavior": "preservation_candidate",
+    "line_clipboard_document_portability": "observed_in_one_replay",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "runtime_observations": {
+    "statements": [
+      "아무런 오류가 없다. 정확히 10mm 객체가 0,0,0 -> 10,0,0 으로 생성되었다. 붙여넣기 하면 원래 붙여넣은 객체가 선택된 상태가 된다. 하지만 객체의 값을 조사하기 위해 내가 선택된 상태는 해제하였다. 정점을 선택해보고, 다시 객체의 길이도 보면서 이전과 같은 객체인지 조사했다. 같은 크기와 형태의 객체이네.",
+      "붙여넣기 1회, 객체는 하나. 아무런 편집을 하지 않았다. 저장도 안했다. undo, redo도 안했다.",
+      "붙여넣어진 1개의 객체를 정확히 선택해서 copy했다. 그 이전에 아무런 copy 작업 없었다.",
+      "맞음"
+    ],
+    "paste_count": 1,
+    "visible_object_count": 1,
+    "no_errors_reported": true,
+    "geometry_p0": [
+      0,
+      0,
+      0
+    ],
+    "geometry_p1": [
+      10,
+      0,
+      0
+    ],
+    "reported_geometry_units": "mm",
+    "length_mm": 10,
+    "automatically_selected_after_paste": true,
+    "postpaste_inspection": "Deselected object, selected vertices and viewed length before selecting pasted object for Copy",
+    "no_edit_save_undo_redo_confirmed": true,
+    "selected_object_count": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_other_copy_before_postpaste_copy": true,
+    "no_clipboard_producing_operations_after_copy_confirmed": true,
+    "limitation": "Selection/vertex inspection occurred before serialization; cannot isolate paste itself from later selection/viewing/Copy lifecycle"
+  },
+  "interpretation": "Observed differences describe the paste/selection/inspection/Copy lifecycle. No isolated attribution to Paste alone, field identity meaning or duplicate-identity safety is established.",
+  "limitations": [
+    "One paste into one disposable blank document; no original-object collision tested.",
+    "Source bytes were unmodified; arbitrary coordinate mutation is not tested or authorized.",
+    "User deselected and inspected vertices/length before Copy, with no edit/save/Undo/Redo reported.",
+    "No GUID, timestamp, checksum or object ID semantics assigned.",
+    "Document units were not confirmed before load; user subsequently reported 10 mm length and source-equivalent endpoints."
+  ],
+  "integrity": {
+    "protected_baseline_files_unchanged": true,
+    "baseline_tracked_count": 540,
+    "source_loaded_and_postpaste_raw_hashes_verified": true,
+    "postpaste_hex_roundtrip": true
+  },
+  "next_task": "Perform exactly one bounded duplicate-identity replay experiment before coordinate synthesis."
+}

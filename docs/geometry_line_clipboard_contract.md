@@ -363,3 +363,83 @@ Recommended next task (recommendation only; not executed):
 Perform one bounded exact-replay geometry paste experiment using an unmodified vendor-captured bundle to determine TypeEdit's paste-time identity/reference behavior; do not synthesize coordinates yet.
 
 This task stops at metadata variability classification. No synthesis, clipboard rewrite/load, paste, TypeEdit automation, additional exploratory captures, vendor inspection, native API work or text character-width work occurred.
+## 14. Bounded exact M00 replay into a blank document (2026-09-16)
+
+One unmodified M00 bundle was restored to the clipboard, pasted once by the user, and the resulting single object was copied once. **The complete post-paste TypeEditZone and TypeEditZoneVersion are byte-for-byte identical to source M00.** No opaque rewrite was observed in this replay.
+
+Artifacts:
+
+- [Replay manifest](../research/geometry-line/exact_replay_paste_manifest.json): source validation, overwrite approval, blank-document preparation, exact load/readback, runtime observations and post-paste capture provenance.
+- [Replay results](../research/geometry-line/exact_replay_paste_results.json): structure, geometry, complete raw differential, all specified windows/tags, property/tail and version comparisons.
+- [File-only analyzer](../research/geometry-line/analyze_exact_replay_paste.py).
+- [Baseline](../research/geometry-line/exact_replay_paste_baseline.json) and [completion integrity](../research/geometry-line/exact_replay_paste_integrity.json).
+- Post-paste bundle: `tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/`.
+- Loaded clipboard readback evidence: `research/geometry-line/exact_replay_M00_loaded_readback/`.
+
+### Source, load and human runtime observations
+
+The sole source was `tests/samples/bundles/geometry/geometry_line_meta_M00/`. Before the write, both raw files matched the SHA256 and sizes recorded in the micro-corpus manifest. Source manifest/capture metadata also matched their recorded pre-write baseline hashes. The micro-corpus manifest records raw hashes; it does not contain hashes of its metadata JSON files, so those checks are explicitly distinguished.
+
+The existing `clipboard_typeeditzone.py load-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00` path was inspected and used without modification. It reads stored bytes, registers formats by name, empties the clipboard and writes both formats. No registered ID was hardcoded for the operation. No payload bytes, padding, tags, opaque metadata, coordinates, bounds or Version were changed or regenerated.
+
+The user confirmed a new empty unsaved document, writable `레이어 1`, and authorized replacement of the current Windows clipboard after the warning. Document units were not confirmed before loading and were recorded as unknown. The user subsequently reported exactly 10 mm length and endpoints (0,0,0) -> (10,0,0).
+
+Immediate `verify-bundle` passed after the single load. Existing `dump-bundle` preserved a readback and its runtime IDs; byte equality and SHA256 were independently checked from those saved readback files before the Paste instruction.
+
+| Format | Runtime ID | Source / loaded / post-paste size | SHA256 shared by all three |
+| --- | ---: | ---: | --- |
+| TypeEditZone | 49863 | 8192 | `8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb` |
+| TypeEditZoneVersion | 49864 | 32 | `33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f` |
+
+Timestamps, raw-equality results and source/readback hashes are in the manifest. IDs are observations in this runtime, not portable constants.
+
+The user performed exactly one Paste and reported no errors, exactly one object, source-equivalent position/length/orientation, and automatic selection. Before Copy, the user deselected the object, selected vertices and viewed its length. The user explicitly confirmed no editing, save, Undo or Redo. This inspection/selection history is retained; the observation covers the entire paste/selection/viewing/Copy lifecycle rather than isolating Paste alone.
+
+The user then selected only that ungrouped pasted object, copied exactly once, and confirmed no other clipboard-producing operation after Copy. Existing capture CLI flags were `--category geometry --object-count 1 --grouping not_grouped --no-inspect`. Raw preservation and SHA256 recording were followed immediately by `verify-bundle`, which passed for both formats. Clipboard access then stopped; all subsequent comparisons were file-only. The user was told that runtime work was complete and that the disposable document could be manually closed/discarded. No automatic Save/Don't Save or shutdown action was taken, and the actual cleanup action is not asserted.
+
+### Structure and complete comparison
+
+Structure was checked before semantic interpretation. Both payloads retain CZone schema 1 at offset 6, CCourbe schema 1 at 163, CContour schema 2 at 322, and CPropertyExtend schema 5 at 554. Kind candidate is 0, point-count candidate is 2, and two 36-byte records begin at 482. No structural change was observed.
+
+Offsets below are zero-based absolute offsets with exclusive ends.
+
+| Comparison region | Result |
+| --- | --- |
+| Complete TypeEditZone [0,8192) | Exactly equal; 0 changed bytes |
+| Both observed record xyz fields | Byte-identical and numerically equal |
+| All three observed bounds blocks | Byte-identical and numerically equal |
+| CZone window [93,109) | Exactly equal |
+| CCourbe window [252,268) | Exactly equal |
+| CContour window [412,428) | Exactly equal |
+| record 0 tag [514,518) | Exactly equal: `0x4346440D` |
+| record 1 tag [550,554) | Exactly equal: `0x6F422C0D` |
+| All bytes outside those windows/tags | Exactly equal |
+| CPropertyExtend descriptor through retained buffer end [554,8192) | Exactly equal; 7638 bytes |
+| Complete Version [0,32) | Exactly equal |
+
+Both tag low bytes remain `0x0D`; their upper three bytes are unchanged. The observational window lengths are not asserted serialized field boundaries. The retained property/tail is not called empty or identity-free. The raw payloads were not normalized or trimmed.
+
+```text
+exact_replay_paste = accepted
+paste_geometry_fidelity = byte_identical
+post_paste_reserialization = byte_identical
+paste_opaque_metadata_rewrite = not_observed
+paste_serialized_identity_behavior = preservation_candidate
+line_clipboard_document_portability = observed_in_one_replay
+opaque_fields_preservation_for_template_mutation = unresolved
+line_clipboard_runtime_readiness = missing_specific_contract
+```
+
+### Interpretation, integrity and next task
+
+The captured payload was portable across this one tested blank-document context. No opaque rewrite was observed in the saved post-paste serialization. This does not identify an actual identity field, establish GUID/object-ID preservation, rule out unobserved internal changes, or generalize to other sessions, versions or document types.
+
+A blank-document replay does not test collision with the original object. No duplicate-identity safety claim or template-mutation promotion follows from one exact replay. The accepted metadata micro-corpus classifications remain unchanged. Direction versus min/max ordering also remains unresolved.
+
+Before new output writes, a clean tracked-file baseline was recorded at HEAD `337cc4b2f0aa37a699cbd32f036073229809cc4c` for 540 files. Completion checks preserve all 539 other pre-existing tracked files and the exact historical prefix of this contract, including all five micro-corpus bundles, the older eight bundles, prior differential/metadata results and the text authoritative contract.
+
+Recommended next task only:
+
+Perform exactly one bounded duplicate-identity replay experiment before coordinate synthesis.
+
+This experiment is complete. No second paste, coordinate synthesis, metadata or Version mutation, new clipboard writer, loader modification, TypeEdit automation, vendor-file inspection, native/mixed-mode work or text character-width investigation occurred.

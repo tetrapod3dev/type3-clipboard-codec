@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "status": "complete_exact_replay_classified",
+  "baseline": "research/geometry-line/exact_replay_paste_baseline.json",
+  "source_bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
+  "source_hash_authority": "research/geometry-line/metadata_microcorpus_manifest.json samples[M00].capture.files",
+  "source_raw_verification": [
+    {
+      "file": "typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_microcorpus_manifest": true
+    },
+    {
+      "file": "typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_microcorpus_manifest": true
+    }
+  ],
+  "source_metadata_files": [
+    {
+      "file": "manifest.json",
+      "sha256": "c29783ad2c22dfb07c1ecbcfb7271716fcdcdf5260fdc76a3381e76feeaf2758",
+      "size": 907,
+      "hash_authority": "current tracked-file baseline; microcorpus manifest records raw hashes, not metadata-file hashes"
+    },
+    {
+      "file": "capture_metadata.json",
+      "sha256": "d7848d4022bdd24725005de450439bb3cfa07066ec4f664ff6da3a39963617f4",
+      "size": 3602,
+      "hash_authority": "current tracked-file baseline; microcorpus manifest records raw hashes, not metadata-file hashes"
+    }
+  ],
+  "source_verified_at_utc": "2026-09-16T06:20:58.4073643Z",
+  "existing_loader_command": "tools/clipboard_typeeditzone.py load-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00",
+  "loader_review": "Reads both stored files without transformations; registers formats by name; empties clipboard and writes both in one open/close interval",
+  "planned_pre_paste_checks": [
+    "Immediate existing verify-bundle against source",
+    "Existing dump-bundle to new replay readback evidence directory; compare bytes and SHA256, retain runtime IDs and timestamps"
+  ],
+  "human_preparation": {
+    "statements": [
+      "새 미저장 TypeEdit 빈 문서 열었다. 붙여넣기 대기중이다. 진행하자.",
+      "레이어 1이다. 아무것도 없다. 빈문서이다. 쓰면 된다."
+    ],
+    "blank_document_visible": true,
+    "no_drawing_objects": true,
+    "ready_for_paste": true,
+    "layer": "레이어 1",
+    "writable_layer_confirmed": true,
+    "units": null,
+    "units_note": "Not confirmed; mm is not assumed",
+    "disposable_unsaved_document": true,
+    "valuable_work_risk_note": "User confirmed new unsaved empty document and authorized use; no existing work involved"
+  },
+  "clipboard_overwrite_approval": {
+    "approved": true,
+    "statement": "진행하자",
+    "context": "Explicit proceed response to warning that current clipboard will be replaced by M00",
+    "followup": "쓰면 된다"
+  },
+  "clipboard_load_count": 1,
+  "human_paste_count": 1,
+  "postpaste_sample_name": "geometry_line_replay_M00_postpaste",
+  "limits": {
+    "typeedit_automation_allowed": false,
+    "maximum_pastes": 1,
+    "source_mutation_allowed": false,
+    "coordinate_synthesis_allowed": false
+  },
+  "accepted_state": {
+    "line_edit_history_variability": "observed",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_copy_variability": "not_observed",
+    "line_object_lineage_variability": "observed",
+    "line_opaque_metadata_role": "mixed",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "load_started_at_utc": "2026-09-16T06:31:23.5844144Z",
+  "load_result": {
+    "started_at_utc": "2026-09-16T06:31:23.5844144Z",
+    "completed_at_utc": "2026-09-16T06:31:23.7468586Z",
+    "exit_code": 0,
+    "output": [
+      "loaded_bytes=8192",
+      "loaded_version_bytes=32",
+      "dir=tests\\samples\\bundles\\geometry\\geometry_line_meta_M00"
+    ]
+  },
+  "immediate_load_verification": {
+    "started_at_utc": "2026-09-16T06:31:43.0706487Z",
+    "completed_at_utc": "2026-09-16T06:31:43.3817729Z",
+    "exit_code": 0,
+    "output": [
+      "typeeditzone_match=true",
+      "typeeditzone_expected_length=8192",
+      "typeeditzone_actual_length=8192",
+      "typeeditzone_version_match=true",
+      "typeeditzone_version_expected_length=32",
+      "typeeditzone_version_actual_length=32"
+    ]
+  },
+  "loaded_readback": {
+    "started_at_utc": "2026-09-16T06:32:17.7456469Z",
+    "completed_at_utc": "2026-09-16T06:32:17.9597182Z",
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_id": 49863,
+        "size": 8192,
+        "source_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "loaded_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+        "exact_equality": true,
+        "sha256_equal": true,
+        "readback_file": "research\\geometry-line\\exact_replay_M00_loaded_readback\\typeeditzone.bin",
+        "recorded_at_utc": "2026-09-16T06:32:17.9454829Z"
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_id": 49864,
+        "size": 32,
+        "source_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "loaded_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "exact_equality": true,
+        "sha256_equal": true,
+        "readback_file": "research\\geometry-line\\exact_replay_M00_loaded_readback\\typeeditzone_version.bin",
+        "recorded_at_utc": "2026-09-16T06:32:17.9472312Z"
+      }
+    ],
+    "all_exact": true
+  },
+  "runtime_observations": {
+    "statements": [
+      "아무런 오류가 없다. 정확히 10mm 객체가 0,0,0 -> 10,0,0 으로 생성되었다. 붙여넣기 하면 원래 붙여넣은 객체가 선택된 상태가 된다. 하지만 객체의 값을 조사하기 위해 내가 선택된 상태는 해제하였다. 정점을 선택해보고, 다시 객체의 길이도 보면서 이전과 같은 객체인지 조사했다. 같은 크기와 형태의 객체이네.",
+      "붙여넣기 1회, 객체는 하나. 아무런 편집을 하지 않았다. 저장도 안했다. undo, redo도 안했다.",
+      "붙여넣어진 1개의 객체를 정확히 선택해서 copy했다. 그 이전에 아무런 copy 작업 없었다.",
+      "맞음"
+    ],
+    "paste_count": 1,
+    "visible_object_count": 1,
+    "no_errors_reported": true,
+    "geometry_p0": [
+      0,
+      0,
+      0
+    ],
+    "geometry_p1": [
+      10,
+      0,
+      0
+    ],
+    "reported_geometry_units": "mm",
+    "length_mm": 10,
+    "automatically_selected_after_paste": true,
+    "postpaste_inspection": "Deselected object, selected vertices and viewed length before selecting pasted object for Copy",
+    "no_edit_save_undo_redo_confirmed": true,
+    "selected_object_count": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_other_copy_before_postpaste_copy": true,
+    "no_clipboard_producing_operations_after_copy_confirmed": true,
+    "limitation": "Selection/vertex inspection occurred before serialization; cannot isolate paste itself from later selection/viewing/Copy lifecycle"
+  },
+  "postpaste_capture": {
+    "sample_id": "geometry_line_replay_M00_postpaste",
+    "human_ground_truth": {
+      "statements": [
+        "아무런 오류가 없다. 정확히 10mm 객체가 0,0,0 -> 10,0,0 으로 생성되었다. 붙여넣기 하면 원래 붙여넣은 객체가 선택된 상태가 된다. 하지만 객체의 값을 조사하기 위해 내가 선택된 상태는 해제하였다. 정점을 선택해보고, 다시 객체의 길이도 보면서 이전과 같은 객체인지 조사했다. 같은 크기와 형태의 객체이네.",
+        "붙여넣기 1회, 객체는 하나. 아무런 편집을 하지 않았다. 저장도 안했다. undo, redo도 안했다.",
+        "붙여넣어진 1개의 객체를 정확히 선택해서 copy했다. 그 이전에 아무런 copy 작업 없었다.",
+        "맞음"
+      ],
+      "paste_count": 1,
+      "visible_object_count": 1,
+      "no_errors_reported": true,
+      "geometry_p0": [
+        0,
+        0,
+        0
+      ],
+      "geometry_p1": [
+        10,
+        0,
+        0
+      ],
+      "reported_geometry_units": "mm",
+      "length_mm": 10,
+      "automatically_selected_after_paste": true,
+      "postpaste_inspection": "Deselected object, selected vertices and viewed length before selecting pasted object for Copy",
+      "no_edit_save_undo_redo_confirmed": true,
+      "selected_object_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_other_copy_before_postpaste_copy": true,
+      "no_clipboard_producing_operations_after_copy_confirmed": true,
+      "limitation": "Selection/vertex inspection occurred before serialization; cannot isolate paste itself from later selection/viewing/Copy lifecycle"
+    },
+    "capture": {
+      "created_at": "2026-09-16T15:37:09.257648+09:00",
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "runtime_registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "files": [
+        {
+          "file": "typeeditzone.bin",
+          "size": 8192,
+          "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+          "recorded_at_utc": "2026-09-16T06:37:09.4587072Z"
+        },
+        {
+          "file": "typeeditzone_version.bin",
+          "size": 32,
+          "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+          "recorded_at_utc": "2026-09-16T06:37:09.4622956Z"
+        }
+      ],
+      "verification": {
+        "started_at_utc": "2026-09-16T06:37:47.1368367Z",
+        "completed_at_utc": "2026-09-16T06:37:47.8882968Z",
+        "exit_code": 0,
+        "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste",
+        "output": [
+          "typeeditzone_match=true",
+          "typeeditzone_expected_length=8192",
+          "typeeditzone_actual_length=8192",
+          "typeeditzone_version_match=true",
+          "typeeditzone_version_expected_length=32",
+          "typeeditzone_version_actual_length=32"
+        ]
+      },
+      "capture_interference": false,
+      "analysis_performed": false,
+      "raw_preservation": "--category geometry --object-count 1 --grouping not_grouped --no-inspect"
+    },
+    "eligible_for_file_comparison": true
+  },
+  "clipboard_access_closed_at_utc": "2026-09-16T06:37:47.9373322Z",
+  "classifications": {
+    "exact_replay_paste": "accepted",
+    "paste_geometry_fidelity": "byte_identical",
+    "post_paste_reserialization": "byte_identical",
+    "paste_opaque_metadata_rewrite": "not_observed",
+    "paste_serialized_identity_behavior": "preservation_candidate",
+    "line_clipboard_document_portability": "observed_in_one_replay",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "results": "research/geometry-line/exact_replay_paste_results.json",
+  "cleanup": {
+    "user_told_runtime_complete": true,
+    "manual_close_discard_allowed": true,
+    "actual_user_cleanup": "not reported",
+    "automatic_action_taken": false
+  },
+  "completed_at_utc": "2026-09-16T06:41:20.3806093Z"
+}

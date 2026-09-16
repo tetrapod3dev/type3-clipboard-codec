@@ -1,0 +1,34 @@
+{
+  "checked_at_utc": "2026-09-16T06:41:20.7559606Z",
+  "baseline_head": "337cc4b2f0aa37a699cbd32f036073229809cc4c",
+  "baseline_tracked_file_count": 540,
+  "unchanged_preexisting_files_excluding_contract": 539,
+  "historical_contract_prefix_byte_preserved": true,
+  "protected_file_mismatches": [],
+  "source_and_postpaste_raw_hashes": [
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_capture": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_replay_M00_postpaste\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_capture": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_replay_M00_postpaste\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_capture": true
+    }
+  ],
+  "git_diff_check": "passed",
+  "clipboard_access_after_collection": false,
+  "prior_capture_and_microcorpus_artifacts_preserved": true,
+  "existing_loader_and_capture_tools_unchanged": true
+}

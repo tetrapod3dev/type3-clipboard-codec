@@ -1,0 +1,14 @@
+{
+  "started_at_utc": "2026-09-16T06:37:47.1368367Z",
+  "completed_at_utc": "2026-09-16T06:37:47.8882968Z",
+  "exit_code": 0,
+  "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste",
+  "output": [
+    "typeeditzone_match=true",
+    "typeeditzone_expected_length=8192",
+    "typeeditzone_actual_length=8192",
+    "typeeditzone_version_match=true",
+    "typeeditzone_version_expected_length=32",
+    "typeeditzone_version_actual_length=32"
+  ]
+}
