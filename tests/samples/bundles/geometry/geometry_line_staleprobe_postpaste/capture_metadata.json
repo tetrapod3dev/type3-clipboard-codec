@@ -1,0 +1,88 @@
+{
+  "sample_id": "geometry_line_staleprobe_postpaste",
+  "human_ground_truth": {
+    "paste_statement": "오류 없다. \"1 곡선 개체\"로 1개 객체가 붙여넣어졌다. 길이는 0,0,0 -> 20,0,0 mm이다.",
+    "copy_statement": "copy 1회 완료. 1개, 그룹 아님. 다른 copy 없음.",
+    "paste_count": 1,
+    "paste_count_basis": "User reported completion in response to exactly-one-Paste instruction",
+    "error_reported": false,
+    "visible_object_count": 1,
+    "selection_ui": "1 곡선 개체",
+    "selected_count": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_subsequent_copy": true,
+    "start": [
+      0,
+      0,
+      0
+    ],
+    "end": [
+      20,
+      0,
+      0
+    ],
+    "units": "mm",
+    "automatic_selection": "not separately stated",
+    "inspection_method": "not supplied",
+    "user_action_timestamp": null,
+    "recorded_at_utc": "2026-09-16T11:28:08.9480841Z"
+  },
+  "capture_manifest": {
+    "category": "geometry",
+    "created_at": "2026-09-16T20:28:09.086977+09:00",
+    "description": "One authorized stale probe Paste: user reports no error, one curve object, 0,0,0 to 20,0,0 mm; one selected ungrouped object copied once, no other Copy.",
+    "files": {
+      "fixture": "tests\\samples\\geometry_line_staleprobe_postpaste.txt",
+      "typeeditzone": "typeeditzone.bin",
+      "typeeditzone_version": "typeeditzone_version.bin"
+    },
+    "format_names": {
+      "typeeditzone": "TypeEditZone",
+      "typeeditzone_version": "TypeEditZoneVersion"
+    },
+    "observed_format_ids": {
+      "typeeditzone": 50107,
+      "typeeditzone_version": 50108
+    },
+    "registered_format_ids": {
+      "typeeditzone": 49863,
+      "typeeditzone_version": 49864
+    },
+    "sample_name": "geometry_line_staleprobe_postpaste",
+    "source": "windows_clipboard",
+    "typeeditzone_size": 8192,
+    "typeeditzone_version_size": 32
+  },
+  "hashes": [
+    {
+      "file": "typeeditzone.bin",
+      "size": 8192,
+      "sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+      "recorded_at_utc": "2026-09-16T11:28:09.1271896Z"
+    },
+    {
+      "file": "typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "recorded_at_utc": "2026-09-16T11:28:09.1284276Z"
+    }
+  ],
+  "verification": {
+    "started_at_utc": "2026-09-16T11:28:12.8174785Z",
+    "completed_at_utc": "2026-09-16T11:28:12.9572260Z",
+    "exit_code": 0,
+    "both_formats_equal": true,
+    "command": "clipboard_typeeditzone.py verify-bundle --dir tests\\samples\\bundles\\geometry\\geometry_line_staleprobe_postpaste",
+    "output": [
+      "typeeditzone_match=true",
+      "typeeditzone_expected_length=8192",
+      "typeeditzone_actual_length=8192",
+      "typeeditzone_version_match=true",
+      "typeeditzone_version_expected_length=32",
+      "typeeditzone_version_actual_length=32"
+    ]
+  },
+  "clipboard_interference_reported": false,
+  "eligible_for_file_analysis": true
+}

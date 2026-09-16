@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "baseline": "research/geometry-line/stale_opaque_probe_baseline.json",
+  "samples": {
+    "E0": "geometry_line_staleprobe_E0",
+    "E1_vendor": "geometry_line_staleprobe_E1_vendor",
+    "postpaste": "geometry_line_staleprobe_postpaste"
+  },
+  "capture_attempts": {
+    "E0": 1,
+    "E1_vendor": 1,
+    "postpaste": 1
+  },
+  "human_ground_truth": {
+    "E0": {
+      "statements": [
+        "사각형 만들고 분리해서 직선 만드는 기존 방식대로 만들었다. 레이어 1, 검정색 선. 그룹 아님. 시작 끝 방향 확인. copy 1회 완료.",
+        "모두 맞음"
+      ],
+      "confirmation_scope": "Fresh object E; START (0,0,0) -> END (10,0,0) mm; only E selected, count 1; no other Copy after intended Copy",
+      "object_lineage": "E",
+      "fresh_object": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        10,
+        0,
+        0
+      ],
+      "units": "mm",
+      "direction_confirmed": true,
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy_confirmed": true,
+      "construction": "Rectangle creation, separation, straight line retained using previous construction family",
+      "layer": "레이어 1",
+      "color": "검정색",
+      "document_note": "New disposable document requested; no separate document identifier supplied",
+      "unknowns": [
+        "origin/workplane",
+        "line style",
+        "width",
+        "document/session identifiers",
+        "UI precision"
+      ]
+    },
+    "E1_vendor": {
+      "statement": "정점 편집 도구로 들어가서 끝점을 10mm 오른쪽으로 이동했다. 그리고 다시 기본모드로 들어와서 보갓했다. 다른 copy 없음. 그룹 아님. 선택 1개. 최종 좌표 0 , 0, 0 -> 20, 0, 0 mm",
+      "object_lineage": "E",
+      "same_object_confirmed_in_response_to_instruction": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        20,
+        0,
+        0
+      ],
+      "units": "mm",
+      "edit_method": "Vertex edit mode: endpoint moved right by 10 mm; returned to basic mode and copied",
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy_confirmed": true
+    },
+    "postpaste": {
+      "paste_statement": "오류 없다. \"1 곡선 개체\"로 1개 객체가 붙여넣어졌다. 길이는 0,0,0 -> 20,0,0 mm이다.",
+      "copy_statement": "copy 1회 완료. 1개, 그룹 아님. 다른 copy 없음.",
+      "paste_count": 1,
+      "paste_count_basis": "User reported completion in response to exactly-one-Paste instruction",
+      "error_reported": false,
+      "visible_object_count": 1,
+      "selection_ui": "1 곡선 개체",
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        20,
+        0,
+        0
+      ],
+      "units": "mm",
+      "automatic_selection": "not separately stated",
+      "inspection_method": "not supplied",
+      "user_action_timestamp": null,
+      "recorded_at_utc": "2026-09-16T11:28:08.9480841Z"
+    }
+  },
+  "target_geometry_mm": {
+    "E0": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        10,
+        0,
+        0
+      ]
+    ],
+    "E1_vendor": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "allowed_transplants": [
+    {
+      "field": "record1.x",
+      "start": 518,
+      "end_exclusive": 526
+    },
+    {
+      "field": "CZone.max_x",
+      "start": 41,
+      "end_exclusive": 49
+    },
+    {
+      "field": "CCourbe.max_x",
+      "start": 200,
+      "end_exclusive": 208
+    },
+    {
+      "field": "CContour.max_x",
+      "start": 360,
+      "end_exclusive": 368
+    }
+  ],
+  "transplant_policy": "Copy complete eight-byte slices from immutable vendor E1 into exact E0; no float regeneration; all remaining bytes E0",
+  "version_policy": "E0/E1 must be byte-identical, retain E0",
+  "candidate_path": "research/geometry-line/staleprobe/stale_E0_geometry_from_E1_typeeditzone.bin",
+  "maximum_candidates": 1,
+  "maximum_pastes": 1,
+  "candidate_constructed": true,
+  "clipboard_write_approval": {
+    "statement": "동의함",
+    "scope": "E1 geometry plus E0 remainder; disposable blank document; replace Windows clipboard",
+    "recorded_at_utc": "2026-09-16T11:25:34.2948518Z"
+  },
+  "clipboard_load_count": 1,
+  "human_paste_count": 1,
+  "typeedit_automation_allowed": false,
+  "general_mutator_allowed": false,
+  "gate": "E0 then same-object END.x-only vendor E1; both immediate verifications; strict file-only eligibility; one candidate static proof; separate explicit load approval and disposable target confirmation",
+  "E0_capture": {
+    "sample_id": "geometry_line_staleprobe_E0",
+    "human_ground_truth": {
+      "statements": [
+        "사각형 만들고 분리해서 직선 만드는 기존 방식대로 만들었다. 레이어 1, 검정색 선. 그룹 아님. 시작 끝 방향 확인. copy 1회 완료.",
+        "모두 맞음"
+      ],
+      "confirmation_scope": "Fresh object E; START (0,0,0) -> END (10,0,0) mm; only E selected, count 1; no other Copy after intended Copy",
+      "object_lineage": "E",
+      "fresh_object": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        10,
+        0,
+        0
+      ],
+      "units": "mm",
+      "direction_confirmed": true,
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy_confirmed": true,
+      "construction": "Rectangle creation, separation, straight line retained using previous construction family",
+      "layer": "레이어 1",
+      "color": "검정색",
+      "document_note": "New disposable document requested; no separate document identifier supplied",
+      "unknowns": [
+        "origin/workplane",
+        "line style",
+        "width",
+        "document/session identifiers",
+        "UI precision"
+      ]
+    },
+    "capture_manifest": {
+      "category": "geometry",
+      "created_at": "2026-09-16T20:14:56.554378+09:00",
+      "description": "Stale probe E0: fresh object E, rectangle separated to straight line; human START (0,0,0) -> END (10,0,0) mm, layer 1 black, single selected ungrouped object, Copy once and no subsequent Copy confirmed.",
+      "files": {
+        "fixture": "tests\\samples\\geometry_line_staleprobe_E0.txt",
+        "typeeditzone": "typeeditzone.bin",
+        "typeeditzone_version": "typeeditzone_version.bin"
+      },
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "observed_format_ids": {
+        "typeeditzone": 50107,
+        "typeeditzone_version": 50108
+      },
+      "registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "sample_name": "geometry_line_staleprobe_E0",
+      "source": "windows_clipboard",
+      "typeeditzone_size": 8192,
+      "typeeditzone_version_size": 32
+    },
+    "hashes": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "775a3492152249a871e76f6dad53220dadb091f59c757fa8bf6406a3e2108f7d",
+        "recorded_at_utc": "2026-09-16T11:14:56.5880211Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T11:14:56.5901759Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T11:14:59.4741755Z",
+      "completed_at_utc": "2026-09-16T11:14:59.7587294Z",
+      "exit_code": 0,
+      "both_formats_equal": true,
+      "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_staleprobe_E0",
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "clipboard_interference_reported": false,
+    "eligible_for_file_analysis": true,
+    "analysis_performed": false
+  },
+  "E1_capture": {
+    "sample_id": "geometry_line_staleprobe_E1_vendor",
+    "human_ground_truth": {
+      "statement": "정점 편집 도구로 들어가서 끝점을 10mm 오른쪽으로 이동했다. 그리고 다시 기본모드로 들어와서 보갓했다. 다른 copy 없음. 그룹 아님. 선택 1개. 최종 좌표 0 , 0, 0 -> 20, 0, 0 mm",
+      "object_lineage": "E",
+      "same_object_confirmed_in_response_to_instruction": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        20,
+        0,
+        0
+      ],
+      "units": "mm",
+      "edit_method": "Vertex edit mode: endpoint moved right by 10 mm; returned to basic mode and copied",
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy_confirmed": true
+    },
+    "capture_manifest": {
+      "category": "geometry",
+      "created_at": "2026-09-16T20:19:18.513027+09:00",
+      "description": "Same E as E0; vertex edit endpoint +10 mm in x, returned to basic mode; START 0,0,0 END 20,0,0 mm; one selected ungrouped object; Copy once no subsequent Copy.",
+      "files": {
+        "fixture": "tests\\samples\\geometry_line_staleprobe_E1_vendor.txt",
+        "typeeditzone": "typeeditzone.bin",
+        "typeeditzone_version": "typeeditzone_version.bin"
+      },
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "observed_format_ids": {
+        "typeeditzone": 50107,
+        "typeeditzone_version": 50108
+      },
+      "registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "sample_name": "geometry_line_staleprobe_E1_vendor",
+      "source": "windows_clipboard",
+      "typeeditzone_size": 8192,
+      "typeeditzone_version_size": 32
+    },
+    "hashes": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "6e056f4f776ed3ffb34028bf77a8c7ffd4ab72e7600acd713352779a5509e6d1",
+        "recorded_at_utc": "2026-09-16T11:19:18.5585563Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T11:19:18.5616831Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T11:19:22.0090601Z",
+      "completed_at_utc": "2026-09-16T11:19:22.1491848Z",
+      "exit_code": 0,
+      "both_formats_equal": true,
+      "command": "clipboard_typeeditzone.py verify-bundle --dir tests\\samples\\bundles\\geometry\\geometry_line_staleprobe_E1_vendor",
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "clipboard_interference_reported": false,
+    "eligible_for_file_analysis": true
+  },
+  "clipboard_reads_paused_at_utc": "2026-09-16T11:19:22.3224629Z",
+  "candidate_sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+  "static_verification": "research/geometry-line/staleprobe/static_verification.json",
+  "version_source": "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+  "vendor_edit_pair_valid": true,
+  "stale_probe_geometry_matches_vendor_E1": true,
+  "stale_probe_remainder_matches_E0": true,
+  "target_document_confirmation": {
+    "statement": "맞음",
+    "new_blank_unsaved": true,
+    "no_objects": true,
+    "current_layer_writable": true,
+    "no_valuable_work": true,
+    "layer_name": "not separately confirmed for target",
+    "units": "not separately confirmed for target"
+  },
+  "stale_load": {
+    "started_at_utc": "2026-09-16T11:25:34.3172519Z",
+    "completed_at_utc": "2026-09-16T11:25:34.4570267Z",
+    "exit_code": 0,
+    "output": [
+      "loaded_bytes=8192",
+      "in=research\\geometry-line\\staleprobe\\stale_E0_geometry_from_E1_typeeditzone.bin",
+      "loaded_version_bytes=32",
+      "version_in=tests\\samples\\bundles\\geometry\\geometry_line_staleprobe_E0\\typeeditzone_version.bin"
+    ],
+    "zone_source": "research/geometry-line/staleprobe/stale_E0_geometry_from_E1_typeeditzone.bin",
+    "version_source": "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+    "command": "clipboard_typeeditzone.py load --in candidate --version-in unchanged_E0_Version"
+  },
+  "loaded_readback": {
+    "started_at_utc": "2026-09-16T11:25:38.7409982Z",
+    "completed_at_utc": "2026-09-16T11:25:38.9038846Z",
+    "exit_code": 0,
+    "output": [
+      "dumped_bytes=8192",
+      "dumped_version_bytes=32",
+      "dir=research\\geometry-line\\staleprobe\\loaded_readback",
+      "manifest=research\\geometry-line\\staleprobe\\loaded_readback\\manifest.json"
+    ],
+    "formats": [
+      {
+        "format_name": "TypeEditZone",
+        "runtime_registered_id": 49863,
+        "size": 8192,
+        "sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+        "source": "research/geometry-line/staleprobe/stale_E0_geometry_from_E1_typeeditzone.bin",
+        "readback_file": "research\\geometry-line\\staleprobe\\loaded_readback\\typeeditzone.bin",
+        "exact_equal": true
+      },
+      {
+        "format_name": "TypeEditZoneVersion",
+        "runtime_registered_id": 49864,
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "source": "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "readback_file": "research\\geometry-line\\staleprobe\\loaded_readback\\typeeditzone_version.bin",
+        "exact_equal": true
+      }
+    ],
+    "both_formats_exact": true
+  },
+  "postpaste_capture": {
+    "sample_id": "geometry_line_staleprobe_postpaste",
+    "human_ground_truth": {
+      "paste_statement": "오류 없다. \"1 곡선 개체\"로 1개 객체가 붙여넣어졌다. 길이는 0,0,0 -> 20,0,0 mm이다.",
+      "copy_statement": "copy 1회 완료. 1개, 그룹 아님. 다른 copy 없음.",
+      "paste_count": 1,
+      "paste_count_basis": "User reported completion in response to exactly-one-Paste instruction",
+      "error_reported": false,
+      "visible_object_count": 1,
+      "selection_ui": "1 곡선 개체",
+      "selected_count": 1,
+      "grouping": "not_grouped",
+      "copy_count": 1,
+      "no_subsequent_copy": true,
+      "start": [
+        0,
+        0,
+        0
+      ],
+      "end": [
+        20,
+        0,
+        0
+      ],
+      "units": "mm",
+      "automatic_selection": "not separately stated",
+      "inspection_method": "not supplied",
+      "user_action_timestamp": null,
+      "recorded_at_utc": "2026-09-16T11:28:08.9480841Z"
+    },
+    "capture_manifest": {
+      "category": "geometry",
+      "created_at": "2026-09-16T20:28:09.086977+09:00",
+      "description": "One authorized stale probe Paste: user reports no error, one curve object, 0,0,0 to 20,0,0 mm; one selected ungrouped object copied once, no other Copy.",
+      "files": {
+        "fixture": "tests\\samples\\geometry_line_staleprobe_postpaste.txt",
+        "typeeditzone": "typeeditzone.bin",
+        "typeeditzone_version": "typeeditzone_version.bin"
+      },
+      "format_names": {
+        "typeeditzone": "TypeEditZone",
+        "typeeditzone_version": "TypeEditZoneVersion"
+      },
+      "observed_format_ids": {
+        "typeeditzone": 50107,
+        "typeeditzone_version": 50108
+      },
+      "registered_format_ids": {
+        "typeeditzone": 49863,
+        "typeeditzone_version": 49864
+      },
+      "sample_name": "geometry_line_staleprobe_postpaste",
+      "source": "windows_clipboard",
+      "typeeditzone_size": 8192,
+      "typeeditzone_version_size": 32
+    },
+    "hashes": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+        "recorded_at_utc": "2026-09-16T11:28:09.1271896Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T11:28:09.1284276Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T11:28:12.8174785Z",
+      "completed_at_utc": "2026-09-16T11:28:12.9572260Z",
+      "exit_code": 0,
+      "both_formats_equal": true,
+      "command": "clipboard_typeeditzone.py verify-bundle --dir tests\\samples\\bundles\\geometry\\geometry_line_staleprobe_postpaste",
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "clipboard_interference_reported": false,
+    "eligible_for_file_analysis": true
+  },
+  "clipboard_access_closed_at_utc": "2026-09-16T11:28:13.1316568Z",
+  "final_results": "research/geometry-line/stale_opaque_probe_results.json",
+  "classifications": {
+    "vendor_edit_pair_valid": true,
+    "stale_probe_constructed": true,
+    "stale_opaque_paste_acceptance": "accepted",
+    "stale_postpaste_reserialization": "identical_to_stale",
+    "stale_probe_geometry_fidelity": "expected",
+    "stale_opaque_state_preservation": "observed_in_one_probe",
+    "stale_opaque_state_normalization": "not_observed",
+    "opaque_fields_preservation_for_template_mutation": "candidate_only",
+    "line_clipboard_synthesis_strategy": "template_mutation_candidate",
+    "line_clipboard_runtime_readiness": "missing_specific_contract",
+    "line_identity_fields": "unresolved",
+    "line_record_order": "creation_direction",
+    "line_endpoint_fields": "resolved",
+    "line_derived_fields": "partial"
+  },
+  "completed_at_utc": "2026-09-16T11:29:44.049809+00:00"
+}

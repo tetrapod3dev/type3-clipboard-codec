@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-09-16T11:25:38.7409982Z",
+  "completed_at_utc": "2026-09-16T11:25:38.9038846Z",
+  "exit_code": 0,
+  "output": [
+    "dumped_bytes=8192",
+    "dumped_version_bytes=32",
+    "dir=research\\geometry-line\\staleprobe\\loaded_readback",
+    "manifest=research\\geometry-line\\staleprobe\\loaded_readback\\manifest.json"
+  ],
+  "formats": [
+    {
+      "format_name": "TypeEditZone",
+      "runtime_registered_id": 49863,
+      "size": 8192,
+      "sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+      "source": "research/geometry-line/staleprobe/stale_E0_geometry_from_E1_typeeditzone.bin",
+      "readback_file": "research\\geometry-line\\staleprobe\\loaded_readback\\typeeditzone.bin",
+      "exact_equal": true
+    },
+    {
+      "format_name": "TypeEditZoneVersion",
+      "runtime_registered_id": 49864,
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "source": "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+      "readback_file": "research\\geometry-line\\staleprobe\\loaded_readback\\typeeditzone_version.bin",
+      "exact_equal": true
+    }
+  ],
+  "both_formats_exact": true
+}

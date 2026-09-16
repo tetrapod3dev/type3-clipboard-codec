@@ -585,3 +585,44 @@ Recommended next task only:
 Perform one bounded vendor-generated edit comparison to determine whether TypeEdit accepts stale opaque metadata after geometry changes before any synthetic mutator is built.
 
 A vendor-generated comparison alone reveals state changes; proving acceptance of stale state would require a separately specified and authorized intervention. This recommendation performs or authorizes no such intervention here.
+## 18. Bounded stale opaque-state probe — static preparation
+
+E0 and same-object vendor E1 were captured once each with immediate exact verification of both formats. The user reported vertex-editing END +10 mm to the right, returning to basic mode and copying one ungrouped selected object, with no subsequent Copy. Confirmed geometry is START (0,0,0) to END (10,0,0) mm for E0, and END (20,0,0) mm for E1.
+
+Both retain the observed 8192-byte single-line structure, descriptor/schema sequence, kind 0, count 2 and 36-byte records. Version remains byte-identical (32 bytes), as does [554,8192). All vendor differences are partitioned into the four authorized geometry fields and CCourbe [252,268)/CContour [412,428) opaque windows. No unexpected changed bytes occur.
+
+Exactly one research payload was built by copying complete E1 eight-byte slices [518,526), [41,49), [200,208), [360,368) into E0. Its SHA256 is d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e. Actual differences against E0 are offsets 47, 206, 366, 524; differences against E1 are exactly [252,268) and [412,428). All observed geometry equals E1 and every byte outside the four patch fields equals E0. The unchanged E0 Version is the designated Version source.
+
+Evidence: stale_opaque_probe_manifest.json, stale_opaque_probe_results.json and staleprobe/static_verification.json under research/geometry-line. The one-shot builder is tied to exact E0/E1/output hashes; it is not a general mutator.
+
+Status: static verification passed; awaiting explicit clipboard-overwrite approval and disposable blank target confirmation. No candidate load or Paste has occurred. Runtime acceptance and post-Paste geometry fidelity remain unresolved; reserialization is unavailable. Opaque preservation, synthesis strategy and runtime readiness retain unresolved / unresolved / missing_specific_contract respectively. Prior 596 baseline files were verified unchanged before this append.
+
+### 18.1 Completed runtime result — one Paste, one post-Paste Copy
+
+The user explicitly approved replacing the clipboard and confirmed a new blank unsaved writable document without valuable work. The existing loader loaded the sole STALE candidate with unchanged E0 Version once. Immediate saved readback was byte-for-byte equal for both formats (runtime IDs 49863 / 49864). The user reported no error, "1 곡선 개체", one pasted object and endpoints (0,0,0) to (20,0,0) mm, then confirmed Copy once of one ungrouped selected object with no other Copy.
+
+The final capture geometry_line_staleprobe_postpaste passed immediate verify-bundle for both formats, after which clipboard access ended. File-only comparison proves:
+- Full 8192-byte TypeEditZone equals STALE, SHA256 d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e.
+- Full 32-byte Version equals E0/E1/STALE, SHA256 33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f.
+- Structure, ordered endpoint records and all three bounds retain the expected E1 geometry.
+- Differences from E0 are only byte offsets 47, 206, 366, 524, inside the four transplanted fields.
+- Differences from vendor E1 are exactly CCourbe [252,268) and CContour [412,428); both retain E0 values.
+- CZone window, both record tags, [554,8192) property/tail and every other byte are unchanged. No opaque semantics are inferred.
+
+Current classifications (supersede the pending-runtime status in section 18):
+
+    vendor_edit_pair_valid = true
+    stale_probe_constructed = true
+    stale_opaque_paste_acceptance = accepted
+    stale_postpaste_reserialization = identical_to_stale
+    stale_probe_geometry_fidelity = expected
+    stale_opaque_state_preservation = observed_in_one_probe
+    stale_opaque_state_normalization = not_observed
+    opaque_fields_preservation_for_template_mutation = candidate_only
+    line_clipboard_synthesis_strategy = template_mutation_candidate
+    line_clipboard_runtime_readiness = missing_specific_contract
+    line_identity_fields = unresolved
+
+This directly establishes acceptance and preservation of new geometry plus old opaque remainder for this single END.x 10-to-20 mm transition in the observed family. It does not establish arbitrary coordinate mutation safety or production readiness. Endpoint ordering remains creation_direction / resolved; derived-field completeness, full Serialize extent and property/tail semantics remain separate open contracts.
+
+Final machine-readable evidence is in research/geometry-line/stale_opaque_probe_results.json and stale_opaque_probe_manifest.json. Exact byte offsets, all opaque/tag comparisons and full Version comparisons are retained. Prior artifacts remain unchanged; this document retains its original baseline prefix. The experiment is complete: three captures, one generated candidate, one load and one human Paste. No further runtime action is part of this task.

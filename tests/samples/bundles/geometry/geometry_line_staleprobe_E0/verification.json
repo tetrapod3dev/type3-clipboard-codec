@@ -1,0 +1,15 @@
+{
+  "started_at_utc": "2026-09-16T11:14:59.4741755Z",
+  "completed_at_utc": "2026-09-16T11:14:59.7587294Z",
+  "exit_code": 0,
+  "both_formats_equal": true,
+  "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_staleprobe_E0",
+  "output": [
+    "typeeditzone_match=true",
+    "typeeditzone_expected_length=8192",
+    "typeeditzone_actual_length=8192",
+    "typeeditzone_version_match=true",
+    "typeeditzone_version_expected_length=32",
+    "typeeditzone_version_actual_length=32"
+  ]
+}

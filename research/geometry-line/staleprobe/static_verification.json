@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T11:21:43.800077+00:00",
+  "stage": "static_proof_complete_runtime_not_started",
+  "offset_convention": "zero-based absolute, exclusive ends",
+  "source_hashes": {
+    "E0": "775a3492152249a871e76f6dad53220dadb091f59c757fa8bf6406a3e2108f7d",
+    "E1_vendor": "6e056f4f776ed3ffb34028bf77a8c7ffd4ab72e7600acd713352779a5509e6d1",
+    "Version": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+  },
+  "candidate_sha256": "d3c728869a783a19ca9cc79fa4444fcc07392246cff4edca0f842ed458f6453e",
+  "structure": {
+    "E0": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "E1_vendor": {
+      "descriptors": [
+        {
+          "name": "CZone",
+          "schema": 1,
+          "offset": 6
+        },
+        {
+          "name": "CCourbe",
+          "schema": 1,
+          "offset": 163
+        },
+        {
+          "name": "CContour",
+          "schema": 2,
+          "offset": 322
+        },
+        {
+          "name": "CPropertyExtend",
+          "schema": 5,
+          "offset": 554
+        }
+      ],
+      "expected_schema_family": true,
+      "kind_candidate": 0,
+      "point_count_candidate": 2,
+      "record_start": 482,
+      "record_stride": 36,
+      "record_count": 2,
+      "two_record_layout_retained": true
+    },
+    "identical": true
+  },
+  "geometry_fields": [
+    {
+      "field": "record0.xyz",
+      "start": 482,
+      "length": 24,
+      "E0_stored": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "E1_stored": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "E0_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "E1_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "field": "record1.xyz",
+      "start": 518,
+      "length": 24,
+      "E0_stored": [
+        0.01,
+        0.0,
+        0.0
+      ],
+      "E1_stored": [
+        0.02,
+        0.0,
+        0.0
+      ],
+      "E0_mm": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "E1_mm": [
+        20.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "field": "CZone.bounds",
+      "start": 17,
+      "length": 48,
+      "E0_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "E1_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.0,
+        0.0
+      ],
+      "E0_mm": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        0.0,
+        0.0
+      ],
+      "E1_mm": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "field": "CCourbe.bounds",
+      "start": 176,
+      "length": 48,
+      "E0_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "E1_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.0,
+        0.0
+      ],
+      "E0_mm": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        0.0,
+        0.0
+      ],
+      "E1_mm": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "field": "CContour.bounds",
+      "start": 336,
+      "length": 48,
+      "E0_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "E1_stored": [
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.0,
+        0.0
+      ],
+      "E0_mm": [
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        0.0,
+        0.0
+      ],
+      "E1_mm": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "version": {
+    "equal": true,
+    "size": 32,
+    "hex": "0100000051020000000000000000000000000000000000000000000000000000",
+    "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+  },
+  "vendor_diff": {
+    "equal": false,
+    "source_size": 8192,
+    "postpaste_size": 8192,
+    "changed_byte_count": 36,
+    "exact_changed_offsets": [
+      47,
+      206,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      366,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      524
+    ],
+    "ranges": [
+      {
+        "start": 47,
+        "end_exclusive": 48,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 206,
+        "end_exclusive": 207,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 252,
+        "end_exclusive": 268,
+        "length": 16,
+        "source_hex": "7664d11684ff81488e5eed56ac4b8ca0",
+        "postpaste_hex": "3881848c696cd6429f63134da2d9a6b9"
+      },
+      {
+        "start": 366,
+        "end_exclusive": 367,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 412,
+        "end_exclusive": 428,
+        "length": 16,
+        "source_hex": "ed4b21f5d008a8408a8ee061f7dc49d2",
+        "postpaste_hex": "1ddcfb34d5e04c4a993ce5cb0f9fcf95"
+      },
+      {
+        "start": 524,
+        "end_exclusive": 525,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      }
+    ]
+  },
+  "vendor_difference_partition": [
+    {
+      "region": "record1.x",
+      "start": 518,
+      "end_exclusive": 526,
+      "exact_changed_offsets": [
+        524
+      ],
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f"
+    },
+    {
+      "region": "CZone.max_x",
+      "start": 41,
+      "end_exclusive": 49,
+      "exact_changed_offsets": [
+        47
+      ],
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f"
+    },
+    {
+      "region": "CCourbe.max_x",
+      "start": 200,
+      "end_exclusive": 208,
+      "exact_changed_offsets": [
+        206
+      ],
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f"
+    },
+    {
+      "region": "CContour.max_x",
+      "start": 360,
+      "end_exclusive": 368,
+      "exact_changed_offsets": [
+        366
+      ],
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f"
+    },
+    {
+      "region": "CZone.opaque",
+      "start": 93,
+      "end_exclusive": 109,
+      "exact_changed_offsets": [],
+      "E0_hex": "71b01ff1e22f9643a3a17786aeec21eb",
+      "E1_hex": "71b01ff1e22f9643a3a17786aeec21eb"
+    },
+    {
+      "region": "CCourbe.opaque",
+      "start": 252,
+      "end_exclusive": 268,
+      "exact_changed_offsets": [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267
+      ],
+      "E0_hex": "7664d11684ff81488e5eed56ac4b8ca0",
+      "E1_hex": "3881848c696cd6429f63134da2d9a6b9"
+    },
+    {
+      "region": "CContour.opaque",
+      "start": 412,
+      "end_exclusive": 428,
+      "exact_changed_offsets": [
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427
+      ],
+      "E0_hex": "ed4b21f5d008a8408a8ee061f7dc49d2",
+      "E1_hex": "1ddcfb34d5e04c4a993ce5cb0f9fcf95"
+    },
+    {
+      "region": "record0.tag",
+      "start": 514,
+      "end_exclusive": 518,
+      "exact_changed_offsets": [],
+      "E0_hex": "0d484e5f",
+      "E1_hex": "0d484e5f"
+    },
+    {
+      "region": "record1.tag",
+      "start": 550,
+      "end_exclusive": 554,
+      "exact_changed_offsets": [],
+      "E0_hex": "0d504543",
+      "E1_hex": "0d504543"
+    }
+  ],
+  "unexpected_changed_offsets": [],
+  "property_tail": {
+    "start": 554,
+    "end_exclusive": 8192,
+    "byte_identical": true,
+    "sha256": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+    "semantic_extent": "unresolved"
+  },
+  "transplant_fields": [
+    {
+      "field": "record1.x",
+      "start": 518,
+      "end_exclusive": 526,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f",
+      "STALE_hex": "7b14ae47e17a943f"
+    },
+    {
+      "field": "CZone.max_x",
+      "start": 41,
+      "end_exclusive": 49,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f",
+      "STALE_hex": "7b14ae47e17a943f"
+    },
+    {
+      "field": "CCourbe.max_x",
+      "start": 200,
+      "end_exclusive": 208,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f",
+      "STALE_hex": "7b14ae47e17a943f"
+    },
+    {
+      "field": "CContour.max_x",
+      "start": 360,
+      "end_exclusive": 368,
+      "E0_hex": "7b14ae47e17a843f",
+      "E1_hex": "7b14ae47e17a943f",
+      "STALE_hex": "7b14ae47e17a943f"
+    }
+  ],
+  "stale_vs_E0": {
+    "equal": false,
+    "source_size": 8192,
+    "postpaste_size": 8192,
+    "changed_byte_count": 4,
+    "exact_changed_offsets": [
+      47,
+      206,
+      366,
+      524
+    ],
+    "ranges": [
+      {
+        "start": 47,
+        "end_exclusive": 48,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 206,
+        "end_exclusive": 207,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 366,
+        "end_exclusive": 367,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      },
+      {
+        "start": 524,
+        "end_exclusive": 525,
+        "length": 1,
+        "source_hex": "84",
+        "postpaste_hex": "94"
+      }
+    ]
+  },
+  "stale_vs_E1": {
+    "equal": false,
+    "source_size": 8192,
+    "postpaste_size": 8192,
+    "changed_byte_count": 32,
+    "exact_changed_offsets": [
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427
+    ],
+    "ranges": [
+      {
+        "start": 252,
+        "end_exclusive": 268,
+        "length": 16,
+        "source_hex": "3881848c696cd6429f63134da2d9a6b9",
+        "postpaste_hex": "7664d11684ff81488e5eed56ac4b8ca0"
+      },
+      {
+        "start": 412,
+        "end_exclusive": 428,
+        "length": 16,
+        "source_hex": "1ddcfb34d5e04c4a993ce5cb0f9fcf95",
+        "postpaste_hex": "ed4b21f5d008a8408a8ee061f7dc49d2"
+      }
+    ]
+  },
+  "stale_probe_geometry_matches_vendor_E1": true,
+  "stale_probe_remainder_matches_E0": true,
+  "version_source": "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+  "classifications": {
+    "vendor_edit_pair_valid": true,
+    "stale_probe_constructed": true,
+    "stale_opaque_paste_acceptance": "unresolved",
+    "stale_postpaste_reserialization": "unavailable",
+    "stale_probe_geometry_fidelity": "unresolved",
+    "opaque_fields_preservation_for_template_mutation": "unresolved",
+    "line_clipboard_synthesis_strategy": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "interpretation": "Runtime not performed. STALE retains E0 opaque state with E1 geometry; acceptance is unknown.",
+  "integrity": {
+    "baseline_files_checked": 596,
+    "all_baseline_files_unchanged_before_doc_update": true
+  }
+}

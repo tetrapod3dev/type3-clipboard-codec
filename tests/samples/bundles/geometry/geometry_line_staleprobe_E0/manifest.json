@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-16T11:14:56.554378+00:00",
+  "description": "Stale probe E0: fresh object E, rectangle separated to straight line; human START (0,0,0) -> END (10,0,0) mm, layer 1 black, single selected ungrouped object, Copy once and no subsequent Copy confirmed.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_staleprobe_E0.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_staleprobe_E0",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}

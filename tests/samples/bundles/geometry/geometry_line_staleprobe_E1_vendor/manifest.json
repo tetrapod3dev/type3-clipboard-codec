@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-16T11:19:18.513027+00:00",
+  "description": "Same E as E0; vertex edit endpoint +10 mm in x, returned to basic mode; START 0,0,0 END 20,0,0 mm; one selected ungrouped object; Copy once no subsequent Copy.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_staleprobe_E1_vendor.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_staleprobe_E1_vendor",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}
