@@ -443,66 +443,59 @@ Recommended next task only:
 Perform exactly one bounded duplicate-identity replay experiment before coordinate synthesis.
 
 This experiment is complete. No second paste, coordinate synthesis, metadata or Version mutation, new clipboard writer, loader modification, TypeEdit automation, vendor-file inspection, native/mixed-mode work or text character-width investigation occurred.
-## 15. Bounded duplicate exact-M00 replay (2026-09-16)
+## 15. Accepted duplicate exact-M00 replay: R2
 
-The first pasted object's Copy was proven byte-identical to original M00 in both formats before the second paste. Original immutable M00 was reloaded and verified, then the user reported one second Paste without error. The automatically selected object's subsequent Copy also equals M00 byte-for-byte. However, a later basic-mode drag selection reported **`3 영역에서의 다중 선택`**, which the user identifies as three objects. This is an unexpected count, not clean evidence for the intended two-object coexistence outcome.
+**TypeEdit accepted two coexisting objects produced from the same exact serialized clipboard payload in this bounded test.** After both captures were complete, the user performed full selection and reported `2 영역에서의 다중 선택`, confirming two objects. The earlier trial and its derived anomaly diagnosis were explicitly withdrawn by the user and removed from the working tree to prevent reuse. R2 is the authoritative duplicate-replay result. A suspected earlier accidental Paste is unconfirmed and is not a causal finding.
 
 Artifacts:
 
-- [Duplicate replay manifest](../research/geometry-line/duplicate_identity_replay_manifest.json).
-- [Duplicate replay results](../research/geometry-line/duplicate_identity_replay_results.json).
-- [File-only analyzer](../research/geometry-line/analyze_duplicate_identity_replay.py).
-- [Pre-write baseline](../research/geometry-line/duplicate_identity_replay_baseline.json) and [completion integrity](../research/geometry-line/duplicate_identity_replay_integrity.json).
-- Captures: `tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/` and `tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/`.
+- [R2 manifest](../research/geometry-line/duplicate_identity_replay_R2_manifest.json).
+- [R2 results](../research/geometry-line/duplicate_identity_replay_R2_results.json).
+- [File-only analyzer](../research/geometry-line/analyze_duplicate_identity_replay_R2.py).
+- [R2 baseline](../research/geometry-line/duplicate_identity_replay_R2_baseline.json) and [final integrity](../research/geometry-line/duplicate_identity_replay_R2_integrity.json).
+- [Minimal withdrawal ledger](../research/geometry-line/duplicate_replay_retirement.json): removed paths/hashes and authorization only; not experimental evidence.
+- Raw captures: `tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/` and `geometry_line_duplicate_R2_second_M00/`.
 
-### Protocol and actual observations
+### Bounded sequence and provenance
 
-The user prepared a new blank unsaved document with no objects or valuable work, writable `레이어 1`, and explicitly approved clipboard replacement for original M00 load and reload. Document units were not separately established; expected position and 10 mm length were confirmed after the first paste. The first pasted object remained automatically selected, with no intervening action before Copy. The user confirmed no error, one selected non-grouped object and no subsequent clipboard-producing operation.
+The user confirmed a new blank unsaved document with no objects or valuable work, writable `레이어 1`, and approved original M00 clipboard load/reload. Units were not separately confirmed; first-paste endpoints visually matched (0,0,0) -> (10,0,0). Original source hashes were checked before each of exactly two loads using the existing unmodified `load-bundle`; both immediate `verify-bundle` checks passed. No payload bytes were modified.
 
-Both loads used only existing unmodified `clipboard_typeeditzone.py load-bundle` on `tests/samples/bundles/geometry/geometry_line_meta_M00/`. Before each write, original raw hashes and sizes matched the recorded source values. Immediate `verify-bundle` confirmed byte equality of both loaded formats. Format access remains by name; no loader or writer was added or modified.
+After the first user Paste, the automatic selection displayed `1 곡선 개체`. The user copied once, reported no error or other action, and the existing capture CLI preserved both raw formats using `--category geometry --object-count 1 --grouping not_grouped --no-inspect`. Immediate verification and a complete file comparison established exact M00 equality before the second load. Original stored M00 was reloaded, never the first capture.
 
-Both object captures used the existing capture CLI with `--category geometry --object-count 1 --grouping not_grouped --no-inspect`, followed by SHA256 recording and immediate `verify-bundle`. Captured runtime format IDs were 49863 and 49864. IDs are observed values, not constants for future loads. Both captures passed complete verification. No reported interference was overridden by raw equality. The second capture used the inherited single-line non-grouped context and explicit UI selected count 1; grouping was not separately restated after the second paste, as disclosed in provenance.
+After the second user Paste, automatic selection again displayed `1 곡선 개체`. The user preserved that selection and copied once without other action. Both raw formats were captured and immediately verified; clipboard access then stopped. No error was reported for the second Paste; explicit no-error wording was not separately repeated. Grouping metadata follows the single-line replay context and selected curve-object report.
 
-The first captured object's entire 8192-byte TypeEditZone and 32-byte Version matched M00 before the second load. This fulfilled the collision precondition. The user then reported exactly one second Paste, no error, complete visual overlap and an automatically selected count of one. That automatic selection was preserved until the user copied once without further manipulation. Clipboard access ended after second-capture verification.
+The user initially declined extra drag checks; neither capture was preceded by a full-selection count action. After capture completion, the user voluntarily performed full selection and reported **`2 영역에서의 다중 선택`**, stating that two objects were correct. This later count is separate from each automatic selected count of one. Its exact event timestamp is unavailable; the manifest records report-ingestion time separately. UI semantics are based on human report, not independently verified documentation. Together with the blank-document confirmation, two reported pastes, no intervening edits and the two exact selected-payload captures, this supports the bounded coexistence conclusion.
 
-Only after both captures were safe, the user inspected total count by dragging over the whole drawing in basic object mode. The user specifically said no Ctrl+A-style select-all function exists. The displayed text was `3 영역에서의 다중 선택`; the user stated that it means three objects. This is distinct from the single-object selection at capture time. No selection query was automated and no objects were moved apart.
+The first object was not independently copied after the second Paste. The result does not prove preservation of its internal state. No object movement, third Paste, coordinate synthesis, TypeEdit automation, native/vendor inspection or text-width work was performed.
 
-Two paste actions were reported over the experiment; the later count is three. The origin and individual identities of those three objects are unresolved. No third paste, merge, replacement, hidden extra object or accidental creation is inferred as the explanation. The initial blank-document/one-object confirmations and later three-object report are both retained rather than silently reconciled. The first object was not independently reselected or reserialized after the second paste.
+### Complete file comparison
 
-### File-only results
+Source M00, first-object capture and second-object capture are byte-identical in both formats. All three pairwise comparisons have zero changed bytes.
 
-All three complete raw pairs are identical: source M00, preexisting first object, and second automatic-selection capture. Every pair has zero changed bytes, without normalization or trimming.
-
-| Format | Size | SHA256 for source and both captures |
+| Format | Bytes | SHA256 shared by all three |
 | --- | ---: | --- |
 | TypeEditZone | 8192 | `8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb` |
 | TypeEditZoneVersion | 32 | `33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f` |
 
-CZone schema 1, CCourbe schema 1, CContour schema 2 and CPropertyExtend schema 5 are retained at offsets 6, 163, 322 and 554. Kind candidate 0, point-count candidate 2, and two records with 36-byte stride beginning at 482 are unchanged. Observed xyz and all three bounds remain byte-identical.
-
-All specified opaque windows/tags `[93,109)`, `[252,268)`, `[412,428)`, `[514,518)`, `[550,554)` are exactly equal; there are also no changes outside them. The complete property/tail region `[554,8192)` and full Version are exactly equal. Offsets are zero-based with exclusive ends. This does not establish field identities, true window boundaries, an empty extension or an identity-free tail.
+Descriptor schemas and layout, both xyz records, all three bounds, opaque windows `[93,109)`, `[252,268)`, `[412,428)`, tags `[514,518)` and `[550,554)`, all bytes outside those regions, and property/tail `[554,8192)` are unchanged. Offsets are zero-based and ends exclusive. No normalization or trimming was used. No empty-extension or identity-field semantics are asserted.
 
 ```text
-duplicate_identity_replay = accepted_merge_or_other
+duplicate_identity_replay = accepted_two_objects
 preexisting_object_exact_M00 = true
 duplicate_second_object_reserialization = byte_identical_to_M00
 duplicate_paste_opaque_rewrite = not_observed
-duplicate_exact_payload_coexistence = unresolved
+duplicate_exact_payload_coexistence = observed_in_one_document
 line_identity_fields = unresolved
 opaque_fields_preservation_for_template_mutation = unresolved
 line_clipboard_runtime_readiness = missing_specific_contract
 ```
 
-Here `accepted_merge_or_other` means the **other** observed outcome: error-free paste followed by an unexpected three-region count. It does not assert a merge. Even though the second automatic-selection serialization equals M00, the identities and origins of all three selected objects are not established. Therefore this experiment does not promote exact-payload coexistence to `observed_in_one_document` or claim duplicate identity safety. No GUID/object-ID interpretation is assigned.
+This lowers concern that retaining the exact opaque state necessarily causes an immediate collision in this tested document. It does not identify GUID/object ID fields, generalize across sessions/versions/documents, or establish safety under coordinate mutation. The record-direction versus componentwise min/max contract remains unresolved.
 
-### Stop, integrity and next task
+### Completion and integrity
 
-The experiment stops after the reported second Paste and two required object captures. No third paste, payload/Version mutation, synthesis, direction test, vendor inspection, native/mixed-mode work or text character-width investigation occurred. The user may manually close/discard the disposable document; no automatic save/discard/shutdown is performed.
-
-The pre-write baseline recorded 556 tracked files at HEAD `e1937b3646645662428d6ca53fe2ede98c0f8d58`. Completion checks preserve the other 555 pre-existing files and the exact prior bytes of this contract. Existing raw bundles, micro-corpus/exact-replay results, text contract and tools remain unchanged.
+R2 raw files, M00 micro-corpus, initial exact-replay evidence and earlier geometry corpus are preserved. Explicitly withdrawn duplicate-trial artifacts and their derived diagnosis were deleted; the minimal retirement ledger makes those authorized removals distinct from corruption in the original R2 baseline. That baseline remains a historical hash inventory, not an endorsement of retired paths. The contract's earlier sections are preserved; superseded duplicate/anomaly sections were replaced by this final R2 account. No further runtime action is requested. The user may manually close/discard the disposable document.
 
 Recommended next task only:
 
-Perform one bounded file-and-provenance analysis of the unexpected three-region selection after the two reported pastes; do not paste again or modify payload bytes.
-
-The direction-disambiguation contract remains separate and is not resolved or promoted by this outcome.
+Capture one direction-disambiguating line whose user-defined start point is componentwise greater than its end point; do not synthesize coordinates yet.

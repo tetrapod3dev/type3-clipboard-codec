@@ -1,9 +1,9 @@
 {
   "category": "geometry",
-  "created_at": "2026-09-16T08:38:07.419343+00:00",
-  "description": "First exact M00 paste in fresh disposable blank document; one selected ungrouped line, expected position and 10 mm length, no error or additional action; Copy once, no clipboard interference reported.",
+  "created_at": "2026-09-16T10:36:54.002749+00:00",
+  "description": "R2 second exact M00 paste; automatic selection UI reports one curve object; selection unchanged through one Copy, no other action reported. Total document count not measured.",
   "files": {
-    "fixture": "tests\\samples\\geometry_line_duplicate_preexisting_M00.txt",
+    "fixture": "tests\\samples\\geometry_line_duplicate_R2_second_M00.txt",
     "typeeditzone": "typeeditzone.bin",
     "typeeditzone_version": "typeeditzone_version.bin"
   },
@@ -19,7 +19,7 @@
     "typeeditzone": 49863,
     "typeeditzone_version": 49864
   },
-  "sample_name": "geometry_line_duplicate_preexisting_M00",
+  "sample_name": "geometry_line_duplicate_R2_second_M00",
   "source": "windows_clipboard",
   "typeeditzone_size": 8192,
   "typeeditzone_version_size": 32

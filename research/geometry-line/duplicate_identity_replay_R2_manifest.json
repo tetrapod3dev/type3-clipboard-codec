@@ -1,7 +1,10 @@
 {
   "schema_version": 1,
-  "status": "complete_unexpected_count_classified",
-  "baseline": "research/geometry-line/duplicate_identity_replay_baseline.json",
+  "run_id": "duplicate_identity_replay_R2",
+  "status": "complete_accepted_two_objects_authoritative_duplicate_trial",
+  "user_request": "내가 실수 했을수도 있으니 아까 했던 테스트 해보자. 빈 문서 열어놨다.",
+  "prior_result_policy": "User explicitly withdrew previous duplicate trial and requested removal to avoid misleading future reference; R2 is authoritative duplicate-replay evidence.",
+  "baseline": "research/geometry-line/duplicate_identity_replay_R2_baseline.json",
   "source_bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
   "source_validation": [
     {
@@ -17,37 +20,35 @@
       "matches_expected": true
     }
   ],
-  "source_verified_at_utc": "2026-09-16T07:37:49.147541Z",
+  "source_verified_at_utc": "2026-09-16T10:27:35.3343523Z",
   "human_preparation": {
-    "statement": "새로운 미저장 문서 열었다. 새롭게 열어서 아무런 객체없다. 중요한 작업 없다. 현재 레이어는 레이어 1이며 쓰면 된다. paste 준비 되었다.",
+    "statement": "새 빈 미저장 문서, 객체 없음, 중요한 작업 없음, 현재 레이어 레이어 1 쓰기 가능. 클립보드 진행.",
     "new_blank_unsaved_document": true,
     "no_objects": true,
     "no_valuable_work": true,
     "layer": "레이어 1",
     "writable": true,
-    "ready_for_first_paste": true,
-    "units": null,
-    "units_note": "Not confirmed; no assumption"
+    "units": null
   },
   "clipboard_overwrite_approval": {
     "approved": true,
-    "statement": "동의함",
-    "scope": "Original M00 load and reload for this bounded experiment"
+    "statement": "진행하자. 클립보드 진행.",
+    "scope": "R2 original M00 load and reload"
   },
   "clipboard_load_count": 2,
   "human_paste_count": 2,
-  "preexisting_sample": "geometry_line_duplicate_preexisting_M00",
-  "second_sample": "geometry_line_duplicate_second_M00",
-  "preexisting_object_exact_M00": true,
-  "second_paste_gate": "Both preexisting raw formats must exactly equal original M00, then original M00 must be reloaded and verified",
-  "object_count_policy": "No count inference from no-error/visual overlap alone; preserve second automatic selection for capture; no movement for disambiguation",
   "maximum_pastes": 2,
-  "payload_mutation_allowed": false,
-  "typeedit_automation_allowed": false,
-  "clipboard_access_started": true,
+  "preexisting_sample": "geometry_line_duplicate_R2_preexisting_M00",
+  "second_sample": "geometry_line_duplicate_R2_second_M00",
+  "preexisting_object_exact_M00": true,
+  "count_observation_plan": "No drag before either capture; user subsequently performed full selection after both captures and reported 2 regions.",
+  "second_paste_gate": "First captured raw pair exactly equals immutable M00, then reload original M00 and verify",
+  "no_payload_mutation": true,
+  "no_typeedit_automation": true,
+  "protocol_steering": "아니다 전체 드래그는 생략하고 그대로 다시 진행해서 또 3번 뜨면 그 다음엔 전체 드래그 하자. 진행하자.",
   "first_load": {
-    "started_at_utc": "2026-09-16T07:53:16.9529068Z",
-    "completed_at_utc": "2026-09-16T07:53:17.0882822Z",
+    "started_at_utc": "2026-09-16T10:29:16.0466007Z",
+    "completed_at_utc": "2026-09-16T10:29:16.1874318Z",
     "exit_code": 0,
     "source": "tests/samples/bundles/geometry/geometry_line_meta_M00",
     "output": [
@@ -57,8 +58,8 @@
     ]
   },
   "first_load_verification": {
-    "started_at_utc": "2026-09-16T07:53:37.6855443Z",
-    "completed_at_utc": "2026-09-16T07:53:37.9822515Z",
+    "started_at_utc": "2026-09-16T10:29:20.0366688Z",
+    "completed_at_utc": "2026-09-16T10:29:20.3350524Z",
     "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00",
     "exit_code": 0,
     "both_formats_byte_equal": true,
@@ -74,26 +75,30 @@
   "preexisting_object_typeeditzone_equal": true,
   "preexisting_object_version_equal": true,
   "preexisting_capture": {
-    "sample_id": "geometry_line_duplicate_preexisting_M00",
+    "sample_id": "geometry_line_duplicate_R2_preexisting_M00",
     "human_ground_truth": {
       "statements": [
-        "붙여넣었다. 10mm 맞네. 위치도 정확하다. 현재 선택되어 있는 상태이다. 이번에는 붙여넣기만 하고 아무런 추가 동작을 안했다.",
-        "그대로 copy 1회만 진행했다. 아무것도 건들지 않았다.",
-        "맞음"
+        "붙여넣기 했음. 붙여넣기 된 객체가 선택된 상태이며 1 곡선 개체라고 1개의 객체임을 표시중임. 객체는 0,0,0 -> 10,0,0으로 보인다.",
+        "copy 1회 했다. 오류 없음. 다른 조작 없음"
       ],
-      "confirmation_scope": "No error, first pasted object only selected, count 1, not grouped, one Copy, no subsequent clipboard-producing operation",
       "first_paste_count": 1,
-      "no_additional_actions_reported": true,
-      "geometry_position_matches_M00": true,
-      "length_mm": 10,
-      "automatic_selection_preserved": true
+      "exact_UI_label": "1 곡선 개체",
+      "automatic_selection_preserved": true,
+      "selected_count": 1,
+      "document_total_independently_measured": false,
+      "expected_endpoints_visually_confirmed": true,
+      "copy_count": 1,
+      "no_error_reported": true,
+      "no_other_manipulation_reported": true,
+      "drag_selection_performed": false,
+      "grouping_note": "not_grouped capture intent inherited from M00 replay; UI reports one curve object"
     },
     "capture_manifest": {
       "category": "geometry",
-      "created_at": "2026-09-16T17:38:07.419343+09:00",
-      "description": "First exact M00 paste in fresh disposable blank document; one selected ungrouped line, expected position and 10 mm length, no error or additional action; Copy once, no clipboard interference reported.",
+      "created_at": "2026-09-16T19:32:39.519499+09:00",
+      "description": "R2 first exact M00 paste; automatic selection UI says 1 curve object; expected endpoints; Copy once, no errors or other manipulation. No drag selection performed.",
       "files": {
-        "fixture": "tests\\samples\\geometry_line_duplicate_preexisting_M00.txt",
+        "fixture": "tests\\samples\\geometry_line_duplicate_R2_preexisting_M00.txt",
         "typeeditzone": "typeeditzone.bin",
         "typeeditzone_version": "typeeditzone_version.bin"
       },
@@ -109,7 +114,7 @@
         "typeeditzone": 49863,
         "typeeditzone_version": 49864
       },
-      "sample_name": "geometry_line_duplicate_preexisting_M00",
+      "sample_name": "geometry_line_duplicate_R2_preexisting_M00",
       "source": "windows_clipboard",
       "typeeditzone_size": 8192,
       "typeeditzone_version_size": 32
@@ -119,18 +124,18 @@
         "file": "typeeditzone.bin",
         "size": 8192,
         "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
-        "recorded_at_utc": "2026-09-16T08:38:07.6395676Z"
+        "recorded_at_utc": "2026-09-16T10:32:39.7151758Z"
       },
       {
         "file": "typeeditzone_version.bin",
         "size": 32,
         "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
-        "recorded_at_utc": "2026-09-16T08:38:07.6425727Z"
+        "recorded_at_utc": "2026-09-16T10:32:39.7177697Z"
       }
     ],
     "verification": {
-      "started_at_utc": "2026-09-16T08:38:59.1999542Z",
-      "completed_at_utc": "2026-09-16T08:38:59.4924424Z",
+      "started_at_utc": "2026-09-16T10:32:43.6167036Z",
+      "completed_at_utc": "2026-09-16T10:32:43.9110021Z",
       "exit_code": 0,
       "both_formats_equal": true,
       "output": [
@@ -164,8 +169,8 @@
     "clipboard_interference_reported": false
   },
   "second_load": {
-    "started_at_utc": "2026-09-16T08:39:51.5291431Z",
-    "completed_at_utc": "2026-09-16T08:39:51.661401Z",
+    "started_at_utc": "2026-09-16T10:33:22.5705528Z",
+    "completed_at_utc": "2026-09-16T10:33:22.7006088Z",
     "exit_code": 0,
     "source": "tests/samples/bundles/geometry/geometry_line_meta_M00",
     "output": [
@@ -175,8 +180,8 @@
     ]
   },
   "second_load_verification": {
-    "started_at_utc": "2026-09-16T08:40:01.3064418Z",
-    "completed_at_utc": "2026-09-16T08:40:01.606339Z",
+    "started_at_utc": "2026-09-16T10:33:27.108787Z",
+    "completed_at_utc": "2026-09-16T10:33:27.4067251Z",
     "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00",
     "exit_code": 0,
     "both_formats_byte_equal": true,
@@ -190,31 +195,31 @@
     ]
   },
   "second_capture": {
-    "sample_id": "geometry_line_duplicate_second_M00",
+    "sample_id": "geometry_line_duplicate_R2_second_M00",
     "human_ground_truth": {
       "statements": [
-        "붙여넣기 한번 실행했다. 객체는 완전히 겹쳐있으니 일단 1개만 보인다. 그리고 붙여넣기 하면 붙여넣기 한 객체가 선택된 상태라서 현재 1개의 객체가 선택되어 있다고 뜬다. 아무런 오류는 없다.",
-        "현재 상태에서 아무런 조작을 하지 않고 copy 1회 완료 했다."
+        "붙여넣기 한번 했다. 그리고 아무것도 하지 않았다. 현재 1 곡선 개체라고 붙여넣은 개체만 선택된 상태이다.",
+        "copy 1회 했다. 여전히 1 곡선 개체라고 뜨고 있다. 다른 동작은 안했다."
       ],
       "second_paste_count": 1,
       "total_paste_count": 2,
-      "no_error_reported": true,
-      "visual_overlap": true,
-      "visible_line_shapes": 1,
+      "exact_UI_label": "1 곡선 개체",
       "ui_selected_object_count": 1,
       "automatic_paste_selection_preserved": true,
-      "total_document_object_count": null,
-      "no_intervening_manipulation_reported": true,
+      "document_total_object_count": null,
       "copy_count": 1,
-      "grouping_note": "Capture requested as not_grouped; inherited single-line replay context and UI selected count 1; not independently restated after second paste",
-      "clipboard_interference_note": "No interference reported; user confirms Copy once without manipulation; equality alone does not prove absence of interference"
+      "no_other_manipulation_reported": true,
+      "error_status": "No error reported; explicit no-error wording was not separately repeated for second paste",
+      "drag_selection_performed": false,
+      "grouping_note": "not_grouped capture intent inherited from single-line replay; selected UI says one curve object",
+      "clipboard_interference_note": "No other actions reported; no continuous clipboard monitor"
     },
     "capture_manifest": {
       "category": "geometry",
-      "created_at": "2026-09-16T17:52:07.543392+09:00",
-      "description": "Second exact original M00 paste after existing object proven byte-identical to M00; no errors, complete visual overlap, UI selected count 1; automatic pasted-object selection retained, Copy once with no intervening manipulation. Total document object count not yet established.",
+      "created_at": "2026-09-16T19:36:54.002749+09:00",
+      "description": "R2 second exact M00 paste; automatic selection UI reports one curve object; selection unchanged through one Copy, no other action reported. Total document count not measured.",
       "files": {
-        "fixture": "tests\\samples\\geometry_line_duplicate_second_M00.txt",
+        "fixture": "tests\\samples\\geometry_line_duplicate_R2_second_M00.txt",
         "typeeditzone": "typeeditzone.bin",
         "typeeditzone_version": "typeeditzone_version.bin"
       },
@@ -230,7 +235,7 @@
         "typeeditzone": 49863,
         "typeeditzone_version": 49864
       },
-      "sample_name": "geometry_line_duplicate_second_M00",
+      "sample_name": "geometry_line_duplicate_R2_second_M00",
       "source": "windows_clipboard",
       "typeeditzone_size": 8192,
       "typeeditzone_version_size": 32
@@ -240,18 +245,18 @@
         "file": "typeeditzone.bin",
         "size": 8192,
         "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
-        "recorded_at_utc": "2026-09-16T08:52:07.7370762Z"
+        "recorded_at_utc": "2026-09-16T10:36:54.1968475Z"
       },
       {
         "file": "typeeditzone_version.bin",
         "size": 32,
         "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
-        "recorded_at_utc": "2026-09-16T08:52:07.739485Z"
+        "recorded_at_utc": "2026-09-16T10:36:54.1992852Z"
       }
     ],
     "verification": {
-      "started_at_utc": "2026-09-16T08:52:17.4495173Z",
-      "completed_at_utc": "2026-09-16T08:52:17.7451875Z",
+      "started_at_utc": "2026-09-16T10:36:58.5402419Z",
+      "completed_at_utc": "2026-09-16T10:36:58.8208837Z",
       "exit_code": 0,
       "both_formats_equal": true,
       "output": [
@@ -265,39 +270,42 @@
     },
     "eligible_for_file_comparison": true
   },
-  "clipboard_access_closed_at_utc": "2026-09-16T08:52:17.7888158Z",
-  "postcapture_object_count": {
-    "statements": [
-      "3개라고 뜨네",
-      "기본 모드에서 선택했다. 그냥 전체 드래그 해서 선택을 했다. ctrl +a와 같은 전체 선택 기능은 없다.",
-      "3 영역에서의 다중 선택 이라고 뜨며 이 말은 3개의 객체가 있다는 말이다."
-    ],
-    "reported_count": 3,
-    "confirmed_count": 3,
-    "method": "human ordinary UI drag-selection object count",
-    "selection_mode": "basic object mode",
-    "exact_UI_label": "3 영역에서의 다중 선택",
-    "user_interpretation": "3 objects",
-    "observation_after_second_capture": true,
-    "unexpected_count": true,
-    "additional_clipboard_access": false,
-    "limit": "Two paste actions were previously reported. The origin and individual identities of the three selected regions are not established. No additional capture or paste performed to investigate."
-  },
+  "clipboard_access_closed_at_utc": "2026-09-16T10:36:58.8590142Z",
   "classifications": {
-    "duplicate_identity_replay": "accepted_merge_or_other",
+    "duplicate_identity_replay": "accepted_two_objects",
     "preexisting_object_exact_M00": true,
     "duplicate_second_object_reserialization": "byte_identical_to_M00",
     "duplicate_paste_opaque_rewrite": "not_observed",
-    "duplicate_exact_payload_coexistence": "unresolved",
+    "duplicate_exact_payload_coexistence": "observed_in_one_document",
     "line_identity_fields": "unresolved",
     "opaque_fields_preservation_for_template_mutation": "unresolved",
     "line_clipboard_runtime_readiness": "missing_specific_contract"
   },
-  "results": "research/geometry-line/duplicate_identity_replay_results.json",
-  "completed_at_utc": "2026-09-16T09:05:26.1575187Z",
+  "results": "research/geometry-line/duplicate_identity_replay_R2_results.json",
+  "document_count_limit": "User confirms two objects from postcapture full-selection UI; human count evidence, not a parser or document API census.",
+  "completed_at_utc": "2026-09-16T10:44:21.5213980Z",
   "cleanup": {
     "manual_close_discard_allowed": true,
-    "automatic_action_taken": false,
-    "actual_user_cleanup": "not reported"
-  }
+    "automatic_action": false,
+    "actual_cleanup": "not reported"
+  },
+  "postcapture_object_count": {
+    "statement": "이제 전체 선택을 해보니까 2 영역에서의 다중 선택이라고 뜬다. 2개가 맞네.",
+    "confirmed_count": 2,
+    "method": "human ordinary UI select-all object count",
+    "exact_UI_label": "2 영역에서의 다중 선택",
+    "observed_after_both_captures": true,
+    "timestamp": null,
+    "recorded_at_utc": "2026-09-16T10:41:58.7471376Z",
+    "semantic_basis": "User-reported full-selection count; not independently documented UI semantics",
+    "context": "New blank document, two reported exact-replay pastes, retained automatic selections and no intervening actions reported"
+  },
+  "prior_trial_withdrawal": {
+    "requested": true,
+    "statement": "이번 테스트로 정리해서 마무리하면 될듯. 이전 테스트는 잘못되었으니 폐기 해버리자.",
+    "cause_hypothesis": "User suspects an accidental Paste instead of final Copy in prior trial",
+    "cause_confirmed": false,
+    "record": "research/geometry-line/duplicate_replay_retirement.json"
+  },
+  "next_task": "Capture one direction-disambiguating line whose user-defined start point is componentwise greater than its end point; do not synthesize coordinates yet."
 }

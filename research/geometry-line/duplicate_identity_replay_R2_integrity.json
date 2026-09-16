@@ -1,0 +1,68 @@
+{
+  "checked_at_utc": "2026-09-16T10:44:21.9023492Z",
+  "baseline_file_count": 579,
+  "remaining_protected_files_unchanged": 555,
+  "authorized_removed_files": [
+    "research/geometry-line/analyze_duplicate_identity_replay.py",
+    "research/geometry-line/duplicate_identity_replay_baseline.json",
+    "research/geometry-line/duplicate_identity_replay_manifest.json",
+    "research/geometry-line/duplicate_identity_replay_results.json",
+    "research/geometry-line/duplicate_identity_replay_integrity.json",
+    "research/geometry-line/duplicate_three_region_diagnosis.json",
+    "research/geometry-line/duplicate_three_region_diagnosis.md",
+    "tests/samples/geometry_line_duplicate_preexisting_M00.txt",
+    "tests/samples/geometry_line_duplicate_second_M00.txt",
+    "tests/samples/intents/geometry/geometry_line_duplicate_preexisting_M00.md",
+    "tests/samples/intents/geometry/geometry_line_duplicate_second_M00.md",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/capture_metadata.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/manifest.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/sha256.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone_version.bin",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone.bin",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/verification.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/capture_metadata.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/manifest.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/sha256.json",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone_version.bin",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone.bin",
+    "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/verification.json"
+  ],
+  "retirement_authority": "research/geometry-line/duplicate_replay_retirement.json",
+  "contract_change": "Superseded duplicate/anomaly sections replaced by authoritative R2 result; prior claim of entire baseline prefix preservation is superseded by this authorized cleanup",
+  "raw_checks": [
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_source": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_meta_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_source": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_R2_preexisting_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_source": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_R2_preexisting_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_source": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_R2_second_M00\\typeeditzone.bin",
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "matches_source": true
+    },
+    {
+      "path": "tests\\samples\\bundles\\geometry\\geometry_line_duplicate_R2_second_M00\\typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "matches_source": true
+    }
+  ],
+  "clipboard_access_after_second_capture": false,
+  "git_diff_check": "passed",
+  "accepted_document_count": 2,
+  "document_count_source": "postcapture human full-selection report"
+}

@@ -1,0 +1,101 @@
+{
+  "recorded_at_utc": "2026-09-16T10:41:58.8051980Z",
+  "reason": "Explicit user withdrawal of previous duplicate trial and derived diagnosis",
+  "authoritative_replacement": "research/geometry-line/duplicate_identity_replay_R2_results.json",
+  "prior_cause": "unconfirmed user hypothesis; no causal finding retained",
+  "removed_files": [
+    {
+      "path": "research/geometry-line/analyze_duplicate_identity_replay.py",
+      "sha256_before_removal": "38320991ecc5c69926111af53cfaf6f5f5f6406324224ff536204cb8f1740a1e"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_baseline.json",
+      "sha256_before_removal": "a283a88808cbef18e896de3aa531fc8b34d90f0075898a763f8c616cd0577dfd"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_manifest.json",
+      "sha256_before_removal": "180c4b6009dd4b9858806152a8608e15c7d35bb3b7327a80c0d8170a4ba9bbe0"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_results.json",
+      "sha256_before_removal": "ec85e2dc686e347e15ef1dcf782a8c3bd37fb01cf4b8062bf32d6b620214ca65"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_integrity.json",
+      "sha256_before_removal": "cdeb6dbb2904b19edd2bb6e4b2187b6ef1c5b23084d7059ddc1e98af7e6fe1c0"
+    },
+    {
+      "path": "research/geometry-line/duplicate_three_region_diagnosis.json",
+      "sha256_before_removal": "5273b08042fe50cacdd095aadd5ac877be57102a7d7607783c937ba7dd8cae17"
+    },
+    {
+      "path": "research/geometry-line/duplicate_three_region_diagnosis.md",
+      "sha256_before_removal": "abaf6a236ee9855dbe6851f4ec5e2ac5e2c13e6b4127a589750980e357514607"
+    },
+    {
+      "path": "tests/samples/geometry_line_duplicate_preexisting_M00.txt",
+      "sha256_before_removal": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
+    },
+    {
+      "path": "tests/samples/geometry_line_duplicate_second_M00.txt",
+      "sha256_before_removal": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
+    },
+    {
+      "path": "tests/samples/intents/geometry/geometry_line_duplicate_preexisting_M00.md",
+      "sha256_before_removal": "813669e002be9f5ab82ac6236fb3fb8e9f187b805b13e63290c578e4c64ad045"
+    },
+    {
+      "path": "tests/samples/intents/geometry/geometry_line_duplicate_second_M00.md",
+      "sha256_before_removal": "d88c6d39395c25c5221e7bdd6810cce22acd069df7ae2f1f2051d3f15543c4c1"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/capture_metadata.json",
+      "sha256_before_removal": "2a1d8134617827f7c0781da7c489dd986ce06ee05f07cab9c868a605ae0ffe1a"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/manifest.json",
+      "sha256_before_removal": "f86a0ac8cbcbb08856a01d43620fe9dcfc07a44fb99c56807e9232d9089434fc"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/sha256.json",
+      "sha256_before_removal": "a3a16f16df38ae5214c262ac457333e3b646c8d41db8caa81dbe7320bee39d90"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone_version.bin",
+      "sha256_before_removal": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone.bin",
+      "sha256_before_removal": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/verification.json",
+      "sha256_before_removal": "c749a92ee822f977f6457f7fdcb7633aa2291eb7f101f046b9091e26287b2ef4"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/capture_metadata.json",
+      "sha256_before_removal": "e4d26b4c777f2d2886150ffa8e1beedea69ce73e531bc962d4c582f99373e126"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/manifest.json",
+      "sha256_before_removal": "5e2a5c0d8b47f6654721631e1087dbebb132ad48d3cc93f67997c97b8ddfcfa8"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/sha256.json",
+      "sha256_before_removal": "5859fce6ce68bf5225a99e89e66f4936884aebc3cbfee21f8bf172288e6dcf08"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone_version.bin",
+      "sha256_before_removal": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone.bin",
+      "sha256_before_removal": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/verification.json",
+      "sha256_before_removal": "1c8a238f9461fa55937b05625bff2f293fa420489b54ddd4bf65de64b2a4d4a6"
+    }
+  ],
+  "scope": "Previous duplicate trial only; original exact replay, microcorpus and R2 raw bundles retained"
+}

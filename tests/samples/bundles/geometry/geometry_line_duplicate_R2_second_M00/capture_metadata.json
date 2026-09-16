@@ -1,0 +1,76 @@
+{
+  "sample_id": "geometry_line_duplicate_R2_second_M00",
+  "human_ground_truth": {
+    "statements": [
+      "붙여넣기 한번 했다. 그리고 아무것도 하지 않았다. 현재 1 곡선 개체라고 붙여넣은 개체만 선택된 상태이다.",
+      "copy 1회 했다. 여전히 1 곡선 개체라고 뜨고 있다. 다른 동작은 안했다."
+    ],
+    "second_paste_count": 1,
+    "total_paste_count": 2,
+    "exact_UI_label": "1 곡선 개체",
+    "ui_selected_object_count": 1,
+    "automatic_paste_selection_preserved": true,
+    "document_total_object_count": null,
+    "copy_count": 1,
+    "no_other_manipulation_reported": true,
+    "error_status": "No error reported; explicit no-error wording was not separately repeated for second paste",
+    "drag_selection_performed": false,
+    "grouping_note": "not_grouped capture intent inherited from single-line replay; selected UI says one curve object",
+    "clipboard_interference_note": "No other actions reported; no continuous clipboard monitor"
+  },
+  "capture_manifest": {
+    "category": "geometry",
+    "created_at": "2026-09-16T19:36:54.002749+09:00",
+    "description": "R2 second exact M00 paste; automatic selection UI reports one curve object; selection unchanged through one Copy, no other action reported. Total document count not measured.",
+    "files": {
+      "fixture": "tests\\samples\\geometry_line_duplicate_R2_second_M00.txt",
+      "typeeditzone": "typeeditzone.bin",
+      "typeeditzone_version": "typeeditzone_version.bin"
+    },
+    "format_names": {
+      "typeeditzone": "TypeEditZone",
+      "typeeditzone_version": "TypeEditZoneVersion"
+    },
+    "observed_format_ids": {
+      "typeeditzone": 50107,
+      "typeeditzone_version": 50108
+    },
+    "registered_format_ids": {
+      "typeeditzone": 49863,
+      "typeeditzone_version": 49864
+    },
+    "sample_name": "geometry_line_duplicate_R2_second_M00",
+    "source": "windows_clipboard",
+    "typeeditzone_size": 8192,
+    "typeeditzone_version_size": 32
+  },
+  "hashes": [
+    {
+      "file": "typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "recorded_at_utc": "2026-09-16T10:36:54.1968475Z"
+    },
+    {
+      "file": "typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "recorded_at_utc": "2026-09-16T10:36:54.1992852Z"
+    }
+  ],
+  "verification": {
+    "started_at_utc": "2026-09-16T10:36:58.5402419Z",
+    "completed_at_utc": "2026-09-16T10:36:58.8208837Z",
+    "exit_code": 0,
+    "both_formats_equal": true,
+    "output": [
+      "typeeditzone_match=true",
+      "typeeditzone_expected_length=8192",
+      "typeeditzone_actual_length=8192",
+      "typeeditzone_version_match=true",
+      "typeeditzone_version_expected_length=32",
+      "typeeditzone_version_actual_length=32"
+    ]
+  },
+  "eligible_for_file_comparison": true
+}

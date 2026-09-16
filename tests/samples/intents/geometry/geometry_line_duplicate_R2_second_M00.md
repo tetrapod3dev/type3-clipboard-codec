@@ -1,4 +1,4 @@
-# geometry_line_duplicate_preexisting_M00
+# geometry_line_duplicate_R2_second_M00
 
 ## Capture metadata
 
@@ -6,8 +6,8 @@
 - captured from: Type3 Windows clipboard
 - TypeEditZone bytes: 8192
 - TypeEditZoneVersion bytes: 32
-- created at: 2026-09-16T08:38:07.419343+00:00
-- description: First exact M00 paste in fresh disposable blank document; one selected ungrouped line, expected position and 10 mm length, no error or additional action; Copy once, no clipboard interference reported.
+- created at: 2026-09-16T10:36:54.002749+00:00
+- description: R2 second exact M00 paste; automatic selection UI reports one curve object; selection unchanged through one Copy, no other action reported. Total document count not measured.
 - external intent file: 
 
 ## User intent / ground truth
@@ -18,7 +18,7 @@
 - text content: 
 - font:
 - color: 
-- anchor / position: 0,0,0;10,0,0
+- anchor / position: 
 - geometry:
 - changed variable:
 - fixed variables:

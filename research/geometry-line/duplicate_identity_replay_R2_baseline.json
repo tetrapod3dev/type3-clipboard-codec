@@ -1,8 +1,12 @@
 {
-  "recorded_at_utc": "2026-09-16T07:37:49.0821451Z",
-  "repository": "C:\\work\\develop\\type3-clipboard-codec",
-  "head": "e1937b3646645662428d6ca53fe2ede98c0f8d58",
-  "status_porcelain": [],
+  "recorded_at_utc": "2026-09-16T10:27:35.2613849Z",
+  "head": "72b03a74c2bb6dbb6d06da56ad4453ff5e32ce0b",
+  "status_porcelain": [
+    " M docs/geometry_line_clipboard_contract.md",
+    "?? research/geometry-line/duplicate_three_region_diagnosis.json",
+    "?? research/geometry-line/duplicate_three_region_diagnosis.md"
+  ],
+  "scope": "All tracked and preexisting nonignored untracked files, including prior diagnosis and modified contract",
   "files": [
     {
       "path": ".gitignore",
@@ -13,11 +17,6 @@
       "path": ".junie/behavioral_guidelines.md",
       "size": 2420,
       "sha256": "dfa65e54a827f598d896d686bac5b065479c62ec2b2f7aede71cf358bdf65af5"
-    },
-    {
-      "path": "README.md",
-      "size": 4871,
-      "sha256": "b4c408e856ffdf0bb7c38658df280ecba33b261947bc1a9f5858d62a7501c53a"
     },
     {
       "path": "docs/architecture.md",
@@ -46,8 +45,8 @@
     },
     {
       "path": "docs/geometry_line_clipboard_contract.md",
-      "size": 35845,
-      "sha256": "60e3d05be646f8bc608232311bd49b0fdc75f87b81076f519eab213fa811181e"
+      "size": 47015,
+      "sha256": "4be9c43633b47a5d077d067ea66b84ad3962b4415398f96b95302c051d7b5e18"
     },
     {
       "path": "docs/geometry_parser_structure_audit.md",
@@ -215,6 +214,11 @@
       "sha256": "64753308d395e64888805f2540211efb1fc8fbdbed744aa1e59571b3e8f1bb07"
     },
     {
+      "path": "README.md",
+      "size": 4871,
+      "sha256": "b4c408e856ffdf0bb7c38658df280ecba33b261947bc1a9f5858d62a7501c53a"
+    },
+    {
       "path": "research/geometry-line/actual_capture_manifest.json",
       "size": 37975,
       "sha256": "042fc91bd140394b04facd1e3f10873fcf9c9c07e9f40f5e52c3005c449969e8"
@@ -223,6 +227,11 @@
       "path": "research/geometry-line/analyze_capture_files.py",
       "size": 13758,
       "sha256": "5beb6e6bd3c032657f5bb93cfa8b1d86223c5671c8bcc428d7c457668870515f"
+    },
+    {
+      "path": "research/geometry-line/analyze_duplicate_identity_replay.py",
+      "size": 8692,
+      "sha256": "38320991ecc5c69926111af53cfaf6f5f5f6406324224ff536204cb8f1740a1e"
     },
     {
       "path": "research/geometry-line/analyze_exact_replay_paste.py",
@@ -260,6 +269,36 @@
       "sha256": "efa527d3de894fa5bdb905671619d54d7c69f647da231699819e8c3b4c51dcb8"
     },
     {
+      "path": "research/geometry-line/duplicate_identity_replay_baseline.json",
+      "size": 107726,
+      "sha256": "a283a88808cbef18e896de3aa531fc8b34d90f0075898a763f8c616cd0577dfd"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_integrity.json",
+      "size": 1815,
+      "sha256": "cdeb6dbb2904b19edd2bb6e4b2187b6ef1c5b23084d7059ddc1e98af7e6fe1c0"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_manifest.json",
+      "size": 13004,
+      "sha256": "180c4b6009dd4b9858806152a8608e15c7d35bb3b7327a80c0d8170a4ba9bbe0"
+    },
+    {
+      "path": "research/geometry-line/duplicate_identity_replay_results.json",
+      "size": 12770,
+      "sha256": "ec85e2dc686e347e15ef1dcf782a8c3bd37fb01cf4b8062bf32d6b620214ca65"
+    },
+    {
+      "path": "research/geometry-line/duplicate_three_region_diagnosis.json",
+      "size": 145737,
+      "sha256": "5273b08042fe50cacdd095aadd5ac877be57102a7d7607783c937ba7dd8cae17"
+    },
+    {
+      "path": "research/geometry-line/duplicate_three_region_diagnosis.md",
+      "size": 20323,
+      "sha256": "abaf6a236ee9855dbe6851f4ec5e2ac5e2c13e6b4127a589750980e357514607"
+    },
+    {
       "path": "research/geometry-line/evidence.json",
       "size": 35352,
       "sha256": "f88eeaae77f570dbdde40a1ade7cb5c99e9cca1c7c572335e0c1a34af6d5761e"
@@ -270,14 +309,14 @@
       "sha256": "4dc3771f2061ba6182ee4a31bdef7990c80ee6454bd15e691b025c6805f6e65e"
     },
     {
-      "path": "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
-    },
-    {
       "path": "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
     },
     {
       "path": "research/geometry-line/exact_replay_paste_baseline.json",
@@ -495,6 +534,11 @@
       "sha256": "6f0e9a80d8802c61becea5cdaee5b40710f10f68fe07c6ba6e81398abbbeaa21"
     },
     {
+      "path": "src/type3_clipboard_codec/parsers/text_parser.py",
+      "size": 2428,
+      "sha256": "9cb37b272d52eff2b80914c2281f98e1728b721d79ae7ddd93a6c169a350c2b3"
+    },
+    {
       "path": "src/type3_clipboard_codec/parsers/text/__init__.py",
       "size": 648,
       "sha256": "7d5748fe06593b049b13b5a670399defdda2119cf3e0f6b55651ef052192e65f"
@@ -513,11 +557,6 @@
       "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
       "size": 13869,
       "sha256": "f5ec6614cd11d4c89ec77ae569ed5209f3c2615392b02dafef90a5a9ac96e54d"
-    },
-    {
-      "path": "src/type3_clipboard_codec/parsers/text_parser.py",
-      "size": 2428,
-      "sha256": "9cb37b272d52eff2b80914c2281f98e1728b721d79ae7ddd93a6c169a350c2b3"
     },
     {
       "path": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
@@ -955,29 +994,64 @@
       "sha256": "b751fc0abf78d09a5119a442786814c45bf850940871d3be132fe43a00f0a160"
     },
     {
-      "path": "tests/samples/README.md",
-      "size": 61109,
-      "sha256": "1f70e7cb9151136056938de28d14f92293d743ecaa1d4f7968d1686c67c1a2c7"
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/capture_metadata.json",
+      "size": 3468,
+      "sha256": "2a1d8134617827f7c0781da7c489dd986ce06ee05f07cab9c868a605ae0ffe1a"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00/capture_metadata.json",
-      "size": 3781,
-      "sha256": "6ba9e14471a8525bc268a48300ed91230e869affdf65004f14a8a655ad696f16"
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/manifest.json",
+      "size": 975,
+      "sha256": "f86a0ac8cbcbb08856a01d43620fe9dcfc07a44fb99c56807e9232d9089434fc"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00/manifest.json",
-      "size": 1066,
-      "sha256": "31af9ff7ffd50460f23a101502fc26b5dbb10ebf3fc284fa1dc15bd423bd8ab8"
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/sha256.json",
+      "size": 413,
+      "sha256": "a3a16f16df38ae5214c262ac457333e3b646c8d41db8caa81dbe7320bee39d90"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00/verification.json",
+      "size": 431,
+      "sha256": "c749a92ee822f977f6457f7fdcb7633aa2291eb7f101f046b9091e26287b2ef4"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/capture_metadata.json",
+      "size": 3245,
+      "sha256": "e4d26b4c777f2d2886150ffa8e1beedea69ce73e531bc962d4c582f99373e126"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/manifest.json",
+      "size": 1042,
+      "sha256": "5e2a5c0d8b47f6654721631e1087dbebb132ad48d3cc93f67997c97b8ddfcfa8"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/sha256.json",
+      "size": 413,
+      "sha256": "5859fce6ce68bf5225a99e89e66f4936884aebc3cbfee21f8bf172288e6dcf08"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00/verification.json",
+      "size": 431,
+      "sha256": "1c8a238f9461fa55937b05625bff2f293fa420489b54ddd4bf65de64b2a4d4a6"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_L00_N/capture_metadata.json",
@@ -990,14 +1064,14 @@
       "sha256": "908d09bfac444e8b6dd604a5a91df812843f59f44ca7d8b7ed72149413e6ab75"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8f2cff941185d317bd553c9e691b1a7f75b4e02698693f4e3b09ff7020af8e21"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_L00_R/capture_metadata.json",
@@ -1010,14 +1084,34 @@
       "sha256": "ca99ae3486c9df200e4cde4dfd571eca65e50a1dc03fe37101694959f69dd8a2"
     },
     {
+      "path": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
       "path": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone.bin",
       "size": 8192,
       "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+      "path": "tests/samples/bundles/geometry/geometry_line_L00/capture_metadata.json",
+      "size": 3781,
+      "sha256": "6ba9e14471a8525bc268a48300ed91230e869affdf65004f14a8a655ad696f16"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L00/manifest.json",
+      "size": 1066,
+      "sha256": "31af9ff7ffd50460f23a101502fc26b5dbb10ebf3fc284fa1dc15bd423bd8ab8"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "f1eca49473c2c572612b0e4624b6f1963a12d1c10010b4f9055c8410f4426b02"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_L01/capture_metadata.json",
@@ -1030,14 +1124,14 @@
       "sha256": "1aa1a7efae11eb324437fb65aab41258b8a4cbffcacb1435311ced715d89329d"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "1dc7aa3522cd6f4abe3185d9905089e00436bcf8fc8fbe5835f449c2e0f2b814"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_L02/capture_metadata.json",
@@ -1050,14 +1144,14 @@
       "sha256": "a57e10a321f619f7be95a800e8bed4a9591cfcee5e34f556e7d3f63e3d8c230d"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "05f97eb87015d011fe30ce25518418cf9672accbb89db03f9ad7886f1b0a0dab"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_L04/capture_metadata.json",
@@ -1070,14 +1164,14 @@
       "sha256": "c8002130343a7c1acef46f5ac9942b60e6315e2e913526fb3de22d1a5eb9907d"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "62def5b09383d4f77218abb6a0c9febcd55fa6f8d9766e38f569ab354941f1a6"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_LY0/capture_metadata.json",
@@ -1090,14 +1184,14 @@
       "sha256": "579b58f3ffd5b2893765a46ab421b6b00bfab66685a0de067e1818b46949a343"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a46ea738716061d3f61fe586c6400adc8df49034f991d6f4695e70386865bf0"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_LZ/capture_metadata.json",
@@ -1110,44 +1204,14 @@
       "sha256": "d26ca02db2177c5ef4887efea8436fb5ad3014cf65484c134bc0adbff8ddae0e"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/capture_metadata.json",
-      "size": 3602,
-      "sha256": "d7848d4022bdd24725005de450439bb3cfa07066ec4f664ff6da3a39963617f4"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/manifest.json",
-      "size": 907,
-      "sha256": "c29783ad2c22dfb07c1ecbcfb7271716fcdcdf5260fdc76a3381e76feeaf2758"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/sha256.json",
-      "size": 413,
-      "sha256": "4e4d67891accf0b87f664e13765814f748afa5bf5a96eae7360216beccf2c495"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone.bin",
+      "path": "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone.bin",
       "size": 8192,
-      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
-      "size": 32,
-      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
-    },
-    {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/verification.json",
-      "size": 517,
-      "sha256": "23bce977efb5a6e24560914da4f336b11a474823132c66a8ffbbd801e302b711"
+      "sha256": "b230b04ace212e7e2df47cdf1ea008b5c938ccc281cf220c4e33777673a72ded"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/capture_metadata.json",
@@ -1165,14 +1229,14 @@
       "sha256": "e48650eb2e2ef7c419c77040fd97fb3961b3a69aceefd971ea0d5b1467317c0e"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/verification.json",
@@ -1195,14 +1259,14 @@
       "sha256": "a9025df0d09b231b977c062d3bf2499bdc92f0f9086c6663a59d108c4944d94a"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_N/verification.json",
@@ -1225,14 +1289,14 @@
       "sha256": "9f5266a391a14c3d024428b15fe0787b6693f2ef5fa95117c141d034ba198e78"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/verification.json",
@@ -1255,19 +1319,49 @@
       "sha256": "49224bb8dcd8053ea9e3334a49469595ed9b9dd11ada1b92cf379e40f3e6dc17"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
       "path": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/verification.json",
       "size": 520,
       "sha256": "42708b7cca513b05cfa51a062427274605311fc1419c074c8bd5638a7e4540c0"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/capture_metadata.json",
+      "size": 3602,
+      "sha256": "d7848d4022bdd24725005de450439bb3cfa07066ec4f664ff6da3a39963617f4"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/manifest.json",
+      "size": 907,
+      "sha256": "c29783ad2c22dfb07c1ecbcfb7271716fcdcdf5260fdc76a3381e76feeaf2758"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/sha256.json",
+      "size": 413,
+      "sha256": "4e4d67891accf0b87f664e13765814f748afa5bf5a96eae7360216beccf2c495"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_meta_M00/verification.json",
+      "size": 517,
+      "sha256": "23bce977efb5a6e24560914da4f336b11a474823132c66a8ffbbd801e302b711"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/capture_metadata.json",
@@ -1285,14 +1379,14 @@
       "sha256": "dd1b18eaf661d6fba18c9e21b8f4ff541da87e4bcf1a460408ff58caba6402dd"
     },
     {
-      "path": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone.bin",
-      "size": 8192,
-      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
-    },
-    {
       "path": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone.bin",
+      "size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb"
     },
     {
       "path": "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/verification.json",
@@ -1300,29 +1394,9 @@
       "sha256": "7f0c1ad01a83b59fa606f89a8c270af5d92382aec9fdf06277775b276b2f6127"
     },
     {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/manifest.json",
-      "size": 844,
-      "sha256": "a551373590e69a65123d47c8610b17ca3e85fd7538212ade44a2fb0f29b69b59"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "4144746fdd1904efaa7b1e5f48bb297bf76f3167064858f82b3b76d5f73720c8"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
-      "size": 32,
-      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
-    },
-    {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/manifest.json",
       "size": 875,
       "sha256": "b850f0563482c6b78a285eac5fe3557798ed550cb6519e4739154adcaadcb155"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "ecb93d901e24c43b7b0dc68a25e6ed60081115a59b06de96a2791008ec87f7aa"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
@@ -1330,14 +1404,14 @@
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "ecb93d901e24c43b7b0dc68a25e6ed60081115a59b06de96a2791008ec87f7aa"
+    },
+    {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/manifest.json",
       "size": 861,
       "sha256": "22bf0d0d47a3e8e3fdda405c6c85d94d39058fa66fdd1cde52924d49d27d8c36"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "88f4e165140b76990d6610b9867c18fb6bb41e4dbbf85f957a0c3128118091be"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
@@ -1345,14 +1419,14 @@
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "88f4e165140b76990d6610b9867c18fb6bb41e4dbbf85f957a0c3128118091be"
+    },
+    {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/manifest.json",
       "size": 849,
       "sha256": "869e5e60a9a4826c576bdac09f4c5e18bbca7e1a15f4ec72a661800a39f65f78"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "775e2d13096d2c556e89b99dc9619d53607eb2304189b98e419cc90e5b677ef1"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
@@ -1360,14 +1434,14 @@
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "775e2d13096d2c556e89b99dc9619d53607eb2304189b98e419cc90e5b677ef1"
+    },
+    {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/manifest.json",
       "size": 869,
       "sha256": "ea204dd60bac80f7d48ada9285dc93e6ef6674efda13ff1ace112c9c210f3d46"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "4e7f3e5091189effc9a02717565c79af3b7137221ca035fac756759440557c5b"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
@@ -1375,14 +1449,29 @@
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "4e7f3e5091189effc9a02717565c79af3b7137221ca035fac756759440557c5b"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/manifest.json",
+      "size": 844,
+      "sha256": "a551373590e69a65123d47c8610b17ca3e85fd7538212ade44a2fb0f29b69b59"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "4144746fdd1904efaa7b1e5f48bb297bf76f3167064858f82b3b76d5f73720c8"
+    },
+    {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_cba/manifest.json",
       "size": 844,
       "sha256": "a80858fc9de6d295ce6bf5dcaf806db1d5f207299892d25c0a767b975f158d75"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone.bin",
-      "size": 16384,
-      "sha256": "4b9a4ade21a1311659338e66cb0330f90bdbaffd7b6ad3bf0c46c1f8b0510449"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
@@ -1390,19 +1479,9 @@
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
     },
     {
-      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/manifest.json",
-      "size": 815,
-      "sha256": "4749942cf360d045cc7fd1b593a5799cfe56ccd931cf6ad74118447971d10847"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone.bin",
+      "path": "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone.bin",
       "size": 16384,
-      "sha256": "201907994ff2baad4d492159302468ba1fc59555f611eed1577cf2fa9ee2637b"
-    },
-    {
-      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
-      "size": 32,
-      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+      "sha256": "4b9a4ade21a1311659338e66cb0330f90bdbaffd7b6ad3bf0c46c1f8b0510449"
     },
     {
       "path": "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/manifest.json",
@@ -1410,14 +1489,29 @@
       "sha256": "c91e37d023d0ee9ec4a8c3ac91cf5ea7e9b0fd3a6a7f949148d1ead2a3fdfab4"
     },
     {
+      "path": "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+      "size": 32,
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
       "path": "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone.bin",
       "size": 16384,
       "sha256": "a2e7c9e8e8e57c7106b3a21a6f0a49e4d0fe0b4a626c40291512f9f1e82494ae"
     },
     {
-      "path": "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/manifest.json",
+      "size": 815,
+      "sha256": "4749942cf360d045cc7fd1b593a5799cfe56ccd931cf6ad74118447971d10847"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone.bin",
+      "size": 16384,
+      "sha256": "201907994ff2baad4d492159302468ba1fc59555f611eed1577cf2fa9ee2637b"
     },
     {
       "path": "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/manifest.json",
@@ -1425,14 +1519,14 @@
       "sha256": "c060e1c5af78acfdcb57b0d8cdf911c6cf128c7316157d49f0496211bb73ad89"
     },
     {
-      "path": "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone.bin",
-      "size": 12288,
-      "sha256": "cbf25ff84e7d8dace5c0c93ff11897e37310fecc8d4cb2f336f42959373edd00"
-    },
-    {
       "path": "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone.bin",
+      "size": 12288,
+      "sha256": "cbf25ff84e7d8dace5c0c93ff11897e37310fecc8d4cb2f336f42959373edd00"
     },
     {
       "path": "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/manifest.json",
@@ -1440,14 +1534,14 @@
       "sha256": "c63772f47bad067871117f6fb7db9588c005443a0464a40acef3e17110ec5a3c"
     },
     {
-      "path": "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone.bin",
-      "size": 12288,
-      "sha256": "e4331bd12a5ea44db09d661b6e3674e685f834b640f66da31210dd4fa6533545"
-    },
-    {
       "path": "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f"
+    },
+    {
+      "path": "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone.bin",
+      "size": 12288,
+      "sha256": "e4331bd12a5ea44db09d661b6e3674e685f834b640f66da31210dd4fa6533545"
     },
     {
       "path": "tests/samples/closed_from_polyline_5_points.txt",
@@ -1500,9 +1594,14 @@
       "sha256": "b4a5e00ce9a0c319b42e950624d4ca036a9ad8fe0829b44a3b79ab9714ab1890"
     },
     {
-      "path": "tests/samples/geometry_line_L00.txt",
+      "path": "tests/samples/geometry_line_duplicate_preexisting_M00.txt",
       "size": 16896,
-      "sha256": "1abe0752e0baad9de618caff5bed455aa40a7e3ecd335a92aec59d8458fa6a76"
+      "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
+    },
+    {
+      "path": "tests/samples/geometry_line_duplicate_second_M00.txt",
+      "size": 16896,
+      "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
     },
     {
       "path": "tests/samples/geometry_line_L00_N.txt",
@@ -1511,6 +1610,11 @@
     },
     {
       "path": "tests/samples/geometry_line_L00_R.txt",
+      "size": 16896,
+      "sha256": "1abe0752e0baad9de618caff5bed455aa40a7e3ecd335a92aec59d8458fa6a76"
+    },
+    {
+      "path": "tests/samples/geometry_line_L00.txt",
       "size": 16896,
       "sha256": "1abe0752e0baad9de618caff5bed455aa40a7e3ecd335a92aec59d8458fa6a76"
     },
@@ -1540,11 +1644,6 @@
       "sha256": "d4f084606b922508687e7cca9f5ab4e4aa6b465ffb9f04495f3ad882c6ce4999"
     },
     {
-      "path": "tests/samples/geometry_line_meta_M00.txt",
-      "size": 16896,
-      "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
-    },
-    {
       "path": "tests/samples/geometry_line_meta_M00_ER.txt",
       "size": 16896,
       "sha256": "c2dd9601591f67d6786a9181e87a7cbc55807fc17fa2f04b76d89d4c1bc2007b"
@@ -1565,14 +1664,24 @@
       "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
     },
     {
+      "path": "tests/samples/geometry_line_meta_M00.txt",
+      "size": 16896,
+      "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
+    },
+    {
       "path": "tests/samples/geometry_line_replay_M00_postpaste.txt",
       "size": 16896,
       "sha256": "08243130965f59ba16f311b1129965a7a36f1f5bb5786110886b5c99effa124a"
     },
     {
-      "path": "tests/samples/intents/geometry/geometry_line_L00.md",
-      "size": 1236,
-      "sha256": "13b5dca9bd2fdb5885597997709f521d9ccea8de5e1df2b429ac0a816ecbb783"
+      "path": "tests/samples/intents/geometry/geometry_line_duplicate_preexisting_M00.md",
+      "size": 1123,
+      "sha256": "813669e002be9f5ab82ac6236fb3fb8e9f187b805b13e63290c578e4c64ad045"
+    },
+    {
+      "path": "tests/samples/intents/geometry/geometry_line_duplicate_second_M00.md",
+      "size": 1183,
+      "sha256": "d88c6d39395c25c5221e7bdd6810cce22acd069df7ae2f1f2051d3f15543c4c1"
     },
     {
       "path": "tests/samples/intents/geometry/geometry_line_L00_N.md",
@@ -1583,6 +1692,11 @@
       "path": "tests/samples/intents/geometry/geometry_line_L00_R.md",
       "size": 1144,
       "sha256": "e807e25bf43c4280cab442a24a63b457b939d82f8a11e32ae17e40751232ec77"
+    },
+    {
+      "path": "tests/samples/intents/geometry/geometry_line_L00.md",
+      "size": 1236,
+      "sha256": "13b5dca9bd2fdb5885597997709f521d9ccea8de5e1df2b429ac0a816ecbb783"
     },
     {
       "path": "tests/samples/intents/geometry/geometry_line_L01.md",
@@ -1610,11 +1724,6 @@
       "sha256": "4fde8161d6dc785222499f34b305417d9f70923af1c71571710f6bc1134658aa"
     },
     {
-      "path": "tests/samples/intents/geometry/geometry_line_meta_M00.md",
-      "size": 1081,
-      "sha256": "ea0037c1cf119ee674ece9abfcfdfae11a741bf274dc615fe566b17c820de63e"
-    },
-    {
       "path": "tests/samples/intents/geometry/geometry_line_meta_M00_ER.md",
       "size": 1124,
       "sha256": "634ca470fe3f623b6cae3b3740c6325aaad8e18a5be4bf3ad8ab4486c0df87e9"
@@ -1633,6 +1742,11 @@
       "path": "tests/samples/intents/geometry/geometry_line_meta_M00_R2.md",
       "size": 1082,
       "sha256": "b6e104bee916c876c02ae753470f17512f59ee42cc200ecc754d96c03518999f"
+    },
+    {
+      "path": "tests/samples/intents/geometry/geometry_line_meta_M00.md",
+      "size": 1081,
+      "sha256": "ea0037c1cf119ee674ece9abfcfdfae11a741bf274dc615fe566b17c820de63e"
     },
     {
       "path": "tests/samples/intents/geometry/geometry_line_replay_M00_postpaste.md",
@@ -1755,11 +1869,6 @@
       "sha256": "1b163e1d3341626c1569f34a1dd7b972b1a707ca00c7d9d7fd43c6df41863def"
     },
     {
-      "path": "tests/samples/intents/text/text_three_objects_grouped_order_abc.md",
-      "size": 60362,
-      "sha256": "3cc50d7925e310380e78457c3a069efda323583bc33b7981830fd8d9f46a553e"
-    },
-    {
       "path": "tests/samples/intents/text/text_three_objects_grouped_order_abc_content_variation.md",
       "size": 60290,
       "sha256": "6f4fa4ffe842600200e826b9c007d825d3bc7c4c246989e26add16b2c3f8c84f"
@@ -1780,19 +1889,24 @@
       "sha256": "86a691149fa424cecfb30d5b0db1b406d7da7356d0174bedbb59e9d66432a685"
     },
     {
+      "path": "tests/samples/intents/text/text_three_objects_grouped_order_abc.md",
+      "size": 60362,
+      "sha256": "3cc50d7925e310380e78457c3a069efda323583bc33b7981830fd8d9f46a553e"
+    },
+    {
       "path": "tests/samples/intents/text/text_three_objects_grouped_order_cba.md",
       "size": 60342,
       "sha256": "286fcf2d770fc2bdd7115014a6cd6530a7648a7e3e29dd6ccfb3d2f84041a2ba"
     },
     {
-      "path": "tests/samples/intents/text/text_three_objects_not_grouped.md",
-      "size": 71412,
-      "sha256": "7fc8e0053585ce7b10472037a1b5f5cedba0c731e09bb38638ada4d4a5cca77e"
-    },
-    {
       "path": "tests/samples/intents/text/text_three_objects_not_grouped_mixed_color.md",
       "size": 71410,
       "sha256": "aaa3bc66b4779dbc1dae7c02362cc93961d7634354c27c0fd554394650d5f759"
+    },
+    {
+      "path": "tests/samples/intents/text/text_three_objects_not_grouped.md",
+      "size": 71412,
+      "sha256": "7fc8e0053585ce7b10472037a1b5f5cedba0c731e09bb38638ada4d4a5cca77e"
     },
     {
       "path": "tests/samples/intents/text/text_two_objects_mixed_color_not_grouped.md",
@@ -1810,19 +1924,14 @@
       "sha256": "054634dce49e56e938f588fb1d6a34aa81c7454537b8488fb8397349faafb7fc"
     },
     {
-      "path": "tests/samples/polygon_5_sides.txt",
-      "size": 24575,
-      "sha256": "f55d80a96ece7b5952acf953f66cc09eb6d4fdc267db413d6ad0a755d8e9af4a"
-    },
-    {
       "path": "tests/samples/polygon_5_sides_session2.txt",
       "size": 24575,
       "sha256": "d2f0969a4edfcef88039dea23a1248e1c50cd59d74834c856e221da9f35ed3e2"
     },
     {
-      "path": "tests/samples/polygon_6_sides.txt",
+      "path": "tests/samples/polygon_5_sides.txt",
       "size": 24575,
-      "sha256": "e809e1131b000503fe318a04e5cc7ba0638954022ede30f0140bafa636423000"
+      "sha256": "f55d80a96ece7b5952acf953f66cc09eb6d4fdc267db413d6ad0a755d8e9af4a"
     },
     {
       "path": "tests/samples/polygon_6_sides_rotated_start.txt",
@@ -1835,6 +1944,11 @@
       "sha256": "8f9a5d8b2ddcfa63e974562cfc98b21b3af620d05d47f0df851df71387deb08a"
     },
     {
+      "path": "tests/samples/polygon_6_sides.txt",
+      "size": 24575,
+      "sha256": "e809e1131b000503fe318a04e5cc7ba0638954022ede30f0140bafa636423000"
+    },
+    {
       "path": "tests/samples/polyline_2_points.txt",
       "size": 24575,
       "sha256": "e537224a9d3799cc580591369dfca021df78d6e31ea5df27b662c27dfa67cead"
@@ -1843,11 +1957,6 @@
       "path": "tests/samples/polyline_3_points.txt",
       "size": 24575,
       "sha256": "91d6e9c9d4e4835928b60ac901cddbf578d9bef96d41b55e558cba11af551c64"
-    },
-    {
-      "path": "tests/samples/polyline_5_points.txt",
-      "size": 24575,
-      "sha256": "75c83ded8b6ffbb97c55ce01aa848eb97bcfb271fa168ef1c0ebc5c36f3d7014"
     },
     {
       "path": "tests/samples/polyline_5_points_reversed.txt",
@@ -1860,19 +1969,29 @@
       "sha256": "b896d400ad6b2de936e957d39e9f941c4b18b293270f156c974f79e1372f15aa"
     },
     {
+      "path": "tests/samples/polyline_5_points.txt",
+      "size": 24575,
+      "sha256": "75c83ded8b6ffbb97c55ce01aa848eb97bcfb271fa168ef1c0ebc5c36f3d7014"
+    },
+    {
       "path": "tests/samples/polyline_from_polygon_5_points.txt",
       "size": 24575,
       "sha256": "ccafc598fa2f52db5e25fe947490a324927dde8eaaa0fedb8be0d1eadecd0916"
     },
     {
-      "path": "tests/samples/rectangle_large.txt",
-      "size": 24575,
-      "sha256": "ef93f11581d993e03d36b3ba3e9c3f69a936fcc8a3fa2e8c76580d96cb582cf3"
+      "path": "tests/samples/README.md",
+      "size": 61109,
+      "sha256": "1f70e7cb9151136056938de28d14f92293d743ecaa1d4f7968d1686c67c1a2c7"
     },
     {
       "path": "tests/samples/rectangle_large_positive_offset.txt",
       "size": 24575,
       "sha256": "a86f713daba0ce02f14b341c29455a37ea71bfd502fabcb13c1316e53c8545f0"
+    },
+    {
+      "path": "tests/samples/rectangle_large.txt",
+      "size": 24575,
+      "sha256": "ef93f11581d993e03d36b3ba3e9c3f69a936fcc8a3fa2e8c76580d96cb582cf3"
     },
     {
       "path": "tests/samples/rectangle_negative_offset.txt",
@@ -1903,16 +2022,6 @@
       "path": "tests/samples/reports/text/text_slot_style_runtime_baseline.json",
       "size": 3729,
       "sha256": "efabb25d68a75fcb7eca3557eba903d776c307b22ebccc6f5e9a3df10a93d86a"
-    },
-    {
-      "path": "tests/samples/reports/text/text_three_objects_grouped_order_abc.inspect.json",
-      "size": 2262,
-      "sha256": "c29ac4fd8b98e686f7673b03e25e931340a6e0ebd5c4a34a19a695c45e716021"
-    },
-    {
-      "path": "tests/samples/reports/text/text_three_objects_grouped_order_abc.inspect.txt",
-      "size": 57840,
-      "sha256": "15f026e270334620057cf93007be6fa773951d732f4b22cae92a9bb4cf63e142"
     },
     {
       "path": "tests/samples/reports/text/text_three_objects_grouped_order_abc_content_variation.inspect.json",
@@ -1955,6 +2064,16 @@
       "sha256": "fb6e0dc3329c92cd69176ffd3ffdcc1d40db48f90eeecc251ad73c8b6db5389a"
     },
     {
+      "path": "tests/samples/reports/text/text_three_objects_grouped_order_abc.inspect.json",
+      "size": 2262,
+      "sha256": "c29ac4fd8b98e686f7673b03e25e931340a6e0ebd5c4a34a19a695c45e716021"
+    },
+    {
+      "path": "tests/samples/reports/text/text_three_objects_grouped_order_abc.inspect.txt",
+      "size": 57840,
+      "sha256": "15f026e270334620057cf93007be6fa773951d732f4b22cae92a9bb4cf63e142"
+    },
+    {
       "path": "tests/samples/reports/text/text_three_objects_grouped_order_cba.inspect.json",
       "size": 2247,
       "sha256": "7b4bcb0dadbdaa6d31509c05f93ff543ab0fae6d55080229971103660b442547"
@@ -1965,16 +2084,6 @@
       "sha256": "b92ec53f28676a2a6066ed672f7b0c1d91b84cc293a106daf0c71773e3d54012"
     },
     {
-      "path": "tests/samples/reports/text/text_three_objects_not_grouped.inspect.json",
-      "size": 2238,
-      "sha256": "fa8d9f32422bbf259dcff75506f7f40faae2dd1ed5c10b298e6f700b265a54e8"
-    },
-    {
-      "path": "tests/samples/reports/text/text_three_objects_not_grouped.inspect.txt",
-      "size": 68922,
-      "sha256": "2d0c5508cfee5f36bb9c97b264be2e425e4594759a4b272aff954ebf86643907"
-    },
-    {
       "path": "tests/samples/reports/text/text_three_objects_not_grouped_mixed_color.inspect.json",
       "size": 2238,
       "sha256": "fa8d9f32422bbf259dcff75506f7f40faae2dd1ed5c10b298e6f700b265a54e8"
@@ -1983,6 +2092,16 @@
       "path": "tests/samples/reports/text/text_three_objects_not_grouped_mixed_color.inspect.txt",
       "size": 68907,
       "sha256": "4e9ddd31da72b0a72bb0172a083d7e7fd77e751db47ed9fbfe3b5c0bc1bb4ebd"
+    },
+    {
+      "path": "tests/samples/reports/text/text_three_objects_not_grouped.inspect.json",
+      "size": 2238,
+      "sha256": "fa8d9f32422bbf259dcff75506f7f40faae2dd1ed5c10b298e6f700b265a54e8"
+    },
+    {
+      "path": "tests/samples/reports/text/text_three_objects_not_grouped.inspect.txt",
+      "size": 68922,
+      "sha256": "2d0c5508cfee5f36bb9c97b264be2e425e4594759a4b272aff954ebf86643907"
     },
     {
       "path": "tests/samples/reports/text/text_two_objects_not_grouped_selection_reversed.inspect.json",
@@ -2075,14 +2194,14 @@
       "sha256": "65277663d4caa5ad6716f62ff8d8ea75e65d2e36361eb1e8863c5bdbe78dda36"
     },
     {
-      "path": "tests/samples/text/text_font_arial.txt",
-      "size": 24575,
-      "sha256": "037392e2c97f2742f818539c41a8c8896c5bf5fbe47e4695040828ca839345b8"
-    },
-    {
       "path": "tests/samples/text/text_font_arial_bold.txt",
       "size": 24575,
       "sha256": "e0863b38d7e935cbd5655fa5f7182253289ff393132970a9a44154728c9afe90"
+    },
+    {
+      "path": "tests/samples/text/text_font_arial.txt",
+      "size": 24575,
+      "sha256": "037392e2c97f2742f818539c41a8c8896c5bf5fbe47e4695040828ca839345b8"
     },
     {
       "path": "tests/samples/text/text_font_hy_gyeongo_dik.txt",
@@ -2350,11 +2469,6 @@
       "sha256": "3b27735fa7d8e7b6d6fd8e6403e3c34fd7badfe4fb4d37dd72da9aa54b31129b"
     },
     {
-      "path": "tests/samples/text/text_three_objects_grouped_order_abc.txt",
-      "size": 33792,
-      "sha256": "aa8a05d891b4e9e620edfb0b06ab8b5bec12922b8b5d566d6369fe423c13291f"
-    },
-    {
       "path": "tests/samples/text/text_three_objects_grouped_order_abc_content_variation.txt",
       "size": 33792,
       "sha256": "4b298d83b30c0cd20ffb73da070f2958c05fc5a44992cd9fdbfecec86c65316a"
@@ -2375,19 +2489,24 @@
       "sha256": "2db3387901d9c01021c00cfd734f0c0d20b630f4cc846ea4ae4857c6922d613a"
     },
     {
+      "path": "tests/samples/text/text_three_objects_grouped_order_abc.txt",
+      "size": 33792,
+      "sha256": "aa8a05d891b4e9e620edfb0b06ab8b5bec12922b8b5d566d6369fe423c13291f"
+    },
+    {
       "path": "tests/samples/text/text_three_objects_grouped_order_cba.txt",
       "size": 33792,
       "sha256": "8b9055901913933334875d11845b5985adb92019640f1f396ac6457213bac3e2"
     },
     {
-      "path": "tests/samples/text/text_three_objects_not_grouped.txt",
-      "size": 33792,
-      "sha256": "e1a12f77519ccc4337f1c4faaa33d6513b6d63b1cffe4705c420bf58389fc79a"
-    },
-    {
       "path": "tests/samples/text/text_three_objects_not_grouped_mixed_color.txt",
       "size": 33792,
       "sha256": "7bc80d2b73325049ab9e323c894b5e366728c791dd8df68394ce0fa8370423d2"
+    },
+    {
+      "path": "tests/samples/text/text_three_objects_not_grouped.txt",
+      "size": 33792,
+      "sha256": "e1a12f77519ccc4337f1c4faaa33d6513b6d63b1cffe4705c420bf58389fc79a"
     },
     {
       "path": "tests/samples/text/text_two_objects_mixed_color_not_grouped.txt",
@@ -2435,16 +2554,6 @@
       "sha256": "9447ad3c1f9d630a59a85526b748fcc988a37735004472355f3761ed16f95c3b"
     },
     {
-      "path": "tests/samples/two_rectangle.txt",
-      "size": 24575,
-      "sha256": "907d85a35770265d61836f64e83db700814cec7750502011b63e9e2b71ced36a"
-    },
-    {
-      "path": "tests/samples/two_rectangle_group.txt",
-      "size": 24575,
-      "sha256": "d2790616e99b40f108e3125396d9b383ddabd61aeab40d1ae9a40b4aafd041a3"
-    },
-    {
       "path": "tests/samples/two_rectangle_group_army_green.txt",
       "size": 24575,
       "sha256": "fecfb9c0ff82dc6e2eefb9f82e4eb53de23ac570a353ecf8d81505e7bac164a4"
@@ -2455,14 +2564,24 @@
       "sha256": "da6e81af329516f1fac00a60c0a026fbef27dc58eee62c87d9d288e36c6b308a"
     },
     {
-      "path": "tests/source_integrity.py",
-      "size": 1769,
-      "sha256": "28e10a4da5f8a8ec97e11c3ff1d6fafbccc16c52f8101cc1dd3ce160a233130b"
+      "path": "tests/samples/two_rectangle_group.txt",
+      "size": 24575,
+      "sha256": "d2790616e99b40f108e3125396d9b383ddabd61aeab40d1ae9a40b4aafd041a3"
+    },
+    {
+      "path": "tests/samples/two_rectangle.txt",
+      "size": 24575,
+      "sha256": "907d85a35770265d61836f64e83db700814cec7750502011b63e9e2b71ced36a"
     },
     {
       "path": "tests/source_integrity_baselines.json",
       "size": 40285,
       "sha256": "291b32c8d8a8dcf01b085fa714d60cb34b7b0e9020859920f43f4122dfbc995a"
+    },
+    {
+      "path": "tests/source_integrity.py",
+      "size": 1769,
+      "sha256": "28e10a4da5f8a8ec97e11c3ff1d6fafbccc16c52f8101cc1dd3ce160a233130b"
     },
     {
       "path": "tests/text_slot_typed_output.py",
@@ -2510,14 +2629,14 @@
       "sha256": "723a407482e3462ef473a9bde34ef2c07e62b1e8c7525bfedfb00e849a489ab9"
     },
     {
-      "path": "tests/unit/test_text_slot_candidate.py",
-      "size": 6668,
-      "sha256": "b52f1158130702d0e3da5dffbd2ae8caaad4d65ac03c88e0cf852be481c5b93c"
-    },
-    {
       "path": "tests/unit/test_text_slot_candidate_v2.py",
       "size": 8149,
       "sha256": "0ad7dfcff0c532e2460793ebeb329c1c169d29a264ccdfbf6f234e4d8f174440"
+    },
+    {
+      "path": "tests/unit/test_text_slot_candidate.py",
+      "size": 6668,
+      "sha256": "b52f1158130702d0e3da5dffbd2ae8caaad4d65ac03c88e0cf852be481c5b93c"
     },
     {
       "path": "tests/unit/test_text_slot_family_v2_shadow.py",
@@ -2595,14 +2714,14 @@
       "sha256": "4589d9e9ee12426b15225e79917faefa07e8aa0257d430ca44f5897129755913"
     },
     {
-      "path": "tools/analyze_text_color_record.py",
-      "size": 28164,
-      "sha256": "57da17887ef395f816bf83d400422e0027b1f43f7e8f74c4d9c70567714360d1"
-    },
-    {
       "path": "tools/analyze_text_color_record_semantics.py",
       "size": 18640,
       "sha256": "12176b6a22de5708286c7fb6353d19189b8cf09579f2691670f3ea660bccd375"
+    },
+    {
+      "path": "tools/analyze_text_color_record.py",
+      "size": 28164,
+      "sha256": "57da17887ef395f816bf83d400422e0027b1f43f7e8f74c4d9c70567714360d1"
     },
     {
       "path": "tools/analyze_text_cparagraphe_owner_structure.py",
@@ -2625,14 +2744,14 @@
       "sha256": "c68b2cc38f158c8a937b1e5dd8d59e65e50ccb961df8d338071b59526050e11d"
     },
     {
-      "path": "tools/analyze_text_maximum_length.py",
-      "size": 35792,
-      "sha256": "b39173b522f8191172ae08e6cd2999d55e244a9a2212734e9483742c29011a32"
-    },
-    {
       "path": "tools/analyze_text_maximum_length_numeric.py",
       "size": 15005,
       "sha256": "285d53816ed9345a65523c7b7e19febdf9f568ea80fdb695b91b69cbd343f310"
+    },
+    {
+      "path": "tools/analyze_text_maximum_length.py",
+      "size": 35792,
+      "sha256": "b39173b522f8191172ae08e6cd2999d55e244a9a2212734e9483742c29011a32"
     },
     {
       "path": "tools/analyze_text_multi_object_ownership.py",

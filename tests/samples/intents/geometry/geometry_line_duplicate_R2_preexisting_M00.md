@@ -1,4 +1,4 @@
-# geometry_line_duplicate_second_M00
+# geometry_line_duplicate_R2_preexisting_M00
 
 ## Capture metadata
 
@@ -6,8 +6,8 @@
 - captured from: Type3 Windows clipboard
 - TypeEditZone bytes: 8192
 - TypeEditZoneVersion bytes: 32
-- created at: 2026-09-16T08:52:07.543392+00:00
-- description: Second exact original M00 paste after existing object proven byte-identical to M00; no errors, complete visual overlap, UI selected count 1; automatic pasted-object selection retained, Copy once with no intervening manipulation. Total document object count not yet established.
+- created at: 2026-09-16T10:32:39.519499+00:00
+- description: R2 first exact M00 paste; automatic selection UI says 1 curve object; expected endpoints; Copy once, no errors or other manipulation. No drag selection performed.
 - external intent file: 
 
 ## User intent / ground truth
@@ -18,7 +18,7 @@
 - text content: 
 - font:
 - color: 
-- anchor / position: 
+- anchor / position: 0,0,0;10,0,0
 - geometry:
 - changed variable:
 - fixed variables:

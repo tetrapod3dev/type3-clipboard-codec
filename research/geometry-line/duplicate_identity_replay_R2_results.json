@@ -1,7 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-16T09:03:49.403575+00:00",
+  "generated_at_utc": "2026-09-16T10:43:37.606358+00:00",
   "analysis_mode": "file_only_after_second_capture_and_verification",
+  "run_id": "duplicate_identity_replay_R2",
+  "count_limit": "Automatic selection was retained for both captures; user subsequently selected all and reported 2 regions as two objects. Human UI evidence establishes bounded coexistence; no independent UI semantic specification is claimed.",
   "samples": {
     "source": {
       "bundle": "tests/samples/bundles/geometry/geometry_line_meta_M00",
@@ -42,7 +44,7 @@
       }
     },
     "preexisting": {
-      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_preexisting_M00",
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00",
       "zone_size": 8192,
       "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
       "version_size": 32,
@@ -80,7 +82,7 @@
       }
     },
     "second": {
-      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_second_M00",
+      "bundle": "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00",
       "zone_size": 8192,
       "zone_sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
       "version_size": 32,
@@ -346,52 +348,46 @@
     }
   },
   "classifications": {
-    "duplicate_identity_replay": "accepted_merge_or_other",
+    "duplicate_identity_replay": "accepted_two_objects",
     "preexisting_object_exact_M00": true,
     "duplicate_second_object_reserialization": "byte_identical_to_M00",
     "duplicate_paste_opaque_rewrite": "not_observed",
-    "duplicate_exact_payload_coexistence": "unresolved",
+    "duplicate_exact_payload_coexistence": "observed_in_one_document",
     "line_identity_fields": "unresolved",
     "opaque_fields_preservation_for_template_mutation": "unresolved",
     "line_clipboard_runtime_readiness": "missing_specific_contract"
   },
   "object_count_evidence": {
-    "statements": [
-      "3개라고 뜨네",
-      "기본 모드에서 선택했다. 그냥 전체 드래그 해서 선택을 했다. ctrl +a와 같은 전체 선택 기능은 없다.",
-      "3 영역에서의 다중 선택 이라고 뜨며 이 말은 3개의 객체가 있다는 말이다."
-    ],
-    "reported_count": 3,
-    "confirmed_count": 3,
-    "method": "human ordinary UI drag-selection object count",
-    "selection_mode": "basic object mode",
-    "exact_UI_label": "3 영역에서의 다중 선택",
-    "user_interpretation": "3 objects",
-    "observation_after_second_capture": true,
-    "unexpected_count": true,
-    "additional_clipboard_access": false,
-    "limit": "Two paste actions were previously reported. The origin and individual identities of the three selected regions are not established. No additional capture or paste performed to investigate."
+    "statement": "이제 전체 선택을 해보니까 2 영역에서의 다중 선택이라고 뜬다. 2개가 맞네.",
+    "confirmed_count": 2,
+    "method": "human ordinary UI select-all object count",
+    "exact_UI_label": "2 영역에서의 다중 선택",
+    "observed_after_both_captures": true,
+    "timestamp": null,
+    "recorded_at_utc": "2026-09-16T10:41:58.7471376Z",
+    "semantic_basis": "User-reported full-selection count; not independently documented UI semantics",
+    "context": "New blank document, two reported exact-replay pastes, retained automatic selections and no intervening actions reported"
   },
-  "outcome_interpretation": "Other accepted outcome: three regions selected in basic mode after two reported pastes. No merge, replacement, third paste or source of the extra count is inferred. Exact M00 coexistence remains unresolved.",
+  "outcome_interpretation": "See classifications and UI count evidence",
   "automatic_second_selection": {
     "statements": [
-      "붙여넣기 한번 실행했다. 객체는 완전히 겹쳐있으니 일단 1개만 보인다. 그리고 붙여넣기 하면 붙여넣기 한 객체가 선택된 상태라서 현재 1개의 객체가 선택되어 있다고 뜬다. 아무런 오류는 없다.",
-      "현재 상태에서 아무런 조작을 하지 않고 copy 1회 완료 했다."
+      "붙여넣기 한번 했다. 그리고 아무것도 하지 않았다. 현재 1 곡선 개체라고 붙여넣은 개체만 선택된 상태이다.",
+      "copy 1회 했다. 여전히 1 곡선 개체라고 뜨고 있다. 다른 동작은 안했다."
     ],
     "second_paste_count": 1,
     "total_paste_count": 2,
-    "no_error_reported": true,
-    "visual_overlap": true,
-    "visible_line_shapes": 1,
+    "exact_UI_label": "1 곡선 개체",
     "ui_selected_object_count": 1,
     "automatic_paste_selection_preserved": true,
-    "total_document_object_count": null,
-    "no_intervening_manipulation_reported": true,
+    "document_total_object_count": null,
     "copy_count": 1,
-    "grouping_note": "Capture requested as not_grouped; inherited single-line replay context and UI selected count 1; not independently restated after second paste",
-    "clipboard_interference_note": "No interference reported; user confirms Copy once without manipulation; equality alone does not prove absence of interference"
+    "no_other_manipulation_reported": true,
+    "error_status": "No error reported; explicit no-error wording was not separately repeated for second paste",
+    "drag_selection_performed": false,
+    "grouping_note": "not_grouped capture intent inherited from single-line replay; selected UI says one curve object",
+    "clipboard_interference_note": "No other actions reported; no continuous clipboard monitor"
   },
-  "first_object_after_second_paste": "Not individually reselected or serialized; unexpected total count does not establish the identities, origin or unchanged state of the selected objects.",
+  "first_object_after_second_paste": "Not independently reserialized after second paste. User full-selection count 2 supports coexistence in the bounded blank-document/two-paste sequence, but does not prove the internal state of the first object remained unchanged.",
   "limitations": [
     "Opaque ranges are not identified GUID/object ID fields.",
     "One document and one duplicate action; no general session/version/document guarantees.",
@@ -400,11 +396,13 @@
     "No third paste, object movement or edits to separate overlapping objects.",
     "Capture/verify equality establishes raw preservation, not independent proof of human provenance."
   ],
-  "synthesis_consequence": "Observed exact-payload coexistence, if UI count confirms two objects, lowers concern about necessary immediate collision but cannot establish opaque preservation safety under coordinate mutation.",
+  "synthesis_consequence": "TypeEdit accepted two coexisting objects produced from the same exact serialized clipboard payload in this bounded test, based on user full-selection count and bounded provenance. This lowers concern about necessary immediate collision; opaque preservation under coordinate mutation remains unresolved.",
   "integrity": {
-    "baseline_tracked_files": 556,
-    "all_preexisting_files_except_authorized_contract_unchanged": true,
+    "baseline_tracked_files": 579,
+    "all_nonretired_preexisting_files_except_authorized_contract_unchanged": true,
+    "authorized_retired_files": 23,
+    "retirement_record": "research/geometry-line/duplicate_replay_retirement.json",
     "all_source_and_captured_hashes_verified": true
   },
-  "next_task": "Perform one bounded file-and-provenance analysis of the unexpected three-region selection after the two reported pastes; do not paste again or modify payload bytes."
+  "next_task": "Capture one direction-disambiguating line whose user-defined start point is componentwise greater than its end point; do not synthesize coordinates yet."
 }

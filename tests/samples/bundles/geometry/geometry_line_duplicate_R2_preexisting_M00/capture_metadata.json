@@ -1,24 +1,28 @@
 {
-  "sample_id": "geometry_line_duplicate_preexisting_M00",
+  "sample_id": "geometry_line_duplicate_R2_preexisting_M00",
   "human_ground_truth": {
     "statements": [
-      "붙여넣었다. 10mm 맞네. 위치도 정확하다. 현재 선택되어 있는 상태이다. 이번에는 붙여넣기만 하고 아무런 추가 동작을 안했다.",
-      "그대로 copy 1회만 진행했다. 아무것도 건들지 않았다.",
-      "맞음"
+      "붙여넣기 했음. 붙여넣기 된 객체가 선택된 상태이며 1 곡선 개체라고 1개의 객체임을 표시중임. 객체는 0,0,0 -> 10,0,0으로 보인다.",
+      "copy 1회 했다. 오류 없음. 다른 조작 없음"
     ],
-    "confirmation_scope": "No error, first pasted object only selected, count 1, not grouped, one Copy, no subsequent clipboard-producing operation",
     "first_paste_count": 1,
-    "no_additional_actions_reported": true,
-    "geometry_position_matches_M00": true,
-    "length_mm": 10,
-    "automatic_selection_preserved": true
+    "exact_UI_label": "1 곡선 개체",
+    "automatic_selection_preserved": true,
+    "selected_count": 1,
+    "document_total_independently_measured": false,
+    "expected_endpoints_visually_confirmed": true,
+    "copy_count": 1,
+    "no_error_reported": true,
+    "no_other_manipulation_reported": true,
+    "drag_selection_performed": false,
+    "grouping_note": "not_grouped capture intent inherited from M00 replay; UI reports one curve object"
   },
   "capture_manifest": {
     "category": "geometry",
-    "created_at": "2026-09-16T17:38:07.419343+09:00",
-    "description": "First exact M00 paste in fresh disposable blank document; one selected ungrouped line, expected position and 10 mm length, no error or additional action; Copy once, no clipboard interference reported.",
+    "created_at": "2026-09-16T19:32:39.519499+09:00",
+    "description": "R2 first exact M00 paste; automatic selection UI says 1 curve object; expected endpoints; Copy once, no errors or other manipulation. No drag selection performed.",
     "files": {
-      "fixture": "tests\\samples\\geometry_line_duplicate_preexisting_M00.txt",
+      "fixture": "tests\\samples\\geometry_line_duplicate_R2_preexisting_M00.txt",
       "typeeditzone": "typeeditzone.bin",
       "typeeditzone_version": "typeeditzone_version.bin"
     },
@@ -34,7 +38,7 @@
       "typeeditzone": 49863,
       "typeeditzone_version": 49864
     },
-    "sample_name": "geometry_line_duplicate_preexisting_M00",
+    "sample_name": "geometry_line_duplicate_R2_preexisting_M00",
     "source": "windows_clipboard",
     "typeeditzone_size": 8192,
     "typeeditzone_version_size": 32
@@ -44,18 +48,18 @@
       "file": "typeeditzone.bin",
       "size": 8192,
       "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
-      "recorded_at_utc": "2026-09-16T08:38:07.6395676Z"
+      "recorded_at_utc": "2026-09-16T10:32:39.7151758Z"
     },
     {
       "file": "typeeditzone_version.bin",
       "size": 32,
       "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
-      "recorded_at_utc": "2026-09-16T08:38:07.6425727Z"
+      "recorded_at_utc": "2026-09-16T10:32:39.7177697Z"
     }
   ],
   "verification": {
-    "started_at_utc": "2026-09-16T08:38:59.1999542Z",
-    "completed_at_utc": "2026-09-16T08:38:59.4924424Z",
+    "started_at_utc": "2026-09-16T10:32:43.6167036Z",
+    "completed_at_utc": "2026-09-16T10:32:43.9110021Z",
     "exit_code": 0,
     "both_formats_equal": true,
     "output": [

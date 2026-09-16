@@ -1,9 +1,9 @@
 {
   "category": "geometry",
-  "created_at": "2026-09-16T08:52:07.543392+00:00",
-  "description": "Second exact original M00 paste after existing object proven byte-identical to M00; no errors, complete visual overlap, UI selected count 1; automatic pasted-object selection retained, Copy once with no intervening manipulation. Total document object count not yet established.",
+  "created_at": "2026-09-16T10:32:39.519499+00:00",
+  "description": "R2 first exact M00 paste; automatic selection UI says 1 curve object; expected endpoints; Copy once, no errors or other manipulation. No drag selection performed.",
   "files": {
-    "fixture": "tests\\samples\\geometry_line_duplicate_second_M00.txt",
+    "fixture": "tests\\samples\\geometry_line_duplicate_R2_preexisting_M00.txt",
     "typeeditzone": "typeeditzone.bin",
     "typeeditzone_version": "typeeditzone_version.bin"
   },
@@ -19,7 +19,7 @@
     "typeeditzone": 49863,
     "typeeditzone_version": 49864
   },
-  "sample_name": "geometry_line_duplicate_second_M00",
+  "sample_name": "geometry_line_duplicate_R2_preexisting_M00",
   "source": "windows_clipboard",
   "typeeditzone_size": 8192,
   "typeeditzone_version_size": 32
