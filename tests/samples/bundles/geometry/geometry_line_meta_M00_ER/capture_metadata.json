@@ -1,0 +1,101 @@
+{
+  "sample_id": "M00_ER",
+  "human_ground_truth": {
+    "confirmation_messages": [
+      "끝점만 10->20->10으로 편집했다. 다시 원래대로 돌아왔네. 하나만 copy 완료 복사했다. 그룹 아님 최종 좌표 확인, 다른 copy 없었음.",
+      "정점 편집 모드로 전환한 뒤 끝점만 오른쪽으로 10mm 이동 후 다시 왼쪽으로 10mm이동. 그리고 다시 기본모드로 전환 한 뒤 복사 했다. undo는 사용하지 않았다."
+    ],
+    "actual_p0": [
+      0,
+      0,
+      0
+    ],
+    "actual_p1": [
+      10,
+      0,
+      0
+    ],
+    "units": "mm",
+    "object_lineage": "C",
+    "construction_method": "사각형에서 선분으로 쪼개고 직선만 남김",
+    "fresh_creation_confirmed": false,
+    "selected_object_count": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_other_clipboard_producing_operation_reported": null,
+    "session_note": "Type3 프로그램 실행 직후 생성",
+    "document_identifier": null,
+    "session_identifier": null,
+    "layer": "레이어 1",
+    "color": "검정색",
+    "line_settings_statement": "따로 설정 건드리지 않음",
+    "line_style": null,
+    "width": null,
+    "origin": null,
+    "workplane": null,
+    "ui_display_precision": null,
+    "source": "user confirmations; not decoded geometry",
+    "known_deviations": [
+      "Rectangle split into segments and only straight line retained; D must repeat this construction method"
+    ],
+    "unknown_facts": [
+      "document identifier",
+      "session identifier",
+      "origin/workplane",
+      "actual default line style and width",
+      "UI precision"
+    ],
+    "confirmation_scope": "M00_ER: same C endpoint edited and restored to baseline (0,0,0) -> (10,0,0) mm; one ungrouped object selected and copied; final coordinates confirmed; no other Copy reported",
+    "same_object_status": "Same C edited in vertex mode then restored; user describes moving only its endpoint; no replacement reported",
+    "fixed_settings_provenance": "Inherited M00 settings except stated endpoint edit and mode transitions; no other setting changes reported; baseline unknowns retained",
+    "copy_ordinal_in_microcorpus": 4,
+    "edit_restoration_method": "정점 편집 모드 전환; 끝점만 오른쪽 10 mm 이동 (x 10 -> 20); 끝점만 왼쪽 10 mm 이동 (x 20 -> 10); 기본모드 전환 후 Copy",
+    "undo_used": false,
+    "clipboard_attestation_scope": "User explicitly reported no other Copy; broader no-clipboard-producing-operation statement was not separately repeated for ER"
+  },
+  "capture": {
+    "created_at": "2026-09-16T10:35:35.628602+09:00",
+    "format_names": {
+      "typeeditzone": "TypeEditZone",
+      "typeeditzone_version": "TypeEditZoneVersion"
+    },
+    "runtime_registered_format_ids": {
+      "typeeditzone": 49863,
+      "typeeditzone_version": 49864
+    },
+    "files": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc",
+        "recorded_at_utc": "2026-09-16T01:35:35.8265335Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T01:35:35.8296195Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T01:36:18.3341529Z",
+      "completed_at_utc": "2026-09-16T01:36:18.6295460Z",
+      "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00_ER",
+      "exit_code": 0,
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "raw_preservation": "existing capture CLI --category geometry --object-count 1 --grouping not_grouped --no-inspect",
+    "capture_interference": false,
+    "provenance_limit": "Human no-other-Copy attestation plus immediate exact-byte verification; no continuous clipboard monitoring",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": true,
+  "eligibility_note": "Edit/restore human gate satisfied; both formats match current clipboard exactly; baseline setting unknowns retained"
+}

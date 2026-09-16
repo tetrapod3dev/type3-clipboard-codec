@@ -287,3 +287,79 @@ No vendor files were accessed. No TypeEdit automation, key injection, paste, syn
 
 **This capture task is complete.** No extra captures are added to repair the compromised protocol. The plan stops at `missing_specific_contract`; unresolved identity/reference windows, full framing and record direction must be established before any mutator design is justified. No further operation is performed here.
 
+
+## 13. Controlled metadata micro-corpus (2026-09-16)
+
+This section adds a separate five-sample experiment. Sections 1–12 and the eight prior capture bundles/results remain historical evidence; their compromised controls are not retroactively repaired. The accepted structure, endpoint, derived-field, identity, synthesis and runtime-readiness classifications remain unchanged.
+
+Artifacts:
+
+- [Micro-corpus manifest](../research/geometry-line/metadata_microcorpus_manifest.json): capture order, human statements, fixed settings, unknowns, deviations and per-bundle metadata.
+- [Metadata variability results](../research/geometry-line/metadata_variability_results.json): exact changed offsets, pairwise ranges, every window/tag byte profile and retained-buffer comparisons.
+- [File-only analyzer](../research/geometry-line/analyze_metadata_microcorpus.py): audits exactly these five stored bundles; never reads or writes the clipboard.
+- [Repository baseline](../research/geometry-line/metadata_microcorpus_baseline.json): HEAD `ef199a2ff583c7ebcdd6fa0af39f7cefe263440e`, clean initial status and SHA256 of 495 tracked files before output writes.
+- [Completion integrity](../research/geometry-line/metadata_microcorpus_integrity.json).
+
+### Capture controls and provenance
+
+Exactly M00, M00_R1, M00_R2, M00_ER and M00_N were captured with the existing CLI using `--category geometry --object-count 1 --grouping not_grouped --no-inspect`. Each capture preserved TypeEditZone (8192 bytes, runtime ID 49863) and TypeEditZoneVersion (32 bytes, runtime ID 49864), then recorded SHA256 and immediately passed `clipboard_typeeditzone.py verify-bundle` for both formats. Format IDs are observations, not portable constants. Timestamps and hashes are retained per bundle.
+
+C was freshly constructed just after starting Type3 by creating a rectangle, splitting it into segments and retaining only the straight line. User-confirmed actual geometry is (0,0,0) -> (10,0,0) mm, layer `레이어 1`, black, no custom line settings. The two clean recopies were made without changes. ER used vertex edit mode to move only the endpoint right 10 mm and then left 10 mm, returning to default mode before Copy; no Undo was used. The same visible C was retained. This does not establish internal identity replacement or retention.
+
+D was independently constructed by the same rectangle/split/retain procedure, with the same session, document and settings explicitly confirmed. Only D was selected, count 1, not grouped. Whether C was moved aside after ER was not reported; overlap avoidance was optional and no movement is invented. All final coordinates and units were human-confirmed. Exact document/session identifiers, origin/workplane, default line style/width and UI precision remain unknown. These are disclosed limits rather than inferred values.
+
+Human gates confirmed object/geometry, single selection and Copy before clipboard reads. No other Copy was reported. ER's narrower no-other-Copy wording is preserved; it was not rewritten as an explicit broader clipboard-operation attestation. Immediate equality confirms raw preservation, not absence of interference independently of human reports. There was no reported or suspected interference. The tool reads the two formats separately and does not continuously monitor the protected interval.
+
+No semantic comparison occurred until all five captures and verifications were complete. Clipboard access then ended. All analysis below used saved files only.
+
+### Complete differential result
+
+Offsets below are zero-based absolute offsets, with exclusive range ends. The 16-byte windows are observational extents, not established serialized field boundaries.
+
+| Comparison | Changed TypeEditZone bytes | Changed ranges |
+| --- | ---: | --- |
+| M00 ↔ M00_R1 | 0 | None |
+| M00 ↔ M00_R2 | 0 | None |
+| M00_R1 ↔ M00_R2 | 0 | None |
+| M00 ↔ M00_ER | 32 | [252,268), [412,428) |
+| M00 ↔ M00_N | 51 | [93,109), [252,268), [412,428), [551,554) |
+
+The full 8192-byte search found no other varying offsets. Both coordinate blocks and all three bounds blocks are byte-identical in all five samples and match the baseline geometry under the already accepted encoding observations. This is a consistency check, not a new coordinate-encoding or record-direction claim.
+
+| Region | Absolute offsets | Clean recopies | After edit/restore | Independent D | Classification within this corpus |
+| --- | --- | --- | --- | --- | --- |
+| CZone descriptor +87, length 16 | [93,109) | Stable | Unchanged | Changed | object-lineage-variable candidate |
+| CCourbe descriptor +89, length 16 | [252,268) | Stable | Changed | Changed | edit-history-variable candidate; separately object-lineage-variable candidate |
+| CContour descriptor +90, length 16 | [412,428) | Stable | Changed | Changed | edit-history-variable candidate; separately object-lineage-variable candidate |
+| record 0 tag low byte | [514,515) | Stable | Unchanged | Unchanged | stable: 0x0D |
+| record 0 tag upper bytes | [515,518) | Stable | Unchanged | Unchanged | stable within these five captures |
+| record 1 tag low byte | [550,551) | Stable | Unchanged | Unchanged | stable: 0x0D |
+| record 1 tag upper bytes | [551,554) | Stable | Unchanged | Changed | object-lineage-variable candidate |
+
+Every byte within each listed changed window changes in the indicated contrast; exact byte values and offsets remain in machine-readable evidence. Record 0 tag is `0x4346440D` in all five samples. Record 1 tag is `0x6F422C0D` in all C samples and `0x5F4E480D` in D. These are little-endian u32 representations, not semantic names.
+
+No copy volatility was observed: `copy_variability_not_observed`. Three identical serializations strengthen the unchanged-C observation, but do not establish invariance across all copies or sessions. The ER and D facts remain separate even where they affect the same window. No GUID, timestamp, checksum or object ID meaning is assigned. Variation with identical final geometry rules out final coordinates alone as a sufficient explanation for these changes; their underlying field semantics remain unknown.
+
+All five complete 32-byte Version payloads are exactly equal. All five complete regions from the CPropertyExtend descriptor at offset 554 through the retained buffer end at 8192 (7638 bytes, including the descriptor) are exactly equal. This does not establish an empty extension or its semantic length. Both record +24 values remain binary64 1.0.
+
+```text
+line_copy_variability = not_observed
+line_edit_history_variability = observed
+line_object_lineage_variability = observed
+line_opaque_metadata_role = mixed
+opaque_fields_preservation_for_template_mutation = unresolved
+```
+
+The mixed role reflects distinct observed profiles: CZone and record 1 high bytes vary only for D, while CCourbe and CContour also vary after editing and restoring C. Candidate labels do not prove a causal identity mechanism. One edit cycle and one independent D cannot settle all construction/history/session effects.
+
+### Synthesis consequence and stopping point
+
+Opaque fields cannot currently be justified as safe to preserve unchanged during coordinate mutation. The edit/restore cycle changed two windows despite byte-identical final coordinates and bounds. This does not prove that preserving them would fail, so the preservation classification is `unresolved`, not a demonstrated incompatibility. Even unchanged windows provide no paste-time identity/reference evidence.
+
+Existing `line_object_structure = partial`, `line_endpoint_fields = candidate_only`, `line_derived_fields = partial`, `line_identity_fields = unresolved`, `line_clipboard_synthesis_strategy = unresolved`, and `line_clipboard_runtime_readiness = missing_specific_contract` remain accepted. Direction versus min/max ordering remains a separate unresolved contract.
+
+Recommended next task (recommendation only; not executed):
+
+Perform one bounded exact-replay geometry paste experiment using an unmodified vendor-captured bundle to determine TypeEdit's paste-time identity/reference behavior; do not synthesize coordinates yet.
+
+This task stops at metadata variability classification. No synthesis, clipboard rewrite/load, paste, TypeEdit automation, additional exploratory captures, vendor inspection, native API work or text character-width work occurred.

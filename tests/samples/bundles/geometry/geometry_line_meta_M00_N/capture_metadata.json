@@ -1,0 +1,98 @@
+{
+  "sample_id": "M00_N",
+  "human_ground_truth": {
+    "confirmation_messages": [
+      "같은 세션, 문서 설정으 유지했다. 사각형 생성 -> 선분 분리 -> 직선만 남기는 방법으로 생성했다. 0,0,0->10,0,0 이다. 1개 선택 후 copy 1회 완료.",
+      "모두 맞음"
+    ],
+    "actual_p0": [
+      0,
+      0,
+      0
+    ],
+    "actual_p1": [
+      10,
+      0,
+      0
+    ],
+    "units": "mm",
+    "object_lineage": "D",
+    "construction_method": "사각형에서 선분으로 쪼개고 직선만 남김",
+    "fresh_creation_confirmed": true,
+    "selected_object_count": 1,
+    "grouping": "not_grouped",
+    "copy_count": 1,
+    "no_other_clipboard_producing_operation_reported": true,
+    "session_note": "Same session and document as C, explicitly confirmed",
+    "document_identifier": null,
+    "session_identifier": null,
+    "layer": "레이어 1",
+    "color": "검정색",
+    "line_settings_statement": "따로 설정 건드리지 않음",
+    "line_style": null,
+    "width": null,
+    "origin": null,
+    "workplane": null,
+    "ui_display_precision": null,
+    "source": "user confirmations; not decoded geometry",
+    "known_deviations": [
+      "Rectangle-derived straight line; same construction procedure as C"
+    ],
+    "unknown_facts": [
+      "document identifier",
+      "session identifier",
+      "origin/workplane",
+      "actual default line style and width",
+      "UI precision"
+    ],
+    "confirmation_scope": "Fresh independently created D; not grouped; mm; no other Copy or clipboard-producing operation after Copy",
+    "fixed_settings_provenance": "Same settings as C explicitly confirmed; unknown baseline values remain unknown",
+    "copy_ordinal_in_microcorpus": 5,
+    "prior_C_relocation": "Permitted after ER; user did not report whether C was moved"
+  },
+  "capture": {
+    "created_at": "2026-09-16T10:38:39.35512+09:00",
+    "format_names": {
+      "typeeditzone": "TypeEditZone",
+      "typeeditzone_version": "TypeEditZoneVersion"
+    },
+    "runtime_registered_format_ids": {
+      "typeeditzone": 49863,
+      "typeeditzone_version": 49864
+    },
+    "files": [
+      {
+        "file": "typeeditzone.bin",
+        "size": 8192,
+        "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95",
+        "recorded_at_utc": "2026-09-16T01:38:39.5534207Z"
+      },
+      {
+        "file": "typeeditzone_version.bin",
+        "size": 32,
+        "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+        "recorded_at_utc": "2026-09-16T01:38:39.5563119Z"
+      }
+    ],
+    "verification": {
+      "started_at_utc": "2026-09-16T01:39:20.8581100Z",
+      "completed_at_utc": "2026-09-16T01:39:21.1662467Z",
+      "command": "clipboard_typeeditzone.py verify-bundle --dir tests/samples/bundles/geometry/geometry_line_meta_M00_N",
+      "exit_code": 0,
+      "output": [
+        "typeeditzone_match=true",
+        "typeeditzone_expected_length=8192",
+        "typeeditzone_actual_length=8192",
+        "typeeditzone_version_match=true",
+        "typeeditzone_version_expected_length=32",
+        "typeeditzone_version_actual_length=32"
+      ]
+    },
+    "raw_preservation": "existing capture CLI --category geometry --object-count 1 --grouping not_grouped --no-inspect",
+    "capture_interference": false,
+    "provenance_limit": "Human attestation plus immediate exact-byte verification; no continuous clipboard monitoring",
+    "analysis_performed": false
+  },
+  "eligible_for_differential": true,
+  "eligibility_note": "Independent D human gate satisfied; both formats verified; baseline setting unknowns retained"
+}

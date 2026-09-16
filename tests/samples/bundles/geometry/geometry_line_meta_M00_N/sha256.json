@@ -1,0 +1,14 @@
+[
+  {
+    "file": "typeeditzone.bin",
+    "size": 8192,
+    "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95",
+    "recorded_at_utc": "2026-09-16T01:38:39.5534207Z"
+  },
+  {
+    "file": "typeeditzone_version.bin",
+    "size": 32,
+    "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+    "recorded_at_utc": "2026-09-16T01:38:39.5563119Z"
+  }
+]

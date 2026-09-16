@@ -1,0 +1,2737 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-16T01:41:49.191751+00:00",
+  "analysis_mode": "file_only_after_all_five_captures; no clipboard access",
+  "offset_convention": "zero-based absolute offsets; end_exclusive for ranges",
+  "samples": {
+    "M00": {
+      "raw_size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+      "layout": {
+        "descriptors": {
+          "CZone": 6,
+          "CCourbe": 163,
+          "CContour": 322,
+          "CPropertyExtend": 554
+        },
+        "record_start": 482
+      },
+      "record_values": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1128678413
+        ],
+        [
+          0.01,
+          0.0,
+          0.0,
+          1.0,
+          1866607629
+        ]
+      ],
+      "capture_metadata": "tests/samples/bundles/geometry/geometry_line_meta_M00/capture_metadata.json"
+    },
+    "M00_R1": {
+      "raw_size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+      "layout": {
+        "descriptors": {
+          "CZone": 6,
+          "CCourbe": 163,
+          "CContour": 322,
+          "CPropertyExtend": 554
+        },
+        "record_start": 482
+      },
+      "record_values": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1128678413
+        ],
+        [
+          0.01,
+          0.0,
+          0.0,
+          1.0,
+          1866607629
+        ]
+      ],
+      "capture_metadata": "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/capture_metadata.json"
+    },
+    "M00_R2": {
+      "raw_size": 8192,
+      "sha256": "8a958920b28afef446818c558d17c6906ee96180ad58967126e87e727e1241cb",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+      "layout": {
+        "descriptors": {
+          "CZone": 6,
+          "CCourbe": 163,
+          "CContour": 322,
+          "CPropertyExtend": 554
+        },
+        "record_start": 482
+      },
+      "record_values": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1128678413
+        ],
+        [
+          0.01,
+          0.0,
+          0.0,
+          1.0,
+          1866607629
+        ]
+      ],
+      "capture_metadata": "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/capture_metadata.json"
+    },
+    "M00_ER": {
+      "raw_size": 8192,
+      "sha256": "b180406ec9545dc0ca6377a15b8770b5b03d61f6da5b889bdb4dec620521d0fc",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+      "layout": {
+        "descriptors": {
+          "CZone": 6,
+          "CCourbe": 163,
+          "CContour": 322,
+          "CPropertyExtend": 554
+        },
+        "record_start": 482
+      },
+      "record_values": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1128678413
+        ],
+        [
+          0.01,
+          0.0,
+          0.0,
+          1.0,
+          1866607629
+        ]
+      ],
+      "capture_metadata": "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/capture_metadata.json"
+    },
+    "M00_N": {
+      "raw_size": 8192,
+      "sha256": "60fc29d509dd2d62cc248dba927653fac7f066a025adb66ba562111ae3b82a95",
+      "version_size": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_raw_hex": "0100000051020000000000000000000000000000000000000000000000000000",
+      "layout": {
+        "descriptors": {
+          "CZone": 6,
+          "CCourbe": 163,
+          "CContour": 322,
+          "CPropertyExtend": 554
+        },
+        "record_start": 482
+      },
+      "record_values": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1128678413
+        ],
+        [
+          0.01,
+          0.0,
+          0.0,
+          1.0,
+          1598965773
+        ]
+      ],
+      "capture_metadata": "tests/samples/bundles/geometry/geometry_line_meta_M00_N/capture_metadata.json"
+    }
+  },
+  "pairs": [
+    {
+      "base": "M00",
+      "sample": "M00_R1",
+      "raw_equal": true,
+      "changed_byte_count": 0,
+      "exact_changed_offsets": [],
+      "changed_ranges": [],
+      "coordinates_bounds_identical": true,
+      "non_geometry_changed_ranges": [],
+      "version_equal": true,
+      "version_exact_changed_offsets": []
+    },
+    {
+      "base": "M00",
+      "sample": "M00_R2",
+      "raw_equal": true,
+      "changed_byte_count": 0,
+      "exact_changed_offsets": [],
+      "changed_ranges": [],
+      "coordinates_bounds_identical": true,
+      "non_geometry_changed_ranges": [],
+      "version_equal": true,
+      "version_exact_changed_offsets": []
+    },
+    {
+      "base": "M00_R1",
+      "sample": "M00_R2",
+      "raw_equal": true,
+      "changed_byte_count": 0,
+      "exact_changed_offsets": [],
+      "changed_ranges": [],
+      "coordinates_bounds_identical": true,
+      "non_geometry_changed_ranges": [],
+      "version_equal": true,
+      "version_exact_changed_offsets": []
+    },
+    {
+      "base": "M00",
+      "sample": "M00_ER",
+      "raw_equal": false,
+      "changed_byte_count": 32,
+      "exact_changed_offsets": [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427
+      ],
+      "changed_ranges": [
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "length": 16,
+          "before_hex": "b424916574d78e4bbb910724d6c7ddd3",
+          "after_hex": "17d0caef3fb454428ccc559f3d822d67"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "length": 16,
+          "before_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+          "after_hex": "fb2a28dbb1f4f145be96d7f0ff9cc6f0"
+        }
+      ],
+      "coordinates_bounds_identical": true,
+      "non_geometry_changed_ranges": [
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "length": 16
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "length": 16
+        }
+      ],
+      "version_equal": true,
+      "version_exact_changed_offsets": []
+    },
+    {
+      "base": "M00",
+      "sample": "M00_N",
+      "raw_equal": false,
+      "changed_byte_count": 51,
+      "exact_changed_offsets": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        551,
+        552,
+        553
+      ],
+      "changed_ranges": [
+        {
+          "start": 93,
+          "end_exclusive": 109,
+          "length": 16,
+          "before_hex": "929ceb038750da4399b8c53ff7a3dbbc",
+          "after_hex": "b415ed4cf953fd478ae5ad27741204ac"
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "length": 16,
+          "before_hex": "b424916574d78e4bbb910724d6c7ddd3",
+          "after_hex": "42426f839bc4f7429ed89b3d670bbb83"
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "length": 16,
+          "before_hex": "d9bd565ffbe6d042b4eafad3ba4b3563",
+          "after_hex": "d0f8b07e8a1f5445b3cb2d1d43c888bd"
+        },
+        {
+          "start": 551,
+          "end_exclusive": 554,
+          "length": 3,
+          "before_hex": "2c426f",
+          "after_hex": "484e5f"
+        }
+      ],
+      "coordinates_bounds_identical": true,
+      "non_geometry_changed_ranges": [
+        {
+          "start": 93,
+          "end_exclusive": 109,
+          "length": 16
+        },
+        {
+          "start": 252,
+          "end_exclusive": 268,
+          "length": 16
+        },
+        {
+          "start": 412,
+          "end_exclusive": 428,
+          "length": 16
+        },
+        {
+          "start": 551,
+          "end_exclusive": 554,
+          "length": 3
+        }
+      ],
+      "version_equal": true,
+      "version_exact_changed_offsets": []
+    }
+  ],
+  "geometry_ranges": [
+    {
+      "name": "record[0].xyz",
+      "start": 482,
+      "length": 24,
+      "classification": "accepted geometry coordinate observations; no promotion"
+    },
+    {
+      "name": "record[1].xyz",
+      "start": 518,
+      "length": 24,
+      "classification": "accepted geometry coordinate observations; no promotion"
+    },
+    {
+      "name": "CZone.bounds",
+      "start": 17,
+      "length": 48,
+      "classification": "geometry-derived (accepted bounds observation)"
+    },
+    {
+      "name": "CCourbe.bounds",
+      "start": 176,
+      "length": 48,
+      "classification": "geometry-derived (accepted bounds observation)"
+    },
+    {
+      "name": "CContour.bounds",
+      "start": 336,
+      "length": 48,
+      "classification": "geometry-derived (accepted bounds observation)"
+    }
+  ],
+  "all_coordinates_and_bounds_byte_identical": true,
+  "primary_windows": [
+    {
+      "name": "CZone.opaque_window",
+      "start": 93,
+      "length": 16,
+      "raw_hex": {
+        "M00": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_R1": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_R2": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_ER": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_N": "b415ed4cf953fd478ae5ad27741204ac"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null,
+      "bytes": [
+        {
+          "offset": 93,
+          "values_hex": {
+            "M00": "92",
+            "M00_R1": "92",
+            "M00_R2": "92",
+            "M00_ER": "92",
+            "M00_N": "b4"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 94,
+          "values_hex": {
+            "M00": "9c",
+            "M00_R1": "9c",
+            "M00_R2": "9c",
+            "M00_ER": "9c",
+            "M00_N": "15"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 95,
+          "values_hex": {
+            "M00": "eb",
+            "M00_R1": "eb",
+            "M00_R2": "eb",
+            "M00_ER": "eb",
+            "M00_N": "ed"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 96,
+          "values_hex": {
+            "M00": "03",
+            "M00_R1": "03",
+            "M00_R2": "03",
+            "M00_ER": "03",
+            "M00_N": "4c"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 97,
+          "values_hex": {
+            "M00": "87",
+            "M00_R1": "87",
+            "M00_R2": "87",
+            "M00_ER": "87",
+            "M00_N": "f9"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 98,
+          "values_hex": {
+            "M00": "50",
+            "M00_R1": "50",
+            "M00_R2": "50",
+            "M00_ER": "50",
+            "M00_N": "53"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 99,
+          "values_hex": {
+            "M00": "da",
+            "M00_R1": "da",
+            "M00_R2": "da",
+            "M00_ER": "da",
+            "M00_N": "fd"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 100,
+          "values_hex": {
+            "M00": "43",
+            "M00_R1": "43",
+            "M00_R2": "43",
+            "M00_ER": "43",
+            "M00_N": "47"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 101,
+          "values_hex": {
+            "M00": "99",
+            "M00_R1": "99",
+            "M00_R2": "99",
+            "M00_ER": "99",
+            "M00_N": "8a"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 102,
+          "values_hex": {
+            "M00": "b8",
+            "M00_R1": "b8",
+            "M00_R2": "b8",
+            "M00_ER": "b8",
+            "M00_N": "e5"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 103,
+          "values_hex": {
+            "M00": "c5",
+            "M00_R1": "c5",
+            "M00_R2": "c5",
+            "M00_ER": "c5",
+            "M00_N": "ad"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 104,
+          "values_hex": {
+            "M00": "3f",
+            "M00_R1": "3f",
+            "M00_R2": "3f",
+            "M00_ER": "3f",
+            "M00_N": "27"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 105,
+          "values_hex": {
+            "M00": "f7",
+            "M00_R1": "f7",
+            "M00_R2": "f7",
+            "M00_ER": "f7",
+            "M00_N": "74"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 106,
+          "values_hex": {
+            "M00": "a3",
+            "M00_R1": "a3",
+            "M00_R2": "a3",
+            "M00_ER": "a3",
+            "M00_N": "12"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 107,
+          "values_hex": {
+            "M00": "db",
+            "M00_R1": "db",
+            "M00_R2": "db",
+            "M00_ER": "db",
+            "M00_N": "04"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 108,
+          "values_hex": {
+            "M00": "bc",
+            "M00_R1": "bc",
+            "M00_R2": "bc",
+            "M00_ER": "bc",
+            "M00_N": "ac"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": false,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        }
+      ]
+    },
+    {
+      "name": "CCourbe.opaque_window",
+      "start": 252,
+      "length": 16,
+      "raw_hex": {
+        "M00": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_R1": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_R2": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_ER": "17d0caef3fb454428ccc559f3d822d67",
+        "M00_N": "42426f839bc4f7429ed89b3d670bbb83"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null,
+      "bytes": [
+        {
+          "offset": 252,
+          "values_hex": {
+            "M00": "b4",
+            "M00_R1": "b4",
+            "M00_R2": "b4",
+            "M00_ER": "17",
+            "M00_N": "42"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 253,
+          "values_hex": {
+            "M00": "24",
+            "M00_R1": "24",
+            "M00_R2": "24",
+            "M00_ER": "d0",
+            "M00_N": "42"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 254,
+          "values_hex": {
+            "M00": "91",
+            "M00_R1": "91",
+            "M00_R2": "91",
+            "M00_ER": "ca",
+            "M00_N": "6f"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 255,
+          "values_hex": {
+            "M00": "65",
+            "M00_R1": "65",
+            "M00_R2": "65",
+            "M00_ER": "ef",
+            "M00_N": "83"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 256,
+          "values_hex": {
+            "M00": "74",
+            "M00_R1": "74",
+            "M00_R2": "74",
+            "M00_ER": "3f",
+            "M00_N": "9b"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 257,
+          "values_hex": {
+            "M00": "d7",
+            "M00_R1": "d7",
+            "M00_R2": "d7",
+            "M00_ER": "b4",
+            "M00_N": "c4"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 258,
+          "values_hex": {
+            "M00": "8e",
+            "M00_R1": "8e",
+            "M00_R2": "8e",
+            "M00_ER": "54",
+            "M00_N": "f7"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 259,
+          "values_hex": {
+            "M00": "4b",
+            "M00_R1": "4b",
+            "M00_R2": "4b",
+            "M00_ER": "42",
+            "M00_N": "42"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 260,
+          "values_hex": {
+            "M00": "bb",
+            "M00_R1": "bb",
+            "M00_R2": "bb",
+            "M00_ER": "8c",
+            "M00_N": "9e"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 261,
+          "values_hex": {
+            "M00": "91",
+            "M00_R1": "91",
+            "M00_R2": "91",
+            "M00_ER": "cc",
+            "M00_N": "d8"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 262,
+          "values_hex": {
+            "M00": "07",
+            "M00_R1": "07",
+            "M00_R2": "07",
+            "M00_ER": "55",
+            "M00_N": "9b"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 263,
+          "values_hex": {
+            "M00": "24",
+            "M00_R1": "24",
+            "M00_R2": "24",
+            "M00_ER": "9f",
+            "M00_N": "3d"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 264,
+          "values_hex": {
+            "M00": "d6",
+            "M00_R1": "d6",
+            "M00_R2": "d6",
+            "M00_ER": "3d",
+            "M00_N": "67"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 265,
+          "values_hex": {
+            "M00": "c7",
+            "M00_R1": "c7",
+            "M00_R2": "c7",
+            "M00_ER": "82",
+            "M00_N": "0b"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 266,
+          "values_hex": {
+            "M00": "dd",
+            "M00_R1": "dd",
+            "M00_R2": "dd",
+            "M00_ER": "2d",
+            "M00_N": "bb"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 267,
+          "values_hex": {
+            "M00": "d3",
+            "M00_R1": "d3",
+            "M00_R2": "d3",
+            "M00_ER": "67",
+            "M00_N": "83"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        }
+      ]
+    },
+    {
+      "name": "CContour.opaque_window",
+      "start": 412,
+      "length": 16,
+      "raw_hex": {
+        "M00": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_R1": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_R2": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_ER": "fb2a28dbb1f4f145be96d7f0ff9cc6f0",
+        "M00_N": "d0f8b07e8a1f5445b3cb2d1d43c888bd"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null,
+      "bytes": [
+        {
+          "offset": 412,
+          "values_hex": {
+            "M00": "d9",
+            "M00_R1": "d9",
+            "M00_R2": "d9",
+            "M00_ER": "fb",
+            "M00_N": "d0"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 413,
+          "values_hex": {
+            "M00": "bd",
+            "M00_R1": "bd",
+            "M00_R2": "bd",
+            "M00_ER": "2a",
+            "M00_N": "f8"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 414,
+          "values_hex": {
+            "M00": "56",
+            "M00_R1": "56",
+            "M00_R2": "56",
+            "M00_ER": "28",
+            "M00_N": "b0"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 415,
+          "values_hex": {
+            "M00": "5f",
+            "M00_R1": "5f",
+            "M00_R2": "5f",
+            "M00_ER": "db",
+            "M00_N": "7e"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 416,
+          "values_hex": {
+            "M00": "fb",
+            "M00_R1": "fb",
+            "M00_R2": "fb",
+            "M00_ER": "b1",
+            "M00_N": "8a"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 417,
+          "values_hex": {
+            "M00": "e6",
+            "M00_R1": "e6",
+            "M00_R2": "e6",
+            "M00_ER": "f4",
+            "M00_N": "1f"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 418,
+          "values_hex": {
+            "M00": "d0",
+            "M00_R1": "d0",
+            "M00_R2": "d0",
+            "M00_ER": "f1",
+            "M00_N": "54"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 419,
+          "values_hex": {
+            "M00": "42",
+            "M00_R1": "42",
+            "M00_R2": "42",
+            "M00_ER": "45",
+            "M00_N": "45"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 420,
+          "values_hex": {
+            "M00": "b4",
+            "M00_R1": "b4",
+            "M00_R2": "b4",
+            "M00_ER": "be",
+            "M00_N": "b3"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 421,
+          "values_hex": {
+            "M00": "ea",
+            "M00_R1": "ea",
+            "M00_R2": "ea",
+            "M00_ER": "96",
+            "M00_N": "cb"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 422,
+          "values_hex": {
+            "M00": "fa",
+            "M00_R1": "fa",
+            "M00_R2": "fa",
+            "M00_ER": "d7",
+            "M00_N": "2d"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 423,
+          "values_hex": {
+            "M00": "d3",
+            "M00_R1": "d3",
+            "M00_R2": "d3",
+            "M00_ER": "f0",
+            "M00_N": "1d"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 424,
+          "values_hex": {
+            "M00": "ba",
+            "M00_R1": "ba",
+            "M00_R2": "ba",
+            "M00_ER": "ff",
+            "M00_N": "43"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 425,
+          "values_hex": {
+            "M00": "4b",
+            "M00_R1": "4b",
+            "M00_R2": "4b",
+            "M00_ER": "9c",
+            "M00_N": "c8"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 426,
+          "values_hex": {
+            "M00": "35",
+            "M00_R1": "35",
+            "M00_R2": "35",
+            "M00_ER": "c6",
+            "M00_N": "88"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        },
+        {
+          "offset": 427,
+          "values_hex": {
+            "M00": "63",
+            "M00_R1": "63",
+            "M00_R2": "63",
+            "M00_ER": "f0",
+            "M00_N": "bd"
+          },
+          "stable_across_clean_recopies": true,
+          "copy_observation": "copy_variability_not_observed",
+          "changed_after_edit_restore": true,
+          "changed_for_independent_D": true,
+          "classifications": [
+            "edit-history-variable candidate",
+            "object-lineage-variable candidate"
+          ],
+          "confounding": null
+        }
+      ]
+    }
+  ],
+  "window_extent_warning": "16-byte observational windows, not established serialized field boundaries",
+  "record_tags": [
+    {
+      "record_index": 0,
+      "u32": {
+        "M00": "0x4346440D",
+        "M00_R1": "0x4346440D",
+        "M00_R2": "0x4346440D",
+        "M00_ER": "0x4346440D",
+        "M00_N": "0x4346440D"
+      },
+      "low_byte": {
+        "name": "record[0].tag.low_byte",
+        "start": 514,
+        "length": 1,
+        "raw_hex": {
+          "M00": "0d",
+          "M00_R1": "0d",
+          "M00_R2": "0d",
+          "M00_ER": "0d",
+          "M00_N": "0d"
+        },
+        "stable_across_clean_recopies": true,
+        "copy_observation": "copy_variability_not_observed",
+        "changed_after_edit_restore": false,
+        "changed_for_independent_D": false,
+        "classifications": [
+          "stable"
+        ],
+        "confounding": null,
+        "bytes": [
+          {
+            "offset": 514,
+            "values_hex": {
+              "M00": "0d",
+              "M00_R1": "0d",
+              "M00_R2": "0d",
+              "M00_ER": "0d",
+              "M00_N": "0d"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": false,
+            "classifications": [
+              "stable"
+            ],
+            "confounding": null
+          }
+        ]
+      },
+      "upper_three_bytes": {
+        "name": "record[0].tag.upper_three_bytes",
+        "start": 515,
+        "length": 3,
+        "raw_hex": {
+          "M00": "444643",
+          "M00_R1": "444643",
+          "M00_R2": "444643",
+          "M00_ER": "444643",
+          "M00_N": "444643"
+        },
+        "stable_across_clean_recopies": true,
+        "copy_observation": "copy_variability_not_observed",
+        "changed_after_edit_restore": false,
+        "changed_for_independent_D": false,
+        "classifications": [
+          "stable"
+        ],
+        "confounding": null,
+        "bytes": [
+          {
+            "offset": 515,
+            "values_hex": {
+              "M00": "44",
+              "M00_R1": "44",
+              "M00_R2": "44",
+              "M00_ER": "44",
+              "M00_N": "44"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": false,
+            "classifications": [
+              "stable"
+            ],
+            "confounding": null
+          },
+          {
+            "offset": 516,
+            "values_hex": {
+              "M00": "46",
+              "M00_R1": "46",
+              "M00_R2": "46",
+              "M00_ER": "46",
+              "M00_N": "46"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": false,
+            "classifications": [
+              "stable"
+            ],
+            "confounding": null
+          },
+          {
+            "offset": 517,
+            "values_hex": {
+              "M00": "43",
+              "M00_R1": "43",
+              "M00_R2": "43",
+              "M00_ER": "43",
+              "M00_N": "43"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": false,
+            "classifications": [
+              "stable"
+            ],
+            "confounding": null
+          }
+        ]
+      }
+    },
+    {
+      "record_index": 1,
+      "u32": {
+        "M00": "0x6F422C0D",
+        "M00_R1": "0x6F422C0D",
+        "M00_R2": "0x6F422C0D",
+        "M00_ER": "0x6F422C0D",
+        "M00_N": "0x5F4E480D"
+      },
+      "low_byte": {
+        "name": "record[1].tag.low_byte",
+        "start": 550,
+        "length": 1,
+        "raw_hex": {
+          "M00": "0d",
+          "M00_R1": "0d",
+          "M00_R2": "0d",
+          "M00_ER": "0d",
+          "M00_N": "0d"
+        },
+        "stable_across_clean_recopies": true,
+        "copy_observation": "copy_variability_not_observed",
+        "changed_after_edit_restore": false,
+        "changed_for_independent_D": false,
+        "classifications": [
+          "stable"
+        ],
+        "confounding": null,
+        "bytes": [
+          {
+            "offset": 550,
+            "values_hex": {
+              "M00": "0d",
+              "M00_R1": "0d",
+              "M00_R2": "0d",
+              "M00_ER": "0d",
+              "M00_N": "0d"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": false,
+            "classifications": [
+              "stable"
+            ],
+            "confounding": null
+          }
+        ]
+      },
+      "upper_three_bytes": {
+        "name": "record[1].tag.upper_three_bytes",
+        "start": 551,
+        "length": 3,
+        "raw_hex": {
+          "M00": "2c426f",
+          "M00_R1": "2c426f",
+          "M00_R2": "2c426f",
+          "M00_ER": "2c426f",
+          "M00_N": "484e5f"
+        },
+        "stable_across_clean_recopies": true,
+        "copy_observation": "copy_variability_not_observed",
+        "changed_after_edit_restore": false,
+        "changed_for_independent_D": true,
+        "classifications": [
+          "object-lineage-variable candidate"
+        ],
+        "confounding": null,
+        "bytes": [
+          {
+            "offset": 551,
+            "values_hex": {
+              "M00": "2c",
+              "M00_R1": "2c",
+              "M00_R2": "2c",
+              "M00_ER": "2c",
+              "M00_N": "48"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": true,
+            "classifications": [
+              "object-lineage-variable candidate"
+            ],
+            "confounding": null
+          },
+          {
+            "offset": 552,
+            "values_hex": {
+              "M00": "42",
+              "M00_R1": "42",
+              "M00_R2": "42",
+              "M00_ER": "42",
+              "M00_N": "4e"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": true,
+            "classifications": [
+              "object-lineage-variable candidate"
+            ],
+            "confounding": null
+          },
+          {
+            "offset": 553,
+            "values_hex": {
+              "M00": "6f",
+              "M00_R1": "6f",
+              "M00_R2": "6f",
+              "M00_ER": "6f",
+              "M00_N": "5f"
+            },
+            "stable_across_clean_recopies": true,
+            "copy_observation": "copy_variability_not_observed",
+            "changed_after_edit_restore": false,
+            "changed_for_independent_D": true,
+            "classifications": [
+              "object-lineage-variable candidate"
+            ],
+            "confounding": null
+          }
+        ]
+      }
+    }
+  ],
+  "all_non_geometry_varying_ranges": [
+    {
+      "start": 93,
+      "end_exclusive": 109,
+      "length": 16,
+      "sample_hex": {
+        "M00": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_R1": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_R2": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_ER": "929ceb038750da4399b8c53ff7a3dbbc",
+        "M00_N": "b415ed4cf953fd478ae5ad27741204ac"
+      }
+    },
+    {
+      "start": 252,
+      "end_exclusive": 268,
+      "length": 16,
+      "sample_hex": {
+        "M00": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_R1": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_R2": "b424916574d78e4bbb910724d6c7ddd3",
+        "M00_ER": "17d0caef3fb454428ccc559f3d822d67",
+        "M00_N": "42426f839bc4f7429ed89b3d670bbb83"
+      }
+    },
+    {
+      "start": 412,
+      "end_exclusive": 428,
+      "length": 16,
+      "sample_hex": {
+        "M00": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_R1": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_R2": "d9bd565ffbe6d042b4eafad3ba4b3563",
+        "M00_ER": "fb2a28dbb1f4f145be96d7f0ff9cc6f0",
+        "M00_N": "d0f8b07e8a1f5445b3cb2d1d43c888bd"
+      }
+    },
+    {
+      "start": 551,
+      "end_exclusive": 554,
+      "length": 3,
+      "sample_hex": {
+        "M00": "2c426f",
+        "M00_R1": "2c426f",
+        "M00_R2": "2c426f",
+        "M00_ER": "2c426f",
+        "M00_N": "484e5f"
+      }
+    }
+  ],
+  "exact_varying_byte_profiles": [
+    {
+      "offset": 93,
+      "values_hex": {
+        "M00": "92",
+        "M00_R1": "92",
+        "M00_R2": "92",
+        "M00_ER": "92",
+        "M00_N": "b4"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 94,
+      "values_hex": {
+        "M00": "9c",
+        "M00_R1": "9c",
+        "M00_R2": "9c",
+        "M00_ER": "9c",
+        "M00_N": "15"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 95,
+      "values_hex": {
+        "M00": "eb",
+        "M00_R1": "eb",
+        "M00_R2": "eb",
+        "M00_ER": "eb",
+        "M00_N": "ed"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 96,
+      "values_hex": {
+        "M00": "03",
+        "M00_R1": "03",
+        "M00_R2": "03",
+        "M00_ER": "03",
+        "M00_N": "4c"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 97,
+      "values_hex": {
+        "M00": "87",
+        "M00_R1": "87",
+        "M00_R2": "87",
+        "M00_ER": "87",
+        "M00_N": "f9"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 98,
+      "values_hex": {
+        "M00": "50",
+        "M00_R1": "50",
+        "M00_R2": "50",
+        "M00_ER": "50",
+        "M00_N": "53"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 99,
+      "values_hex": {
+        "M00": "da",
+        "M00_R1": "da",
+        "M00_R2": "da",
+        "M00_ER": "da",
+        "M00_N": "fd"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 100,
+      "values_hex": {
+        "M00": "43",
+        "M00_R1": "43",
+        "M00_R2": "43",
+        "M00_ER": "43",
+        "M00_N": "47"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 101,
+      "values_hex": {
+        "M00": "99",
+        "M00_R1": "99",
+        "M00_R2": "99",
+        "M00_ER": "99",
+        "M00_N": "8a"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 102,
+      "values_hex": {
+        "M00": "b8",
+        "M00_R1": "b8",
+        "M00_R2": "b8",
+        "M00_ER": "b8",
+        "M00_N": "e5"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 103,
+      "values_hex": {
+        "M00": "c5",
+        "M00_R1": "c5",
+        "M00_R2": "c5",
+        "M00_ER": "c5",
+        "M00_N": "ad"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 104,
+      "values_hex": {
+        "M00": "3f",
+        "M00_R1": "3f",
+        "M00_R2": "3f",
+        "M00_ER": "3f",
+        "M00_N": "27"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 105,
+      "values_hex": {
+        "M00": "f7",
+        "M00_R1": "f7",
+        "M00_R2": "f7",
+        "M00_ER": "f7",
+        "M00_N": "74"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 106,
+      "values_hex": {
+        "M00": "a3",
+        "M00_R1": "a3",
+        "M00_R2": "a3",
+        "M00_ER": "a3",
+        "M00_N": "12"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 107,
+      "values_hex": {
+        "M00": "db",
+        "M00_R1": "db",
+        "M00_R2": "db",
+        "M00_ER": "db",
+        "M00_N": "04"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 108,
+      "values_hex": {
+        "M00": "bc",
+        "M00_R1": "bc",
+        "M00_R2": "bc",
+        "M00_ER": "bc",
+        "M00_N": "ac"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 252,
+      "values_hex": {
+        "M00": "b4",
+        "M00_R1": "b4",
+        "M00_R2": "b4",
+        "M00_ER": "17",
+        "M00_N": "42"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 253,
+      "values_hex": {
+        "M00": "24",
+        "M00_R1": "24",
+        "M00_R2": "24",
+        "M00_ER": "d0",
+        "M00_N": "42"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 254,
+      "values_hex": {
+        "M00": "91",
+        "M00_R1": "91",
+        "M00_R2": "91",
+        "M00_ER": "ca",
+        "M00_N": "6f"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 255,
+      "values_hex": {
+        "M00": "65",
+        "M00_R1": "65",
+        "M00_R2": "65",
+        "M00_ER": "ef",
+        "M00_N": "83"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 256,
+      "values_hex": {
+        "M00": "74",
+        "M00_R1": "74",
+        "M00_R2": "74",
+        "M00_ER": "3f",
+        "M00_N": "9b"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 257,
+      "values_hex": {
+        "M00": "d7",
+        "M00_R1": "d7",
+        "M00_R2": "d7",
+        "M00_ER": "b4",
+        "M00_N": "c4"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 258,
+      "values_hex": {
+        "M00": "8e",
+        "M00_R1": "8e",
+        "M00_R2": "8e",
+        "M00_ER": "54",
+        "M00_N": "f7"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 259,
+      "values_hex": {
+        "M00": "4b",
+        "M00_R1": "4b",
+        "M00_R2": "4b",
+        "M00_ER": "42",
+        "M00_N": "42"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 260,
+      "values_hex": {
+        "M00": "bb",
+        "M00_R1": "bb",
+        "M00_R2": "bb",
+        "M00_ER": "8c",
+        "M00_N": "9e"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 261,
+      "values_hex": {
+        "M00": "91",
+        "M00_R1": "91",
+        "M00_R2": "91",
+        "M00_ER": "cc",
+        "M00_N": "d8"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 262,
+      "values_hex": {
+        "M00": "07",
+        "M00_R1": "07",
+        "M00_R2": "07",
+        "M00_ER": "55",
+        "M00_N": "9b"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 263,
+      "values_hex": {
+        "M00": "24",
+        "M00_R1": "24",
+        "M00_R2": "24",
+        "M00_ER": "9f",
+        "M00_N": "3d"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 264,
+      "values_hex": {
+        "M00": "d6",
+        "M00_R1": "d6",
+        "M00_R2": "d6",
+        "M00_ER": "3d",
+        "M00_N": "67"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 265,
+      "values_hex": {
+        "M00": "c7",
+        "M00_R1": "c7",
+        "M00_R2": "c7",
+        "M00_ER": "82",
+        "M00_N": "0b"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 266,
+      "values_hex": {
+        "M00": "dd",
+        "M00_R1": "dd",
+        "M00_R2": "dd",
+        "M00_ER": "2d",
+        "M00_N": "bb"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 267,
+      "values_hex": {
+        "M00": "d3",
+        "M00_R1": "d3",
+        "M00_R2": "d3",
+        "M00_ER": "67",
+        "M00_N": "83"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 412,
+      "values_hex": {
+        "M00": "d9",
+        "M00_R1": "d9",
+        "M00_R2": "d9",
+        "M00_ER": "fb",
+        "M00_N": "d0"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 413,
+      "values_hex": {
+        "M00": "bd",
+        "M00_R1": "bd",
+        "M00_R2": "bd",
+        "M00_ER": "2a",
+        "M00_N": "f8"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 414,
+      "values_hex": {
+        "M00": "56",
+        "M00_R1": "56",
+        "M00_R2": "56",
+        "M00_ER": "28",
+        "M00_N": "b0"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 415,
+      "values_hex": {
+        "M00": "5f",
+        "M00_R1": "5f",
+        "M00_R2": "5f",
+        "M00_ER": "db",
+        "M00_N": "7e"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 416,
+      "values_hex": {
+        "M00": "fb",
+        "M00_R1": "fb",
+        "M00_R2": "fb",
+        "M00_ER": "b1",
+        "M00_N": "8a"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 417,
+      "values_hex": {
+        "M00": "e6",
+        "M00_R1": "e6",
+        "M00_R2": "e6",
+        "M00_ER": "f4",
+        "M00_N": "1f"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 418,
+      "values_hex": {
+        "M00": "d0",
+        "M00_R1": "d0",
+        "M00_R2": "d0",
+        "M00_ER": "f1",
+        "M00_N": "54"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 419,
+      "values_hex": {
+        "M00": "42",
+        "M00_R1": "42",
+        "M00_R2": "42",
+        "M00_ER": "45",
+        "M00_N": "45"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 420,
+      "values_hex": {
+        "M00": "b4",
+        "M00_R1": "b4",
+        "M00_R2": "b4",
+        "M00_ER": "be",
+        "M00_N": "b3"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 421,
+      "values_hex": {
+        "M00": "ea",
+        "M00_R1": "ea",
+        "M00_R2": "ea",
+        "M00_ER": "96",
+        "M00_N": "cb"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 422,
+      "values_hex": {
+        "M00": "fa",
+        "M00_R1": "fa",
+        "M00_R2": "fa",
+        "M00_ER": "d7",
+        "M00_N": "2d"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 423,
+      "values_hex": {
+        "M00": "d3",
+        "M00_R1": "d3",
+        "M00_R2": "d3",
+        "M00_ER": "f0",
+        "M00_N": "1d"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 424,
+      "values_hex": {
+        "M00": "ba",
+        "M00_R1": "ba",
+        "M00_R2": "ba",
+        "M00_ER": "ff",
+        "M00_N": "43"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 425,
+      "values_hex": {
+        "M00": "4b",
+        "M00_R1": "4b",
+        "M00_R2": "4b",
+        "M00_ER": "9c",
+        "M00_N": "c8"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 426,
+      "values_hex": {
+        "M00": "35",
+        "M00_R1": "35",
+        "M00_R2": "35",
+        "M00_ER": "c6",
+        "M00_N": "88"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 427,
+      "values_hex": {
+        "M00": "63",
+        "M00_R1": "63",
+        "M00_R2": "63",
+        "M00_ER": "f0",
+        "M00_N": "bd"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": true,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "edit-history-variable candidate",
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 551,
+      "values_hex": {
+        "M00": "2c",
+        "M00_R1": "2c",
+        "M00_R2": "2c",
+        "M00_ER": "2c",
+        "M00_N": "48"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 552,
+      "values_hex": {
+        "M00": "42",
+        "M00_R1": "42",
+        "M00_R2": "42",
+        "M00_ER": "42",
+        "M00_N": "4e"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    },
+    {
+      "offset": 553,
+      "values_hex": {
+        "M00": "6f",
+        "M00_R1": "6f",
+        "M00_R2": "6f",
+        "M00_ER": "6f",
+        "M00_N": "5f"
+      },
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": true,
+      "classifications": [
+        "object-lineage-variable candidate"
+      ],
+      "confounding": null
+    }
+  ],
+  "stable_byte_ranges": [
+    {
+      "start": 0,
+      "end_exclusive": 93,
+      "length": 93
+    },
+    {
+      "start": 109,
+      "end_exclusive": 252,
+      "length": 143
+    },
+    {
+      "start": 268,
+      "end_exclusive": 412,
+      "length": 144
+    },
+    {
+      "start": 428,
+      "end_exclusive": 551,
+      "length": 123
+    },
+    {
+      "start": 554,
+      "end_exclusive": 8192,
+      "length": 7638
+    }
+  ],
+  "version": {
+    "all_five_exact_equal": true,
+    "profile": {
+      "stable_across_clean_recopies": true,
+      "copy_observation": "copy_variability_not_observed",
+      "changed_after_edit_restore": false,
+      "changed_for_independent_D": false,
+      "classifications": [
+        "stable"
+      ],
+      "confounding": null
+    },
+    "semantic_meaning": "unknown"
+  },
+  "property_and_tail": {
+    "start": 554,
+    "length": 7638,
+    "includes_descriptor": true,
+    "end_exclusive": 8192,
+    "all_five_exact_equal": true,
+    "sha256_by_sample": {
+      "M00": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_R1": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_R2": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_ER": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947",
+      "M00_N": "ec09ea26631f56ef672ee5f7225bc995003025269772c119479e9cc03e118947"
+    },
+    "semantic_extent": "unresolved; not an empty-extension assertion"
+  },
+  "classifications": {
+    "line_copy_variability": "not_observed",
+    "line_edit_history_variability": "observed",
+    "line_object_lineage_variability": "observed",
+    "line_opaque_metadata_role": "mixed",
+    "opaque_fields_preservation_for_template_mutation": "unresolved"
+  },
+  "limitations": [
+    "One session, one edit/restore cycle, one independently constructed D; absence of variation is scoped to these captures.",
+    "Unknown baseline origin/workplane, line style, width and identifiers remain unknown; same settings were reported.",
+    "Capture and verification read formats separately; human provenance is not established by byte equality alone.",
+    "No field is named GUID, timestamp, checksum or object ID.",
+    "No direction disambiguation, paste-time identity/reference evidence or arbitrary geometry mutation safety follows."
+  ],
+  "synthesis_consequence": "Opaque preservation is not established as safe. Edit/restore differences, if observed, prevent treating stable geometry as a sufficient preservation contract; unchanged bytes alone would not settle paste-time identity.",
+  "accepted_findings_retained": {
+    "line_object_structure": "partial",
+    "line_endpoint_fields": "candidate_only",
+    "line_derived_fields": "partial",
+    "line_identity_fields": "unresolved",
+    "line_clipboard_synthesis_strategy": "unresolved",
+    "line_clipboard_runtime_readiness": "missing_specific_contract"
+  },
+  "integrity": {
+    "baseline_tracked_file_count": 495,
+    "preexisting_files_except_authorized_contract_unchanged": true,
+    "five_raw_hash_pairs_and_hex_roundtrips_verified": true
+  },
+  "next_task": "Perform one bounded exact-replay geometry paste experiment using an unmodified vendor-captured bundle to determine TypeEdit's paste-time identity/reference behavior; do not synthesize coordinates yet."
+}

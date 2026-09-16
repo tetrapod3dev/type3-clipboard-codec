@@ -1,0 +1,26 @@
+{
+  "category": "geometry",
+  "created_at": "2026-09-16T01:35:35.628602+00:00",
+  "description": "M00_ER same C edited in vertex mode: endpoint moved right 10 mm then left 10 mm, returned to default mode; no Undo; restored baseline geometry confirmed; one ungrouped object copied, no other Copy reported.",
+  "files": {
+    "fixture": "tests\\samples\\geometry_line_meta_M00_ER.txt",
+    "typeeditzone": "typeeditzone.bin",
+    "typeeditzone_version": "typeeditzone_version.bin"
+  },
+  "format_names": {
+    "typeeditzone": "TypeEditZone",
+    "typeeditzone_version": "TypeEditZoneVersion"
+  },
+  "observed_format_ids": {
+    "typeeditzone": 50107,
+    "typeeditzone_version": 50108
+  },
+  "registered_format_ids": {
+    "typeeditzone": 49863,
+    "typeeditzone_version": 49864
+  },
+  "sample_name": "geometry_line_meta_M00_ER",
+  "source": "windows_clipboard",
+  "typeeditzone_size": 8192,
+  "typeeditzone_version_size": 32
+}
