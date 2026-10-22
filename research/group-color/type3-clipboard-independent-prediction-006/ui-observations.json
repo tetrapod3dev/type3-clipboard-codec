@@ -1,0 +1,66 @@
+{
+  "H0-A": {
+    "group_selected_count": 1,
+    "group_evidence": "runtime-001/H-group-selected.png",
+    "members": {
+      "R1": {
+        "bbox_m": {
+          "xmin_m": 0.45,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.48,
+          "ymax_m": 0.22,
+          "zmax_m": 0.0
+        },
+        "color_name": "Navy Blue",
+        "evidence": "runtime-001/R1-parameters.png; runtime-001/R1-navy-selected.png; runtime-001/H1-colors.png",
+        "bbox_source": "Type3 rectangle numeric dialog: width/height and lower-left anchor; confirmed against independent decoder after prediction"
+      },
+      "R2": {
+        "bbox_m": {
+          "xmin_m": 0.6,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.655,
+          "ymax_m": 0.235,
+          "zmax_m": 0.0
+        },
+        "color_name": "Army Green",
+        "evidence": "runtime-001/H-R2-parameters-corrected.png; runtime-001/R2-army-selected.png; runtime-001/R2-turquoise-selected.png",
+        "bbox_source": "Type3 rectangle numeric dialog: width/height and lower-left anchor; confirmed against independent decoder after prediction"
+      }
+    }
+  },
+  "H1": {
+    "group_selected_count": 1,
+    "group_evidence": "runtime-001/H1-group-selected.png",
+    "members": {
+      "R1": {
+        "bbox_m": {
+          "xmin_m": 0.45,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.48,
+          "ymax_m": 0.22,
+          "zmax_m": 0.0
+        },
+        "color_name": "Navy Blue",
+        "evidence": "runtime-001/R1-parameters.png; runtime-001/R1-navy-selected.png; runtime-001/H1-colors.png",
+        "bbox_source": "Type3 rectangle numeric dialog: width/height and lower-left anchor; confirmed against independent decoder after prediction"
+      },
+      "R2": {
+        "bbox_m": {
+          "xmin_m": 0.6,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.655,
+          "ymax_m": 0.235,
+          "zmax_m": 0.0
+        },
+        "color_name": "Turquoise",
+        "evidence": "runtime-001/H-R2-parameters-corrected.png; runtime-001/R2-army-selected.png; runtime-001/R2-turquoise-selected.png",
+        "bbox_source": "Type3 rectangle numeric dialog: width/height and lower-left anchor; confirmed against independent decoder after prediction"
+      }
+    }
+  }
+}

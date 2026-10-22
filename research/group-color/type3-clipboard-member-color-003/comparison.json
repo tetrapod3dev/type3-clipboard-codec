@@ -1,0 +1,923 @@
+{
+  "operation": "SAVED_FILES_ONLY",
+  "samples": {
+    "S1": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\S1-confirmed",
+      "zone_length": 8192,
+      "zone_sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": false,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 647,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  767,
+                  771
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  779,
+                  783
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "S2": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\S2-confirmed",
+      "zone_length": 8192,
+      "zone_sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": false,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Army Green",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 647,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  767,
+                  771
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  779,
+                  783
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "U0": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\U0",
+      "zone_length": 8192,
+      "zone_sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": false,
+        "declared_count_candidate": 2,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Army Green",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 647,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  767,
+                  771
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  779,
+                  783
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          },
+          {
+            "parser_chain_index": 1,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.40108456833157174,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 647,
+            "color_candidates": [
+              {
+                "offset": 846,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1493,
+                  1497
+                ]
+              },
+              {
+                "offset": 858,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1505,
+                  1509
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "G0-A": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-A",
+      "zone_length": 8192,
+      "zone_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": true,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  915,
+                  919
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  927,
+                  931
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          },
+          {
+            "parser_chain_index": 1,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.40108456833157174,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Army Green",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 846,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1641,
+                  1645
+                ]
+              },
+              {
+                "offset": 858,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1653,
+                  1657
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "G0-B": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-B",
+      "zone_length": 8192,
+      "zone_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": true,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  915,
+                  919
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  927,
+                  931
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          },
+          {
+            "parser_chain_index": 1,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.40108456833157174,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Army Green",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 846,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1641,
+                  1645
+                ]
+              },
+              {
+                "offset": 858,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1653,
+                  1657
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "G0-R": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-R",
+      "zone_length": 8192,
+      "zone_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": true,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  915,
+                  919
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  927,
+                  931
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          },
+          {
+            "parser_chain_index": 1,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.40108456833157174,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Army Green",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 846,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1641,
+                  1645
+                ]
+              },
+              {
+                "offset": 858,
+                "raw": 10013848,
+                "raw_hex": "0x0098CC98",
+                "name": "Army Green",
+                "hex_rgb": "98CC98",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1653,
+                  1657
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    },
+    "G1": {
+      "status": "SAVED_BUNDLE_FOUND",
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G1",
+      "zone_length": 8192,
+      "zone_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "version_length": 32,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "capture_manifest": {
+        "formats": [
+          {
+            "byte_length": 8192,
+            "file_name": "typeeditzone.bin",
+            "format_name": "TypeEditZone",
+            "observed_id": 50107,
+            "registered_id": 49866
+          },
+          {
+            "byte_length": 32,
+            "file_name": "typeeditzone_version.bin",
+            "format_name": "TypeEditZoneVersion",
+            "observed_id": 50108,
+            "registered_id": 49867
+          }
+        ]
+      },
+      "decoder": {
+        "group_candidate": true,
+        "declared_count_candidate": 1,
+        "chains": [
+          {
+            "parser_chain_index": 0,
+            "bbox": {
+              "xmin_m": 0.16066607036374475,
+              "ymin_m": 0.3410317131243394,
+              "zmin_m": 0.0,
+              "xmax_m": 0.24068992248062016,
+              "ymax_m": 0.4010845683315718,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Navy Blue",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 120,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  915,
+                  919
+                ]
+              },
+              {
+                "offset": 132,
+                "raw": 13393968,
+                "raw_hex": "0x00CC6030",
+                "name": "Navy Blue",
+                "hex_rgb": "3060CC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  927,
+                  931
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          },
+          {
+            "parser_chain_index": 1,
+            "bbox": {
+              "xmin_m": 0.40073762671437085,
+              "ymin_m": 0.29699295263903563,
+              "zmin_m": 0.0,
+              "xmax_m": 0.5767901013714967,
+              "ymax_m": 0.40108456833157174,
+              "zmax_m": 0.0
+            },
+            "shape_candidate": "rectangle",
+            "contour_records": 4,
+            "color_candidate": "Turquoise",
+            "color_confidence": "strong",
+            "property_payload_origin_candidate": 795,
+            "color_candidates": [
+              {
+                "offset": 846,
+                "raw": 13434724,
+                "raw_hex": "0x00CCFF64",
+                "name": "Turquoise",
+                "hex_rgb": "64FFCC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1641,
+                  1645
+                ]
+              },
+              {
+                "offset": 858,
+                "raw": 13434724,
+                "raw_hex": "0x00CCFF64",
+                "name": "Turquoise",
+                "hex_rgb": "64FFCC",
+                "confidence": "strong",
+                "source": "payload_scan",
+                "encoding": "rgb0",
+                "absolute_range_candidate": [
+                  1653,
+                  1657
+                ]
+              }
+            ],
+            "member_ownership": "UNKNOWN"
+          }
+        ],
+        "warning": "Parser state is not UI ground truth; candidate positions do not establish member-owned Serialize boundaries."
+      }
+    }
+  },
+  "comparisons": {
+    "G0-A__G0-B": {
+      "equal": true,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [],
+      "changed_bytes_common_extent": 0,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim."
+    },
+    "G0-A__G0-R": {
+      "equal": false,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          249
+        ],
+        [
+          250,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1164
+        ],
+        [
+          1165,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ]
+      ],
+      "changed_bytes_common_extent": 110,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim."
+    },
+    "G0-R__G1": {
+      "equal": false,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          248
+        ],
+        [
+          249,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ],
+        [
+          1641,
+          1644
+        ],
+        [
+          1653,
+          1656
+        ]
+      ],
+      "changed_bytes_common_extent": 117,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim."
+    }
+  },
+  "member_ownership": "NOT_VERIFIED",
+  "patch_candidate_created": false,
+  "excluded_inputs": {
+    "samples/S1": "Invalid stale capture; never an accepted sample. Three files deleted after explicit user approval.",
+    "samples/S2": "Extra preparation rectangle; not target R2. Use S2-confirmed."
+  },
+  "qualification": "Need observed UI identity, regeneration control and bounded member Serialize evidence. Color search/distance/diff alone never promotes ownership."
+}

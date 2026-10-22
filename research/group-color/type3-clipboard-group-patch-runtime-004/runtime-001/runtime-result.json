@@ -1,0 +1,251 @@
+{
+  "verdict": "GROUP_PATCH_RUNTIME_VERIFIED",
+  "scope": "Exact approved G1 candidate only",
+  "input_G1_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+  "candidate_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+  "recopy_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+  "zone_lengths": [
+    8192,
+    8192,
+    8192
+  ],
+  "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+  "recopy_version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+  "version_lengths": [
+    32,
+    32
+  ],
+  "candidate_recopy_byte_equal": true,
+  "version_recopy_byte_equal": true,
+  "source_G1_to_recopy_changed_offsets": [
+    1641,
+    1642,
+    1643,
+    1653,
+    1654,
+    1655
+  ],
+  "candidate_to_recopy_differences": [],
+  "geometry_identical": true,
+  "geometry": {
+    "object_type_candidate": "group",
+    "group_candidate": true,
+    "declared_count_candidate": 1,
+    "group_children_candidate_count": 2,
+    "group_bbox": {
+      "xmin_m": 0.16066607036374475,
+      "ymin_m": 0.29699295263903563,
+      "zmin_m": 0.0,
+      "xmax_m": 0.5767901013714967,
+      "ymax_m": 0.4010845683315718,
+      "zmax_m": 0.0
+    },
+    "aggregate_bbox": {
+      "xmin_m": 0.16066607036374475,
+      "ymin_m": 0.29699295263903563,
+      "zmin_m": 0.0,
+      "xmax_m": 0.5767901013714967,
+      "ymax_m": 0.4010845683315718,
+      "zmax_m": 0.0
+    },
+    "chains": [
+      {
+        "shape": "rectangle",
+        "bbox": {
+          "xmin_m": 0.16066607036374475,
+          "ymin_m": 0.3410317131243394,
+          "zmin_m": 0.0,
+          "xmax_m": 0.24068992248062016,
+          "ymax_m": 0.4010845683315718,
+          "zmax_m": 0.0
+        },
+        "contour_records": [
+          {
+            "x_m": 0.16066607036374475,
+            "y_m": 0.3410317131243394,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.24068992248062016,
+            "y_m": 0.3410317131243394,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 13,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.24068992248062016,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.16066607036374475,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1095127053,
+            "role": "anchor"
+          }
+        ],
+        "points": [
+          {
+            "x": 160.66607036374475,
+            "y": 341.0317131243394,
+            "z": 0.0
+          },
+          {
+            "x": 240.68992248062017,
+            "y": 341.0317131243394,
+            "z": 0.0
+          },
+          {
+            "x": 240.68992248062017,
+            "y": 401.08456833157175,
+            "z": 0.0
+          },
+          {
+            "x": 160.66607036374475,
+            "y": 401.08456833157175,
+            "z": 0.0
+          }
+        ],
+        "raw_contour_sha256": "722220fcfda94995a75aca5e3c8e776b7d2feea2963b3c2f0cb48b26199d5a76"
+      },
+      {
+        "shape": "rectangle",
+        "bbox": {
+          "xmin_m": 0.40073762671437085,
+          "ymin_m": 0.29699295263903563,
+          "zmin_m": 0.0,
+          "xmax_m": 0.5767901013714967,
+          "ymax_m": 0.40108456833157174,
+          "zmax_m": 0.0
+        },
+        "contour_records": [
+          {
+            "x_m": 0.40073762671437085,
+            "y_m": 0.29699295263903563,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1447382029,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.5767901013714967,
+            "y_m": 0.29699295263903563,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.5767901013714967,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 13,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.40073762671437085,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1095127053,
+            "role": "anchor"
+          }
+        ],
+        "points": [
+          {
+            "x": 400.73762671437083,
+            "y": 296.99295263903565,
+            "z": 0.0
+          },
+          {
+            "x": 576.7901013714967,
+            "y": 296.99295263903565,
+            "z": 0.0
+          },
+          {
+            "x": 576.7901013714967,
+            "y": 401.08456833157175,
+            "z": 0.0
+          },
+          {
+            "x": 400.73762671437083,
+            "y": 401.08456833157175,
+            "z": 0.0
+          }
+        ],
+        "raw_contour_sha256": "3b6cfa45835ee4a4b288e4d065a8a3d013b67bcde9dc7767efd046f4a362a3bc"
+      }
+    ]
+  },
+  "member_colors": [
+    {
+      "ordinal_in_this_snapshot": 0,
+      "bbox": {
+        "xmin_m": 0.16066607036374475,
+        "ymin_m": 0.3410317131243394,
+        "zmin_m": 0.0,
+        "xmax_m": 0.24068992248062016,
+        "ymax_m": 0.4010845683315718,
+        "zmax_m": 0.0
+      },
+      "name": "Navy Blue",
+      "hex_rgb": "3060CC",
+      "confidence": "strong"
+    },
+    {
+      "ordinal_in_this_snapshot": 1,
+      "bbox": {
+        "xmin_m": 0.40073762671437085,
+        "ymin_m": 0.29699295263903563,
+        "zmin_m": 0.0,
+        "xmax_m": 0.5767901013714967,
+        "ymax_m": 0.40108456833157174,
+        "zmax_m": 0.0
+      },
+      "name": "Army Green",
+      "hex_rgb": "98CC98",
+      "confidence": "strong"
+    }
+  ],
+  "observed_ui": {
+    "original_host_pid": 34968,
+    "test_host_pid": 17188,
+    "test_window_before": "Blank Type31 in a separately launched instance",
+    "actual_paste_count": 1,
+    "selected_top_level_group_count": 1,
+    "visible_shapes": "Two separated rectangles, small blue and large green; no extra shape observed",
+    "group_width_height_mm_rounded": [
+      416.124,
+      104.092
+    ],
+    "group_center_mm_rounded": [
+      368.728,
+      349.039
+    ],
+    "import_or_confirmation_dialogs_after_paste": 0,
+    "warning_or_error_observed": false,
+    "evidence": [
+      "test-empty.png",
+      "after-single-paste.png",
+      "restored-colors-visible.png"
+    ]
+  },
+  "normalization_observation": "No byte normalization observed in this recopy. Not a general guarantee.",
+  "member_serialize_boundary": "UNKNOWN",
+  "general_member_ownership": "NOT_ESTABLISHED",
+  "original_document": "No document command, save, close, discard or selection edits sent to original host",
+  "runtime_approval": "Explicit user approval before execution",
+  "final_clipboard": "Copy of the restored patched group; exact candidate bytes",
+  "mode": "OFF",
+  "programs": "Both hosts left running; documents unsaved"
+}

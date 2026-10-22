@@ -1,0 +1,10 @@
+--- original/type3-clipboard-group-patch-runtime-004\verify_runtime.py
++++ migrated/type3-clipboard-group-patch-runtime-004\verify_runtime.py
+@@ -41,6 +41,6 @@
+     'runtime_approval':'Explicit user approval before execution',
+     'final_clipboard':'Copy of the restored patched group; exact candidate bytes',
+     'mode':'OFF','programs':'Both hosts left running; documents unsaved'}
+-(root/'runtime-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
++(root/'recomputed-runtime-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+ print(result['verdict'])
+ print('One Paste; group=1; R1 Navy Blue / R2 Army Green; exact Zone+Version recopy; geometry unchanged.')

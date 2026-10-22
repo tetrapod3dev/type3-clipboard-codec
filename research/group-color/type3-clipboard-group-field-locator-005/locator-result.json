@@ -1,0 +1,657 @@
+{
+  "verdict": "FIELD_LOCATOR_PARTIAL",
+  "operation": "SAVED_FILES_READ_ONLY",
+  "profile": {
+    "training_sha256": [
+      "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819"
+    ],
+    "schema_candidate": 5,
+    "prefix_hex": "05000000fca9f1d24d62403f000000000000000000000000000001000c00000000000000040000000000000004000000000000000000000000000000000000000000000000000000000000000080464000000000000000000000000000804640000000000000000000000000000000000000000000000000",
+    "between_fields_hex": "0000000004000000",
+    "relative_color_slots": [
+      120,
+      132
+    ],
+    "evidence": "Empirical profile from standalone property bodies; not verified general Serializer layout.",
+    "profile_semantics": "UNKNOWN_OUTSIDE_CONTROLLED_FAMILY"
+  },
+  "samples": {
+    "S1": {
+      "input_sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "length": 8192,
+      "members": [],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "REJECTED",
+      "reasons": [
+        "Rejected: requires one group candidate with exactly two chain candidates"
+      ]
+    },
+    "S2": {
+      "input_sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "length": 8192,
+      "members": [],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "REJECTED",
+      "reasons": [
+        "Rejected: requires one group candidate with exactly two chain candidates"
+      ]
+    },
+    "U0": {
+      "input_sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "length": 8192,
+      "members": [],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "REJECTED",
+      "reasons": [
+        "Rejected: requires one group candidate with exactly two chain candidates"
+      ]
+    },
+    "G0-A": {
+      "input_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Army Green",
+          "raw_rgb0_hex": "98cc9800",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    },
+    "G0-B": {
+      "input_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Army Green",
+          "raw_rgb0_hex": "98cc9800",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    },
+    "G0-R": {
+      "input_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Army Green",
+          "raw_rgb0_hex": "98cc9800",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    },
+    "G1": {
+      "input_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Turquoise",
+          "raw_rgb0_hex": "64ffcc00",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    },
+    "patched_G1": {
+      "input_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Army Green",
+          "raw_rgb0_hex": "98cc9800",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    },
+    "runtime_recopy": {
+      "input_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+      "length": 8192,
+      "members": [
+        {
+          "ordinal_in_this_decode": 0,
+          "contour_range": [
+            630,
+            774
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.16066607036374475,
+            "ymin_m": 0.3410317131243394,
+            "zmin_m": 0.0,
+            "xmax_m": 0.24068992248062016,
+            "ymax_m": 0.4010845683315718,
+            "zmax_m": 0.0
+          },
+          "width_mm": 80.0238521168754,
+          "height_mm": 60.05285520723241,
+          "tag": {
+            "kind": "observed_new_class",
+            "class": "CPropertyExtend",
+            "schema": 5,
+            "span": [
+              774,
+              795
+            ],
+            "body_candidate": 795,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Navy Blue",
+          "raw_rgb0_hex": "3060cc00",
+          "color_pair_ranges_candidate": [
+            [
+              915,
+              919
+            ],
+            [
+              927,
+              931
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        },
+        {
+          "ordinal_in_this_decode": 1,
+          "contour_range": [
+            1375,
+            1519
+          ],
+          "header_kind_candidate": 1,
+          "bbox": {
+            "xmin_m": 0.40073762671437085,
+            "ymin_m": 0.29699295263903563,
+            "zmin_m": 0.0,
+            "xmax_m": 0.5767901013714967,
+            "ymax_m": 0.40108456833157174,
+            "zmax_m": 0.0
+          },
+          "width_mm": 176.0524746571258,
+          "height_mm": 104.09161569253611,
+          "tag": {
+            "kind": "unresolved_small_class_reference",
+            "class": "UNKNOWN",
+            "reference_index": 8,
+            "span": [
+              1519,
+              1521
+            ],
+            "body_candidate": 1521,
+            "archive_context": "UNKNOWN"
+          },
+          "color_name_candidate": "Army Green",
+          "raw_rgb0_hex": "98cc9800",
+          "color_pair_ranges_candidate": [
+            [
+              1641,
+              1645
+            ],
+            [
+              1653,
+              1657
+            ]
+          ],
+          "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+          "member_serialize_end": "UNKNOWN"
+        }
+      ],
+      "change_allowed": false,
+      "ownership": "UNKNOWN",
+      "status": "CANDIDATE_ONLY",
+      "reasons": [
+        "Archive class/reference ledger not resolved",
+        "Complete member Serialize/property ownership boundary not verified",
+        "Profile is empirical and has no independent group-family validation"
+      ]
+    }
+  },
+  "stage_B": "NOT_PLANNED_BECAUSE_OWNERSHIP_ADMISSION_IS_AMBIGUOUS",
+  "patch_outputs_created": false,
+  "decoder_modified": false
+}

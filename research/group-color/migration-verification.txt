@@ -1,0 +1,16 @@
+{
+  "migration_replay": "PASS",
+  "historical_files_sha_verified": 99,
+  "profile_sha256": "d0f179eaee2c9e625a936f7ce7ad7c3db0d78928df5a782bfd4a18d8130d3197",
+  "G1_candidate_recopy_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+  "G1_exact_patch_reproduced_in_memory": true,
+  "H_predictions_equal_preserved": true,
+  "H_comparison_equal_preserved": true,
+  "H_verdict": "INDEPENDENT_FIELD_PREDICTION_VERIFIED",
+  "source_repository_reads": [],
+  "training": "FORBIDDEN_DURING_REPLAY",
+  "historical_outputs_unchanged": true,
+  "write_permission": false,
+  "Type3": "NOT_EXECUTED",
+  "Clipboard": "NOT_ACCESSED"
+}

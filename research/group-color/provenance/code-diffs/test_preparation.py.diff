@@ -1,0 +1,11 @@
+--- original/type3-clipboard-independent-prediction-006\test_preparation.py
++++ migrated/type3-clipboard-independent-prediction-006\test_preparation.py
+@@ -23,7 +23,7 @@
+ 
+ def test_profile_change_is_rejected(tmp_path,monkeypatch):
+     original=check.ROOT
+-    (tmp_path/'profile-lock.json').write_bytes((original/'profile-lock.json').read_bytes())
++    (tmp_path/'execution-lock.json').write_bytes((original/'execution-lock.json').read_bytes())
+     data=json.loads((original/'frozen-profile.json').read_text())
+     data['relative_color_slots']=[121,133]
+     (tmp_path/'frozen-profile.json').write_text(json.dumps(data))

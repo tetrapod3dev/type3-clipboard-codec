@@ -1,0 +1,14 @@
+{
+  "existing_source_files_checked": 5920,
+  "existing_codec_files_checked": 673,
+  "changed_existing_files": {
+    "source": [],
+    "codec": []
+  },
+  "copied_files_sha_equal_source_and_target": 99,
+  "mode": "OFF",
+  "Type3": "NOT_EXECUTED_OR_MANIPULATED",
+  "Clipboard": "NOT_ACCESSED",
+  "source_git_status": "",
+  "codec_git_status": "?? research/group-color/\n"
+}

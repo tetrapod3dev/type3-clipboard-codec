@@ -1,0 +1,211 @@
+{
+  "profile_sha256": "d0f179eaee2c9e625a936f7ce7ad7c3db0d78928df5a782bfd4a18d8130d3197",
+  "profile_origin": "Historical frozen-profile.json; no H training",
+  "training_samples": [
+    "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+    "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819"
+  ],
+  "dependencies": [
+    {
+      "path": "research/group-color/type3-clipboard-group-field-locator-005/field_locator.py",
+      "sha256": "1d3eb65b68a096460fc656f28929f1c183c6e9ffb702d4214549b90b35bd0155"
+    },
+    {
+      "path": "src/type3_clipboard_codec/__init__.py",
+      "sha256": "7ded14d133b560f68c960f0ec92f6bc9d052dbde0c373b86d42be57c571a902f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/adapters/input_base.py",
+      "sha256": "d0a22f7f6b195c8ff01c27f0ce721d9ff0fb5f59df9abe65e193b6975cbe0183"
+    },
+    {
+      "path": "src/type3_clipboard_codec/adapters/manual_hex_input.py",
+      "sha256": "c567b48f7a261b76e45d56efc0ad9541150dd491f3ce284724c4badb10a09c5f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "sha256": "f084c629cc6d8af5652b5f11c21f64ddd69f1102ebd2d87ba0f8a1fa9f4b668c"
+    },
+    {
+      "path": "src/type3_clipboard_codec/codec/__init__.py",
+      "sha256": "ff2906abfa31464c775c96d530c9e5bd71b5f9297c269aff5d55ff60f54348d0"
+    },
+    {
+      "path": "src/type3_clipboard_codec/codec/decoder.py",
+      "sha256": "41489dd1ecfcb1d07be911908bc915ce2a11017a3d7821b78fcbcb3a2aa7c74b"
+    },
+    {
+      "path": "src/type3_clipboard_codec/codec/encoder.py",
+      "sha256": "04984d33c6bbe8a251df1ea881924b3c66cfefa89ec94a1b395b96448eec207f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/codec/preview.py",
+      "sha256": "2e32f21e9e374d989ae7404ee6bce70961be4f3ba3ad97bf74bb1f99553c55cd"
+    },
+    {
+      "path": "src/type3_clipboard_codec/exceptions.py",
+      "sha256": "e91f75fbec05243151c2b8c708a138ad4352f03cef155d01cd4311cd02325bcb"
+    },
+    {
+      "path": "src/type3_clipboard_codec/inspect/__init__.py",
+      "sha256": "2aed9d44643c35a380a9bb29bf699a5f08baab287b4f493e223bc3b7932536ac"
+    },
+    {
+      "path": "src/type3_clipboard_codec/inspect/formatters.py",
+      "sha256": "c4e9a0b2fd5a0e8b2e02d03162222b7082ba52591e5b4c7b440518e0392d7921"
+    },
+    {
+      "path": "src/type3_clipboard_codec/inspect/hex_input.py",
+      "sha256": "f68c701f26d8dca4b3855cf8194586f32d795afd94f90b40f26c60a1402aecea"
+    },
+    {
+      "path": "src/type3_clipboard_codec/models/__init__.py",
+      "sha256": "4b959477de803fb21e3d40310318e202d72cedd654e3a68d42e869c0f4f8c2ff"
+    },
+    {
+      "path": "src/type3_clipboard_codec/models/colors.py",
+      "sha256": "b7ef8b67ca8a0720070c9d7836595aeb62090f6eedb80fe2fa1512ca8868bbbe"
+    },
+    {
+      "path": "src/type3_clipboard_codec/models/geometry.py",
+      "sha256": "f08836e3155175e5be7b1bc9e52d4d4a2842ce1fabd2d1befe4cc028832bd259"
+    },
+    {
+      "path": "src/type3_clipboard_codec/models/parsed_object.py",
+      "sha256": "b794ed0be5b99076eb51d5f4129b6eb659c03f8d2508a2854c4c6d37561b5c65"
+    },
+    {
+      "path": "src/type3_clipboard_codec/models/text_object.py",
+      "sha256": "f712aa6954b75a0025870fb16abe3b0485597b1792d74e191dd155cf976139a4"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/__init__.py",
+      "sha256": "48e03662007937a20db1e7303588f7fd5e33ad26e96bc50f8db71b226088900e"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/base.py",
+      "sha256": "fe40a0419c0b1990fe98da3731827281ecce4749d63f1e75e220d189a4732ce4"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/binary/__init__.py",
+      "sha256": "f178f1d50f866ba3df118cf8564a31f6dbd401332f6d0a99554a6bab02b22380"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/binary/header_parser.py",
+      "sha256": "918480df5bdfc71903ec96408408b6d5b9f9b64264f05cda2d9ecfeccefbfede"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "sha256": "b345d4707f0a75fb6c1eee4d75fc0779e6d91bd5249057f98a45d38ce4ad9bad"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "sha256": "335fe32e0b846a2db16b7c8f6e37c1fecbd7cd225b73c473ad3f5c777d1d9cb5"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/common.py",
+      "sha256": "3df65c47c8a39816b667562166e7c37ffcaa6c92d77dc53ef2dcc7f4fb082931"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/__init__.py",
+      "sha256": "b54ef95e41199d340f317b02ac157c06b0b4ea71fbf136dd7424ac1f5e521261"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "sha256": "9d4147af5f5cd1f95473be0c37c76747268b18d3e8d76a0250c90c06937c408f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py",
+      "sha256": "da8eb3fddbe9f17acbb427dc030a5948646143a1bd925b2e0aa824092458c40b"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py",
+      "sha256": "61c83ac7e65fce05a20ccd69a6e2f167ecf63d5b6a8dc759b858c5593d9954cb"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "sha256": "2e2393fe9cf1c7e4aea3cdaf2a5ee6dd214c07f42a4a31a9e64f97381cfde862"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
+      "sha256": "1df04e398b47112b0c99d929f2c5391099e2ba7ce611150e964bafebd0ad2f64"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/object_detector.py",
+      "sha256": "fa4451535646d9edc115e532f7296f651d056d329433809138730f44d8e58ac1"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/registry.py",
+      "sha256": "d5c81d5bb78ad5fd487e8c95c23be3a5490c14b9747e38126ac10b740690fceb"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/style/__init__.py",
+      "sha256": "20560e46f293c97ecc7861ba457d3b0bb7f6fd7100c4ac0508207b76738e484a"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/style/property_extend_parser.py",
+      "sha256": "6f0e9a80d8802c61becea5cdaee5b40710f10f68fe07c6ba6e81398abbbeaa21"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/text/__init__.py",
+      "sha256": "7d5748fe06593b049b13b5a670399defdda2119cf3e0f6b55651ef052192e65f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "sha256": "65f94c639049ad8cfce1374c8933b51c5f0d6f8b214adbe285b17c07d2dd9133"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "sha256": "ff6745a89de61fa85d4187fb2b80d632154ca5f738f46a87de25080356289503"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "sha256": "f5ec6614cd11d4c89ec77ae569ed5209f3c2615392b02dafef90a5a9ac96e54d"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/text_parser.py",
+      "sha256": "9cb37b272d52eff2b80914c2281f98e1728b721d79ae7ddd93a6c169a350c2b3"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "sha256": "ec192403f28bb1da30a45867225f62f56f512fafe0e4253292d7ea992627b652"
+    },
+    {
+      "path": "src/type3_clipboard_codec/parsers/unknown_parser.py",
+      "sha256": "408b62a65ae82fe183f83bd6dc15692aa33b398a9bf324249ea0f1a2f6726966"
+    },
+    {
+      "path": "src/type3_clipboard_codec/services/inspect_service.py",
+      "sha256": "c6a50cf3b53c8a4d2a7a3296b8a8c74045bfca83e14b18e6e906343defbbab8f"
+    },
+    {
+      "path": "src/type3_clipboard_codec/utils/__init__.py",
+      "sha256": "d8b47acf872628fb5eaef92879c08bbb4980d1d7af57bd8138dafe924706480a"
+    },
+    {
+      "path": "src/type3_clipboard_codec/utils/ascii_scan.py",
+      "sha256": "af2993a4b31c459ee6eb11ad9636bab8ea887df242e25bb739938ec6a2b894ea"
+    },
+    {
+      "path": "src/type3_clipboard_codec/utils/bytes_reader.py",
+      "sha256": "9bbc847b5356c6100b57980bd647e2a16d42a225b84b2d3ecdfa24d5fb81dfef"
+    },
+    {
+      "path": "src/type3_clipboard_codec/utils/hex_text.py",
+      "sha256": "dc486df3ccc87f6686e42e599f9817740148b32e6b0d5657951f82e87ac54d6c"
+    },
+    {
+      "path": "research/group-color/type3-clipboard-independent-prediction-006/prediction_check.py",
+      "sha256": "d9af72366cbe31a334342c85b16a88a16d10f5319dc3077fc26133fa5026fdfc"
+    },
+    {
+      "path": "research/group-color/type3-clipboard-base-serialize-003/walk_base.py",
+      "sha256": "1907cf76f3d1352922b77ed567483f4e616bdba0d6cb5debe8a54ef7b5357347"
+    }
+  ],
+  "rule": "Freeze before H captures; no training from H samples; no locator edits after predictions.",
+  "lock_kind": "MIGRATED_EXECUTION_ENVIRONMENT",
+  "historical_lock": "profile-lock.json",
+  "historical_lock_sha256": "139cb204a08f827cef9398136cab2c9d0a47cddf0301b7e6abdfe60d817e3277",
+  "dependency_path_base": "Codec repository root"
+}

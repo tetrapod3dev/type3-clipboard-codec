@@ -1,0 +1,33 @@
+--- original/type3-clipboard-base-serialize-003\walk_base.py
++++ migrated/type3-clipboard-base-serialize-003\walk_base.py
+@@ -8,8 +8,6 @@
+ import struct
+ 
+ ROOT=Path(__file__).resolve().parent
+-INPUT=ROOT.parent/'type3-mixed-clipboard-ef-001'
+-CODEC=Path(r'C:\work\develop\type3-clipboard-codec')
+ 
+ class Unsupported(ValueError):pass
+ 
+@@ -67,21 +65,3 @@
+                    'verdict':'BASE_SERIALIZE_FRAMING_PARTIAL'})
+     return result
+ 
+-def main():
+-    rows=[]
+-    for name in ('E1','E2','F'):
+-        data=(INPUT/name/'typeeditzone.bin').read_bytes()
+-        rows.append({'sample':name,'sha256':hashlib.sha256(data).hexdigest(),**diagnose(data)})
+-    # Original geometry fixtures are file-only regression inputs, not newly captured samples.
+-    for name in ('default_rectangle','two_rectangle','two_rectangle_group'):
+-        raw=(CODEC/'tests/samples'/f'{name}.txt').read_text(encoding='utf-8-sig')
+-        import sys
+-        sys.dont_write_bytecode=True
+-        sys.path.insert(0,str(CODEC/'src'))
+-        from type3_clipboard_codec.utils.hex_text import hex_to_bytes
+-        data=hex_to_bytes(raw)
+-        rows.append({'sample':name,'sha256':hashlib.sha256(data).hexdigest(),**diagnose(data)})
+-    print(json.dumps({'samples':rows,'scope':'saved_files_only',
+-                      'unconditional_origin_verified':False},indent=2))
+-
+-if __name__=='__main__':main()

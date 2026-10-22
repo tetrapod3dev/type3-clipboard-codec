@@ -1,0 +1,33 @@
+{
+  "CheckedFiles": 982,
+  "ChangedFiles": 0,
+  "Changes": [],
+  "Mode": "OFF",
+  "RuntimeApproval": "USER_APPROVED",
+  "TestHostPid": 36460,
+  "OriginalPids": [
+    17188,
+    34968
+  ],
+  "Processes": [
+    {
+      "Id": 17188,
+      "StartTime": "2026-10-22T15:48:53.3945776+09:00",
+      "MainWindowTitle": "Type31 - TypeEdit  - C.P.6110 TypeSign - 버전 END USER 등록 : DaesungUser216397"
+    },
+    {
+      "Id": 34968,
+      "StartTime": "2026-10-22T14:45:10.4849756+09:00",
+      "MainWindowTitle": "Type31 - TypeEdit  - C.P.6110 TypeSign - 버전 END USER 등록 : DaesungUser216397"
+    },
+    {
+      "Id": 36460,
+      "StartTime": "2026-10-22T17:13:35.3226514+09:00",
+      "MainWindowTitle": "Type31 - TypeEdit  - C.P.6110 TypeSign - 버전 END USER 등록 : DaesungUser216397"
+    }
+  ],
+  "Clipboard": "Own H1 test data after Copy; only TypeEditZone/Version captured",
+  "Patch": "NOT_CREATED",
+  "Paste": "NOT_EXECUTED",
+  "Documents": "No save, close or discard performed; original hosts and new test host remain open"
+}

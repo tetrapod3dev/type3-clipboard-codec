@@ -1,0 +1,181 @@
+{
+  "process_id": 34968,
+  "document": "Type31, newly launched blank test document, unsaved",
+  "R1": {
+    "ui_width_mm": 80.024,
+    "ui_height_mm": 60.053,
+    "ui_center_mm": [
+      200.678,
+      371.058
+    ],
+    "initial_color": "Navy Blue",
+    "final_color": "Navy Blue",
+    "selection_evidence": "S1-selection.png"
+  },
+  "R2": {
+    "ui_width_mm": 176.052,
+    "ui_height_mm": 104.092,
+    "ui_center_mm": [
+      488.764,
+      349.039
+    ],
+    "initial_color": "Army Green",
+    "final_color": "Turquoise",
+    "selection_evidence": "S2-confirmed-selection.png",
+    "after_color_evidence": "G1-R2-after-color.png"
+  },
+  "group": {
+    "ui_width_mm": 416.124,
+    "ui_height_mm": 104.092,
+    "ui_center_mm": [
+      368.728,
+      349.039
+    ],
+    "ui_selected_count": 1,
+    "different_member_colors_preserved": true
+  },
+  "extra_preparation_rectangle": "One black rectangle accidentally created before accepted captures; retained outside target full-containment drag selection, never grouped or included in accepted U0/G captures.",
+  "capture_notes": "S1-confirmed and S2-confirmed replace rejected initial attempts. All accepted captures were rechecked for count/bounds/color. File mtime below is not an exact callback/Copy event time.",
+  "samples": {
+    "S1": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\S1-confirmed",
+      "zone_sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648121801706400,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "S2": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\S2-confirmed",
+      "zone_sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648200887765500,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "U0": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\U0",
+      "zone_sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648225535720900,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "G0-A": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-A",
+      "zone_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648247014356700,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "G0-B": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-B",
+      "zone_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648247600603000,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "G0-R": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G0-R",
+      "zone_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648251461075100,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    },
+    "G1": {
+      "folder": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G1",
+      "zone_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "zone_length": 8192,
+      "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "version_length": 32,
+      "zone_file_mtime_ns": 1792648307853652000,
+      "actual_registered_formats": [
+        {
+          "byte_length": 8192,
+          "format_name": "TypeEditZone",
+          "registered_id": 49866
+        },
+        {
+          "byte_length": 32,
+          "format_name": "TypeEditZoneVersion",
+          "registered_id": 49867
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "verdict": "GROUP_PATCH_OFFLINE_READY",
+  "input_path": "C:\\work\\develop\\typeedit-automation\\research\\feasibility\\type3-clipboard-member-color-003\\samples\\G1\\typeeditzone.bin",
+  "input_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+  "output_sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+  "lengths": [
+    8192,
+    8192
+  ],
+  "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+  "version_length": 32,
+  "version_copied_exactly": true,
+  "writes": [
+    {
+      "range": [
+        1641,
+        1645
+      ],
+      "before": "64ffcc00",
+      "after": "98cc9800"
+    },
+    {
+      "range": [
+        1653,
+        1657
+      ],
+      "before": "64ffcc00",
+      "after": "98cc9800"
+    }
+  ],
+  "actual_changed_offsets": [
+    1641,
+    1642,
+    1643,
+    1653,
+    1654,
+    1655
+  ],
+  "other_bytes_identical": true,
+  "R1_fields_unchanged": true,
+  "colors_before": [
+    {
+      "ordinal_in_this_snapshot": 0,
+      "bbox": {
+        "xmin_m": 0.16066607036374475,
+        "ymin_m": 0.3410317131243394,
+        "zmin_m": 0.0,
+        "xmax_m": 0.24068992248062016,
+        "ymax_m": 0.4010845683315718,
+        "zmax_m": 0.0
+      },
+      "name": "Navy Blue",
+      "hex_rgb": "3060CC",
+      "confidence": "strong"
+    },
+    {
+      "ordinal_in_this_snapshot": 1,
+      "bbox": {
+        "xmin_m": 0.40073762671437085,
+        "ymin_m": 0.29699295263903563,
+        "zmin_m": 0.0,
+        "xmax_m": 0.5767901013714967,
+        "ymax_m": 0.40108456833157174,
+        "zmax_m": 0.0
+      },
+      "name": "Turquoise",
+      "hex_rgb": "64FFCC",
+      "confidence": "strong"
+    }
+  ],
+  "colors_after": [
+    {
+      "ordinal_in_this_snapshot": 0,
+      "bbox": {
+        "xmin_m": 0.16066607036374475,
+        "ymin_m": 0.3410317131243394,
+        "zmin_m": 0.0,
+        "xmax_m": 0.24068992248062016,
+        "ymax_m": 0.4010845683315718,
+        "zmax_m": 0.0
+      },
+      "name": "Navy Blue",
+      "hex_rgb": "3060CC",
+      "confidence": "strong"
+    },
+    {
+      "ordinal_in_this_snapshot": 1,
+      "bbox": {
+        "xmin_m": 0.40073762671437085,
+        "ymin_m": 0.29699295263903563,
+        "zmin_m": 0.0,
+        "xmax_m": 0.5767901013714967,
+        "ymax_m": 0.40108456833157174,
+        "zmax_m": 0.0
+      },
+      "name": "Army Green",
+      "hex_rgb": "98CC98",
+      "confidence": "strong"
+    }
+  ],
+  "decoder_geometry_identical": true,
+  "geometry": {
+    "object_type_candidate": "group",
+    "group_candidate": true,
+    "declared_count_candidate": 1,
+    "group_children_candidate_count": 2,
+    "group_bbox": {
+      "xmin_m": 0.16066607036374475,
+      "ymin_m": 0.29699295263903563,
+      "zmin_m": 0.0,
+      "xmax_m": 0.5767901013714967,
+      "ymax_m": 0.4010845683315718,
+      "zmax_m": 0.0
+    },
+    "aggregate_bbox": {
+      "xmin_m": 0.16066607036374475,
+      "ymin_m": 0.29699295263903563,
+      "zmin_m": 0.0,
+      "xmax_m": 0.5767901013714967,
+      "ymax_m": 0.4010845683315718,
+      "zmax_m": 0.0
+    },
+    "chains": [
+      {
+        "shape": "rectangle",
+        "bbox": {
+          "xmin_m": 0.16066607036374475,
+          "ymin_m": 0.3410317131243394,
+          "zmin_m": 0.0,
+          "xmax_m": 0.24068992248062016,
+          "ymax_m": 0.4010845683315718,
+          "zmax_m": 0.0
+        },
+        "contour_records": [
+          {
+            "x_m": 0.16066607036374475,
+            "y_m": 0.3410317131243394,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.24068992248062016,
+            "y_m": 0.3410317131243394,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 13,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.24068992248062016,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.16066607036374475,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1095127053,
+            "role": "anchor"
+          }
+        ],
+        "points": [
+          {
+            "x": 160.66607036374475,
+            "y": 341.0317131243394,
+            "z": 0.0
+          },
+          {
+            "x": 240.68992248062017,
+            "y": 341.0317131243394,
+            "z": 0.0
+          },
+          {
+            "x": 240.68992248062017,
+            "y": 401.08456833157175,
+            "z": 0.0
+          },
+          {
+            "x": 160.66607036374475,
+            "y": 401.08456833157175,
+            "z": 0.0
+          }
+        ],
+        "raw_contour_sha256": "722220fcfda94995a75aca5e3c8e776b7d2feea2963b3c2f0cb48b26199d5a76"
+      },
+      {
+        "shape": "rectangle",
+        "bbox": {
+          "xmin_m": 0.40073762671437085,
+          "ymin_m": 0.29699295263903563,
+          "zmin_m": 0.0,
+          "xmax_m": 0.5767901013714967,
+          "ymax_m": 0.40108456833157174,
+          "zmax_m": 0.0
+        },
+        "contour_records": [
+          {
+            "x_m": 0.40073762671437085,
+            "y_m": 0.29699295263903563,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1447382029,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.5767901013714967,
+            "y_m": 0.29699295263903563,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1313161229,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.5767901013714967,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 13,
+            "role": "anchor"
+          },
+          {
+            "x_m": 0.40073762671437085,
+            "y_m": 0.40108456833157174,
+            "z_m": 0.0,
+            "w": 1.0,
+            "tag": 1095127053,
+            "role": "anchor"
+          }
+        ],
+        "points": [
+          {
+            "x": 400.73762671437083,
+            "y": 296.99295263903565,
+            "z": 0.0
+          },
+          {
+            "x": 576.7901013714967,
+            "y": 296.99295263903565,
+            "z": 0.0
+          },
+          {
+            "x": 576.7901013714967,
+            "y": 401.08456833157175,
+            "z": 0.0
+          },
+          {
+            "x": 400.73762671437083,
+            "y": 401.08456833157175,
+            "z": 0.0
+          }
+        ],
+        "raw_contour_sha256": "3b6cfa45835ee4a4b288e4d065a8a3d013b67bcde9dc7767efd046f4a362a3bc"
+      }
+    ]
+  },
+  "G0_R_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+  "G0_R_remaining_difference_count": 111,
+  "G0_R_remaining_difference_offsets": [
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    409,
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    560,
+    561,
+    562,
+    563,
+    564,
+    565,
+    566,
+    567,
+    568,
+    569,
+    570,
+    571,
+    572,
+    573,
+    574,
+    575,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1157,
+    1158,
+    1159,
+    1160,
+    1161,
+    1162,
+    1163,
+    1164,
+    1165,
+    1166,
+    1167,
+    1168,
+    1169,
+    1170,
+    1171,
+    1172,
+    1305,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310,
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320
+  ],
+  "recognized_guid_candidate_spans": [
+    [
+      93,
+      109
+    ],
+    [
+      241,
+      257
+    ],
+    [
+      400,
+      416
+    ],
+    [
+      560,
+      576
+    ],
+    [
+      1009,
+      1025
+    ],
+    [
+      1157,
+      1173
+    ],
+    [
+      1305,
+      1321
+    ]
+  ],
+  "remaining_differences_within_guid_candidates": true,
+  "remaining_difference_safety": "UNKNOWN; not assumed harmless",
+  "member_serialize_boundary": "UNKNOWN",
+  "reference_table_semantics": "NOT_VERIFIED",
+  "runtime_approval": "NOT_GRANTED_FOR_THIS_STAGE",
+  "clipboard_access": "NOT_EXECUTED",
+  "Type3_operations": "NOT_EXECUTED"
+}

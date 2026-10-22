@@ -1,0 +1,20 @@
+--- original/type3-clipboard-group-field-locator-005\field_locator.py
++++ migrated/type3-clipboard-group-field-locator-005\field_locator.py
+@@ -15,7 +15,7 @@
+ 
+ HERE=Path(__file__).resolve().parent
+ PRIOR=HERE.parent/'type3-clipboard-member-color-003'
+-CODEC=Path(r'C:\work\develop\type3-clipboard-codec')
++CODEC=Path(__file__).resolve().parents[3]
+ sys.path.insert(0,str(CODEC/'src'))
+ from type3_clipboard_codec.codec.decoder import Decoder
+ from type3_clipboard_codec.parsers.type3_chain_parser import Type3ChainParser
+@@ -154,7 +154,7 @@
+     out={'verdict':'FIELD_LOCATOR_PARTIAL','operation':'SAVED_FILES_READ_ONLY',
+         'profile':profile,'samples':rows,'stage_B':'NOT_PLANNED_BECAUSE_OWNERSHIP_ADMISSION_IS_AMBIGUOUS',
+         'patch_outputs_created':False,'decoder_modified':False}
+-    (HERE/'locator-result.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
++    (HERE/'recomputed-locator-result.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+     print(out['verdict'])
+     print('Learned relative slots:',profile['relative_color_slots'])
+     for name,row in rows.items():

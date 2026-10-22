@@ -1,0 +1,828 @@
+{
+  "verdict": "MEMBER_COLOR_OWNERSHIP_PARTIAL",
+  "samples": {
+    "S1": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 176,
+          "base_end": 314,
+          "guid_raw_span": [
+            252,
+            268
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 336,
+          "base_end": 474,
+          "guid_raw_span": [
+            412,
+            428
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            767,
+            771
+          ],
+          [
+            779,
+            783
+          ]
+        ],
+        "Army Green": [],
+        "Turquoise": []
+      }
+    },
+    "S2": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 176,
+          "base_end": 314,
+          "guid_raw_span": [
+            252,
+            268
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 336,
+          "base_end": 474,
+          "guid_raw_span": [
+            412,
+            428
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [],
+        "Army Green": [
+          [
+            767,
+            771
+          ],
+          [
+            779,
+            783
+          ]
+        ],
+        "Turquoise": []
+      }
+    },
+    "U0": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 176,
+          "base_end": 314,
+          "guid_raw_span": [
+            252,
+            268
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 336,
+          "base_end": 474,
+          "guid_raw_span": [
+            412,
+            428
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 785,
+          "base_end": 923,
+          "guid_raw_span": [
+            861,
+            877
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 933,
+          "base_end": 1071,
+          "guid_raw_span": [
+            1009,
+            1025
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 1081,
+          "base_end": 1219,
+          "guid_raw_span": [
+            1157,
+            1173
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            1493,
+            1497
+          ],
+          [
+            1505,
+            1509
+          ]
+        ],
+        "Army Green": [
+          [
+            767,
+            771
+          ],
+          [
+            779,
+            783
+          ]
+        ],
+        "Turquoise": []
+      }
+    },
+    "G0-A": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "group",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 165,
+          "base_end": 303,
+          "guid_raw_span": [
+            241,
+            257
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 324,
+          "base_end": 462,
+          "guid_raw_span": [
+            400,
+            416
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 484,
+          "base_end": 622,
+          "guid_raw_span": [
+            560,
+            576
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 933,
+          "base_end": 1071,
+          "guid_raw_span": [
+            1009,
+            1025
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1081,
+          "base_end": 1219,
+          "guid_raw_span": [
+            1157,
+            1173
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1229,
+          "base_end": 1367,
+          "guid_raw_span": [
+            1305,
+            1321
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            915,
+            919
+          ],
+          [
+            927,
+            931
+          ]
+        ],
+        "Army Green": [
+          [
+            1641,
+            1645
+          ],
+          [
+            1653,
+            1657
+          ]
+        ],
+        "Turquoise": []
+      }
+    },
+    "G0-B": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "group",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 165,
+          "base_end": 303,
+          "guid_raw_span": [
+            241,
+            257
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 324,
+          "base_end": 462,
+          "guid_raw_span": [
+            400,
+            416
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 484,
+          "base_end": 622,
+          "guid_raw_span": [
+            560,
+            576
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 933,
+          "base_end": 1071,
+          "guid_raw_span": [
+            1009,
+            1025
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1081,
+          "base_end": 1219,
+          "guid_raw_span": [
+            1157,
+            1173
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1229,
+          "base_end": 1367,
+          "guid_raw_span": [
+            1305,
+            1321
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            915,
+            919
+          ],
+          [
+            927,
+            931
+          ]
+        ],
+        "Army Green": [
+          [
+            1641,
+            1645
+          ],
+          [
+            1653,
+            1657
+          ]
+        ],
+        "Turquoise": []
+      }
+    },
+    "G0-R": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "group",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 165,
+          "base_end": 303,
+          "guid_raw_span": [
+            241,
+            257
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 324,
+          "base_end": 462,
+          "guid_raw_span": [
+            400,
+            416
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 484,
+          "base_end": 622,
+          "guid_raw_span": [
+            560,
+            576
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 933,
+          "base_end": 1071,
+          "guid_raw_span": [
+            1009,
+            1025
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1081,
+          "base_end": 1219,
+          "guid_raw_span": [
+            1157,
+            1173
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1229,
+          "base_end": 1367,
+          "guid_raw_span": [
+            1305,
+            1321
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            915,
+            919
+          ],
+          [
+            927,
+            931
+          ]
+        ],
+        "Army Green": [
+          [
+            1641,
+            1645
+          ],
+          [
+            1653,
+            1657
+          ]
+        ],
+        "Turquoise": []
+      }
+    },
+    "G1": {
+      "base_candidates": [
+        {
+          "bbox_correspondence": "group",
+          "base_origin_candidate": 17,
+          "base_end": 155,
+          "guid_raw_span": [
+            93,
+            109
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 165,
+          "base_end": 303,
+          "guid_raw_span": [
+            241,
+            257
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 324,
+          "base_end": 462,
+          "guid_raw_span": [
+            400,
+            416
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R1",
+          "base_origin_candidate": 484,
+          "base_end": 622,
+          "guid_raw_span": [
+            560,
+            576
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 933,
+          "base_end": 1071,
+          "guid_raw_span": [
+            1009,
+            1025
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1081,
+          "base_end": 1219,
+          "guid_raw_span": [
+            1157,
+            1173
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        },
+        {
+          "bbox_correspondence": "R2",
+          "base_origin_candidate": 1229,
+          "base_end": 1367,
+          "guid_raw_span": [
+            1305,
+            1321
+          ],
+          "qualification": "Bounded CObDao base portion only. Class reference context and enclosing member Serialize end remain UNKNOWN."
+        }
+      ],
+      "palette_byte_occurrences": {
+        "Navy Blue": [
+          [
+            915,
+            919
+          ],
+          [
+            927,
+            931
+          ]
+        ],
+        "Army Green": [],
+        "Turquoise": [
+          [
+            1641,
+            1645
+          ],
+          [
+            1653,
+            1657
+          ]
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "G0-A__G0-B": {
+      "equal": true,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [],
+      "changed_bytes_common_extent": 0,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim.",
+      "recognized_base_guid_spans": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ]
+      ],
+      "changed_bytes_in_recognized_guid_fields": 0,
+      "remaining_changed_offsets": []
+    },
+    "G0-A__G0-R": {
+      "equal": false,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          249
+        ],
+        [
+          250,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1164
+        ],
+        [
+          1165,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ]
+      ],
+      "changed_bytes_common_extent": 110,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim.",
+      "recognized_base_guid_spans": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ]
+      ],
+      "changed_bytes_in_recognized_guid_fields": 110,
+      "remaining_changed_offsets": []
+    },
+    "G0-R__G1": {
+      "equal": false,
+      "lengths": [
+        8192,
+        8192
+      ],
+      "length_delta": 0,
+      "changed_ranges_exclusive": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          248
+        ],
+        [
+          249,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ],
+        [
+          1641,
+          1644
+        ],
+        [
+          1653,
+          1656
+        ]
+      ],
+      "changed_bytes_common_extent": 117,
+      "unmatched_tail_range": null,
+      "meaning": "Same-offset byte diff only; not a semantic record alignment or ownership claim.",
+      "recognized_base_guid_spans": [
+        [
+          93,
+          109
+        ],
+        [
+          241,
+          257
+        ],
+        [
+          400,
+          416
+        ],
+        [
+          560,
+          576
+        ],
+        [
+          1009,
+          1025
+        ],
+        [
+          1157,
+          1173
+        ],
+        [
+          1305,
+          1321
+        ]
+      ],
+      "changed_bytes_in_recognized_guid_fields": 111,
+      "remaining_changed_offsets": [
+        1641,
+        1642,
+        1643,
+        1653,
+        1654,
+        1655
+      ]
+    }
+  },
+  "bbox_max_component_errors_m": {
+    "U0": {
+      "R1": 5.551115123125783e-17,
+      "R2": 0.0
+    },
+    "G0-A": {
+      "R1": 0.0,
+      "R2": 5.551115123125783e-17
+    },
+    "G0-B": {
+      "R1": 0.0,
+      "R2": 5.551115123125783e-17
+    },
+    "G0-R": {
+      "R1": 0.0,
+      "R2": 5.551115123125783e-17
+    },
+    "G1": {
+      "R1": 0.0,
+      "R2": 5.551115123125783e-17
+    }
+  },
+  "bbox_comparison_tolerance_m": 1e-12,
+  "verified_observations": [
+    "UI retained two distinct colors after grouping",
+    "Repeated Copy is byte-identical",
+    "Regroup-only changes fit recognized base GUID fields",
+    "R2 UI color change maps to two separate palette occurrences while R1 occurrences remain unchanged",
+    "Member bbox candidates remain unchanged"
+  ],
+  "missing_contract": "Exact enclosing member Serialize/CPropertyExtend record start/end and archive class/reference context for both color occurrences.",
+  "patch_created": false,
+  "paste_executed": false
+}

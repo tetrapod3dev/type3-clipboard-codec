@@ -1,0 +1,511 @@
+........................................................................ [  4%]
+........................................................................ [  9%]
+...................................................................F.... [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 24%]
+........................................................................ [ 29%]
+.....................................................F.................. [ 33%]
+...................F...................F...................F............ [ 38%]
+........................................................................ [ 43%]
+........................................................................ [ 48%]
+........................................................................ [ 53%]
+............................F..........................FF.FF....F....... [ 58%]
+..........................F......................F......F............... [ 62%]
+......................................F...................FF............ [ 67%]
+........................................................................ [ 72%]
+........................................................................ [ 77%]
+........................................................................ [ 82%]
+........................................................................ [ 87%]
+........................................................................ [ 92%]
+........................................................................ [ 96%]
+..............................................                           [100%]
+================================== FAILURES ===================================
+________________ test_historical_replay_and_legacy_information ________________
+
+shadow = <module 'canonical_policy_shadow' from 'C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\text-slot-v1-replay-0gzite2w\\tools\\analyze_text_slot_family_shadow.py'>
+
+    def test_historical_replay_and_legacy_information(shadow):
+        with replay_parser():
+            report = shadow.build_report()
+        corpus = report["corpus_summary"]
+>       assert corpus["real_fixtures"] == 104 and corpus["runtime_outputs_equal"]
+E       assert (127 == 104)
+
+tests\integration\test_source_integrity_policy.py:118: AssertionError
+_________ test_all_84_groups_agree_with_frozen_shadow_and_old_outputs _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B78E1A8DE0>
+
+    def test_all_84_groups_agree_with_frozen_shadow_and_old_outputs(monkeypatch):
+        captures = groups = multiline = failures = 0
+        for path in sorted((ROOT / "tests/samples").rglob("*.txt")):
+            try:
+                raw = hex_text_to_bytes(path.read_bytes().decode("utf-8"))
+            except (InvalidHexError, UnicodeDecodeError):
+                continue
+            captures += 1
+            with monkeypatch.context() as patch:
+                patch.setattr(runtime, "_preslot_archive_double_candidates", lambda *_: None)
+                previous, old_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            actual, new_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            assert (without_preslot_object(actual), new_chain) == (asdict(previous), old_chain)
+            parser = SHADOW.Type3ChainParser()
+            _, _, base = parser._read_top_level_header(raw)
+            for node in parser._extract_nodes(raw[base:]):
+                if node.header.class_name != "CParagraphe":
+                    continue
+                candidate = extract(node.payload)
+                shadow = SHADOW.derive_preslot(node.payload)
+                assert SHADOW.compare_alignment(shadow, candidate) == "exact_match"
+                fields = SHADOW.field_evidence(node.payload, shadow)
+                if candidate is None or KEY not in candidate:
+                    failures += 1
+                    continue
+                groups += 1
+                multiline += shadow["line_count"] == 2
+                for (key, relative, source), old_key in zip(FIELDS, ("A", "length", "B"), strict=True):
+                    field = candidate[KEY][key]
+                    assert field["payload_relative_offset"] == shadow["p_origin"] + relative
+                    assert field["raw_bytes"].hex() == fields[old_key]["raw_hex"]
+                    assert field["f64le"] == fields[old_key]["value"]
+                    assert field["source"] == source and field["typed_width"] == 8
+>       assert (captures, groups, multiline, failures) == (116, 84, 4, 0)
+E       assert (139, 84, 4, 0) == (116, 84, 4, 0)
+E         
+E         At index 0 diff: 139 != 116
+E         Use -v to get more diff
+
+tests\integration\test_text_preslot_archive_doubles.py:168: AssertionError
+____________ test_corpus_report_and_production_output_preservation ____________
+
+    def test_corpus_report_and_production_output_preservation():
+        paths = sorted((ROOT / "tests/samples").rglob("*.txt"))
+        before = {}
+        raw_sources = {}
+        for path in paths:
+            content = path.read_bytes()
+            try:
+                raw = hex_text_to_bytes(content.decode("utf-8"))
+            except (InvalidHexError, UnicodeDecodeError):
+                continue
+            obj, chain = parse_type3_clipboard_bytes_with_parser(raw)
+            before[path] = (asdict(obj), chain)
+            raw_sources[path] = (content, raw)
+        report = SHADOW.build_report(paths)
+        assert report["pre_slot_crosswalk_readiness"] == "broad_current_corpus_supported"
+>       assert (report["valid_captures"], report["text_captures"], report["paragraphs_examined"]) == (116, 84, 84)
+E       assert (139, 84, 84) == (116, 84, 84)
+E         
+E         At index 0 diff: 139 != 116
+E         Use -v to get more diff
+
+tests\integration\test_text_preslot_crosswalk.py:178: AssertionError
+_____________ test_corpus_alias_counts_and_canonical_preservation _____________
+
+    def test_corpus_alias_counts_and_canonical_preservation():
+        counts = Counter()
+        captures = groups = multiline = 0
+        for path in sorted((ROOT / "tests/samples").rglob("*.txt")):
+            try:
+                raw = hex_text_to_bytes(path.read_bytes().decode("utf-8"))
+            except (InvalidHexError, UnicodeDecodeError):
+                continue
+            captures += 1
+            obj, chain = parse_type3_clipboard_bytes_with_parser(raw)
+            projected = without_preslot_alias_object(obj)
+            expected = asdict(obj)
+            run = expected["candidate_fields"].get("text_slot_run")
+            if run is not None:
+                run.pop(KEY, None)
+            assert projected == expected
+            again, again_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            assert (asdict(again), again_chain) == (asdict(obj), chain)
+            parser = SHADOW.Type3ChainParser()
+            _, _, base = parser._read_top_level_header(raw)
+            for node in parser._extract_nodes(raw[base:]):
+                if node.header.class_name != "CParagraphe":
+                    continue
+                candidate = runtime.extract_text_slot_candidate([node.payload])
+                assert candidate[KEY] == ALIASES
+                parent = SHADOW.derive_preslot(node.payload)
+                fields = SHADOW.field_evidence(node.payload, parent)
+                for neutral, field_name in (("P+0x20", "A"), ("P+0x50", "length"), ("P+0x68", "B")):
+                    assert candidate[CANONICAL][neutral]["raw_bytes"].hex() == fields[field_name]["raw_hex"]
+                    assert candidate[CANONICAL][neutral]["f64le"] == fields[field_name]["value"]
+                groups += 1
+                multiline += parent["line_count"] == 2
+                counts.update(candidate[KEY].keys())
+>       assert (captures, groups, multiline) == (116, 84, 4)
+E       assert (139, 84, 4) == (116, 84, 4)
+E         
+E         At index 0 diff: 139 != 116
+E         Use -v to get more diff
+
+tests\integration\test_text_preslot_internal_role_aliases.py:143: AssertionError
+__________ test_full_corpus_additive_projection_and_exact_raw_values __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B78E20E9E0>
+
+    def test_full_corpus_additive_projection_and_exact_raw_values(monkeypatch):
+        captures = visible = terminal = records = 0
+        for path in sorted((ROOT / "tests/samples").rglob("*.txt")):
+            content = path.read_bytes()
+            try:
+                raw = hex_text_to_bytes(content.decode("utf-8"))
+            except (InvalidHexError, UnicodeDecodeError):
+                continue
+            captures += 1
+            with monkeypatch.context() as patch:
+                patch.setattr(type3_chain_parser, "extract_text_slot_candidate", before_typed.extract_text_slot_candidate)
+                before, old_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            after, new_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            assert (prior_object_dict(after), new_chain) == (asdict(before), old_chain), path.name
+            parser = type3_chain_parser.Type3ChainParser()
+            _, _, base = parser._read_top_level_header(raw)
+            for node in parser._extract_nodes(raw[base:]):
+                if node.header.class_name != "CParagraphe":
+                    continue
+                candidate = runtime.extract_text_slot_candidate([node.payload])
+                assert prior_candidate(candidate) == before_typed.extract_text_slot_candidate([node.payload])
+                if candidate is None:
+                    continue
+                for slot in candidate["slots"]:
+                    start = slot["prefix_relative_offset"]
+                    for offset in OFFSETS:
+                        field = slot["archive_double_candidates"][hex(offset)]
+                        expected = node.payload[start + offset:start + offset + 8]
+                        assert field["raw_bytes"] == expected
+                        value = struct.unpack("<d", expected)[0]
+                        assert field["f64le"] == (value if math.isfinite(value) else repr(value))
+                    records += 1
+                    terminal += bool(slot["terminal_candidate"])
+                    visible += not slot["terminal_candidate"]
+            assert path.read_bytes() == content
+>       assert (captures, records, visible, terminal) == (116, 700, 616, 84)
+E       assert (139, 700, 616, 84) == (116, 700, 616, 84)
+E         
+E         At index 0 diff: 139 != 116
+E         Use -v to get more diff
+
+tests\integration\test_text_slot_archive_doubles.py:131: AssertionError
+___________ test_full_corpus_pre_gate_outputs_and_shadow_agreement ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B78E30C670>
+
+    def test_full_corpus_pre_gate_outputs_and_shadow_agreement(monkeypatch):
+        records = visible = terminal = captures = 0
+        for path in sorted((ROOT / "tests/samples").rglob("*.txt")):
+            file_bytes = path.read_bytes()
+            try:
+                raw = hex_text_to_bytes(file_bytes.decode("utf-8"))
+            except (InvalidHexError, UnicodeDecodeError):
+                continue
+            captures += 1
+            with monkeypatch.context() as patch:
+                patch.setattr(type3_chain_parser, "extract_text_slot_candidate", before_gate.extract_text_slot_candidate)
+                before, old_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            after, new_chain = parse_type3_clipboard_bytes_with_parser(raw)
+            assert (prior_object_dict(after), new_chain) == (asdict(before), old_chain), path.name
+            parser = type3_chain_parser.Type3ChainParser()
+            _, _, base = parser._read_top_level_header(raw)
+            for node in parser._extract_nodes(raw[base:]):
+                if node.header.class_name != "CParagraphe":
+                    continue
+                old = before_gate.extract_text_slot_candidate([node.payload])
+                new = runtime.extract_text_slot_candidate([node.payload])
+                assert old == prior_candidate(new), path.name
+                if old is None:
+                    continue
+                # Use pre-gate alignment so rejection cannot silently reduce the comparison population.
+                for slot in old["slots"]:
+                    start = slot["prefix_relative_offset"]
+                    record = node.payload[start:start + 204]
+                    assert (VALIDATE(record) is None) == SHADOW.current_slot_layout_evidence(
+                        record)["combined_future_204_supported"] is True
+                    records += 1
+                    terminal += bool(slot["terminal_candidate"])
+                    visible += not slot["terminal_candidate"]
+            assert path.read_bytes() == file_bytes
+>       assert (captures, records, visible, terminal) == (116, 700, 616, 84)
+E       assert (139, 700, 616, 84) == (116, 700, 616, 84)
+E         
+E         At index 0 diff: 139 != 116
+E         Use -v to get more diff
+
+tests\integration\test_text_slot_current_empty_gate.py:196: AssertionError
+________________ test_full_corpus_actual_v1_and_exact_same_run ________________
+
+report = {'answers': {'both_absent_count': 55, 'both_present_different_run_count': 0, 'both_present_same_run_count': 62, 'bound...al_source_equal': True, 'geometry_scope_inputs': 55, 'legacy_raw_source_equal': False, 'real_fixtures': 127, ...}, ...}
+
+    def test_full_corpus_actual_v1_and_exact_same_run(report):
+>       assert report["answers"]["real_fixture_count"] == 104
+E       assert 127 == 104
+
+tests\integration\test_text_slot_family_shadow_cli.py:39: AssertionError
+_____________ test_all_runtime_outputs_and_source_bytes_unchanged _____________
+
+shadow = <module 'shadow_integration' from 'C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\text-slot-v1-replay-0gzite2w\\tools\\analyze_text_slot_family_shadow.py'>
+report = {'answers': {'both_absent_count': 55, 'both_present_different_run_count': 0, 'both_present_same_run_count': 62, 'bound...al_source_equal': True, 'geometry_scope_inputs': 55, 'legacy_raw_source_equal': False, 'real_fixtures': 127, ...}, ...}
+
+    def test_all_runtime_outputs_and_source_bytes_unchanged(shadow, report):
+        baseline = json.loads(shadow.BASELINE.read_text())
+        assert len(baseline["fixtures"]) == 104
+        for path, expected in source_baseline("family").items():
+            assert canonical_source_sha256(ROOT / path) == expected["canonical_source_sha256"]
+        assert report["corpus_summary"]["runtime_source_equal"]
+>       assert report["corpus_summary"]["runtime_outputs_equal"]
+E       assert False
+
+tests\integration\test_text_slot_family_shadow_cli.py:66: AssertionError
+________________________ test_challenges_and_readiness ________________________
+
+report = {'answers': {'both_absent_count': 55, 'both_present_different_run_count': 0, 'both_present_same_run_count': 62, 'bound...al_source_equal': True, 'geometry_scope_inputs': 55, 'legacy_raw_source_equal': False, 'real_fixtures': 127, ...}, ...}
+
+    def test_challenges_and_readiness(report):
+        collision = report["collision_summary"]
+        assert collision["identity_clone_wrong_count"]["layer"] == "count"
+        assert collision["identity_clone_missing_terminal"]["layer"] == "terminal"
+        assert collision["two_full_identity_clones"]["status"] == "ambiguous"
+        negatives = collision["general_negatives"]
+        assert len(negatives) == 6 and all(not c["v2_present"] for c in negatives.values())
+        assert all(not c["v2_present"] for c in report["structural_constant_summary"].values())
+        assert all(c["status"] == "resource" for c in report["resource_summary"]["cases"].values())
+>       assert report["answers"]["runtime_v2_promotion_review_readiness"] == "ready_for_review"
+E       AssertionError: assert 'not_ready' == 'ready_for_review'
+E         
+E         - ready_for_review
+E         + not_ready
+
+tests\integration\test_text_slot_family_shadow_cli.py:89: AssertionError
+_________________ test_oracle_boundary_and_adversarial_intent _________________
+
+shadow = <module 'shadow_integration' from 'C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\text-slot-v1-replay-0gzite2w\\tools\\analyze_text_slot_family_shadow.py'>
+report = {'answers': {'both_absent_count': 55, 'both_present_different_run_count': 0, 'both_present_same_run_count': 62, 'bound...al_source_equal': True, 'geometry_scope_inputs': 55, 'legacy_raw_source_equal': False, 'real_fixtures': 127, ...}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B7902DB1C0>
+
+    def test_oracle_boundary_and_adversarial_intent(shadow, report, monkeypatch):
+        no_oracle = shadow.build_report(oracle_enabled=False)
+        assert {k: v for k, v in no_oracle.items() if k != "oracle_summary"} == {
+            k: v for k, v in report.items() if k != "oracle_summary"
+        }
+        original = shadow.oracle_phase
+    
+        def oracle(frozen, enabled):
+            assert isinstance(frozen, str)
+            assert len(json.loads(frozen)["fixture_results"]) == 104
+            with monkeypatch.context() as patch:
+                patch.setattr(shadow, "evaluate_v2", lambda *_: pytest.fail("selection after oracle"))
+                patch.setattr(shadow.research, "load_labels", lambda _: {"groups": ["adversarial_wrong_text"]})
+                return original(frozen, enabled)
+    
+        monkeypatch.setattr(shadow, "oracle_phase", oracle)
+>       adversarial = shadow.build_report()
+                      ^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_text_slot_family_shadow_cli.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Public\Documents\ESTsoft\CreatorTemp\text-slot-v1-replay-0gzite2w\tools\analyze_text_slot_family_shadow.py:727: in build_report
+    report["oracle_summary"] = oracle_phase(frozen, oracle_enabled)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+frozen = '{"answers":{"both_absent_count":55,"both_present_different_run_count":0,"both_present_same_run_count":62,"bounds_migr...g baseline","geometry_line_staleprobe_postpaste.txt: runtime baseline/presentation disagreement or missing baseline"]}'
+enabled = True
+
+    def oracle(frozen, enabled):
+        assert isinstance(frozen, str)
+>       assert len(json.loads(frozen)["fixture_results"]) == 104
+E       AssertionError: assert 127 == 104
+E        +  where 127 = len([{'decoys': [], 'fixture': 'closed_from_polyline_5_points.txt', 'outcome': 'both_absent', 'paragraph_count': 0, ...}, ... {'decoys': [], 'fixture': 'color_light_cyan_rectangle.txt', 'outcome': 'both_absent', 'paragraph_count': 0, ...}, ...])
+
+tests\integration\test_text_slot_family_shadow_cli.py:103: AssertionError
+_______________________ test_cli_bounded_output[args3] ________________________
+
+args = ['--json', '--details']
+
+    @pytest.mark.parametrize("args", [[], ["--json"], ["--json", "--no-oracle"], ["--json", "--details"]])
+    def test_cli_bounded_output(args):
+        result = subprocess.run([sys.executable, str(CLI), *args], cwd=ROOT, capture_output=True, timeout=60)
+>       assert result.returncode == 0, result.stderr.decode()
+E       AssertionError: usage: analyze_text_slot_family_shadow.py [-h] [--json] [--no-oracle]
+
+E                                                   [--details]
+
+E                                                   [--fixtures FIXTURES [FIXTURES ...]]
+
+E         analyze_text_slot_family_shadow.py: error: output cap exceeded; no partial report emitted
+
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...URES [FIXTURES ...]]\r\nanalyze_text_slot_family_shadow.py: error: output cap exceeded; no partial report emitted\r\n').returncode
+
+tests\integration\test_text_slot_family_shadow_cli.py:132: AssertionError
+___________________ test_corpus_matrix_and_all_observations ___________________
+
+    def test_corpus_matrix_and_all_observations():
+        report = SHADOW.build_report()
+        assert report["records_examined"] == report["counts"]["current_layout_supported"] == 700
+        assert report["visible_counts"]["current_layout_supported"] == 616
+        assert report["terminal_counts"]["current_layout_supported"] == 84
+        assert sum(report["counts"].values()) == 700
+        assert report["serializer_applicability_readiness"] == "ready_for_production_gate_review"
+        assert report["combined_future_gate_readiness"] == "ready_for_production_gate_review"
+        for values in report["observed_versions"].values():
+            assert values == {"all": {5: 700}, "visible": {5: 616}, "terminal": {5: 84}}
+        assert report["diagnostic_parent_version_values"] == {"attrpara": {4: 84}, "attrline": {4: 88}}
+        assert report["descriptor_second_word_values"] == {6: 84}
+        assert report["parent_candidates_ambiguous_or_missing"] == 0
+        assert report["real_nonempty_records"] == report["unaligned_paragraph_count"] == 0
+>       assert (report["files_examined"], report["fixtures_examined"], len(report["input_issues"])) == (126, 116, 10)
+E       assert (149, 139, 10) == (126, 116, 10)
+E         
+E         At index 0 diff: 149 != 126
+E         Use -v to get more diff
+
+tests\integration\test_text_slot_layout_applicability.py:148: AssertionError
+_______________ test_corpus_and_independent_reference_coverage ________________
+
+report = {'fixture_inventory': [{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, ...[0, 96], ...], [-11, [0, 36, 61, 100, 112, 120, ...], 46, 72, False, [0, 36, 61, 100, 112, 120, ...], ...], ...]}, ...}
+
+    def test_corpus_and_independent_reference_coverage(report):
+>       assert len(report["fixture_inventory"]) == 104
+E       AssertionError: assert 127 == 104
+E        +  where 127 = len([{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}...'decoy_present': False, 'fixture': 'color_light_cyan_rectangle.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}, ...])
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:62: AssertionError
+__________________________ test_freeze_before_labels __________________________
+
+analyzer = <module 'prefix_redesign_test' from 'C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\text-slot-v1-replay-0gzite2w\\tools\\analyze_text_slot_prefix_redesign.py'>
+report = {'fixture_inventory': [{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, ...[0, 96], ...], [-11, [0, 36, 61, 100, 112, 120, ...], 46, 72, False, [0, 36, 61, 100, 112, 120, ...], ...], ...]}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B78E3B3AF0>
+
+    def test_freeze_before_labels(analyzer, report, monkeypatch):
+        original = analyzer.oracle_phase
+        seen = []
+    
+        def phase(frozen, enabled):
+            assert isinstance(frozen, str)
+            evidence = json.loads(frozen)
+            assert len(evidence["fixture_metrics"]) == 104
+            assert len(evidence["_frozen_profiles"]) == 72
+            seen.append(True)
+            with monkeypatch.context() as patch:
+                patch.setattr(analyzer, "predicate", lambda *a: pytest.fail("matching after oracle boundary"))
+                return original(frozen, enabled)
+    
+        monkeypatch.setattr(analyzer, "oracle_phase", phase)
+>       assert analyzer.build_report() == report
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Public\Documents\ESTsoft\CreatorTemp\text-slot-v1-replay-0gzite2w\tools\analyze_text_slot_prefix_redesign.py:627: in build_report
+    oracle = oracle_phase(frozen, oracle_enabled)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+frozen = '{"_frozen_profiles":{"default_text.txt":[[[0],true],[[0],true],[[0],true],[[0],true],[[0],true],[[0],true],[[0],true]...[191]},{"decoy_values":[0],"discriminates_decoy":true,"label":"unknown_stable_field","offset":71,"real_values":[63]}]}'
+enabled = True
+
+    def phase(frozen, enabled):
+        assert isinstance(frozen, str)
+        evidence = json.loads(frozen)
+>       assert len(evidence["fixture_metrics"]) == 104
+E       AssertionError: assert 127 == 104
+E        +  where 127 = len({'closed_from_polyline_5_points.txt': {'F0': [0, False, 0, False, 0, 0, ...], 'F1': [0, False, 0, False, 0, 0, ...], '..., False, 0, False, 0, 0, ...], 'F2': [0, False, 0, False, 0, 0, ...], 'F3': [0, False, 0, False, 0, 0, ...], ...}, ...})
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:100: AssertionError
+__________________ test_geometry_scope_negative_is_explicit ___________________
+
+report = {'fixture_inventory': [{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, ...[0, 96], ...], [-11, [0, 36, 61, 100, 112, 120, ...], 46, 72, False, [0, 36, 61, 100, 112, 120, ...], ...], ...]}, ...}
+
+    def test_geometry_scope_negative_is_explicit(report):
+        negatives = [r for r in report["fixture_inventory"] if r["paragraph_count"] == 0]
+>       assert len(negatives) == 32
+E       AssertionError: assert 55 == 32
+E        +  where 55 = len([{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}...'decoy_present': False, 'fixture': 'color_light_cyan_rectangle.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}, ...])
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:227: AssertionError
+______________________ test_output_bounds[args0-100000] _______________________
+
+args = ('--json',), limit = 100000
+
+    @pytest.mark.parametrize(
+        "args,limit", [(("--json",), 100000), (("--json", "--details"), 100000), ((), 50000), (("--details",), 50000)]
+    )
+    def test_output_bounds(args, limit):
+>       assert len(run_cli(*args)) < limit
+                   ^^^^^^^^^^^^^^
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ('--json',)
+
+    def run_cli(*args):
+        result = subprocess.run([sys.executable, str(CLI), *args], capture_output=True, cwd=ROOT, timeout=30)
+>       assert result.returncode == 0, result.stderr.decode()
+E       AssertionError: usage: analyze_text_slot_prefix_redesign.py [-h] [--json] [--no-oracle]
+
+E                                                     [--details]
+
+E                                                     [--fixtures FIXTURES [FIXTURES ...]]
+
+E         analyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted
+
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...[FIXTURES ...]]\r\nanalyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted\r\n').returncode
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:57: AssertionError
+______________________ test_output_bounds[args1-100000] _______________________
+
+args = ('--json', '--details'), limit = 100000
+
+    @pytest.mark.parametrize(
+        "args,limit", [(("--json",), 100000), (("--json", "--details"), 100000), ((), 50000), (("--details",), 50000)]
+    )
+    def test_output_bounds(args, limit):
+>       assert len(run_cli(*args)) < limit
+                   ^^^^^^^^^^^^^^
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ('--json', '--details')
+
+    def run_cli(*args):
+        result = subprocess.run([sys.executable, str(CLI), *args], capture_output=True, cwd=ROOT, timeout=30)
+>       assert result.returncode == 0, result.stderr.decode()
+E       AssertionError: usage: analyze_text_slot_prefix_redesign.py [-h] [--json] [--no-oracle]
+
+E                                                     [--details]
+
+E                                                     [--fixtures FIXTURES [FIXTURES ...]]
+
+E         analyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted
+
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...[FIXTURES ...]]\r\nanalyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted\r\n').returncode
+
+tests\integration\test_text_slot_prefix_redesign_cli.py:57: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_source_integrity_policy.py::test_historical_replay_and_legacy_information
+FAILED tests/integration/test_text_preslot_archive_doubles.py::test_all_84_groups_agree_with_frozen_shadow_and_old_outputs
+FAILED tests/integration/test_text_preslot_crosswalk.py::test_corpus_report_and_production_output_preservation
+FAILED tests/integration/test_text_preslot_internal_role_aliases.py::test_corpus_alias_counts_and_canonical_preservation
+FAILED tests/integration/test_text_slot_archive_doubles.py::test_full_corpus_additive_projection_and_exact_raw_values
+FAILED tests/integration/test_text_slot_current_empty_gate.py::test_full_corpus_pre_gate_outputs_and_shadow_agreement
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_full_corpus_actual_v1_and_exact_same_run
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_all_runtime_outputs_and_source_bytes_unchanged
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_challenges_and_readiness
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_oracle_boundary_and_adversarial_intent
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_cli_bounded_output[args3]
+FAILED tests/integration/test_text_slot_layout_applicability.py::test_corpus_matrix_and_all_observations
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_corpus_and_independent_reference_coverage
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_freeze_before_labels
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_geometry_scope_negative_is_explicit
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args0-100000]
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args1-100000]
+17 failed, 1469 passed in 103.09s (0:01:43)

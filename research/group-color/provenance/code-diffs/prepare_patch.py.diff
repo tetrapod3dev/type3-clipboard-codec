@@ -1,0 +1,20 @@
+--- original/type3-clipboard-group-patch-runtime-004\prepare_patch.py
++++ migrated/type3-clipboard-group-patch-runtime-004\prepare_patch.py
+@@ -8,7 +8,7 @@
+ 
+ HERE=Path(__file__).resolve().parent
+ PRIOR=HERE.parent/'type3-clipboard-member-color-003'
+-CODEC=Path(r'C:\work\develop\type3-clipboard-codec')
++CODEC=Path(__file__).resolve().parents[3]
+ sys.path.insert(0,str(CODEC/'src'))
+ from type3_clipboard_codec.codec.decoder import Decoder
+ 
+@@ -93,7 +93,7 @@
+         'remaining_difference_safety':'UNKNOWN; not assumed harmless',
+         'member_serialize_boundary':'UNKNOWN','reference_table_semantics':'NOT_VERIFIED',
+         'runtime_approval':'NOT_GRANTED_FOR_THIS_STAGE','clipboard_access':'NOT_EXECUTED','Type3_operations':'NOT_EXECUTED'}
+-    (HERE/'offline-result.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
++    (HERE/'recomputed-offline-result.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+     return report
+ 
+ if __name__=='__main__':

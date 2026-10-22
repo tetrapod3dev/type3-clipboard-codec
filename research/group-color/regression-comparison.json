@@ -1,0 +1,52 @@
+{
+  "before_observed_in_tool_output": {
+    "passed": 1469,
+    "failed": 17,
+    "failed_test_ids": [
+      "tests/integration/test_source_integrity_policy.py::test_historical_replay_and_legacy_information",
+      "tests/integration/test_text_preslot_archive_doubles.py::test_all_84_groups_agree_with_frozen_shadow_and_old_outputs",
+      "tests/integration/test_text_preslot_crosswalk.py::test_corpus_report_and_production_output_preservation",
+      "tests/integration/test_text_preslot_internal_role_aliases.py::test_corpus_alias_counts_and_canonical_preservation",
+      "tests/integration/test_text_slot_archive_doubles.py::test_full_corpus_additive_projection_and_exact_raw_values",
+      "tests/integration/test_text_slot_current_empty_gate.py::test_full_corpus_pre_gate_outputs_and_shadow_agreement",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_full_corpus_actual_v1_and_exact_same_run",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_all_runtime_outputs_and_source_bytes_unchanged",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_challenges_and_readiness",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_oracle_boundary_and_adversarial_intent",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_cli_bounded_output[args3]",
+      "tests/integration/test_text_slot_layout_applicability.py::test_corpus_matrix_and_all_observations",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_corpus_and_independent_reference_coverage",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_freeze_before_labels",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_geometry_scope_negative_is_explicit",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args0-100000]",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args1-100000]"
+    ],
+    "full_log_saved": false
+  },
+  "after": {
+    "passed": 1469,
+    "failed": 17,
+    "failed_test_ids": [
+      "tests/integration/test_source_integrity_policy.py::test_historical_replay_and_legacy_information",
+      "tests/integration/test_text_preslot_archive_doubles.py::test_all_84_groups_agree_with_frozen_shadow_and_old_outputs",
+      "tests/integration/test_text_preslot_crosswalk.py::test_corpus_report_and_production_output_preservation",
+      "tests/integration/test_text_preslot_internal_role_aliases.py::test_corpus_alias_counts_and_canonical_preservation",
+      "tests/integration/test_text_slot_archive_doubles.py::test_full_corpus_additive_projection_and_exact_raw_values",
+      "tests/integration/test_text_slot_current_empty_gate.py::test_full_corpus_pre_gate_outputs_and_shadow_agreement",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_full_corpus_actual_v1_and_exact_same_run",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_all_runtime_outputs_and_source_bytes_unchanged",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_challenges_and_readiness",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_oracle_boundary_and_adversarial_intent",
+      "tests/integration/test_text_slot_family_shadow_cli.py::test_cli_bounded_output[args3]",
+      "tests/integration/test_text_slot_layout_applicability.py::test_corpus_matrix_and_all_observations",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_corpus_and_independent_reference_coverage",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_freeze_before_labels",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_geometry_scope_negative_is_explicit",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args0-100000]",
+      "tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args1-100000]"
+    ]
+  },
+  "failure_set_equal": true,
+  "new_failures": [],
+  "resolved_failures": []
+}

@@ -1,0 +1,108 @@
+{
+  "profile_sha256": "d0f179eaee2c9e625a936f7ce7ad7c3db0d78928df5a782bfd4a18d8130d3197",
+  "locator_result": {
+    "input_sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+    "length": 8192,
+    "members": [
+      {
+        "ordinal_in_this_decode": 0,
+        "contour_range": [
+          630,
+          774
+        ],
+        "header_kind_candidate": 2,
+        "bbox": {
+          "xmin_m": 0.6,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.655,
+          "ymax_m": 0.23500000000000004,
+          "zmax_m": 0.0
+        },
+        "width_mm": 55.00000000000005,
+        "height_mm": 35.00000000000003,
+        "tag": {
+          "kind": "observed_new_class",
+          "class": "CPropertyExtend",
+          "schema": 5,
+          "span": [
+            774,
+            795
+          ],
+          "body_candidate": 795,
+          "archive_context": "UNKNOWN"
+        },
+        "color_name_candidate": "Army Green",
+        "raw_rgb0_hex": "98cc9800",
+        "color_pair_ranges_candidate": [
+          [
+            915,
+            919
+          ],
+          [
+            927,
+            931
+          ]
+        ],
+        "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+        "member_serialize_end": "UNKNOWN"
+      },
+      {
+        "ordinal_in_this_decode": 1,
+        "contour_range": [
+          1375,
+          1519
+        ],
+        "header_kind_candidate": 2,
+        "bbox": {
+          "xmin_m": 0.45,
+          "ymin_m": 0.2,
+          "zmin_m": 0.0,
+          "xmax_m": 0.48,
+          "ymax_m": 0.22,
+          "zmax_m": 0.0
+        },
+        "width_mm": 29.99999999999997,
+        "height_mm": 19.99999999999999,
+        "tag": {
+          "kind": "unresolved_small_class_reference",
+          "class": "UNKNOWN",
+          "reference_index": 8,
+          "span": [
+            1519,
+            1521
+          ],
+          "body_candidate": 1521,
+          "archive_context": "UNKNOWN"
+        },
+        "color_name_candidate": "Navy Blue",
+        "raw_rgb0_hex": "3060cc00",
+        "color_pair_ranges_candidate": [
+          [
+            1641,
+            1645
+          ],
+          [
+            1653,
+            1657
+          ]
+        ],
+        "source": "contour end + archive-tag hypothesis + controlled style prefix; no color search or nearest-offset choice",
+        "member_serialize_end": "UNKNOWN"
+      }
+    ],
+    "change_allowed": false,
+    "ownership": "UNKNOWN",
+    "status": "CANDIDATE_ONLY",
+    "reasons": [
+      "Archive class/reference ledger not resolved",
+      "Complete member Serialize/property ownership boundary not verified",
+      "Profile is empirical and has no independent group-family validation"
+    ]
+  },
+  "write_permission": false,
+  "prediction_scope": "Empirical field prediction only",
+  "sample": "H0-A",
+  "version_sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+  "prediction_utc": "2026-10-22T08:18:48.690942+00:00"
+}

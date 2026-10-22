@@ -1,0 +1,2 @@
+# Captured evidence and raw-SHA execution locks must survive checkout byte-exact.
+* -text

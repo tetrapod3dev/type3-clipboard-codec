@@ -1,0 +1,30 @@
+--- original/type3-clipboard-independent-prediction-006\prediction_check.py
++++ migrated/type3-clipboard-independent-prediction-006\prediction_check.py
+@@ -10,15 +10,16 @@
+ import struct
+ 
+ ROOT=Path(__file__).resolve().parent
++CODEC=Path(__file__).resolve().parents[3]
+ def sha(data):return hashlib.sha256(data).hexdigest()
+ def read_json(path):return json.loads(path.read_text(encoding='utf-8-sig'))
+ 
+ def checked_profile():
+-    lock=read_json(ROOT/'profile-lock.json')
++    lock=read_json(ROOT/'execution-lock.json')
+     blob=(ROOT/'frozen-profile.json').read_bytes()
+     if sha(blob)!=lock['profile_sha256']:raise ValueError('Frozen profile SHA mismatch')
+     for item in lock['dependencies']:
+-        if sha(Path(item['path']).read_bytes())!=item['sha256']:
++        if sha((CODEC/item['path']).read_bytes())!=item['sha256']:
+             raise ValueError('Frozen locator/codec dependency changed: '+item['path'])
+     return json.loads(blob),lock
+ 
+@@ -147,7 +148,7 @@
+             'UI_evidence':ui})
+         if result['repeat_exact'] and av==bv and len(a)==len(b) and stable_bbox and fields_match and r1_unchanged and len(target_changes)==6 and not unknown:
+             result['verdict']='INDEPENDENT_FIELD_PREDICTION_VERIFIED'
+-    (ROOT/'comparison.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
++    (ROOT/'recomputed-comparison.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+     return result
+ 
+ if __name__=='__main__':

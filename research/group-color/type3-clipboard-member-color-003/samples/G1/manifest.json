@@ -1,0 +1,18 @@
+{
+  "formats": [
+    {
+      "byte_length": 8192,
+      "file_name": "typeeditzone.bin",
+      "format_name": "TypeEditZone",
+      "observed_id": 50107,
+      "registered_id": 49866
+    },
+    {
+      "byte_length": 32,
+      "file_name": "typeeditzone_version.bin",
+      "format_name": "TypeEditZoneVersion",
+      "observed_id": 50108,
+      "registered_id": 49867
+    }
+  ]
+}

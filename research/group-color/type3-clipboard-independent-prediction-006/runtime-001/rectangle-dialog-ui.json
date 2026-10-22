@@ -1,0 +1,308 @@
+[
+  {
+    "Name": "사각형/둥근사각형",
+    "Type": "ControlType.Window",
+    "Id": "",
+    "Rect": "799,391,323,292"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "1182",
+    "Rect": "802,417,317,226"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1183",
+    "Rect": "1018,433,20,18"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1184",
+    "Rect": "1048,433,20,18"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1185",
+    "Rect": "1078,433,20,18"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1216",
+    "Rect": "843,497,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1217",
+    "Rect": "888,497,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1218",
+    "Rect": "931,497,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1219",
+    "Rect": "843,541,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1220",
+    "Rect": "888,541,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1221",
+    "Rect": "931,541,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1222",
+    "Rect": "843,588,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1224",
+    "Rect": "888,588,12,13"
+  },
+  {
+    "Name": "라디오1",
+    "Type": "ControlType.Pane",
+    "Id": "1223",
+    "Rect": "931,588,12,13"
+  },
+  {
+    "Name": "208.062 mm",
+    "Type": "ControlType.Pane",
+    "Id": "208",
+    "Rect": "1014,461,90,20"
+  },
+  {
+    "Name": "144.127 mm",
+    "Type": "ControlType.Pane",
+    "Id": "260",
+    "Rect": "1014,498,90,20"
+  },
+  {
+    "Name": "184.673 mm",
+    "Type": "ControlType.Pane",
+    "Id": "1188",
+    "Rect": "1014,563,90,20"
+  },
+  {
+    "Name": "393.078 mm",
+    "Type": "ControlType.Pane",
+    "Id": "1189",
+    "Rect": "1014,593,90,20"
+  },
+  {
+    "Name": "확인",
+    "Type": "ControlType.Pane",
+    "Id": "1",
+    "Rect": "919,648,29,29"
+  },
+  {
+    "Name": "취소",
+    "Type": "ControlType.Pane",
+    "Id": "2",
+    "Rect": "972,648,29,29"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59648",
+    "Rect": "200,123,1720,890"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Window",
+    "Id": "65280",
+    "Rect": "192,92,1736,929"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59648",
+    "Rect": "200,123,1720,890"
+  },
+  {
+    "Name": "m_dessin",
+    "Type": "ControlType.Pane",
+    "Id": "104",
+    "Rect": "222,145,1696,850"
+  },
+  {
+    "Name": "ptZero",
+    "Type": "ControlType.Pane",
+    "Id": "104",
+    "Rect": "202,125,20,20"
+  },
+  {
+    "Name": "regleV",
+    "Type": "ControlType.Pane",
+    "Id": "102",
+    "Rect": "202,145,20,866"
+  },
+  {
+    "Name": "regleH",
+    "Type": "ControlType.Pane",
+    "Id": "103",
+    "Rect": "222,125,1696,20"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "105",
+    "Rect": "788,994,1130,17"
+  },
+  {
+    "Name": "m_WCalque98",
+    "Type": "ControlType.Pane",
+    "Id": "108",
+    "Rect": "222,994,566,17"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "106",
+    "Rect": "256,992,515,19"
+  },
+  {
+    "Name": "+",
+    "Type": "ControlType.Pane",
+    "Id": "107",
+    "Rect": "222,994,17,17"
+  },
+  {
+    "Name": "-",
+    "Type": "ControlType.Pane",
+    "Id": "109",
+    "Rect": "239,994,17,17"
+  },
+  {
+    "Name": "V",
+    "Type": "ControlType.Pane",
+    "Id": "110",
+    "Rect": "771,994,17,17"
+  },
+  {
+    "Name": "사각형을 그립니다",
+    "Type": "ControlType.Pane",
+    "Id": "59393",
+    "Rect": "0,1013,1920,19"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59396",
+    "Rect": "0,43,70,970"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "5001",
+    "Rect": "0,45,70,475"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "5002",
+    "Rect": "0,45,72,48"
+  },
+  {
+    "Name": "Title",
+    "Type": "ControlType.Pane",
+    "Id": "",
+    "Rect": "3,102,64,418"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59392",
+    "Rect": "70,43,1850,36"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "5002",
+    "Rect": "70,45,1850,34"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "3000",
+    "Rect": "1872,45,32,32"
+  },
+  {
+    "Name": "Title",
+    "Type": "ControlType.Pane",
+    "Id": "",
+    "Rect": "70,45,768,34"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59419",
+    "Rect": "70,79,1850,44"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "656,79,558,46"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "68,79,590,46"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "1212,79,238,46"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "1448,79,174,46"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "59420",
+    "Rect": "70,123,130,890"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "156,123,46,398"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "112,123,46,686"
+  },
+  {
+    "Name": "",
+    "Type": "ControlType.Pane",
+    "Id": "2001",
+    "Rect": "68,123,46,718"
+  }
+]

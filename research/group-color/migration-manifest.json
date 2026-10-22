@@ -1,0 +1,1228 @@
+{
+  "source_head": "b42abe9cd9a72a9d0116080a57097c06959c9671",
+  "source_branch": "master",
+  "codec_head": "27d98ad08fd0d46e6d79a8efeba466a9b5620334",
+  "codec_branch": "master",
+  "copied_evidence_and_original_code": [
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S1-confirmed/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/S1-confirmed/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S1-confirmed/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/S1-confirmed/typeeditzone.bin",
+      "sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S1-confirmed/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/S1-confirmed/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S2-confirmed/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/S2-confirmed/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S2-confirmed/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/S2-confirmed/typeeditzone.bin",
+      "sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/S2-confirmed/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/S2-confirmed/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/U0/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/U0/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/U0/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/U0/typeeditzone.bin",
+      "sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/U0/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/U0/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-A/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/G0-A/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-A/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-A/typeeditzone.bin",
+      "sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-A/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-A/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-B/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/G0-B/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-B/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-B/typeeditzone.bin",
+      "sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-B/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-B/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-R/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/G0-R/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-R/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-R/typeeditzone.bin",
+      "sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G0-R/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/G0-R/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G1/manifest.json",
+      "target": "type3-clipboard-member-color-003/samples/G1/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G1/typeeditzone.bin",
+      "target": "type3-clipboard-member-color-003/samples/G1/typeeditzone.bin",
+      "sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/samples/G1/typeeditzone_version.bin",
+      "target": "type3-clipboard-member-color-003/samples/G1/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/result.md",
+      "target": "type3-clipboard-member-color-003/result.md",
+      "sha256": "47748f7c72427756de6036ea9fa9ddd9b3d1a329bfa061955e0233bf9720e426",
+      "size": 14019,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/comparison.json",
+      "target": "type3-clipboard-member-color-003/comparison.json",
+      "sha256": "5a6dad2287788cf935027bdf875ceda134c25eb2fae0985ab1f13c3b9aac5249",
+      "size": 30123,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/ownership-evidence.json",
+      "target": "type3-clipboard-member-color-003/ownership-evidence.json",
+      "sha256": "27136b54db3521779c16965a4c6aa1d051502681ca1077aea4eecd86369e56ab",
+      "size": 21848,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/capture-metadata.json",
+      "target": "type3-clipboard-member-color-003/capture-metadata.json",
+      "sha256": "2ec6f4405b3dccfc35374de37b08a200e51f3755dbbc3003a0289b65f2234ac7",
+      "size": 6627,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/two-colors-before-group.png",
+      "target": "type3-clipboard-member-color-003/two-colors-before-group.png",
+      "sha256": "293c05d686e28f756685aa858a8c3033aa2e4527c7db2c091919a67012e60721",
+      "size": 176578,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/group-colors-visible.png",
+      "target": "type3-clipboard-member-color-003/group-colors-visible.png",
+      "sha256": "ddff79b35024be929c5350671a2def9b5af67497a6a7d3bce1bc84cef4798de7",
+      "size": 178969,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-member-color-003/G1-final-visible.png",
+      "target": "type3-clipboard-member-color-003/G1-final-visible.png",
+      "sha256": "326222d86e65a9305215288bad577e1f63923c73fc6ed00617aba5fe6c5fabbf",
+      "size": 181067,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/candidate/manifest.json",
+      "target": "type3-clipboard-group-patch-runtime-004/candidate/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/candidate/typeeditzone.bin",
+      "target": "type3-clipboard-group-patch-runtime-004/candidate/typeeditzone.bin",
+      "sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/candidate/typeeditzone_version.bin",
+      "target": "type3-clipboard-group-patch-runtime-004/candidate/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/recopy/manifest.json",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/recopy/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/recopy/typeeditzone.bin",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/recopy/typeeditzone.bin",
+      "sha256": "d70bc09ac7b8f4bfff4d131acecda4d831f99b249d4fc6f1996c2d65ae605fb8",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/recopy/typeeditzone_version.bin",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/recopy/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/result.md",
+      "target": "type3-clipboard-group-patch-runtime-004/result.md",
+      "sha256": "1c0328014fb8b84879534a7069934ba18ac580271b644cfed52e6e14f277c16c",
+      "size": 8512,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/offline-result.json",
+      "target": "type3-clipboard-group-patch-runtime-004/offline-result.json",
+      "sha256": "1e8d7217de9ae7e8ba1abc89b87e87fbe9a0f6aa9ab464e8c3f085498026ee7f",
+      "size": 8880,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/patch-tests.log",
+      "target": "type3-clipboard-group-patch-runtime-004/patch-tests.log",
+      "sha256": "c7b49895f289b527535204487bc6cade7076f91494aaddd86bee6009d54b81b9",
+      "size": 101,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/codec-regression.log",
+      "target": "type3-clipboard-group-patch-runtime-004/codec-regression.log",
+      "sha256": "0a6033a82ae2125cf243e60233c2f2e4ed335bc6942ef7c96e2095df6020d5c9",
+      "size": 100,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/runtime-result.json",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/runtime-result.json",
+      "sha256": "479324b9e06599b2459a187fc6da4f69e0470444c0a97fc9d90fc298cb8e213c",
+      "size": 7249,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/after-single-paste.png",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/after-single-paste.png",
+      "sha256": "6c809fad6add3fc02a8a0b28abf958e65f8b8e34732823a1baed4677c1ae25a7",
+      "size": 176009,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/restored-colors-visible.png",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/restored-colors-visible.png",
+      "sha256": "6f8bbda5cf556590b7dafe3506adf5e245c3add1778a0a3e5715228ea2fd8d01",
+      "size": 178399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/runtime-001/test-empty.png",
+      "target": "type3-clipboard-group-patch-runtime-004/runtime-001/test-empty.png",
+      "sha256": "da673a2d522c2e898f0ced4f2c0768a249a57b7220bd7ad02e9f26ec541b01e1",
+      "size": 176447,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/locator-result.json",
+      "target": "type3-clipboard-group-field-locator-005/locator-result.json",
+      "sha256": "7d1bd8aa3251b993febdcaf905da2f8ebd5cee3fd7a0824d503e180585389ed5",
+      "size": 20770,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/result.md",
+      "target": "type3-clipboard-group-field-locator-005/result.md",
+      "sha256": "e8b839bea8fec76766fb33fb0f7991054793f84162f34c7b60b40b9d435b8dce",
+      "size": 6114,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/tests.log",
+      "target": "type3-clipboard-group-field-locator-005/tests.log",
+      "sha256": "1d41e82514333916e11ed6114b8a3c7d6aa7a83c58704972f9be3c5357a00b65",
+      "size": 101,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/verification.txt",
+      "target": "type3-clipboard-group-field-locator-005/verification.txt",
+      "sha256": "1d41e82514333916e11ed6114b8a3c7d6aa7a83c58704972f9be3c5357a00b65",
+      "size": 101,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-A/manifest.json",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-A/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-A/typeeditzone.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-A/typeeditzone.bin",
+      "sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-A/typeeditzone_version.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-A/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-B/manifest.json",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-B/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-B/typeeditzone.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-B/typeeditzone.bin",
+      "sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H0-B/typeeditzone_version.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H0-B/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H1/manifest.json",
+      "target": "type3-clipboard-independent-prediction-006/samples/H1/manifest.json",
+      "sha256": "798b3dbd18ac16d1ad73d9b047a0d7dd82bc3f14812ad0d9e10f59c6a1124820",
+      "size": 399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H1/typeeditzone.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H1/typeeditzone.bin",
+      "sha256": "1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af",
+      "size": 8192,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/samples/H1/typeeditzone_version.bin",
+      "target": "type3-clipboard-independent-prediction-006/samples/H1/typeeditzone_version.bin",
+      "sha256": "33078d77a7e1220490bfdd499fe98ad4187fd850d70d287dfa7cfb641c90a14f",
+      "size": 32,
+      "existing_codec_same_sha": [
+        "dumps/typeeditzone_version_a.bin",
+        "dumps/typeeditzone_version_b.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_content_variation/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_font_arial_bold/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_height_30mm/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_abc_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_grouped_order_cba/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_three_objects_not_grouped_mixed_color/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_not_grouped_selection_reversed/typeeditzone_version.bin",
+        "tests/samples/bundles/text/text_two_objects_same_color_not_grouped/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_direction_D00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_preexisting_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_duplicate_R2_second_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L00_R/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L01/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L02/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_L04/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LY0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_LZ/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_ER/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_N/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R1/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_meta_M00_R2/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_replay_M00_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe2_postpaste/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E0/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_E1_vendor/typeeditzone_version.bin",
+        "tests/samples/bundles/geometry/geometry_line_staleprobe_postpaste/typeeditzone_version.bin",
+        "research/geometry-line/exact_replay_M00_loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe2/loaded_readback/typeeditzone_version.bin",
+        "research/geometry-line/staleprobe/loaded_readback/typeeditzone_version.bin"
+      ]
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/predictions/H0-A.json",
+      "target": "type3-clipboard-independent-prediction-006/predictions/H0-A.json",
+      "sha256": "02b0906acb09438ef0bce83805ad68e9254b7fea88fc4ba76138567b849c084a",
+      "size": 3162,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/predictions/H1.json",
+      "target": "type3-clipboard-independent-prediction-006/predictions/H1.json",
+      "sha256": "ba9d335aac4366bb68731cbffbbf53181646fdf893733fe24d41225c9ed33717",
+      "size": 3159,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/frozen-profile.json",
+      "target": "type3-clipboard-independent-prediction-006/frozen-profile.json",
+      "sha256": "d0f179eaee2c9e625a936f7ce7ad7c3db0d78928df5a782bfd4a18d8130d3197",
+      "size": 721,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/profile-lock.json",
+      "target": "type3-clipboard-independent-prediction-006/profile-lock.json",
+      "sha256": "139cb204a08f827cef9398136cab2c9d0a47cddf0301b7e6abdfe60d817e3277",
+      "size": 10571,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/comparison.json",
+      "target": "type3-clipboard-independent-prediction-006/comparison.json",
+      "sha256": "667912668d6e22b408209e8b2de33caeba3b40d4dd8632b6667472d48e321660",
+      "size": 9863,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/ui-observations.json",
+      "target": "type3-clipboard-independent-prediction-006/ui-observations.json",
+      "sha256": "3dc3690449ca3759cd6ee6483f267d8a16cf1fec55d9ffa909453c4179a6156b",
+      "size": 2385,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/result.md",
+      "target": "type3-clipboard-independent-prediction-006/result.md",
+      "sha256": "9899e8b3673549384966be137f47878636da7c23f8464bea5ab9a6cb1130081f",
+      "size": 6589,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/verification.txt",
+      "target": "type3-clipboard-independent-prediction-006/verification.txt",
+      "sha256": "f8e95087bf757a8661f89fc142e28da63cdeb2fbb2f8ffb03250b9ae973c39b5",
+      "size": 100,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/verification-final.txt",
+      "target": "type3-clipboard-independent-prediction-006/verification-final.txt",
+      "sha256": "55ac234b676431cf57a3d943ca60e81c24f429fd27934a568cdd920a3f200e84",
+      "size": 101,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/preservation-final.json",
+      "target": "type3-clipboard-independent-prediction-006/preservation-final.json",
+      "sha256": "abef45b206b1bf9685cc4497d1a85df7df1ca39a94fbfff74930d672501a331f",
+      "size": 1075,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/empty.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/empty.png",
+      "sha256": "7c420dc662cc565d338c46df9f9e94f92f2e94d1e54f08ae603a83f96e638b25",
+      "size": 177346,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H-group-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H-group-selected.png",
+      "sha256": "8fe293be3691c46debb2e5f009196f38893f62a127556177c74bd90d4870529c",
+      "size": 176417,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H-R2-created.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H-R2-created.png",
+      "sha256": "a6026c75c3fbc17a94e990821e441da79bda1774e597c722063fac396ed99de7",
+      "size": 179438,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H-R2-parameters-corrected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H-R2-parameters-corrected.png",
+      "sha256": "b3e44a4699645241c2ddb49e69fa8eac90325b666874cd622dad517c14e7ec94",
+      "size": 204491,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H-R2-parameters.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H-R2-parameters.png",
+      "sha256": "4b43134bb7612f553c473889bfd01e39a2dd6ce0731bfba0dec08e7db916d984",
+      "size": 203899,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H-two-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H-two-selected.png",
+      "sha256": "b17199875f102be860864f385dc24cf194f36bf9e65f287d8d37c43ff64bd035",
+      "size": 174318,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H0-repeat.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H0-repeat.png",
+      "sha256": "2bed4e4b32688a748f8dae3a8cb850bc3e9562f2c8cf097382b06eb8d7548dec",
+      "size": 176838,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H1-colors.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H1-colors.png",
+      "sha256": "75027847fdf6be682eb2a48b9bdf4271d2103a1416ac269fe318028d24604ec0",
+      "size": 179573,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H1-final-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H1-final-selected.png",
+      "sha256": "e9de59d8466e53021946f0e5ac46bc4a6e00dc6ae8299430d521c928025656ff",
+      "size": 175827,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H1-final-ui.json",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H1-final-ui.json",
+      "sha256": "b5a6c404ff0eca0d7b22a2eabde47104f02ec0c5045cd30123f3cb5b0732ef80",
+      "size": 3440,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/H1-group-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/H1-group-selected.png",
+      "sha256": "be05aa722a175c2e34b1ffff154ce7947acb33fdfa484aea0309da4b1750c2d3",
+      "size": 176843,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/original-pids.json",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/original-pids.json",
+      "sha256": "9e82db064347ea0386bf783e0277b647ad0be2e213ecde23fedfd8b1b427827d",
+      "size": 25,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/palette-army.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/palette-army.png",
+      "sha256": "fc8ef8e5d0fe537e2dfa93bc2b5bc81cbbce5eebd6fc960a6949a6266304d83a",
+      "size": 193872,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/palette-navy-search.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/palette-navy-search.png",
+      "sha256": "061d8d4c807120e9eae81097b1a82cee31bc5d0d5600348d1d33ca2f88b3c9ad",
+      "size": 192827,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/palette-navy.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/palette-navy.png",
+      "sha256": "429f2a26015df2b93823f9633d862b3e503c4fcb6744abb6f7af0516fbeb3e1c",
+      "size": 193395,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/palette-r2.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/palette-r2.png",
+      "sha256": "a52dff98c13efb5a50080f4773d120d5e99e0ba7d3489557bf603d7f10f19a6e",
+      "size": 192178,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R1-created.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R1-created.png",
+      "sha256": "87db3b5acd7c70c5fd4a79393bebac53245033903c961d0d8eabbbea41a1feb3",
+      "size": 179458,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R1-navy-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R1-navy-selected.png",
+      "sha256": "7214785d38e0d7a43f682dfe1a94df0f0495f34d4a5c2b69ef02cca183f156bd",
+      "size": 194994,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R1-parameters.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R1-parameters.png",
+      "sha256": "81e0932006a02ed44e226870f308d10b4f98d888739495e6ab093c051fe41afc",
+      "size": 200495,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R2-army-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R2-army-selected.png",
+      "sha256": "4a4682c23af923b6b3b4f9d758c56997957ae4eb7dd3520615d795851039255e",
+      "size": 195399,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R2-turquoise-palette.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R2-turquoise-palette.png",
+      "sha256": "f22d961ddd788028c53d021086542712daba1c801a0859dd3021dee6236168e4",
+      "size": 194473,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/R2-turquoise-selected.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/R2-turquoise-selected.png",
+      "sha256": "2fda8d9526e260a17331043694dad7d56505f303e636fe5f73760bbd83329fe0",
+      "size": 195134,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/rectangle-dialog-ui.json",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/rectangle-dialog-ui.json",
+      "sha256": "3a4eeb02da149ed97e50d4b5e23c85e7248811953f7edc1f3180ecb180a73ddc",
+      "size": 5843,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/rectangle-dialog.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/rectangle-dialog.png",
+      "sha256": "ba1e42b85454f2337c2b5f5d222fcc05fb42b0a62c156a19a4813b983b1f0748",
+      "size": 204089,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/resume.png",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/resume.png",
+      "sha256": "be5430df01e54474987341949d105846dc8ef09f26919e02b14674e06ced4eac",
+      "size": 204166,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/runtime-001/test-host.json",
+      "target": "type3-clipboard-independent-prediction-006/runtime-001/test-host.json",
+      "sha256": "8c8c3b3ed8bbfa81016c21a065f2fdb2e37533af5ba04088a67726b4aa335688",
+      "size": 183,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/field_locator.py",
+      "target": "provenance/original-code/type3-clipboard-group-field-locator-005/field_locator.py",
+      "sha256": "e97c42d5f0fc3ed47a45cb3b72a8a9b6bcc944caaf2966344ee1448b12cccd4c",
+      "size": 9553,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-field-locator-005/test_locator.py",
+      "target": "provenance/original-code/type3-clipboard-group-field-locator-005/test_locator.py",
+      "sha256": "1a3daab05b1ce5a8736ee78d8667d35f45ec61bcee52c7ce1debabf932a9c658",
+      "size": 3363,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/prediction_check.py",
+      "target": "provenance/original-code/type3-clipboard-independent-prediction-006/prediction_check.py",
+      "sha256": "3dc4e9ea1ac769e4e47faa0d94d01940c1605c338a178725f5121845782cc8ba",
+      "size": 9682,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-independent-prediction-006/test_preparation.py",
+      "target": "provenance/original-code/type3-clipboard-independent-prediction-006/test_preparation.py",
+      "sha256": "15f48852bf88cdd461affd888fb136f97bb1ad15377f0464255cee97e817b6a8",
+      "size": 2735,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-base-serialize-003/walk_base.py",
+      "target": "provenance/original-code/type3-clipboard-base-serialize-003/walk_base.py",
+      "sha256": "f0a417e874704acf9739e1beb2a9afe3eb3b5da1cac9bf695060fc4436bf5f45",
+      "size": 4418,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/prepare_patch.py",
+      "target": "provenance/original-code/type3-clipboard-group-patch-runtime-004/prepare_patch.py",
+      "sha256": "b702e4ad3bfb9fbb641d72022ca9a8adfe6ca624c53c13cf07ec516db248ff79",
+      "size": 6304,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/test_patch.py",
+      "target": "provenance/original-code/type3-clipboard-group-patch-runtime-004/test_patch.py",
+      "sha256": "a44e35d09157070823138af66a48f6e78fd51e2aa84cdb3fdbe53904327a60ea",
+      "size": 1532,
+      "existing_codec_same_sha": []
+    },
+    {
+      "source": "research/feasibility/type3-clipboard-group-patch-runtime-004/verify_runtime.py",
+      "target": "provenance/original-code/type3-clipboard-group-patch-runtime-004/verify_runtime.py",
+      "sha256": "84d6699dacd3f11fe41c7f5758a9bba4ff06a049701bc5151e55c796aba4d0e5",
+      "size": 3351,
+      "existing_codec_same_sha": []
+    }
+  ],
+  "code_mapping": [
+    {
+      "original": "provenance/original-code/type3-clipboard-group-field-locator-005/field_locator.py",
+      "executable": "type3-clipboard-group-field-locator-005/field_locator.py",
+      "original_raw_sha256": "e97c42d5f0fc3ed47a45cb3b72a8a9b6bcc944caaf2966344ee1448b12cccd4c",
+      "migrated_sha256": "1d3eb65b68a096460fc656f28929f1c183c6e9ffb702d4214549b90b35bd0155",
+      "diff": "provenance/code-diffs/field_locator.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-group-field-locator-005/test_locator.py",
+      "executable": "type3-clipboard-group-field-locator-005/test_locator.py",
+      "original_raw_sha256": "1a3daab05b1ce5a8736ee78d8667d35f45ec61bcee52c7ce1debabf932a9c658",
+      "migrated_sha256": "1a3daab05b1ce5a8736ee78d8667d35f45ec61bcee52c7ce1debabf932a9c658",
+      "diff": "provenance/code-diffs/test_locator.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-independent-prediction-006/prediction_check.py",
+      "executable": "type3-clipboard-independent-prediction-006/prediction_check.py",
+      "original_raw_sha256": "3dc4e9ea1ac769e4e47faa0d94d01940c1605c338a178725f5121845782cc8ba",
+      "migrated_sha256": "d9af72366cbe31a334342c85b16a88a16d10f5319dc3077fc26133fa5026fdfc",
+      "diff": "provenance/code-diffs/prediction_check.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-independent-prediction-006/test_preparation.py",
+      "executable": "type3-clipboard-independent-prediction-006/test_preparation.py",
+      "original_raw_sha256": "15f48852bf88cdd461affd888fb136f97bb1ad15377f0464255cee97e817b6a8",
+      "migrated_sha256": "b713c99d37eed086bd6c999d1c611bf97f638c6299a22062cecb78724d24c540",
+      "diff": "provenance/code-diffs/test_preparation.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-base-serialize-003/walk_base.py",
+      "executable": "type3-clipboard-base-serialize-003/walk_base.py",
+      "original_raw_sha256": "f0a417e874704acf9739e1beb2a9afe3eb3b5da1cac9bf695060fc4436bf5f45",
+      "migrated_sha256": "1907cf76f3d1352922b77ed567483f4e616bdba0d6cb5debe8a54ef7b5357347",
+      "diff": "provenance/code-diffs/walk_base.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-group-patch-runtime-004/prepare_patch.py",
+      "executable": "type3-clipboard-group-patch-runtime-004/prepare_patch.py",
+      "original_raw_sha256": "b702e4ad3bfb9fbb641d72022ca9a8adfe6ca624c53c13cf07ec516db248ff79",
+      "migrated_sha256": "cb3e3ddbb28302830ff37ad4893441b08013ef5e0ad7cb11d33935552bcc6a05",
+      "diff": "provenance/code-diffs/prepare_patch.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-group-patch-runtime-004/test_patch.py",
+      "executable": "type3-clipboard-group-patch-runtime-004/test_patch.py",
+      "original_raw_sha256": "a44e35d09157070823138af66a48f6e78fd51e2aa84cdb3fdbe53904327a60ea",
+      "migrated_sha256": "a44e35d09157070823138af66a48f6e78fd51e2aa84cdb3fdbe53904327a60ea",
+      "diff": "provenance/code-diffs/test_patch.py.diff"
+    },
+    {
+      "original": "provenance/original-code/type3-clipboard-group-patch-runtime-004/verify_runtime.py",
+      "executable": "type3-clipboard-group-patch-runtime-004/verify_runtime.py",
+      "original_raw_sha256": "84d6699dacd3f11fe41c7f5758a9bba4ff06a049701bc5151e55c796aba4d0e5",
+      "migrated_sha256": "b2c500840bacd2a4c0d1b1765d622625355dc6cd93bddd8f2d4a895aa7c95804",
+      "diff": "provenance/code-diffs/verify_runtime.py.diff"
+    }
+  ],
+  "duplicate_policy": "Repeated capture bundles and candidate/recopy retain separate provenance even when byte-identical. Existing Codec source and geometry fixtures are reused in place, not copied."
+}
