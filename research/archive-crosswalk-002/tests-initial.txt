@@ -1,0 +1,15 @@
+.....F.........                                                          [100%]
+================================== FAILURES ===================================
+____________________ test_other_native_family_is_rejected _____________________
+
+    def test_other_native_family_is_rejected():
+        r=a.analyse('text/default_text')
+>       assert r['status']=='REJECTED' and 'CParagraphe' in r['reason']
+E       AssertionError: assert ('REJECTED' == 'REJECTED'
+E         
+E           REJECTED and 'CParagraphe' in 'unreviewed prefix')
+
+research\archive-crosswalk-002\test_extension.py:22: AssertionError
+=========================== short test summary info ===========================
+FAILED research/archive-crosswalk-002/test_extension.py::test_other_native_family_is_rejected
+1 failed, 14 passed in 0.22s

@@ -1,0 +1,1047 @@
+{
+  "polyline_3_points": {
+    "fixture": "polyline_3_points",
+    "fixture_file_sha256": "91d6e9c9d4e4835928b60ac901cddbf578d9bef96d41b55e558cba11af551c64",
+    "payload_sha256": "6c499aae369a9fd50db03f8a47854b10786cd0902f94b531909c8320fd2b9d0b",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "BOUNDED_CROSSWALK_MATCH",
+    "tree": {
+      "class": "CZone",
+      "class_id": 1,
+      "object_id_archive_scope_only": 2,
+      "tag_span": [
+        6,
+        17
+      ],
+      "body_start": 17,
+      "children": [
+        {
+          "class": "CCourbe",
+          "class_id": 3,
+          "object_id_archive_scope_only": 4,
+          "tag_span": [
+            163,
+            176
+          ],
+          "body_start": 176,
+          "children": [
+            {
+              "class": "CContour",
+              "class_id": 5,
+              "object_id_archive_scope_only": 6,
+              "tag_span": [
+                322,
+                336
+              ],
+              "body_start": 336,
+              "children": [
+                {
+                  "class": "CPropertyExtend",
+                  "class_id": 7,
+                  "object_id_archive_scope_only": 8,
+                  "tag_span": [
+                    590,
+                    611
+                  ],
+                  "body_start": 611,
+                  "children": [],
+                  "body_end": 723
+                }
+              ],
+              "base_span": [
+                336,
+                474
+              ],
+              "raw_member_130": 0,
+              "point_records": {
+                "count": 3,
+                "span": [
+                  482,
+                  590
+                ],
+                "record_width": 36
+              },
+              "body_end": 723
+            }
+          ],
+          "base_span": [
+            176,
+            314
+          ],
+          "helper_count": 1,
+          "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+          "body_end": 747
+        }
+      ],
+      "base_span": [
+        17,
+        155
+      ],
+      "helper_count": 1,
+      "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+      "body_end": 747
+    },
+    "contours": [
+      {
+        "count": 3,
+        "span": [
+          482,
+          590
+        ],
+        "record_width": 36
+      }
+    ],
+    "properties": [
+      {
+        "body": [
+          611,
+          723
+        ],
+        "int_count": 0,
+        "double_count": 0,
+        "string_lengths": [
+          0,
+          0
+        ]
+      }
+    ],
+    "color_suffixes": [
+      {
+        "curve_body": 176,
+        "suffix_span": [
+          723,
+          747
+        ],
+        "b8_range": [
+          731,
+          735
+        ],
+        "c4_range": [
+          743,
+          747
+        ],
+        "b8_hex": "00000000",
+        "c4_hex": "00000000",
+        "raw_dwords": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      }
+    ],
+    "events": [
+      {
+        "kind": "new_class",
+        "span": [
+          6,
+          17
+        ],
+        "class_id": 1,
+        "class": "CZone",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          163,
+          176
+        ],
+        "class_id": 3,
+        "class": "CCourbe",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          322,
+          336
+        ],
+        "class_id": 5,
+        "class": "CContour",
+        "schema": 2
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          590,
+          611
+        ],
+        "class_id": 7,
+        "class": "CPropertyExtend",
+        "schema": 5
+      },
+      {
+        "kind": "object_end",
+        "class": "CPropertyExtend",
+        "object_id_archive_scope_only": 8,
+        "end": 723
+      },
+      {
+        "kind": "object_end",
+        "class": "CContour",
+        "object_id_archive_scope_only": 6,
+        "end": 723
+      },
+      {
+        "kind": "object_end",
+        "class": "CCourbe",
+        "object_id_archive_scope_only": 4,
+        "end": 747
+      },
+      {
+        "kind": "object_end",
+        "class": "CZone",
+        "object_id_archive_scope_only": 2,
+        "end": 747
+      }
+    ],
+    "end": 747,
+    "unparsed_tail_length": 7445,
+    "tail_meaning": "UNKNOWN",
+    "archive_initial_context": "UNKNOWN; unseeded start6 remains conditional",
+    "existing_decoder_contour_bytes_equal": true,
+    "additional_list_zero_scope": "CZone/CCourbe exact native vtables only"
+  },
+  "polyline_5_points": {
+    "fixture": "polyline_5_points",
+    "fixture_file_sha256": "75c83ded8b6ffbb97c55ce01aa848eb97bcfb271fa168ef1c0ebc5c36f3d7014",
+    "payload_sha256": "408dad579901b034e07bd47ca9b8f7c139483be95f98067e431f41d7878609e5",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "BOUNDED_CROSSWALK_MATCH",
+    "tree": {
+      "class": "CZone",
+      "class_id": 1,
+      "object_id_archive_scope_only": 2,
+      "tag_span": [
+        6,
+        17
+      ],
+      "body_start": 17,
+      "children": [
+        {
+          "class": "CCourbe",
+          "class_id": 3,
+          "object_id_archive_scope_only": 4,
+          "tag_span": [
+            163,
+            176
+          ],
+          "body_start": 176,
+          "children": [
+            {
+              "class": "CContour",
+              "class_id": 5,
+              "object_id_archive_scope_only": 6,
+              "tag_span": [
+                322,
+                336
+              ],
+              "body_start": 336,
+              "children": [
+                {
+                  "class": "CPropertyExtend",
+                  "class_id": 7,
+                  "object_id_archive_scope_only": 8,
+                  "tag_span": [
+                    662,
+                    683
+                  ],
+                  "body_start": 683,
+                  "children": [],
+                  "body_end": 795
+                }
+              ],
+              "base_span": [
+                336,
+                474
+              ],
+              "raw_member_130": 0,
+              "point_records": {
+                "count": 5,
+                "span": [
+                  482,
+                  662
+                ],
+                "record_width": 36
+              },
+              "body_end": 795
+            }
+          ],
+          "base_span": [
+            176,
+            314
+          ],
+          "helper_count": 1,
+          "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+          "body_end": 819
+        }
+      ],
+      "base_span": [
+        17,
+        155
+      ],
+      "helper_count": 1,
+      "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+      "body_end": 819
+    },
+    "contours": [
+      {
+        "count": 5,
+        "span": [
+          482,
+          662
+        ],
+        "record_width": 36
+      }
+    ],
+    "properties": [
+      {
+        "body": [
+          683,
+          795
+        ],
+        "int_count": 0,
+        "double_count": 0,
+        "string_lengths": [
+          0,
+          0
+        ]
+      }
+    ],
+    "color_suffixes": [
+      {
+        "curve_body": 176,
+        "suffix_span": [
+          795,
+          819
+        ],
+        "b8_range": [
+          803,
+          807
+        ],
+        "c4_range": [
+          815,
+          819
+        ],
+        "b8_hex": "00000000",
+        "c4_hex": "00000000",
+        "raw_dwords": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      }
+    ],
+    "events": [
+      {
+        "kind": "new_class",
+        "span": [
+          6,
+          17
+        ],
+        "class_id": 1,
+        "class": "CZone",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          163,
+          176
+        ],
+        "class_id": 3,
+        "class": "CCourbe",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          322,
+          336
+        ],
+        "class_id": 5,
+        "class": "CContour",
+        "schema": 2
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          662,
+          683
+        ],
+        "class_id": 7,
+        "class": "CPropertyExtend",
+        "schema": 5
+      },
+      {
+        "kind": "object_end",
+        "class": "CPropertyExtend",
+        "object_id_archive_scope_only": 8,
+        "end": 795
+      },
+      {
+        "kind": "object_end",
+        "class": "CContour",
+        "object_id_archive_scope_only": 6,
+        "end": 795
+      },
+      {
+        "kind": "object_end",
+        "class": "CCourbe",
+        "object_id_archive_scope_only": 4,
+        "end": 819
+      },
+      {
+        "kind": "object_end",
+        "class": "CZone",
+        "object_id_archive_scope_only": 2,
+        "end": 819
+      }
+    ],
+    "end": 819,
+    "unparsed_tail_length": 7373,
+    "tail_meaning": "UNKNOWN",
+    "archive_initial_context": "UNKNOWN; unseeded start6 remains conditional",
+    "existing_decoder_contour_bytes_equal": true,
+    "additional_list_zero_scope": "CZone/CCourbe exact native vtables only"
+  },
+  "polygon_5_sides": {
+    "fixture": "polygon_5_sides",
+    "fixture_file_sha256": "f55d80a96ece7b5952acf953f66cc09eb6d4fdc267db413d6ad0a755d8e9af4a",
+    "payload_sha256": "a9b4672b47f9b683df79b326d8ea544ab972f41fc19b0b95f0396ddc29811b89",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "BOUNDED_CROSSWALK_MATCH",
+    "tree": {
+      "class": "CZone",
+      "class_id": 1,
+      "object_id_archive_scope_only": 2,
+      "tag_span": [
+        6,
+        17
+      ],
+      "body_start": 17,
+      "children": [
+        {
+          "class": "CCourbe",
+          "class_id": 3,
+          "object_id_archive_scope_only": 4,
+          "tag_span": [
+            163,
+            176
+          ],
+          "body_start": 176,
+          "children": [
+            {
+              "class": "CContour",
+              "class_id": 5,
+              "object_id_archive_scope_only": 6,
+              "tag_span": [
+                322,
+                336
+              ],
+              "body_start": 336,
+              "children": [
+                {
+                  "class": "CPropertyExtend",
+                  "class_id": 7,
+                  "object_id_archive_scope_only": 8,
+                  "tag_span": [
+                    662,
+                    683
+                  ],
+                  "body_start": 683,
+                  "children": [],
+                  "body_end": 795
+                }
+              ],
+              "base_span": [
+                336,
+                474
+              ],
+              "raw_member_130": 2,
+              "point_records": {
+                "count": 5,
+                "span": [
+                  482,
+                  662
+                ],
+                "record_width": 36
+              },
+              "body_end": 795
+            }
+          ],
+          "base_span": [
+            176,
+            314
+          ],
+          "helper_count": 1,
+          "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+          "body_end": 819
+        }
+      ],
+      "base_span": [
+        17,
+        155
+      ],
+      "helper_count": 1,
+      "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+      "body_end": 819
+    },
+    "contours": [
+      {
+        "count": 5,
+        "span": [
+          482,
+          662
+        ],
+        "record_width": 36
+      }
+    ],
+    "properties": [
+      {
+        "body": [
+          683,
+          795
+        ],
+        "int_count": 0,
+        "double_count": 0,
+        "string_lengths": [
+          0,
+          0
+        ]
+      }
+    ],
+    "color_suffixes": [
+      {
+        "curve_body": 176,
+        "suffix_span": [
+          795,
+          819
+        ],
+        "b8_range": [
+          803,
+          807
+        ],
+        "c4_range": [
+          815,
+          819
+        ],
+        "b8_hex": "00000000",
+        "c4_hex": "00000000",
+        "raw_dwords": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      }
+    ],
+    "events": [
+      {
+        "kind": "new_class",
+        "span": [
+          6,
+          17
+        ],
+        "class_id": 1,
+        "class": "CZone",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          163,
+          176
+        ],
+        "class_id": 3,
+        "class": "CCourbe",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          322,
+          336
+        ],
+        "class_id": 5,
+        "class": "CContour",
+        "schema": 2
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          662,
+          683
+        ],
+        "class_id": 7,
+        "class": "CPropertyExtend",
+        "schema": 5
+      },
+      {
+        "kind": "object_end",
+        "class": "CPropertyExtend",
+        "object_id_archive_scope_only": 8,
+        "end": 795
+      },
+      {
+        "kind": "object_end",
+        "class": "CContour",
+        "object_id_archive_scope_only": 6,
+        "end": 795
+      },
+      {
+        "kind": "object_end",
+        "class": "CCourbe",
+        "object_id_archive_scope_only": 4,
+        "end": 819
+      },
+      {
+        "kind": "object_end",
+        "class": "CZone",
+        "object_id_archive_scope_only": 2,
+        "end": 819
+      }
+    ],
+    "end": 819,
+    "unparsed_tail_length": 7373,
+    "tail_meaning": "UNKNOWN",
+    "archive_initial_context": "UNKNOWN; unseeded start6 remains conditional",
+    "existing_decoder_contour_bytes_equal": true,
+    "additional_list_zero_scope": "CZone/CCourbe exact native vtables only"
+  },
+  "polygon_6_sides": {
+    "fixture": "polygon_6_sides",
+    "fixture_file_sha256": "e809e1131b000503fe318a04e5cc7ba0638954022ede30f0140bafa636423000",
+    "payload_sha256": "df88c7c9eca1b3b8d8f63cb8bf23303d8527317142c248f1132644ac891c95f7",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "BOUNDED_CROSSWALK_MATCH",
+    "tree": {
+      "class": "CZone",
+      "class_id": 1,
+      "object_id_archive_scope_only": 2,
+      "tag_span": [
+        6,
+        17
+      ],
+      "body_start": 17,
+      "children": [
+        {
+          "class": "CCourbe",
+          "class_id": 3,
+          "object_id_archive_scope_only": 4,
+          "tag_span": [
+            163,
+            176
+          ],
+          "body_start": 176,
+          "children": [
+            {
+              "class": "CContour",
+              "class_id": 5,
+              "object_id_archive_scope_only": 6,
+              "tag_span": [
+                322,
+                336
+              ],
+              "body_start": 336,
+              "children": [
+                {
+                  "class": "CPropertyExtend",
+                  "class_id": 7,
+                  "object_id_archive_scope_only": 8,
+                  "tag_span": [
+                    698,
+                    719
+                  ],
+                  "body_start": 719,
+                  "children": [],
+                  "body_end": 831
+                }
+              ],
+              "base_span": [
+                336,
+                474
+              ],
+              "raw_member_130": 2,
+              "point_records": {
+                "count": 6,
+                "span": [
+                  482,
+                  698
+                ],
+                "record_width": 36
+              },
+              "body_end": 831
+            }
+          ],
+          "base_span": [
+            176,
+            314
+          ],
+          "helper_count": 1,
+          "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+          "body_end": 855
+        }
+      ],
+      "base_span": [
+        17,
+        155
+      ],
+      "helper_count": 1,
+      "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+      "body_end": 855
+    },
+    "contours": [
+      {
+        "count": 6,
+        "span": [
+          482,
+          698
+        ],
+        "record_width": 36
+      }
+    ],
+    "properties": [
+      {
+        "body": [
+          719,
+          831
+        ],
+        "int_count": 0,
+        "double_count": 0,
+        "string_lengths": [
+          0,
+          0
+        ]
+      }
+    ],
+    "color_suffixes": [
+      {
+        "curve_body": 176,
+        "suffix_span": [
+          831,
+          855
+        ],
+        "b8_range": [
+          839,
+          843
+        ],
+        "c4_range": [
+          851,
+          855
+        ],
+        "b8_hex": "00000000",
+        "c4_hex": "00000000",
+        "raw_dwords": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      }
+    ],
+    "events": [
+      {
+        "kind": "new_class",
+        "span": [
+          6,
+          17
+        ],
+        "class_id": 1,
+        "class": "CZone",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          163,
+          176
+        ],
+        "class_id": 3,
+        "class": "CCourbe",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          322,
+          336
+        ],
+        "class_id": 5,
+        "class": "CContour",
+        "schema": 2
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          698,
+          719
+        ],
+        "class_id": 7,
+        "class": "CPropertyExtend",
+        "schema": 5
+      },
+      {
+        "kind": "object_end",
+        "class": "CPropertyExtend",
+        "object_id_archive_scope_only": 8,
+        "end": 831
+      },
+      {
+        "kind": "object_end",
+        "class": "CContour",
+        "object_id_archive_scope_only": 6,
+        "end": 831
+      },
+      {
+        "kind": "object_end",
+        "class": "CCourbe",
+        "object_id_archive_scope_only": 4,
+        "end": 855
+      },
+      {
+        "kind": "object_end",
+        "class": "CZone",
+        "object_id_archive_scope_only": 2,
+        "end": 855
+      }
+    ],
+    "end": 855,
+    "unparsed_tail_length": 7337,
+    "tail_meaning": "UNKNOWN",
+    "archive_initial_context": "UNKNOWN; unseeded start6 remains conditional",
+    "existing_decoder_contour_bytes_equal": true,
+    "additional_list_zero_scope": "CZone/CCourbe exact native vtables only"
+  },
+  "default_circle": {
+    "fixture": "default_circle",
+    "fixture_file_sha256": "ca3aeda00a2d6442ef1d0537eef0b523c9e6de0c1df0ba9b506853bd41f4d2a3",
+    "payload_sha256": "c62d9dea384c856ca0a619919a1da11bec7ddc21e23e50f2ad6f0d2a4f5d1503",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "BOUNDED_CROSSWALK_MATCH",
+    "tree": {
+      "class": "CZone",
+      "class_id": 1,
+      "object_id_archive_scope_only": 2,
+      "tag_span": [
+        6,
+        17
+      ],
+      "body_start": 17,
+      "children": [
+        {
+          "class": "CCourbe",
+          "class_id": 3,
+          "object_id_archive_scope_only": 4,
+          "tag_span": [
+            163,
+            176
+          ],
+          "body_start": 176,
+          "children": [
+            {
+              "class": "CContour",
+              "class_id": 5,
+              "object_id_archive_scope_only": 6,
+              "tag_span": [
+                322,
+                336
+              ],
+              "body_start": 336,
+              "children": [
+                {
+                  "class": "CPropertyExtend",
+                  "class_id": 7,
+                  "object_id_archive_scope_only": 8,
+                  "tag_span": [
+                    770,
+                    791
+                  ],
+                  "body_start": 791,
+                  "children": [],
+                  "body_end": 903
+                }
+              ],
+              "base_span": [
+                336,
+                474
+              ],
+              "raw_member_130": 2,
+              "point_records": {
+                "count": 8,
+                "span": [
+                  482,
+                  770
+                ],
+                "record_width": 36
+              },
+              "body_end": 903
+            }
+          ],
+          "base_span": [
+            176,
+            314
+          ],
+          "helper_count": 1,
+          "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+          "body_end": 927
+        }
+      ],
+      "base_span": [
+        17,
+        155
+      ],
+      "helper_count": 1,
+      "additional_virtual_list": "not independently proven; zero contribution assumed for this crosswalk",
+      "body_end": 927
+    },
+    "contours": [
+      {
+        "count": 8,
+        "span": [
+          482,
+          770
+        ],
+        "record_width": 36
+      }
+    ],
+    "properties": [
+      {
+        "body": [
+          791,
+          903
+        ],
+        "int_count": 0,
+        "double_count": 0,
+        "string_lengths": [
+          0,
+          0
+        ]
+      }
+    ],
+    "color_suffixes": [
+      {
+        "curve_body": 176,
+        "suffix_span": [
+          903,
+          927
+        ],
+        "b8_range": [
+          911,
+          915
+        ],
+        "c4_range": [
+          923,
+          927
+        ],
+        "b8_hex": "00000000",
+        "c4_hex": "00000000",
+        "raw_dwords": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      }
+    ],
+    "events": [
+      {
+        "kind": "new_class",
+        "span": [
+          6,
+          17
+        ],
+        "class_id": 1,
+        "class": "CZone",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          163,
+          176
+        ],
+        "class_id": 3,
+        "class": "CCourbe",
+        "schema": 1
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          322,
+          336
+        ],
+        "class_id": 5,
+        "class": "CContour",
+        "schema": 2
+      },
+      {
+        "kind": "new_class",
+        "span": [
+          770,
+          791
+        ],
+        "class_id": 7,
+        "class": "CPropertyExtend",
+        "schema": 5
+      },
+      {
+        "kind": "object_end",
+        "class": "CPropertyExtend",
+        "object_id_archive_scope_only": 8,
+        "end": 903
+      },
+      {
+        "kind": "object_end",
+        "class": "CContour",
+        "object_id_archive_scope_only": 6,
+        "end": 903
+      },
+      {
+        "kind": "object_end",
+        "class": "CCourbe",
+        "object_id_archive_scope_only": 4,
+        "end": 927
+      },
+      {
+        "kind": "object_end",
+        "class": "CZone",
+        "object_id_archive_scope_only": 2,
+        "end": 927
+      }
+    ],
+    "end": 927,
+    "unparsed_tail_length": 7265,
+    "tail_meaning": "UNKNOWN",
+    "archive_initial_context": "UNKNOWN; unseeded start6 remains conditional",
+    "existing_decoder_contour_bytes_equal": true,
+    "additional_list_zero_scope": "CZone/CCourbe exact native vtables only"
+  },
+  "text/default_text": {
+    "fixture": "text/default_text",
+    "fixture_file_sha256": "f3a84603a39f0e8695446bb363797ac3bd7c483e98f908d84d14d656e686d111",
+    "payload_sha256": "3dc3a1c488ca81b41ad11e59514a0e268288f1e38fe6d5cded8aa1b9ca851eb9",
+    "payload_length": 8192,
+    "change_allowed": false,
+    "status": "REJECTED",
+    "reason": "unreviewed prefix",
+    "cursor": 0
+  }
+}
