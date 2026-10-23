@@ -1,0 +1,336 @@
+{
+  "verdict": "PLTF_ARCHIVE_CROSSWALK_BLOCKED",
+  "publication": "UNKNOWN / PRODUCER_NOT_FULLY_LINKED",
+  "Pltf": {
+    "path": "C:\\TypeEdit_2009\\EXE\\Pltf.exe",
+    "sha256": "f679f2641e60a41f62326e1c68c5e2c64d2415498bb1b92019c5f2d64245e662",
+    "size": 9248768,
+    "preferred_base": "0x400000",
+    "machine": "0x14c"
+  },
+  "comparisons": [
+    {
+      "rva": "0xc350e",
+      "file_offset": "0xc350e",
+      "section": ".text",
+      "runtime_text": "call 0x64c516",
+      "runtime_encoding_inferred_not_captured": "e803901800",
+      "disk_bytes": "a7c11f5ff0",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc350e",
+          "bytes": "a7",
+          "asm": "cmpsd dword ptr [esi], dword ptr es:[edi]"
+        },
+        {
+          "rva": "0xc350f",
+          "bytes": "c11f5f",
+          "asm": "rcr dword ptr [edi], 0x5f"
+        }
+      ]
+    },
+    {
+      "rva": "0xc352d",
+      "file_offset": "0xc352d",
+      "section": ".text",
+      "runtime_text": "call 0x64bd7e",
+      "runtime_encoding_inferred_not_captured": "e84c881800",
+      "disk_bytes": "cb3a533272",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc352d",
+          "bytes": "cb",
+          "asm": "retf "
+        },
+        {
+          "rva": "0xc352e",
+          "bytes": "3a5332",
+          "asm": "cmp dl, byte ptr [ebx + 0x32]"
+        },
+        {
+          "rva": "0xc3531",
+          "bytes": "72b8",
+          "asm": "jb 0x4c34eb"
+        },
+        {
+          "rva": "0xc3533",
+          "bytes": "6e",
+          "asm": "outsb dx, byte ptr [esi]"
+        }
+      ]
+    },
+    {
+      "rva": "0xc3532",
+      "file_offset": "0xc3532",
+      "section": ".text",
+      "runtime_text": "mov byte ptr [ebp-4],1",
+      "runtime_encoding_inferred_not_captured": "c645fc01",
+      "disk_bytes": "b86ed9bc",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc3532",
+          "bytes": "b86ed9bc0b",
+          "asm": "mov eax, 0xbbcd96e"
+        },
+        {
+          "rva": "0xc3537",
+          "bytes": "49",
+          "asm": "dec ecx"
+        },
+        {
+          "rva": "0xc3538",
+          "bytes": "9b",
+          "asm": "wait "
+        },
+        {
+          "rva": "0xc3539",
+          "bytes": "85db",
+          "asm": "test ebx, ebx"
+        },
+        {
+          "rva": "0xc353b",
+          "bytes": "9e",
+          "asm": "sahf "
+        }
+      ]
+    },
+    {
+      "rva": "0xc3536",
+      "file_offset": "0xc3536",
+      "section": ".text",
+      "runtime_text": "call [0x70b868]",
+      "runtime_encoding_inferred_not_captured": "ff1568b87000",
+      "disk_bytes": "0b499b85db9e",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc3536",
+          "bytes": "0b499b",
+          "asm": "or ecx, dword ptr [ecx - 0x65]"
+        },
+        {
+          "rva": "0xc3539",
+          "bytes": "85db",
+          "asm": "test ebx, ebx"
+        },
+        {
+          "rva": "0xc353b",
+          "bytes": "9e",
+          "asm": "sahf "
+        },
+        {
+          "rva": "0xc353c",
+          "bytes": "64e0a9",
+          "asm": "loopne 0x4c34e8"
+        },
+        {
+          "rva": "0xc353f",
+          "bytes": "4b",
+          "asm": "dec ebx"
+        },
+        {
+          "rva": "0xc3540",
+          "bytes": "3c1a",
+          "asm": "cmp al, 0x1a"
+        }
+      ]
+    },
+    {
+      "rva": "0xc354c",
+      "file_offset": "0xc354c",
+      "section": ".text",
+      "runtime_text": "call [0x70b86c]",
+      "runtime_encoding_inferred_not_captured": "ff156cb87000",
+      "disk_bytes": "ae86f45b4cf2",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc354c",
+          "bytes": "ae",
+          "asm": "scasb al, byte ptr es:[edi]"
+        },
+        {
+          "rva": "0xc354d",
+          "bytes": "86f4",
+          "asm": "xchg ah, dh"
+        },
+        {
+          "rva": "0xc354f",
+          "bytes": "5b",
+          "asm": "pop ebx"
+        },
+        {
+          "rva": "0xc3550",
+          "bytes": "4c",
+          "asm": "dec esp"
+        },
+        {
+          "rva": "0xc3551",
+          "bytes": "f2dab9e0b4c08a",
+          "asm": "fidivr dword ptr [ecx - 0x753f4b20]"
+        }
+      ]
+    },
+    {
+      "rva": "0xc3564",
+      "file_offset": "0xc3564",
+      "section": ".text",
+      "runtime_text": "call eax",
+      "runtime_encoding_inferred_not_captured": "ffd0",
+      "disk_bytes": "f520",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc3564",
+          "bytes": "f5",
+          "asm": "cmc "
+        },
+        {
+          "rva": "0xc3565",
+          "bytes": "2047f6",
+          "asm": "and byte ptr [edi - 0xa], al"
+        },
+        {
+          "rva": "0xc3568",
+          "bytes": "ef",
+          "asm": "out dx, eax"
+        },
+        {
+          "rva": "0xc3569",
+          "bytes": "f2ca7453",
+          "asm": "bnd retf 0x5374"
+        }
+      ]
+    },
+    {
+      "rva": "0xc3566",
+      "file_offset": "0xc3566",
+      "section": ".text",
+      "runtime_text": "call [0x70b870]",
+      "runtime_encoding_inferred_not_captured": "ff1570b87000",
+      "disk_bytes": "47f6eff2ca74",
+      "encoding_matches": false,
+      "disk_decode_candidate": [
+        {
+          "rva": "0xc3566",
+          "bytes": "47",
+          "asm": "inc edi"
+        },
+        {
+          "rva": "0xc3567",
+          "bytes": "f6ef",
+          "asm": "imul bh"
+        },
+        {
+          "rva": "0xc3569",
+          "bytes": "f2ca7453",
+          "asm": "bnd retf 0x5374"
+        }
+      ]
+    }
+  ],
+  "relocations_in_target_range": [],
+  "runtime_raw_instruction_bytes_available": false,
+  "comparison_limit": "Runtime mnemonic evidence only; encodings reconstructed for comparison, not historical memory bytes. Disk opcodes independently incompatible with recorded instructions.",
+  "protected_originals": [
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\actual-test-host.json",
+      "sha256": "64989e403bf073202b5d96ab3c4d96c28bb57aec59429486ac4337f11cbdce1a",
+      "expected": "64989e403bf073202b5d96ab3c4d96c28bb57aec59429486ac4337f11cbdce1a"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\copy-once.json",
+      "sha256": "adc5afc8ccb72655bc1f1d0c0bd76e316bf0bb711f8548ff57d3b6a7f949c98f",
+      "expected": "adc5afc8ccb72655bc1f1d0c0bd76e316bf0bb711f8548ff57d3b6a7f949c98f"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\debugger-observations.json",
+      "sha256": "a7227130fc2a6b10e914548f1781bfb1d3ea58858dc045543588afb90ed50473",
+      "expected": "a7227130fc2a6b10e914548f1781bfb1d3ea58858dc045543588afb90ed50473"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\initial.png",
+      "sha256": "01ccf07b88d399c3dee964ec0f8b2aecfe5dfa03f46d768308170bce8cff94e0",
+      "expected": "01ccf07b88d399c3dee964ec0f8b2aecfe5dfa03f46d768308170bce8cff94e0"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\launcher.json",
+      "sha256": "92f48cace5950e35114cdb1b75570d46bfc48c164299a5fc2468cce2213c31e1",
+      "expected": "92f48cace5950e35114cdb1b75570d46bfc48c164299a5fc2468cce2213c31e1"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\loaded-modules.json",
+      "sha256": "4c0d1753719cb2204256cb368abc8dbadf4c06aa7282a3a3061fa6d02a9716b5",
+      "expected": "4c0d1753719cb2204256cb368abc8dbadf4c06aa7282a3a3061fa6d02a9716b5"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\runtime-result.json",
+      "sha256": "65339599df822a8771908541cab981adb5834ed523ce64db07292def62c853a6",
+      "expected": "65339599df822a8771908541cab981adb5834ed523ce64db07292def62c853a6"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\runtime-result.md",
+      "sha256": "d271a36b71b141e173c34eb461c8366fe95cb8c958f894fa7a97026e1d17ffaf",
+      "expected": "d271a36b71b141e173c34eb461c8366fe95cb8c958f894fa7a97026e1d17ffaf"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\selected-test-rectangle.png",
+      "sha256": "fcec0f1764aa666383ba9f84c4770010e709913cb980837808cd7f387f8237f2",
+      "expected": "fcec0f1764aa666383ba9f84c4770010e709913cb980837808cd7f387f8237f2"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\test-host.json",
+      "sha256": "2627072e00cc40c43f12ad4adc9057526c101023181e3f0eb3a37dce714136b8",
+      "expected": "2627072e00cc40c43f12ad4adc9057526c101023181e3f0eb3a37dce714136b8"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\ui.ps1",
+      "sha256": "976ec7cd1b9915ebe3918e8ac91ee562cdea981979f58d17ed3a140c758b31eb",
+      "expected": "976ec7cd1b9915ebe3918e8ac91ee562cdea981979f58d17ed3a140c758b31eb"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-002-evidence.json",
+      "sha256": "ce06882105f6ac8cf4e16582b3c566db798337313f03eb10c5cdf9c72f60bf4f",
+      "expected": "ce06882105f6ac8cf4e16582b3c566db798337313f03eb10c5cdf9c72f60bf4f"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-002.md",
+      "sha256": "747cfe478483dec3d3687ec08ff393fd3856f2a7673dcd0795ef7477e4e36f50",
+      "expected": "747cfe478483dec3d3687ec08ff393fd3856f2a7673dcd0795ef7477e4e36f50"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-003-evidence.json",
+      "sha256": "0321137f5d6f764a038c55f4c2131d4231c0822925a311a87da2384aafafd060",
+      "expected": "0321137f5d6f764a038c55f4c2131d4231c0822925a311a87da2384aafafd060"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-003.md",
+      "sha256": "4946dc839d0dac28b2f808e3e727dd67279d8880d77c419e098daff4825223e0",
+      "expected": "4946dc839d0dac28b2f808e3e727dd67279d8880d77c419e098daff4825223e0"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-004-evidence.json",
+      "sha256": "10d1ce4b1756f7d260bed59ec1d2c85cf02953f3f675759f19dba121c4961803",
+      "expected": "10d1ce4b1756f7d260bed59ec1d2c85cf02953f3f675759f19dba121c4961803"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-004.md",
+      "sha256": "f23b12abdc77386c1637ec120f7b35dafc254e136c47ca554c34d83ef2466261",
+      "expected": "f23b12abdc77386c1637ec120f7b35dafc254e136c47ca554c34d83ef2466261"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-evidence.json",
+      "sha256": "7156d852480353b71e2aebeae907795b878471dd5e158e4de4aaa222d9acb1c4",
+      "expected": "7156d852480353b71e2aebeae907795b878471dd5e158e4de4aaa222d9acb1c4"
+    },
+    {
+      "path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly.md",
+      "sha256": "ae8db892ae70658820d9d3ba48669a5ea28cd833660fb0e97e411a28756a5c43",
+      "expected": "ae8db892ae70658820d9d3ba48669a5ea28cd833660fb0e97e411a28756a5c43"
+    }
+  ],
+  "git_head": "93e4cd5bccb3ef2f9dad0ae92adaf524a3a9e317"
+}
