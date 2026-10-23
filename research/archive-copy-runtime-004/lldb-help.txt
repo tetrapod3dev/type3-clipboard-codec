@@ -1,0 +1,398 @@
+(lldb) settings set term-width 120
+(lldb) help process attach
+     Attach to a process.
+
+Syntax: process attach <cmd-options>
+
+Command Options Usage:
+  process attach [-c] [-P <plugin>] [-p <pid>]
+  process attach [-ciw] [-P <plugin>] [-n <process-name>]
+
+       -P <plugin> ( --plugin <plugin> )
+            Name of the process plugin you want to use.
+
+       -c ( --continue )
+            Immediately continue the process once attached.
+
+       -i ( --include-existing )
+            Include existing processes when doing attach -w.
+
+       -n <process-name> ( --name <process-name> )
+            The name of the process to attach to.
+
+       -p <pid> ( --pid <pid> )
+            The process ID of an existing process to attach to.
+
+       -w ( --waitfor )
+            Wait for the process with <process-name> to launch.
+(lldb) help process detach
+     Detach from the current target process.
+
+Syntax: process detach
+
+Command Options Usage:
+  process detach [-s <boolean>]
+
+       -s <boolean> ( --keep-stopped <boolean> )
+            Whether or not the process should be kept stopped on detach (if possible).
+(lldb) help breakpoint set
+     Sets a breakpoint or set of breakpoints in the executable.
+
+Syntax: breakpoint set <cmd-options>
+
+Command Options Usage:
+  breakpoint set [-DHd] -l <linenum> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>] [-m <boolean>]
+  breakpoint set [-DHd] -a <address-expression> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-N <breakpoint-name>]
+  breakpoint set [-DHd] -n <function-name> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-DHd] -F <fullname> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-DHd] -S <selector> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-DHd] -M <method> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-DHd] -r <regular-expression> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-DHd] -b <function-name> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-L <source-language>] [-K <boolean>] [-N <breakpoint-name>] [-R <address>]
+  breakpoint set [-ADHd] -p <regular-expression> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-X <function-name>] [-N <breakpoint-name>] [-m <boolean>]
+  breakpoint set [-DHd] -E <source-language> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-w <boolean>] [-h <boolean>] [-N <breakpoint-name>]
+  breakpoint set [-DHd] -P <python-class> [-i <count>] [-o <boolean>] [-x <thread-index>] [-t <thread-id>] [-T <thread-name>] [-q <queue-name>] [-c <expr>] [-G <boolean>] [-C <command>] [-s <shlib-name>] [-f <filename>] [-k <none>] [-v <none>] [-N <breakpoint-name>]
+
+       -A ( --all-files )
+            All files are searched for source pattern matches.
+
+       -C <command> ( --command <command> )
+            A command to run when the breakpoint is hit, can be provided more than once, the commands will get run in
+            order left to right.
+
+       -D ( --dummy-breakpoints )
+            Act on Dummy breakpoints - i.e. breakpoints set before a file is provided, which prime new targets.
+
+       -E <source-language> ( --language-exception <source-language> )
+            Set the breakpoint on exceptions thrown by the specified language (without options, on throw but not
+            catch.)
+
+       -F <fullname> ( --fullname <fullname> )
+            Set the breakpoint by fully qualified function names. For C++ this means namespaces and all arguments, and
+            for Objective-C this means a full function prototype with class and selector.  Can be repeated multiple
+            times to make one breakpoint for multiple names.
+
+       -G <boolean> ( --auto-continue <boolean> )
+            The breakpoint will auto-continue after running its commands.
+
+       -H ( --hardware )
+            Require the breakpoint to use hardware breakpoints.
+
+       -K <boolean> ( --skip-prologue <boolean> )
+            sKip the prologue if the breakpoint is at the beginning of a function.  If not set the target.skip-prologue
+            setting is used.
+
+       -L <source-language> ( --language <source-language> )
+            Specifies the Language to use when interpreting the breakpoint's expression (note: currently only
+            implemented for setting breakpoints on identifiers).  If not set the target.language setting is used.
+
+       -M <method> ( --method <method> )
+            Set the breakpoint by C++ method names.  Can be repeated multiple times to make one breakpoint for multiple
+            methods.
+
+       -N <breakpoint-name> ( --breakpoint-name <breakpoint-name> )
+            Adds this to the list of names for this breakpoint.
+
+       -P <python-class> ( --python-class <python-class> )
+            The name of the class that implement a scripted breakpoint.
+
+       -R <address> ( --address-slide <address> )
+            Add the specified offset to whatever address(es) the breakpoint resolves to.  At present this applies the
+            offset directly as given, and doesn't try to align it to instruction boundaries.
+
+       -S <selector> ( --selector <selector> )
+            Set the breakpoint by ObjC selector name. Can be repeated multiple times to make one breakpoint for
+            multiple Selectors.
+
+       -T <thread-name> ( --thread-name <thread-name> )
+            The breakpoint stops only for the thread whose thread name matches this argument.
+
+       -X <function-name> ( --source-regexp-function <function-name> )
+            When used with '-p' limits the source regex to source contained in the named functions.  Can be repeated
+            multiple times.
+
+       -a <address-expression> ( --address <address-expression> )
+            Set the breakpoint at the specified address.  If the address maps uniquely to a particular binary, then the
+            address will be converted to a "file" address, so that the breakpoint will track that binary+offset no
+            matter where the binary eventually loads.  Alternately, if you also specify the module - with the -s option
+            - then the address will be treated as a file address in that module, and resolved accordingly.  Again, this
+            will allow lldb to track that offset on subsequent reloads.  The module need not have been loaded at the
+            time you specify this breakpoint, and will get resolved when the module is loaded.
+
+       -b <function-name> ( --basename <function-name> )
+            Set the breakpoint by function basename (C++ namespaces and arguments will be ignored).  Can be repeated
+            multiple times to make one breakpoint for multiple symbols.
+
+       -c <expr> ( --condition <expr> )
+            The breakpoint stops only if this condition expression evaluates to true.
+
+       -d ( --disable )
+            Disable the breakpoint.
+
+       -f <filename> ( --file <filename> )
+            Specifies the source file in which to set this breakpoint.  Note, by default lldb only looks for files that
+            are #included if they use the standard include file extensions.  To set breakpoints on .c/.cpp/.m/.mm files
+            that are #included, set target.inline-breakpoint-strategy to "always".
+
+       -h <boolean> ( --on-catch <boolean> )
+            Set the breakpoint on exception catcH.
+
+       -i <count> ( --ignore-count <count> )
+            Set the number of times this breakpoint is skipped before stopping.
+
+       -k <none> ( --python-class-key <none> )
+            The key for a key/value pair passed to the class that implements a scripted breakpoint.  Can be specified
+            more than once.
+
+       -l <linenum> ( --line <linenum> )
+            Specifies the line number on which to set this breakpoint.
+
+       -m <boolean> ( --move-to-nearest-code <boolean> )
+            Move breakpoints to nearest code. If not set the target.move-to-nearest-code setting is used.
+
+       -n <function-name> ( --name <function-name> )
+            Set the breakpoint by function name.  Can be repeated multiple times to make one breakpoint for multiple
+            names
+
+       -o <boolean> ( --one-shot <boolean> )
+            The breakpoint is deleted the first time it stop causes a stop.
+
+       -p <regular-expression> ( --source-pattern-regexp <regular-expression> )
+            Set the breakpoint by specifying a regular expression which is matched against the source text in a source
+            file or files specified with the -f option.  The -f option can be specified more than once.  If no source
+            files are specified, uses the current "default source file".  If you want to match against all source
+            files, pass the "--all-files" option.
+
+       -q <queue-name> ( --queue-name <queue-name> )
+            The breakpoint stops only for threads in the queue whose name is given by this argument.
+
+       -r <regular-expression> ( --func-regex <regular-expression> )
+            Set the breakpoint by function name, evaluating a regular-expression to find the function name(s).
+
+       -s <shlib-name> ( --shlib <shlib-name> )
+            Set the breakpoint only in this shared library.  Can repeat this option multiple times to specify multiple
+            shared libraries.
+
+       -t <thread-id> ( --thread-id <thread-id> )
+            The breakpoint stops only for the thread whose TID matches this argument.
+
+       -v <none> ( --python-class-value <none> )
+            The value for the previous key in the pair passed to the class that implements a scripted breakpoint.   
+            Can be specified more than once.
+
+       -w <boolean> ( --on-throw <boolean> )
+            Set the breakpoint on exception throW.
+
+       -x <thread-index> ( --thread-index <thread-index> )
+            The breakpoint stops only for the thread whose index matches this argument.
+(lldb) help breakpoint delete
+     Delete the specified breakpoint(s).  If no breakpoints are specified, delete them all.
+
+Syntax: breakpoint delete <cmd-options> [<breakpt-id | breakpt-id-list>]
+
+Command Options Usage:
+  breakpoint delete [-Df] [<breakpt-id | breakpt-id-list>]
+
+       -D ( --dummy-breakpoints )
+            Delete Dummy breakpoints - i.e. breakpoints set before a file is provided, which prime new targets.
+
+       -f ( --force )
+            Delete all breakpoints without querying for confirmation.
+     
+     This command takes options and free-form arguments.  If your arguments resemble option specifiers (i.e., they
+     start with a - or --), you must use ' -- ' between the end of the command options and the beginning of the
+     arguments.
+(lldb) help register read
+     Dump the contents of one or more register values from the current frame.  If no register is specified, dumps them
+     all.
+
+Syntax: register read <cmd-options> [<register-name> [<register-name> [...]]]
+
+Command Options Usage:
+  register read [-A] [-f <format>] [-G <gdb-format>] [-s <index>] [<register-name> [<register-name> [...]]]
+  register read [-Aa] [-f <format>] [-G <gdb-format>] [<register-name> [<register-name> [...]]]
+
+       -A ( --alternate )
+            Display register names using the alternate register name if there is one.
+
+       -G <gdb-format> ( --gdb-format <gdb-format> )
+            Specify a format using a GDB format specifier string.
+
+       -a ( --all )
+            Show all register sets.
+
+       -f <format> ( --format <format> )
+            Specify a format to be used for display.
+
+       -s <index> ( --set <index> )
+            Specify which register sets to dump by index.
+     
+     This command takes options and free-form arguments.  If your arguments resemble option specifiers (i.e., they
+     start with a - or --), you must use ' -- ' between the end of the command options and the beginning of the
+     arguments.
+(lldb) help memory read
+     Read from the memory of the current target process.
+
+Syntax: memory read <cmd-options> <address-expression> [<address-expression>]
+
+Command Options Usage:
+  memory read [-r] [-f <format>] [-c <count>] [-G <gdb-format>] [-s <byte-size>] [-l <number-per-line>] [-o <filename>] <address-expression> [<address-expression>]
+  memory read [-br] [-f <format>] [-c <count>] [-s <byte-size>] [-o <filename>] <address-expression> [<address-expression>]
+  memory read [-AFLORTr] -t <name> [-f <format>] [-c <count>] [-G <gdb-format>] [-E <count>] [-o <filename>] [-d <none>] [-S <boolean>] [-D <count>] [-P <count>] [-Y[<count>]] [-V <boolean>] [-Z <count>] <address-expression> [<address-expression>]
+  memory read -t <name> [-x <source-language>] <address-expression> [<address-expression>]
+
+       -A ( --show-all-children )
+            Ignore the upper bound on the number of children to show.
+
+       -D <count> ( --depth <count> )
+            Set the max recurse depth when dumping aggregate types (default is infinity).
+
+       -E <count> ( --offset <count> )
+            How many elements of the specified type to skip before starting to display data.
+
+       -F ( --flat )
+            Display results in a flat format that uses expression paths for each variable or member.
+
+       -G <gdb-format> ( --gdb-format <gdb-format> )
+            Specify a format using a GDB format specifier string.
+
+       -L ( --location )
+            Show variable location information.
+
+       -O ( --object-description )
+            Print as an Objective-C object.
+
+       -P <count> ( --ptr-depth <count> )
+            The number of pointers to be traversed when dumping values (default is zero).
+
+       -R ( --raw-output )
+            Don't use formatting options.
+
+       -S <boolean> ( --synthetic-type <boolean> )
+            Show the object obeying its synthetic provider, if available.
+
+       -T ( --show-types )
+            Show variable types when dumping values.
+
+       -V <boolean> ( --validate <boolean> )
+            Show results of type validators.
+
+       -Y[<count>] ( --no-summary-depth=[<count>] )
+            Set the depth at which omitting summary information stops (default is 1).
+
+       -Z <count> ( --element-count <count> )
+            Treat the result of the expression as if its type is an array of this many values.
+
+       -b ( --binary )
+            If true, memory will be saved as binary. If false, the memory is saved save as an ASCII dump that uses the
+            format, size, count and number per line settings.
+
+       -c <count> ( --count <count> )
+            The number of total items to display.
+
+       -d <none> ( --dynamic-type <none> )
+            Show the object as its full dynamic type, not its static type, if available.
+            Values: no-dynamic-values | run-target | no-run-target
+
+       -f <format> ( --format <format> )
+            Specify a format to be used for display.
+
+       -l <number-per-line> ( --num-per-line <number-per-line> )
+            The number of items per line to display.
+
+       -o <filename> ( --outfile <filename> )
+            Specify a path for capturing command output.
+
+       -r ( --force )
+            Necessary if reading over target.max-memory-read-size bytes.
+
+       -s <byte-size> ( --size <byte-size> )
+            The size in bytes to use when displaying with the selected format.
+
+       -t <name> ( --type <name> )
+            The name of a type to view memory as.
+
+       -x <source-language> ( --language <source-language> )
+            The language of the type to view memory as.
+
+       --append-outfile
+            Append to the file specified with '--outfile <path>'.
+     
+     This command takes options and free-form arguments.  If your arguments resemble option specifiers (i.e., they
+     start with a - or --), you must use ' -- ' between the end of the command options and the beginning of the
+     arguments.
+(lldb) help thread backtrace
+     Show thread call stacks.  Defaults to the current thread, thread indexes can be specified as arguments.
+     Use the thread-index "all" to see all threads.
+     Use the thread-index "unique" to see threads grouped by unique call stacks.
+     Use 'settings set frame-format' to customize the printing of frames in the backtrace and 'settings set
+     thread-format' to customize the thread header.
+
+Syntax: thread backtrace <cmd-options>
+
+Command Options Usage:
+  thread backtrace [-c <count>] [-e <boolean>] [-s <frame-index>]
+
+       -c <count> ( --count <count> )
+            How many frames to display (-1 for all)
+
+       -e <boolean> ( --extended <boolean> )
+            Show the extended backtrace, if available
+
+       -s <frame-index> ( --start <frame-index> )
+            Frame in which to start the backtrace
+(lldb) help image list
+     List current executable and dependent shared library images.
+
+Syntax: target modules list [<cmd-options>]
+
+Command Options Usage:
+  target modules list [-ghou] [-a <address-expression>] [-A[<width>]] [-t[<width>]] [-f[<width>]] [-d[<width>]] [-b[<width>]] [-s[<width>]] [-S[<width>]] [-m[<width>]] [-r[<width>]] [-p[<none>]]
+
+       -A[<width>] ( --arch=[<width>] )
+            Display the architecture when listing images.
+
+       -S[<width>] ( --symfile-unique=[<width>] )
+            Display the symbol file with optional width only if it is different from the executable object file.
+
+       -a <address-expression> ( --address <address-expression> )
+            Display the image at this address.
+
+       -b[<width>] ( --basename=[<width>] )
+            Display the basename with optional width for the image object file.
+
+       -d[<width>] ( --directory=[<width>] )
+            Display the directory with optional width for the image object file.
+
+       -f[<width>] ( --fullpath=[<width>] )
+            Display the fullpath to the image object file.
+
+       -g ( --global )
+            Display the modules from the global module list, not just the current target.
+
+       -h ( --header )
+            Display the image base address as a load address if debugging, a file address otherwise.
+
+       -m[<width>] ( --mod-time=[<width>] )
+            Display the modification time with optional width of the module.
+
+       -o ( --offset )
+            Display the image load address offset from the base file address (the slide amount).
+
+       -p[<none>] ( --pointer=[<none>] )
+            Display the module pointer.
+
+       -r[<width>] ( --ref-count=[<width>] )
+            Display the reference count if the module is still in the shared module cache.
+
+       -s[<width>] ( --symfile=[<width>] )
+            Display the fullpath to the image symbol file with optional width.
+
+       -t[<width>] ( --triple=[<width>] )
+            Display the triple when listing images.
+
+       -u ( --uuid )
+            Display the UUID when listing images.
+
+'image' is an abbreviation for 'target modules'
+(lldb) quit

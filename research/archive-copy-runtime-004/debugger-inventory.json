@@ -1,0 +1,54 @@
+{
+  "tools": [
+    {
+      "path": "C:\\Program Files\\JetBrains\\CLion 2026.2.3\\bin\\lldb\\win\\x86\\bin\\lldb.exe",
+      "sha256": "8af1daad95040f92a2045ed92a0cc020a02617edc88467a35e489aad713039d9",
+      "machine": "0x14c",
+      "selected": true
+    },
+    {
+      "path": "C:\\Program Files\\JetBrains\\CLion 2026.2.3\\bin\\lldb\\win\\x64\\bin\\lldb.exe",
+      "sha256": "5434317bb71c80ca5933248183c2c925b8818507a2615e2efe919e223ddb81a5",
+      "machine": "0x8664",
+      "selected": false
+    },
+    {
+      "path": "C:\\Program Files\\JetBrains\\CLion 2026.2.3\\bin\\gdb\\win\\x64\\bin\\gdb.exe",
+      "sha256": "24e793f797f93a4fb4a74fdd35272aa0795a389d14b8e54a6aab1d9145d89339",
+      "machine": "0x8664",
+      "selected": false
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\Remote Debugger\\x86\\msvsmon.exe",
+      "sha256": "ed3bd9f255b28dc4ad5cd590b8ed82a26f17c414ba146c3fd7488553afef05da",
+      "machine": "0x14c",
+      "selected": false
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Platform\\Debugger\\VsDebugConsole.exe",
+      "sha256": "6a2528dfbeb2bc1b8ff7c931e4217bb6982dea3947560264dd4e83ef0b28255b",
+      "machine": "0x14c",
+      "selected": false
+    }
+  ],
+  "selected_version": "lldb version 9.0.0 (JetBrains IDE bundle; x86; rider-lldb-9; build 593)",
+  "selected_version_exit": 0,
+  "help_exit": 0,
+  "executed_commands": [
+    "settings set term-width 120",
+    "help process attach",
+    "help process detach",
+    "help breakpoint set",
+    "help breakpoint delete",
+    "help register read",
+    "help memory read",
+    "help thread backtrace",
+    "help image list",
+    "quit"
+  ],
+  "attach_executed": false,
+  "target_created": false,
+  "init_files_disabled": true,
+  "Type3_compatibility": "NOT_RUNTIME_TESTED",
+  "WinDbg_CDB_NTSD": "Not found in PATH, Windows Kits, Visual Studio and current-user WinDbg Appx lookup"
+}

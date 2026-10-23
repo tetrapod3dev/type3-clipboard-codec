@@ -1,0 +1,72 @@
+{
+  "verdict": "COPY_PRODUCER_RUNTIME_PARTIAL",
+  "runtime_approved": true,
+  "test_host_pid": 20560,
+  "initial_existing_hosts": [],
+  "ctrl_c_requests": 1,
+  "Copy_completion": "NOT_CONFIRMED",
+  "clipboard_publication": "NOT_OBSERVED",
+  "archive_constructor_observed": true,
+  "archive_mode": 0,
+  "buffer_size": 4096,
+  "buffer_pointer_argument": 0,
+  "constructor_return_caller": {
+    "module": "Pltf.exe",
+    "rva": "0xC3532"
+  },
+  "file_dynamic_class": "UNKNOWN; vptr points into MFC80 at RVA0x7C24",
+  "archive_alias": "A1",
+  "map_after_constructor": "NULL; count not valid",
+  "map_before_first_WriteObject": "NULL; count not valid",
+  "map_after_MapObject_null": {
+    "count": 1
+  },
+  "map_after_first_class_object_registration": {
+    "count": 3
+  },
+  "prefix_before_first_WriteObject": "000000000100",
+  "first_descriptor": "FFFF/1/5/CZone at buffer offset6",
+  "object_dynamic_type": "UNKNOWN; O1 vptr ShapeDLL RVA0xF7EC; serialization class CZone observed",
+  "first_WriteObject_direct_return": {
+    "module": "MFC80.dll",
+    "rva": "0x4D433"
+  },
+  "second_WriteObject_direct_return": {
+    "module": "Maude.dll",
+    "rva": "0x5AB54"
+  },
+  "observed_calls": [
+    "Pltf caller -> CArchive constructor",
+    "Pltf caller -> CTxtFonts BeginSave/Save/EndSave imports (disassembly)",
+    "CArchive WriteObject -> MapObject(null)",
+    "Maude SerializeDeque2 -> WriteObject"
+  ],
+  "prefix_producer": "UNKNOWN; ordering narrowed, no exact split of six bytes proved",
+  "unexpected_stop": {
+    "code": "0x80000003",
+    "module": "TypeEditDLL.dll",
+    "observed_address": "0x08E46AD0",
+    "thread_index": 4,
+    "thread_name": "combase.dll thread",
+    "relation_to_our_breakpoints": "Different address; cause not determined"
+  },
+  "own_breakpoints_removed": [
+    1,
+    2,
+    4,
+    6
+  ],
+  "one_shot_breakpoints_consumed": [
+    3,
+    5
+  ],
+  "debugger_session": "LLDB remains attached, session 1632",
+  "host_state": "STOPPED_AT_EXCEPTION; no continue or detach attempted after unexpected stop",
+  "safe_detach": "UNKNOWN; user decision required",
+  "mode": "OFF",
+  "existing_file_changes": [],
+  "documents": "New unsaved single-rectangle test document preserved; no save/close/discard",
+  "runtime_stops_after_Copy_request": 8,
+  "native_getter_calls_by_agent": 0,
+  "H_Paste": "NOT_EXECUTED"
+}

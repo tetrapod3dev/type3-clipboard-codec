@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "MFC80.DLL",
+    "Path": "C:\\WINDOWS\\WinSxS\\Fusion\\x86_microsoft.vc80.mfc_1fc8b3b9a1e18e3b_none_bd39c11e9405d29b\\8.0\\8.0.50727.6195\\MFC80.DLL",
+    "Base": "6C320000",
+    "SHA256": "8204DBCC054C1E54B6065BACB78C55716681AD91759E25111B4E4797E51D0AA3"
+  },
+  {
+    "Name": "Maude.dll",
+    "Path": "C:\\TypeEdit_2009\\EXE\\Maude.dll",
+    "Base": "3B30000",
+    "SHA256": "EDED4261FE6DF1F22CEB098648188A6D789C1B6EED5A713A97E0E0E52A895F91"
+  },
+  {
+    "Name": "BaseDoc.dll",
+    "Path": "C:\\TypeEdit_2009\\EXE\\BaseDoc.dll",
+    "Base": "3C60000",
+    "SHA256": "68EFD5F43DE9D881516D03C1AC440DC29CC95855C8B3CFD7430DB9045E41DDCC"
+  },
+  {
+    "Name": "MFC80KOR.DLL",
+    "Path": "C:\\WINDOWS\\WinSxS\\Fusion\\x86_microsoft.vc80.mfcloc_1fc8b3b9a1e18e3b_none_36654d36d135ea77\\8.0\\8.0.50727.6195\\MFC80KOR.DLL",
+    "Base": "6D330000",
+    "SHA256": "E0D59FE3C09DC18151486CCDBB64C8158D0D4911B59CC90E0760F0FE5B8B2631"
+  }
+]
