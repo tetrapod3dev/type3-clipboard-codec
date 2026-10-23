@@ -1,0 +1,27 @@
+{
+  "ObservedAt": "2026-10-23T17:49:36.6864329+09:00",
+  "Verdict": "INCIDENT_CLOSED",
+  "Approval": "PID 20560 시험 Type3 프로세스의 미저장 시험 문서 소실을 승인하며, 해당 PID의 통제된 강제 종료를 승인한다.",
+  "PreKillIdentity": "PID20560 2026-10-23T15:16:19.472414+09:00 C:\\TypeEdit_2009\\EXE\\Pltf.exe; LLDB PID31084 2026-10-23T15:17:12.69677+09:00",
+  "Commands": [
+    "process status",
+    "process kill",
+    "process status",
+    "quit"
+  ],
+  "KillCount": 1,
+  "KillOutput": "Process 20560 exited with status = 0 (0x00000000)",
+  "Type3AbsentConfirmed": true,
+  "LLDBAbsentConfirmed": true,
+  "ToolSession1632ExitCode": 0,
+  "ProtectedFileCount": 19,
+  "ProtectedFilesChanged": 0,
+  "Mode": "OFF",
+  "AsyncTasks": "Tool session 1632 completed; actual UI row display UNKNOWN",
+  "OtherInstances": "No commands or UI actions targeted other Type3 instances; their internal state not inspected",
+  "RemainingUnknown": [
+    "Exception origin",
+    "Copy completion/publication",
+    "Async Tasks UI display"
+  ]
+}

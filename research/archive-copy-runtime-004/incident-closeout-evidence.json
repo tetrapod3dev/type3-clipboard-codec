@@ -1,0 +1,124 @@
+{
+  "ObservedAt": "2026-10-23T17:46:33.5056694+09:00",
+  "Status": "PREPARED_AWAITING_EXPLICIT_TERMINATION_APPROVAL",
+  "Identity": [
+    {
+      "ProcessId": 20560,
+      "ParentProcessId": 39992,
+      "CreationDate": "2026-10-23T15:16:19.472414+09:00",
+      "ExecutablePath": "C:\\TypeEdit_2009\\EXE\\Pltf.exe",
+      "CommandLine": "\"C:\\TypeEdit_2009\\EXE\\Pltf.exe\" -PLUG TypeEditDLL.dll -LOADER TypeEdit.exe"
+    },
+    {
+      "ProcessId": 31084,
+      "ParentProcessId": 28572,
+      "CreationDate": "2026-10-23T15:17:12.69677+09:00",
+      "ExecutablePath": "C:\\Program Files\\JetBrains\\CLion 2026.2.3\\bin\\lldb\\win\\x86\\bin\\lldb.exe",
+      "CommandLine": "\"C:\\Program Files\\JetBrains\\CLion 2026.2.3\\bin\\lldb\\win\\x86\\bin\\lldb.exe\" --no-lldbinit"
+    }
+  ],
+  "ToolSession": 1632,
+  "LLDBReadCommand": "process status",
+  "LLDBResult": "Process 20560 stopped; thread #4; exception 0x80000003 at 0x08e46ad0; EIP 0x08e46ad1; normal (lldb) prompt",
+  "ExplicitTerminationApproval": false,
+  "ExecutedControlCommands": [],
+  "ProtectedFiles": [
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\actual-test-host.json",
+      "Length": 235,
+      "SHA256": "64989E403BF073202B5D96AB3C4D96C28BB57AEC59429486AC4337F11CBDCE1A"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\copy-once.json",
+      "Length": 108,
+      "SHA256": "ADC5AFC8CCB72655BC1F1D0C0BD76E316BF0BB711F8548FF57D3B6A7F949C98F"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\debugger-observations.json",
+      "Length": 12778,
+      "SHA256": "A7227130FC2A6B10E914548F1781BFB1D3EA58858DC045543588AFB90ED50473"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\initial.png",
+      "Length": 176146,
+      "SHA256": "01CCF07B88D399C3DEE964EC0F8B2AECFE5DFA03F46D768308170BCE8CFF94E0"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\launcher.json",
+      "Length": 133,
+      "SHA256": "92F48CACE5950E35114CDB1B75570D46BFC48C164299A5FC2468CCE2213C31E1"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\loaded-modules.json",
+      "Length": 970,
+      "SHA256": "4C0D1753719CB2204256CB368ABC8DBADF4C06AA7282A3A3061FA6D02A9716B5"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\runtime-result.json",
+      "Length": 2403,
+      "SHA256": "65339599DF822A8771908541CAB981ADB5834ED523CE64DB07292DEF62C853A6"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\runtime-result.md",
+      "Length": 7341,
+      "SHA256": "D271A36B71B141E173C34EB461C8366FE95CB8C958F894FA7A97026E1D17FFAF"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\selected-test-rectangle.png",
+      "Length": 173491,
+      "SHA256": "FCEC0F1764AA666383BA9F84C4770010E709913CB980837808CD7F387F8237F2"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\test-host.json",
+      "Length": 74,
+      "SHA256": "2627072E00CC40C43F12AD4ADC9057526C101023181E3F0EB3A37DCE714136B8"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\runtime-001\\ui.ps1",
+      "Length": 2937,
+      "SHA256": "976EC7CD1B9915EBE3918E8AC91EE562CDEA981979F58D17ED3A140C758B31EB"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-002-evidence.json",
+      "Length": 1211,
+      "SHA256": "CE06882105F6AC8CF4E16582B3C566DB798337313F03EB10C5CDF9C72F60BF4F"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-002.md",
+      "Length": 3633,
+      "SHA256": "747CFE478483DEC3D3687EC08FF393FD3856F2A7673DCD0795EF7477E4E36F50"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-003-evidence.json",
+      "Length": 1088,
+      "SHA256": "0321137F5D6F764A038C55F4C2131D4231C0822925A311A87DA2384AAFAFD060"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-003.md",
+      "Length": 3118,
+      "SHA256": "4946DC839D0DAC28B2F808E3E727DD67279D8880D77C419E098DAFF4825223E0"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-004-evidence.json",
+      "Length": 5294,
+      "SHA256": "10D1CE4B1756F7D260BED59EC1D2C85CF02953F3F675759F19DBA121C4961803"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-004.md",
+      "Length": 10551,
+      "SHA256": "F23B12ABDC77386C1637EC120F7B35DAFC254E136C47CA554C34D83EF2466261"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly-evidence.json",
+      "Length": 4914,
+      "SHA256": "7156D852480353B71E2AEBEAE907795B878471DD5E158E4DE4AAA222D9ACB1C4"
+    },
+    {
+      "Path": "C:\\work\\develop\\type3-clipboard-codec\\research\\archive-copy-runtime-004\\incident-readonly.md",
+      "Length": 5895,
+      "SHA256": "AE8DB892AE70658820D9D3BA48669A5EA28CD833660FB0E97E411A28756A5C43"
+    }
+  ],
+  "Mode": "OFF",
+  "AsyncTasksUIStatus": "UNKNOWN; session 1632 remains active"
+}
