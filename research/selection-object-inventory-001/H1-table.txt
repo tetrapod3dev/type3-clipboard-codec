@@ -1,0 +1,7 @@
+Status: PARTIAL | SHA256: 1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af
+Top-level selected objects: UNKNOWN | group ownership: UNKNOWN | complete: false
+| candidate | shape (HEURISTIC) | records | contour bytes | text candidate | color candidate | bbox m (HEURISTIC) |
+|---|---|---|---|---|---|---|
+| 0 | rectangle | 4 | [630, 774] | None | Turquoise | {'xmin_m': 0.6, 'ymin_m': 0.2, 'zmin_m': 0.0, 'xmax_m': 0.655, 'ymax_m': 0.23500000000000004, 'zmax_m': 0.0} |
+| 1 | rectangle | 4 | [1375, 1519] | None | Navy Blue | {'xmin_m': 0.45, 'ymin_m': 0.2, 'zmin_m': 0.0, 'xmax_m': 0.48, 'ymax_m': 0.22, 'zmax_m': 0.0} |
+Candidates are not a complete object list. No persistent IDs or write permission.
