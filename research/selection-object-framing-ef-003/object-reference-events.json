@@ -1,0 +1,2368 @@
+{
+  "verdict": "SELECTION_OBJECT_FRAMING_EF_BLOCKED",
+  "exact_top_level_enumeration": false,
+  "group_membership_verified": false,
+  "text_object_ownership_verified": false,
+  "complete_archive_extent_verified": false,
+  "production_change_allowed": false,
+  "scope": "Evidence audit using existing descriptor scanner, pre-slot cursor walker and explicit-origin base walker; no new Archive Reader, tag search or forced synchronization",
+  "A_archive_object_evidence": {
+    "confirmed_object_creation_events": [],
+    "confirmed_object_reference_events": [],
+    "class_map_initial_state": "UNKNOWN",
+    "object_map_initial_state": "UNKNOWN",
+    "body_extents": [],
+    "stops": {
+      "E1": [
+        {
+          "event_type": "UNSUPPORTED_RECORD",
+          "cursor": 0,
+          "next_cursor": 0,
+          "halted": true,
+          "source_range": [
+            0,
+            6
+          ],
+          "raw_hex": "010000004859",
+          "tag_interpretation": "UNKNOWN; raw prefix is not interpreted as an object reference",
+          "class": null,
+          "schema": null,
+          "archive_class_id": null,
+          "archive_object_id": null,
+          "parent_relation": "UNKNOWN",
+          "confidence": "UNSUPPORTED",
+          "reason": "Archive entry / initial map / direct Serialize versus WriteObject contract unavailable",
+          "evidence": [
+            "research/archive-producer-crosswalk-005/result.md",
+            "docs/typeeditzone_mfc_archive_investigation.md"
+          ]
+        }
+      ],
+      "F": [
+        {
+          "event_type": "UNSUPPORTED_RECORD",
+          "cursor": 0,
+          "next_cursor": 0,
+          "halted": true,
+          "source_range": [
+            0,
+            6
+          ],
+          "raw_hex": "010000004859",
+          "tag_interpretation": "UNKNOWN; raw prefix is not interpreted as an object reference",
+          "class": null,
+          "schema": null,
+          "archive_class_id": null,
+          "archive_object_id": null,
+          "parent_relation": "UNKNOWN",
+          "confidence": "UNSUPPORTED",
+          "reason": "Archive entry / initial map / direct Serialize versus WriteObject contract unavailable",
+          "evidence": [
+            "research/archive-producer-crosswalk-005/result.md",
+            "docs/typeeditzone_mfc_archive_investigation.md"
+          ]
+        }
+      ]
+    }
+  },
+  "B_data_occurrence_evidence": {
+    "E1": {
+      "source": "research\\selection-object-inventory-001\\samples\\E1.bin",
+      "file_sha256": "9957013e159914f0df2c4ccc21238c5708c440e7ff4a376c08e03351d69095c2",
+      "decoded_sha256": "9957013e159914f0df2c4ccc21238c5708c440e7ff4a376c08e03351d69095c2",
+      "input_length": 12288,
+      "prefix_before_first_descriptor": "010000004859b0dfb0edb5f100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 375,
+          "descriptor_end": 392
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 1722,
+          "descriptor_end": 1735
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 1881,
+          "descriptor_end": 1895
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 2113,
+          "descriptor_end": 2134
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 375,
+          "local_body_start_hypothesis": 392,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 4,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 574,
+            "first_attrchar_absolute": 702,
+            "char_attribute_count": 4,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              84,
+              49,
+              65,
+              0
+            ],
+            "reviewed_record_windows_end": 1518,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": {
+        "origin_hypothesis": 81,
+        "base_end": 219,
+        "consumed": 138,
+        "fields": [
+          {
+            "name": "cube_two_vectors",
+            "span": [
+              81,
+              129
+            ],
+            "width": 48,
+            "raw_hex": "700d1c762257bd3fe03fefa2be47c43f0000000000000000204f52c58c86e03f4c35115c6ab9e03f0000000000000000",
+            "code_evidence": "58462 -> reused LGeom 110F0/11770, six binary64 stores"
+          },
+          {
+            "name": "stored_flags",
+            "span": [
+              129,
+              133
+            ],
+            "width": 4,
+            "raw_hex": "00100001",
+            "code_evidence": "58482 Write4; source this+50 OR 01001000",
+            "value": 16781312
+          },
+          {
+            "name": "base_version",
+            "span": [
+              133,
+              137
+            ],
+            "width": 4,
+            "raw_hex": "08000000",
+            "code_evidence": "58498 Write4 constant8",
+            "value": 8
+          },
+          {
+            "name": "member_58",
+            "span": [
+              137,
+              141
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584A5 Write4",
+            "value": 1
+          },
+          {
+            "name": "member_5c",
+            "span": [
+              141,
+              145
+            ],
+            "width": 4,
+            "raw_hex": "00000000",
+            "code_evidence": "584B2 Write4",
+            "value": 0
+          },
+          {
+            "name": "member_60",
+            "span": [
+              145,
+              149
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584BF Write4",
+            "value": 1
+          },
+          {
+            "name": "member_64",
+            "span": [
+              149,
+              153
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584CC Write4",
+            "value": 1
+          },
+          {
+            "name": "guid_version",
+            "span": [
+              153,
+              157
+            ],
+            "width": 4,
+            "raw_hex": "02000000",
+            "code_evidence": "584DB -> reused 5D9AA Write4",
+            "value": 2
+          },
+          {
+            "name": "guid_raw",
+            "span": [
+              157,
+              173
+            ],
+            "width": 16,
+            "raw_hex": "bd285c970001e24ea04284166711a92a",
+            "code_evidence": "reused 5D9B7 Write16; not document identity"
+          },
+          {
+            "name": "guid_property_count",
+            "span": [
+              173,
+              177
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "reused 5D324 Write4",
+            "value": 1
+          },
+          {
+            "name": "property_0_key_length",
+            "span": [
+              177,
+              181
+            ],
+            "width": 4,
+            "raw_hex": "14000000",
+            "code_evidence": "reused 5CDF8 Write4",
+            "value": 20
+          },
+          {
+            "name": "property_0_key_bytes",
+            "span": [
+              181,
+              201
+            ],
+            "width": 20,
+            "raw_hex": "4f424a4554494e464f535f434c4153534e414d45",
+            "code_evidence": "reused 5CE09 Write exactly stored byte length"
+          },
+          {
+            "name": "property_0_value_length",
+            "span": [
+              201,
+              205
+            ],
+            "width": 4,
+            "raw_hex": "06000000",
+            "code_evidence": "reused 5CDF8 Write4",
+            "value": 6
+          },
+          {
+            "name": "property_0_value_bytes",
+            "span": [
+              205,
+              211
+            ],
+            "width": 6,
+            "raw_hex": "434f6244616f",
+            "code_evidence": "reused 5CE09 Write exactly stored byte length"
+          },
+          {
+            "name": "extra_map_count",
+            "span": [
+              211,
+              219
+            ],
+            "width": 8,
+            "raw_hex": "0000000000000000",
+            "code_evidence": "584E0 -> reused 5817D Write8",
+            "value": 0
+          }
+        ],
+        "origin_status": "descriptor_end_hypothesis_not_global_WriteObject_proof",
+        "parent_children": "Unknown",
+        "descriptor_candidate_span": [
+          70,
+          81
+        ],
+        "following_fields": [
+          {
+            "name": "ctn_version",
+            "span": [
+              219,
+              223
+            ],
+            "width": 4,
+            "raw_hex": "03000000",
+            "code_evidence": "5ACAF Write4; constant3",
+            "value": 3
+          },
+          {
+            "name": "helper_count",
+            "span": [
+              223,
+              227
+            ],
+            "width": 4,
+            "raw_hex": "02000000",
+            "code_evidence": "5AB28 Write4; CVnNContener count, ownership Unknown",
+            "value": 2
+          }
+        ],
+        "following_count_raw": 2,
+        "next_object_candidate": 227,
+        "verdict": "BASE_SERIALIZE_FRAMING_PARTIAL"
+      },
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0300",
+        "last_word_value": 3,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "F": {
+      "source": "research\\selection-object-inventory-001\\samples\\F.bin",
+      "file_sha256": "e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743",
+      "decoded_sha256": "e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743",
+      "input_length": 12288,
+      "prefix_before_first_descriptor": "010000004859b0dfb0edb5f100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 227,
+          "descriptor_end": 240
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 386,
+          "descriptor_end": 400
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 690,
+          "descriptor_end": 711
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 995,
+          "descriptor_end": 1012
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 995,
+          "local_body_start_hypothesis": 1012,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 4,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 1194,
+            "first_attrchar_absolute": 1322,
+            "char_attribute_count": 4,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              84,
+              49,
+              65,
+              0
+            ],
+            "reviewed_record_windows_end": 2138,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": {
+        "origin_hypothesis": 81,
+        "base_end": 219,
+        "consumed": 138,
+        "fields": [
+          {
+            "name": "cube_two_vectors",
+            "span": [
+              81,
+              129
+            ],
+            "width": 48,
+            "raw_hex": "700d1c762257bd3fe03fefa2be47c43f0000000000000000c4dc77deac7fd13f309422145e7cd13f0000000000000000",
+            "code_evidence": "58462 -> reused LGeom 110F0/11770, six binary64 stores"
+          },
+          {
+            "name": "stored_flags",
+            "span": [
+              129,
+              133
+            ],
+            "width": 4,
+            "raw_hex": "00100001",
+            "code_evidence": "58482 Write4; source this+50 OR 01001000",
+            "value": 16781312
+          },
+          {
+            "name": "base_version",
+            "span": [
+              133,
+              137
+            ],
+            "width": 4,
+            "raw_hex": "08000000",
+            "code_evidence": "58498 Write4 constant8",
+            "value": 8
+          },
+          {
+            "name": "member_58",
+            "span": [
+              137,
+              141
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584A5 Write4",
+            "value": 1
+          },
+          {
+            "name": "member_5c",
+            "span": [
+              141,
+              145
+            ],
+            "width": 4,
+            "raw_hex": "00000000",
+            "code_evidence": "584B2 Write4",
+            "value": 0
+          },
+          {
+            "name": "member_60",
+            "span": [
+              145,
+              149
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584BF Write4",
+            "value": 1
+          },
+          {
+            "name": "member_64",
+            "span": [
+              149,
+              153
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "584CC Write4",
+            "value": 1
+          },
+          {
+            "name": "guid_version",
+            "span": [
+              153,
+              157
+            ],
+            "width": 4,
+            "raw_hex": "02000000",
+            "code_evidence": "584DB -> reused 5D9AA Write4",
+            "value": 2
+          },
+          {
+            "name": "guid_raw",
+            "span": [
+              157,
+              173
+            ],
+            "width": 16,
+            "raw_hex": "1aff95058152f6458e642b5d8d03497c",
+            "code_evidence": "reused 5D9B7 Write16; not document identity"
+          },
+          {
+            "name": "guid_property_count",
+            "span": [
+              173,
+              177
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "reused 5D324 Write4",
+            "value": 1
+          },
+          {
+            "name": "property_0_key_length",
+            "span": [
+              177,
+              181
+            ],
+            "width": 4,
+            "raw_hex": "14000000",
+            "code_evidence": "reused 5CDF8 Write4",
+            "value": 20
+          },
+          {
+            "name": "property_0_key_bytes",
+            "span": [
+              181,
+              201
+            ],
+            "width": 20,
+            "raw_hex": "4f424a4554494e464f535f434c4153534e414d45",
+            "code_evidence": "reused 5CE09 Write exactly stored byte length"
+          },
+          {
+            "name": "property_0_value_length",
+            "span": [
+              201,
+              205
+            ],
+            "width": 4,
+            "raw_hex": "06000000",
+            "code_evidence": "reused 5CDF8 Write4",
+            "value": 6
+          },
+          {
+            "name": "property_0_value_bytes",
+            "span": [
+              205,
+              211
+            ],
+            "width": 6,
+            "raw_hex": "434f6244616f",
+            "code_evidence": "reused 5CE09 Write exactly stored byte length"
+          },
+          {
+            "name": "extra_map_count",
+            "span": [
+              211,
+              219
+            ],
+            "width": 8,
+            "raw_hex": "0000000000000000",
+            "code_evidence": "584E0 -> reused 5817D Write8",
+            "value": 0
+          }
+        ],
+        "origin_status": "descriptor_end_hypothesis_not_global_WriteObject_proof",
+        "parent_children": "Unknown",
+        "descriptor_candidate_span": [
+          70,
+          81
+        ],
+        "following_fields": [
+          {
+            "name": "ctn_version",
+            "span": [
+              219,
+              223
+            ],
+            "width": 4,
+            "raw_hex": "03000000",
+            "code_evidence": "5ACAF Write4; constant3",
+            "value": 3
+          },
+          {
+            "name": "helper_count",
+            "span": [
+              223,
+              227
+            ],
+            "width": 4,
+            "raw_hex": "01000000",
+            "code_evidence": "5AB28 Write4; CVnNContener count, ownership Unknown",
+            "value": 1
+          }
+        ],
+        "following_count_raw": 1,
+        "next_object_candidate": 227,
+        "verdict": "BASE_SERIALIZE_FRAMING_PARTIAL"
+      },
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0400",
+        "last_word_value": 4,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_three_objects_grouped_order_abc": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc.txt",
+      "file_sha256": "aa8a05d891b4e9e620edfb0b06ab8b5bec12922b8b5d566d6369fe423c13291f",
+      "decoded_sha256": "4144746fdd1904efaa7b1e5f48bb297bf76f3167064858f82b3b76d5f73720c8",
+      "input_length": 16384,
+      "prefix_before_first_descriptor": "01000000417269616c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 227,
+          "descriptor_end": 244
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 2534,
+          "descriptor_end": 2547
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 2693,
+          "descriptor_end": 2707
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 2925,
+          "descriptor_end": 2946
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 227,
+          "local_body_start_hypothesis": 244,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 8,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 426,
+            "first_attrchar_absolute": 554,
+            "char_attribute_count": 8,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              103,
+              0
+            ],
+            "reviewed_record_windows_end": 2186,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0100",
+        "last_word_value": 1,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_three_objects_not_grouped": {
+      "source": "tests\\samples\\text\\text_three_objects_not_grouped.txt",
+      "file_sha256": "e1a12f77519ccc4337f1c4faaa33d6513b6d63b1cffe4705c420bf58389fc79a",
+      "decoded_sha256": "201907994ff2baad4d492159302468ba1fc59555f611eed1577cf2fa9ee2637b",
+      "input_length": 16384,
+      "prefix_before_first_descriptor": "01000000417269616c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 227,
+          "descriptor_end": 244
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 1574,
+          "descriptor_end": 1587
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 1733,
+          "descriptor_end": 1747
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 1965,
+          "descriptor_end": 1986
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 227,
+          "local_body_start_hypothesis": 244,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 4,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 426,
+            "first_attrchar_absolute": 554,
+            "char_attribute_count": 4,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              88,
+              89,
+              90,
+              0
+            ],
+            "reviewed_record_windows_end": 1370,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0300",
+        "last_word_value": 3,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_three_objects_grouped_order_cba": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_cba.txt",
+      "file_sha256": "8b9055901913933334875d11845b5985adb92019640f1f396ac6457213bac3e2",
+      "decoded_sha256": "4b9a4ade21a1311659338e66cb0330f90bdbaffd7b6ad3bf0c46c1f8b0510449",
+      "input_length": 16384,
+      "prefix_before_first_descriptor": "01000000417269616c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 227,
+          "descriptor_end": 244
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 1574,
+          "descriptor_end": 1587
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 1733,
+          "descriptor_end": 1747
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 1965,
+          "descriptor_end": 1986
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 227,
+          "local_body_start_hypothesis": 244,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 4,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 426,
+            "first_attrchar_absolute": 554,
+            "char_attribute_count": 4,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              88,
+              89,
+              90,
+              0
+            ],
+            "reviewed_record_windows_end": 1370,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0100",
+        "last_word_value": 1,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_two_objects_same_color_not_grouped": {
+      "source": "tests\\samples\\text\\text_two_objects_same_color_not_grouped.txt",
+      "file_sha256": "437ea0e093dc9319b543414c24f707dd8d3db5605db7afd95ba853f4f33ad5c0",
+      "decoded_sha256": "e4331bd12a5ea44db09d661b6e3674e685f834b640f66da31210dd4fa6533545",
+      "input_length": 12288,
+      "prefix_before_first_descriptor": "01000000417269616c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 227,
+          "descriptor_end": 244
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 3254,
+          "descriptor_end": 3267
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 3413,
+          "descriptor_end": 3427
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 3645,
+          "descriptor_end": 3666
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 227,
+          "local_body_start_hypothesis": 244,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 11,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 426,
+            "first_attrchar_absolute": 554,
+            "char_attribute_count": 11,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              48,
+              0
+            ],
+            "reviewed_record_windows_end": 2798,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0200",
+        "last_word_value": 2,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_two_objects_mixed_color_not_grouped": {
+      "source": "tests\\samples\\text\\text_two_objects_mixed_color_not_grouped.txt",
+      "file_sha256": "5dc4bb7d1c787e2bc154f4023f6a466efd714a96e9c2cbea6c4d4c91845937d6",
+      "decoded_sha256": "65b229f765ed2f2820277bf007599825e639d177b5a1c25373412648d3e34622",
+      "input_length": 12288,
+      "prefix_before_first_descriptor": "02000000417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000417269616c20426f6c640000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200",
+      "first_descriptor_candidate": 134,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 134,
+          "descriptor_end": 145
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 291,
+          "descriptor_end": 308
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 3318,
+          "descriptor_end": 3331
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 3477,
+          "descriptor_end": 3491
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 3709,
+          "descriptor_end": 3730
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 291,
+          "local_body_start_hypothesis": 308,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 11,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 490,
+            "first_attrchar_absolute": 618,
+            "char_attribute_count": 11,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              48,
+              0
+            ],
+            "reviewed_record_windows_end": 2862,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 134,
+        "first_dword_raw": "02000000",
+        "first_dword_value": 2,
+        "last_word_raw": "0200",
+        "last_word_value": 2,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    },
+    "text_three_objects_grouped_order_abc_mixed_color": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc_mixed_color.txt",
+      "file_sha256": "2db3387901d9c01021c00cfd734f0c0d20b630f4cc846ea4ae4857c6922d613a",
+      "decoded_sha256": "4e7f3e5091189effc9a02717565c79af3b7137221ca035fac756759440557c5b",
+      "input_length": 16384,
+      "prefix_before_first_descriptor": "01000000417269616c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100",
+      "first_descriptor_candidate": 70,
+      "descriptor_candidates": [
+        {
+          "class": "CZone",
+          "schema_candidate": 1,
+          "start": 70,
+          "descriptor_end": 81
+        },
+        {
+          "class": "CParagraphe",
+          "schema_candidate": 6,
+          "start": 227,
+          "descriptor_end": 244
+        },
+        {
+          "class": "CCourbe",
+          "schema_candidate": 1,
+          "start": 2534,
+          "descriptor_end": 2547
+        },
+        {
+          "class": "CContour",
+          "schema_candidate": 2,
+          "start": 2693,
+          "descriptor_end": 2707
+        },
+        {
+          "class": "CPropertyExtend",
+          "schema_candidate": 5,
+          "start": 2925,
+          "descriptor_end": 2946
+        }
+      ],
+      "paragraph_partial_walks": [
+        {
+          "descriptor_start_candidate": 227,
+          "local_body_start_hypothesis": 244,
+          "derived_preslot": {
+            "status": "current_preslot_supported",
+            "parser_safe": false,
+            "p_origin": 182,
+            "first_attrchar": 310,
+            "trace": [
+              {
+                "segment": "CObDao/cube/two CVect3D",
+                "start": 0,
+                "width": 48
+              },
+              {
+                "segment": "CObDao stored flags",
+                "start": 48,
+                "width": 4
+              },
+              {
+                "segment": "CObDao version",
+                "start": 52,
+                "width": 4,
+                "value": 8
+              },
+              {
+                "segment": "CObDao members +58,+5c,+60,+64",
+                "start": 56,
+                "width": 16
+              },
+              {
+                "segment": "CObjGuid version",
+                "start": 72,
+                "width": 4,
+                "value": 2
+              },
+              {
+                "segment": "CObjGuid GUID",
+                "start": 76,
+                "width": 16
+              },
+              {
+                "segment": "GUID property count",
+                "start": 92,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key length",
+                "start": 96,
+                "width": 4
+              },
+              {
+                "segment": "property 0 key bytes",
+                "start": 100,
+                "width": 20
+              },
+              {
+                "segment": "property 0 value length",
+                "start": 120,
+                "width": 4
+              },
+              {
+                "segment": "property 0 value bytes",
+                "start": 124,
+                "width": 6
+              },
+              {
+                "segment": "additional map count",
+                "start": 130,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +a8",
+                "start": 138,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +d8",
+                "start": 142,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +e4",
+                "start": 150,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +ec",
+                "start": 154,
+                "width": 4
+              },
+              {
+                "segment": "CParagraphe +b8.x",
+                "start": 158,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.y",
+                "start": 166,
+                "width": 8
+              },
+              {
+                "segment": "CParagraphe +b8.z",
+                "start": 174,
+                "width": 8
+              },
+              {
+                "segment": "AttrPara version",
+                "start": 182,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrPara remainder",
+                "start": 186,
+                "width": 48
+              },
+              {
+                "segment": "line count",
+                "start": 234,
+                "width": 4
+              },
+              {
+                "segment": "AttrLine 0 version",
+                "start": 238,
+                "width": 4,
+                "value": 4
+              },
+              {
+                "segment": "current AttrLine 0 remainder",
+                "start": 242,
+                "width": 64
+              },
+              {
+                "segment": "char count",
+                "start": 306,
+                "width": 4
+              }
+            ],
+            "base_length": 138,
+            "property_count": 1,
+            "extra_map_count": 0,
+            "tentative_p_origin": 182,
+            "line_count": 1,
+            "char_count": 8,
+            "line_starts": [
+              238
+            ]
+          },
+          "entire_body_end": "UNKNOWN",
+          "first_ctxtpara_prefix": {
+            "P_absolute": 426,
+            "first_attrchar_absolute": 554,
+            "char_attribute_count": 8,
+            "line_count": 1,
+            "validated_empty_v5_records": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "char_codes": [
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              103,
+              0
+            ],
+            "reviewed_record_windows_end": 2186,
+            "next_8_bytes_not_a_tag_claim": "0000000000000000"
+          }
+        }
+      ],
+      "conditional_first_base_walk": null,
+      "preamble_observation": {
+        "observed_length": 70,
+        "first_dword_raw": "01000000",
+        "first_dword_value": 1,
+        "last_word_raw": "0100",
+        "last_word_value": 1,
+        "relation_4_plus_64_times_first_dword_plus_2": true,
+        "font_table_role": "HEURISTIC",
+        "last_word_selection_count_role": "HEURISTIC; external observations only, no count injected into splitting",
+        "archive_entry": "UNKNOWN",
+        "map_effects": "UNKNOWN"
+      },
+      "descriptor_semantics": "CONDITIONAL local descriptor-layout compatibility only; no OBJECT_CREATION promoted; no object IDs assigned",
+      "body_start_hypotheses_only": true,
+      "serialize_object_ends": "UNKNOWN"
+    }
+  },
+  "C_selection_object_hypotheses": [],
+  "counterexample_scope": {
+    "same_content_two_text_objects": "No independently documented real same-content fixture established in this bounded review; 002 synthetic duplicate-content case is not a capture",
+    "two_text_order_swap": "No exact two-object swap fixture established; existing three-object abc/cba controls used instead"
+  },
+  "method": {
+    "input_handling": "Existing hex_to_bytes for old txt fixtures, binary E1/F read directly",
+    "existing_functions": [
+      "Type3ChainParser._read_top_level_header",
+      "Type3ChainParser._extract_nodes",
+      "tools/analyze_text_preslot_crosswalk.py:derive_preslot",
+      "text_slot_candidate.py:_validate_current_empty_slot_layout",
+      "group-color/type3-clipboard-base-serialize-003/walk_base.py:diagnose"
+    ],
+    "execution": "One owned base-Python child, subprocess.run timeout15 seconds; completed successfully; no Decoder call required for this evidence audit",
+    "native_execution": false
+  },
+  "existing_occurrence_crosswalk_source": {
+    "path": "research/selection-enumeration-ef-002/ef-parser-trace.json",
+    "sha256": "36bd51aa8c77203d1ef4e9c875cd65b9134a290148b585db19dc537002ab311e",
+    "reuse": "Original contour/text occurrence evidence referenced without rediscovery or rewrite"
+  }
+}
