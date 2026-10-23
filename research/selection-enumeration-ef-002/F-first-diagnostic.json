@@ -1,0 +1,1041 @@
+{
+  "source_sha256": "e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743",
+  "input_length": 12288,
+  "status": "DIAGNOSTIC_COMPLETE",
+  "exact_top_level_enumeration": false,
+  "complete_inventory": false,
+  "top_level_selection_count": "UNKNOWN",
+  "group_hierarchy": "UNKNOWN",
+  "change_allowed": false,
+  "parser": "Type3ChainParser",
+  "header": {
+    "prefix_hex": "",
+    "declared_count_candidate": null,
+    "envelope_offset": 0,
+    "basis": "existing _read_top_level_header; not selected-object proof"
+  },
+  "shadow": {
+    "status": "UNSUPPORTED",
+    "reason": "unreviewed prefix",
+    "stop_cursor": 0
+  },
+  "node_candidates": [
+    {
+      "class": "CZone",
+      "descriptor_candidate_span": [
+        70,
+        81
+      ],
+      "scanner_payload_span": [
+        129,
+        227
+      ],
+      "note": "scanner window, not proven Serialize object extent"
+    },
+    {
+      "class": "CCourbe",
+      "descriptor_candidate_span": [
+        227,
+        240
+      ],
+      "scanner_payload_span": [
+        288,
+        386
+      ],
+      "note": "scanner window, not proven Serialize object extent"
+    },
+    {
+      "class": "CContour",
+      "descriptor_candidate_span": [
+        386,
+        400
+      ],
+      "scanner_payload_span": [
+        448,
+        690
+      ],
+      "note": "scanner window, not proven Serialize object extent"
+    },
+    {
+      "class": "CPropertyExtend",
+      "descriptor_candidate_span": [
+        690,
+        711
+      ],
+      "scanner_payload_span": [
+        711,
+        995
+      ],
+      "note": "scanner window, not proven Serialize object extent"
+    },
+    {
+      "class": "CParagraphe",
+      "descriptor_candidate_span": [
+        995,
+        1012
+      ],
+      "scanner_payload_span": [
+        1012,
+        12288
+      ],
+      "note": "scanner window, not proven Serialize object extent"
+    }
+  ],
+  "decoder_chains": [
+    {
+      "node_classes": [
+        "CZone",
+        "CCourbe",
+        "CContour",
+        "CPropertyExtend",
+        "CParagraphe"
+      ],
+      "contour_range": [
+        546,
+        690
+      ],
+      "contour_sha256": "1f419fc4fc8b3f8de4a3dc6d09424139a6ffda7d0480019ee1260fa9e7e4e3fb",
+      "record_count": 4,
+      "text_candidate": "T1A",
+      "shape_candidate": "rectangle"
+    }
+  ],
+  "payload_text": "T1A",
+  "all_extracted_text_runs": [
+    {
+      "text": "T1A",
+      "codes": [
+        84,
+        49,
+        65,
+        0
+      ],
+      "line_count": 1
+    },
+    {
+      "text": "T2B",
+      "codes": [
+        84,
+        50,
+        66,
+        0
+      ],
+      "line_count": 1
+    }
+  ],
+  "slot_record_findings": [
+    {
+      "finding_index": 0,
+      "decoded_run_candidate": {
+        "text": "T1A",
+        "codes": [
+          84,
+          49,
+          65,
+          0
+        ],
+        "line_count": 1
+      },
+      "source_record_windows": [
+        [
+          1322,
+          2138
+        ]
+      ],
+      "source_window_assignment": "UNIQUE_BYTE_WINDOW",
+      "record_lengths": [
+        204,
+        204,
+        204,
+        204
+      ],
+      "reviewed_v5_empty_layout_rejections": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "char_fields": [
+        {
+          "record_index": 0,
+          "offset_in_record": 4,
+          "raw_hex": "54000000",
+          "u32": 84
+        },
+        {
+          "record_index": 1,
+          "offset_in_record": 4,
+          "raw_hex": "31000000",
+          "u32": 49
+        },
+        {
+          "record_index": 2,
+          "offset_in_record": 4,
+          "raw_hex": "41000000",
+          "u32": 65
+        },
+        {
+          "record_index": 3,
+          "offset_in_record": 4,
+          "raw_hex": "00000000",
+          "u32": 0
+        }
+      ],
+      "confidence": "HEURISTIC",
+      "layout_contract": "Existing 204-byte AttrChar v5/empty extension validator applied, no new alignment search",
+      "object_extent": "UNKNOWN",
+      "owner": "UNKNOWN",
+      "top_level_object": "UNKNOWN"
+    },
+    {
+      "finding_index": 1,
+      "decoded_run_candidate": {
+        "text": "T2B",
+        "codes": [
+          84,
+          50,
+          66,
+          0
+        ],
+        "line_count": 1
+      },
+      "source_record_windows": [
+        [
+          4138,
+          4954
+        ]
+      ],
+      "source_window_assignment": "UNIQUE_BYTE_WINDOW",
+      "record_lengths": [
+        204,
+        204,
+        204,
+        204
+      ],
+      "reviewed_v5_empty_layout_rejections": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "char_fields": [
+        {
+          "record_index": 0,
+          "offset_in_record": 4,
+          "raw_hex": "54000000",
+          "u32": 84
+        },
+        {
+          "record_index": 1,
+          "offset_in_record": 4,
+          "raw_hex": "32000000",
+          "u32": 50
+        },
+        {
+          "record_index": 2,
+          "offset_in_record": 4,
+          "raw_hex": "42000000",
+          "u32": 66
+        },
+        {
+          "record_index": 3,
+          "offset_in_record": 4,
+          "raw_hex": "00000000",
+          "u32": 0
+        }
+      ],
+      "confidence": "HEURISTIC",
+      "layout_contract": "Existing 204-byte AttrChar v5/empty extension validator applied, no new alignment search",
+      "object_extent": "UNKNOWN",
+      "owner": "UNKNOWN",
+      "top_level_object": "UNKNOWN"
+    }
+  ],
+  "diagnostic_contour_probe": [
+    {
+      "scanner_payload_span": [
+        1012,
+        12288
+      ],
+      "method": "Existing _read_embedded_contour_chains applied diagnostically to a CParagraphe scanner window",
+      "candidate_contours": [
+        {
+          "node_classes": [],
+          "contour_range": [
+            2638,
+            2710
+          ],
+          "contour_sha256": "02c7c55944e2cf76a72d955b0caab2fc78c4c3599f08ae55cd309684f59992fe",
+          "record_count": 2,
+          "text_candidate": null,
+          "shape_candidate": "polyline_candidate"
+        },
+        {
+          "node_classes": [],
+          "contour_range": [
+            3468,
+            3540
+          ],
+          "contour_sha256": "d53d6a310c6229983ce236481d153fa0d2f529c03bcb0b2f5c298efe66312cbd",
+          "record_count": 2,
+          "text_candidate": null,
+          "shape_candidate": "polyline_candidate"
+        },
+        {
+          "node_classes": [],
+          "contour_range": [
+            5454,
+            5526
+          ],
+          "contour_sha256": "458ccff7551b80b8f2c63dafa27846c360ac8173162455a052e4604c6dec36dc",
+          "record_count": 2,
+          "text_candidate": null,
+          "shape_candidate": "polyline_candidate"
+        }
+      ],
+      "confidence": "HEURISTIC",
+      "ownership": "UNKNOWN",
+      "merged_into_decoder": false,
+      "not_selected_object_count": true
+    }
+  ],
+  "trace": [
+    {
+      "event": "return",
+      "function": "_read_top_level_header",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 500,
+      "locals": {},
+      "return": [
+        {
+          "length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        null,
+        0
+      ]
+    },
+    {
+      "event": "return",
+      "function": "parse_single_node",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "line": 33,
+      "locals": {
+        "node_start_offset": 70
+      },
+      "return": {
+        "class": "CZone",
+        "descriptor_candidate_span": [
+          70,
+          81
+        ],
+        "scanner_payload_span": [
+          129,
+          227
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "parse_single_node",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "line": 33,
+      "locals": {
+        "node_start_offset": 227
+      },
+      "return": {
+        "class": "CCourbe",
+        "descriptor_candidate_span": [
+          227,
+          240
+        ],
+        "scanner_payload_span": [
+          288,
+          386
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "parse_single_node",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "line": 33,
+      "locals": {
+        "node_start_offset": 386
+      },
+      "return": {
+        "class": "CContour",
+        "descriptor_candidate_span": [
+          386,
+          400
+        ],
+        "scanner_payload_span": [
+          448,
+          690
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "parse_single_node",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "line": 33,
+      "locals": {
+        "node_start_offset": 690
+      },
+      "return": {
+        "class": "CPropertyExtend",
+        "descriptor_candidate_span": [
+          690,
+          711
+        ],
+        "scanner_payload_span": [
+          711,
+          995
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "parse_single_node",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "line": 33,
+      "locals": {
+        "node_start_offset": 995
+      },
+      "return": {
+        "class": "CParagraphe",
+        "descriptor_candidate_span": [
+          995,
+          1012
+        ],
+        "scanner_payload_span": [
+          1012,
+          12288
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "extract_nodes",
+      "file": "src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "line": 35,
+      "locals": {
+        "idx": 12288,
+        "node": {
+          "class": "CParagraphe",
+          "descriptor_candidate_span": [
+            995,
+            1012
+          ],
+          "scanner_payload_span": [
+            1012,
+            12288
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        }
+      },
+      "return": [
+        {
+          "class": "CZone",
+          "descriptor_candidate_span": [
+            70,
+            81
+          ],
+          "scanner_payload_span": [
+            129,
+            227
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        {
+          "class": "CCourbe",
+          "descriptor_candidate_span": [
+            227,
+            240
+          ],
+          "scanner_payload_span": [
+            288,
+            386
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        {
+          "class": "CContour",
+          "descriptor_candidate_span": [
+            386,
+            400
+          ],
+          "scanner_payload_span": [
+            448,
+            690
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        {
+          "class": "CPropertyExtend",
+          "descriptor_candidate_span": [
+            690,
+            711
+          ],
+          "scanner_payload_span": [
+            711,
+            995
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        {
+          "class": "CParagraphe",
+          "descriptor_candidate_span": [
+            995,
+            1012
+          ],
+          "scanner_payload_span": [
+            1012,
+            12288
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        }
+      ]
+    },
+    {
+      "event": "return",
+      "function": "group_nodes_into_chains",
+      "file": "src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "line": 24,
+      "locals": {
+        "node": {
+          "class": "CParagraphe",
+          "descriptor_candidate_span": [
+            995,
+            1012
+          ],
+          "scanner_payload_span": [
+            1012,
+            12288
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        }
+      },
+      "return": [
+        {
+          "node_classes": [
+            "CZone",
+            "CCourbe",
+            "CContour",
+            "CPropertyExtend",
+            "CParagraphe"
+          ],
+          "contour_range": null,
+          "contour_sha256": null,
+          "record_count": 0,
+          "text_candidate": null,
+          "shape_candidate": null
+        }
+      ]
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 520,
+      "condition": "if node.header.class_name == \"CPropertyExtend\":",
+      "node": {
+        "class": "CZone",
+        "descriptor_candidate_span": [
+          70,
+          81
+        ],
+        "scanner_payload_span": [
+          129,
+          227
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 541,
+      "condition": "if node.header.class_name != \"CContour\":",
+      "node": {
+        "class": "CZone",
+        "descriptor_candidate_span": [
+          70,
+          81
+        ],
+        "scanner_payload_span": [
+          129,
+          227
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 520,
+      "condition": "if node.header.class_name == \"CPropertyExtend\":",
+      "node": {
+        "class": "CCourbe",
+        "descriptor_candidate_span": [
+          227,
+          240
+        ],
+        "scanner_payload_span": [
+          288,
+          386
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 541,
+      "condition": "if node.header.class_name != \"CContour\":",
+      "node": {
+        "class": "CCourbe",
+        "descriptor_candidate_span": [
+          227,
+          240
+        ],
+        "scanner_payload_span": [
+          288,
+          386
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 520,
+      "condition": "if node.header.class_name == \"CPropertyExtend\":",
+      "node": {
+        "class": "CContour",
+        "descriptor_candidate_span": [
+          386,
+          400
+        ],
+        "scanner_payload_span": [
+          448,
+          690
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 541,
+      "condition": "if node.header.class_name != \"CContour\":",
+      "node": {
+        "class": "CContour",
+        "descriptor_candidate_span": [
+          386,
+          400
+        ],
+        "scanner_payload_span": [
+          448,
+          690
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "analyze_contour_header_candidates",
+      "file": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "line": 278,
+      "locals": {
+        "idx": 98
+      },
+      "return": {
+        "headers": [
+          [
+            1,
+            4,
+            98
+          ]
+        ],
+        "markers": [
+          {
+            "marker_offset": 76,
+            "selected_payload_offset": 98,
+            "selected_count": 4,
+            "selection_reason": "refined_structural_ranking_winner",
+            "rejections": [
+              {
+                "shift": 8,
+                "reason": null,
+                "structural_failures": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 520,
+      "condition": "if node.header.class_name == \"CPropertyExtend\":",
+      "node": {
+        "class": "CPropertyExtend",
+        "descriptor_candidate_span": [
+          690,
+          711
+        ],
+        "scanner_payload_span": [
+          711,
+          995
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "analyze_contour_header_candidates",
+      "file": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "line": 278,
+      "locals": {
+        "idx": 263
+      },
+      "return": {
+        "headers": null,
+        "markers": [
+          {
+            "marker_offset": 262,
+            "selected_payload_offset": null,
+            "selected_count": null,
+            "selection_reason": "no_structural_recommended_candidate",
+            "rejections": [
+              {
+                "shift": 8,
+                "reason": "count_not_plausible",
+                "structural_failures": [
+                  "record_region_out_of_bounds"
+                ]
+              },
+              {
+                "shift": 14,
+                "reason": "header_out_of_bounds",
+                "structural_failures": [
+                  "header_out_of_bounds"
+                ]
+              },
+              {
+                "shift": 12,
+                "reason": "header_out_of_bounds",
+                "structural_failures": [
+                  "header_out_of_bounds"
+                ]
+              },
+              {
+                "shift": 16,
+                "reason": "header_out_of_bounds",
+                "structural_failures": [
+                  "header_out_of_bounds"
+                ]
+              },
+              {
+                "shift": 20,
+                "reason": "header_out_of_bounds",
+                "structural_failures": [
+                  "header_out_of_bounds"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event": "return",
+      "function": "_read_embedded_contour_chains",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 620,
+      "locals": {
+        "node": {
+          "class": "CPropertyExtend",
+          "descriptor_candidate_span": [
+            690,
+            711
+          ],
+          "scanner_payload_span": [
+            711,
+            995
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        "headers": null
+      },
+      "return": []
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 541,
+      "condition": "if node.header.class_name != \"CContour\":",
+      "node": {
+        "class": "CPropertyExtend",
+        "descriptor_candidate_span": [
+          690,
+          711
+        ],
+        "scanner_payload_span": [
+          711,
+          995
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 520,
+      "condition": "if node.header.class_name == \"CPropertyExtend\":",
+      "node": {
+        "class": "CParagraphe",
+        "descriptor_candidate_span": [
+          995,
+          1012
+        ],
+        "scanner_payload_span": [
+          1012,
+          12288
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "branch",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 541,
+      "condition": "if node.header.class_name != \"CContour\":",
+      "node": {
+        "class": "CParagraphe",
+        "descriptor_candidate_span": [
+          995,
+          1012
+        ],
+        "scanner_payload_span": [
+          1012,
+          12288
+        ],
+        "note": "scanner window, not proven Serialize object extent"
+      }
+    },
+    {
+      "event": "return",
+      "function": "_process_object_chain",
+      "file": "src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "line": 602,
+      "locals": {
+        "chain": {
+          "node_classes": [
+            "CZone",
+            "CCourbe",
+            "CContour",
+            "CPropertyExtend",
+            "CParagraphe"
+          ],
+          "contour_range": [
+            546,
+            690
+          ],
+          "contour_sha256": "1f419fc4fc8b3f8de4a3dc6d09424139a6ffda7d0480019ee1260fa9e7e4e3fb",
+          "record_count": 4,
+          "text_candidate": null,
+          "shape_candidate": "rectangle"
+        },
+        "node": {
+          "class": "CParagraphe",
+          "descriptor_candidate_span": [
+            995,
+            1012
+          ],
+          "scanner_payload_span": [
+            1012,
+            12288
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        },
+        "headers": [
+          [
+            1,
+            4,
+            98
+          ]
+        ]
+      },
+      "return": [
+        {
+          "node_classes": [
+            "CZone",
+            "CCourbe",
+            "CContour",
+            "CPropertyExtend",
+            "CParagraphe"
+          ],
+          "contour_range": [
+            546,
+            690
+          ],
+          "contour_sha256": "1f419fc4fc8b3f8de4a3dc6d09424139a6ffda7d0480019ee1260fa9e7e4e3fb",
+          "record_count": 4,
+          "text_candidate": null,
+          "shape_candidate": "rectangle"
+        }
+      ]
+    },
+    {
+      "event": "return",
+      "function": "extract_text_runs",
+      "file": "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "line": 163,
+      "locals": {
+        "runs": [
+          {
+            "text": "T1A",
+            "codes": [
+              84,
+              49,
+              65,
+              0
+            ],
+            "line_count": 1
+          },
+          {
+            "text": "T2B",
+            "codes": [
+              84,
+              50,
+              66,
+              0
+            ],
+            "line_count": 1
+          }
+        ],
+        "node": {
+          "class": "CParagraphe",
+          "descriptor_candidate_span": [
+            995,
+            1012
+          ],
+          "scanner_payload_span": [
+            1012,
+            12288
+          ],
+          "note": "scanner window, not proven Serialize object extent"
+        }
+      },
+      "return": [
+        [
+          {
+            "text": "T1A",
+            "codes": [
+              84,
+              49,
+              65,
+              0
+            ],
+            "line_count": 1
+          },
+          {
+            "text": "T2B",
+            "codes": [
+              84,
+              50,
+              66,
+              0
+            ],
+            "line_count": 1
+          }
+        ],
+        [
+          {
+            "length": 204,
+            "sha256": "fd33ffd86aa54c23a07263de42e29e10fc8450f896ccf224bbf8d3e382715879"
+          },
+          {
+            "length": 204,
+            "sha256": "87ba5cab0ddbfe71d9a21f9f9f89f1bfc5f8f60c1596a416052a6e9bbb53bec2"
+          },
+          {
+            "length": 204,
+            "sha256": "c378f494ee0febac5f6751d94d6708f7b296334be7528ab3ed3267134b0c91df"
+          },
+          {
+            "length": 204,
+            "sha256": "c4badb279234a1dd99025a70233fcc92c36643b52e727145d9b8e4839ebebeb0"
+          }
+        ],
+        []
+      ]
+    },
+    {
+      "event": "return",
+      "function": "attach_text_runs_to_chains",
+      "file": "src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "line": 192,
+      "locals": {
+        "runs": [
+          {
+            "text": "T1A",
+            "codes": [
+              84,
+              49,
+              65,
+              0
+            ],
+            "line_count": 1
+          },
+          {
+            "text": "T2B",
+            "codes": [
+              84,
+              50,
+              66,
+              0
+            ],
+            "line_count": 1
+          }
+        ]
+      },
+      "return": null
+    }
+  ],
+  "trace_truncated": false,
+  "decoder_fingerprint": "8e4542ea5591f1acbb2b204a74b7a1829b23bf6486e4ddcd710edbeeef330144",
+  "decoder_model_unchanged_after_diagnostic": true,
+  "unknowns": [
+    "full Archive valid length",
+    "reference-class object starts",
+    "UI ownership",
+    "Group/Member boundaries",
+    "entire object extents"
+  ],
+  "execution": {
+    "child_pid": 50616,
+    "returncode": 0,
+    "timed_out": false,
+    "elapsed_seconds": 2.380560199962929,
+    "kill_scope": "none"
+  }
+}
