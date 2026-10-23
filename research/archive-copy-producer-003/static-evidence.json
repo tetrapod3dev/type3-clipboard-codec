@@ -1,0 +1,3836 @@
+{
+  "verdict": "COPY_PRODUCER_STATIC_BLOCKED",
+  "scope": "Top-level EXE directory PE import/literal inventory; bounded XREF inspection only. Subdirectories/resources/runtime-generated formats not disproven.",
+  "matched_mfc": {
+    "path": "C:\\Windows\\WinSxS\\Fusion\\x86_microsoft.vc80.mfc_1fc8b3b9a1e18e3b_none_bd39c11e9405d29b\\8.0\\8.0.50727.6195\\mfc80.dll",
+    "sha256": "8204dbcc054c1e54b6065bacb78c55716681ad91759e25111b4e4797e51d0aa3",
+    "pdb_sha256": "3de04172355214be3c9f6851ccb2ef785efb3c2c900084036dbe12919ef1202a",
+    "rsds_matched": true
+  },
+  "modules": [
+    {
+      "module": "Bao.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Bao.dll",
+      "sha256": "74f314da13a77c2739ab0e306c80a6efba6c29221abcec33cc1bcc41526f93e5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "BaseDoc.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BaseDoc.dll",
+      "sha256": "68efd5f43de9d881516d03c1ac440dc29cc95855c8b3cfd7430db9045e41ddcc",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x4b408",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x4b588",
+          "dll": "MFC80.DLL",
+          "ordinal": 4864,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x4b58c",
+          "dll": "MFC80.DLL",
+          "ordinal": 4861,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "BasicApiWorkbenchR1.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BasicApiWorkbenchR1.dll",
+      "sha256": "ba6e52fc8b8b8f6bd8a423d07cd2bc2158e63f1a8db4821eaa8cb85a39bbb1d5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "BasicApiWorkbenchR2.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BasicApiWorkbenchR2.dll",
+      "sha256": "9870b19c6f63a13a1b7b913a258f56c77940c6f87d8505aae0a57316e6974f9f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "BasicPLTF.DLL",
+      "path": "C:\\TypeEdit_2009\\EXE\\BasicPLTF.DLL",
+      "sha256": "3ba5410ff959abba8f601d071628caa1ea6905d7c54e980ff1d0b09265e9d600",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "BdOStructDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BdOStructDLL.dll",
+      "sha256": "30213a55c86c67baf964ab3e1a14b1a94e26e801c7920f1bf1fc89502e6e448a",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x9194",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "BdOToolDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BdOToolDLL.dll",
+      "sha256": "b79e2b0fd66ea58ff9a8c7eef55a283d289b33d08695194d7322b6486cd11b54",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "BrailleTo.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\BrailleTo.dll",
+      "sha256": "324e6f26868ca93658d7c9ffc9c0c09c9d71c489685dd37e030183a4f65ccf37",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "brltrn.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\brltrn.dll",
+      "sha256": "e299ac5eea777220fcbed0de4385adb877e49efb2ed8c96cd7de0828234f7099",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CamEdit.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CamEdit.dll",
+      "sha256": "643e6b6de2374334268ca11df0003b1a4e3e949eb543c9cb5bd135c597ed85da",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CanEditEngine.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CanEditEngine.dll",
+      "sha256": "e3dccb0c0c52eef17108933b611d1d2a50f4555522b69480e1b6fe2f89cc28a0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "cmdbcode.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\cmdbcode.dll",
+      "sha256": "10afa55acd1aa034948cc7827a72dc81cebc70743dad204662a5d1c2f71be0ec",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CmdDNMatrix.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CmdDNMatrix.dll",
+      "sha256": "b8bdefd134bd92314a85c8262e962ad7be6b47d6a0df3c57b21ef3698ab237c3",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CmdFao.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CmdFao.dll",
+      "sha256": "cbe22fdfb15cb9d679105a2b8a7d60db21279e5aa1a81ebad64bac2ac45f49c6",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x2638c",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "CmdMesure.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CmdMesure.dll",
+      "sha256": "c401367cf7c23d5e3019fc67a95606af554f90bdf304cca86a43f6d9c150d6b8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CmdTypeArt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CmdTypeArt.dll",
+      "sha256": "d340ab44d3da47a52a350e4e5e50fa6411ff4b4c3f1f3f7b8b294782f6c4691c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CmdVariables.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CmdVariables.dll",
+      "sha256": "077c5fc548ffed33aa32b730f2bd393108afd990d4b9b920e44dc15410dc206a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CommonCmd.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonCmd.dll",
+      "sha256": "ec5471da4877a2633bc1956ac216badb9fd986ec7a1dbdb6dbd5d073224da30d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CommonCmd3D.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonCmd3D.dll",
+      "sha256": "ef22bfd014f57c12d9d7c92ef57977e72715e2f345a0a6b93747e7ba82a44418",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CommonCmdBitmapEditor.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonCmdBitmapEditor.dll",
+      "sha256": "d8eb2dfb9753ed58dd304d1f68ce9b5ba28d36c33bbea31bef4cc91e1ff37bfb",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CommonCmdFx.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonCmdFx.dll",
+      "sha256": "cc6b04954038ec0fdcfc418aff7f8ecf6cb29755ab7f6011889f95a0b1a74f83",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CommonCmdLaser.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonCmdLaser.dll",
+      "sha256": "7fc927dd099ca8ad848fd0e403e33da0cdc854fb06fcbe3a87823dd2fae093d3",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0xd98c",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "CommonPluginLaser.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonPluginLaser.dll",
+      "sha256": "77370e379d34855f6643272517411a3afb79c79ca5004d2de312825cf8c2c3d4",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x1f3d0",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "CommonPluginProduct.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CommonPluginProduct.dll",
+      "sha256": "abd718d8346c36df553033d0c8a01964f23f84a816a57da34bd1906d9ca15f44",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "CSMaude.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\CSMaude.dll",
+      "sha256": "513f820bef931d5926bd3d3619e8c52c15c379cba9d0f5311e1e51019610faff",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DDX.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DDX.dll",
+      "sha256": "59fb14246344b8a234b311983e7e948ea9f53a52d59840ae7644b859f7c9cbd1",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "dEditor.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\dEditor.dll",
+      "sha256": "42f08151983c3ff47f7f37bb62c0261d40c43ba800dd53046e8118973b6c4ab7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgBitmapEditor.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgBitmapEditor.dll",
+      "sha256": "2f297a5e571934666a09cd08f085e76bb80a1acaf8b69cb537305e5e78101dab",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgDuplicationDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgDuplicationDLL.dll",
+      "sha256": "9cc971e315369b2069bf494455001c1b532b6798dc127bdd8dd9797e306861ea",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgFaoDnet.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgFaoDnet.dll",
+      "sha256": "be2bd5f95cadc1b3a092c63a12ae712480f0faa01e7ab3718cecb9c3efb8d385",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgFileViewerDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgFileViewerDLL.dll",
+      "sha256": "a253b64b6798339ad3c7b6bc05fc3a4a0a6dc3a942f2b8a6a01aeb7fb9cc868a",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x211e8",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "DlgFxDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgFxDLL.dll",
+      "sha256": "d7c7c91197bcb323af7c8d4023902e504b67ab8f882fe153636d75ed9a5de757",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgHalftoneDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgHalftoneDLL.dll",
+      "sha256": "0c30ec8c6abf2ef94e7e1f2dacf2a1e202639124c90e60f1af2f0c010d430a09",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgImportDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgImportDLL.dll",
+      "sha256": "00d9b8a61c763f322d25e02e95ffd62ed63630c5602401bb886cf963ea50f311",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgMagicCopyDnet.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgMagicCopyDnet.dll",
+      "sha256": "7093380bfaca23a4240f4f3041c6b68b4c60e210cae8fe49ab4256f8ff36355e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgManipulationDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgManipulationDLL.dll",
+      "sha256": "0cfe883847500ba18d6ef891e15cf37f866ccb0fafebc214e05c8125169382a7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgMatrixDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgMatrixDLL.dll",
+      "sha256": "f7346923e4d34f1a663b57f47bad7c27dc78ed63256cb147c206635b46c5d18b",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x2660c",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "DlgMesureDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgMesureDLL.dll",
+      "sha256": "d844e2f2d69ab7e1c5e2d2a7f74402a3264ec0d305b91837f937f59a23aa68b6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgOperType3DLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgOperType3DLL.dll",
+      "sha256": "8477920a571744283b1ed00b664d67a2e8964db7a14b1e35286fe391468f8056",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgPhotoDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgPhotoDLL.dll",
+      "sha256": "331791e4c0895b2441df4b0555f0295e04588f07e2c6ec835cf1f638594a62ff",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgPointDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgPointDLL.dll",
+      "sha256": "daa4f546d065289fd14ddbee7ebe2d604b60d47f670c44ef67a86352bcc43984",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgProjectionDnet.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgProjectionDnet.dll",
+      "sha256": "46c4eb470cd81955eee152577629bf4d038314da125192420a346953da6daf39",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgProperties.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgProperties.dll",
+      "sha256": "b14cff05478694d4a6f5eed177f4c8d3103f387512a830aa62f181b38e7013c8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgRapidoDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgRapidoDLL.dll",
+      "sha256": "e5632661f1526ca287182a52ed1cee8286e4f7b8666de282bcd4ffb5d906be40",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgShapeDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgShapeDLL.dll",
+      "sha256": "2548417637a9e208c90171b83262e16a97131e3e8fcc8c597f09ff8d8e1caf75",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgShapeSurfDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgShapeSurfDLL.dll",
+      "sha256": "2942a3e80f18010d0014d795b5f8233bf58056001ad19f942f9832ce4e4aa6dc",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgSharpVariables.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgSharpVariables.dll",
+      "sha256": "5424bb1e00526963a29321e222b99007354758ac81ca8be30b04ceb87f77c017",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgSpecificDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgSpecificDLL.dll",
+      "sha256": "097551e4027e4355c937213c11435a6d532bcfa9a891df9a3842956a1fa74c18",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgTamponLaserType.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgTamponLaserType.dll",
+      "sha256": "48bd3a2423c195d8348595a8cf10dde3bb6dbb36919384df1c4e4c0e47ca022a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgTart.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgTart.dll",
+      "sha256": "35b53017a54a79e09b27ea10dcc968ea1256d2feecd0afaf804c4d76f5ad68e7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgTextDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgTextDLL.dll",
+      "sha256": "0ab6d867df841f1c8fcb2955736005e0958c645125185987a87f4f80e79a71a1",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "dlgTextureDll.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\dlgTextureDll.dll",
+      "sha256": "96c62f10922995cd0be7d2ca25ea7e5ee213554bf1ce15db015be6fce3a351c0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgTransformationDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgTransformationDLL.dll",
+      "sha256": "b1f82f5e3602508e11f56e1dace5e7d3a22d29e40aa589ab94b6190b07a2fcc6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DlgVariableDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgVariableDLL.dll",
+      "sha256": "1c67e535d5080b5a0d19799f45fa2fcd75d6598d2d2f99e63ffbcfce447f8586",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0xf53c",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "DlgVorDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DlgVorDLL.dll",
+      "sha256": "053c525d321b2af3d94dea8ab3e23f5ccc2b8d28009c7905a03be659b67874c7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DllApi.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DllApi.dll",
+      "sha256": "d48d1ddb8b0956509316364bc380cafcecd4781abe3d3b0e14f43631b57f4224",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "dls2d.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\dls2d.dll",
+      "sha256": "cd31dc8362c2a0ff6947e06807a1732936b2f93b49392e723c61625cd6a2f3f5",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x1a1c4",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "Dlsbar32.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Dlsbar32.dll",
+      "sha256": "4a649ea0c79881a62368dd63f0aadf45dccf1b3cbf7349c8dbfacbb89aa10ec7",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x161bc",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "Dlsbar33.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Dlsbar33.dll",
+      "sha256": "cfc94adc03adfa88df6a98b97b3a26e116ebd60a6c13a2f4d1fd99fd94cd0baa",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x121a0",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "DriverGravoDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DriverGravoDLL.dll",
+      "sha256": "997e64932164fbf3e7e8343cdc51868d732c9f3e0f4d98ff455a200b61613baa",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DuplicationDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DuplicationDLL.dll",
+      "sha256": "9e937bc567427eda553e227c9569a5e838e49107717dac264d306f3275952832",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DXF4KCD.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DXF4KCD.dll",
+      "sha256": "15f523606691720ef1d15b505a473c9d9a597d070c863860ea0be69f3e0e0a8d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DXTRS.DLL",
+      "path": "C:\\TypeEdit_2009\\EXE\\DXTRS.DLL",
+      "sha256": "ba8785f72ad82631b450e3a1b4fa8cd767638fea1b6004c1567ae8bf9f458b77",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Dynimport.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Dynimport.dll",
+      "sha256": "160360237f425dc3e5e67dfa84c5cd6e3f6e54177809706639f8e729128e28cc",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "DynViewTemplate.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\DynViewTemplate.dll",
+      "sha256": "c298b48b16d44f65cc4dcb62c977cb493dfda0e27d14cbacb13c82e2306c07f2",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ExpGoelan.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ExpGoelan.dll",
+      "sha256": "7f8700f4518017e08253149b614f97b9c1bdb8f70b47ef71020af85f3612063a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "FAO98.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\FAO98.dll",
+      "sha256": "ec1eeb8cb9c0023afb545849e6ac57d204565576d747e23b74365bb238b31b80",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "FAODLG.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\FAODLG.dll",
+      "sha256": "bf51540b258ea4ab5384ad360db73f930794c86588812a9ab552ba95804be757",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x75408",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "FAOSIMUL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\FAOSIMUL.dll",
+      "sha256": "64a7125524f284744469108b43fce04fb26499876ef5090c5b1daaa75e2b0a32",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Filtrex.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Filtrex.dll",
+      "sha256": "d3c6f1a44845def730653f33412f28c841df34f85dd14157061703fc3ed0eac6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "fondation.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\fondation.dll",
+      "sha256": "1ac1ad9f1b7c8f369f8575820132cff59a21f5f2d263227c5344bd06e2dc006b",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "FxBool.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\FxBool.dll",
+      "sha256": "aa99126607a3391a5fe46b168792be79253942564402518773c8b055a0988bdc",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "gdiplus.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\gdiplus.dll",
+      "sha256": "d84e7eb505adee8ea660f48c89705977f5eb33b7299d0bd981624e3ece320223",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Gm.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Gm.dll",
+      "sha256": "93c19b4f70077a4a02bb0bb66a8d9f5578a1bf32ef434865d72c437732605b3d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "gmp_p4.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\gmp_p4.dll",
+      "sha256": "e4b08c77d4b1ad0774f84c5f56d3318ac825b81b58e708d2c189bb18d428e506",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "hw_nmtlib_core.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\hw_nmtlib_core.dll",
+      "sha256": "865f75889ba56e5fe04cc5cab1db1a581464e82c61fd0bd134f64a3e8f81ebd8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "iges_nmtlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\iges_nmtlib.dll",
+      "sha256": "ed989fce1ffaa48b2bce4c9ab1394d5d650e30ad75ada4f76d5a720e7d8757df",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Imp1Vnn.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Imp1Vnn.dll",
+      "sha256": "9578d57b2368e918a5e77d1fd53c88c37f789a4ac959edc3ce8ddb55803598be",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "imp2dxf.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\imp2dxf.dll",
+      "sha256": "ac01bc08cf67f1f228dae1c476d5cb448c4a80ae5f282d314cf23417a19e0ead",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "impapi.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\impapi.dll",
+      "sha256": "acb90662e4a5243d717dc60e4138f920a7d59645b4f54c988ee4b15b3e9d3ca0",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x32184",
+          "dll": "MFC80.DLL",
+          "ordinal": 1977,
+          "target_names_at_same_rva": [
+            "?Detach@CSharedFile@@QAEPAXXZ"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x32194",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x32198",
+          "dll": "MFC80.DLL",
+          "ordinal": 546,
+          "target_names_at_same_rva": [
+            "??0CSharedFile@@QAE@II@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x333ac",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x333c4",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "RegisterClipboardFormatA"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "ImpDxf.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ImpDxf.dll",
+      "sha256": "e0ff35e1a4fec6b793762864d96d9d3563bd86c47db1cd0c54f435eadea2cc47",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ImpGS7.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ImpGS7.dll",
+      "sha256": "baa212bec3600d9f97c45bfd3e2e90ca0cdb52e25fb99837c44ee9ac5623ed3b",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Irrlicht.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Irrlicht.dll",
+      "sha256": "824a82e71cf693fec397a4764767bca1e61e20d70cd3a3345e639fa53aab362e",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x12c2c8",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "JPeg.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\JPeg.dll",
+      "sha256": "140f6cb69e42ef9a6ef5f733c08253bf051f46f824e08cae1bf38aa882a4897a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "KcdImp4T3.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\KcdImp4T3.dll",
+      "sha256": "517f161db24c7d787eb17b70d63631dbdc168e686bcc5967f481a9986cf65bcd",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "KCDImport.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\KCDImport.dll",
+      "sha256": "0082e04a4a9a3536eeec8e8646e31d91dcea0082ad485ca0ebfc03b2e04e2fe7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "KcdUtil.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\KcdUtil.dll",
+      "sha256": "fc793258f5b62027ff70b64794291eff3474167f7ac78f8be1d4b7162b35b721",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LaunchCommandPack.exe",
+      "path": "C:\\TypeEdit_2009\\EXE\\LaunchCommandPack.exe",
+      "sha256": "f57b735bb6647f8e0e9c70daa2e32bf3b4f107f0eb883d211252a88dbf3eb35a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Lfacs15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Lfacs15u.dll",
+      "sha256": "8bd21f564485c9180a77ed5649cb07b233ad694c02e9a4c6aef12d583e1c43e7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LFao.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LFao.dll",
+      "sha256": "8a233f722c8e662d1a1e601363c8317faf7284f74539f6b55ae9c3f454e1d2bc",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Lfcmx15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Lfcmx15u.dll",
+      "sha256": "a9c87a462a5a5c67fa321d1701a75b53c5e309abe2260b4e4747297fc8340d21",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Lfdwg15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Lfdwg15u.dll",
+      "sha256": "5c22539543eccadccb478cce3d7e3cc0e9cfc7c4e065f377ce5cdfb8cefb4fc5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Lfdxf15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Lfdxf15u.dll",
+      "sha256": "d32b4df82d89f07985a039461410accc947bb145a60f2d8a78bb73cad01c637a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LGeom.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LGeom.dll",
+      "sha256": "a4cb349d623995d6d1113cb49a381c1523619daf59b912d04112b3c5f5689913",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LGrafic.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LGrafic.dll",
+      "sha256": "46f126036664e1f587a833dec9b77ba5e4e0c452aa1c8032f969441cc5c8b4fa",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LibBmp.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LibBmp.dll",
+      "sha256": "092438cd5c87691e7e18aeccaf88b1b2602ae10abf048223c0e68ece494518d8",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x230c8",
+          "dll": "MFC80.DLL",
+          "ordinal": 433,
+          "target_names_at_same_rva": [
+            "??0CMemFile@@QAE@PAEII@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "libpng13.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\libpng13.dll",
+      "sha256": "346b4c124e82d95ec946d8be6a7e42b840955ea1f2709629184bf7ed88efe5a0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "libvor.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\libvor.dll",
+      "sha256": "7e2502623e0b3ddccf1602025eebc373cbe53cdfe066ba0d560312f65f603f11",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LibZmap.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LibZmap.dll",
+      "sha256": "4f47592fb43062549280427a182e48810fc90a18ff6d31db1867a078dfb1861f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LibZMapMi.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LibZMapMi.dll",
+      "sha256": "ea37c0de47d78274b041527cec7fe1a3c83425dc9415e7ff925348ea7d80cbc0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LImg.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LImg.dll",
+      "sha256": "4763c28ab1ee33d6353c1ab56c6b2240e2f063db61a74f9eba5bec8d59ddbb6c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LMetaFile.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LMetaFile.dll",
+      "sha256": "5b5a186285913cf494d4d52924e980b077d33c862ce30fffbb565d18b4e16fe5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "LNesting.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\LNesting.dll",
+      "sha256": "fab4ec0207bc18eb8b553eed142107de19841b26f664604112318367722f6d74",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Ltdis15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Ltdis15u.dll",
+      "sha256": "132f2fa59d2d8e7d4696a8702f1fa8320808a403d2f7ffd1cece6c1c2bcc75a5",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x38478",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "Ltfil15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Ltfil15u.dll",
+      "sha256": "20f27781572585059dd135ae58c7032065a97c5b74b760555bce4c06a62f2cf1",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Ltimgclr15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Ltimgclr15u.dll",
+      "sha256": "29c10c950c2fa3d57cdd9dc1b18feba6422fcaf8604c3b4b48c8fafcf54837d6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Ltimgutl15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Ltimgutl15u.dll",
+      "sha256": "ead4b973b980799dd12fc084658a347c5a966001951d4ddb47f338d293809e24",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Ltkrn15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Ltkrn15u.dll",
+      "sha256": "eed10b61509b519a6a46de159f2f05c4e0002d7ccfaa0db5d5990021cd936708",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Lvkrn15u.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Lvkrn15u.dll",
+      "sha256": "07f554a207edabacb38cf1a12c0aca8f150e175e5e65cd08240729d5a0990856",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x3830c",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x38314",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "RegisterClipboardFormatA"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "Mac_102.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_102.dll",
+      "sha256": "2b2b4b72d1e023d6d00397fcf62c1014584112897f96f84b527c1218ec22905a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_106.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_106.dll",
+      "sha256": "302b7ea128d45b4d58a5ba088299b9dc5ccf2539a6494d3b632920a9e15f7dcf",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_108.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_108.dll",
+      "sha256": "55cc7155521f984dbfb2b51b199d5dc049acfa39bd9d8d4d410749be6ca94c09",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_110.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_110.dll",
+      "sha256": "95d2acd1391de6531e9bddea5e534033e7d88cc2299cc3d0cd5a1134d4a39833",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_118.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_118.dll",
+      "sha256": "a709b5cf40a4d1310acb84661b5a788e245822e87b8cfd09150ee98b96558196",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_120.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_120.dll",
+      "sha256": "64448cd5c2a434fac89be94ca592750f978b72ab7babfc31c382a2c04c88b2e8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_122.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_122.dll",
+      "sha256": "fb2f64a8e8b9eb543779f525e911e953b5e7534005768e81602889f2b2fea9a5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_124.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_124.dll",
+      "sha256": "7c54f70a65c0b71db8f8959f4f5c71e07c10e81ab3daa7787c33ac0c418eea69",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_126.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_126.dll",
+      "sha256": "86efe3e9a2669658a7f1b3abc6c3e364a8cdbbdb5cc6dbc6e0f489cd34c26a42",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_128.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_128.dll",
+      "sha256": "abd71f6f2c1bed7e06f582c721e37fc5e59f8074686140e055196a7fcbb8bbcb",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_130.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_130.dll",
+      "sha256": "c9bd889b37ae3e82629317966459e271f627b47bd43de83b222552ef4e73c18f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_131.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_131.dll",
+      "sha256": "69ea935e5ed1dba1e2475c04846644d5aff11cc87b68fd03f414798e19cbf804",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_132.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_132.dll",
+      "sha256": "e17aca3b75a66627432e5791fef9a3cf347fc766ef69cc4b3096a76ef7ebd475",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_134.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_134.dll",
+      "sha256": "a4d726af903e3a1d5c4885e46834b533df3f63855d02f244840b88e6a82503ec",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_135.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_135.dll",
+      "sha256": "6b99d67b28a73f0bf74b5123264a095358a005311858f602008ed38a81de5972",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_136.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_136.dll",
+      "sha256": "46fa062a45d15712493abc39dafce01c5839682c9c8058e0113db9e0f2d3b812",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_136_bis.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_136_bis.dll",
+      "sha256": "a980ecfd0a685319f934eaa9817a1e359cc46ba287100c8360146861f6869f9a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_138.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_138.dll",
+      "sha256": "ecf9eb543997b443c25134b835bc55193e9b2c994e2ddaaed595225278d291b8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_140.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_140.dll",
+      "sha256": "184dc9607a1e110eb5b0ba56bc46f882d1cedbf5ab6c72e6b6c8808ec42db78e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_154.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_154.dll",
+      "sha256": "c936ae011427bd64d9e9823063f51d919850eecc1d3e123fbf7122e8b52fd2a3",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_158.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_158.dll",
+      "sha256": "cd763da62e39d2e858c1f80e163ae88bf7d4a0b2684b2fcad69f8489370fbc6f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_160.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_160.dll",
+      "sha256": "0455a4f0a3b1d5c78f279fb4e94f8c41dbcfa6cce7fae1cc3797608616bd62bb",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_162.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_162.dll",
+      "sha256": "84cf10481724cc239923af3490e5ad2cc6ec451022b7e7292d298fb5fa9a16a1",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Asc_Gii_2D.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Asc_Gii_2D.dll",
+      "sha256": "ba87fb706f3cf2158ca537a71bbaaba6af0a012cb5c21b8c94100e17fe08c494",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Ascii_Gerber_3D.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Ascii_Gerber_3D.dll",
+      "sha256": "ef6642e891896ff0dd63df4e0533dd4316f131d299470a7d37d04e59be3d45ca",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "mac_bin_gii_2d.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\mac_bin_gii_2d.dll",
+      "sha256": "a5f27f889f1866d5bf3edb374e0eccd41252e667ef7e5526428c2f64ff24bff7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_bin_Wdpc.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_bin_Wdpc.dll",
+      "sha256": "ec2cd83bfc30c0fcfbe9ab7840c2e5f7817f25dd2a354de2a77cfa7a3a594563",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Bostomatic.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Bostomatic.dll",
+      "sha256": "86b37f7438be22589ac4883d5cb0a303475daf7b893e13b7239b74f6a6d20070",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Iso_Mecanumeric.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Iso_Mecanumeric.dll",
+      "sha256": "6ca7edbf2458818028e68c34ab6ed640e7fc76f376ab940c3646c18c42f6a1d2",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Meca_110.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Meca_110.dll",
+      "sha256": "43fb0b9c014ee0a04c130a19abcdf30e777b507e4ca4c29fd1c1afbad34cda4c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mac_Premier.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mac_Premier.dll",
+      "sha256": "46002a33bc7a5810438dc65bd51eced2d37eae057272382f16e854b7ef1e87ee",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MacDemo.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MacDemo.dll",
+      "sha256": "3032834eafdcd69b2bbf3aa7edeb873b285900fab0a35a802c000a74c5586a1d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Machi.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Machi.dll",
+      "sha256": "c632d61f3f95b7ac0033cb7a6157f227c8730de96832f3c53c8699079b284e20",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiDemo.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiDemo.dll",
+      "sha256": "3397b352596ba2aa44ae348f4c8a9fcc8206586f09a60649c28c33fc3e64c0b8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiFoba_5axes.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiFoba_5axes.dll",
+      "sha256": "f22728e2e674660e7b633f57f5d8f515e9f26c289c2c59469b2ea1678d5f05e5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiLaserGii.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiLaserGii.dll",
+      "sha256": "2646abba349c6188df8034c3a8f8535aab1027c113fb38757007e192c384de22",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x235b0",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "MachiLaserScriptMarquing.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiLaserScriptMarquing.dll",
+      "sha256": "b04386cdedb6ef2d3053705a7d4ffff736b2f3ad84ae62ddf27b3b77326fc74a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiMarquage.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiMarquage.dll",
+      "sha256": "acdad8d8d0e1ef5fb5107a0acb234c5ade8cc0111ef669b9bc68ed354459d6c6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiMecaLaser.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiMecaLaser.dll",
+      "sha256": "c18f37d5647d4b918f7acb01f64d49989bf1b73d7ff48a227a56672a1c2f9f58",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MachiSpecEx.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MachiSpecEx.dll",
+      "sha256": "6a28fcd7d986cc22d5e83dcc359d2e730fc082aa1f5d1ffb65ba170574e5ccfd",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MacHpgl.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MacHpgl.dll",
+      "sha256": "71d532dc9b9e945b680e0e7d584fce0e4b93f100fc8e596e94bd0a4271bdec5c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MacIson.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MacIson.dll",
+      "sha256": "a19ed5aa50b4e4c4424e06710cc0a01d42fd04a45a44bd618e8b08cae1ca1e75",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MacKuhlC.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MacKuhlC.dll",
+      "sha256": "1ccb46321ef8d9eda918b457c322bfe8ef2682a071a31bd8ba6cf3231fe02f6f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Macmimak.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Macmimak.dll",
+      "sha256": "13a4a8640842d65bdfe79fcc6181c3acf3184db35d9ee740e747c06c13f96267",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MacQqc.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MacQqc.dll",
+      "sha256": "42624e2170a47de51623dbff68672f37906412465b9aa4ab62f51161d70d749a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Macwdpc.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Macwdpc.dll",
+      "sha256": "59535fd06715664cafdd12bbded6060828bea63bcee6f4cf53d0f714f3027db0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MappingDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MappingDLL.dll",
+      "sha256": "7a5efeb78960193641338df0be069bd3cc6b08ea8f32d84744acfa3e36ec3a05",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Maude.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Maude.dll",
+      "sha256": "eded4261fe6df1f22ceb098648188a6d789c1b6eed5a713a97e0e0e52a895f91",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Maude3D.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Maude3D.dll",
+      "sha256": "7c72f042983dee7bc2ed4ef8f0f0a8efb77ead7289e8e5ff3959a9bdbcb02304",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x79350",
+          "dll": "MFC80.DLL",
+          "ordinal": 546,
+          "target_names_at_same_rva": [
+            "??0CSharedFile@@QAE@II@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x79354",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x79360",
+          "dll": "MFC80.DLL",
+          "ordinal": 1977,
+          "target_names_at_same_rva": [
+            "?Detach@CSharedFile@@QAEPAXXZ"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "MaudeBCode.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeBCode.dll",
+      "sha256": "cd5d23783eac08c582b28a701567000fea6bf9b7f0a0d1d79e0233d19e0ff798",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeCadran.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeCadran.dll",
+      "sha256": "9837935126026e85025c6ef3460e25921f5d81c021e1bfebc9029c84d7ebbdf2",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeColor.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeColor.dll",
+      "sha256": "7807cd5bbfe628f74f065f74b41f4eb7f939f8b521b64bdeff650c596859b023",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeCotation.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeCotation.dll",
+      "sha256": "a7ff851766f9de626088c7ef7708f2b763528f52f71aea28d54f3438a6d5e386",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeExt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeExt.dll",
+      "sha256": "d41d0045837e054abd4ebf7ee82b343fc04e4b828f782d18ecdb30d9efb52b6f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeFao.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeFao.dll",
+      "sha256": "9dc54ba2c34ec5f956becb4ae6d6b7ce7b695f333a3cf0e2765a1fd34fcbc472",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeGangDrill.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeGangDrill.dll",
+      "sha256": "386f1ba448eda23246c855c624692a023c1837b62c463372e0565da03e96c375",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeSceau.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeSceau.dll",
+      "sha256": "f59318f8f50418acfc028bd8a55c9904409ecc797aeb6269bf589a3addae22b4",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeTampon.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeTampon.dll",
+      "sha256": "28918d69af76b93e9ffa634e997c45d7fa77d5df41a3847a7712e19deda4e680",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeTDesign.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeTDesign.dll",
+      "sha256": "328a080cee7be617e7a9be15362fa8075f1f871619e30f2237cf49dcb3be2779",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeTxt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeTxt.dll",
+      "sha256": "0e03417d95bcb0168ad876a6ea77be6b51d47ebaa49bf63a3d1298d7c3a1a621",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeUID.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeUID.dll",
+      "sha256": "7667063912ba2abb56b6bea09a9d0562b2e1d6a37eadc3dd91ec64739b326c11",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MaudeVecto.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MaudeVecto.dll",
+      "sha256": "fdd2bb73fcf9f1257e76e4a415393a085d72f43d00fbe638c2e1924c70761245",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MBarcode.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MBarcode.dll",
+      "sha256": "4df976207d957f3d88f26faa42e33d6a6ac3b20cdf564bb4bd7102e45722a3a8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "McVn.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\McVn.dll",
+      "sha256": "0f5e50e67ba9632682ecbdf4c9807b079fafd06a2fa767069a8195c7aacdc19a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MemMgr.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MemMgr.dll",
+      "sha256": "3964a13feaef9792569c5405453217470b05b3b132957fc669d7d719042f7bc6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MesureDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MesureDLL.dll",
+      "sha256": "125ade13149d38619f4f76489c06cd38c94130743e7f6f83cc4d0ec53c272af4",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MFCMIFC80.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MFCMIFC80.dll",
+      "sha256": "4d0dffb69bca4a15a0ef4444ed24300fb5b31ce83ab26cbdb8f6fef1b84032ae",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mi.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mi.dll",
+      "sha256": "b097b6dbaa886b21177a27c8c53a877785c18d7adad8fbecfca60be7efd794b4",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Mo.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Mo.dll",
+      "sha256": "bc32c58af702825f15f3c628dbff0c379626c059e962e33a62eaf468aa79e227",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MoExt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MoExt.dll",
+      "sha256": "12c54b1b550c55cd82f5d497345f1ae709edf238e76531b3613e92450792ff6d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "MoHF.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\MoHF.dll",
+      "sha256": "c2b6d41cb99ca2c90cfbcbc6746f57ecc7ff6bfdbd246cdb5aad781c4b9b1fed",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "mpfr.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\mpfr.dll",
+      "sha256": "8fc3a35bfa9b0ecd2b16e30282b0fe80b71f6d44b7638778e8fd4bb700c92569",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "N32DLL.DLL",
+      "path": "C:\\TypeEdit_2009\\EXE\\N32DLL.DLL",
+      "sha256": "fae3a240f94ec164df7e08a49dd7d11c1356ed8b25d5c1f15cc6b4dc5dc90f54",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "NLib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\NLib.dll",
+      "sha256": "28196e40827e7eaef16f3bdaca436d02d6c4adda20bb2f5f11d9c989a49dec0a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "NMTLib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\NMTLib.dll",
+      "sha256": "683cd4f244671cb364a4ba6898a5064d848558c1693e4a456ee490f4118e1598",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Nurbs.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Nurbs.dll",
+      "sha256": "1c8199dd68616648a06e799761416e741bfa7dbde4f07eb349242c0c9ad6e6ac",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "on_nmtlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\on_nmtlib.dll",
+      "sha256": "be5e8191b9155bc0c7a1253b93d630575d0129c7af636f5543be9c313ef0114d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "opennurbs_vc60.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\opennurbs_vc60.dll",
+      "sha256": "288b6c3915dcc259cacb2aee067dd1f867c184b35cbc38b60e4de84829bcfef8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "OperType3DLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\OperType3DLL.dll",
+      "sha256": "1ad12daba4f92546abb32931b18b0d55a48377da58fe3811328aaa816a5f9bea",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ParamGangDrillDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ParamGangDrillDLL.dll",
+      "sha256": "bc16ac94922ed8cfe0e285d3f133f2a30d8fdea858d528b279153988237b2bf6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ParamGest.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ParamGest.dll",
+      "sha256": "c30acdd496f11c13af58b485299905b699352a28abce4e21fbdb071e523b7be3",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x809c",
+          "dll": "MFC80.DLL",
+          "ordinal": 317,
+          "target_names_at_same_rva": [
+            "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "ParamGestExt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ParamGestExt.dll",
+      "sha256": "24757f05b2dc0c6b611fe5858fb3e755f5c775ea2a9b9048d3e042cafa93d2cf",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ParamPcrDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ParamPcrDLL.dll",
+      "sha256": "3231bdbf9e96bfffc4780bb07bb833db0e1e575ba411f66ea9fabd0d33dd6e5c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "parasolid_smlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\parasolid_smlib.dll",
+      "sha256": "e033c91e6a81a180df4a7358af275e630558ab2b433fd2ea3a66befc23c4ff78",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Pltf.exe",
+      "path": "C:\\TypeEdit_2009\\EXE\\Pltf.exe",
+      "sha256": "f679f2641e60a41f62326e1c68c5e2c64d2415498bb1b92019c5f2d64245e662",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "PltfDnet.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\PltfDnet.dll",
+      "sha256": "f28b1195c85feb4e9253546ecc966f1b0acfd4f2dcf6ed0ceb94e452687e35b4",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "PointDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\PointDLL.dll",
+      "sha256": "5ba07588700e9af917dd547441a2200262605c1a31bb31315b818592d30dc482",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "PowerApxWinDll.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\PowerApxWinDll.dll",
+      "sha256": "423313e74b3df1dca126c7cdde885114d79498a2895761d696206cc87a4ae3dc",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "resmanager.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\resmanager.dll",
+      "sha256": "722b9609f328b911049ed50baef9cf0a13b79407a5f150ffd048e179847cdb5d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Rt.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Rt.dll",
+      "sha256": "d3582fe14a1190709b9c974a5c909daa53cec2eb89687246bef98d41c1860d79",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "sat_nmtlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\sat_nmtlib.dll",
+      "sha256": "71ba379b9cb9f96c64ac78a380bb1358af79c6e66f56f19a98c0cc75c337193a",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ScriptEngine.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ScriptEngine.dll",
+      "sha256": "dbfbf9843f47639718e965c8c3db50803b28b501bc8dd0f273ae01c18ca5af9d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ScriptInterfaceDll.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ScriptInterfaceDll.dll",
+      "sha256": "22c7d55d416c4cd258023d5330febef20a29a4c87bd2ac02751f68291b81ff73",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "SculptBrush.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\SculptBrush.dll",
+      "sha256": "71e0685c2af7f7cc36fb0c588c16911ea6470e8e88bb66bc5356d522781436b8",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x1f4bc",
+          "dll": "MFC80.DLL",
+          "ordinal": 4864,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x1f4c0",
+          "dll": "MFC80.DLL",
+          "ordinal": 4861,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "SculptDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\SculptDLL.dll",
+      "sha256": "5915f856935988a1f5c0be683d8533d061f854257ff54ee7462c5d07e54c94c2",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ShapeDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ShapeDLL.dll",
+      "sha256": "d726a2fbdfb2b53b4d67bbb5e65722bf451389a0f9646fcbb357dd19f9bafab5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ShapeSurfDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ShapeSurfDLL.dll",
+      "sha256": "3090ea168d0917c3ac36d4ae7b40d42262b0bcce1f50d92bf590a6e02c33f5b5",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "SMSTE.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\SMSTE.dll",
+      "sha256": "03d474bc8ab6ce54f410130fb64223ae04df92d277985768fcc872a9d62f54f0",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x4450c",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "RegisterClipboardFormatA"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "SMSTE4T3.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\SMSTE4T3.dll",
+      "sha256": "9b9ed8443784f74329a7f866b8c7d1c1d3331550a9475ac8484208e82fe0ce8e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "SSCE5332.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\SSCE5332.dll",
+      "sha256": "a564fb917d7de81ee609e7e5c5856afd5e49aba6fd2dfc8405cfa1af7c954dcf",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ssce5432.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ssce5432.dll",
+      "sha256": "b3160e418f40d9d277274fbac84f8479eb3e4fed18231c449e8b01f9759aebf3",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "step_nmtlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\step_nmtlib.dll",
+      "sha256": "9af517a4462f1529ef664c38013b11335c29f289a0cbb30ecab4599beda5707e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "sw_smlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\sw_smlib.dll",
+      "sha256": "f6c5c6f495857e4f861d8ddbd67310061feb3606c628aff2659de16132ecf03d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TextDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TextDLL.dll",
+      "sha256": "4a8d2ed1bf8cad05a691fe3f5b78f5c38e5e6426bcec6a32b5d7dab84de69d2f",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Thunk.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Thunk.dll",
+      "sha256": "e9451aa41cc4af42a5ac34ca47c8e453fbb1c7425c15202af0f3e4d084eb7563",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Tiff.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Tiff.dll",
+      "sha256": "38ce29d48e0aa7937562a146d8ede900239941703e9f44df16f0399a9db63496",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TlsdbDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TlsdbDLL.dll",
+      "sha256": "03480efbdf1d9bdad8b075fcb3163453d032d92dd3c0cfd00faa19df7925280c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TPSimulation.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TPSimulation.dll",
+      "sha256": "f206765339b7b0da91d1b204e7b74eee5ca9bb21c11bbc9e9b404420f7086a9b",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x3339c",
+          "dll": "MFC80.DLL",
+          "ordinal": 4861,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x333a0",
+          "dll": "MFC80.DLL",
+          "ordinal": 4864,
+          "target_names_at_same_rva": [
+            "?OnSetData@COleDataSource@@UAEHPAUtagFORMATETC@@PAUtagSTGMEDIUM@@H@Z"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "tpsrvr.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\tpsrvr.dll",
+      "sha256": "a8b6392a718fc2f1eb47b4b12f25b902e20d63a12f6dd4c48e83725750588aa6",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TransformationDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TransformationDLL.dll",
+      "sha256": "10e1c2ec24f8a96ab7b8bc526044a3e3527bf83ec2aa6857ced203045940249c",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TxtColonneVn.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TxtColonneVn.dll",
+      "sha256": "ca383725f8908302a2c8e9740780592e97227cb46194daebd9fb638e17fe0c30",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEdit.exe",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEdit.exe",
+      "sha256": "4b2a34088cd0e84dad2906f32b3726cdec1e169860e3d7de74a7476cf557566b",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditApi.Capabilities.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditApi.Capabilities.dll",
+      "sha256": "956864a2e36b352562d4abec2798ff3ec21b3162c77868e23934b58b0a21042e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditApi.Contracts.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditApi.Contracts.dll",
+      "sha256": "df38817228fac014e52b52a9932c9bb68d378caaee766586af3e29ae8c32b77b",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditApi.PracticalClient.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditApi.PracticalClient.dll",
+      "sha256": "305ec2a02691ec03e87663a30d24ee88ae531e10d4e8f9d2c24cd1910d63489d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditApi.TypeEdit2009.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditApi.TypeEdit2009.dll",
+      "sha256": "4f621854d986f21b5613d8653447ecad4553bcd43ae2ad077ed8e603ef81d247",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditApiModeSettings.exe",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditApiModeSettings.exe",
+      "sha256": "44dcdf7efefa86971feec69ffb94f9218fc86f1f80d0ccbba5e1ce155a52d9ea",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeEditDLL.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeEditDLL.dll",
+      "sha256": "62f2fc8fcc653746e0844d01882b86251f89de2b14d8202a551a7ed4afaf18a9",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "TypeTracer.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\TypeTracer.dll",
+      "sha256": "65d37842715342b956a305887756d73540c6a5b31a31d21220e0d26d23448d2e",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "vdafs_nmtlib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\vdafs_nmtlib.dll",
+      "sha256": "714fc7ed63a5a6ed91001a5a74e9fc92e396ea496a2ac5c622baa0e5497a6aad",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VisualBarreCode.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VisualBarreCode.dll",
+      "sha256": "ad3bbd8292ef94c7d75660721333b8d5adcd4e021237b29c05c06d16034a8dea",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VN_CUSTM.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VN_CUSTM.dll",
+      "sha256": "182fd08e6218f2c51f4d16f97c35c8a9b47411300b67cef50468a9e40cfce92d",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "vncadran.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\vncadran.dll",
+      "sha256": "f31ada70a852bbc9618e6155942086e0d5bd41d219f6cf5ae3cc99a0b78bd1e8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VnCotation.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VnCotation.dll",
+      "sha256": "72168ee516dc73a19a477d0b12555302036e8fc7cf344077d724a8d175c18c51",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VnNesting.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VnNesting.dll",
+      "sha256": "6d2abbf42e6bd39bb738b7a85b69ec813871d8ca5a7c8d5670b1bc42e85a20f8",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VnTools.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VnTools.dll",
+      "sha256": "51fdd6d365ea4da27dd3dd07119392752697fb93a2ea2fcd986df9209d2636f2",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Vnv.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Vnv.dll",
+      "sha256": "56d55155e4e524fa193ce389364fda630b8f406f91401eb2f86de48a3c5be9c7",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "Vnx2Nm.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\Vnx2Nm.dll",
+      "sha256": "a837583aa8aeddef3781adf0f6f4eb39fddbfa37e767fb5f45f9f7f376f35290",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "VnxGest.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\VnxGest.dll",
+      "sha256": "d854efc97a65525e76fb02ea60855e2d692698217e5fe94bf466af5292c806fa",
+      "literal_hits": [],
+      "relevant_imports": [
+        {
+          "iat_rva": "0x21184",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "SetClipboardData"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        },
+        {
+          "iat_rva": "0x211c4",
+          "dll": "USER32.dll",
+          "ordinal": null,
+          "target_names_at_same_rva": [
+            "RegisterClipboardFormatA"
+          ],
+          "ambiguity": "PDB aliases may share code; import alone does not prove path"
+        }
+      ]
+    },
+    {
+      "module": "vroni.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\vroni.dll",
+      "sha256": "7067a9fc266cbf56e64290afff1255e751cf25625003b0ac8ad6c04613e58af3",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "wcadran.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\wcadran.dll",
+      "sha256": "7154bd8de68459404e66b6bab8258fc2962083585d28cb9a7eacacc85cf4f81b",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "WDNMaude.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\WDNMaude.dll",
+      "sha256": "fac63cdf9cf88f03c9819317a10b3adc2d6968519fe52e37d70b0e2fa6839e42",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "WndHtml.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\WndHtml.dll",
+      "sha256": "e4719138d25c713c6ff2bee16b9b8007bccc944319e30a509a375f177591e2e0",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "WSceau.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\WSceau.dll",
+      "sha256": "f5771257d001fa9ee60ba3858db21e6384c4373c584972c65b1444a4b1b6fb57",
+      "literal_hits": [],
+      "relevant_imports": []
+    },
+    {
+      "module": "ZLib.dll",
+      "path": "C:\\TypeEdit_2009\\EXE\\ZLib.dll",
+      "sha256": "28b16d8a0092db19e112f6e9016773c007af9dc857eab17ad7fad2572d7a0f09",
+      "literal_hits": [],
+      "relevant_imports": []
+    }
+  ],
+  "classified_publish_candidates": [
+    {
+      "module": "impapi.dll",
+      "register_call": "0xb45d",
+      "set_call": "0xb5c6",
+      "format_string_rva": "0x34488",
+      "format": "TypeEditCalque",
+      "classification": "EXCLUDED_OTHER_REGISTERED_FORMAT"
+    },
+    {
+      "module": "impapi.dll",
+      "register_call": "0xbf5a",
+      "set_call": "0xc0c0",
+      "format_string_rva": "0x34488",
+      "format": "TypeEditCalque",
+      "classification": "EXCLUDED_OTHER_REGISTERED_FORMAT"
+    },
+    {
+      "module": "VnxGest.dll",
+      "register_call": "0x101e",
+      "set_call": "0xee0a",
+      "format_string_rva": "0x21218",
+      "format": "VNXCLP",
+      "classification": "EXCLUDED_OTHER_REGISTERED_FORMAT"
+    },
+    {
+      "module": "SMSTE.dll",
+      "register_call": "0x1752e",
+      "format_string_rva": "0x4512c",
+      "format": "VNXCLP",
+      "classification": "EXCLUDED_OTHER_REGISTERED_FORMAT"
+    }
+  ],
+  "code_evidence": [
+    {
+      "module": "impapi.dll",
+      "range": [
+        "0xb410",
+        "0xb5d2"
+      ],
+      "instructions": [
+        {
+          "rva": "0xb410",
+          "bytes": "6aff",
+          "asm": "push -1"
+        },
+        {
+          "rva": "0xb412",
+          "bytes": "686ee30210",
+          "asm": "push 0x1002e36e"
+        },
+        {
+          "rva": "0xb417",
+          "bytes": "64a100000000",
+          "asm": "mov eax, dword ptr fs:[0]"
+        },
+        {
+          "rva": "0xb41d",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xb41e",
+          "bytes": "81eca0000000",
+          "asm": "sub esp, 0xa0"
+        },
+        {
+          "rva": "0xb424",
+          "bytes": "53",
+          "asm": "push ebx"
+        },
+        {
+          "rva": "0xb425",
+          "bytes": "55",
+          "asm": "push ebp"
+        },
+        {
+          "rva": "0xb426",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0xb427",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0xb428",
+          "bytes": "a1dca10610",
+          "asm": "mov eax, dword ptr [0x1006a1dc]"
+        },
+        {
+          "rva": "0xb42d",
+          "bytes": "33c4",
+          "asm": "xor eax, esp"
+        },
+        {
+          "rva": "0xb42f",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xb430",
+          "bytes": "8d8424b4000000",
+          "asm": "lea eax, [esp + 0xb4]"
+        },
+        {
+          "rva": "0xb437",
+          "bytes": "64a300000000",
+          "asm": "mov dword ptr fs:[0], eax"
+        },
+        {
+          "rva": "0xb43d",
+          "bytes": "33ed",
+          "asm": "xor ebp, ebp"
+        },
+        {
+          "rva": "0xb43f",
+          "bytes": "392d20a40610",
+          "asm": "cmp dword ptr [0x1006a420], ebp"
+        },
+        {
+          "rva": "0xb445",
+          "bytes": "0f845b010000",
+          "asm": "je 0xb5a6"
+        },
+        {
+          "rva": "0xb44b",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xb451",
+          "bytes": "8b01",
+          "asm": "mov eax, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xb453",
+          "bytes": "8b5034",
+          "asm": "mov edx, dword ptr [eax + 0x34]"
+        },
+        {
+          "rva": "0xb456",
+          "bytes": "ffd2",
+          "asm": "call edx"
+        },
+        {
+          "rva": "0xb458",
+          "bytes": "6888440310",
+          "asm": "push 0x10034488"
+        },
+        {
+          "rva": "0xb45d",
+          "bytes": "ff15c4330310",
+          "asm": "call dword ptr [0x100333c4]"
+        },
+        {
+          "rva": "0xb463",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0xb468",
+          "bytes": "6842200000",
+          "asm": "push 0x2042"
+        },
+        {
+          "rva": "0xb46d",
+          "bytes": "8d4c2440",
+          "asm": "lea ecx, [esp + 0x40]"
+        },
+        {
+          "rva": "0xb471",
+          "bytes": "89442420",
+          "asm": "mov dword ptr [esp + 0x20], eax"
+        },
+        {
+          "rva": "0xb475",
+          "bytes": "e8dc000200",
+          "asm": "call 0x2b556"
+        },
+        {
+          "rva": "0xb47a",
+          "bytes": "55",
+          "asm": "push ebp"
+        },
+        {
+          "rva": "0xb47b",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0xb480",
+          "bytes": "55",
+          "asm": "push ebp"
+        },
+        {
+          "rva": "0xb481",
+          "bytes": "8d442444",
+          "asm": "lea eax, [esp + 0x44]"
+        },
+        {
+          "rva": "0xb485",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xb486",
+          "bytes": "8d4c247c",
+          "asm": "lea ecx, [esp + 0x7c]"
+        },
+        {
+          "rva": "0xb48a",
+          "bytes": "89ac24cc000000",
+          "asm": "mov dword ptr [esp + 0xcc], ebp"
+        },
+        {
+          "rva": "0xb491",
+          "bytes": "e8ba000200",
+          "asm": "call 0x2b550"
+        },
+        {
+          "rva": "0xb496",
+          "bytes": "c68424bc00000001",
+          "asm": "mov byte ptr [esp + 0xbc], 1"
+        },
+        {
+          "rva": "0xb49e",
+          "bytes": "ff15bc2a0310",
+          "asm": "call dword ptr [0x10032abc]"
+        },
+        {
+          "rva": "0xb4a4",
+          "bytes": "8d4c246c",
+          "asm": "lea ecx, [esp + 0x6c]"
+        },
+        {
+          "rva": "0xb4a8",
+          "bytes": "51",
+          "asm": "push ecx"
+        },
+        {
+          "rva": "0xb4a9",
+          "bytes": "ff15c02a0310",
+          "asm": "call dword ptr [0x10032ac0]"
+        },
+        {
+          "rva": "0xb4af",
+          "bytes": "83c404",
+          "asm": "add esp, 4"
+        },
+        {
+          "rva": "0xb4b2",
+          "bytes": "6a0a",
+          "asm": "push 0xa"
+        },
+        {
+          "rva": "0xb4b4",
+          "bytes": "8d4c2420",
+          "asm": "lea ecx, [esp + 0x20]"
+        },
+        {
+          "rva": "0xb4b8",
+          "bytes": "e869000200",
+          "asm": "call 0x2b526"
+        },
+        {
+          "rva": "0xb4bd",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xb4c3",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xb4c5",
+          "bytes": "8b4268",
+          "asm": "mov eax, dword ptr [edx + 0x68]"
+        },
+        {
+          "rva": "0xb4c8",
+          "bytes": "33f6",
+          "asm": "xor esi, esi"
+        },
+        {
+          "rva": "0xb4ca",
+          "bytes": "c68424bc00000002",
+          "asm": "mov byte ptr [esp + 0xbc], 2"
+        },
+        {
+          "rva": "0xb4d2",
+          "bytes": "89742414",
+          "asm": "mov dword ptr [esp + 0x14], esi"
+        },
+        {
+          "rva": "0xb4d6",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb4d8",
+          "bytes": "85c0",
+          "asm": "test eax, eax"
+        },
+        {
+          "rva": "0xb4da",
+          "bytes": "7e68",
+          "asm": "jle 0xb544"
+        },
+        {
+          "rva": "0xb4dc",
+          "bytes": "8d642400",
+          "asm": "lea esp, [esp]"
+        },
+        {
+          "rva": "0xb4e0",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xb4e6",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xb4e8",
+          "bytes": "8b4260",
+          "asm": "mov eax, dword ptr [edx + 0x60]"
+        },
+        {
+          "rva": "0xb4eb",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0xb4ec",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb4ee",
+          "bytes": "8bf8",
+          "asm": "mov edi, eax"
+        },
+        {
+          "rva": "0xb4f0",
+          "bytes": "8b17",
+          "asm": "mov edx, dword ptr [edi]"
+        },
+        {
+          "rva": "0xb4f2",
+          "bytes": "8b4268",
+          "asm": "mov eax, dword ptr [edx + 0x68]"
+        },
+        {
+          "rva": "0xb4f5",
+          "bytes": "8bcf",
+          "asm": "mov ecx, edi"
+        },
+        {
+          "rva": "0xb4f7",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb4f9",
+          "bytes": "8bd8",
+          "asm": "mov ebx, eax"
+        },
+        {
+          "rva": "0xb4fb",
+          "bytes": "3bdd",
+          "asm": "cmp ebx, ebp"
+        },
+        {
+          "rva": "0xb4fd",
+          "bytes": "7e2d",
+          "asm": "jle 0xb52c"
+        },
+        {
+          "rva": "0xb4ff",
+          "bytes": "90",
+          "asm": "nop "
+        },
+        {
+          "rva": "0xb500",
+          "bytes": "8b17",
+          "asm": "mov edx, dword ptr [edi]"
+        },
+        {
+          "rva": "0xb502",
+          "bytes": "8b4260",
+          "asm": "mov eax, dword ptr [edx + 0x60]"
+        },
+        {
+          "rva": "0xb505",
+          "bytes": "55",
+          "asm": "push ebp"
+        },
+        {
+          "rva": "0xb506",
+          "bytes": "8bcf",
+          "asm": "mov ecx, edi"
+        },
+        {
+          "rva": "0xb508",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb50a",
+          "bytes": "8bf0",
+          "asm": "mov esi, eax"
+        },
+        {
+          "rva": "0xb50c",
+          "bytes": "8b16",
+          "asm": "mov edx, dword ptr [esi]"
+        },
+        {
+          "rva": "0xb50e",
+          "bytes": "8b4234",
+          "asm": "mov eax, dword ptr [edx + 0x34]"
+        },
+        {
+          "rva": "0xb511",
+          "bytes": "8bce",
+          "asm": "mov ecx, esi"
+        },
+        {
+          "rva": "0xb513",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb515",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0xb516",
+          "bytes": "8d4c2420",
+          "asm": "lea ecx, [esp + 0x20]"
+        },
+        {
+          "rva": "0xb51a",
+          "bytes": "e82b000200",
+          "asm": "call 0x2b54a"
+        },
+        {
+          "rva": "0xb51f",
+          "bytes": "83c501",
+          "asm": "add ebp, 1"
+        },
+        {
+          "rva": "0xb522",
+          "bytes": "3beb",
+          "asm": "cmp ebp, ebx"
+        },
+        {
+          "rva": "0xb524",
+          "bytes": "7cda",
+          "asm": "jl 0xb500"
+        },
+        {
+          "rva": "0xb526",
+          "bytes": "8b742414",
+          "asm": "mov esi, dword ptr [esp + 0x14]"
+        },
+        {
+          "rva": "0xb52a",
+          "bytes": "33ed",
+          "asm": "xor ebp, ebp"
+        },
+        {
+          "rva": "0xb52c",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xb532",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xb534",
+          "bytes": "8b4268",
+          "asm": "mov eax, dword ptr [edx + 0x68]"
+        },
+        {
+          "rva": "0xb537",
+          "bytes": "83c601",
+          "asm": "add esi, 1"
+        },
+        {
+          "rva": "0xb53a",
+          "bytes": "89742414",
+          "asm": "mov dword ptr [esp + 0x14], esi"
+        },
+        {
+          "rva": "0xb53e",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xb540",
+          "bytes": "3bf0",
+          "asm": "cmp esi, eax"
+        },
+        {
+          "rva": "0xb542",
+          "bytes": "7c9c",
+          "asm": "jl 0xb4e0"
+        },
+        {
+          "rva": "0xb544",
+          "bytes": "8d4c246c",
+          "asm": "lea ecx, [esp + 0x6c]"
+        },
+        {
+          "rva": "0xb548",
+          "bytes": "51",
+          "asm": "push ecx"
+        },
+        {
+          "rva": "0xb549",
+          "bytes": "8d4c2420",
+          "asm": "lea ecx, [esp + 0x20]"
+        },
+        {
+          "rva": "0xb54d",
+          "bytes": "e8f2ff0100",
+          "asm": "call 0x2b544"
+        },
+        {
+          "rva": "0xb552",
+          "bytes": "ff15c42a0310",
+          "asm": "call dword ptr [0x10032ac4]"
+        },
+        {
+          "rva": "0xb558",
+          "bytes": "8d4c246c",
+          "asm": "lea ecx, [esp + 0x6c]"
+        },
+        {
+          "rva": "0xb55c",
+          "bytes": "e8ddff0100",
+          "asm": "call 0x2b53e"
+        },
+        {
+          "rva": "0xb561",
+          "bytes": "8d4c2438",
+          "asm": "lea ecx, [esp + 0x38]"
+        },
+        {
+          "rva": "0xb565",
+          "bytes": "e8ceff0100",
+          "asm": "call 0x2b538"
+        },
+        {
+          "rva": "0xb56a",
+          "bytes": "8bf0",
+          "asm": "mov esi, eax"
+        },
+        {
+          "rva": "0xb56c",
+          "bytes": "3bf5",
+          "asm": "cmp esi, ebp"
+        },
+        {
+          "rva": "0xb56e",
+          "bytes": "753d",
+          "asm": "jne 0xb5ad"
+        },
+        {
+          "rva": "0xb570",
+          "bytes": "8d4c241c",
+          "asm": "lea ecx, [esp + 0x1c]"
+        },
+        {
+          "rva": "0xb574",
+          "bytes": "c68424bc00000001",
+          "asm": "mov byte ptr [esp + 0xbc], 1"
+        },
+        {
+          "rva": "0xb57c",
+          "bytes": "e89fff0100",
+          "asm": "call 0x2b520"
+        },
+        {
+          "rva": "0xb581",
+          "bytes": "8d4c246c",
+          "asm": "lea ecx, [esp + 0x6c]"
+        },
+        {
+          "rva": "0xb585",
+          "bytes": "c68424bc00000000",
+          "asm": "mov byte ptr [esp + 0xbc], 0"
+        },
+        {
+          "rva": "0xb58d",
+          "bytes": "e8a0ff0100",
+          "asm": "call 0x2b532"
+        },
+        {
+          "rva": "0xb592",
+          "bytes": "8d4c2438",
+          "asm": "lea ecx, [esp + 0x38]"
+        },
+        {
+          "rva": "0xb596",
+          "bytes": "c78424bc000000ffffffff",
+          "asm": "mov dword ptr [esp + 0xbc], 0xffffffff"
+        },
+        {
+          "rva": "0xb5a1",
+          "bytes": "e886ff0100",
+          "asm": "call 0x2b52c"
+        },
+        {
+          "rva": "0xb5a6",
+          "bytes": "33c0",
+          "asm": "xor eax, eax"
+        },
+        {
+          "rva": "0xb5a8",
+          "bytes": "e9a5000000",
+          "asm": "jmp 0xb652"
+        },
+        {
+          "rva": "0xb5ad",
+          "bytes": "8b150ca40610",
+          "asm": "mov edx, dword ptr [0x1006a40c]"
+        },
+        {
+          "rva": "0xb5b3",
+          "bytes": "52",
+          "asm": "push edx"
+        },
+        {
+          "rva": "0xb5b4",
+          "bytes": "ff15c0330310",
+          "asm": "call dword ptr [0x100333c0]"
+        },
+        {
+          "rva": "0xb5ba",
+          "bytes": "ff15b0330310",
+          "asm": "call dword ptr [0x100333b0]"
+        },
+        {
+          "rva": "0xb5c0",
+          "bytes": "8b442418",
+          "asm": "mov eax, dword ptr [esp + 0x18]"
+        },
+        {
+          "rva": "0xb5c4",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0xb5c5",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xb5c6",
+          "bytes": "ff15ac330310",
+          "asm": "call dword ptr [0x100333ac]"
+        },
+        {
+          "rva": "0xb5cc",
+          "bytes": "ff15b4330310",
+          "asm": "call dword ptr [0x100333b4]"
+        }
+      ]
+    },
+    {
+      "module": "impapi.dll",
+      "range": [
+        "0xbf46",
+        "0xc0cc"
+      ],
+      "instructions": [
+        {
+          "rva": "0xbf46",
+          "bytes": "33ff",
+          "asm": "xor edi, edi"
+        },
+        {
+          "rva": "0xbf48",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xbf4e",
+          "bytes": "8b01",
+          "asm": "mov eax, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xbf50",
+          "bytes": "8b5034",
+          "asm": "mov edx, dword ptr [eax + 0x34]"
+        },
+        {
+          "rva": "0xbf53",
+          "bytes": "ffd2",
+          "asm": "call edx"
+        },
+        {
+          "rva": "0xbf55",
+          "bytes": "6888440310",
+          "asm": "push 0x10034488"
+        },
+        {
+          "rva": "0xbf5a",
+          "bytes": "ff15c4330310",
+          "asm": "call dword ptr [0x100333c4]"
+        },
+        {
+          "rva": "0xbf60",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0xbf65",
+          "bytes": "6842200000",
+          "asm": "push 0x2042"
+        },
+        {
+          "rva": "0xbf6a",
+          "bytes": "8d4c2454",
+          "asm": "lea ecx, [esp + 0x54]"
+        },
+        {
+          "rva": "0xbf6e",
+          "bytes": "8be8",
+          "asm": "mov ebp, eax"
+        },
+        {
+          "rva": "0xbf70",
+          "bytes": "e8e1f50100",
+          "asm": "call 0x2b556"
+        },
+        {
+          "rva": "0xbf75",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0xbf76",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0xbf7b",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0xbf7c",
+          "bytes": "8d442458",
+          "asm": "lea eax, [esp + 0x58]"
+        },
+        {
+          "rva": "0xbf80",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xbf81",
+          "bytes": "8d8c2490000000",
+          "asm": "lea ecx, [esp + 0x90]"
+        },
+        {
+          "rva": "0xbf88",
+          "bytes": "c78424e804000004000000",
+          "asm": "mov dword ptr [esp + 0x4e8], 4"
+        },
+        {
+          "rva": "0xbf93",
+          "bytes": "e8b8f50100",
+          "asm": "call 0x2b550"
+        },
+        {
+          "rva": "0xbf98",
+          "bytes": "6a0a",
+          "asm": "push 0xa"
+        },
+        {
+          "rva": "0xbf9a",
+          "bytes": "8d4c2434",
+          "asm": "lea ecx, [esp + 0x34]"
+        },
+        {
+          "rva": "0xbf9e",
+          "bytes": "c68424dc04000005",
+          "asm": "mov byte ptr [esp + 0x4dc], 5"
+        },
+        {
+          "rva": "0xbfa6",
+          "bytes": "e87bf50100",
+          "asm": "call 0x2b526"
+        },
+        {
+          "rva": "0xbfab",
+          "bytes": "c68424d804000006",
+          "asm": "mov byte ptr [esp + 0x4d8], 6"
+        },
+        {
+          "rva": "0xbfb3",
+          "bytes": "ff15bc2a0310",
+          "asm": "call dword ptr [0x10032abc]"
+        },
+        {
+          "rva": "0xbfb9",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xbfbf",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xbfc1",
+          "bytes": "8b4268",
+          "asm": "mov eax, dword ptr [edx + 0x68]"
+        },
+        {
+          "rva": "0xbfc4",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xbfc6",
+          "bytes": "85c0",
+          "asm": "test eax, eax"
+        },
+        {
+          "rva": "0xbfc8",
+          "bytes": "7e3d",
+          "asm": "jle 0xc007"
+        },
+        {
+          "rva": "0xbfca",
+          "bytes": "8d9b00000000",
+          "asm": "lea ebx, [ebx]"
+        },
+        {
+          "rva": "0xbfd0",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xbfd6",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xbfd8",
+          "bytes": "8b4260",
+          "asm": "mov eax, dword ptr [edx + 0x60]"
+        },
+        {
+          "rva": "0xbfdb",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0xbfdc",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xbfde",
+          "bytes": "8bd8",
+          "asm": "mov ebx, eax"
+        },
+        {
+          "rva": "0xbfe0",
+          "bytes": "53",
+          "asm": "push ebx"
+        },
+        {
+          "rva": "0xbfe1",
+          "bytes": "8d4c2434",
+          "asm": "lea ecx, [esp + 0x34]"
+        },
+        {
+          "rva": "0xbfe5",
+          "bytes": "e860f50100",
+          "asm": "call 0x2b54a"
+        },
+        {
+          "rva": "0xbfea",
+          "bytes": "53",
+          "asm": "push ebx"
+        },
+        {
+          "rva": "0xbfeb",
+          "bytes": "e8b0f2ffff",
+          "asm": "call 0xb2a0"
+        },
+        {
+          "rva": "0xbff0",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xbff6",
+          "bytes": "8b11",
+          "asm": "mov edx, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xbff8",
+          "bytes": "8b4268",
+          "asm": "mov eax, dword ptr [edx + 0x68]"
+        },
+        {
+          "rva": "0xbffb",
+          "bytes": "83c404",
+          "asm": "add esp, 4"
+        },
+        {
+          "rva": "0xbffe",
+          "bytes": "83c701",
+          "asm": "add edi, 1"
+        },
+        {
+          "rva": "0xc001",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0xc003",
+          "bytes": "3bf8",
+          "asm": "cmp edi, eax"
+        },
+        {
+          "rva": "0xc005",
+          "bytes": "7cc9",
+          "asm": "jl 0xbfd0"
+        },
+        {
+          "rva": "0xc007",
+          "bytes": "8d8c2480000000",
+          "asm": "lea ecx, [esp + 0x80]"
+        },
+        {
+          "rva": "0xc00e",
+          "bytes": "51",
+          "asm": "push ecx"
+        },
+        {
+          "rva": "0xc00f",
+          "bytes": "ff15c02a0310",
+          "asm": "call dword ptr [0x10032ac0]"
+        },
+        {
+          "rva": "0xc015",
+          "bytes": "83c404",
+          "asm": "add esp, 4"
+        },
+        {
+          "rva": "0xc018",
+          "bytes": "8d942480000000",
+          "asm": "lea edx, [esp + 0x80]"
+        },
+        {
+          "rva": "0xc01f",
+          "bytes": "52",
+          "asm": "push edx"
+        },
+        {
+          "rva": "0xc020",
+          "bytes": "8d4c2434",
+          "asm": "lea ecx, [esp + 0x34]"
+        },
+        {
+          "rva": "0xc024",
+          "bytes": "e81bf50100",
+          "asm": "call 0x2b544"
+        },
+        {
+          "rva": "0xc029",
+          "bytes": "ff15c42a0310",
+          "asm": "call dword ptr [0x10032ac4]"
+        },
+        {
+          "rva": "0xc02f",
+          "bytes": "8d8c2480000000",
+          "asm": "lea ecx, [esp + 0x80]"
+        },
+        {
+          "rva": "0xc036",
+          "bytes": "e803f50100",
+          "asm": "call 0x2b53e"
+        },
+        {
+          "rva": "0xc03b",
+          "bytes": "8d4c244c",
+          "asm": "lea ecx, [esp + 0x4c]"
+        },
+        {
+          "rva": "0xc03f",
+          "bytes": "e8f4f40100",
+          "asm": "call 0x2b538"
+        },
+        {
+          "rva": "0xc044",
+          "bytes": "8bf8",
+          "asm": "mov edi, eax"
+        },
+        {
+          "rva": "0xc046",
+          "bytes": "85ff",
+          "asm": "test edi, edi"
+        },
+        {
+          "rva": "0xc048",
+          "bytes": "7563",
+          "asm": "jne 0xc0ad"
+        },
+        {
+          "rva": "0xc04a",
+          "bytes": "85f6",
+          "asm": "test esi, esi"
+        },
+        {
+          "rva": "0xc04c",
+          "bytes": "7407",
+          "asm": "je 0xc055"
+        },
+        {
+          "rva": "0xc04e",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0xc04f",
+          "bytes": "ff1528200310",
+          "asm": "call dword ptr [0x10032028]"
+        },
+        {
+          "rva": "0xc055",
+          "bytes": "837c241800",
+          "asm": "cmp dword ptr [esp + 0x18], 0"
+        },
+        {
+          "rva": "0xc05a",
+          "bytes": "7413",
+          "asm": "je 0xc06f"
+        },
+        {
+          "rva": "0xc05c",
+          "bytes": "8b0d08a40610",
+          "asm": "mov ecx, dword ptr [0x1006a408]"
+        },
+        {
+          "rva": "0xc062",
+          "bytes": "85c9",
+          "asm": "test ecx, ecx"
+        },
+        {
+          "rva": "0xc064",
+          "bytes": "7409",
+          "asm": "je 0xc06f"
+        },
+        {
+          "rva": "0xc066",
+          "bytes": "8b01",
+          "asm": "mov eax, dword ptr [ecx]"
+        },
+        {
+          "rva": "0xc068",
+          "bytes": "8b5004",
+          "asm": "mov edx, dword ptr [eax + 4]"
+        },
+        {
+          "rva": "0xc06b",
+          "bytes": "6a01",
+          "asm": "push 1"
+        },
+        {
+          "rva": "0xc06d",
+          "bytes": "ffd2",
+          "asm": "call edx"
+        },
+        {
+          "rva": "0xc06f",
+          "bytes": "8d4c2430",
+          "asm": "lea ecx, [esp + 0x30]"
+        },
+        {
+          "rva": "0xc073",
+          "bytes": "c68424d804000005",
+          "asm": "mov byte ptr [esp + 0x4d8], 5"
+        },
+        {
+          "rva": "0xc07b",
+          "bytes": "e8a0f40100",
+          "asm": "call 0x2b520"
+        },
+        {
+          "rva": "0xc080",
+          "bytes": "8d8c2480000000",
+          "asm": "lea ecx, [esp + 0x80]"
+        },
+        {
+          "rva": "0xc087",
+          "bytes": "c68424d804000004",
+          "asm": "mov byte ptr [esp + 0x4d8], 4"
+        },
+        {
+          "rva": "0xc08f",
+          "bytes": "e89ef40100",
+          "asm": "call 0x2b532"
+        },
+        {
+          "rva": "0xc094",
+          "bytes": "8d4c244c",
+          "asm": "lea ecx, [esp + 0x4c]"
+        },
+        {
+          "rva": "0xc098",
+          "bytes": "c78424d8040000ffffffff",
+          "asm": "mov dword ptr [esp + 0x4d8], 0xffffffff"
+        },
+        {
+          "rva": "0xc0a3",
+          "bytes": "e884f40100",
+          "asm": "call 0x2b52c"
+        },
+        {
+          "rva": "0xc0a8",
+          "bytes": "e9be000000",
+          "asm": "jmp 0xc16b"
+        },
+        {
+          "rva": "0xc0ad",
+          "bytes": "8b44242c",
+          "asm": "mov eax, dword ptr [esp + 0x2c]"
+        },
+        {
+          "rva": "0xc0b1",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0xc0b2",
+          "bytes": "ff15c0330310",
+          "asm": "call dword ptr [0x100333c0]"
+        },
+        {
+          "rva": "0xc0b8",
+          "bytes": "ff15b0330310",
+          "asm": "call dword ptr [0x100333b0]"
+        },
+        {
+          "rva": "0xc0be",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0xc0bf",
+          "bytes": "55",
+          "asm": "push ebp"
+        },
+        {
+          "rva": "0xc0c0",
+          "bytes": "ff15ac330310",
+          "asm": "call dword ptr [0x100333ac]"
+        },
+        {
+          "rva": "0xc0c6",
+          "bytes": "ff15b4330310",
+          "asm": "call dword ptr [0x100333b4]"
+        }
+      ]
+    },
+    {
+      "module": "VnxGest.dll",
+      "range": [
+        "0x1010",
+        "0x1035"
+      ],
+      "instructions": [
+        {
+          "rva": "0x1010",
+          "bytes": "803d04b8021000",
+          "asm": "cmp byte ptr [0x1002b804], 0"
+        },
+        {
+          "rva": "0x1017",
+          "bytes": "751b",
+          "asm": "jne 0x1034"
+        },
+        {
+          "rva": "0x1019",
+          "bytes": "6818120210",
+          "asm": "push 0x10021218"
+        },
+        {
+          "rva": "0x101e",
+          "bytes": "ff15c4110210",
+          "asm": "call dword ptr [0x100211c4]"
+        },
+        {
+          "rva": "0x1024",
+          "bytes": "85c0",
+          "asm": "test eax, eax"
+        },
+        {
+          "rva": "0x1026",
+          "bytes": "a300b80210",
+          "asm": "mov dword ptr [0x1002b800], eax"
+        },
+        {
+          "rva": "0x102b",
+          "bytes": "7407",
+          "asm": "je 0x1034"
+        },
+        {
+          "rva": "0x102d",
+          "bytes": "c60504b8021001",
+          "asm": "mov byte ptr [0x1002b804], 1"
+        },
+        {
+          "rva": "0x1034",
+          "bytes": "c3",
+          "asm": "ret "
+        }
+      ]
+    },
+    {
+      "module": "VnxGest.dll",
+      "range": [
+        "0xedd0",
+        "0xee19"
+      ],
+      "instructions": []
+    },
+    {
+      "module": "SMSTE.dll",
+      "range": [
+        "0x17520",
+        "0x17545"
+      ],
+      "instructions": [
+        {
+          "rva": "0x17520",
+          "bytes": "803d8431061000",
+          "asm": "cmp byte ptr [0x10063184], 0"
+        },
+        {
+          "rva": "0x17527",
+          "bytes": "751b",
+          "asm": "jne 0x17544"
+        },
+        {
+          "rva": "0x17529",
+          "bytes": "682c510410",
+          "asm": "push 0x1004512c"
+        },
+        {
+          "rva": "0x1752e",
+          "bytes": "ff150c450410",
+          "asm": "call dword ptr [0x1004450c]"
+        },
+        {
+          "rva": "0x17534",
+          "bytes": "85c0",
+          "asm": "test eax, eax"
+        },
+        {
+          "rva": "0x17536",
+          "bytes": "a380310610",
+          "asm": "mov dword ptr [0x10063180], eax"
+        },
+        {
+          "rva": "0x1753b",
+          "bytes": "7407",
+          "asm": "je 0x17544"
+        },
+        {
+          "rva": "0x1753d",
+          "bytes": "c6058431061001",
+          "asm": "mov byte ptr [0x10063184], 1"
+        },
+        {
+          "rva": "0x17544",
+          "bytes": "c3",
+          "asm": "ret "
+        }
+      ]
+    },
+    {
+      "module": "Maude3D.dll",
+      "range": [
+        "0x1e6d0",
+        "0x1e78b"
+      ],
+      "instructions": [
+        {
+          "rva": "0x1e6d0",
+          "bytes": "e8f5fd0400",
+          "asm": "call 0x6e4ca"
+        },
+        {
+          "rva": "0x1e6d5",
+          "bytes": "8b4508",
+          "asm": "mov eax, dword ptr [ebp + 8]"
+        },
+        {
+          "rva": "0x1e6d8",
+          "bytes": "33db",
+          "asm": "xor ebx, ebx"
+        },
+        {
+          "rva": "0x1e6da",
+          "bytes": "50",
+          "asm": "push eax"
+        },
+        {
+          "rva": "0x1e6db",
+          "bytes": "8d4dc0",
+          "asm": "lea ecx, [ebp - 0x40]"
+        },
+        {
+          "rva": "0x1e6de",
+          "bytes": "895dfc",
+          "asm": "mov dword ptr [ebp - 4], ebx"
+        },
+        {
+          "rva": "0x1e6e1",
+          "bytes": "e8bafd0400",
+          "asm": "call 0x6e4a0"
+        },
+        {
+          "rva": "0x1e6e6",
+          "bytes": "6a34",
+          "asm": "push 0x34"
+        },
+        {
+          "rva": "0x1e6e8",
+          "bytes": "e8a7fd0400",
+          "asm": "call 0x6e494"
+        },
+        {
+          "rva": "0x1e6ed",
+          "bytes": "83c404",
+          "asm": "add esp, 4"
+        },
+        {
+          "rva": "0x1e6f0",
+          "bytes": "8945dc",
+          "asm": "mov dword ptr [ebp - 0x24], eax"
+        },
+        {
+          "rva": "0x1e6f3",
+          "bytes": "3bc3",
+          "asm": "cmp eax, ebx"
+        },
+        {
+          "rva": "0x1e6f5",
+          "bytes": "c645fc01",
+          "asm": "mov byte ptr [ebp - 4], 1"
+        },
+        {
+          "rva": "0x1e6f9",
+          "bytes": "7418",
+          "asm": "je 0x1e713"
+        },
+        {
+          "rva": "0x1e6fb",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0x1e700",
+          "bytes": "6842200000",
+          "asm": "push 0x2042"
+        },
+        {
+          "rva": "0x1e705",
+          "bytes": "8bc8",
+          "asm": "mov ecx, eax"
+        },
+        {
+          "rva": "0x1e707",
+          "bytes": "e80cfe0400",
+          "asm": "call 0x6e518"
+        },
+        {
+          "rva": "0x1e70c",
+          "bytes": "8bf0",
+          "asm": "mov esi, eax"
+        },
+        {
+          "rva": "0x1e70e",
+          "bytes": "8945ec",
+          "asm": "mov dword ptr [ebp - 0x14], eax"
+        },
+        {
+          "rva": "0x1e711",
+          "bytes": "eb05",
+          "asm": "jmp 0x1e718"
+        },
+        {
+          "rva": "0x1e713",
+          "bytes": "33f6",
+          "asm": "xor esi, esi"
+        },
+        {
+          "rva": "0x1e715",
+          "bytes": "8975ec",
+          "asm": "mov dword ptr [ebp - 0x14], esi"
+        },
+        {
+          "rva": "0x1e718",
+          "bytes": "6a48",
+          "asm": "push 0x48"
+        },
+        {
+          "rva": "0x1e71a",
+          "bytes": "c645fc00",
+          "asm": "mov byte ptr [ebp - 4], 0"
+        },
+        {
+          "rva": "0x1e71e",
+          "bytes": "e871fd0400",
+          "asm": "call 0x6e494"
+        },
+        {
+          "rva": "0x1e723",
+          "bytes": "83c404",
+          "asm": "add esp, 4"
+        },
+        {
+          "rva": "0x1e726",
+          "bytes": "8945dc",
+          "asm": "mov dword ptr [ebp - 0x24], eax"
+        },
+        {
+          "rva": "0x1e729",
+          "bytes": "3bc3",
+          "asm": "cmp eax, ebx"
+        },
+        {
+          "rva": "0x1e72b",
+          "bytes": "c645fc02",
+          "asm": "mov byte ptr [ebp - 4], 2"
+        },
+        {
+          "rva": "0x1e72f",
+          "bytes": "7416",
+          "asm": "je 0x1e747"
+        },
+        {
+          "rva": "0x1e731",
+          "bytes": "53",
+          "asm": "push ebx"
+        },
+        {
+          "rva": "0x1e732",
+          "bytes": "6800100000",
+          "asm": "push 0x1000"
+        },
+        {
+          "rva": "0x1e737",
+          "bytes": "53",
+          "asm": "push ebx"
+        },
+        {
+          "rva": "0x1e738",
+          "bytes": "56",
+          "asm": "push esi"
+        },
+        {
+          "rva": "0x1e739",
+          "bytes": "8bc8",
+          "asm": "mov ecx, eax"
+        },
+        {
+          "rva": "0x1e73b",
+          "bytes": "e8d2fd0400",
+          "asm": "call 0x6e512"
+        },
+        {
+          "rva": "0x1e740",
+          "bytes": "8bf8",
+          "asm": "mov edi, eax"
+        },
+        {
+          "rva": "0x1e742",
+          "bytes": "8945e8",
+          "asm": "mov dword ptr [ebp - 0x18], eax"
+        },
+        {
+          "rva": "0x1e745",
+          "bytes": "eb05",
+          "asm": "jmp 0x1e74c"
+        },
+        {
+          "rva": "0x1e747",
+          "bytes": "33ff",
+          "asm": "xor edi, edi"
+        },
+        {
+          "rva": "0x1e749",
+          "bytes": "897de8",
+          "asm": "mov dword ptr [ebp - 0x18], edi"
+        },
+        {
+          "rva": "0x1e74c",
+          "bytes": "57",
+          "asm": "push edi"
+        },
+        {
+          "rva": "0x1e74d",
+          "bytes": "8d4dc0",
+          "asm": "lea ecx, [ebp - 0x40]"
+        },
+        {
+          "rva": "0x1e750",
+          "bytes": "c645fc03",
+          "asm": "mov byte ptr [ebp - 4], 3"
+        },
+        {
+          "rva": "0x1e754",
+          "bytes": "e8b3fd0400",
+          "asm": "call 0x6e50c"
+        },
+        {
+          "rva": "0x1e759",
+          "bytes": "8bcf",
+          "asm": "mov ecx, edi"
+        },
+        {
+          "rva": "0x1e75b",
+          "bytes": "e8a6fd0400",
+          "asm": "call 0x6e506"
+        },
+        {
+          "rva": "0x1e760",
+          "bytes": "8d4dc0",
+          "asm": "lea ecx, [ebp - 0x40]"
+        },
+        {
+          "rva": "0x1e763",
+          "bytes": "e868fd0400",
+          "asm": "call 0x6e4d0"
+        },
+        {
+          "rva": "0x1e768",
+          "bytes": "8bce",
+          "asm": "mov ecx, esi"
+        },
+        {
+          "rva": "0x1e76a",
+          "bytes": "895dfc",
+          "asm": "mov dword ptr [ebp - 4], ebx"
+        },
+        {
+          "rva": "0x1e76d",
+          "bytes": "e88efd0400",
+          "asm": "call 0x6e500"
+        },
+        {
+          "rva": "0x1e772",
+          "bytes": "3bf3",
+          "asm": "cmp esi, ebx"
+        },
+        {
+          "rva": "0x1e774",
+          "bytes": "8945ec",
+          "asm": "mov dword ptr [ebp - 0x14], eax"
+        },
+        {
+          "rva": "0x1e777",
+          "bytes": "c645fc0b",
+          "asm": "mov byte ptr [ebp - 4], 0xb"
+        },
+        {
+          "rva": "0x1e77b",
+          "bytes": "740b",
+          "asm": "je 0x1e788"
+        },
+        {
+          "rva": "0x1e77d",
+          "bytes": "8b16",
+          "asm": "mov edx, dword ptr [esi]"
+        },
+        {
+          "rva": "0x1e77f",
+          "bytes": "8b4204",
+          "asm": "mov eax, dword ptr [edx + 4]"
+        },
+        {
+          "rva": "0x1e782",
+          "bytes": "6a01",
+          "asm": "push 1"
+        },
+        {
+          "rva": "0x1e784",
+          "bytes": "8bce",
+          "asm": "mov ecx, esi"
+        },
+        {
+          "rva": "0x1e786",
+          "bytes": "ffd0",
+          "asm": "call eax"
+        },
+        {
+          "rva": "0x1e788",
+          "bytes": "895dfc",
+          "asm": "mov dword ptr [ebp - 4], ebx"
+        }
+      ]
+    }
+  ],
+  "import_thunks": [
+    {
+      "module": "impapi.dll",
+      "range": [
+        "0x2b538",
+        "0x2b55c"
+      ],
+      "instructions": [
+        {
+          "rva": "0x2b538",
+          "bytes": "ff2584210310",
+          "asm": "jmp dword ptr [0x10032184]"
+        },
+        {
+          "rva": "0x2b53e",
+          "bytes": "ff2588210310",
+          "asm": "jmp dword ptr [0x10032188]"
+        },
+        {
+          "rva": "0x2b544",
+          "bytes": "ff258c210310",
+          "asm": "jmp dword ptr [0x1003218c]"
+        },
+        {
+          "rva": "0x2b54a",
+          "bytes": "ff2590210310",
+          "asm": "jmp dword ptr [0x10032190]"
+        },
+        {
+          "rva": "0x2b550",
+          "bytes": "ff2594210310",
+          "asm": "jmp dword ptr [0x10032194]"
+        },
+        {
+          "rva": "0x2b556",
+          "bytes": "ff2598210310",
+          "asm": "jmp dword ptr [0x10032198]"
+        }
+      ]
+    },
+    {
+      "module": "Maude3D.dll",
+      "range": [
+        "0x6e500",
+        "0x6e51e"
+      ],
+      "instructions": [
+        {
+          "rva": "0x6e500",
+          "bytes": "ff2560930710",
+          "asm": "jmp dword ptr [0x10079360]"
+        },
+        {
+          "rva": "0x6e506",
+          "bytes": "ff255c930710",
+          "asm": "jmp dword ptr [0x1007935c]"
+        },
+        {
+          "rva": "0x6e50c",
+          "bytes": "ff2558930710",
+          "asm": "jmp dword ptr [0x10079358]"
+        },
+        {
+          "rva": "0x6e512",
+          "bytes": "ff2554930710",
+          "asm": "jmp dword ptr [0x10079354]"
+        },
+        {
+          "rva": "0x6e518",
+          "bytes": "ff2550930710",
+          "asm": "jmp dword ptr [0x10079350]"
+        }
+      ]
+    }
+  ],
+  "archive_constructor_ordinal317": {
+    "rva": "0x27c4f",
+    "PDB_names": [
+      "??0CArchive@@QAE@PAVCFile@@IHPAX@Z"
+    ]
+  },
+  "ole_publish_symbols_in_matched_PDB": [
+    {
+      "rva": "0xab02e",
+      "names": [
+        "?OnRequestEdit@XFontNotification@COleControl@@UAGJJ@Z",
+        "?OnRequestEdit@XPropNotifySink@COlePropertyPage@@UAGJJ@Z",
+        "?EnableModeless@XOleInPlaceActiveObject@COleControl@@UAGJH@Z",
+        "?OnFrameWindowActivate@XOleInPlaceActiveObject@COleControl@@UAGJH@Z",
+        "?OnRenderFileData@COleControl@@UAEHPAUtagFORMATETC@@PAVCFile@@@Z",
+        "?OnRenderGlobalData@COleControl@@UAEHPAUtagFORMATETC@@PAPAX@Z",
+        "?OnFocus@XOleControlSite@COleControlSite@@UAGJH@Z",
+        "?OnShowWindow@XOleClientSite@COleControlSite@@UAGJH@Z",
+        "?EnableModeless@XOleIPFrame@COleControlContainer@@UAGJH@Z",
+        "?OnRenderFileData@COleServerItem@@UAEHPAUtagFORMATETC@@PAVCFile@@@Z",
+        "?OnRenderGlobalData@COleServerItem@@UAEHPAUtagFORMATETC@@PAPAX@Z",
+        "?GetLicenseKey@COleObjectFactory@@MAEHKPAPA_W@Z",
+        "?OnRenderFileData@COleDataSource@@UAEHPAUtagFORMATETC@@PAVCFile@@@Z",
+        "?OnRenderGlobalData@COleDataSource@@UAEHPAUtagFORMATETC@@PAPAX@Z",
+        "?OpenThemeDataFail@_ThemeHelper@@SGPAXPAUHWND__@@PB_W@Z",
+        "?GetWindow@CAccessibleProxy@ATL@@UAGJPAPAUHWND__@@@Z"
+      ]
+    },
+    {
+      "rva": "0x8fca3",
+      "names": [
+        "?OnRenderGlobalData@CItemDataSource@COleServerItem@@MAEHPAUtagFORMATETC@@PAPAX@Z"
+      ]
+    },
+    {
+      "rva": "0xa916e",
+      "names": [
+        "?OnRenderGlobalData@CControlDataSource@COleControl@@MAEHPAUtagFORMATETC@@PAPAX@Z"
+      ]
+    },
+    {
+      "rva": "0x7e1de",
+      "names": [
+        "??0COleDataSource@@QAE@XZ"
+      ]
+    },
+    {
+      "rva": "0x7e485",
+      "names": [
+        "?DelayRenderData@COleDataSource@@QAEXGPAUtagFORMATETC@@@Z"
+      ]
+    },
+    {
+      "rva": "0x7e40e",
+      "names": [
+        "?CacheData@COleDataSource@@QAEXGPAUtagSTGMEDIUM@@PAUtagFORMATETC@@@Z"
+      ]
+    },
+    {
+      "rva": "0x7e3d4",
+      "names": [
+        "?CacheGlobalData@COleDataSource@@QAEXGPAXPAUtagFORMATETC@@@Z"
+      ]
+    }
+  ],
+  "producer_identified": false,
+  "initial_map": "UNKNOWN",
+  "prefix_producer": "UNKNOWN",
+  "runtime": "NOT_EXECUTED",
+  "clipboard": "NOT_ACCESSED"
+}
