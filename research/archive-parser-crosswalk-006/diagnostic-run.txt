@@ -1,0 +1,19 @@
+G1 CONDITIONAL_MATCH 1657 2 [(True, True), (True, True)]
+H1 CONDITIONAL_MATCH 1657 2 [(True, True), (True, True)]
+polyline_3_points CONDITIONAL_MATCH 747 1 [(True, True)]
+polyline_5_points CONDITIONAL_MATCH 819 1 [(True, True)]
+polygon_5_sides CONDITIONAL_MATCH 819 1 [(True, True)]
+polygon_6_sides CONDITIONAL_MATCH 855 1 [(True, True)]
+default_circle CONDITIONAL_MATCH 927 1 [(True, True)]
+text/default_text UNSUPPORTED 0 1 []
+count_0 UNSUPPORTED object/null/extended reference branch not supported
+count_101 UNSUPPORTED unreviewed count/length
+count_4294967295 UNSUPPORTED unreviewed count/length
+count_5 UNSUPPORTED object/null/extended reference branch not supported
+truncated_descriptor UNSUPPORTED truncated at 8
+truncated_contour UNSUPPORTED truncated at 630
+truncated_property UNSUPPORTED truncated at 903
+truncated_suffix UNSUPPORTED truncated at 907
+unknown_class_reference UNSUPPORTED unknown class reference 4094
+null_object_reference UNSUPPORTED object/null/extended reference branch not supported
+tail_removed CONDITIONAL_MATCH tail UNKNOWN
