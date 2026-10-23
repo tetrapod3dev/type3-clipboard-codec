@@ -1,0 +1,466 @@
+[
+  {
+    "case": "count_stride_extent_truncated",
+    "parent_pid": 24040,
+    "child_pid": 16392,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "count_stride_extent_truncated",
+      "--trace"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14538280002307147,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 16392,
+        "case": "count_stride_extent_truncated",
+        "input_sha256": "f054b591f09be5a4e806fac69960b1936e3bbc36ef9e64f4eacf85cc7d494856",
+        "length": 773
+      },
+      {
+        "event": "loop_completed",
+        "line": 272,
+        "idx": 0,
+        "marker_pos": 76,
+        "selected_offsets": [],
+        "found_headers": [],
+        "found_for_this_marker": true,
+        "candidate_shift": 8,
+        "legacy_candidate": {
+          "shift": 8,
+          "header_offset": 90,
+          "kind": 1,
+          "count": 4,
+          "payload_offset": 98,
+          "raw_8b_hex": "0100000004000000"
+        },
+        "actual_selected": null,
+        "selection_reason": "no_structural_recommended_candidate",
+        "candidate_summary": [
+          {
+            "shift": 8,
+            "kind": 1,
+            "count": 4,
+            "structural_valid": false,
+            "rejection_reason": null
+          }
+        ]
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 16392,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 0,
+            "bytes_length": 0
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "property_truncated",
+    "parent_pid": 24040,
+    "child_pid": 50820,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "property_truncated"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14198790001682937,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 50820,
+        "case": "property_truncated",
+        "input_sha256": "dc64deab05b6697f7156ee2f97d8c59c37561cc589c56f5071d87439ec116c80",
+        "length": 906
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 50820,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "suffix_truncated",
+    "parent_pid": 24040,
+    "child_pid": 24872,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "suffix_truncated"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14479529997333884,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 24872,
+        "case": "suffix_truncated",
+        "input_sha256": "7ddf0f406a3b7ec661cfc75fcfacf373781fd6221ebe613b14675696e98820c5",
+        "length": 930
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 24872,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "count_out_of_scope",
+    "parent_pid": 24040,
+    "child_pid": 44352,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "count_out_of_scope"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14358869998250157,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 44352,
+        "case": "count_out_of_scope",
+        "input_sha256": "e845c772483fc3617be5c2107143148f0bbf56dadcd8c9af03b4d5cb52debfcc",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 44352,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "count_0",
+    "parent_pid": 24040,
+    "child_pid": 21644,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "count_0"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14564150001388043,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 21644,
+        "case": "count_0",
+        "input_sha256": "045de3ecfaefc841471ecfa5fbc00f1b7cb8a9a2a6ec1438494cb7e934f7e567",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 21644,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "count_4294967295",
+    "parent_pid": 24040,
+    "child_pid": 20956,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "count_4294967295"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14479120005853474,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 20956,
+        "case": "count_4294967295",
+        "input_sha256": "bafd373e096a46fed3ce2bcbbbeffccad84ea71b28f374b22cdfda73b0a51afd",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 20956,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "count_4097",
+    "parent_pid": 24040,
+    "child_pid": 21172,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "count_4097"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14440230000764132,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 21172,
+        "case": "count_4097",
+        "input_sha256": "6c3f995fad6ccd56ff7326e39cf8dc080aa0f2fe390faeb9d62c5e9d768a0bf7",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 21172,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "unregistered_class_reference",
+    "parent_pid": 24040,
+    "child_pid": 57000,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "unregistered_class_reference"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14629349997267127,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 57000,
+        "case": "unregistered_class_reference",
+        "input_sha256": "5f9e06079bd02f6313841aaf33c8aa2ac6c64d28cdeb37c43cbb3d86d30ed1c0",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 57000,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          },
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "unsupported_schema",
+    "parent_pid": 24040,
+    "child_pid": 19652,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "unsupported_schema"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14505350007675588,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 19652,
+        "case": "unsupported_schema",
+        "input_sha256": "2d78f70b3c374fff524c325f02fa06936d1a4ea7da0d553524a101888e70a5c2",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 19652,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          },
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "duplicate_contour",
+    "parent_pid": 24040,
+    "child_pid": 28676,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "duplicate_contour"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.14573240000754595,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 28676,
+        "case": "duplicate_contour",
+        "input_sha256": "b68ceef1ec1e485059e9a5ed96f0046e9705c4f84bf3e9aa8a5c8931fca1f81a",
+        "length": 8192
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 28676,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          },
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  },
+  {
+    "case": "unknown_tail_removed",
+    "parent_pid": 24040,
+    "child_pid": 55104,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\work\\develop\\type3-clipboard-codec\\research\\decoder-progress-guard-008\\child_decoder.py",
+      "--case",
+      "unknown_tail_removed"
+    ],
+    "timeout_limit_seconds": 3,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 0.1434727000305429,
+    "events": [
+      {
+        "event": "child_start",
+        "pid": 55104,
+        "case": "unknown_tail_removed",
+        "input_sha256": "49c13da12e68384f8c2adedf8ada0c5f2cef3aaf534939c127da1daae40a07bf",
+        "length": 1657
+      },
+      {
+        "event": "decoder_returned",
+        "pid": 55104,
+        "parser": "Type3ChainParser",
+        "contours": [
+          {
+            "count": 4,
+            "bytes_length": 144
+          },
+          {
+            "count": 4,
+            "bytes_length": 144
+          }
+        ],
+        "archive_validation": "NOT_PERFORMED"
+      }
+    ],
+    "stderr": "",
+    "kill_scope": "none"
+  }
+]

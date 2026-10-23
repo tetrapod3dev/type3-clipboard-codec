@@ -1,0 +1,10 @@
+{
+  "normal_samples_equal": 8,
+  "complete_decoder_and_parser_fingerprints_equal": true,
+  "007_complete_diagnostic_reports_equal": true,
+  "007_change_allowed": false,
+  "007_ownership": "UNKNOWN",
+  "007_policy": "NOT_RUN_UNSUPPORTED_STRUCTURE unchanged",
+  "postfix_child_cases": 11,
+  "postfix_timeouts": 0
+}

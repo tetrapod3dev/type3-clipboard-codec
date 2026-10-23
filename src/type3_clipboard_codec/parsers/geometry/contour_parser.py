@@ -270,6 +270,10 @@ def analyze_contour_header_candidates(
         }
 
         diagnostics.append(marker_diag)
+        # Without scan/selection progress, the next pass repeats this marker.
+        # Stop with the existing diagnostics instead of inventing a contour.
+        if idx <= marker_pos:
+            break
 
     return (found_headers if found_headers else None), diagnostics
 

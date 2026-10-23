@@ -1,0 +1,63 @@
+........................................................................ [ 62%]
+.....F.............F.......................                              [100%]
+================================== FAILURES ===================================
+__________________________ test_saved_G1_H_crosswalk __________________________
+
+    def test_saved_G1_H_crosswalk():
+        for p in [c.GROUP/'type3-clipboard-member-color-003/samples/G1/typeeditzone.bin',c.GROUP/'type3-clipboard-independent-prediction-006/samples/H0-A/typeeditzone.bin',c.GROUP/'type3-clipboard-independent-prediction-006/samples/H1/typeeditzone.bin']:
+>           r=c.diagnose(p.read_bytes())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\archive-crosswalk-001\test_crosswalk.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\archive-crosswalk-001\crosswalk.py:77: in diagnose
+    predicted=check.predict_bytes(data)['locator_result']
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+research\group-color\type3-clipboard-independent-prediction-006\prediction_check.py:33: in predict_bytes
+    profile,lock=checked_profile()
+                 ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def checked_profile():
+        lock=read_json(ROOT/'execution-lock.json')
+        blob=(ROOT/'frozen-profile.json').read_bytes()
+        if sha(blob)!=lock['profile_sha256']:raise ValueError('Frozen profile SHA mismatch')
+        for item in lock['dependencies']:
+            if sha((CODEC/item['path']).read_bytes())!=item['sha256']:
+>               raise ValueError('Frozen locator/codec dependency changed: '+item['path'])
+E               ValueError: Frozen locator/codec dependency changed: src/type3_clipboard_codec/parsers/geometry/contour_parser.py
+
+research\group-color\type3-clipboard-independent-prediction-006\prediction_check.py:23: ValueError
+____________________ test_G1_H_previous_results_unchanged _____________________
+
+    def test_G1_H_previous_results_unchanged():
+        old=a.prior.check.read_json(a.ROOT.parent/'archive-crosswalk-001/crosswalk.json')
+        paths={'G1':a.prior.GROUP/'type3-clipboard-member-color-003/samples/G1/typeeditzone.bin',**{n:a.prior.GROUP/'type3-clipboard-independent-prediction-006/samples'/n/'typeeditzone.bin' for n in ['H0-A','H1']}}
+        for name,path in paths.items():
+>           actual=a.prior.diagnose(path.read_bytes())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\archive-crosswalk-002\test_extension.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\archive-crosswalk-001\crosswalk.py:77: in diagnose
+    predicted=check.predict_bytes(data)['locator_result']
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+research\group-color\type3-clipboard-independent-prediction-006\prediction_check.py:33: in predict_bytes
+    profile,lock=checked_profile()
+                 ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def checked_profile():
+        lock=read_json(ROOT/'execution-lock.json')
+        blob=(ROOT/'frozen-profile.json').read_bytes()
+        if sha(blob)!=lock['profile_sha256']:raise ValueError('Frozen profile SHA mismatch')
+        for item in lock['dependencies']:
+            if sha((CODEC/item['path']).read_bytes())!=item['sha256']:
+>               raise ValueError('Frozen locator/codec dependency changed: '+item['path'])
+E               ValueError: Frozen locator/codec dependency changed: src/type3_clipboard_codec/parsers/geometry/contour_parser.py
+
+research\group-color\type3-clipboard-independent-prediction-006\prediction_check.py:23: ValueError
+=========================== short test summary info ===========================
+FAILED research/archive-crosswalk-001/test_crosswalk.py::test_saved_G1_H_crosswalk
+FAILED research/archive-crosswalk-002/test_extension.py::test_G1_H_previous_results_unchanged
+2 failed, 113 passed in 4.42s

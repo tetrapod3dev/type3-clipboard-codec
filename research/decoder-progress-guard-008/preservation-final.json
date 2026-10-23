@@ -1,0 +1,18 @@
+{
+  "verdict": "DECODER_PROGRESS_GUARD_PARTIAL",
+  "loop_fix_offline_verified": true,
+  "full_regression_gate_met": false,
+  "protected_files": 893,
+  "changed_existing_files": [
+    "src/type3_clipboard_codec/parsers/geometry/contour_parser.py"
+  ],
+  "existing_source_before_sha256": "2e2393fe9cf1c7e4aea3cdaf2a5ee6dd214c07f42a4a31a9e64f97381cfde862",
+  "existing_source_after_sha256": "94643e5c509ca469b453f2918ec4e31517bfa68157ac3646147f3e4bca492c87",
+  "guard_and_diagnostic_tests": "100 passed",
+  "all_requested_related_tests": "113 passed, 2 frozen-lock failures",
+  "postfix_synthetic_child_cases": 11,
+  "postfix_timeouts": 0,
+  "normal_samples_changed": 0,
+  "007_reports_changed": false,
+  "mode": "OFF"
+}

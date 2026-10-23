@@ -1,0 +1,50 @@
+{
+  "G1": {
+    "before": "56f14287c29642587131b86b25513808df06f9bab95522dde3b27121bacb78b2",
+    "after": "56f14287c29642587131b86b25513808df06f9bab95522dde3b27121bacb78b2",
+    "equal": true,
+    "source_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c"
+  },
+  "H1": {
+    "before": "e6534239611d4a4ded773370f2ccf4ee914e8869b41f7fe4ff425e7c0bb9abe3",
+    "after": "e6534239611d4a4ded773370f2ccf4ee914e8869b41f7fe4ff425e7c0bb9abe3",
+    "equal": true,
+    "source_sha256": "1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af"
+  },
+  "polyline_3_points": {
+    "before": "b6b7790582c02c9e264086131cfa96d30f9bc4d338161e9839dc5222792801ca",
+    "after": "b6b7790582c02c9e264086131cfa96d30f9bc4d338161e9839dc5222792801ca",
+    "equal": true,
+    "source_sha256": "6c499aae369a9fd50db03f8a47854b10786cd0902f94b531909c8320fd2b9d0b"
+  },
+  "polyline_5_points": {
+    "before": "89441251bc70c253cce752405809f18a2ef1b74069d79858f40102290d40993e",
+    "after": "89441251bc70c253cce752405809f18a2ef1b74069d79858f40102290d40993e",
+    "equal": true,
+    "source_sha256": "408dad579901b034e07bd47ca9b8f7c139483be95f98067e431f41d7878609e5"
+  },
+  "polygon_5_sides": {
+    "before": "5becbee6d928f7a761b75fbe114abbada97e17470f65b29e87d44c7da9ff6483",
+    "after": "5becbee6d928f7a761b75fbe114abbada97e17470f65b29e87d44c7da9ff6483",
+    "equal": true,
+    "source_sha256": "a9b4672b47f9b683df79b326d8ea544ab972f41fc19b0b95f0396ddc29811b89"
+  },
+  "polygon_6_sides": {
+    "before": "f8fd985b06764754c5c6bae419084633480b70989dedaa679c55d8f13ddc26e2",
+    "after": "f8fd985b06764754c5c6bae419084633480b70989dedaa679c55d8f13ddc26e2",
+    "equal": true,
+    "source_sha256": "df88c7c9eca1b3b8d8f63cb8bf23303d8527317142c248f1132644ac891c95f7"
+  },
+  "default_circle": {
+    "before": "a8d1c974281d82c9ee10f0a7926a689b337687ca108d795d8112355822ee46f5",
+    "after": "a8d1c974281d82c9ee10f0a7926a689b337687ca108d795d8112355822ee46f5",
+    "equal": true,
+    "source_sha256": "c62d9dea384c856ca0a619919a1da11bec7ddc21e23e50f2ad6f0d2a4f5d1503"
+  },
+  "text/default_text": {
+    "before": "8a7b6125b20684f52a0680cf05aa39b82c82d1c665453c475e03f9f81896b7b3",
+    "after": "8a7b6125b20684f52a0680cf05aa39b82c82d1c665453c475e03f9f81896b7b3",
+    "equal": true,
+    "source_sha256": "3dc3a1c488ca81b41ad11e59514a0e268288f1e38fe6d5cded8aa1b9ca851eb9"
+  }
+}

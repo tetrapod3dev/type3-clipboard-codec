@@ -1,0 +1,36 @@
+{
+  "scope": "Independent Python executions in a temporary historical replay copy only; checkout/baselines/fixtures unchanged",
+  "baseline_source": {
+    "bytes": 99846,
+    "json_cap": 100000,
+    "source_integrity": {
+      "canonical_source_equal": true,
+      "canonical_source_mismatches": [],
+      "legacy_raw_source_equal": false,
+      "legacy_raw_source_mismatches": [
+        "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+        "src/type3_clipboard_codec/models/__init__.py",
+        "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+        "src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+      ]
+    }
+  },
+  "guard_source": {
+    "bytes": 100014,
+    "json_cap": 100000,
+    "source_integrity": {
+      "canonical_source_equal": false,
+      "canonical_source_mismatches": [
+        "src/type3_clipboard_codec/parsers/geometry/contour_parser.py"
+      ],
+      "legacy_raw_source_equal": false,
+      "legacy_raw_source_mismatches": [
+        "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+        "src/type3_clipboard_codec/models/__init__.py",
+        "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+        "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+        "src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+      ]
+    }
+  }
+}
