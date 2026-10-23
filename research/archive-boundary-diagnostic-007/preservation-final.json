@@ -1,0 +1,12 @@
+{
+  "verdict": "ARCHIVE_BOUNDARY_DIAGNOSTIC_VERIFIED",
+  "protected_file_count": 1584,
+  "prior_006_list_count": 712,
+  "changed_existing_files": [],
+  "new_failures": [],
+  "head": "62bc12312d6451192fce9b5655a462e76af6cd36",
+  "status": "?? research/archive-boundary-diagnostic-007/\n",
+  "targeted_tests": "69 passed",
+  "decoder_equivalence_real_samples": 8,
+  "mode": "OFF"
+}

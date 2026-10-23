@@ -1,0 +1,396 @@
+{
+  "source_sha256": "1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af",
+  "input_length": 8192,
+  "research_shadow_selected": true,
+  "overall_status": "CONDITIONAL_COMPARISON_COMPLETE",
+  "observations": [
+    {
+      "code": "SHARED_PROPERTY_CANDIDATE_WINDOW",
+      "confidence": "HEURISTIC",
+      "basis": "Distinct chains share or overlap a Property search window; this does not prove member ownership",
+      "codec_chain_indices": [
+        0,
+        1
+      ],
+      "overlap_range": [
+        795,
+        8192
+      ]
+    }
+  ],
+  "contours": [
+    {
+      "class_name": "CContour",
+      "archive_class_id_conditional": 6,
+      "archive_object_id_scope_only": 7,
+      "class_descriptor_schema": 2,
+      "class_record_event": {
+        "kind": "new_class",
+        "span": [
+          470,
+          484
+        ],
+        "class_id": 6,
+        "class": "CContour",
+        "schema": 2
+      },
+      "native_contour_range": [
+        630,
+        774
+      ],
+      "native_count": 4,
+      "native_record_width": 36,
+      "width_contract": {
+        "confidence": "VERIFIED",
+        "basis": "002: CPtCtr4D 32+4-byte writes, supported family only"
+      },
+      "boundary_confidence": "CONDITIONAL",
+      "matching_chain_indices": [
+        0
+      ],
+      "ownership": "UNKNOWN",
+      "observations": [
+        {
+          "code": "BOUNDARY_MATCH",
+          "confidence": "CONDITIONAL",
+          "basis": "Compare absolute start/end and record count, independently of colors"
+        },
+        {
+          "code": "CANDIDATE_WINDOW_WIDER_THAN_NATIVE_BODY",
+          "confidence": "CONDITIONAL",
+          "basis": "Codec heuristic window contains more than the sequential Property body; not a Parser error or corruption"
+        }
+      ],
+      "codec_chain_index": 0,
+      "codec_contour_range": [
+        630,
+        774
+      ],
+      "codec_count": 4,
+      "codec_property_candidate_range": [
+        795,
+        8192
+      ],
+      "codec_selected_color_raw": 13434724,
+      "codec_selected_color_name": "Turquoise",
+      "codec_confidence_original": "strong",
+      "codec_color_confidence": "HEURISTIC",
+      "native_property_body_range": [
+        795,
+        907
+      ],
+      "ccourbe_suffix_range": [
+        907,
+        931
+      ],
+      "color_fields": [
+        {
+          "range": [
+            915,
+            919
+          ],
+          "value_u32": 13434724,
+          "bytes_hex": "64ffcc00",
+          "equals_codec_selected_color": true,
+          "outside_native_property_body": true,
+          "record_scope": "CCourbe suffix under supported sequential traversal; member ownership UNKNOWN",
+          "confidence": "CONDITIONAL"
+        },
+        {
+          "range": [
+            927,
+            931
+          ],
+          "value_u32": 13434724,
+          "bytes_hex": "64ffcc00",
+          "equals_codec_selected_color": true,
+          "outside_native_property_body": true,
+          "record_scope": "CCourbe suffix under supported sequential traversal; member ownership UNKNOWN",
+          "confidence": "CONDITIONAL"
+        }
+      ]
+    },
+    {
+      "class_name": "CContour",
+      "archive_class_id_conditional": 6,
+      "archive_object_id_scope_only": 12,
+      "class_descriptor_schema": 2,
+      "class_record_event": {
+        "kind": "class_reference",
+        "span": [
+          1227,
+          1229
+        ],
+        "class_id": 6,
+        "class": "CContour",
+        "tag": "0x8006"
+      },
+      "native_contour_range": [
+        1375,
+        1519
+      ],
+      "native_count": 4,
+      "native_record_width": 36,
+      "width_contract": {
+        "confidence": "VERIFIED",
+        "basis": "002: CPtCtr4D 32+4-byte writes, supported family only"
+      },
+      "boundary_confidence": "CONDITIONAL",
+      "matching_chain_indices": [
+        1
+      ],
+      "ownership": "UNKNOWN",
+      "observations": [
+        {
+          "code": "BOUNDARY_MATCH",
+          "confidence": "CONDITIONAL",
+          "basis": "Compare absolute start/end and record count, independently of colors"
+        },
+        {
+          "code": "CANDIDATE_WINDOW_WIDER_THAN_NATIVE_BODY",
+          "confidence": "CONDITIONAL",
+          "basis": "Codec heuristic window contains more than the sequential Property body; not a Parser error or corruption"
+        }
+      ],
+      "codec_chain_index": 1,
+      "codec_contour_range": [
+        1375,
+        1519
+      ],
+      "codec_count": 4,
+      "codec_property_candidate_range": [
+        795,
+        8192
+      ],
+      "codec_selected_color_raw": 13393968,
+      "codec_selected_color_name": "Navy Blue",
+      "codec_confidence_original": "strong",
+      "codec_color_confidence": "HEURISTIC",
+      "native_property_body_range": [
+        1521,
+        1633
+      ],
+      "ccourbe_suffix_range": [
+        1633,
+        1657
+      ],
+      "color_fields": [
+        {
+          "range": [
+            1641,
+            1645
+          ],
+          "value_u32": 13393968,
+          "bytes_hex": "3060cc00",
+          "equals_codec_selected_color": true,
+          "outside_native_property_body": true,
+          "record_scope": "CCourbe suffix under supported sequential traversal; member ownership UNKNOWN",
+          "confidence": "CONDITIONAL"
+        },
+        {
+          "range": [
+            1653,
+            1657
+          ],
+          "value_u32": 13393968,
+          "bytes_hex": "3060cc00",
+          "equals_codec_selected_color": true,
+          "outside_native_property_body": true,
+          "record_scope": "CCourbe suffix under supported sequential traversal; member ownership UNKNOWN",
+          "confidence": "CONDITIONAL"
+        }
+      ]
+    }
+  ],
+  "codec": {
+    "parser_name": "Type3ChainParser",
+    "decoder_object_type": "group",
+    "text_content": null,
+    "declared_count_candidate": 1,
+    "group_candidate": true,
+    "envelope_payload_start": 6,
+    "coordinate_system": "Absolute byte offsets in input; half-open ranges. Node-local offsets are not used as absolute positions.",
+    "confidence": "HEURISTIC",
+    "chains": [
+      {
+        "chain_index": 0,
+        "contour_range": [
+          630,
+          774
+        ],
+        "count": 4,
+        "property_candidate_range": [
+          795,
+          8192
+        ],
+        "selected_color_raw": 13434724,
+        "selected_color_name": "Turquoise",
+        "codec_confidence_original": "strong",
+        "codec_color_source": "payload_scan"
+      },
+      {
+        "chain_index": 1,
+        "contour_range": [
+          1375,
+          1519
+        ],
+        "count": 4,
+        "property_candidate_range": [
+          795,
+          8192
+        ],
+        "selected_color_raw": 13393968,
+        "selected_color_name": "Navy Blue",
+        "codec_confidence_original": "strong",
+        "codec_color_source": "payload_scan"
+      }
+    ]
+  },
+  "archive_prefix": {
+    "range": [
+      0,
+      6
+    ],
+    "hex": "000000000100",
+    "confidence": "CONDITIONAL",
+    "required_hex": "000000000100"
+  },
+  "descriptor_and_reference_events": [
+    {
+      "kind": "new_class",
+      "span": [
+        6,
+        17
+      ],
+      "class_id": 1,
+      "class": "CZone",
+      "schema": 1,
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "class_reference",
+      "span": [
+        163,
+        165
+      ],
+      "class_id": 1,
+      "class": "CZone",
+      "tag": "0x8001",
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "new_class",
+      "span": [
+        311,
+        324
+      ],
+      "class_id": 4,
+      "class": "CCourbe",
+      "schema": 1,
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "new_class",
+      "span": [
+        470,
+        484
+      ],
+      "class_id": 6,
+      "class": "CContour",
+      "schema": 2,
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "new_class",
+      "span": [
+        774,
+        795
+      ],
+      "class_id": 8,
+      "class": "CPropertyExtend",
+      "schema": 5,
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "class_reference",
+      "span": [
+        931,
+        933
+      ],
+      "class_id": 1,
+      "class": "CZone",
+      "tag": "0x8001",
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "class_reference",
+      "span": [
+        1079,
+        1081
+      ],
+      "class_id": 4,
+      "class": "CCourbe",
+      "tag": "0x8004",
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "class_reference",
+      "span": [
+        1227,
+        1229
+      ],
+      "class_id": 6,
+      "class": "CContour",
+      "tag": "0x8006",
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    },
+    {
+      "kind": "class_reference",
+      "span": [
+        1519,
+        1521
+      ],
+      "class_id": 8,
+      "class": "CPropertyExtend",
+      "tag": "0x8008",
+      "schema_confidence": "CONDITIONAL",
+      "class_id_scope": "Archive-local conditional registration, never persistent identity"
+    }
+  ],
+  "class_id_note": "Schema and Archive class ID are separate. Existing ObjectHeader.class_id API is not changed.",
+  "shadow_consumed_range": [
+    6,
+    1657
+  ],
+  "shadow_stop_cursor": 1657,
+  "shadow_stop_reason": null,
+  "unknown_ranges": [
+    [
+      1657,
+      8192
+    ]
+  ],
+  "uninterpreted_tail_start": 1657,
+  "archive_valid_length": "UNKNOWN",
+  "ownership": "UNKNOWN",
+  "change_allowed": false,
+  "decoder_observation_status": "COMPLETED",
+  "decoder_fingerprint": "b5f603d63b254d0f7cadfe87e1136c925fc268fb12cd42a098b31caca85dcb62",
+  "decoder_object_unchanged": true,
+  "assumptions": [
+    "Reviewed prefix and fresh unseeded class map at byte6 are conditional",
+    "Additional direct Serialize list zero contribution applies only to reviewed CZone/CCourbe types",
+    "Unsupported optional Property/reference branches are not resynchronized"
+  ],
+  "partial_shadow_events_diagnostic_only": [],
+  "source_path": "research\\group-color\\type3-clipboard-independent-prediction-006\\samples\\H1\\typeeditzone.bin",
+  "source_kind": "PRESERVED_TYPE3_SAMPLE"
+}

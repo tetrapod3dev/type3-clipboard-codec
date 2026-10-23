@@ -1,0 +1,16 @@
+G1 CONDITIONAL_COMPARISON_COMPLETE 2
+H1 CONDITIONAL_COMPARISON_COMPLETE 2
+polyline_3_points CONDITIONAL_COMPARISON_COMPLETE 1
+polyline_5_points CONDITIONAL_COMPARISON_COMPLETE 1
+polygon_5_sides CONDITIONAL_COMPARISON_COMPLETE 1
+polygon_6_sides CONDITIONAL_COMPARISON_COMPLETE 1
+default_circle CONDITIONAL_COMPARISON_COMPLETE 1
+text/default_text UNSUPPORTED 0
+duplicate_contour AMBIGUOUS 1657 None
+count_out_of_scope UNSUPPORTED 630 unreviewed count/length
+count_stride_extent_truncated UNSUPPORTED 630 truncated at 630
+property_truncated UNSUPPORTED 903 truncated at 903
+suffix_truncated UNSUPPORTED 907 truncated at 907
+unregistered_class_reference UNSUPPORTED 165 unknown class reference 4094
+unsupported_schema UNSUPPORTED 17 unreviewed schema
+unknown_tail_removed CONDITIONAL_COMPARISON_COMPLETE 1657 None

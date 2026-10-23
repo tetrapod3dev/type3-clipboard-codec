@@ -1,0 +1,182 @@
+........................................................................ [  4%]
+........................................................................ [  9%]
+...................................................................F.... [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 24%]
+........................................................................ [ 29%]
+.....................................................F.................. [ 33%]
+...................F...................F...................F............ [ 38%]
+........................................................................ [ 43%]
+........................................................................ [ 48%]
+........................................................................ [ 53%]
+............................F..........................FF.FF....F....... [ 58%]
+..........................F......................F......F............... [ 62%]
+......................................F...................FF............ [ 67%]
+........................................................................ [ 72%]
+........................................................................ [ 77%]
+........................................................................ [ 82%]
+........................................................................ [ 87%]
+........................................................................ [ 92%]
+........................................................................ [ 96%]
+..............................................                           [100%]
+================================== FAILURES ===================================
+________________ test_historical_replay_and_legacy_information ________________
+tests\integration\test_source_integrity_policy.py:118: in test_historical_replay_and_legacy_information
+    assert corpus["real_fixtures"] == 104 and corpus["runtime_outputs_equal"]
+E   assert (127 == 104)
+_________ test_all_84_groups_agree_with_frozen_shadow_and_old_outputs _________
+tests\integration\test_text_preslot_archive_doubles.py:168: in test_all_84_groups_agree_with_frozen_shadow_and_old_outputs
+    assert (captures, groups, multiline, failures) == (116, 84, 4, 0)
+E   assert (139, 84, 4, 0) == (116, 84, 4, 0)
+E     
+E     At index 0 diff: 139 != 116
+E     Use -v to get more diff
+____________ test_corpus_report_and_production_output_preservation ____________
+tests\integration\test_text_preslot_crosswalk.py:178: in test_corpus_report_and_production_output_preservation
+    assert (report["valid_captures"], report["text_captures"], report["paragraphs_examined"]) == (116, 84, 84)
+E   assert (139, 84, 84) == (116, 84, 84)
+E     
+E     At index 0 diff: 139 != 116
+E     Use -v to get more diff
+_____________ test_corpus_alias_counts_and_canonical_preservation _____________
+tests\integration\test_text_preslot_internal_role_aliases.py:143: in test_corpus_alias_counts_and_canonical_preservation
+    assert (captures, groups, multiline) == (116, 84, 4)
+E   assert (139, 84, 4) == (116, 84, 4)
+E     
+E     At index 0 diff: 139 != 116
+E     Use -v to get more diff
+__________ test_full_corpus_additive_projection_and_exact_raw_values __________
+tests\integration\test_text_slot_archive_doubles.py:131: in test_full_corpus_additive_projection_and_exact_raw_values
+    assert (captures, records, visible, terminal) == (116, 700, 616, 84)
+E   assert (139, 700, 616, 84) == (116, 700, 616, 84)
+E     
+E     At index 0 diff: 139 != 116
+E     Use -v to get more diff
+___________ test_full_corpus_pre_gate_outputs_and_shadow_agreement ____________
+tests\integration\test_text_slot_current_empty_gate.py:196: in test_full_corpus_pre_gate_outputs_and_shadow_agreement
+    assert (captures, records, visible, terminal) == (116, 700, 616, 84)
+E   assert (139, 700, 616, 84) == (116, 700, 616, 84)
+E     
+E     At index 0 diff: 139 != 116
+E     Use -v to get more diff
+________________ test_full_corpus_actual_v1_and_exact_same_run ________________
+tests\integration\test_text_slot_family_shadow_cli.py:39: in test_full_corpus_actual_v1_and_exact_same_run
+    assert report["answers"]["real_fixture_count"] == 104
+E   assert 127 == 104
+_____________ test_all_runtime_outputs_and_source_bytes_unchanged _____________
+tests\integration\test_text_slot_family_shadow_cli.py:66: in test_all_runtime_outputs_and_source_bytes_unchanged
+    assert report["corpus_summary"]["runtime_outputs_equal"]
+E   assert False
+________________________ test_challenges_and_readiness ________________________
+tests\integration\test_text_slot_family_shadow_cli.py:89: in test_challenges_and_readiness
+    assert report["answers"]["runtime_v2_promotion_review_readiness"] == "ready_for_review"
+E   AssertionError: assert 'not_ready' == 'ready_for_review'
+E     
+E     - ready_for_review
+E     + not_ready
+_________________ test_oracle_boundary_and_adversarial_intent _________________
+tests\integration\test_text_slot_family_shadow_cli.py:110: in test_oracle_boundary_and_adversarial_intent
+    adversarial = shadow.build_report()
+                  ^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Public\Documents\ESTsoft\CreatorTemp\text-slot-v1-replay-gt1998e7\tools\analyze_text_slot_family_shadow.py:727: in build_report
+    report["oracle_summary"] = oracle_phase(frozen, oracle_enabled)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\integration\test_text_slot_family_shadow_cli.py:103: in oracle
+    assert len(json.loads(frozen)["fixture_results"]) == 104
+E   AssertionError: assert 127 == 104
+E    +  where 127 = len([{'decoys': [], 'fixture': 'closed_from_polyline_5_points.txt', 'outcome': 'both_absent', 'paragraph_count': 0, ...}, ... {'decoys': [], 'fixture': 'color_light_cyan_rectangle.txt', 'outcome': 'both_absent', 'paragraph_count': 0, ...}, ...])
+_______________________ test_cli_bounded_output[args3] ________________________
+tests\integration\test_text_slot_family_shadow_cli.py:132: in test_cli_bounded_output
+    assert result.returncode == 0, result.stderr.decode()
+E   AssertionError: usage: analyze_text_slot_family_shadow.py [-h] [--json] [--no-oracle]
+
+E                                               [--details]
+
+E                                               [--fixtures FIXTURES [FIXTURES ...]]
+
+E     analyze_text_slot_family_shadow.py: error: output cap exceeded; no partial report emitted
+
+E     
+E   assert 2 == 0
+E    +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...URES [FIXTURES ...]]\r\nanalyze_text_slot_family_shadow.py: error: output cap exceeded; no partial report emitted\r\n').returncode
+___________________ test_corpus_matrix_and_all_observations ___________________
+tests\integration\test_text_slot_layout_applicability.py:148: in test_corpus_matrix_and_all_observations
+    assert (report["files_examined"], report["fixtures_examined"], len(report["input_issues"])) == (126, 116, 10)
+E   assert (149, 139, 10) == (126, 116, 10)
+E     
+E     At index 0 diff: 149 != 126
+E     Use -v to get more diff
+_______________ test_corpus_and_independent_reference_coverage ________________
+tests\integration\test_text_slot_prefix_redesign_cli.py:62: in test_corpus_and_independent_reference_coverage
+    assert len(report["fixture_inventory"]) == 104
+E   AssertionError: assert 127 == 104
+E    +  where 127 = len([{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}...'decoy_present': False, 'fixture': 'color_light_cyan_rectangle.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}, ...])
+__________________________ test_freeze_before_labels __________________________
+tests\integration\test_text_slot_prefix_redesign_cli.py:108: in test_freeze_before_labels
+    assert analyzer.build_report() == report
+           ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Public\Documents\ESTsoft\CreatorTemp\text-slot-v1-replay-gt1998e7\tools\analyze_text_slot_prefix_redesign.py:627: in build_report
+    oracle = oracle_phase(frozen, oracle_enabled)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\integration\test_text_slot_prefix_redesign_cli.py:100: in phase
+    assert len(evidence["fixture_metrics"]) == 104
+E   AssertionError: assert 127 == 104
+E    +  where 127 = len({'closed_from_polyline_5_points.txt': {'F0': [0, False, 0, False, 0, 0, ...], 'F1': [0, False, 0, False, 0, 0, ...], '..., False, 0, False, 0, 0, ...], 'F2': [0, False, 0, False, 0, 0, ...], 'F3': [0, False, 0, False, 0, 0, ...], ...}, ...})
+__________________ test_geometry_scope_negative_is_explicit ___________________
+tests\integration\test_text_slot_prefix_redesign_cli.py:227: in test_geometry_scope_negative_is_explicit
+    assert len(negatives) == 32
+E   AssertionError: assert 55 == 32
+E    +  where 55 = len([{'decoy_present': False, 'fixture': 'closed_from_polyline_5_points.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}...'decoy_present': False, 'fixture': 'color_light_cyan_rectangle.txt', 'paragraph_count': 0, 'raw_size': 8192, ...}, ...])
+______________________ test_output_bounds[args0-100000] _______________________
+tests\integration\test_text_slot_prefix_redesign_cli.py:275: in test_output_bounds
+    assert len(run_cli(*args)) < limit
+               ^^^^^^^^^^^^^^
+tests\integration\test_text_slot_prefix_redesign_cli.py:57: in run_cli
+    assert result.returncode == 0, result.stderr.decode()
+E   AssertionError: usage: analyze_text_slot_prefix_redesign.py [-h] [--json] [--no-oracle]
+
+E                                                 [--details]
+
+E                                                 [--fixtures FIXTURES [FIXTURES ...]]
+
+E     analyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted
+
+E     
+E   assert 2 == 0
+E    +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...[FIXTURES ...]]\r\nanalyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted\r\n').returncode
+______________________ test_output_bounds[args1-100000] _______________________
+tests\integration\test_text_slot_prefix_redesign_cli.py:275: in test_output_bounds
+    assert len(run_cli(*args)) < limit
+               ^^^^^^^^^^^^^^
+tests\integration\test_text_slot_prefix_redesign_cli.py:57: in run_cli
+    assert result.returncode == 0, result.stderr.decode()
+E   AssertionError: usage: analyze_text_slot_prefix_redesign.py [-h] [--json] [--no-oracle]
+
+E                                                 [--details]
+
+E                                                 [--fixtures FIXTURES [FIXTURES ...]]
+
+E     analyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted
+
+E     
+E   assert 2 == 0
+E    +  where 2 = CompletedProcess(args=['C:\\work\\develop\\type3-clipboard-codec\\.venv\\Scripts\\python.exe', 'C:\\Users\\Public\\Doc...[FIXTURES ...]]\r\nanalyze_text_slot_prefix_redesign.py: error: output budget exceeded; no partial output emitted\r\n').returncode
+=========================== short test summary info ===========================
+FAILED tests/integration/test_source_integrity_policy.py::test_historical_replay_and_legacy_information
+FAILED tests/integration/test_text_preslot_archive_doubles.py::test_all_84_groups_agree_with_frozen_shadow_and_old_outputs
+FAILED tests/integration/test_text_preslot_crosswalk.py::test_corpus_report_and_production_output_preservation
+FAILED tests/integration/test_text_preslot_internal_role_aliases.py::test_corpus_alias_counts_and_canonical_preservation
+FAILED tests/integration/test_text_slot_archive_doubles.py::test_full_corpus_additive_projection_and_exact_raw_values
+FAILED tests/integration/test_text_slot_current_empty_gate.py::test_full_corpus_pre_gate_outputs_and_shadow_agreement
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_full_corpus_actual_v1_and_exact_same_run
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_all_runtime_outputs_and_source_bytes_unchanged
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_challenges_and_readiness
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_oracle_boundary_and_adversarial_intent
+FAILED tests/integration/test_text_slot_family_shadow_cli.py::test_cli_bounded_output[args3]
+FAILED tests/integration/test_text_slot_layout_applicability.py::test_corpus_matrix_and_all_observations
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_corpus_and_independent_reference_coverage
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_freeze_before_labels
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_geometry_scope_negative_is_explicit
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args0-100000]
+FAILED tests/integration/test_text_slot_prefix_redesign_cli.py::test_output_bounds[args1-100000]
+17 failed, 1469 passed in 100.10s (0:01:40)
