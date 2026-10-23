@@ -1,0 +1,18 @@
+[
+  {
+    "commands": "process status\n",
+    "output": "process status\r\nProcess 20560 stopped\r\n* thread #4, name = 'combase.dll thread', stop reason = Exception 0x80000003 enc\r\ncountered at address 0x8e46ad0\r\n    frame #0: 0x08e46ad1 TypeEditDLL.dll\r\n->  0x8e46ad1: shlb   $0x20, %dl\r\n    0x8e46ad4: movl   %ebx, 0x8e474c0\r\n    0x8e46ada: shrb   $0x40, %dl\r\n    0x8e46add: movl   %ecx, 0x8e474b0\r\n(lldb)"
+  },
+  {
+    "commands": "image list -o -f TypeEditDLL.dll\nimage lookup --address 0x08e46ad0\n",
+    "output": "image list -o -f TypeEditDLL.dll\r\n[  0] 0xfffffffff8910000 C:\\TypeEdit_2009\\EXE\\TypeEditDLL.dll\r\n(lldb) image lookup --address 0x08e46ad0\r\n      Address: TypeEditDLL.dll[0x10536ad0] (TypeEditDLL.dll...protect + 2308816)\n      Summary:\r\n(lldb)"
+  },
+  {
+    "commands": "memory read --format x --size 1 --count 8 0x08e46ad0\n",
+    "output": "memory read --format x --size 1 --count 8 0x08e46ad0\r\n0x08e46ad0: 0xcc 0xc0 0xe2 0x20 0x89 0x1d 0xc0 0x74\r\n(lldb)"
+  },
+  {
+    "commands": "image list --header -f TypeEditDLL.dll\n",
+    "output": "image list --header -f TypeEditDLL.dll\r\n[  0] 0x08910000 C:\\TypeEdit_2009\\EXE\\TypeEditDLL.dll\r\n(lldb)"
+  }
+]

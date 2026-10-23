@@ -1,0 +1,26 @@
+[
+  {
+    "commands": "process status\n",
+    "output": "process status\r\nProcess 20560 stopped\r\n* thread #4, name = 'combase.dll thread', stop reason = Exception 0x80000003 enc\r\ncountered at address 0x8e46ad0\r\n    frame #0: 0x08e46ad1 TypeEditDLL.dll\r\n->  0x8e46ad1: shlb   $0x20, %dl\r\n    0x8e46ad4: movl   %ebx, 0x8e474c0\r\n    0x8e46ada: shrb   $0x40, %dl\r\n    0x8e46add: movl   %ecx, 0x8e474b0\r\n(lldb)"
+  },
+  {
+    "commands": "thread list\n",
+    "output": "thread list\r\nProcess 20560 stopped\r\n  thread #1: tid = 0x53a4, 0x757f1d5c win32u.dll, name = 'Main Thread'\r\n  thread #2: tid = 0x3748, 0x757f5fac win32u.dll, name = 'GdiPlus.dll thread'   \r\n  thread #3: tid = 0x5f30, 0x7720858c ntdll.dll, name = 'msvcr80.dll thread'    \r\n* thread #4: tid = 0xcfec, 0x08e46ad1 TypeEditDLL.dll, name = 'combase.dll threa\r\nad', stop reason = Exception 0x80000003 encountered at address 0x8e46ad0\r\n  thread #5: tid = 0xd00c, 0x7720a0bc ntdll.dll, name = 'ntdll.dll thread'      \r\n  thread #6: tid = 0x6a5c, 0x7720a0bc ntdll.dll, name = 'ntdll.dll thread'      \r\n  thread #7: tid = 0xd5f4, 0x7720826c ntdll.dll, name = 'msvcr80.dll thread'    \r\n  thread #8: tid = 0xde04, 0x772087fc ntdll.dll, name = 'mscorwks.dll thread'   \r\n  thread #9: tid = 0x5a50, 0x772087fc ntdll.dll, name = 'mscorwks.dll thread'   \r\n  thread #10: tid = 0xbbd8, 0x7720858c ntdll.dll, name = 'msvcr80.dll thread'   \r\n  thread #11: tid = 0x7e30, 0x7720858c ntdll.dll, name = 'msvcr80.dll thread'   \r\n  thread #12: tid = 0xdf0c, 0x7720a0bc ntdll.dll, name = 'ntdll.dll thread'     \r\n  thread #13: tid = 0xc5d0, 0x7720a0bc ntdll.dll, name = 'ntdll.dll thread'     \r\n  thread #14: tid = 0xdbec, 0x7720826c ntdll.dll, name = 'msvcrt.dll thread'    \r\n  thread #15: tid = 0xb754, 0x7720826c ntdll.dll, name = 'msvcrt.dll thread'    \r\n  thread #16: tid = 0xc958, 0x772087fc ntdll.dll, name = 'msvcrt.dll thread'    \r\n  thread #17: tid = 0xdc8c, 0x757f5fac win32u.dll, name = 'mshtml.dll thread'   \r\n  thread #18: tid = 0xd77c, 0x7720826c ntdll.dll, name = 'mshtml.dll thread'    \r\n  thread #19: tid = 0x9de8, 0x772087fc ntdll.dll, name = 'mshtml.dll thread'    \r\n  thread #20: tid = 0x6980, 0x772087fc ntdll.dll, name = 'msvcrt.dll thread'    \r\n  thread #21: tid = 0xdb68, 0x7720826c ntdll.dll, name = 'msvcrt.dll thread'    \r\n  thread #22: tid = 0xaee8, 0x7720a0bc ntdll.dll, name = 'ntdll.dll thread'     \r\n  thread #23: tid = 0xa700, 0x757f5fac win32u.dll, name = 'mshtml.dll thread'   \r\n  thread #24: tid = 0xadc4, 0x757f5fac win32u.dll, name = 'mshtml.dll thread'   \r\n(lldb)"
+  },
+  {
+    "commands": "thread backtrace\n",
+    "output": "thread backtrace\r\n* thread #4, name = 'combase.dll thread', stop reason = Exception 0x80000003 enc\r\ncountered at address 0x8e46ad0\r\n  * frame #0: 0x08e46ad1 TypeEditDLL.dll\r\n    frame #1: 0x08c2c89b TypeEditDLL.dll\r\n    frame #2: 0x08c45913 TypeEditDLL.dll\r\n    frame #3: 0x08e4461e TypeEditDLL.dll\r\n    frame #4: 0x08e48973 TypeEditDLL.dll\r\n    frame #5: 0x08c2c027 TypeEditDLL.dll\r\n    frame #6: 0x08c2eadb TypeEditDLL.dll\r\n    frame #7: 0x08c33991 TypeEditDLL.dll\r\n    frame #8: 0x08c1d943 TypeEditDLL.dll\r\n    frame #9: 0x08c36563 TypeEditDLL.dll\r\n    frame #10: 0x08c19156 TypeEditDLL.dll\r\n    frame #11: 0x08c23a1e TypeEditDLL.dll\r\n    frame #12: 0x08c36c8c TypeEditDLL.dll\r\n    frame #13: 0x08c3e302 TypeEditDLL.dll\r\n    frame #14: 0x08c1c561 TypeEditDLL.dll\r\n    frame #15: 0x08c25880 TypeEditDLL.dll\r\n    frame #16: 0x08c4027e TypeEditDLL.dll\r\n    frame #17: 0x08c32261 TypeEditDLL.dll\r\n    frame #18: 0x08c1ae43 TypeEditDLL.dll\r\n    frame #19: 0x08c37d5b TypeEditDLL.dll\r\n    frame #20: 0x08c19c7e TypeEditDLL.dll\r\n    frame #21: 0x08c132b4 TypeEditDLL.dll\r\n    frame #22: 0x77208206 ntdll.dll\r\n    frame #23: 0x77242984 ntdll.dll\r\n    frame #24: 0x771c93e3 ntdll.dll\r\n    frame #25: 0x771c7ae2 ntdll.dll\r\n    frame #26: 0x7720073c ntdll.dll\r\n    frame #27: 0x7619cf95 KernelBase.dll\r\n    frame #28: 0x75c93d07 combase.dll\r\n    frame #29: 0x75835d49 kernel32.dll\r\n    frame #30: 0x771fc75b ntdll.dll\r\n    frame #31: 0x771fc6e1 ntdll.dll\r\n(lldb)"
+  },
+  {
+    "commands": "register read eip esp ebp\n",
+    "output": "register read eip esp ebp\r\n     eip = 0x08e46ad1  \r\n     esp = 0x0c4df768\r\n     ebp = 0x0c4df81c\r\n(lldb)"
+  },
+  {
+    "commands": "disassemble --pc --count 8\n",
+    "output": "disassemble --pc --count 8\r\n->  0x8e46ad1: shlb   $0x20, %dl\r\n    0x8e46ad4: movl   %ebx, 0x8e474c0\r\n    0x8e46ada: shrb   $0x40, %dl\r\n    0x8e46add: movl   %ecx, 0x8e474b0\r\n    0x8e46ae3: movb   %dh, %dh\r\n    0x8e46ae5: jne    0x8e4700f\r\n    0x8e46aeb: movw   %bx, %bx\r\n    0x8e46aee: je     0x8e46af2\r\n(lldb)"
+  },
+  {
+    "commands": "breakpoint list\n",
+    "output": "breakpoint list\r\nNo breakpoints currently set.\r\n(lldb)"
+  }
+]
