@@ -1,0 +1,16 @@
+선택 데이터 발생 기록 V2 — PARTIAL
+SHA256: e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743
+정확한 선택 수: UNKNOWN / 선택 수 후보: 4 / COUNT_CANDIDATE_CONDITIONAL
+완전한 객체 목록: false / 그룹 소유권: UNKNOWN
+| 형상 발생 ID | byte 범위 | 기록 수 | 형상 후보 | 원래 chain |
+|---|---|---|---|---|
+| geometry-0 | [546, 690] | 4 | rectangle | True |
+| geometry-1 | [2638, 2710] | 2 | polyline_candidate | False |
+| geometry-2 | [3468, 3540] | 2 | polyline_candidate | False |
+| geometry-3 | [5454, 5526] | 2 | polyline_candidate | False |
+
+| 문자 발생 ID | record 범위 | 문자열 후보 | char DWORD | 기존 chain의 같은 내용 |
+|---|---|---|---|---|
+| text-0 | [1322, 2138] | T1A | [84, 49, 65, 0] | [0] |
+| text-1 | [4138, 4954] | T2B | [84, 50, 66, 0] | [] |
+모든 발생 기록의 owner=UNKNOWN. 빈 목록은 객체 부재를 증명하지 않습니다.

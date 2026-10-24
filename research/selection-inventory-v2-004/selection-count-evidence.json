@@ -1,0 +1,1071 @@
+{
+  "count_candidate_status": "COUNT_CANDIDATE_CONDITIONAL",
+  "producer_contract_verified": false,
+  "rows": {
+    "default_rectangle": {
+      "source": "tests\\samples\\default_rectangle.txt",
+      "source_sha256": "95c26e2f15036a925addd973d653d6ea50ccc6e920827ffddb677303341bb614",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "polyline_3_points": {
+      "source": "tests\\samples\\polyline_3_points.txt",
+      "source_sha256": "6c499aae369a9fd50db03f8a47854b10786cd0902f94b531909c8320fd2b9d0b",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "polyline_5_points": {
+      "source": "tests\\samples\\polyline_5_points.txt",
+      "source_sha256": "408dad579901b034e07bd47ca9b8f7c139483be95f98067e431f41d7878609e5",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "polygon_5_sides": {
+      "source": "tests\\samples\\polygon_5_sides.txt",
+      "source_sha256": "a9b4672b47f9b683df79b326d8ea544ab972f41fc19b0b95f0396ddc29811b89",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "polygon_6_sides": {
+      "source": "tests\\samples\\polygon_6_sides.txt",
+      "source_sha256": "df88c7c9eca1b3b8d8f63cb8bf23303d8527317142c248f1132644ac891c95f7",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "default_circle": {
+      "source": "tests\\samples\\default_circle.txt",
+      "source_sha256": "c62d9dea384c856ca0a619919a1da11bec7ddc21e23e50f2ad6f0d2a4f5d1503",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text/default_text": {
+      "source": "tests\\samples\\text\\default_text.txt",
+      "source_sha256": "3dc3a1c488ca81b41ad11e59514a0e268288f1e38fe6d5cded8aa1b9ca851eb9",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": null,
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "G1": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\G1\\typeeditzone.bin",
+      "source_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "H1": {
+      "source": "research\\group-color\\type3-clipboard-independent-prediction-006\\samples\\H1\\typeeditzone.bin",
+      "source_sha256": "1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-independent-prediction-006/result.md; grouping/handles/UI input, no independent Native count",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "E1": {
+      "source": "research\\selection-object-inventory-001\\samples\\E1.bin",
+      "source_sha256": "9957013e159914f0df2c4ccc21238c5708c440e7ff4a376c08e03351d69095c2",
+      "candidate": {
+        "value": 3,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "7b77767da01521b43938701e35efe2c7193368c0d6609736ed3f7e91376f6df3",
+            "raw_hex": "4859b0dfb0edb5f10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "4859b0dfb0edb5f1",
+            "ascii_name_candidate": null,
+            "nul_byte_count": 56,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": 3,
+      "ui_count_evidence": "automation research/feasibility/type3-mixed-clipboard-ef-001/result.md; historical UI 3/4 areas",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": false
+    },
+    "F": {
+      "source": "research\\selection-object-inventory-001\\samples\\F.bin",
+      "source_sha256": "e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743",
+      "candidate": {
+        "value": 4,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "7b77767da01521b43938701e35efe2c7193368c0d6609736ed3f7e91376f6df3",
+            "raw_hex": "4859b0dfb0edb5f10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "4859b0dfb0edb5f1",
+            "ascii_name_candidate": null,
+            "nul_byte_count": 56,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": 4,
+      "ui_count_evidence": "automation research/feasibility/type3-mixed-clipboard-ef-001/result.md; historical UI 3/4 areas",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": false
+    },
+    "S1-confirmed": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\S1-confirmed\\typeeditzone.bin",
+      "source_sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "S2-confirmed": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\S2-confirmed\\typeeditzone.bin",
+      "source_sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "U0": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\U0\\typeeditzone.bin",
+      "source_sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "candidate": {
+        "value": 2,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 2,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "G0-A": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\G0-A\\typeeditzone.bin",
+      "source_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "G0-B": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\G0-B\\typeeditzone.bin",
+      "source_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "G0-R": {
+      "source": "research\\group-color\\type3-clipboard-member-color-003\\samples\\G0-R\\typeeditzone.bin",
+      "source_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-member-color-003/result.md and capture-metadata.json; explicit single/U0/group selections",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "H0-A": {
+      "source": "research\\group-color\\type3-clipboard-independent-prediction-006\\samples\\H0-A\\typeeditzone.bin",
+      "source_sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-independent-prediction-006/result.md; grouping/handles/UI input, no independent Native count",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "H0-B": {
+      "source": "research\\group-color\\type3-clipboard-independent-prediction-006\\samples\\H0-B\\typeeditzone.bin",
+      "source_sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "GEOMETRY_N0_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 0,
+        "entries": [],
+        "count_range": [
+          4,
+          6
+        ],
+        "first_descriptor_candidate": [
+          6,
+          17
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": 1,
+      "ui_count_evidence": "research/group-color/type3-clipboard-independent-prediction-006/result.md; grouping/handles/UI input, no independent Native count",
+      "metadata_only": null,
+      "value_validation": "MATCH",
+      "new_independent_validation": true
+    },
+    "text_three_objects_grouped_order_abc": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc.txt",
+      "source_sha256": "4144746fdd1904efaa7b1e5f48bb297bf76f3167064858f82b3b76d5f73720c8",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_grouped_order_abc.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_three_objects_not_grouped": {
+      "source": "tests\\samples\\text\\text_three_objects_not_grouped.txt",
+      "source_sha256": "201907994ff2baad4d492159302468ba1fc59555f611eed1577cf2fa9ee2637b",
+      "candidate": {
+        "value": 3,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_not_grouped.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: not_grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_three_objects_grouped_order_cba": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_cba.txt",
+      "source_sha256": "4b9a4ade21a1311659338e66cb0330f90bdbaffd7b6ad3bf0c46c1f8b0510449",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_grouped_order_cba.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_two_objects_same_color_not_grouped": {
+      "source": "tests\\samples\\text\\text_two_objects_same_color_not_grouped.txt",
+      "source_sha256": "e4331bd12a5ea44db09d661b6e3674e685f834b640f66da31210dd4fa6533545",
+      "candidate": {
+        "value": 2,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_two_objects_same_color_not_grouped.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 2"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: not_grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_two_objects_mixed_color_not_grouped": {
+      "source": "tests\\samples\\text\\text_two_objects_mixed_color_not_grouped.txt",
+      "source_sha256": "65b229f765ed2f2820277bf007599825e639d177b5a1c25373412648d3e34622",
+      "candidate": {
+        "value": 2,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 2,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          },
+          {
+            "range": [
+              68,
+              132
+            ],
+            "raw_sha256": "898f9c98a7801eb2672efd36093093fe37f5f0210b05487a289efc807457a44a",
+            "raw_hex": "417269616c20426f6c64000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c20426f6c64",
+            "ascii_name_candidate": "Arial Bold",
+            "nul_byte_count": 54,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          132,
+          134
+        ],
+        "first_descriptor_candidate": [
+          134,
+          145
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_two_objects_mixed_color_not_grouped.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 2"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: not_grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_three_objects_grouped_order_abc_mixed_color": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc_mixed_color.txt",
+      "source_sha256": "4e7f3e5091189effc9a02717565c79af3b7137221ca035fac756759440557c5b",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": true,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_grouped_order_abc_mixed_color.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_three_objects_grouped_order_abc_font_arial_bold": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc_font_arial_bold.txt",
+      "source_sha256": "88f4e165140b76990d6610b9867c18fb6bb41e4dbbf85f957a0c3128118091be",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "898f9c98a7801eb2672efd36093093fe37f5f0210b05487a289efc807457a44a",
+            "raw_hex": "417269616c20426f6c64000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c20426f6c64",
+            "ascii_name_candidate": "Arial Bold",
+            "nul_byte_count": 54,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_grouped_order_abc_font_arial_bold.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_three_objects_grouped_order_abc_content_variation": {
+      "source": "tests\\samples\\text\\text_three_objects_grouped_order_abc_content_variation.txt",
+      "source_sha256": "ecb93d901e24c43b7b0dc68a25e6ed60081115a59b06de96a2791008ec87f7aa",
+      "candidate": {
+        "value": 1,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "898f9c98a7801eb2672efd36093093fe37f5f0210b05487a289efc807457a44a",
+            "raw_hex": "417269616c20426f6c64000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c20426f6c64",
+            "ascii_name_candidate": "Arial Bold",
+            "nul_byte_count": 54,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_three_objects_grouped_order_abc_content_variation.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 3"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    },
+    "text_two_objects_not_grouped_selection_reversed": {
+      "source": "tests\\samples\\text\\text_two_objects_not_grouped_selection_reversed.txt",
+      "source_sha256": "cbf25ff84e7d8dace5c0c93ff11897e37310fecc8d4cb2f336f42959373edd00",
+      "candidate": {
+        "value": 2,
+        "confidence": "HEURISTIC",
+        "status": "COUNT_CANDIDATE_CONDITIONAL",
+        "applicability": "TEXT_FONT64_PREAMBLE_CANDIDATE",
+        "reason": "Observed DWORD/64-byte entries/WORD relation; no producer contract or exact selected-object validation",
+        "producer_contract_verified": false,
+        "font_count_candidate": 1,
+        "entries": [
+          {
+            "range": [
+              4,
+              68
+            ],
+            "raw_sha256": "6cc11319171b1bb5fbdf7b0669a94781d97b8b1ee8f5540e5469c050fd87cf1a",
+            "raw_hex": "417269616c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "font_name_bytes_candidate": "417269616c",
+            "ascii_name_candidate": "Arial",
+            "nul_byte_count": 59,
+            "role_confidence": "HEURISTIC"
+          }
+        ],
+        "count_range": [
+          68,
+          70
+        ],
+        "first_descriptor_candidate": [
+          70,
+          81
+        ],
+        "not_an_object_loop_bound": true
+      },
+      "previous_003_evaluated": false,
+      "ui_top_level_count": null,
+      "ui_count_evidence": null,
+      "metadata_only": {
+        "source": "tests\\samples\\intents\\text\\text_two_objects_not_grouped_selection_reversed.md",
+        "literal_selected_count_lines": [
+          "- selected/copied object count: 2"
+        ],
+        "grouping_lines": [
+          "- grouped/not grouped: not_grouped"
+        ],
+        "validation_use": "EXCLUDED: intent/constituent or attempted setup, no independent UI top-level count established"
+      },
+      "value_validation": "NOT_ESTABLISHED",
+      "new_independent_validation": false
+    }
+  },
+  "contradicted_samples": [],
+  "new_ui_validated_captures": 10,
+  "new_ui_validated_unique_sha": 8,
+  "conclusion": "Independent count evidence is concentrated in geometry n0 fixtures; text n>0 retains old E/F controls, new text intent is not independent UI truth. No broad corroboration claim."
+}
