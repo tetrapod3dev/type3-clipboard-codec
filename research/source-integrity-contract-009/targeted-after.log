@@ -1,0 +1,10 @@
+........................................................................ [ 87%]
+......F...                                                               [100%]
+================================== FAILURES ===================================
+________________ test_historical_replay_and_legacy_information ________________
+tests\integration\test_source_integrity_policy.py:118: in test_historical_replay_and_legacy_information
+    assert corpus["real_fixtures"] == 104 and corpus["runtime_outputs_equal"]
+E   assert (127 == 104)
+=========================== short test summary info ===========================
+FAILED tests/integration/test_source_integrity_policy.py::test_historical_replay_and_legacy_information
+1 failed, 81 passed in 12.45s
