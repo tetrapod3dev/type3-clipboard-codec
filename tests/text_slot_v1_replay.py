@@ -2,7 +2,7 @@
 
 The old extractor is checked against the canonical pre-migration source hash.
 Legacy raw hashes remain provenance; runtime replay still checks historical behavior.
-Historical analyzer CLI tests run in a temporary copy with that one source file
+Historical analyzer CLI tests run in a temporary copy with explicitly frozen source files
 restored. No baseline, analyzer, capture or current runtime file is overwritten.
 """
 
@@ -47,7 +47,14 @@ def historical_root():
         shutil.copytree(ROOT / folder, root / folder, ignore=historical_inputs)
     for name in ("__init__.py", "source_integrity.py", "source_integrity_baselines.json"):
         shutil.copyfile(ROOT / "tests" / name, root / "tests" / name)
-    shutil.copyfile(old, root / SOURCE)
+    # Restore every explicitly frozen historical source in the isolated copy.
+    # The production checkout (including the progress guard) is never replaced.
+    for path, record in source_baseline("family").items():
+        snapshot = record.get("frozen_snapshot_path")
+        if snapshot:
+            source = ROOT / snapshot
+            assert canonical_source_sha256(source) == record["canonical_source_sha256"]
+            shutil.copyfile(source, root / path)
     return root
 
 

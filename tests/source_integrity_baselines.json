@@ -261,7 +261,8 @@
       "blob_path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
       "legacy_raw_sha256": "2e2393fe9cf1c7e4aea3cdaf2a5ee6dd214c07f42a4a31a9e64f97381cfde862",
       "legacy_raw_status": "exact_known",
-      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance."
+      "reason": "Historical family-baseline committed source; legacy raw SHA retained as capture provenance.",
+      "frozen_snapshot_path": "tests/frozen_contour_parser_pre_guard.py"
     },
     "historical:src/type3_clipboard_codec/parsers/geometry/shape_classifier.py": {
       "path": "src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
@@ -493,6 +494,16 @@
       "legacy_baseline_commit": "82089a1efee1ee65b540bbede57f5bc139149d77",
       "legacy_raw_representation": "LF",
       "reason": "Explicitly approved archive-type evidence metadata source delta; behavioral preservation tests remain active."
+    },
+    "current:src/type3_clipboard_codec/parsers/geometry/contour_parser.py": {
+      "path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "canonical_source_sha256": "a09b0e44f9a1e1066602e6fd451a5458e04c8c33c71570c0803cfe5b24061054",
+      "baseline_commit_or_snapshot": "93d84a7453692206d423b3ab219324f1d466e242",
+      "blob_path": "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "source_blob_id": "56eff30d41f05e96a4a8fe9bb7284a09dfd54b06",
+      "legacy_raw_sha256": "94643e5c509ca469b453f2918ec4e31517bfa68157ac3646147f3e4bca492c87",
+      "legacy_raw_status": "exact_known",
+      "reason": "008 approved Contour progress guard; current production only, historical record and replay remain frozen."
     }
   },
   "groups": {
@@ -557,6 +568,58 @@
     "approved_analyzers": [
       "approved:tools/analyze_text_slot_style_fields.py",
       "approved:tools/analyze_text_slot_spacing_fields.py"
+    ],
+    "current_production": [
+      "historical:src/type3_clipboard_codec/__init__.py",
+      "historical:src/type3_clipboard_codec/adapters/input_base.py",
+      "historical:src/type3_clipboard_codec/adapters/manual_hex_input.py",
+      "historical:src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "historical:src/type3_clipboard_codec/codec/__init__.py",
+      "historical:src/type3_clipboard_codec/codec/decoder.py",
+      "historical:src/type3_clipboard_codec/codec/encoder.py",
+      "historical:src/type3_clipboard_codec/codec/preview.py",
+      "historical:src/type3_clipboard_codec/exceptions.py",
+      "historical:src/type3_clipboard_codec/inspect/__init__.py",
+      "historical:src/type3_clipboard_codec/inspect/formatters.py",
+      "historical:src/type3_clipboard_codec/inspect/hex_input.py",
+      "historical:src/type3_clipboard_codec/models/__init__.py",
+      "historical:src/type3_clipboard_codec/models/colors.py",
+      "historical:src/type3_clipboard_codec/models/geometry.py",
+      "historical:src/type3_clipboard_codec/models/parsed_object.py",
+      "historical:src/type3_clipboard_codec/models/text_object.py",
+      "historical:src/type3_clipboard_codec/parsers/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/base.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/header_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/node_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/binary/node_scanner.py",
+      "historical:src/type3_clipboard_codec/parsers/common.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/chain_builder.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_ranker.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/contour_candidate_validator.py",
+      "current:src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/geometry/shape_classifier.py",
+      "historical:src/type3_clipboard_codec/parsers/object_detector.py",
+      "historical:src/type3_clipboard_codec/parsers/registry.py",
+      "historical:src/type3_clipboard_codec/parsers/style/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/style/property_extend_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/text/__init__.py",
+      "historical:src/type3_clipboard_codec/parsers/text/cparagraphe_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/text/text_pipeline.py",
+      "current:src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "historical:src/type3_clipboard_codec/parsers/text_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/type3_chain_parser.py",
+      "historical:src/type3_clipboard_codec/parsers/unknown_parser.py",
+      "historical:src/type3_clipboard_codec/services/inspect_service.py",
+      "historical:src/type3_clipboard_codec/utils/__init__.py",
+      "historical:src/type3_clipboard_codec/utils/ascii_scan.py",
+      "historical:src/type3_clipboard_codec/utils/bytes_reader.py",
+      "historical:src/type3_clipboard_codec/utils/hex_text.py"
     ]
+  },
+  "contract_scopes": {
+    "family": "Historical family replay; logical paths must contain historical sources. Never accepts current-source alternatives.",
+    "current_production": "Full family source surface with explicit reviewed current contour/text overrides. Never accepts historical alternatives."
   }
 }

@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-10-26T11:15:50.800688+09:00",
+  "repositories": {
+    "type3-clipboard-codec": {
+      "before_head": "d5a02d182a26d462ef2662f01a82635a0fb77417",
+      "after_head": "d5a02d182a26d462ef2662f01a82635a0fb77417",
+      "before_status": "",
+      "existing_files_checked": 957,
+      "missing_files": [],
+      "changed_existing_files": [
+        {
+          "path": "tests/integration/test_text_slot_candidate_v2_migration.py",
+          "before_sha256": "be180d32d143e45676fe77e11401de3a1f65ad042c73b0b9df528ababb06e5e8",
+          "after_sha256": "8cb34d52c7108f6fa767c4927bbc5b7a3b56a5b2ecd8c4684104481c649aa562"
+        },
+        {
+          "path": "tests/source_integrity_baselines.json",
+          "before_sha256": "291b32c8d8a8dcf01b085fa714d60cb34b7b0e9020859920f43f4122dfbc995a",
+          "after_sha256": "5c8ced2a7647bf9f85055bea5be2a8c765e5d202051373df4ce6cbd07b287041"
+        },
+        {
+          "path": "tests/text_slot_v1_replay.py",
+          "before_sha256": "c5d28247b5730cdd715ecb1dfeb58a8a102ddb16fc0b342dae19227c3669a259",
+          "after_sha256": "dce742cd3c895d230b70be3d89aa83f86373375c125aa5ab048b761956d53a6e"
+        }
+      ],
+      "unchanged_existing_files": 954
+    },
+    "typeedit-automation": {
+      "before_head": "fd65c863dcb97c7d852c38c9df668278f14abd9a",
+      "after_head": "fd65c863dcb97c7d852c38c9df668278f14abd9a",
+      "before_status": "",
+      "existing_files_checked": 4169,
+      "missing_files": [],
+      "changed_existing_files": [],
+      "unchanged_existing_files": 4169
+    }
+  },
+  "typeedit_clipboard_native_access": false,
+  "git_mutating_operations": false,
+  "historical_record_values_preserved": true,
+  "all_preexisting_production_sources_unchanged": true,
+  "selection_research_001_to_005_unchanged": true,
+  "frozen_contour_raw_sha256": "2e2393fe9cf1c7e4aea3cdaf2a5ee6dd214c07f42a4a31a9e64f97381cfde862",
+  "production_contour_raw_sha256": "94643e5c509ca469b453f2918ec4e31517bfa68157ac3646147f3e4bca492c87",
+  "business_mode": {
+    "value": "OFF",
+    "sha256": "3c1e6ffb9a2aa25c21bc68f118f83d2e8507a26578b5923d6430cc46a68b0217",
+    "write_performed": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "historical_cli_json_bytes": 99847,
+  "unchanged_cap": 100000,
+  "cli_returncode": 0,
+  "historical_contract": {
+    "canonical_source_equal": true,
+    "legacy_raw_source_equal": false,
+    "canonical_source_mismatches": [],
+    "legacy_raw_source_mismatches": [
+      "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "src/type3_clipboard_codec/models/__init__.py",
+      "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+    ]
+  },
+  "current_contract": {
+    "canonical_source_equal": true,
+    "legacy_raw_source_equal": false,
+    "canonical_source_mismatches": [],
+    "legacy_raw_source_mismatches": [
+      "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "src/type3_clipboard_codec/models/__init__.py",
+      "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+    ]
+  },
+  "historical_contract_against_current_checkout": {
+    "canonical_source_equal": false,
+    "legacy_raw_source_equal": false,
+    "canonical_source_mismatches": [
+      "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py"
+    ],
+    "legacy_raw_source_mismatches": [
+      "src/type3_clipboard_codec/adapters/win32_clipboard.py",
+      "src/type3_clipboard_codec/models/__init__.py",
+      "src/type3_clipboard_codec/parsers/geometry/contour_parser.py",
+      "src/type3_clipboard_codec/parsers/text/text_slot_candidate.py",
+      "src/type3_clipboard_codec/parsers/type3_chain_parser.py"
+    ]
+  }
+}

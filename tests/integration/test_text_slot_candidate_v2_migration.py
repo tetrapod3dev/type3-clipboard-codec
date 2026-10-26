@@ -183,8 +183,9 @@ def test_exact_corpus_and_unchanged_other_sources():
     assert {n for n, r in ROWS.items() if r["outcome"] == "v1_absent_v2_present"} == GAINS
     assert sum(r["v1"]["present"] for r in ROWS.values()) == 62
     assert sum(r["v2"]["present"] for r in ROWS.values()) == 72
-    for path, expected in source_baseline("family").items():
-        actual = Path(legacy.__file__) if path == SOURCE.as_posix() else ROOT / path
+    # Current production integrity is separate from the frozen v1 replay.
+    for path, expected in source_baseline("current_production").items():
+        actual = ROOT / path
         assert canonical_source_sha256(actual) == expected["canonical_source_sha256"]
     source = Path(runtime.__file__).read_text(encoding="utf-8")
     assert "CParagraphe_slot_prefix_family_v1" not in source

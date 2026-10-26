@@ -1,0 +1,145 @@
+{
+  "comparison": "all fields except child_pid/elapsed_seconds telemetry",
+  "samples": {
+    "default_rectangle": {
+      "semantic_json_equal": true,
+      "source_sha256": "95c26e2f15036a925addd973d653d6ea50ccc6e920827ffddb677303341bb614",
+      "timed_out": false
+    },
+    "polyline_3_points": {
+      "semantic_json_equal": true,
+      "source_sha256": "6c499aae369a9fd50db03f8a47854b10786cd0902f94b531909c8320fd2b9d0b",
+      "timed_out": false
+    },
+    "polyline_5_points": {
+      "semantic_json_equal": true,
+      "source_sha256": "408dad579901b034e07bd47ca9b8f7c139483be95f98067e431f41d7878609e5",
+      "timed_out": false
+    },
+    "polygon_5_sides": {
+      "semantic_json_equal": true,
+      "source_sha256": "a9b4672b47f9b683df79b326d8ea544ab972f41fc19b0b95f0396ddc29811b89",
+      "timed_out": false
+    },
+    "polygon_6_sides": {
+      "semantic_json_equal": true,
+      "source_sha256": "df88c7c9eca1b3b8d8f63cb8bf23303d8527317142c248f1132644ac891c95f7",
+      "timed_out": false
+    },
+    "default_circle": {
+      "semantic_json_equal": true,
+      "source_sha256": "c62d9dea384c856ca0a619919a1da11bec7ddc21e23e50f2ad6f0d2a4f5d1503",
+      "timed_out": false
+    },
+    "text/default_text": {
+      "semantic_json_equal": true,
+      "source_sha256": "3dc3a1c488ca81b41ad11e59514a0e268288f1e38fe6d5cded8aa1b9ca851eb9",
+      "timed_out": false
+    },
+    "G1": {
+      "semantic_json_equal": true,
+      "source_sha256": "0b62011ff898b414fce086a6c775d1073bb08fe0b49edacf98e9d5a1d185ad4c",
+      "timed_out": false
+    },
+    "H1": {
+      "semantic_json_equal": true,
+      "source_sha256": "1e2d803df75b56385d97ee8a0021ae94b80cb1da2cd37f96abdf95e4242957af",
+      "timed_out": false
+    },
+    "E1": {
+      "semantic_json_equal": true,
+      "source_sha256": "9957013e159914f0df2c4ccc21238c5708c440e7ff4a376c08e03351d69095c2",
+      "timed_out": false
+    },
+    "F": {
+      "semantic_json_equal": true,
+      "source_sha256": "e481935f07e9986cecd827b95c3e10a2920718f660f9872e6318690c33c4e743",
+      "timed_out": false
+    },
+    "S1-confirmed": {
+      "semantic_json_equal": true,
+      "source_sha256": "ac14d3bf6769b3b7ad283e81287dd301cd29a684cd3be5028903e0c0d874fe8a",
+      "timed_out": false
+    },
+    "S2-confirmed": {
+      "semantic_json_equal": true,
+      "source_sha256": "72f6a1e90d229ea0546237f8c63f2cc7801d3e595b3e7befc12c79c01fae4819",
+      "timed_out": false
+    },
+    "U0": {
+      "semantic_json_equal": true,
+      "source_sha256": "4b224da0536a5abe34c48e299376af3c4f03acd75dab3287c76808ebd3f78887",
+      "timed_out": false
+    },
+    "G0-A": {
+      "semantic_json_equal": true,
+      "source_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "timed_out": false
+    },
+    "G0-B": {
+      "semantic_json_equal": true,
+      "source_sha256": "eb9e7f9fb03dd1495b8e5337d0afdbce4e721e75791f2728d1434776a240155f",
+      "timed_out": false
+    },
+    "G0-R": {
+      "semantic_json_equal": true,
+      "source_sha256": "ec2bc47e80652422d9973ec4ede4b4a8ba382070a9d6562fe3c5f961339d73bc",
+      "timed_out": false
+    },
+    "H0-A": {
+      "semantic_json_equal": true,
+      "source_sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "timed_out": false
+    },
+    "H0-B": {
+      "semantic_json_equal": true,
+      "source_sha256": "244020e74b9ff014a5e80ea43755c11a2d36cfa20601c10cab2f16de7f308bbf",
+      "timed_out": false
+    },
+    "text_three_objects_grouped_order_abc": {
+      "semantic_json_equal": true,
+      "source_sha256": "4144746fdd1904efaa7b1e5f48bb297bf76f3167064858f82b3b76d5f73720c8",
+      "timed_out": false
+    },
+    "text_three_objects_not_grouped": {
+      "semantic_json_equal": true,
+      "source_sha256": "201907994ff2baad4d492159302468ba1fc59555f611eed1577cf2fa9ee2637b",
+      "timed_out": false
+    },
+    "text_three_objects_grouped_order_cba": {
+      "semantic_json_equal": true,
+      "source_sha256": "4b9a4ade21a1311659338e66cb0330f90bdbaffd7b6ad3bf0c46c1f8b0510449",
+      "timed_out": false
+    },
+    "text_two_objects_same_color_not_grouped": {
+      "semantic_json_equal": true,
+      "source_sha256": "e4331bd12a5ea44db09d661b6e3674e685f834b640f66da31210dd4fa6533545",
+      "timed_out": false
+    },
+    "text_two_objects_mixed_color_not_grouped": {
+      "semantic_json_equal": true,
+      "source_sha256": "65b229f765ed2f2820277bf007599825e639d177b5a1c25373412648d3e34622",
+      "timed_out": false
+    },
+    "text_three_objects_grouped_order_abc_mixed_color": {
+      "semantic_json_equal": true,
+      "source_sha256": "4e7f3e5091189effc9a02717565c79af3b7137221ca035fac756759440557c5b",
+      "timed_out": false
+    },
+    "text_three_objects_grouped_order_abc_font_arial_bold": {
+      "semantic_json_equal": true,
+      "source_sha256": "88f4e165140b76990d6610b9867c18fb6bb41e4dbbf85f957a0c3128118091be",
+      "timed_out": false
+    },
+    "text_three_objects_grouped_order_abc_content_variation": {
+      "semantic_json_equal": true,
+      "source_sha256": "ecb93d901e24c43b7b0dc68a25e6ed60081115a59b06de96a2791008ec87f7aa",
+      "timed_out": false
+    },
+    "text_two_objects_not_grouped_selection_reversed": {
+      "semantic_json_equal": true,
+      "source_sha256": "cbf25ff84e7d8dace5c0c93ff11897e37310fecc8d4cb2f336f42959373edd00",
+      "timed_out": false
+    }
+  }
+}
